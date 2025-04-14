@@ -16,5 +16,19 @@ namespace Dev4Tech
         {
             InitializeComponent();
         }
+
+        private void lblCadastrar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            cadastro_funcionário cad_funcionario = new cadastro_funcionário();
+            cad_funcionario.Show();
+            this.Hide();
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            Home t_Home = new Home();
+            t_Home.Show();
+            this.Hide();
+        }
     }
 }

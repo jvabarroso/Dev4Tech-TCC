@@ -33,9 +33,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnCadastroEmpresa = new System.Windows.Forms.Button();
+            this.btnLogin = new System.Windows.Forms.Button();
+            this.btnCadastro = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -85,38 +85,41 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "Para você?";
             // 
-            // button1
+            // btnCadastroEmpresa
             // 
-            this.button1.Location = new System.Drawing.Point(113, 239);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(137, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Cadastre sua empresa";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnCadastroEmpresa.Location = new System.Drawing.Point(113, 239);
+            this.btnCadastroEmpresa.Name = "btnCadastroEmpresa";
+            this.btnCadastroEmpresa.Size = new System.Drawing.Size(137, 23);
+            this.btnCadastroEmpresa.TabIndex = 5;
+            this.btnCadastroEmpresa.Text = "Cadastre sua empresa";
+            this.btnCadastroEmpresa.UseVisualStyleBackColor = true;
+            this.btnCadastroEmpresa.Click += new System.EventHandler(this.btnCadastroEmpresa_Click);
             // 
-            // button2
+            // btnLogin
             // 
-            this.button2.Location = new System.Drawing.Point(113, 326);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Login";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnLogin.Location = new System.Drawing.Point(113, 326);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(75, 23);
+            this.btnLogin.TabIndex = 6;
+            this.btnLogin.Text = "Login";
+            this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
-            // button3
+            // btnCadastro
             // 
-            this.button3.Location = new System.Drawing.Point(113, 355);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(122, 23);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Não tem uma conta?";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnCadastro.Location = new System.Drawing.Point(113, 355);
+            this.btnCadastro.Name = "btnCadastro";
+            this.btnCadastro.Size = new System.Drawing.Size(75, 23);
+            this.btnCadastro.TabIndex = 7;
+            this.btnCadastro.Text = "Cadastro";
+            this.btnCadastro.UseVisualStyleBackColor = true;
+            this.btnCadastro.Click += new System.EventHandler(this.btnCadastro_Click);
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImage = global::Dev4Tech.Properties.Resources.Group_33;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(337, 18);
+            this.pictureBox1.Location = new System.Drawing.Point(341, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(692, 626);
             this.pictureBox1.TabIndex = 8;
@@ -128,9 +131,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1064, 681);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnCadastro);
+            this.Controls.Add(this.btnLogin);
+            this.Controls.Add(this.btnCadastroEmpresa);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -151,9 +154,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnCadastroEmpresa;
+        private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.Button btnCadastro;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

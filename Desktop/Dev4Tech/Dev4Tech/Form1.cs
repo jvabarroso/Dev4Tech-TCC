@@ -16,5 +16,26 @@ namespace Dev4Tech
         {
             InitializeComponent();
         }
+
+        private void btnCadastroEmpresa_Click(object sender, EventArgs e)
+        {
+            Cadastro_empresa cad_empresa = new Cadastro_empresa();
+            cad_empresa.Show();
+            this.Hide();
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            login t_login = new login();
+            t_login.Show();
+            this.Hide();
+        }
+
+        private void btnCadastro_Click(object sender, EventArgs e)
+        {
+            cadastro_funcionário cad_funcionario = new cadastro_funcionário();
+            cad_funcionario.Show();
+            this.Hide();
+        }
     }
 }
