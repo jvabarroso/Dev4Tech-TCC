@@ -14,6 +14,7 @@ import {Ionicons} from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator()
 
+
 function Tabs(){
   return (
     <Tab.Navigator
