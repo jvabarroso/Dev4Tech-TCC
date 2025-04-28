@@ -12,7 +12,8 @@ namespace Dev4Tech
 {
     class empresa : conexao
     {
-        private string nomeEmpresa, codigoId, CNPJ, setorEmpresarial, logradouro, numResidencia, bairro, rua, complemento;
+        private string nomeEmpresa, codigoId, setorEmpresarial, logradouro, bairro, rua, complemento;
+        private int CNPJ, numResidencia;
 
         public void setNomeEmpresa(string nomeEmpresa)
         {
@@ -22,11 +23,11 @@ namespace Dev4Tech
         {
             this.codigoId = codigoId;
         }
-        public void setCNPJ(string CNPJ)
+        public void setCNPJ(int CNPJ)
         {
             this.CNPJ = CNPJ;
         }
-        public void seSetorEmpresarial(string setorEmpresarial)
+        public void setSetorEmpresarial(string setorEmpresarial)
         {
             this.setorEmpresarial = setorEmpresarial;
         }
@@ -34,17 +35,13 @@ namespace Dev4Tech
         {
             this.logradouro = logradouro;
         }
-        public void setNumResidencia(string numResidencia)
+        public void setNumResidencia(int numResidencia)
         {
             this.numResidencia = numResidencia;
         }
         public void setBairro(string bairro)
         {
             this.bairro = bairro;
-        }
-        public void setRua(string rua)
-        {
-            this.rua = rua;
         }
         public void setComplemento(string complemento)
         {
@@ -59,7 +56,7 @@ namespace Dev4Tech
         {
             return this.codigoId;
         }
-        public string getCNPJ()
+        public int getCNPJ()
         {
             return this.CNPJ;
         }
@@ -71,17 +68,13 @@ namespace Dev4Tech
         {
             return this.logradouro;
         }
-        public string getNumResidencia()
+        public int getNumResidencia()
         {
             return this.numResidencia;
         }
         public string getBairro()
         {
             return this.bairro;
-        }
-        public string getRua()
-        {
-            return this.rua;
         }
         public string getComplemento()
         {
@@ -93,7 +86,8 @@ namespace Dev4Tech
 
         public void inserir()
         {
-            string query = "Insert into Cachorro(nome, codigo_id, sexo, idade, pelagem, porte) values ('" + getRaça() + "', '" + getCodigoId() + "', '" + getSexo() + "', '" + getIdade() + "', '" + getPelagem() + "', " + getPorte() + "')";
+            string query = "Insert into dadosEmpresa(nomeEmpresa, CNPJ, setorEmpresarial, logradouro, numResidencia, bairro, complemento) values ('" + getNomeEmpresa() + "', '"  + getCNPJ() + "', '" + getSetorEmpresarial() +
+                "', '" + getLogradouro() + "', '" + getNumResidencia() + "', '" + getBairro()+ "', '" + getComplemento() + "')";
 
             if (this.abrirConexao() == true)
             {
@@ -106,7 +100,7 @@ namespace Dev4Tech
         //Excluir informações do banco de dados por meio da chave primária
         public void excluir()
         {
-            string query = "delete from Cachorro where CodigoId = '" + getCodigoId() + "'";
+            string query = "delete from dadosEmpresa where CodigoId = '" + getCNPJ() + "'";
             MySqlCommand cmd = new MySqlCommand(query, conectar);
             cmd.ExecuteNonQuery();
             this.fecharConexao();
@@ -116,7 +110,7 @@ namespace Dev4Tech
         public DataTable Consultar()
         {
             this.abrirConexao();
-            string mSQL = "select * from Cachorro";
+            string mSQL = "select * from dadosEmpresa";
             MySqlCommand cmd = new MySqlCommand(mSQL, conectar);
             MySqlDataAdapter da = new MySqlDataAdapter(cmd);
 
@@ -125,8 +119,5 @@ namespace Dev4Tech
             da.Fill(dt);
             return dt;
         }
-    }
-}
-
     }
 }
