@@ -6,15 +6,18 @@ export default function Inicio({navigation}){
     return(
         <View style={styles.container}>
             <Text style={styles.logo}>WORKFLOW</Text>
-            <Text style={styles.Titulo}> Bem vindo ao WORKFLOW</Text>
-            <Text style={styles.Subtitulo}> Otimize seu Trabalho Conosco! </Text>
+
+            <View style={styles.areaTitulo}>
+              <Text style={styles.titulo}>Bem vindo ao WORKFLOW </Text>
+              <Text style={styles.subtitulo}> Otimize seu Trabalho Conosco! </Text>
+            </View>
+
             <TouchableOpacity
                 style={styles.botao}
                 onPress={()=> navigation.navigate('Login')}
             >
                 <Text style={styles.textoBotao}> Login </Text>
             </TouchableOpacity>
-          
         </View>
     )
 }
@@ -26,9 +29,49 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  texto: {
+  logo: {
     fontfamily: 'Arial',
-    fontSize: 40,
-    color: '#f30'
-  }
+    fontSize: 19,
+    color: '#000',
+    fontWeight: 'bold',
+    flexDirection: 'row',
+    paddingBottom: 5,
+    marginBottom: '135%',
+    marginRight: '60%',
+  },
+  areaTitulo: {
+    position: 'absolute',
+    alignItems: 'center',
+    top: '30%',
+  },
+  titulo: {
+    fontfamily: 'Arial',
+    fontSize: 35,
+    fontWeight: 'bold',
+    color: '#000',
+    marginBottom: '2%',
+    marginLeft: '3%',
+  },
+  subtitulo: {
+    fontfamily: 'Arial',
+    fontSize: 18,
+    color: '#000',
+    paddingBlockEnd: '35%',
+    marginRight: '30%',
+  },
+  botao:{
+    position: 'absolute',
+    top: '73%',
+    height: 45,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#0C21C1',
+    borderRadius: 150,
+    width: '75%',
+    alignSelf: 'center',
+  },
+  textoBotao: {
+    fontSize: 15,
+    color: '#FFFFFF'
+  },
 })
