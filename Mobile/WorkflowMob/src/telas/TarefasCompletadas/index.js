@@ -5,16 +5,6 @@ export default function TarefasCompletadas({navigation}){
     return(
         <ScrollView style={styles.scroll}>
             <View style={styles.container}>
-                <View style={styles.nav}>
-                    <Image
-                      style={styles.imagemPerfil}
-                    ></Image>
-                    <Text style={styles.titulo}>WORKFLOW</Text>
-                    <Image
-                      style={styles.configuracoes}
-                    >
-                    </Image>
-                </View>
                 <Text style={styles.subtitulo}>Tarefas</Text>
                 <View style={styles.areabotao}>
                   <TouchableOpacity

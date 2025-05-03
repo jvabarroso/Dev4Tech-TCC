@@ -8,17 +8,6 @@ export default function Home({navigation}){
 
         <ScrollView style={styles.scroll}>
             <View style={styles.container}>
-                <Text style={styles.logo}>WORKFLOW</Text>
-
-                <TouchableOpacity
-                    style={styles.botaoconfiguracoes}
-                    onPress={()=> navigation.navigate('Configuracoes')} 
-                >
-                    <Image 
-                    style={styles.configuracoes}>
-                    </Image>
-                </TouchableOpacity>
-
                 <View style={styles.areaperfil}>
                     <Image 
                     style={styles.foto}>
