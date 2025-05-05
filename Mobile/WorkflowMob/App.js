@@ -7,7 +7,7 @@ import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Inicio from './src/telas/Inicio';
 import Login from './src/telas/Login';
 import Home from './src/telas/Home';
-import TarefasPendentes from './src/telas/TarefasPendentes';
+import Tarefas from './src/telas/Tarefas';
 import Equipes from './src/telas/Equipes';
 import Raking from './src/telas/Raking';
 import {Ionicons} from '@expo/vector-icons';
@@ -54,7 +54,7 @@ function Tabs(){
     }}    
     >  
       <Tab.Screen name= "Home" component={Home}></Tab.Screen>
-      <Tab.Screen name= "Tarefas" component={TarefasPendentes}></Tab.Screen>
+      <Tab.Screen name= "Tarefas" component={Tarefas}></Tab.Screen>
       <Tab.Screen name= "Equipes" component={Equipes}></Tab.Screen>
       <Tab.Screen name= "Raking" component={Raking}></Tab.Screen>
     </Tab.Navigator>
