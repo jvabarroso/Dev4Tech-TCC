@@ -52,5 +52,35 @@ namespace Dev4Tech
         {
             txtNomeEmpresa.Text = "";
         }
+
+        private void txtCNPJEmpresa_Click(object sender, EventArgs e)
+        {
+            txtCNPJEmpresa.Text = "";
+        }
+
+        private void txtSetorEmpresa_Click(object sender, EventArgs e)
+        {
+            txtSetorEmpresa.Text = "";
+        }
+
+        private void txtLogradouroEmpresa_Click(object sender, EventArgs e)
+        {
+            txtLogradouroEmpresa.Text = "";
+        }
+
+        private void txtNumResidencia_Click(object sender, EventArgs e)
+        {
+            txtNumResidencia.Text = "";
+        }
+
+        private void txtBairroEmpresa_Click(object sender, EventArgs e)
+        {
+            txtBairroEmpresa.Text = "";
+        }
+
+        private void txtComplementoEmpresa_Click(object sender, EventArgs e)
+        {
+            txtComplementoEmpresa.Text = "";
+        }
     }
 }
