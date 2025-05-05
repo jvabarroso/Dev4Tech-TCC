@@ -40,7 +40,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtNomeEmpresa = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
@@ -165,13 +165,15 @@
             this.label11.TabIndex = 19;
             this.label11.Text = "Complemento";
             // 
-            // textBox1
+            // txtNomeEmpresa
             // 
-            this.textBox1.Location = new System.Drawing.Point(127, 192);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(133, 20);
-            this.textBox1.TabIndex = 20;
-            this.textBox1.Text = "Digite o nome da empresa";
+            this.txtNomeEmpresa.Location = new System.Drawing.Point(127, 192);
+            this.txtNomeEmpresa.Name = "txtNomeEmpresa";
+            this.txtNomeEmpresa.Size = new System.Drawing.Size(133, 20);
+            this.txtNomeEmpresa.TabIndex = 20;
+            this.txtNomeEmpresa.Text = "Digite o nome da empresa";
+            this.txtNomeEmpresa.Click += new System.EventHandler(this.txtNomeEmpresa_Click);
+            this.txtNomeEmpresa.TextChanged += new System.EventHandler(this.txtNomeEmpresa_TextChanged);
             // 
             // textBox3
             // 
@@ -275,7 +277,7 @@
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtNomeEmpresa);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
@@ -309,7 +311,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtNomeEmpresa;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox5;

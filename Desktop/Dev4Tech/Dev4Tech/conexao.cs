@@ -22,7 +22,7 @@ namespace Dev4Tech
         {
             servidor = "127.0.0.1";
             /*127.0.0.1 - número do servidor local ou seja o proprio computador, para conexões online necessário colocar o número do servidor na internet.*/
-            database = "crud_csharp";
+            database = "empresa";
             //Database que iremos criar futuramente 
             usuario = "root";
             senha = "";
@@ -67,9 +67,5 @@ namespace Dev4Tech
                 return false;
             }
         }
-    }
-}
-)
-
     }
 }
