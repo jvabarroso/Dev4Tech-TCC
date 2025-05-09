@@ -109,19 +109,19 @@
     <Compile Include="Cadastro-empresa.Designer.cs">
       <DependentUpon>Cadastro-empresa.cs</DependentUpon>
     </Compile>
-    <Compile Include="cadastro-funcionário.cs">
+    <Compile Include="Cadastro-funcionário.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="cadastro-funcionário.Designer.cs">
-      <DependentUpon>cadastro-funcionário.cs</DependentUpon>
+    <Compile Include="Cadastro-funcionário.Designer.cs">
+      <DependentUpon>Cadastro-funcionário.cs</DependentUpon>
     </Compile>
     <Compile Include="conexao.cs" />
     <Compile Include="empresa.cs" />
-    <Compile Include="Equipes.cs">
+    <Compile Include="pesquisaEquipes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Equipes.Designer.cs">
-      <DependentUpon>Equipes.cs</DependentUpon>
+    <Compile Include="pesquisaEquipes.Designer.cs">
+      <DependentUpon>pesquisaEquipes.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -149,11 +149,11 @@
     <EmbeddedResource Include="Cadastro-empresa.resx">
       <DependentUpon>Cadastro-empresa.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="cadastro-funcionário.resx">
-      <DependentUpon>cadastro-funcionário.cs</DependentUpon>
+    <EmbeddedResource Include="Cadastro-funcionário.resx">
+      <DependentUpon>Cadastro-funcionário.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Equipes.resx">
-      <DependentUpon>Equipes.cs</DependentUpon>
+    <EmbeddedResource Include="pesquisaEquipes.resx">
+      <DependentUpon>pesquisaEquipes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

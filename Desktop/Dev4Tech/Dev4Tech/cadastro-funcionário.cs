@@ -38,5 +38,45 @@ namespace Dev4Tech
             t_incial.Show();
             this.Hide();
         }
+
+        private void txtCadFuncNome_Click(object sender, EventArgs e)
+        {
+            txtCadFuncNome.Text = "";
+        }
+
+        private void txtCadFuncCargo_Click(object sender, EventArgs e)
+        {
+            txtCadFuncCargo.Text = "";
+        }
+
+        private void txtCadFuncCPF_Click(object sender, EventArgs e)
+        {
+            txtCadFuncCPF.Text = "";
+        }
+
+        private void txtCadFuncDataNasc_Click(object sender, EventArgs e)
+        {
+            txtCadFuncDataNasc.Text = "";
+        }
+
+        private void txtCadFuncTelefone_Click(object sender, EventArgs e)
+        {
+            txtCadFuncTelefone.Text = "";
+        }
+
+        private void txtCadFuncEmail_Click(object sender, EventArgs e)
+        {
+            txtCadFuncEmail.Text = "";
+        }
+
+        private void txtCadFuncSenha_Click(object sender, EventArgs e)
+        {
+            txtCadFuncSenha.Text = "";
+        }
+
+        private void txtCadFuncConfirmSenha_Click(object sender, EventArgs e)
+        {
+            txtCadFuncConfirmSenha.Text = "";
+        }
     }
 }

@@ -7,7 +7,6 @@ C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj
 C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa_admin.resources
 C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa.resources
 C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.cadastro_funcionário.resources
-C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Equipes.resources
 C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Form1.resources
 C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Home.resources
 C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.login.resources
@@ -36,3 +35,4 @@ C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin
 C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Buffers.xml
 C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.xml
 C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.pesquisaEquipes.resources
