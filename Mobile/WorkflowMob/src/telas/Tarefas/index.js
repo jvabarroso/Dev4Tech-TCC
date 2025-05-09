@@ -20,7 +20,23 @@ export default function Tarefas({navigation}){
       cargo: 'Documentação',
       datadeentrega: '20/02/2025',
       imagem: require('../../../assets/img/image.png'),
-    }
+    },
+    {
+      id: '3',
+      titulo: 'Tarefa 3',
+      descricao: 'lorem ipsum kwkkww',
+      cargo: 'Design',
+      datadeentrega: '20/02/2025',
+      imagem: require('../../../assets/img/image.png'),
+    },
+    {
+      id: '4',
+      titulo: 'Tarefa 4',
+      descricao: 'lorem ipsum kwkkww',
+      cargo: 'Back-end',
+      datadeentrega: '20/02/2025',
+      imagem: require('../../../assets/img/image.png'),
+    },
   ]);
 
     return(
@@ -62,6 +78,7 @@ export default function Tarefas({navigation}){
                 <FlatList
                   data={tarefas}
                   keyExtractor={(item) => item.id}
+                  style={styles.flat}
                   renderItem={({ item }) => (
                     <View style={styles.containertarefas}>
 
@@ -134,10 +151,14 @@ const styles = StyleSheet.create({
     borderBottomColor: '#000',
     marginBottom: 15,
   },
+  flat:{
+    marginBottom: 300,
+  },
   containertarefas:{
     height: 80,
     width: 300,
     margin: 40,
+    marginRight: 80,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,

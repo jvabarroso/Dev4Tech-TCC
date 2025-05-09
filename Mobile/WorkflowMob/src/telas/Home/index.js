@@ -10,7 +10,8 @@ export default function Home({navigation}){
             <View style={styles.container}>
                 <View style={styles.areaperfil}>
                     <Image 
-                    style={styles.foto}>
+                    style={styles.foto}
+                    source={require('../../../assets/img/fotoexemplo.png')} >
                     </Image>
                     <Text style={styles.nome}>Ramon Trigon</Text>
                     <Text style={styles.profissao}>Professor</Text>
@@ -63,10 +64,35 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: "#ffffff"
   },
   scroll: {
     flex: 1,
     width: '100%',
-  }
+  },
+  areaperfil:{
+    flexDirection: 'row',
+    marginTop: 15,
+    justifyContent: 'space-between',
+    width: '100%',
+    paddingHorizontal: 20,
+  },
+  foto:{
+    width: 120,
+    height: 120,
+    marginLeft: 18,
+    borderRadius: "100%"
+  },
+  nome:{
+    color:'#000',
+    fontSize: 20,
+    fontWeight: 'bold',
+    right:30,
+  },
+  profissao:{
+    color:'#aaaaaa',
+    fontSize: 18,
+    left:5
+  },
 
 })
