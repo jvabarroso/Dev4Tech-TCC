@@ -32,13 +32,13 @@
             this.btnVoltar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtCadAdmCargo = new System.Windows.Forms.TextBox();
+            this.txtCadAdmCPF = new System.Windows.Forms.TextBox();
+            this.txtCadAdmTelefone = new System.Windows.Forms.TextBox();
+            this.txtCadAdmEmail = new System.Windows.Forms.TextBox();
+            this.txtCadAdmSenha = new System.Windows.Forms.TextBox();
+            this.txtCadAdmConfirmSenha = new System.Windows.Forms.TextBox();
+            this.txtCadAdmNome = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -51,7 +51,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtCadAdmDataNasc = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,61 +94,68 @@
             this.label12.TabIndex = 51;
             this.label12.Text = "Se você já possui uma conta, você pode";
             // 
-            // textBox8
+            // txtCadAdmCargo
             // 
-            this.textBox8.Location = new System.Drawing.Point(127, 229);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(147, 20);
-            this.textBox8.TabIndex = 50;
-            this.textBox8.Text = "Digite seu cargo na empresa";
+            this.txtCadAdmCargo.Location = new System.Drawing.Point(127, 229);
+            this.txtCadAdmCargo.Name = "txtCadAdmCargo";
+            this.txtCadAdmCargo.Size = new System.Drawing.Size(147, 20);
+            this.txtCadAdmCargo.TabIndex = 50;
+            this.txtCadAdmCargo.Text = "Digite seu cargo na empresa";
+            this.txtCadAdmCargo.Click += new System.EventHandler(this.txtCadAdmCargo_Click);
             // 
-            // textBox7
+            // txtCadAdmCPF
             // 
-            this.textBox7.Location = new System.Drawing.Point(127, 284);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(92, 20);
-            this.textBox7.TabIndex = 49;
-            this.textBox7.Text = "Digite seu CPF";
+            this.txtCadAdmCPF.Location = new System.Drawing.Point(127, 284);
+            this.txtCadAdmCPF.Name = "txtCadAdmCPF";
+            this.txtCadAdmCPF.Size = new System.Drawing.Size(92, 20);
+            this.txtCadAdmCPF.TabIndex = 49;
+            this.txtCadAdmCPF.Text = "Digite seu CPF";
+            this.txtCadAdmCPF.Click += new System.EventHandler(this.txtCadAdmCPF_Click);
             // 
-            // textBox6
+            // txtCadAdmTelefone
             // 
-            this.textBox6.Location = new System.Drawing.Point(127, 391);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(85, 20);
-            this.textBox6.TabIndex = 48;
-            this.textBox6.Text = "99-9999-99999";
+            this.txtCadAdmTelefone.Location = new System.Drawing.Point(127, 391);
+            this.txtCadAdmTelefone.Name = "txtCadAdmTelefone";
+            this.txtCadAdmTelefone.Size = new System.Drawing.Size(85, 20);
+            this.txtCadAdmTelefone.TabIndex = 48;
+            this.txtCadAdmTelefone.Text = "99-9999-99999";
+            this.txtCadAdmTelefone.Click += new System.EventHandler(this.txtCadAdmTelefone_Click);
             // 
-            // textBox5
+            // txtCadAdmEmail
             // 
-            this.textBox5.Location = new System.Drawing.Point(127, 443);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(147, 20);
-            this.textBox5.TabIndex = 47;
-            this.textBox5.Text = "Digite seu email institucional";
+            this.txtCadAdmEmail.Location = new System.Drawing.Point(127, 443);
+            this.txtCadAdmEmail.Name = "txtCadAdmEmail";
+            this.txtCadAdmEmail.Size = new System.Drawing.Size(147, 20);
+            this.txtCadAdmEmail.TabIndex = 47;
+            this.txtCadAdmEmail.Text = "Digite seu email institucional";
+            this.txtCadAdmEmail.Click += new System.EventHandler(this.txtCadAdmEmail_Click);
             // 
-            // textBox4
+            // txtCadAdmSenha
             // 
-            this.textBox4.Location = new System.Drawing.Point(127, 497);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(92, 20);
-            this.textBox4.TabIndex = 46;
-            this.textBox4.Text = "Digite sua senha";
+            this.txtCadAdmSenha.Location = new System.Drawing.Point(127, 497);
+            this.txtCadAdmSenha.Name = "txtCadAdmSenha";
+            this.txtCadAdmSenha.Size = new System.Drawing.Size(92, 20);
+            this.txtCadAdmSenha.TabIndex = 46;
+            this.txtCadAdmSenha.Text = "Digite sua senha";
+            this.txtCadAdmSenha.Click += new System.EventHandler(this.txtCadAdmSenha_Click);
             // 
-            // textBox3
+            // txtCadAdmConfirmSenha
             // 
-            this.textBox3.Location = new System.Drawing.Point(127, 549);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(110, 20);
-            this.textBox3.TabIndex = 45;
-            this.textBox3.Text = "Confirme sua senha";
+            this.txtCadAdmConfirmSenha.Location = new System.Drawing.Point(127, 549);
+            this.txtCadAdmConfirmSenha.Name = "txtCadAdmConfirmSenha";
+            this.txtCadAdmConfirmSenha.Size = new System.Drawing.Size(110, 20);
+            this.txtCadAdmConfirmSenha.TabIndex = 45;
+            this.txtCadAdmConfirmSenha.Text = "Confirme sua senha";
+            this.txtCadAdmConfirmSenha.Click += new System.EventHandler(this.txtCadAdmConfirmSenha_Click);
             // 
-            // textBox1
+            // txtCadAdmNome
             // 
-            this.textBox1.Location = new System.Drawing.Point(127, 176);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(85, 20);
-            this.textBox1.TabIndex = 44;
-            this.textBox1.Text = "Digite seu nome";
+            this.txtCadAdmNome.Location = new System.Drawing.Point(127, 176);
+            this.txtCadAdmNome.Name = "txtCadAdmNome";
+            this.txtCadAdmNome.Size = new System.Drawing.Size(110, 20);
+            this.txtCadAdmNome.TabIndex = 44;
+            this.txtCadAdmNome.Text = "Digite seu nome";
+            this.txtCadAdmNome.Click += new System.EventHandler(this.txtCadAdmNome_Click);
             // 
             // label11
             // 
@@ -261,31 +268,32 @@
             this.label1.TabIndex = 32;
             this.label1.Text = "WORKFLOW";
             // 
-            // textBox2
+            // txtCadAdmDataNasc
             // 
-            this.textBox2.Location = new System.Drawing.Point(127, 343);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(159, 20);
-            this.textBox2.TabIndex = 55;
-            this.textBox2.Text = "Digite sua data de nascimento";
+            this.txtCadAdmDataNasc.Location = new System.Drawing.Point(127, 343);
+            this.txtCadAdmDataNasc.Name = "txtCadAdmDataNasc";
+            this.txtCadAdmDataNasc.Size = new System.Drawing.Size(159, 20);
+            this.txtCadAdmDataNasc.TabIndex = 55;
+            this.txtCadAdmDataNasc.Text = "Digite sua data de nascimento";
+            this.txtCadAdmDataNasc.Click += new System.EventHandler(this.txtCadAdmDataNasc_Click);
             // 
             // Cadastro_empresa_admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1064, 681);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtCadAdmDataNasc);
             this.Controls.Add(this.btnCadastrar);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtCadAdmCargo);
+            this.Controls.Add(this.txtCadAdmCPF);
+            this.Controls.Add(this.txtCadAdmTelefone);
+            this.Controls.Add(this.txtCadAdmEmail);
+            this.Controls.Add(this.txtCadAdmSenha);
+            this.Controls.Add(this.txtCadAdmConfirmSenha);
+            this.Controls.Add(this.txtCadAdmNome);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
@@ -312,13 +320,13 @@
         private System.Windows.Forms.Button btnVoltar;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtCadAdmCargo;
+        private System.Windows.Forms.TextBox txtCadAdmCPF;
+        private System.Windows.Forms.TextBox txtCadAdmTelefone;
+        private System.Windows.Forms.TextBox txtCadAdmEmail;
+        private System.Windows.Forms.TextBox txtCadAdmSenha;
+        private System.Windows.Forms.TextBox txtCadAdmConfirmSenha;
+        private System.Windows.Forms.TextBox txtCadAdmNome;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
@@ -331,6 +339,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtCadAdmDataNasc;
     }
 }

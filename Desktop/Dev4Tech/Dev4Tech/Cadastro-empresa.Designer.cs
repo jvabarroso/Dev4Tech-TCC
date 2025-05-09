@@ -41,12 +41,12 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.txtNomeEmpresa = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.txtComplementoEmpresa = new System.Windows.Forms.TextBox();
+            this.txtBairroEmpresa = new System.Windows.Forms.TextBox();
+            this.txtNumResidencia = new System.Windows.Forms.TextBox();
+            this.txtLogradouroEmpresa = new System.Windows.Forms.TextBox();
+            this.txtSetorEmpresa = new System.Windows.Forms.TextBox();
+            this.txtCNPJEmpresa = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnCadastrar = new System.Windows.Forms.Button();
@@ -175,53 +175,59 @@
             this.txtNomeEmpresa.Click += new System.EventHandler(this.txtNomeEmpresa_Click);
             this.txtNomeEmpresa.TextChanged += new System.EventHandler(this.txtNomeEmpresa_TextChanged);
             // 
-            // textBox3
+            // txtComplementoEmpresa
             // 
-            this.textBox3.Location = new System.Drawing.Point(127, 541);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(176, 20);
-            this.textBox3.TabIndex = 22;
-            this.textBox3.Text = "Digite o complemento do endereço";
+            this.txtComplementoEmpresa.Location = new System.Drawing.Point(127, 541);
+            this.txtComplementoEmpresa.Name = "txtComplementoEmpresa";
+            this.txtComplementoEmpresa.Size = new System.Drawing.Size(176, 20);
+            this.txtComplementoEmpresa.TabIndex = 22;
+            this.txtComplementoEmpresa.Text = "Digite o complemento do endereço";
+            this.txtComplementoEmpresa.Click += new System.EventHandler(this.txtComplementoEmpresa_Click);
             // 
-            // textBox4
+            // txtBairroEmpresa
             // 
-            this.textBox4.Location = new System.Drawing.Point(127, 489);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(232, 20);
-            this.textBox4.TabIndex = 23;
-            this.textBox4.Text = "Digite o nome do bairro em que a empresa está";
+            this.txtBairroEmpresa.Location = new System.Drawing.Point(127, 489);
+            this.txtBairroEmpresa.Name = "txtBairroEmpresa";
+            this.txtBairroEmpresa.Size = new System.Drawing.Size(232, 20);
+            this.txtBairroEmpresa.TabIndex = 23;
+            this.txtBairroEmpresa.Text = "Digite o nome do bairro em que a empresa está";
+            this.txtBairroEmpresa.Click += new System.EventHandler(this.txtBairroEmpresa_Click);
             // 
-            // textBox5
+            // txtNumResidencia
             // 
-            this.textBox5.Location = new System.Drawing.Point(127, 435);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(205, 20);
-            this.textBox5.TabIndex = 24;
-            this.textBox5.Text = "Digite o número de residência da empresa";
+            this.txtNumResidencia.Location = new System.Drawing.Point(127, 435);
+            this.txtNumResidencia.Name = "txtNumResidencia";
+            this.txtNumResidencia.Size = new System.Drawing.Size(205, 20);
+            this.txtNumResidencia.TabIndex = 24;
+            this.txtNumResidencia.Text = "Digite o número de residência da empresa";
+            this.txtNumResidencia.Click += new System.EventHandler(this.txtNumResidencia_Click);
             // 
-            // textBox6
+            // txtLogradouroEmpresa
             // 
-            this.textBox6.Location = new System.Drawing.Point(127, 383);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(159, 20);
-            this.textBox6.TabIndex = 25;
-            this.textBox6.Text = "Digite o logradouro da empresa";
+            this.txtLogradouroEmpresa.Location = new System.Drawing.Point(127, 383);
+            this.txtLogradouroEmpresa.Name = "txtLogradouroEmpresa";
+            this.txtLogradouroEmpresa.Size = new System.Drawing.Size(159, 20);
+            this.txtLogradouroEmpresa.TabIndex = 25;
+            this.txtLogradouroEmpresa.Text = "Digite o logradouro da empresa";
+            this.txtLogradouroEmpresa.Click += new System.EventHandler(this.txtLogradouroEmpresa_Click);
             // 
-            // textBox7
+            // txtSetorEmpresa
             // 
-            this.textBox7.Location = new System.Drawing.Point(127, 300);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(205, 20);
-            this.textBox7.TabIndex = 26;
-            this.textBox7.Text = "Digite o setor da empresa";
+            this.txtSetorEmpresa.Location = new System.Drawing.Point(127, 300);
+            this.txtSetorEmpresa.Name = "txtSetorEmpresa";
+            this.txtSetorEmpresa.Size = new System.Drawing.Size(159, 20);
+            this.txtSetorEmpresa.TabIndex = 26;
+            this.txtSetorEmpresa.Text = "Digite o setor da empresa";
+            this.txtSetorEmpresa.Click += new System.EventHandler(this.txtSetorEmpresa_Click);
             // 
-            // textBox8
+            // txtCNPJEmpresa
             // 
-            this.textBox8.Location = new System.Drawing.Point(127, 245);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(133, 20);
-            this.textBox8.TabIndex = 27;
-            this.textBox8.Text = "Digite o CNPJ da empresa";
+            this.txtCNPJEmpresa.Location = new System.Drawing.Point(127, 245);
+            this.txtCNPJEmpresa.Name = "txtCNPJEmpresa";
+            this.txtCNPJEmpresa.Size = new System.Drawing.Size(133, 20);
+            this.txtCNPJEmpresa.TabIndex = 27;
+            this.txtCNPJEmpresa.Text = "Digite o CNPJ da empresa";
+            this.txtCNPJEmpresa.Click += new System.EventHandler(this.txtCNPJEmpresa_Click);
             // 
             // label12
             // 
@@ -271,12 +277,12 @@
             this.Controls.Add(this.btnCadastrar);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtCNPJEmpresa);
+            this.Controls.Add(this.txtSetorEmpresa);
+            this.Controls.Add(this.txtLogradouroEmpresa);
+            this.Controls.Add(this.txtNumResidencia);
+            this.Controls.Add(this.txtBairroEmpresa);
+            this.Controls.Add(this.txtComplementoEmpresa);
             this.Controls.Add(this.txtNomeEmpresa);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
@@ -312,12 +318,12 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtNomeEmpresa;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox txtComplementoEmpresa;
+        private System.Windows.Forms.TextBox txtBairroEmpresa;
+        private System.Windows.Forms.TextBox txtNumResidencia;
+        private System.Windows.Forms.TextBox txtLogradouroEmpresa;
+        private System.Windows.Forms.TextBox txtSetorEmpresa;
+        private System.Windows.Forms.TextBox txtCNPJEmpresa;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnCadastrar;

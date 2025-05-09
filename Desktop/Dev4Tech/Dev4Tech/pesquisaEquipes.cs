@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Dev4Tech
 {
-    public partial class Equipes : Form
+    public partial class pesquisaEquipes : Form
     {
-        public Equipes()
+        public pesquisaEquipes()
         {
             InitializeComponent();
+        }
+
+        private void txtPesquisaEquipe_Click(object sender, EventArgs e)
+        {
+            txtPesquisaEquipe.Text = "";
         }
     }
 }
