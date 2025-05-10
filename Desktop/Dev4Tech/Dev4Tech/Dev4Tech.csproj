@@ -115,6 +115,12 @@
     <Compile Include="Cadastro-funcionário.Designer.cs">
       <DependentUpon>Cadastro-funcionário.cs</DependentUpon>
     </Compile>
+    <Compile Include="Chat_geral_equipes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Chat_geral_equipes.Designer.cs">
+      <DependentUpon>Chat_geral_equipes.cs</DependentUpon>
+    </Compile>
     <Compile Include="conexao.cs" />
     <Compile Include="empresa.cs" />
     <Compile Include="pesquisaEquipes.cs">
@@ -151,6 +157,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Cadastro-funcionário.resx">
       <DependentUpon>Cadastro-funcionário.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Chat_geral_equipes.resx">
+      <DependentUpon>Chat_geral_equipes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pesquisaEquipes.resx">
       <DependentUpon>pesquisaEquipes.cs</DependentUpon>
@@ -235,6 +244,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon-EquipLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\141.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon-enviarMensagem.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

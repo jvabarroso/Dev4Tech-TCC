@@ -36,3 +36,6 @@ C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin
 C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.xml
 C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.pesquisaEquipes.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe.config
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.exe
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.pdb

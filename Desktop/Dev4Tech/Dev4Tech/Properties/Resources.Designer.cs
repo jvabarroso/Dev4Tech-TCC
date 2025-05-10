@@ -83,6 +83,16 @@ namespace Dev4Tech.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _141 {
+            get {
+                object obj = ResourceManager.GetObject("141", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Captura_de_tela_2025_04_04_151335 {
             get {
                 object obj = ResourceManager.GetObject("Captura de tela 2025-04-04 151335", resourceCulture);
@@ -146,6 +156,16 @@ namespace Dev4Tech.Properties {
         internal static System.Drawing.Bitmap icon_config {
             get {
                 object obj = ResourceManager.GetObject("icon-config", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_enviarMensagem {
+            get {
+                object obj = ResourceManager.GetObject("icon-enviarMensagem", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
