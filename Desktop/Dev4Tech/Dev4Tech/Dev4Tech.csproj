@@ -123,11 +123,11 @@
     </Compile>
     <Compile Include="conexao.cs" />
     <Compile Include="empresa.cs" />
-    <Compile Include="pesquisaEquipes.cs">
+    <Compile Include="PesquisaEquipes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pesquisaEquipes.Designer.cs">
-      <DependentUpon>pesquisaEquipes.cs</DependentUpon>
+    <Compile Include="PesquisaEquipes.Designer.cs">
+      <DependentUpon>PesquisaEquipes.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -141,14 +141,26 @@
     <Compile Include="Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
-    <Compile Include="login.cs">
+    <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="login.Designer.cs">
-      <DependentUpon>login.cs</DependentUpon>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tarefas_Completadas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tarefas_Completadas.Designer.cs">
+      <DependentUpon>Tarefas_Completadas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tarefas_Pendentes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tarefas_Pendentes.Designer.cs">
+      <DependentUpon>Tarefas_Pendentes.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Cadastro-empresa-admin.resx">
       <DependentUpon>Cadastro-empresa-admin.cs</DependentUpon>
     </EmbeddedResource>
@@ -161,8 +173,8 @@
     <EmbeddedResource Include="Chat_geral_equipes.resx">
       <DependentUpon>Chat_geral_equipes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="pesquisaEquipes.resx">
-      <DependentUpon>pesquisaEquipes.cs</DependentUpon>
+    <EmbeddedResource Include="PesquisaEquipes.resx">
+      <DependentUpon>PesquisaEquipes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -170,8 +182,8 @@
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="login.resx">
-      <DependentUpon>login.cs</DependentUpon>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -183,6 +195,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Tarefas_Completadas.resx">
+      <DependentUpon>Tarefas_Completadas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tarefas_Pendentes.resx">
+      <DependentUpon>Tarefas_Pendentes.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

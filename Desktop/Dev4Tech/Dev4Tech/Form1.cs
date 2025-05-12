@@ -26,7 +26,7 @@ namespace Dev4Tech
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            login t_login = new login();
+            Login t_login = new Login();
             t_login.Show();
             this.Hide();
         }

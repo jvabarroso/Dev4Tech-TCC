@@ -1,6 +1,6 @@
 ﻿namespace Dev4Tech
 {
-    partial class pesquisaEquipes
+    partial class PesquisaEquipes
     {
         /// <summary>
         /// Required designer variable.

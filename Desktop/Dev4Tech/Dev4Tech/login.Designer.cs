@@ -1,6 +1,6 @@
 ﻿namespace Dev4Tech
 {
-    partial class login
+    partial class Login
     {
         /// <summary>
         /// Required designer variable.
