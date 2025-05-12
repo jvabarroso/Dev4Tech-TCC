@@ -36,9 +36,11 @@ export default function Equipes({navigation}){
                   style ={styles.flat}
                   renderItem={({ item }) => (
                     <View style={styles.containertarefas}>
-                      <Image source={item.imagem} style={styles.imag} />
+                      <Image source={item.imagem} style={styles.imag}/>
+                      <View style={styles.textos}>
                         <Text style={styles.textolistatitulo}>{item.titulo}</Text>
                         <Text style={styles.textolistacargo}>{item.cargo}</Text>
+                      </View>
                     </View>
                   )}
                 />
@@ -86,33 +88,31 @@ const styles = StyleSheet.create({
     width: 300,
     margin: 40,
     marginRight: 110,
-    justifyContent: 'center',
+    flexDirection: 'row',
     alignItems: 'center',
     borderRadius: 10,
   },
   imag:{
     width: 45,
     height: 45,
-    right:100,
-    top: 50
+    marginLeft: 25,
+
+  },
+  textos: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    marginLeft:10,
   },
   textolistatitulo:{
     color:'#000',
     fontSize: 20,
     fontWeight: 'bold',
-    right:30,
+    marginRight:50,
   },
   textolistacargo:{
     color:'#000',
     fontSize: 15,
-    textAlign: 'left',
-  },
-    linhaInfo: {
-    flexDirection: 'row',
-    marginTop: 15,
-    justifyContent: 'space-between',
-    width: '100%',
-    paddingHorizontal: 20,
+    marginRight: 105,
   },
 
 
