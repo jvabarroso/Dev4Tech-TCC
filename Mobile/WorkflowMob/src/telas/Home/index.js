@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
   cardinferior:{
     backgroundColor: "#ffffffff",
     borderRadius:8,
-    borderBottomWidth: 0.1,
+    borderBottomWidth: -0.1,
     borderBottomColor: '#000',
   },
   titulocard:{

@@ -11,7 +11,8 @@ export default function Tarefas({navigation}){
       descricao: 'lorem ipsum kwkkww',
       cargo: 'Desenvolvimento de Software',
       datadeentrega: '16/02/2025',
-      imagem: require('../../../assets/img/image.png'),
+      datadeenvio:"07/02/2025",
+      imagem: require('../../../assets/img/fotoexemplo.png'),
     },
     {
       id: '2',
@@ -19,6 +20,7 @@ export default function Tarefas({navigation}){
       descricao: 'lorem ipsum kwkkww',
       cargo: 'Documentação',
       datadeentrega: '20/02/2025',
+      datadeenvio:"07/02/2025",
       imagem: require('../../../assets/img/image.png'),
     },
     {
@@ -27,6 +29,7 @@ export default function Tarefas({navigation}){
       descricao: 'lorem ipsum kwkkww',
       cargo: 'Design',
       datadeentrega: '20/02/2025',
+      datadeenvio:"07/02/2025",
       imagem: require('../../../assets/img/image.png'),
     },
     {
@@ -80,20 +83,29 @@ export default function Tarefas({navigation}){
                   keyExtractor={(item) => item.id}
                   style={styles.flat}
                   renderItem={({ item }) => (
-                    <View style={styles.containertarefas}>
-
-                      <Image source={item.imagem} style={styles.imag} />
-                        <Text style={styles.textolistatitulo}>{item.titulo}</Text>
-                        <Text style={styles.textolista}>{item.descricao}</Text>
-                        <View style={styles.linhaInfo}>
-
-                          <Text style={styles.textolistacargo}>{item.cargo}</Text>
-                          <Text style={styles.textolistadata}>{item.datadeentrega}</Text>
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate('TarefaEnvio', { tarefas: item })}
+                      style={styles.containertarefas}
+                    >
+                      <View style={styles.linhaTarefa}>
+                      
+                        <Image source={item.imagem} style={styles.imag} />
+                        <View style={styles.textosTarefa}>
+                          <Text style={styles.textolistatitulo}>{item.titulo}</Text>
+                          <Text style={styles.textolista}>{item.descricao}</Text>
                         </View>
-                    </View>
+
+                      </View>
+
+                      <View style={styles.linhaInfo}>
+                        <Text style={styles.textolistacargo}>{item.cargo}</Text>
+                        <Text style={styles.textolistadata}>{item.datadeentrega}</Text>
+                      </View>
+                      
+                    </TouchableOpacity>
                   )}
                 />
-                
+                                
             </View> 
         </ScrollView>
     )
@@ -170,23 +182,36 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingHorizontal: 20,
   },
-  imag:{
+
+  linhaTarefa: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+    paddingHorizontal: 20,
+    marginBottom: 10,
+  },
+
+  textosTarefa: {
+    marginLeft: 10,
+    flexShrink: 1,
+  },
+
+  imag: {
     width: 45,
     height: 45,
-    right:100,
-    top: 50
   },
-  textolistatitulo:{
-    color:'#000',
+
+  textolistatitulo: {
+    color: '#000',
     fontSize: 20,
     fontWeight: 'bold',
-    right:30,
   },
-  textolista:{
-    color:'#000',
+
+  textolista: {
+    color: '#000',
     fontSize: 15,
-    left:5
   },
+
   textolistacargo:{
     color:'#181A1F',
     fontSize: 13,

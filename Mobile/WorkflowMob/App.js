@@ -10,6 +10,7 @@ import Home from './src/telas/Home';
 import Tarefas from './src/telas/Tarefas';
 import Equipes from './src/telas/Equipes';
 import Raking from './src/telas/Raking';
+import TarefaEnvio from './src/telas/TarefaEnvio';
 import {Ionicons} from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator()
@@ -88,13 +89,18 @@ export default function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="TarefasPendetes"
+          name="Tarefas"
           component={Tabs} 
           options={{ headerShown: false }}
         />
         <Stack.Screen
           name="Raking"
           component={Tabs}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="TarefaEnvio"
+          component={TarefaEnvio} 
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
