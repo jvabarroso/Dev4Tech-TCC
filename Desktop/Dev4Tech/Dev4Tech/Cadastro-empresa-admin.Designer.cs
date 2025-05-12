@@ -57,7 +57,7 @@
             // 
             // btnCadastrar
             // 
-            this.btnCadastrar.Location = new System.Drawing.Point(190, 585);
+            this.btnCadastrar.Location = new System.Drawing.Point(214, 585);
             this.btnCadastrar.Name = "btnCadastrar";
             this.btnCadastrar.Size = new System.Drawing.Size(75, 23);
             this.btnCadastrar.TabIndex = 54;
@@ -67,7 +67,7 @@
             // 
             // btnVoltar
             // 
-            this.btnVoltar.Location = new System.Drawing.Point(190, 614);
+            this.btnVoltar.Location = new System.Drawing.Point(214, 614);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(75, 23);
             this.btnVoltar.TabIndex = 53;
@@ -79,7 +79,7 @@
             // 
             this.pictureBox1.BackgroundImage = global::Dev4Tech.Properties.Resources.Group_33__1_;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(454, 20);
+            this.pictureBox1.Location = new System.Drawing.Point(580, 18);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(573, 551);
             this.pictureBox1.TabIndex = 52;
@@ -88,7 +88,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(124, 121);
+            this.label12.Location = new System.Drawing.Point(148, 121);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(201, 13);
             this.label12.TabIndex = 51;
@@ -96,7 +96,7 @@
             // 
             // txtCadAdmCargo
             // 
-            this.txtCadAdmCargo.Location = new System.Drawing.Point(127, 229);
+            this.txtCadAdmCargo.Location = new System.Drawing.Point(151, 229);
             this.txtCadAdmCargo.Name = "txtCadAdmCargo";
             this.txtCadAdmCargo.Size = new System.Drawing.Size(147, 20);
             this.txtCadAdmCargo.TabIndex = 50;
@@ -105,7 +105,7 @@
             // 
             // txtCadAdmCPF
             // 
-            this.txtCadAdmCPF.Location = new System.Drawing.Point(127, 284);
+            this.txtCadAdmCPF.Location = new System.Drawing.Point(151, 284);
             this.txtCadAdmCPF.Name = "txtCadAdmCPF";
             this.txtCadAdmCPF.Size = new System.Drawing.Size(92, 20);
             this.txtCadAdmCPF.TabIndex = 49;
@@ -114,7 +114,7 @@
             // 
             // txtCadAdmTelefone
             // 
-            this.txtCadAdmTelefone.Location = new System.Drawing.Point(127, 391);
+            this.txtCadAdmTelefone.Location = new System.Drawing.Point(151, 391);
             this.txtCadAdmTelefone.Name = "txtCadAdmTelefone";
             this.txtCadAdmTelefone.Size = new System.Drawing.Size(85, 20);
             this.txtCadAdmTelefone.TabIndex = 48;
@@ -123,7 +123,7 @@
             // 
             // txtCadAdmEmail
             // 
-            this.txtCadAdmEmail.Location = new System.Drawing.Point(127, 443);
+            this.txtCadAdmEmail.Location = new System.Drawing.Point(151, 443);
             this.txtCadAdmEmail.Name = "txtCadAdmEmail";
             this.txtCadAdmEmail.Size = new System.Drawing.Size(147, 20);
             this.txtCadAdmEmail.TabIndex = 47;
@@ -132,7 +132,7 @@
             // 
             // txtCadAdmSenha
             // 
-            this.txtCadAdmSenha.Location = new System.Drawing.Point(127, 497);
+            this.txtCadAdmSenha.Location = new System.Drawing.Point(151, 497);
             this.txtCadAdmSenha.Name = "txtCadAdmSenha";
             this.txtCadAdmSenha.Size = new System.Drawing.Size(92, 20);
             this.txtCadAdmSenha.TabIndex = 46;
@@ -141,7 +141,7 @@
             // 
             // txtCadAdmConfirmSenha
             // 
-            this.txtCadAdmConfirmSenha.Location = new System.Drawing.Point(127, 549);
+            this.txtCadAdmConfirmSenha.Location = new System.Drawing.Point(151, 549);
             this.txtCadAdmConfirmSenha.Name = "txtCadAdmConfirmSenha";
             this.txtCadAdmConfirmSenha.Size = new System.Drawing.Size(110, 20);
             this.txtCadAdmConfirmSenha.TabIndex = 45;
@@ -150,7 +150,7 @@
             // 
             // txtCadAdmNome
             // 
-            this.txtCadAdmNome.Location = new System.Drawing.Point(127, 176);
+            this.txtCadAdmNome.Location = new System.Drawing.Point(151, 176);
             this.txtCadAdmNome.Name = "txtCadAdmNome";
             this.txtCadAdmNome.Size = new System.Drawing.Size(110, 20);
             this.txtCadAdmNome.TabIndex = 44;
@@ -160,7 +160,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(124, 533);
+            this.label11.Location = new System.Drawing.Point(148, 533);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(113, 13);
             this.label11.TabIndex = 43;
@@ -169,7 +169,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(124, 481);
+            this.label10.Location = new System.Drawing.Point(148, 481);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(38, 13);
             this.label10.TabIndex = 42;
@@ -178,7 +178,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(124, 427);
+            this.label9.Location = new System.Drawing.Point(148, 427);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(32, 13);
             this.label9.TabIndex = 41;
@@ -187,7 +187,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(124, 375);
+            this.label8.Location = new System.Drawing.Point(148, 375);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(49, 13);
             this.label8.TabIndex = 40;
@@ -196,7 +196,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(124, 327);
+            this.label7.Location = new System.Drawing.Point(148, 327);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(102, 13);
             this.label7.TabIndex = 39;
@@ -205,7 +205,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(124, 268);
+            this.label6.Location = new System.Drawing.Point(148, 268);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(27, 13);
             this.label6.TabIndex = 38;
@@ -214,7 +214,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(124, 213);
+            this.label5.Location = new System.Drawing.Point(148, 213);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(35, 13);
             this.label5.TabIndex = 37;
@@ -223,7 +223,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(124, 160);
+            this.label4.Location = new System.Drawing.Point(148, 160);
             this.label4.Name = "label4";
             this.label4.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label4.Size = new System.Drawing.Size(35, 13);
@@ -233,7 +233,7 @@
             // lblLoginAdm
             // 
             this.lblLoginAdm.AutoSize = true;
-            this.lblLoginAdm.Location = new System.Drawing.Point(323, 121);
+            this.lblLoginAdm.Location = new System.Drawing.Point(347, 121);
             this.lblLoginAdm.Name = "lblLoginAdm";
             this.lblLoginAdm.Size = new System.Drawing.Size(58, 13);
             this.lblLoginAdm.TabIndex = 35;
@@ -244,7 +244,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(124, 96);
+            this.label3.Location = new System.Drawing.Point(148, 96);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(225, 13);
             this.label3.TabIndex = 34;
@@ -253,7 +253,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(124, 69);
+            this.label2.Location = new System.Drawing.Point(148, 69);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(129, 13);
             this.label2.TabIndex = 33;
@@ -270,7 +270,7 @@
             // 
             // txtCadAdmDataNasc
             // 
-            this.txtCadAdmDataNasc.Location = new System.Drawing.Point(127, 343);
+            this.txtCadAdmDataNasc.Location = new System.Drawing.Point(151, 343);
             this.txtCadAdmDataNasc.Name = "txtCadAdmDataNasc";
             this.txtCadAdmDataNasc.Size = new System.Drawing.Size(159, 20);
             this.txtCadAdmDataNasc.TabIndex = 55;
@@ -281,7 +281,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1064, 681);
+            this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.txtCadAdmDataNasc);
             this.Controls.Add(this.btnCadastrar);
             this.Controls.Add(this.btnVoltar);

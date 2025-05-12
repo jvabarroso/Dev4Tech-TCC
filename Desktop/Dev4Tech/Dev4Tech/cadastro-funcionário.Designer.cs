@@ -59,20 +59,18 @@
             // 
             // txtCadFuncDataNasc
             // 
-            this.txtCadFuncDataNasc.Location = new System.Drawing.Point(169, 422);
-            this.txtCadFuncDataNasc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCadFuncDataNasc.Location = new System.Drawing.Point(127, 343);
             this.txtCadFuncDataNasc.Name = "txtCadFuncDataNasc";
-            this.txtCadFuncDataNasc.Size = new System.Drawing.Size(211, 22);
+            this.txtCadFuncDataNasc.Size = new System.Drawing.Size(159, 20);
             this.txtCadFuncDataNasc.TabIndex = 79;
             this.txtCadFuncDataNasc.Text = "Digite sua data de nascimento";
             this.txtCadFuncDataNasc.Click += new System.EventHandler(this.txtCadFuncDataNasc_Click);
             // 
             // btnCadastrar
             // 
-            this.btnCadastrar.Location = new System.Drawing.Point(241, 725);
-            this.btnCadastrar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCadastrar.Location = new System.Drawing.Point(181, 589);
             this.btnCadastrar.Name = "btnCadastrar";
-            this.btnCadastrar.Size = new System.Drawing.Size(100, 28);
+            this.btnCadastrar.Size = new System.Drawing.Size(75, 23);
             this.btnCadastrar.TabIndex = 78;
             this.btnCadastrar.Text = "Cadastrar";
             this.btnCadastrar.UseVisualStyleBackColor = true;
@@ -80,10 +78,9 @@
             // 
             // btnVoltar
             // 
-            this.btnVoltar.Location = new System.Drawing.Point(241, 761);
-            this.btnVoltar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnVoltar.Location = new System.Drawing.Point(181, 618);
             this.btnVoltar.Name = "btnVoltar";
-            this.btnVoltar.Size = new System.Drawing.Size(100, 28);
+            this.btnVoltar.Size = new System.Drawing.Size(75, 23);
             this.btnVoltar.TabIndex = 77;
             this.btnVoltar.Text = "Voltar";
             this.btnVoltar.UseVisualStyleBackColor = true;
@@ -92,79 +89,71 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(165, 149);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Location = new System.Drawing.Point(124, 121);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(263, 17);
+            this.label12.Size = new System.Drawing.Size(201, 13);
             this.label12.TabIndex = 75;
             this.label12.Text = "Se você já possui uma conta, você pode";
             // 
             // txtCadFuncCargo
             // 
-            this.txtCadFuncCargo.Location = new System.Drawing.Point(169, 282);
-            this.txtCadFuncCargo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCadFuncCargo.Location = new System.Drawing.Point(127, 229);
             this.txtCadFuncCargo.Name = "txtCadFuncCargo";
-            this.txtCadFuncCargo.Size = new System.Drawing.Size(195, 22);
+            this.txtCadFuncCargo.Size = new System.Drawing.Size(147, 20);
             this.txtCadFuncCargo.TabIndex = 74;
             this.txtCadFuncCargo.Text = "Digite seu cargo na empresa";
             this.txtCadFuncCargo.Click += new System.EventHandler(this.txtCadFuncCargo_Click);
             // 
             // txtCadFuncCPF
             // 
-            this.txtCadFuncCPF.Location = new System.Drawing.Point(169, 350);
-            this.txtCadFuncCPF.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCadFuncCPF.Location = new System.Drawing.Point(127, 284);
             this.txtCadFuncCPF.Name = "txtCadFuncCPF";
-            this.txtCadFuncCPF.Size = new System.Drawing.Size(121, 22);
+            this.txtCadFuncCPF.Size = new System.Drawing.Size(92, 20);
             this.txtCadFuncCPF.TabIndex = 73;
             this.txtCadFuncCPF.Text = "Digite seu CPF";
             this.txtCadFuncCPF.Click += new System.EventHandler(this.txtCadFuncCPF_Click);
             // 
             // txtCadFuncTelefone
             // 
-            this.txtCadFuncTelefone.Location = new System.Drawing.Point(169, 481);
-            this.txtCadFuncTelefone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCadFuncTelefone.Location = new System.Drawing.Point(127, 391);
             this.txtCadFuncTelefone.Name = "txtCadFuncTelefone";
-            this.txtCadFuncTelefone.Size = new System.Drawing.Size(112, 22);
+            this.txtCadFuncTelefone.Size = new System.Drawing.Size(85, 20);
             this.txtCadFuncTelefone.TabIndex = 72;
             this.txtCadFuncTelefone.Text = "99-9999-99999";
             this.txtCadFuncTelefone.Click += new System.EventHandler(this.txtCadFuncTelefone_Click);
             // 
             // txtCadFuncEmail
             // 
-            this.txtCadFuncEmail.Location = new System.Drawing.Point(169, 545);
-            this.txtCadFuncEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCadFuncEmail.Location = new System.Drawing.Point(127, 443);
             this.txtCadFuncEmail.Name = "txtCadFuncEmail";
-            this.txtCadFuncEmail.Size = new System.Drawing.Size(195, 22);
+            this.txtCadFuncEmail.Size = new System.Drawing.Size(147, 20);
             this.txtCadFuncEmail.TabIndex = 71;
             this.txtCadFuncEmail.Text = "Digite seu email institucional";
             this.txtCadFuncEmail.Click += new System.EventHandler(this.txtCadFuncEmail_Click);
             // 
             // txtCadFuncSenha
             // 
-            this.txtCadFuncSenha.Location = new System.Drawing.Point(169, 612);
-            this.txtCadFuncSenha.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCadFuncSenha.Location = new System.Drawing.Point(127, 497);
             this.txtCadFuncSenha.Name = "txtCadFuncSenha";
-            this.txtCadFuncSenha.Size = new System.Drawing.Size(121, 22);
+            this.txtCadFuncSenha.Size = new System.Drawing.Size(92, 20);
             this.txtCadFuncSenha.TabIndex = 70;
             this.txtCadFuncSenha.Text = "Digite sua senha";
             this.txtCadFuncSenha.Click += new System.EventHandler(this.txtCadFuncSenha_Click);
             // 
             // txtCadFuncConfirmSenha
             // 
-            this.txtCadFuncConfirmSenha.Location = new System.Drawing.Point(169, 676);
-            this.txtCadFuncConfirmSenha.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCadFuncConfirmSenha.Location = new System.Drawing.Point(127, 549);
             this.txtCadFuncConfirmSenha.Name = "txtCadFuncConfirmSenha";
-            this.txtCadFuncConfirmSenha.Size = new System.Drawing.Size(145, 22);
+            this.txtCadFuncConfirmSenha.Size = new System.Drawing.Size(110, 20);
             this.txtCadFuncConfirmSenha.TabIndex = 69;
             this.txtCadFuncConfirmSenha.Text = "Confirme sua senha";
             this.txtCadFuncConfirmSenha.Click += new System.EventHandler(this.txtCadFuncConfirmSenha_Click);
             // 
             // txtCadFuncNome
             // 
-            this.txtCadFuncNome.Location = new System.Drawing.Point(169, 217);
-            this.txtCadFuncNome.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCadFuncNome.Location = new System.Drawing.Point(127, 176);
             this.txtCadFuncNome.Name = "txtCadFuncNome";
-            this.txtCadFuncNome.Size = new System.Drawing.Size(112, 22);
+            this.txtCadFuncNome.Size = new System.Drawing.Size(85, 20);
             this.txtCadFuncNome.TabIndex = 68;
             this.txtCadFuncNome.Text = "Digite seu nome";
             this.txtCadFuncNome.Click += new System.EventHandler(this.txtCadFuncNome_Click);
@@ -172,91 +161,82 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(165, 656);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Location = new System.Drawing.Point(124, 533);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(150, 17);
+            this.label11.Size = new System.Drawing.Size(113, 13);
             this.label11.TabIndex = 67;
             this.label11.Text = "Confirmação de senha";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(165, 592);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Location = new System.Drawing.Point(124, 481);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(49, 17);
+            this.label10.Size = new System.Drawing.Size(38, 13);
             this.label10.TabIndex = 66;
             this.label10.Text = "Senha";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(165, 526);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Location = new System.Drawing.Point(124, 427);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(42, 17);
+            this.label9.Size = new System.Drawing.Size(32, 13);
             this.label9.TabIndex = 65;
             this.label9.Text = "Email";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(165, 462);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(124, 375);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(64, 17);
+            this.label8.Size = new System.Drawing.Size(49, 13);
             this.label8.TabIndex = 64;
             this.label8.Text = "Telefone";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(165, 402);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(124, 327);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(134, 17);
+            this.label7.Size = new System.Drawing.Size(102, 13);
             this.label7.TabIndex = 63;
             this.label7.Text = "Data de nascimento";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(165, 330);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(124, 268);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(34, 17);
+            this.label6.Size = new System.Drawing.Size(27, 13);
             this.label6.TabIndex = 62;
             this.label6.Text = "CPF";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(165, 262);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(124, 213);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 17);
+            this.label5.Size = new System.Drawing.Size(35, 13);
             this.label5.TabIndex = 61;
             this.label5.Text = "Cargo";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(165, 197);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(124, 160);
             this.label4.Name = "label4";
             this.label4.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label4.Size = new System.Drawing.Size(45, 17);
+            this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 60;
             this.label4.Text = "Nome";
             // 
             // lblLogin
             // 
             this.lblLogin.AutoSize = true;
-            this.lblLogin.Location = new System.Drawing.Point(431, 149);
-            this.lblLogin.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblLogin.Location = new System.Drawing.Point(323, 121);
             this.lblLogin.Name = "lblLogin";
-            this.lblLogin.Size = new System.Drawing.Size(78, 17);
+            this.lblLogin.Size = new System.Drawing.Size(58, 13);
             this.lblLogin.TabIndex = 59;
             this.lblLogin.TabStop = true;
             this.lblLogin.Text = "Entrar aqui";
@@ -265,30 +245,27 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(165, 118);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(124, 96);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(282, 17);
+            this.label3.Size = new System.Drawing.Size(211, 13);
             this.label3.TabIndex = 58;
             this.label3.Text = "Faça o cadastro do funcionário ingressante";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(165, 85);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(124, 69);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(159, 17);
+            this.label2.Size = new System.Drawing.Size(119, 13);
             this.label2.TabIndex = 57;
             this.label2.Text = "Cadastro do funcionário";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(51, 25);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(38, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 17);
+            this.label1.Size = new System.Drawing.Size(72, 13);
             this.label1.TabIndex = 56;
             this.label1.Text = "WORKFLOW";
             // 
@@ -297,9 +274,10 @@
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.pictureBox2.BackgroundImage = global::Dev4Tech.Properties.Resources._141;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(682, 65);
+            this.pictureBox2.Location = new System.Drawing.Point(512, 53);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(589, 438);
+            this.pictureBox2.Size = new System.Drawing.Size(442, 356);
             this.pictureBox2.TabIndex = 80;
             this.pictureBox2.TabStop = false;
             // 
@@ -307,18 +285,17 @@
             // 
             this.pictureBox1.BackgroundImage = global::Dev4Tech.Properties.Resources.Group_33__2_;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(597, 13);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox1.Location = new System.Drawing.Point(448, 11);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(764, 678);
+            this.pictureBox1.Size = new System.Drawing.Size(573, 551);
             this.pictureBox1.TabIndex = 76;
             this.pictureBox1.TabStop = false;
             // 
             // cadastro_funcionário
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1419, 838);
+            this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.txtCadFuncDataNasc);
             this.Controls.Add(this.btnCadastrar);
@@ -344,7 +321,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "cadastro_funcionário";
             this.Text = "cadastro_funcionário";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

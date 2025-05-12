@@ -1,6 +1,6 @@
 ﻿namespace Dev4Tech
 {
-    partial class Tarefas_Completadas
+    partial class Tarefas_Atrasadas
     {
         /// <summary>
         /// Required designer variable.
@@ -101,12 +101,12 @@
             // 
             // txtPesquisaTarefa
             // 
-            this.txtPesquisaTarefa.Location = new System.Drawing.Point(449, 185);
+            this.txtPesquisaTarefa.Location = new System.Drawing.Point(449, 188);
             this.txtPesquisaTarefa.Margin = new System.Windows.Forms.Padding(2);
             this.txtPesquisaTarefa.Multiline = true;
             this.txtPesquisaTarefa.Name = "txtPesquisaTarefa";
             this.txtPesquisaTarefa.Size = new System.Drawing.Size(308, 31);
-            this.txtPesquisaTarefa.TabIndex = 90;
+            this.txtPesquisaTarefa.TabIndex = 113;
             this.txtPesquisaTarefa.Text = "Pesquisar uma tarefa";
             // 
             // groupBox4
@@ -117,25 +117,26 @@
             this.groupBox4.Controls.Add(this.label20);
             this.groupBox4.Controls.Add(this.pictureBox13);
             this.groupBox4.Controls.Add(this.label21);
-            this.groupBox4.Location = new System.Drawing.Point(748, 401);
+            this.groupBox4.Location = new System.Drawing.Point(748, 404);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox4.Size = new System.Drawing.Size(274, 109);
-            this.groupBox4.TabIndex = 89;
+            this.groupBox4.TabIndex = 112;
             this.groupBox4.TabStop = false;
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.BackColor = System.Drawing.Color.Lime;
+            this.label17.BackColor = System.Drawing.Color.Red;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label17.Location = new System.Drawing.Point(196, 17);
+            this.label17.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label17.Location = new System.Drawing.Point(215, 17);
             this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(74, 15);
+            this.label17.Size = new System.Drawing.Size(55, 15);
             this.label17.TabIndex = 64;
-            this.label17.Text = "Completada";
+            this.label17.Text = "Atrasada";
             // 
             // label18
             // 
@@ -192,25 +193,26 @@
             this.groupBox2.Controls.Add(this.label15);
             this.groupBox2.Controls.Add(this.pictureBox12);
             this.groupBox2.Controls.Add(this.label16);
-            this.groupBox2.Location = new System.Drawing.Point(748, 280);
+            this.groupBox2.Location = new System.Drawing.Point(748, 283);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(274, 109);
-            this.groupBox2.TabIndex = 87;
+            this.groupBox2.TabIndex = 110;
             this.groupBox2.TabStop = false;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.Lime;
+            this.label12.BackColor = System.Drawing.Color.Red;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label12.Location = new System.Drawing.Point(196, 17);
+            this.label12.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label12.Location = new System.Drawing.Point(215, 17);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(74, 15);
+            this.label12.Size = new System.Drawing.Size(55, 15);
             this.label12.TabIndex = 64;
-            this.label12.Text = "Completada";
+            this.label12.Text = "Atrasada";
             // 
             // label13
             // 
@@ -267,25 +269,26 @@
             this.groupBox5.Controls.Add(this.label25);
             this.groupBox5.Controls.Add(this.pictureBox14);
             this.groupBox5.Controls.Add(this.label26);
-            this.groupBox5.Location = new System.Drawing.Point(450, 401);
+            this.groupBox5.Location = new System.Drawing.Point(450, 404);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox5.Size = new System.Drawing.Size(274, 109);
-            this.groupBox5.TabIndex = 88;
+            this.groupBox5.TabIndex = 111;
             this.groupBox5.TabStop = false;
             // 
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.BackColor = System.Drawing.Color.Lime;
+            this.label22.BackColor = System.Drawing.Color.Red;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label22.Location = new System.Drawing.Point(196, 17);
+            this.label22.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label22.Location = new System.Drawing.Point(215, 17);
             this.label22.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(74, 15);
+            this.label22.Size = new System.Drawing.Size(55, 15);
             this.label22.TabIndex = 64;
-            this.label22.Text = "Completada";
+            this.label22.Text = "Atrasada";
             // 
             // label23
             // 
@@ -342,26 +345,26 @@
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.pictureBox4);
             this.groupBox3.Controls.Add(this.label8);
-            this.groupBox3.Location = new System.Drawing.Point(450, 280);
+            this.groupBox3.Location = new System.Drawing.Point(450, 283);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox3.Size = new System.Drawing.Size(274, 109);
-            this.groupBox3.TabIndex = 86;
+            this.groupBox3.TabIndex = 109;
             this.groupBox3.TabStop = false;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.Lime;
+            this.label11.BackColor = System.Drawing.Color.Red;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label11.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label11.Location = new System.Drawing.Point(196, 17);
+            this.label11.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label11.Location = new System.Drawing.Point(215, 17);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(74, 15);
+            this.label11.Size = new System.Drawing.Size(55, 15);
             this.label11.TabIndex = 63;
-            this.label11.Text = "Completada";
+            this.label11.Text = "Atrasada";
             // 
             // label10
             // 
@@ -413,24 +416,25 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Blue;
-            this.label6.ForeColor = System.Drawing.SystemColors.Control;
-            this.label6.Location = new System.Drawing.Point(603, 163);
+            this.label6.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label6.Location = new System.Drawing.Point(603, 166);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(68, 13);
-            this.label6.TabIndex = 85;
+            this.label6.TabIndex = 108;
             this.label6.Text = "Completadas";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label5.Location = new System.Drawing.Point(532, 163);
+            this.label5.BackColor = System.Drawing.Color.Blue;
+            this.label5.ForeColor = System.Drawing.SystemColors.Control;
+            this.label5.Location = new System.Drawing.Point(532, 166);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(54, 13);
-            this.label5.TabIndex = 84;
+            this.label5.TabIndex = 107;
             this.label5.Text = "Em atraso";
             // 
             // label2
@@ -439,44 +443,44 @@
             this.label2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(448, 163);
+            this.label2.Location = new System.Drawing.Point(448, 166);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 15);
-            this.label2.TabIndex = 83;
+            this.label2.TabIndex = 106;
             this.label2.Text = "Pendentes";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(440, 124);
+            this.label1.Location = new System.Drawing.Point(440, 127);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(102, 29);
-            this.label1.TabIndex = 82;
+            this.label1.TabIndex = 105;
             this.label1.Text = "Tarefas";
             // 
             // lblMembros
             // 
             this.lblMembros.AutoSize = true;
             this.lblMembros.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lblMembros.Location = new System.Drawing.Point(100, 235);
+            this.lblMembros.Location = new System.Drawing.Point(100, 238);
             this.lblMembros.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMembros.Name = "lblMembros";
             this.lblMembros.Size = new System.Drawing.Size(50, 13);
-            this.lblMembros.TabIndex = 81;
+            this.lblMembros.TabIndex = 104;
             this.lblMembros.Text = "Membros";
             // 
             // lblRanking
             // 
             this.lblRanking.AutoSize = true;
             this.lblRanking.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lblRanking.Location = new System.Drawing.Point(100, 213);
+            this.lblRanking.Location = new System.Drawing.Point(100, 216);
             this.lblRanking.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblRanking.Name = "lblRanking";
             this.lblRanking.Size = new System.Drawing.Size(47, 13);
-            this.lblRanking.TabIndex = 80;
+            this.lblRanking.TabIndex = 103;
             this.lblRanking.Text = "Ranking";
             // 
             // lblTarefas
@@ -484,11 +488,11 @@
             this.lblTarefas.AutoSize = true;
             this.lblTarefas.BackColor = System.Drawing.SystemColors.ControlLight;
             this.lblTarefas.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTarefas.Location = new System.Drawing.Point(100, 192);
+            this.lblTarefas.Location = new System.Drawing.Point(100, 195);
             this.lblTarefas.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTarefas.Name = "lblTarefas";
             this.lblTarefas.Size = new System.Drawing.Size(50, 13);
-            this.lblTarefas.TabIndex = 79;
+            this.lblTarefas.TabIndex = 102;
             this.lblTarefas.Text = "Tarefas";
             // 
             // lblGeral
@@ -496,11 +500,11 @@
             this.lblGeral.AutoSize = true;
             this.lblGeral.BackColor = System.Drawing.SystemColors.ControlLight;
             this.lblGeral.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGeral.Location = new System.Drawing.Point(100, 170);
+            this.lblGeral.Location = new System.Drawing.Point(100, 173);
             this.lblGeral.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblGeral.Name = "lblGeral";
             this.lblGeral.Size = new System.Drawing.Size(32, 13);
-            this.lblGeral.TabIndex = 78;
+            this.lblGeral.TabIndex = 101;
             this.lblGeral.Text = "Geral";
             // 
             // groupBox1
@@ -508,12 +512,12 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.pictureBox3);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(79, 72);
+            this.groupBox1.Location = new System.Drawing.Point(79, 75);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(186, 81);
-            this.groupBox1.TabIndex = 77;
+            this.groupBox1.TabIndex = 100;
             this.groupBox1.TabStop = false;
             // 
             // label4
@@ -548,11 +552,11 @@
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.pictureBox2.Location = new System.Drawing.Point(52, -3);
+            this.pictureBox2.Location = new System.Drawing.Point(52, 0);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(306, 688);
-            this.pictureBox2.TabIndex = 76;
+            this.pictureBox2.TabIndex = 99;
             this.pictureBox2.TabStop = false;
             // 
             // pictureBox11
@@ -560,20 +564,20 @@
             this.pictureBox11.BackColor = System.Drawing.Color.Blue;
             this.pictureBox11.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
             this.pictureBox11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox11.Location = new System.Drawing.Point(12, 609);
+            this.pictureBox11.Location = new System.Drawing.Point(12, 612);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(24, 23);
-            this.pictureBox11.TabIndex = 75;
+            this.pictureBox11.TabIndex = 98;
             this.pictureBox11.TabStop = false;
             // 
             // pictureBox10
             // 
             this.pictureBox10.BackColor = System.Drawing.Color.Blue;
             this.pictureBox10.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_equip;
-            this.pictureBox10.Location = new System.Drawing.Point(12, 50);
+            this.pictureBox10.Location = new System.Drawing.Point(12, 53);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(24, 23);
-            this.pictureBox10.TabIndex = 74;
+            this.pictureBox10.TabIndex = 97;
             this.pictureBox10.TabStop = false;
             // 
             // pictureBox9
@@ -581,10 +585,10 @@
             this.pictureBox9.BackColor = System.Drawing.Color.Blue;
             this.pictureBox9.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_calendar;
             this.pictureBox9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox9.Location = new System.Drawing.Point(12, 89);
+            this.pictureBox9.Location = new System.Drawing.Point(12, 92);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(24, 23);
-            this.pictureBox9.TabIndex = 73;
+            this.pictureBox9.TabIndex = 96;
             this.pictureBox9.TabStop = false;
             // 
             // pictureBox8
@@ -592,10 +596,10 @@
             this.pictureBox8.BackColor = System.Drawing.Color.Blue;
             this.pictureBox8.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_ranking;
             this.pictureBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox8.Location = new System.Drawing.Point(12, 130);
+            this.pictureBox8.Location = new System.Drawing.Point(12, 133);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(24, 23);
-            this.pictureBox8.TabIndex = 72;
+            this.pictureBox8.TabIndex = 95;
             this.pictureBox8.TabStop = false;
             // 
             // pictureBox7
@@ -603,10 +607,10 @@
             this.pictureBox7.BackColor = System.Drawing.Color.Blue;
             this.pictureBox7.BackgroundImage = global::Dev4Tech.Properties.Resources.Nav_Icon_Item;
             this.pictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox7.Location = new System.Drawing.Point(12, 566);
+            this.pictureBox7.Location = new System.Drawing.Point(12, 569);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(24, 23);
-            this.pictureBox7.TabIndex = 71;
+            this.pictureBox7.TabIndex = 94;
             this.pictureBox7.TabStop = false;
             // 
             // pictureBox6
@@ -614,10 +618,10 @@
             this.pictureBox6.BackColor = System.Drawing.Color.Blue;
             this.pictureBox6.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_config;
             this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox6.Location = new System.Drawing.Point(12, 537);
+            this.pictureBox6.Location = new System.Drawing.Point(12, 540);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(24, 23);
-            this.pictureBox6.TabIndex = 70;
+            this.pictureBox6.TabIndex = 93;
             this.pictureBox6.TabStop = false;
             // 
             // pictureBox5
@@ -625,22 +629,22 @@
             this.pictureBox5.BackColor = System.Drawing.Color.Blue;
             this.pictureBox5.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_Home;
             this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox5.Location = new System.Drawing.Point(12, 11);
+            this.pictureBox5.Location = new System.Drawing.Point(12, 14);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(24, 23);
-            this.pictureBox5.TabIndex = 69;
+            this.pictureBox5.TabIndex = 92;
             this.pictureBox5.TabStop = false;
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Blue;
-            this.pictureBox1.Location = new System.Drawing.Point(0, -3);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(54, 688);
-            this.pictureBox1.TabIndex = 68;
+            this.pictureBox1.TabIndex = 91;
             this.pictureBox1.TabStop = false;
             // 
-            // Tarefas_Completadas
+            // Tarefas_Atrasadas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -668,9 +672,8 @@
             this.Controls.Add(this.pictureBox6);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "Tarefas_Completadas";
-            this.Text = "Tarefas_Completadas";
+            this.Name = "Tarefas_Atrasadas";
+            this.Text = "Tarefas_Atrasadas";
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();

@@ -149,6 +149,24 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ranking_Equipes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ranking_Equipes.Designer.cs">
+      <DependentUpon>Ranking_Equipes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Relato_Problema.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Relato_Problema.Designer.cs">
+      <DependentUpon>Relato_Problema.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tarefas_Atrasadas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tarefas_Atrasadas.Designer.cs">
+      <DependentUpon>Tarefas_Atrasadas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tarefas_Completadas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,6 +178,18 @@
     </Compile>
     <Compile Include="Tarefas_Pendentes.Designer.cs">
       <DependentUpon>Tarefas_Pendentes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tarefa_Enviada.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tarefa_Enviada.Designer.cs">
+      <DependentUpon>Tarefa_Enviada.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tela_Tarefa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tela_Tarefa.Designer.cs">
+      <DependentUpon>Tela_Tarefa.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Cadastro-empresa-admin.resx">
       <DependentUpon>Cadastro-empresa-admin.cs</DependentUpon>
@@ -195,11 +225,26 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Ranking_Equipes.resx">
+      <DependentUpon>Ranking_Equipes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Relato_Problema.resx">
+      <DependentUpon>Relato_Problema.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tarefas_Atrasadas.resx">
+      <DependentUpon>Tarefas_Atrasadas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Tarefas_Completadas.resx">
       <DependentUpon>Tarefas_Completadas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="tarefas_Pendentes.resx">
       <DependentUpon>Tarefas_Pendentes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tarefa_Enviada.resx">
+      <DependentUpon>Tarefa_Enviada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tela_Tarefa.resx">
+      <DependentUpon>Tela_Tarefa.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -268,6 +313,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon-enviarMensagem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon-documento.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon-documento-blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon-documento-blue1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon-rank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon-pasta-ranking.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon-estatistica-ranking.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

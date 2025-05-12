@@ -129,7 +129,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1064, 681);
+            this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnCadastro);
             this.Controls.Add(this.btnLogin);

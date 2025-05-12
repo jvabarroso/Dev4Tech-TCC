@@ -163,6 +163,36 @@ namespace Dev4Tech.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_documento {
+            get {
+                object obj = ResourceManager.GetObject("icon-documento", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_documento_blue {
+            get {
+                object obj = ResourceManager.GetObject("icon-documento-blue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_documento_blue1 {
+            get {
+                object obj = ResourceManager.GetObject("icon-documento-blue1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_enviarMensagem {
             get {
                 object obj = ResourceManager.GetObject("icon-enviarMensagem", resourceCulture);
@@ -193,6 +223,16 @@ namespace Dev4Tech.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_estatistica_ranking {
+            get {
+                object obj = ResourceManager.GetObject("icon-estatistica-ranking", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_Home {
             get {
                 object obj = ResourceManager.GetObject("icon-Home", resourceCulture);
@@ -203,9 +243,29 @@ namespace Dev4Tech.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_pasta_ranking {
+            get {
+                object obj = ResourceManager.GetObject("icon-pasta-ranking", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_perfil {
             get {
                 object obj = ResourceManager.GetObject("icon-perfil", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_rank {
+            get {
+                object obj = ResourceManager.GetObject("icon-rank", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
