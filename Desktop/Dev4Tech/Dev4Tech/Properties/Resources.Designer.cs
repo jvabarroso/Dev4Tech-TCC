@@ -233,6 +233,16 @@ namespace Dev4Tech.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_estatistica_ranking1 {
+            get {
+                object obj = ResourceManager.GetObject("icon-estatistica-ranking1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_Home {
             get {
                 object obj = ResourceManager.GetObject("icon-Home", resourceCulture);
@@ -276,6 +286,36 @@ namespace Dev4Tech.Properties {
         internal static System.Drawing.Bitmap icon_ranking {
             get {
                 object obj = ResourceManager.GetObject("icon-ranking", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_ranking_1 {
+            get {
+                object obj = ResourceManager.GetObject("icon-ranking-1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_ranking_2 {
+            get {
+                object obj = ResourceManager.GetObject("icon-ranking-2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_ranking_3 {
+            get {
+                object obj = ResourceManager.GetObject("icon-ranking-3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

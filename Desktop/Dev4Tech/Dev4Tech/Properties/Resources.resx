@@ -118,76 +118,88 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="icon-ranking" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon-ranking.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Group 33" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Group 33.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Captura de tela 2025-04-04 151335" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Captura de tela 2025-04-04 151335.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="image 2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\image 2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon-documento-blue1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon-documento-blue1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon-perfil" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon-perfil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon-config" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon-config.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="1_zScJU5qbomqig6_j2g3RzQ" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\1_zScJU5qbomqig6_j2g3RzQ.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon-documento" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon-documento.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon-equip" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon-equip.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon-EquipLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon-EquipLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon-pasta-ranking" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon-pasta-ranking.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icon-estatistica-ranking" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon-estatistica-ranking.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon-enviarMensagem" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon-enviarMensagem.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icon-perfil" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon-perfil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon-documento" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon-documento.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="141" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\141.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon-documento-blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon-documento-blue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon-rank" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon-rank.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="14" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\14.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Captura de tela 2025-04-04 151335" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Captura de tela 2025-04-04 151335.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="grafico-subindo-inflacao-ocde" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\grafico-subindo-inflacao-ocde.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icon-ranking-3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon-ranking-3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="image 2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\image 2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Group 33 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Group 33 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon-documento-blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon-documento-blue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon-Home" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon-Home.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon-calendar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon-calendar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icon-pasta-ranking" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon-pasta-ranking.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1_zScJU5qbomqig6_j2g3RzQ" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1_zScJU5qbomqig6_j2g3RzQ.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon-ranking" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon-ranking.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="14" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\14.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon-ranking-2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon-ranking-2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon-equip" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon-equip.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon-ranking-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon-ranking-1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Group 33" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Group 33.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Nav Icon Item" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Nav Icon Item.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icon-calendar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon-calendar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon-documento-blue1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon-documento-blue1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon-EquipLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon-EquipLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Group 33 (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Group 33 (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon-estatistica-ranking" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon-estatistica-ranking.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icon-config" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon-config.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon-rank" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon-rank.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon-estatistica-ranking1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon-estatistica-ranking1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
