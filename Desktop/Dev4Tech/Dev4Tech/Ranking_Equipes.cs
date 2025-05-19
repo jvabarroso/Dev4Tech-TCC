@@ -44,5 +44,26 @@ namespace Dev4Tech
             t_inicial.Show();
             this.Hide(); 
         }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            Home t_Home = new Home();
+            t_Home.Show();
+            this.Hide();
+        }
+
+        private void btnEquipes_Click(object sender, EventArgs e)
+        {
+            PesquisaEquipes pesquisa_equipe = new PesquisaEquipes();
+            pesquisa_equipe.Show();
+            this.Hide();
+        }
+
+        private void btnRanking_Click(object sender, EventArgs e)
+        {
+            Ranking_Equipes rank_equipe = new Ranking_Equipes();
+            rank_equipe.Show();
+            this.Hide();
+        }
     }
 }
