@@ -28,12 +28,13 @@ namespace Dev4Tech
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-           // MessageBox.Show("Empresa cadastrada com sucesso");
-           // Home t_Home = new Home();
-           // t_Home.Show();
-           // this.Hide();
-            em.setNomeEmpresa(txtNomeEmpresa.Text);
-            em.inserir();
+            MessageBox.Show("Empresa cadastrada com sucesso");
+            MessageBox.Show("Agora, faça seu Login!");
+            Cadastro_empresa_admin cad_admin = new Cadastro_empresa_admin();
+            cad_admin.Show();
+            this.Hide();
+            //em.setNomeEmpresa(txtNomeEmpresa.Text);
+            //em.inserir();
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)

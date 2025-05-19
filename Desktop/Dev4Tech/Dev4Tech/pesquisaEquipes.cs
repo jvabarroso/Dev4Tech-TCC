@@ -21,5 +21,12 @@ namespace Dev4Tech
         {
             txtPesquisaEquipe.Text = "";
         }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            Form1 t_incial = new Form1();
+            t_incial.Show();
+            this.Hide();
+        }
     }
 }

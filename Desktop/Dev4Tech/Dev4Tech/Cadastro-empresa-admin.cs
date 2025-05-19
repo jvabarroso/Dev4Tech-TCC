@@ -19,8 +19,8 @@ namespace Dev4Tech
 
         private void lblLoginAdm_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Cadastro_empresa_admin cad_EmpresaAdm = new Cadastro_empresa_admin();
-            cad_EmpresaAdm.Show();
+            Login t_login = new Login();
+            t_login.Show();
             this.Hide();
 
         }

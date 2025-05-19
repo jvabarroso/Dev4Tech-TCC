@@ -16,5 +16,33 @@ namespace Dev4Tech
         {
             InitializeComponent();
         }
+
+        private void lblGeral_Click(object sender, EventArgs e)
+        {
+            Chat_geral_equipes chat_equipe = new Chat_geral_equipes();
+            chat_equipe.Show();
+            this.Hide();
+        }
+
+        private void lblTarefas_Click(object sender, EventArgs e)
+        {
+            Tarefas_Pendentes trf_pendente = new Tarefas_Pendentes();
+            trf_pendente.Show();
+            this.Hide(); 
+        }
+
+        private void lblRanking_Click(object sender, EventArgs e)
+        {
+            Ranking_Equipes rank_equipe = new Ranking_Equipes();
+            rank_equipe.Show();
+            this.Hide();
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            Form1 t_inicial = new Form1();
+            t_inicial.Show();
+            this.Hide(); 
+        }
     }
 }
