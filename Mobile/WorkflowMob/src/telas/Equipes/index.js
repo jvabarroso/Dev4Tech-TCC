@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import {  StyleSheet, Text, View, TouchableOpacity, Image, ScrollView, FlatList, TextInput} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, FlatList, TextInput } from 'react-native';
 
-export default function Equipes({navigation}){
+export default function Equipes({ navigation }) {
   const [equipe, setEquipe] = useState([
     {
       id: '1',
@@ -17,60 +17,53 @@ export default function Equipes({navigation}){
     }
   ]);
 
-    return(
-        <ScrollView style={styles.scroll}>
-            <View style={styles.container}>
-                <Text style={styles.titulo}>Equipes</Text>
-                <View style={styles.nav}>
-                  <TextInput                    
-                    style={styles.navinput}
-                    placeholder='🔍Pesquisa uma equipe'
-                    placeholderTextColor="#ffffff"
-                  >
-                  </TextInput>
-                </View>
+  return (
+    <View style={styles.container}>
+      <FlatList
+        data={equipe}
+        keyExtractor={(item) => item.id}
+        style={styles.flat}
+        ListHeaderComponent={() => (
+          <View>
+            <Text style={styles.titulo}>Equipes</Text>
 
-                <FlatList
-                  data={equipe}
-                  keyExtractor={(item) => item.id}
-                  style ={styles.flat}
-                  renderItem={({ item }) => (
-                    <View style={styles.containertarefas}>
-                      <Image source={item.imagem} style={styles.imag}/>
-                      <View style={styles.textos}>
-                        <Text style={styles.textolistatitulo}>{item.titulo}</Text>
-                        <Text style={styles.textolistacargo}>{item.cargo}</Text>
-                      </View>
-                    </View>
-                  )}
-                />
-                
-            </View> 
-        </ScrollView>
-    )
-  }
-
-
+            <TextInput
+              style={styles.navinput}
+              placeholder="🔍 Pesquisa uma equipe"
+              placeholderTextColor="#ffffff"
+            />
+          </View>
+        )}
+        renderItem={({ item }) => (
+          <View style={styles.containertarefas}>
+            <Image source={item.imagem} style={styles.imag} />
+            <View style={styles.textos}>
+              <Text style={styles.textolistatitulo}>{item.titulo}</Text>
+              <Text style={styles.textolistacargo}>{item.cargo}</Text>
+            </View>
+          </View>
+        )}
+        contentContainerStyle={{ paddingBottom: 100 }}
+      />
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: "#ffffff",
-    height: 10000
+    paddingHorizontal: 20,
   },
   titulo: {
     fontSize: 30,
     color: '#000',
     fontWeight: 'bold',
-    alignSelf: 'flex-start',
-    marginTop:'5%',
-    marginBottom: "10%",
-    marginLeft: '7%'
+    marginTop: '5%',
+    marginBottom: "8%",
   },
-  navinput:{
-    width: 320,
+  navinput: {
+    width: '100%',
     padding: 10,
     fontSize: 17,
     backgroundColor: '#1C58F2',
@@ -78,42 +71,35 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.1,
     borderBottomColor: '#000',
     marginBottom: 15,
+    color: '#fff',
   },
-  flat:{
-    marginBottom: 300,
-    marginTop:-20,
+  flat: {
+    flex: 1,
   },
-  containertarefas:{
-    height: 25,
-    width: 300,
-    margin: 40,
-    marginRight: 110,
+  containertarefas: {
+    backgroundColor: '#F5F7FC',
+    borderRadius: 10,
+    padding: 10,
+    marginBottom: 20,
     flexDirection: 'row',
     alignItems: 'center',
-    borderRadius: 10,
   },
-  imag:{
+  imag: {
     width: 45,
     height: 45,
-    marginLeft: 25,
-
+    marginLeft: 10,
   },
   textos: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    marginLeft:10,
+    marginLeft: 15,
+    flex: 1,
   },
-  textolistatitulo:{
-    color:'#000',
-    fontSize: 20,
+  textolistatitulo: {
+    color: '#000',
+    fontSize: 18,
     fontWeight: 'bold',
-    marginRight:50,
   },
-  textolistacargo:{
-    color:'#000',
+  textolistacargo: {
+    color: '#000',
     fontSize: 15,
-    marginRight: 105,
   },
-
-
-})
+});

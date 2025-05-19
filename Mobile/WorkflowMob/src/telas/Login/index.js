@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, View, TouchableOpacity, Image, CheckBox} from 'react-native';
+import { StyleSheet, Text, TextInput, View, TouchableOpacity, Image} from 'react-native';
 
 export default function Login({navigation}){
 
@@ -16,24 +16,18 @@ export default function Login({navigation}){
             <Text style={styles.texto}>Email</Text>
             <TextInput
               style={styles.input}
-              placeholder="Entre com seu endereço de Email"
+              placeholder="✉️Entre com seu endereço de Email"
+              placeholderTextColor={"#000842"}
               onChangeText={email => setEmail(email)}
             />
             <Text style={styles.texto}>Senha</Text>
             <TextInput
               style={styles.input}
-              placeholder="Digite sua senha"
+              placeholder="🔒Digite sua senha"
+              placeholderTextColor={"#000842"}
               secureTextEntry={true}
               onChangeText={senha => setSenha(senha)}
             />
-            <View style={styles.checkBoxContainer}>
-              <CheckBox
-                value={isSelected}
-                onValueChange={setSelection}
-              />
-              <Text style={styles.texto}>Lembrar de Mim</Text>
-            </View>
-            <Text style={styles.senha}>Esqueceu sua senha?</Text>
           </View>
       
           <TouchableOpacity
@@ -60,7 +54,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#000',
         alignSelf: 'flex-start',
-        marginBottom: "30%",
+        marginBottom: "28%",
         marginLeft: "2%",
       },
       titulo: {
@@ -68,13 +62,16 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#000',
         alignSelf: 'flex-start',
-        marginTop:'10%',
         marginBottom: "10%",
+        marginLeft:10,
+        marginTop:40,
       },
       area: {
         width: '100%',
         alignItems: 'flex-start',
         marginBottom: "10%",
+        marginLeft:20,
+
       },
       texto: {
         fontSize: 18,
@@ -87,7 +84,7 @@ const styles = StyleSheet.create({
         padding: 10,
         fontSize: 16,
         borderRadius: 10,
-        borderBottomWidth: 0.1,
+        borderBottomWidth: 1.4,
         borderBottomColor: '#000',
         backgroundColor: 'transparet',
         marginBottom: 15,
