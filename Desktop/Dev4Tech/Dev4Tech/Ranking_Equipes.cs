@@ -44,5 +44,10 @@ namespace Dev4Tech
             t_inicial.Show();
             this.Hide(); 
         }
+
+        private void Ranking_Equipes_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

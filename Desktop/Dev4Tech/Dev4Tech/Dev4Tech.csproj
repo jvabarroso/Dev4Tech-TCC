@@ -123,12 +123,24 @@
       <DependentUpon>Chat_geral_equipes.cs</DependentUpon>
     </Compile>
     <Compile Include="conexao.cs" />
+    <Compile Include="Configuracoes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Configuracoes.Designer.cs">
+      <DependentUpon>Configuracoes.cs</DependentUpon>
+    </Compile>
     <Compile Include="empresa.cs" />
     <Compile Include="Equipes_Estatisticas.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Equipes_Estatisticas.Designer.cs">
       <DependentUpon>Equipes_Estatisticas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Integrantes_Equipe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Integrantes_Equipe.Designer.cs">
+      <DependentUpon>Integrantes_Equipe.cs</DependentUpon>
     </Compile>
     <Compile Include="PesquisaEquipes.cs">
       <SubType>Form</SubType>
@@ -210,8 +222,14 @@
     <EmbeddedResource Include="Chat_geral_equipes.resx">
       <DependentUpon>Chat_geral_equipes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Configuracoes.resx">
+      <DependentUpon>Configuracoes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Equipes_Estatisticas.resx">
       <DependentUpon>Equipes_Estatisticas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Integrantes_Equipe.resx">
+      <DependentUpon>Integrantes_Equipe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PesquisaEquipes.resx">
       <DependentUpon>PesquisaEquipes.cs</DependentUpon>
