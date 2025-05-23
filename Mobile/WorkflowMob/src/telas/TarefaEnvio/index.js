@@ -13,7 +13,7 @@ export default function TarefaEnvio({ route }){
                     <TouchableOpacity
                         style={styles.botaodevoltar}
                         onPress={()=> navigation.navigate('Tarefas')}
-                    ><Ionicons name="arrow-back" size={24} color="black" /></TouchableOpacity>
+                    ><Ionicons name="arrow-back" size={24} color="black" style={styles.botaodevoltar} /></TouchableOpacity>
                     <Text style={styles.titulo}>WORKFLOW</Text>
                 </View>
 
@@ -21,17 +21,20 @@ export default function TarefaEnvio({ route }){
                 <Text style={styles.titulotarefa}>{tarefas.titulo}</Text>
                 <Text style={styles.datadeenvio}>Postado em {tarefas.datadeenvio}</Text>
                 <View style={styles.areadetalhes}>
-                    <View style={styles.linha}>
-                        <Text style={styles.subtitulos}>PRAZO DE ENTREGA</Text>
-                        <Text style={styles.subtitulos2}>EQUIPE</Text>
-                    </View>
-                    <View style={styles.linha}>
-                        <Text style={styles.datas}>{tarefas.datadeentrega}</Text>
-                        <Text style={styles.cargos}>{tarefas.cargo}</Text>
-                    </View>
+               <View style={styles.linha}>
+                  <View style={styles.coluna}>
+                    <Text style={styles.subtitulos}>PRAZO DE ENTREGA</Text>
+                    <Text style={styles.datas}>{tarefas.datadeentrega}</Text>
+                  </View>
+
+                  <View style={styles.coluna}>
+                    <Text style={[styles.subtitulos, { textAlign: 'right' }]}>EQUIPE</Text>
+                    <Text style={[styles.cargos, { alignSelf: 'flex-end' }]}>{tarefas.cargo}</Text>
+                  </View>
+                </View>
                     <View style={styles.linha}>
                         <Text style={styles.titulodescricao}>DESCRIÇÃO DA TAREFA</Text>
-                        <Text style={styles.cargos}>{tarefas.descricao}</Text>
+                        <Text style={styles.c}>{tarefas.descricao}</Text>
                         <TouchableOpacity
                             style={styles.botaomostrar}
                         >
@@ -74,10 +77,8 @@ export default function TarefaEnvio({ route }){
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: "#ffffff",
-    height: 10000
+    paddingHorizontal: 20,
   },
   imagem: {
     width: 100,
@@ -92,21 +93,25 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   botaodevoltar:{
-    width:10,
-    height:10,
+    width:30,
+    height:30,
+    marginLeft: -10,
+    marginTop:15,
+  
   },
   botao:{
     color: "#000000"
   },
   titulo:{
     fontSize: 18,
-    marginRight: 110
+    marginRight: 110,
+    marginTop:27,
   },
   imagem:{
     width:80,
     height:80,
     marginRight:220,
-    marginTop:40,
+    marginTop:60,
     borderRadius: 8,
   },
   titulotarefa:{
@@ -118,24 +123,56 @@ const styles = StyleSheet.create({
   },
   datadeenvio:{
     fontSize:13,
-    marginTop:8,
-    marginRight:130,
+    marginTop:6,
+    marginLeft:5,
     color:"#aaaaaa",
   },
   linha:{
     flexDirection: 'row',
-    marginTop: 10,
     justifyContent: 'space-between',
     width: '100%',
-    paddingHorizontal: 20,
+    marginTop: 10,
+    paddingHorizontal: 5,
   },
   subtitulos:{
     fontSize:13,
-    marginTop:8,
+    marginTop:4,
     color:"#181A1F",
     fontWeight: 'bold',
   },
+  subtitulos2:{
+    fontSize:13,
+    marginTop:4,
+    paddingRight:14,
+    color:"#181A1F",
+    fontWeight: 'bold',
+  },
+  linha2: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+    paddingHorizontal: 7,
+    marginTop: 5,
+  },
 
-  
+  coluna: {
+    width: '48%',
+  },
+
+  datas: {
+    fontSize: 14,
+    color: '#000',
+  },
+
+  cargos: {
+    fontSize: 14,
+    color: '#181A1F',
+    backgroundColor: '#F5F7FC',
+    borderRadius: 20,
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    marginLeft: -10,
+
+  },
 
 })

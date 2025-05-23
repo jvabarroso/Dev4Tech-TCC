@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     width: 120,
     height: 120,
     marginLeft: 18,
-    borderRadius: "100%"
+    borderRadius: 60
   },
   verde:{
     width:20,
