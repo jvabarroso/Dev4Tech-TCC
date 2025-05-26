@@ -45,11 +45,10 @@ namespace Dev4Tech
             this.Hide(); 
         }
 
-<<<<<<< HEAD
-        private void Ranking_Equipes_Load(object sender, EventArgs e)
-        {
 
-=======
+  
+
+
         private void btnHome_Click(object sender, EventArgs e)
         {
             Home t_Home = new Home();
@@ -69,7 +68,7 @@ namespace Dev4Tech
             Ranking_Equipes rank_equipe = new Ranking_Equipes();
             rank_equipe.Show();
             this.Hide();
->>>>>>> db25e7f930c44e2e855566995f8f9239d88fa328
+
         }
     }
 }

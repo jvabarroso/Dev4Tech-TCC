@@ -10,3 +10,13 @@ numResidencia int not null,
 bairro varchar(255) not null,
 complemento varchar(255) not null
 );
+
+CREATE TABLE Administradores (
+    AdminId INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(100) NOT NULL,
+    Cargo VARCHAR(50) NOT NULL,
+    CPF CHAR(11) NOT NULL UNIQUE,
+    DataNascimento DATE NOT NULL,
+    Telefone VARCHAR(20),
+    Email VARCHAR(100) NOT NULL UNIQUE,
+    Senha VARCHAR(255) NOT NULL);

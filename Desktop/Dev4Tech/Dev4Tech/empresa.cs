@@ -12,8 +12,7 @@ namespace Dev4Tech
 {
     class empresa : conexao
     {
-        private string nomeEmpresa, codigoId, setorEmpresarial, logradouro, bairro, rua, complemento;
-        private int CNPJ, numResidencia;
+        private string nomeEmpresa, codigoId, setorEmpresarial, logradouro, bairro, complemento, CNPJ, numResidencia;
 
         public void setNomeEmpresa(string nomeEmpresa)
         {
@@ -23,7 +22,7 @@ namespace Dev4Tech
         {
             this.codigoId = codigoId;
         }
-        public void setCNPJ(int CNPJ)
+        public void setCNPJ(string CNPJ)
         {
             this.CNPJ = CNPJ;
         }
@@ -35,7 +34,7 @@ namespace Dev4Tech
         {
             this.logradouro = logradouro;
         }
-        public void setNumResidencia(int numResidencia)
+        public void setNumResidencia(string numResidencia)
         {
             this.numResidencia = numResidencia;
         }
@@ -56,7 +55,7 @@ namespace Dev4Tech
         {
             return this.codigoId;
         }
-        public int getCNPJ()
+        public string getCNPJ()
         {
             return this.CNPJ;
         }
@@ -68,7 +67,7 @@ namespace Dev4Tech
         {
             return this.logradouro;
         }
-        public int getNumResidencia()
+        public string getNumResidencia()
         {
             return this.numResidencia;
         }
