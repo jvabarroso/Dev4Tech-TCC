@@ -7,7 +7,7 @@ export default function Tarefas({ navigation }) {
     {
       id: '1',
       titulo: 'Tarefa 1',
-      descricao: 'lorem ipsum kwkkww',
+      descricao: 'lorem ipsum kwkkwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww',
       cargo: 'Desenvolvimento de Software',
       datadeentrega: '16/02/2025',
       datadeenvio: '07/02/2025',
@@ -40,6 +40,10 @@ export default function Tarefas({ navigation }) {
       imagem: require('../../../assets/img/image.png'),
     },
   ]);
+
+  function limitarTexto(texto, limite) {
+    return texto.length > limite ? texto.substring(0, limite) + '...' : texto;
+}
 
   return (
     <View style={styles.container}>
@@ -90,7 +94,7 @@ export default function Tarefas({ navigation }) {
               <Image source={item.imagem} style={styles.imag} />
               <View style={styles.textosTarefa}>
                 <Text style={styles.textolistatitulo}>{item.titulo}</Text>
-                <Text style={styles.textolista}>{item.descricao}</Text>
+                <Text style={styles.textolista}>{limitarTexto(item.descricao, 23)}</Text>
               </View>
             </View>
 
