@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Image, ScrollView, FlatList, 
 import {Ionicons} from '@expo/vector-icons';
 
 
-export default function TarefaEnvio({ route }){
+export default function TarefaEnvio({ navigation, route }){
     const { tarefas } = route.params;
 
     return(
@@ -27,14 +27,14 @@ export default function TarefaEnvio({ route }){
                     <Text style={styles.datas}>{tarefas.datadeentrega}</Text>
                   </View>
 
-                  <View style={styles.coluna}>
-                    <Text style={[styles.subtitulos, { textAlign: 'right' }]}>EQUIPE</Text>
-                    <Text style={[styles.cargos, { alignSelf: 'flex-end' }]}>{tarefas.cargo}</Text>
+                  <View style={styles.colunaEquipe}>
+                    <Text style={styles.subtitulos}>EQUIPE</Text>
+                    <Text style={styles.cargos}>{tarefas.cargo}</Text>
                   </View>
                 </View>
-                    <View style={styles.linha}>
+                    <View style={styles.linha2}>
                         <Text style={styles.titulodescricao}>DESCRIÇÃO DA TAREFA</Text>
-                        <Text style={styles.c}>{tarefas.descricao}</Text>
+                        <Text style={styles.descricao2}>{tarefas.descricao}</Text>
                         <TouchableOpacity
                             style={styles.botaomostrar}
                         >
@@ -42,7 +42,7 @@ export default function TarefaEnvio({ route }){
                         </TouchableOpacity>
                     </View>
 
-                    <View style={styles.areaenvio}>
+                    <View style={styles.linha2}>
                         <Text style={styles.subtitulos}>MEU TRABALHO</Text>
                         <TouchableOpacity
                             style={styles.botaomostrar}
@@ -79,6 +79,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#ffffff",
     paddingHorizontal: 20,
+    paddingVertical:25,
+    height:780,
   },
   imagem: {
     width: 100,
@@ -134,6 +136,14 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingHorizontal: 5,
   },
+  linha2:{
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    width: '100%',
+    marginTop: 10,
+    paddingHorizontal: 5,
+    gap: 3,
+  },
   subtitulos:{
     fontSize:13,
     marginTop:4,
@@ -147,18 +157,14 @@ const styles = StyleSheet.create({
     color:"#181A1F",
     fontWeight: 'bold',
   },
-  linha2: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-    paddingHorizontal: 7,
-    marginTop: 5,
-  },
-
   coluna: {
     width: '48%',
   },
-
+  colunaEquipe: {
+    width: '48%',
+    alignItems: 'flex-start', 
+    gap:7,
+  },
   datas: {
     fontSize: 14,
     color: '#000',
@@ -171,8 +177,45 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     paddingHorizontal: 8,
     paddingVertical: 3,
-    marginLeft: -10,
+    marginLeft: -5,
 
   },
-
+  titulodescricao: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#000',
+    marginBottom: 4,
+},
+  descricao2: {
+    fontSize: 14,
+    color: '#333',
+},
+  botaomostrar: {
+    paddingVertical: 3,
+},
+  botaoenviar:{
+    backgroundColor: '#1C58F2',
+    width:100,
+    height:40,
+    paddingVertical: 10,
+    paddingHorizontal: 25,
+    borderRadius: 10,
+    justifyContent:"center",
+    alignContent:"center",
+    marginTop:100,
+    marginLeft:128,
+},
+  textoenvio: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+},
+ textoadd:{
+    color: "#1C58F2",
+    fontWeight: 'bold', 
+ },
+ textoproblem:{
+    color: "#F21C1C",
+    fontWeight: 'bold', 
+ },
 })
