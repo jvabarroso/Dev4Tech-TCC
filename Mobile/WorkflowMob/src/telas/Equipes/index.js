@@ -7,12 +7,20 @@ export default function Equipes({ navigation }) {
       id: '1',
       titulo: 'Equipe 1',
       cargo: 'Desenvolvimento de Software',
+      tarefaspostadas: 20,
+      quantdeproblemas:6,
+      tarefasatrasadas:1,
+      tarefasnaoentregues: 6,
       imagem: require('../../../assets/img/image.png'),
     },
     {
       id: '2',
       titulo: 'Equipe 2',
       cargo: 'Design',
+      tarefaspostadas: 10,
+      quantdeproblemas:2,
+      tarefasatrasadas:2,
+      tarefasnaoentregues: 2,
       imagem: require('../../../assets/img/image.png'),
     }
   ]);
