@@ -129,6 +129,7 @@
     <Compile Include="Configuracoes.Designer.cs">
       <DependentUpon>Configuracoes.cs</DependentUpon>
     </Compile>
+    <Compile Include="empresa-admin.cs" />
     <Compile Include="empresa.cs" />
     <Compile Include="Equipes_Estatisticas.cs">
       <SubType>Form</SubType>

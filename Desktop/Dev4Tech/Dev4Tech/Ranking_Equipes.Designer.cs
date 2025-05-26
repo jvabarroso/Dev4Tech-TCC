@@ -1111,16 +1111,8 @@
             // 
             // btnHome
             // 
-<<<<<<< HEAD
-            this.pictureBox5.BackColor = System.Drawing.Color.Blue;
-            this.pictureBox5.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_Home;
-            this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox5.Location = new System.Drawing.Point(5, 14);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(24, 23);
-            this.pictureBox5.TabIndex = 83;
-            this.pictureBox5.TabStop = false;
-=======
+
+      
             this.btnHome.BackColor = System.Drawing.Color.Blue;
             this.btnHome.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_Home;
             this.btnHome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -1130,8 +1122,7 @@
             this.btnHome.TabIndex = 83;
             this.btnHome.TabStop = false;
             this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
->>>>>>> db25e7f930c44e2e855566995f8f9239d88fa328
-            // 
+
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Blue;
@@ -1309,7 +1300,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "Ranking_Equipes";
             this.Text = "Ranking_Equipes";
-            this.Load += new System.EventHandler(this.Ranking_Equipes_Load);
+       
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
