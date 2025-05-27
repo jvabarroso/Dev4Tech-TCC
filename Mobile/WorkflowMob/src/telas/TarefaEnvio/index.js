@@ -1,10 +1,24 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, ScrollView, FlatList, TextInput} from 'react-native';
+import { Animated, LayoutAnimation, UIManager, Platform } from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 
 
 export default function TarefaEnvio({ navigation, route }){
     const { tarefas } = route.params;
+    const [descricaoExpandida, setDescricaoExpandida] = useState(false);
+
+    if (
+      Platform.OS === 'android' &&
+      UIManager.setLayoutAnimationEnabledExperimental
+    ) {
+      UIManager.setLayoutAnimationEnabledExperimental(true);
+    }
+
+    const alternarDescricao = () => {
+      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+      setDescricaoExpandida(!descricaoExpandida);
+    };
 
     return(
         <ScrollView style={styles.scroll}>
@@ -34,11 +48,18 @@ export default function TarefaEnvio({ navigation, route }){
                 </View>
                     <View style={styles.linha2}>
                         <Text style={styles.titulodescricao}>DESCRIÇÃO DA TAREFA</Text>
-                        <Text style={styles.descricao2}>{tarefas.descricao}</Text>
+                        <Text style={styles.descricao2}>
+                           {descricaoExpandida 
+                           ? tarefas.descricao 
+                           : tarefas.descricao.slice(0, 100) + (tarefas.descricao.length > 100 ? '...' : '')}
+                        </Text>
                         <TouchableOpacity
                             style={styles.botaomostrar}
+                            onPress={alternarDescricao}
                         >
-                            <Text style={styles.textodescr}>Ver mais</Text>
+                            <Text style={styles.textodescr}>
+                              {descricaoExpandida ? 'Ver menos' : 'Ver mais'}
+                            </Text>
                         </TouchableOpacity>
                     </View>
 

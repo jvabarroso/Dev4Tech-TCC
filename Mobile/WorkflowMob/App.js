@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import { NavigationContainer} from '@react-navigation/native';
 import { createStackNavigator} from '@react-navigation/stack';
 import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { useNavigation } from '@react-navigation/native';
 
 import Inicio from './src/telas/Inicio';
 import Login from './src/telas/Login';
@@ -11,12 +12,14 @@ import Tarefas from './src/telas/Tarefas';
 import Equipes from './src/telas/Equipes';
 import Raking from './src/telas/Raking';
 import TarefaEnvio from './src/telas/TarefaEnvio';
+import Configuracoes from './src/telas/Configuracoes'
 import {Ionicons} from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator()
 
 
 function Tabs(){
+  const navigation = useNavigation();
   return (
 <Tab.Navigator
   screenOptions={({ route }) => ({
@@ -97,6 +100,11 @@ export default function App() {
         <Stack.Screen
           name="TarefaEnvio"
           component={TarefaEnvio} 
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Configuracoes"
+          component={Configuracoes} 
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

@@ -21,9 +21,27 @@ export default function Raking({navigation}){
       tarefasatrasadas:2,
       tarefasnaoentregues: 2,
       imagem: require('../../../assets/img/image.png'),
-    }
+    },
+    {
+      id: '3',
+      titulo: 'Equipe 3',
+      cargo: 'Desenvolvimento web',
+      tarefaspostadas: 30,
+      tarefasatrasadas:9,
+      tarefasnaoentregues: 10,
+      imagem: require('../../../assets/img/image.png'),
+    },
+        {
+      id: '4',
+      titulo: 'Equipe 4',
+      cargo: 'Analista de dados',
+      tarefaspostadas: 30,
+      tarefasatrasadas:9,
+      tarefasnaoentregues: 10,
+      imagem: require('../../../assets/img/image.png'),
+    },
   ]);
-  const equipeOrdenada = [...equipe].sort((a, b) => {
+  const equipeOrdenada = [...equipe].sort((a, b, c, d) => {
     const scoreA = a.tarefaspostadas - (a.tarefasnaoentregues * 2 + a.tarefasatrasadas);
     const scoreB = b.tarefaspostadas - (b.tarefasnaoentregues * 2 + b.tarefasatrasadas);
     return scoreB - scoreA;
