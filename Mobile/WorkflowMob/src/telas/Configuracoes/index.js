@@ -26,11 +26,6 @@ export default function Configuracoes({navigation}){
         imagem: require('../../../assets/img/image.png'),
       }
     ]);
-    const equipeOrdenada = [...equipe].sort((a, b, c, d) => {
-      const scoreA = a.tarefaspostadas - (a.tarefasnaoentregues * 2 + a.tarefasatrasadas);
-      const scoreB = b.tarefaspostadas - (b.tarefasnaoentregues * 2 + b.tarefasatrasadas);
-      return scoreB + scoreA;
-  }); //Por enquanto manter assim, depois mudar para se tornar mais dinamico.Fazer um proprio de Funcionario(Lembrar a mim mesmo :D)
     return(
       <View style={styles.container}>
         <View style={styles.nav}>
@@ -47,7 +42,7 @@ export default function Configuracoes({navigation}){
                   style={styles.botaodevoltar}
                   onPress={()=> navigation.navigate('Tarefas')}
                 ><Ionicons name="arrow-back" size={24} color="black" style={styles.botaodevoltar} /></TouchableOpacity>
-                <Text style={styles.pontuacao}>Pontuação:{equipeOrdenada}</Text>
+                <Text style={styles.pontuacao}>Pontuação:</Text>
 
                 <Text style={styles.titulo2}>Equipes</Text>
               </View>
@@ -93,6 +88,13 @@ const styles = StyleSheet.create({
     marginTop: '5%',
     marginBottom: "8%",
   },
+  titulo2: {
+    fontSize: 15,
+    color: '#000',
+    fontWeight: 'bold',
+    marginTop: '5%',
+    marginBottom: "8%",
+  },
   navinput: {
     width: '100%',
     padding: 10,
@@ -132,5 +134,10 @@ const styles = StyleSheet.create({
   textolistacargo: {
     color: '#000',
     fontSize: 15,
+  },
+  pontuacao: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 10,
   },
 })

@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
+import fonts from "../../styles/fonts";
 
 export default function Inicio({navigation}){
 
@@ -30,8 +31,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   logo: {
-    fontfamily: 'Arial',
     fontSize: 19,
+    fontFamily: fonts.text,
     color: '#000',
     fontWeight: 'bold',
     flexDirection: 'row',
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
     top: '30%',
   },
   titulo: {
-    fontfamily: 'Arial',
+    fontFamily: fonts.text,
     fontSize: 35,
     fontWeight: 'bold',
     color: '#000',
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
     marginRight: 110,
   },
   subtitulo: {
-    fontfamily: 'Arial',
+    fontFamily: fonts.text,
     fontSize: 18,
     fontWeight: 'bold',
     color: '#000',
@@ -73,6 +74,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   textoBotao: {
+    fontFamily: fonts.text,
     fontSize: 15,
     color: '#FFFFFF'
   },
