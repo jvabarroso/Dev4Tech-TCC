@@ -54,7 +54,7 @@ export default function Raking({navigation}){
             style={styles.flat}
             ListHeaderComponent={() => (
               <View>
-                <Text style={styles.titulo}>Raking</Text>
+                <Text style={styles.titulo}>Ranking de Equipes</Text>
 
                 <TextInput
                   style={styles.navinput}

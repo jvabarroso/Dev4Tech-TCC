@@ -38,11 +38,20 @@ export default function Configuracoes({navigation}){
             ListHeaderComponent={() => (
               <View>
                 <Text style={styles.titulo}>Configurações</Text>
-                <TouchableOpacity
-                  style={styles.botaodevoltar}
-                  onPress={()=> navigation.navigate('Tarefas')}
-                ><Ionicons name="arrow-back" size={24} color="black" style={styles.botaodevoltar} /></TouchableOpacity>
-                <Text style={styles.pontuacao}>Pontuação:</Text>
+                <View style={styles.linha}> 
+                  <TouchableOpacity
+                    style={styles.botaodevoltar}
+                    onPress={()=> navigation.navigate('Tarefas')}
+                  ><Ionicons name="arrow-back" size={24} color="black" style={styles.botaodevoltar}/><Text style={styles.voltar}>Voltar</Text></TouchableOpacity>
+                  <Text style={styles.pontuacao}>Pontuação:</Text>
+                </View>
+                <View style={styles.containerfuncionario}>
+                  <Image source={require('../../../assets/img/image.png')} style={styles.imagemfuncionario} />
+                  <View style={styles.textos}>
+                    <Text style={styles.textofuncionario}>Funcionario 1</Text>
+                    <Text style={styles.textofuncionariocargo}>Professor</Text>
+                  </View>
+                </View>
 
                 <Text style={styles.titulo2}>Equipes</Text>
               </View>
@@ -79,7 +88,7 @@ const styles = StyleSheet.create({
   botaodevoltar:{
     width:30,
     height:30,
-    marginLeft: -10,
+    marginLeft: 1,
   },
   titulo: {
     fontSize: 30,
@@ -117,9 +126,22 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  containerfuncionario: {
+    backgroundColor: '#ffffff',
+    borderRadius: 10,
+    padding: 10,
+    marginBottom: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   imag: {
     width: 45,
     height: 45,
+    marginLeft: 10,
+  },
+  imagemfuncionario: {
+    width: 90,
+    height: 90,
     marginLeft: 10,
   },
   textos: {
@@ -135,9 +157,25 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: 15,
   },
+  textofuncionario: {
+    color: '#000',
+    fontSize: 28,
+    fontWeight: 'bold',
+  },
+  textofuncionariocargo: {
+    color: '#000',
+    fontSize: 19,
+  },
   pontuacao: {
     fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 10,
+  },
+  linha:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginTop: 10,
+    paddingHorizontal: 5,
   },
 })
