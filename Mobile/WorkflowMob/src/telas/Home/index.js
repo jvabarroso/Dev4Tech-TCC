@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, View, TouchableOpacity, Image, CheckBox, ScrollView} from 'react-native';
+import { Text, View, TouchableOpacity, Image, ScrollView} from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
+import { styles } from './style';
 
 export default function Home({navigation}){
 
     return(
-
         <ScrollView style={styles.scroll}>
             <View style={styles.container}>
                 <View style={styles.areaperfil}>
@@ -27,23 +27,30 @@ export default function Home({navigation}){
                 </View>
 
                 <View style={styles.areacard}>
-                    <Card style={styles.cardtarequi}>
-                        <Card.Cover 
-                            source={require('../../../assets/img/equipes.png')}
-                            style={styles.imagemcard} />
-                        <Card.Content
-                            onPress={()=> navigation.navigate('Equipes')}
-                            style={styles.cardinferior}
-                        >
-                            <Title style={styles.titulocard}>Equipes</Title>
-                            <Paragraph style={styles.paragraph}>The point of using Lorem Ipsum is that....</Paragraph>
-                            <View style={styles.linhainfer}>
-                                <Text style={styles.data}>16/07/20</Text>
-                                <Text style={styles.Entre}>Entre aqui</Text>
-                            </View>
-                        </Card.Content>
-                    </Card>
-
+                    <TouchableOpacity
+                        onPress={()=> navigation.navigate('Equipes')} 
+                    >
+                        <Card style={styles.cardtarequi}>
+                            <Card.Cover 
+                                source={require('../../../assets/img/equipes.png')}
+                                style={styles.imagemcard} />
+                            <Card.Content
+                                onPress={()=> navigation.navigate('Equipes')}
+                                style={styles.cardinferior}
+                            >
+                                <Title style={styles.titulocard}>Equipes</Title>
+                                <Paragraph style={styles.paragraph}>The point of using Lorem Ipsum is that....</Paragraph>
+                                <View style={styles.linhainfer}>
+                                    <Text style={styles.data}>16/07/20</Text>
+                                    <Text style={styles.Entre}>Entre aqui</Text>
+                                </View>
+                            </Card.Content>
+                        </Card>
+                    </TouchableOpacity>
+                    
+                    <TouchableOpacity
+                         onPress={()=> navigation.navigate('Tarefas')} 
+                    >
                     <Card style={styles.cardtarequi}>
                         <Card.Cover 
                             source={require('../../../assets/img/tarefas.png')} 
@@ -60,16 +67,20 @@ export default function Home({navigation}){
                             </View>
                         </Card.Content>
                     </Card>
+                    </TouchableOpacity>
 
+                    <TouchableOpacity
+                        onPress={()=> navigation.navigate('Ranking')} 
+                    >
                     <Card style={styles.cardtarequi}>
                         <Card.Cover 
-                            source={require('../../../assets/img/raking.png')} 
+                            source={require('../../../assets/img/ranking.png')} 
                             style={styles.imagemcard}/>
                         <Card.Content
-                            onPress={()=> navigation.navigate('Raking')} 
+                            onPress={()=> navigation.navigate('Ranking')} 
                             style={styles.cardinferior}
                         >
-                            <Title style={styles.titulocard}>Raking</Title>
+                            <Title style={styles.titulocard}>Ranking</Title>
                             <Paragraph style={styles.paragraph}>The point of using Lorem Ipsum is that....</Paragraph>
                             <View style={styles.linhainfer}>
                                 <Text style={styles.data}>16/07/20</Text>
@@ -77,112 +88,10 @@ export default function Home({navigation}){
                             </View>
                         </Card.Content>
                     </Card>
+                    </TouchableOpacity>
+                    
                 </View>
             </View>
         </ScrollView>
     )
 }
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: "#ffffff"
-  },
-  scroll: {
-    flex: 1,
-    width: '100%',
-  },
-  areaperfil:{
-    flexDirection: 'row',
-    marginTop: 15,
-    width: '100%',
-    paddingHorizontal: 20,
-  },
-  foto:{
-    width: 120,
-    height: 120,
-    marginLeft: 18,
-    borderRadius: 60
-  },
-  verde:{
-    width:20,
-    height:20,
-    borderRadius:"100%",
-    borderWidth: 3.5,
-    borderColor: '#F5F9F9',
-    backgroundColor:"#2EBA4E",
-    right:28,
-    top:95,
-  },
-  textoperfil: {
-    justifyContent: 'center',
-    marginLeft: 20, 
-  },
-  nome: {
-    color: '#000',
-    fontSize: 16,
-    marginBottom: 2,
-  },
-  profissao: {
-    color: '#aaaaaa',
-    fontSize: 16,
-  },
-  areatitulo:{
-    justifyContent: 'center',
-    marginRight: 50,
-    marginTop: 20,
-    marginBottom: 30,
-  },
-  titulo:{
-    fontSize: 24,
-    marginBottom: 4,
-  },
-  subtitulo:{
-    fontSize: 20,
-  },
-  areacard:{
-    marginBottom: 25,
-  },
-  cardtarequi:{
-    marginBottom: 25,
-    width:275,
-  },
-  imagemcard:{
-    height:110,
-  },
-  cardinferior:{
-    backgroundColor: "#ffffffff",
-    borderRadius:8,
-    borderBottomWidth: -0.1,
-    borderBottomColor: '#000',
-  },
-  titulocard:{
-    color:"#000",
-    fontWeight: 'bold',
-    marginBottom: -5,
-  },
-  paragraph:{
-    color:"#000",
-    fontSize: 11,
-  },
-  linhainfer:{
-    flexDirection: 'row',
-    marginTop: 11,
-    justifyContent: 'space-between',
-    width: '100%',
-    paddingHorizontal: -10,
-    marginBottom: -10,
-  },
-  data:{
-    fontSize: 11,
-    color: '#aaaaaa',
-  },
-  Entre:{
-    color:"#000",
-    fontSize: 11,
-    fontWeight: 'bold',
-  },
-})

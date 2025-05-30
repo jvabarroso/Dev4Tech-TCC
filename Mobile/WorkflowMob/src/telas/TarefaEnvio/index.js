@@ -1,221 +1,169 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image, ScrollView, FlatList, TextInput} from 'react-native';
-import {Ionicons} from '@expo/vector-icons';
+import { Text, View, TouchableOpacity, Image, ScrollView, Modal, TextInput } from 'react-native';
+import { styles } from './style';
+import { LayoutAnimation, UIManager, Platform } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
-
-export default function TarefaEnvio({ navigation, route }){
+export default function TarefaEnvio({ navigation, route }) {
     const { tarefas } = route.params;
+    const [descricaoExpandida, setDescricaoExpandida] = useState(false);
+    const [modalVisivel, setModalVisivel] = useState(false);
+    const [problema, setProblema] = useState('');
+    const [problemasEnviados, setProblemasEnviados] = useState([]);
 
-    return(
-        <ScrollView style={styles.scroll}>
-            <View style={styles.container}>   
+    if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
+        UIManager.setLayoutAnimationEnabledExperimental(true);
+    }
+
+    const alternarDescricao = () => {
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+        setDescricaoExpandida(!descricaoExpandida);
+    };
+
+    const enviarProblema = () => {
+        if (problema.trim()) {
+                setProblemasEnviados([...problemasEnviados, problema]);
+
+                setProblema(''); //Ajustar para quando eu enviar mudar a TarefaEnvio tmb
+        }
+    };
+
+    return (
+        <View style={styles.container}>
+            <ScrollView 
+                style={styles.scrollView}
+                contentContainerStyle={styles.containerConteudo}
+                showsVerticalScrollIndicator={false}
+            >
                 <View style={styles.nav}>
-                    <TouchableOpacity
+                    <TouchableOpacity 
                         style={styles.botaodevoltar}
-                        onPress={()=> navigation.navigate('Tarefas')}
-                    ><Ionicons name="arrow-back" size={24} color="black" style={styles.botaodevoltar} /></TouchableOpacity>
+                        onPress={() => navigation.navigate('Tarefas')}
+                    >
+                        <Ionicons name="arrow-back" size={24} color="black" />
+                    </TouchableOpacity>
                     <Text style={styles.titulo}>WORKFLOW</Text>
+                    <View style={styles.espacoHeader} />
                 </View>
 
-                <Image source={tarefas.imagem} style={styles.imagem} />
-                <Text style={styles.titulotarefa}>{tarefas.titulo}</Text>
-                <Text style={styles.datadeenvio}>Postado em {tarefas.datadeenvio}</Text>
                 <View style={styles.areadetalhes}>
-               <View style={styles.linha}>
-                  <View style={styles.coluna}>
-                    <Text style={styles.subtitulos}>PRAZO DE ENTREGA</Text>
-                    <Text style={styles.datas}>{tarefas.datadeentrega}</Text>
-                  </View>
+                    <Image source={tarefas.imagem} style={styles.imagem} />
+                    <Text style={styles.titulotarefa}>{tarefas.titulo}</Text>
+                    <Text style={styles.datadeenvio}>Postado em {tarefas.datadeenvio}</Text>
 
-                  <View style={styles.colunaEquipe}>
-                    <Text style={styles.subtitulos}>EQUIPE</Text>
-                    <Text style={styles.cargos}>{tarefas.cargo}</Text>
-                  </View>
-                </View>
+                    <View style={styles.linha}>
+                        <View style={styles.coluna}>
+                            <Text style={styles.subtitulos}>PRAZO DE ENTREGA</Text>
+                            <Text style={styles.datas}>{tarefas.datadeentrega}</Text>
+                        </View>
+
+                        <View style={styles.colunaEquipe}>
+                            <Text style={styles.subtitulos}>EQUIPE</Text>
+                            <View style={styles.cargos}>
+                                <Text style={styles.textoCargo}>{tarefas.cargo}</Text>
+                            </View>
+                        </View>
+                    </View>
+
                     <View style={styles.linha2}>
                         <Text style={styles.titulodescricao}>DESCRIÇÃO DA TAREFA</Text>
-                        <Text style={styles.descricao2}>{tarefas.descricao}</Text>
-                        <TouchableOpacity
-                            style={styles.botaomostrar}
-                        >
-                            <Text style={styles.textodescr}>Ver mais</Text>
-                        </TouchableOpacity>
+                        <Text style={styles.descricao2}>
+                            {descricaoExpandida 
+                                ? tarefas.descricao 
+                                : `${tarefas.descricao.slice(0, 100)}${tarefas.descricao.length > 100 ? '...' : ''}`
+                            }
+                        </Text>
+                        {tarefas.descricao.length > 100 && (
+                            <TouchableOpacity onPress={alternarDescricao}>
+                                <Text style={styles.textodescr}>
+                                    {descricaoExpandida ? 'Ver menos' : 'Ver mais'}
+                                </Text>
+                            </TouchableOpacity>
+                        )}
                     </View>
 
                     <View style={styles.linha2}>
                         <Text style={styles.subtitulos}>MEU TRABALHO</Text>
-                        <TouchableOpacity
+                        <TouchableOpacity 
                             style={styles.botaomostrar}
+                            onPress={() => setModalVisivel(true)}
                         >
                             <Text style={styles.textoadd}>Anexar um arquivo</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity
-                            style={styles.botaomostrar}
-                        >
+                        <TouchableOpacity style={styles.botaomostrar}>
                             <Text style={styles.textoadd}>Adicionar uma mensagem</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.botaomostrar}
-                        >
+                            onPress={() => setModalVisivel(true)}>
                             <Text style={styles.textoproblem}>Relatar problema</Text>
                         </TouchableOpacity>
                     </View>
-                    <TouchableOpacity
-                        style={styles.botaoenviar}
-                    >
+
+                    <TouchableOpacity style={styles.botaoenviar}>
                         <Text style={styles.textoenvio}>Enviar</Text>
                     </TouchableOpacity>
                 </View>
+            </ScrollView> 
+            <Modal
+                animationType="slide"
+                transparent={false}
+                visible={modalVisivel}
+                onRequestClose={() => setModalVisivel(false)}
+            >   
+                <View style={styles.modalContainer}>
+                    <View style={styles.modalContent}>
+                        <View style={styles.nav2}>
+                            <TouchableOpacity 
+                                style={styles.botaodevoltar2}
+                                onPress={() => setModalVisivel(false)}
+                            >
+                                <Ionicons name="arrow-back" size={28} color="black" />
+                            </TouchableOpacity>
+                            <Text style={styles.titulo2}>WORKFLOW</Text>
+                            <View style={styles.espacoHeader} />
+                        </View>
+                        <View style={styles.modalMainContent}>
+                            <View style={styles.containermensagem}>
+                                <View style={styles.mensagem}>
+                                    <Text style={styles.modeltexto}>Qual é o problema?</Text>
+                                </View>
 
-            </View> 
-        </ScrollView>
-    )
-  }
+                                {problemasEnviados.map((item, index) => (
+                                    <View key={index} style={[styles.mensagem, styles.mensagemEnviada, {marginTop: 10}]}>
+                                        <Text style={styles.modeltexto}>{item}</Text>
+                                    </View>
+                                    ))}
+                                </View>
 
+                            <View style={styles.imagemfundo}>
+                                <Ionicons name="warning-outline" size={200} color="#999999" />                     
+                            </View>
 
+                            <View style={styles.espacoInput} />
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#ffffff",
-    paddingHorizontal: 20,
-    paddingVertical:25,
-    height:780,
-  },
-  imagem: {
-    width: 100,
-    height: 100,
-    marginVertical: 20
-  },
-  nav:{
-    flexDirection: 'row',
-    marginTop: 20,
-    justifyContent: 'space-between',
-    width: '100%',
-    paddingHorizontal: 20,
-  },
-  botaodevoltar:{
-    width:30,
-    height:30,
-    marginLeft: -10,
-    marginTop:15,
-  
-  },
-  botao:{
-    color: "#000000"
-  },
-  titulo:{
-    fontSize: 18,
-    marginRight: 110,
-    marginTop:27,
-  },
-  imagem:{
-    width:80,
-    height:80,
-    marginRight:220,
-    marginTop:60,
-    borderRadius: 8,
-  },
-  titulotarefa:{
-    fontSize:25,
-    fontWeight: 'bold',
-    color:"#000000",
-    marginTop:10,
-    marginRight:200,
-  },
-  datadeenvio:{
-    fontSize:13,
-    marginTop:6,
-    marginLeft:5,
-    color:"#aaaaaa",
-  },
-  linha:{
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-    marginTop: 10,
-    paddingHorizontal: 5,
-  },
-  linha2:{
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    width: '100%',
-    marginTop: 10,
-    paddingHorizontal: 5,
-    gap: 3,
-  },
-  subtitulos:{
-    fontSize:13,
-    marginTop:4,
-    color:"#181A1F",
-    fontWeight: 'bold',
-  },
-  subtitulos2:{
-    fontSize:13,
-    marginTop:4,
-    paddingRight:14,
-    color:"#181A1F",
-    fontWeight: 'bold',
-  },
-  coluna: {
-    width: '48%',
-  },
-  colunaEquipe: {
-    width: '48%',
-    alignItems: 'flex-start', 
-    gap:7,
-  },
-  datas: {
-    fontSize: 14,
-    color: '#000',
-  },
-
-  cargos: {
-    fontSize: 14,
-    color: '#181A1F',
-    backgroundColor: '#F5F7FC',
-    borderRadius: 20,
-    paddingHorizontal: 8,
-    paddingVertical: 3,
-    marginLeft: -5,
-
-  },
-  titulodescricao: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    color: '#000',
-    marginBottom: 4,
-},
-  descricao2: {
-    fontSize: 14,
-    color: '#333',
-},
-  botaomostrar: {
-    paddingVertical: 3,
-},
-  botaoenviar:{
-    backgroundColor: '#1C58F2',
-    width:100,
-    height:40,
-    paddingVertical: 10,
-    paddingHorizontal: 25,
-    borderRadius: 10,
-    justifyContent:"center",
-    alignContent:"center",
-    marginTop:100,
-    marginLeft:128,
-},
-  textoenvio: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
-},
- textoadd:{
-    color: "#1C58F2",
-    fontWeight: 'bold', 
- },
- textoproblem:{
-    color: "#F21C1C",
-    fontWeight: 'bold', 
- },
-})
+                            <View style={styles.containerinput}>
+                                <TextInput
+                                    style={styles.textInput}
+                                    multiline
+                                    numberOfLines={4}
+                                    placeholder="Reporte seu problema"
+                                    value={problema}
+                                    onChangeText={setProblema}
+                                    underlineColorAndroid="transparent"
+                                />
+                                <TouchableOpacity 
+                                    style={styles.botaoEnviar}
+                                    onPress={enviarProblema}
+                                >
+                                    <Ionicons name="paper-plane-outline" size={24} color="#1C58F2" style={styles.iconSobreposto} /> 
+                                    
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </View>
+                </View>
+            </Modal>
+        </View>
+    );
+}
