@@ -13,6 +13,7 @@ export default function Configuracoes({navigation}){
         telefone: 13982176670,
         endereco: "Rua João da Fonseca, Jardim Mato Grosso, Cananeia", //mudar isso depois, ver banco de dados
         cargo: "Desenvolvedor Web",
+        senha: 1234,
         imagem: require('../../../assets/img/fotoexemplo.png'),
       },
       ]);

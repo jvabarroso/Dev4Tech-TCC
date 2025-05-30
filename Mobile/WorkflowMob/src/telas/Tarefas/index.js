@@ -11,6 +11,7 @@ export default function Tarefas({ navigation }) {
       cargo: 'Desenvolvimento de Software',
       datadeentrega: '16/02/2025',
       datadeenvio: '07/02/2025',
+      selproblema: false,
       imagem: require('../../../assets/img/fotoexemplo.png'),
     },
     {
@@ -20,6 +21,7 @@ export default function Tarefas({ navigation }) {
       cargo: 'Documentação',
       datadeentrega: '20/02/2025',
       datadeenvio: '07/02/2025',
+      selproblema: true,
       imagem: require('../../../assets/img/image.png'),
     },
     {
@@ -29,6 +31,7 @@ export default function Tarefas({ navigation }) {
       cargo: 'Design',
       datadeentrega: '20/02/2025',
       datadeenvio: '07/02/2025',
+      selproblema: false,
       imagem: require('../../../assets/img/image.png'),
     },
     {
@@ -37,6 +40,8 @@ export default function Tarefas({ navigation }) {
       descricao: 'lorem ipsum kwkkww',
       cargo: 'Back-end',
       datadeentrega: '20/02/2025',
+      datadeenvio: '07/02/2025',
+      selproblema: false,
       imagem: require('../../../assets/img/image.png'),
     },
   ]);
