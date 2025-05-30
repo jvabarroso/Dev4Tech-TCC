@@ -22,6 +22,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingVertical: 15,
         marginBottom: 10,
+        marginTop:15,
     },
     nav2: {
         flexDirection: 'row',
@@ -175,7 +176,6 @@ export const styles = StyleSheet.create({
         fontFamily: fonts.text,
         fontWeight: 'bold',
     },
-    /////
     modalContainer: {
         flex: 1,
         backgroundColor: '#ffffff',
@@ -198,6 +198,7 @@ export const styles = StyleSheet.create({
         borderRadius:30,
         borderBottomLeftRadius:1,
         maxWidth: '80%',
+        zIndex: 2
     },
     modeltexto:{
         fontSize:16,
@@ -239,6 +240,7 @@ export const styles = StyleSheet.create({
         alignSelf:"center",
         opacity: 0.5,
         bottom:180,
+        zIndex: 1
     },
     mensagemEnviada: {
         marginLeft:60,
@@ -246,5 +248,8 @@ export const styles = StyleSheet.create({
         borderBottomLeftRadius: 20,
         borderBottomRightRadius: 1,
     },
-
+    problem:{
+        marginBottom:10,
+        bottom:23,
+    },
 });

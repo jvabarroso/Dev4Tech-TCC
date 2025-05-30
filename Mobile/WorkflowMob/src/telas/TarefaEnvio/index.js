@@ -10,6 +10,8 @@ export default function TarefaEnvio({ navigation, route }) {
     const [modalVisivel, setModalVisivel] = useState(false);
     const [problema, setProblema] = useState('');
     const [problemasEnviados, setProblemasEnviados] = useState([]);
+    const [tarefaLocal, setTarefaLocal] = useState({ ...tarefas });
+
 
     if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
         UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -24,7 +26,8 @@ export default function TarefaEnvio({ navigation, route }) {
         if (problema.trim()) {
                 setProblemasEnviados([...problemasEnviados, problema]);
 
-                setProblema(''); //Ajustar para quando eu enviar mudar a TarefaEnvio tmb
+                setProblema('');
+                setTarefaLocal({ ...tarefaLocal, selproblema: true }); //ajustado :D
         }
     };
 
@@ -49,7 +52,18 @@ export default function TarefaEnvio({ navigation, route }) {
                 <View style={styles.areadetalhes}>
                     <Image source={tarefas.imagem} style={styles.imagem} />
                     <Text style={styles.titulotarefa}>{tarefas.titulo}</Text>
+
+                    {tarefaLocal.selproblema && (
+                    <Ionicons name="warning-outline" size={24} color="red" style={{ marginTop: 5 }} />
+                    )}
+
                     <Text style={styles.datadeenvio}>Postado em {tarefas.datadeenvio}</Text>
+                    
+                    {tarefaLocal.selproblema && (
+                        <View style={[styles.textoproblem, styles.problem]}>
+                            <Text style={styles.textoproblem}>Problema Relatado</Text>
+                        </View>
+                    )}
 
                     <View style={styles.linha}>
                         <View style={styles.coluna}>
@@ -93,11 +107,16 @@ export default function TarefaEnvio({ navigation, route }) {
                         <TouchableOpacity style={styles.botaomostrar}>
                             <Text style={styles.textoadd}>Adicionar uma mensagem</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity
-                            style={styles.botaomostrar}
-                            onPress={() => setModalVisivel(true)}>
-                            <Text style={styles.textoproblem}>Relatar problema</Text>
-                        </TouchableOpacity>
+                        
+                        {!tarefaLocal.selproblema && (
+                            <TouchableOpacity
+                                style={styles.botaomostrar}
+                                onPress={() => setModalVisivel(true)}
+                            >
+                                <Text style={styles.textoproblem}>Relatar problema</Text>
+                            </TouchableOpacity>
+                        )}
+
                     </View>
 
                     <TouchableOpacity style={styles.botaoenviar}>

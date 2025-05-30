@@ -1,13 +1,43 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, View, TouchableOpacity, Image} from 'react-native';
+import { StyleSheet, Text, TextInput, View, TouchableOpacity, Alert} from 'react-native';
 import { styles } from './style';
 
 export default function Login({navigation}){
+    const [funcionario, setFuncionario] = useState([
+      {
+        id: '1',
+        nome: 'Gabriel Kenzon Takeuchi',
+        datadenascimento: "16/05/1980",
+        email: 'Kenzo',
+        telefone: 13982176670,
+        endereco: "Rua João da Fonseca, Jardim Mato Grosso, Cananeia", //mudar isso depois, ver banco de dados
+        cargo: "Desenvolvedor Web",
+        senha: '1234',
+        imagem: require('../../../assets/img/fotoexemplo.png'),
+      },
+      ]);
 
-    const [email,setEmail] = useState('');
-    const [senha,setSenha] = useState('');
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
+    const usuario = funcionario[0];
     const [isSelected, setSelection] = useState(false);
 
+    const verificacao = () => {
+      if (email.trim() && senha.trim()) {
+
+        if(email === usuario.email && senha === usuario.senha){
+          navigation.navigate('Home');
+        }  
+        else {
+        Alert.alert('Erro', 'Email ou senha incorretos.');
+        }
+      }
+
+      else {
+      Alert.alert('Atenção', 'Preencha todos os campos.');
+    }
+    }
+  
     return (
         <View style={styles.container}>
           <Text style={styles.logo}>WORKFLOW</Text>
@@ -33,7 +63,7 @@ export default function Login({navigation}){
       
           <TouchableOpacity
             style={styles.botao}
-            onPress={() => navigation.navigate('Home')}
+            onPress={verificacao}
           >
             <Text style={styles.textoBotao}>Login</Text>
           </TouchableOpacity>
