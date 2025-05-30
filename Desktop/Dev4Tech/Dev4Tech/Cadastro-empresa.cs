@@ -17,10 +17,16 @@ namespace Dev4Tech
         public Cadastro_empresa()
         {
             InitializeComponent();
+<<<<<<< HEAD
+            ConfigurarPlaceholders();
+        }
+
+=======
             ConfigurarPlaceholders(); // Nova linha adicionada
         }
 
         // ============== MÉTODOS DE PLACEHOLDER ADICIONADOS ==============
+>>>>>>> d7e4b7cac9d95fca2c7419bcad2738b99344b662
         private void ConfigurarPlaceholders()
         {
             ConfigurarPlaceholder(txtNomeEmpresa, "Nome da Empresa");
@@ -56,12 +62,18 @@ namespace Dev4Tech
             };
             txt.TextChanged += (sender, e) =>
             {
+<<<<<<< HEAD
+=======
                 // Se usuário digitar algo, garantimos que a cor fique preta
+>>>>>>> d7e4b7cac9d95fca2c7419bcad2738b99344b662
                 if (txt.ForeColor == Color.Gray && txt.Text != placeholder)
                     txt.ForeColor = Color.Black;
             };
         }
+<<<<<<< HEAD
+=======
         // ============== FIM DOS MÉTODOS DE PLACEHOLDER ==============
+>>>>>>> d7e4b7cac9d95fca2c7419bcad2738b99344b662
 
         private void lblLogin_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -80,6 +92,39 @@ namespace Dev4Tech
                     MessageBox.Show("Preencha o nome da empresa!");
                     return;
                 }
+<<<<<<< HEAD
+
+                // Tratamento de CNPJ
+                string rawCnpj = txtCNPJEmpresa.Text.Replace(".", "").Replace("/", "").Replace("-", "");
+                if (rawCnpj.Length != 14)
+                {
+                    MessageBox.Show("CNPJ inválido!");
+                    return;
+                }
+
+                em.setNomeEmpresa(txtNomeEmpresa.Text == "Nome da Empresa" ? "" : txtNomeEmpresa.Text);
+                em.setCNPJ(rawCnpj);
+                em.setSetorEmpresarial(txtSetorEmpresa.Text);
+                em.setLogradouro(txtLogradouroEmpresa.Text);
+                em.setNumResidencia(txtNumResidencia.Text);
+                em.setBairro(txtBairroEmpresa.Text);
+                em.setComplemento(txtComplementoEmpresa.Text);
+
+                em.inserir();
+                MessageBox.Show("Cadastro realizado com sucesso!");
+
+                // Limpa os campos mantendo os placeholders
+                ConfigurarPlaceholders();
+                Cadastro_empresa_admin cad_adm = new Cadastro_empresa_admin();
+                cad_adm.Show();
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro: {ex.Message}");
+            }
+        }
+=======
 
                 // Tratamento de CNPJ
                 string rawCnpj = txtCNPJEmpresa.Text.Replace(".", "").Replace("/", "").Replace("-", "");
@@ -113,6 +158,7 @@ namespace Dev4Tech
         }
 
         // ============== MÉTODOS ORIGINAIS (MANTIDOS SEM ALTERAÇÃO) ==============
+>>>>>>> d7e4b7cac9d95fca2c7419bcad2738b99344b662
         private void btnVoltar_Click(object sender, EventArgs e)
         {
             Form1 t_incial = new Form1();
@@ -155,6 +201,11 @@ namespace Dev4Tech
         private void txtComplementoEmpresa_Click(object sender, EventArgs e)
         {
             txtComplementoEmpresa.Text = "";
+        }
+
+        private void txtNumResidencia_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

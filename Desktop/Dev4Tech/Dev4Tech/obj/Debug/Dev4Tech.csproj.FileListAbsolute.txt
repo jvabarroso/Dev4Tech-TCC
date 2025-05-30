@@ -98,3 +98,8 @@ C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj
 >>>>>>> db25e7f930c44e2e855566995f8f9239d88fa328
 C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Configuracoes.resources
 C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Integrantes_Equipe.resources
+<<<<<<< HEAD
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Configuracoes.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Integrantes_Equipe.resources
+=======
+>>>>>>> d7e4b7cac9d95fca2c7419bcad2738b99344b662
