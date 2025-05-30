@@ -28,13 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtCadFuncDataNasc = new System.Windows.Forms.TextBox();
             this.btnCadastrar = new System.Windows.Forms.Button();
             this.btnVoltar = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
-            this.txtCadFuncCargo = new System.Windows.Forms.TextBox();
-            this.txtCadFuncCPF = new System.Windows.Forms.TextBox();
-            this.txtCadFuncTelefone = new System.Windows.Forms.TextBox();
             this.txtCadFuncEmail = new System.Windows.Forms.TextBox();
             this.txtCadFuncSenha = new System.Windows.Forms.TextBox();
             this.txtCadFuncConfirmSenha = new System.Windows.Forms.TextBox();
@@ -42,8 +38,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -53,18 +47,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.cbBoxCargoFunc = new System.Windows.Forms.ComboBox();
+            this.txtCadFuncTelefone = new System.Windows.Forms.MaskedTextBox();
+            this.txtCadFuncDataNasc = new System.Windows.Forms.MaskedTextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtCadFuncCPF = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // txtCadFuncDataNasc
-            // 
-            this.txtCadFuncDataNasc.Location = new System.Drawing.Point(127, 343);
-            this.txtCadFuncDataNasc.Name = "txtCadFuncDataNasc";
-            this.txtCadFuncDataNasc.Size = new System.Drawing.Size(159, 20);
-            this.txtCadFuncDataNasc.TabIndex = 79;
-            this.txtCadFuncDataNasc.Text = "Digite sua data de nascimento";
-            this.txtCadFuncDataNasc.Click += new System.EventHandler(this.txtCadFuncDataNasc_Click);
             // 
             // btnCadastrar
             // 
@@ -91,36 +82,9 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(124, 121);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(201, 13);
+            this.label12.Size = new System.Drawing.Size(177, 13);
             this.label12.TabIndex = 75;
-            this.label12.Text = "Se você já possui uma conta, você pode";
-            // 
-            // txtCadFuncCargo
-            // 
-            this.txtCadFuncCargo.Location = new System.Drawing.Point(127, 229);
-            this.txtCadFuncCargo.Name = "txtCadFuncCargo";
-            this.txtCadFuncCargo.Size = new System.Drawing.Size(147, 20);
-            this.txtCadFuncCargo.TabIndex = 74;
-            this.txtCadFuncCargo.Text = "Digite seu cargo na empresa";
-            this.txtCadFuncCargo.Click += new System.EventHandler(this.txtCadFuncCargo_Click);
-            // 
-            // txtCadFuncCPF
-            // 
-            this.txtCadFuncCPF.Location = new System.Drawing.Point(127, 284);
-            this.txtCadFuncCPF.Name = "txtCadFuncCPF";
-            this.txtCadFuncCPF.Size = new System.Drawing.Size(92, 20);
-            this.txtCadFuncCPF.TabIndex = 73;
-            this.txtCadFuncCPF.Text = "Digite seu CPF";
-            this.txtCadFuncCPF.Click += new System.EventHandler(this.txtCadFuncCPF_Click);
-            // 
-            // txtCadFuncTelefone
-            // 
-            this.txtCadFuncTelefone.Location = new System.Drawing.Point(127, 391);
-            this.txtCadFuncTelefone.Name = "txtCadFuncTelefone";
-            this.txtCadFuncTelefone.Size = new System.Drawing.Size(85, 20);
-            this.txtCadFuncTelefone.TabIndex = 72;
-            this.txtCadFuncTelefone.Text = "99-9999-99999";
-            this.txtCadFuncTelefone.Click += new System.EventHandler(this.txtCadFuncTelefone_Click);
+            this.label12.Text = "Se já possuir uma conta, você pode";
             // 
             // txtCadFuncEmail
             // 
@@ -185,24 +149,6 @@
             this.label9.TabIndex = 65;
             this.label9.Text = "Email";
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(124, 375);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(49, 13);
-            this.label8.TabIndex = 64;
-            this.label8.Text = "Telefone";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(124, 327);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(102, 13);
-            this.label7.TabIndex = 63;
-            this.label7.Text = "Data de nascimento";
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -234,7 +180,7 @@
             // lblLogin
             // 
             this.lblLogin.AutoSize = true;
-            this.lblLogin.Location = new System.Drawing.Point(323, 121);
+            this.lblLogin.Location = new System.Drawing.Point(307, 121);
             this.lblLogin.Name = "lblLogin";
             this.lblLogin.Size = new System.Drawing.Size(58, 13);
             this.lblLogin.TabIndex = 59;
@@ -275,7 +221,7 @@
             this.pictureBox2.BackgroundImage = global::Dev4Tech.Properties.Resources._141;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox2.Location = new System.Drawing.Point(512, 53);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(442, 356);
             this.pictureBox2.TabIndex = 80;
@@ -291,20 +237,79 @@
             this.pictureBox1.TabIndex = 76;
             this.pictureBox1.TabStop = false;
             // 
+            // cbBoxCargoFunc
+            // 
+            this.cbBoxCargoFunc.FormattingEnabled = true;
+            this.cbBoxCargoFunc.Items.AddRange(new object[] {
+            "RH",
+            "Contabilidade",
+            "Estagiário"});
+            this.cbBoxCargoFunc.Location = new System.Drawing.Point(127, 229);
+            this.cbBoxCargoFunc.Name = "cbBoxCargoFunc";
+            this.cbBoxCargoFunc.Size = new System.Drawing.Size(129, 21);
+            this.cbBoxCargoFunc.TabIndex = 81;
+            this.cbBoxCargoFunc.Text = "Selecione o Cargo";
+            this.cbBoxCargoFunc.SelectedIndexChanged += new System.EventHandler(this.cbBoxCargo_SelectedIndexChanged);
+            // 
+            // txtCadFuncTelefone
+            // 
+            this.txtCadFuncTelefone.Location = new System.Drawing.Point(126, 387);
+            this.txtCadFuncTelefone.Mask = "(00) 00000-0000";
+            this.txtCadFuncTelefone.Name = "txtCadFuncTelefone";
+            this.txtCadFuncTelefone.Size = new System.Drawing.Size(88, 20);
+            this.txtCadFuncTelefone.TabIndex = 85;
+            // 
+            // txtCadFuncDataNasc
+            // 
+            this.txtCadFuncDataNasc.Location = new System.Drawing.Point(126, 339);
+            this.txtCadFuncDataNasc.Mask = "00/00/0000";
+            this.txtCadFuncDataNasc.Name = "txtCadFuncDataNasc";
+            this.txtCadFuncDataNasc.Size = new System.Drawing.Size(64, 20);
+            this.txtCadFuncDataNasc.TabIndex = 84;
+            this.txtCadFuncDataNasc.ValidatingType = typeof(System.DateTime);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(124, 371);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(49, 13);
+            this.label13.TabIndex = 83;
+            this.label13.Text = "Telefone";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(124, 323);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(102, 13);
+            this.label14.TabIndex = 82;
+            this.label14.Text = "Data de nascimento";
+            // 
+            // txtCadFuncCPF
+            // 
+            this.txtCadFuncCPF.Location = new System.Drawing.Point(127, 284);
+            this.txtCadFuncCPF.Mask = "000.000.000-00";
+            this.txtCadFuncCPF.Name = "txtCadFuncCPF";
+            this.txtCadFuncCPF.Size = new System.Drawing.Size(85, 20);
+            this.txtCadFuncCPF.TabIndex = 86;
+            // 
             // cadastro_funcionário
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
-            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.txtCadFuncCPF);
+            this.Controls.Add(this.txtCadFuncTelefone);
             this.Controls.Add(this.txtCadFuncDataNasc);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.cbBoxCargoFunc);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.btnCadastrar);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.txtCadFuncCargo);
-            this.Controls.Add(this.txtCadFuncCPF);
-            this.Controls.Add(this.txtCadFuncTelefone);
             this.Controls.Add(this.txtCadFuncEmail);
             this.Controls.Add(this.txtCadFuncSenha);
             this.Controls.Add(this.txtCadFuncConfirmSenha);
@@ -312,8 +317,6 @@
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -331,15 +334,10 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtCadFuncDataNasc;
         private System.Windows.Forms.Button btnCadastrar;
         private System.Windows.Forms.Button btnVoltar;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtCadFuncCargo;
-        private System.Windows.Forms.TextBox txtCadFuncCPF;
-        private System.Windows.Forms.TextBox txtCadFuncTelefone;
         private System.Windows.Forms.TextBox txtCadFuncEmail;
         private System.Windows.Forms.TextBox txtCadFuncSenha;
         private System.Windows.Forms.TextBox txtCadFuncConfirmSenha;
@@ -347,8 +345,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
@@ -357,5 +353,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.ComboBox cbBoxCargoFunc;
+        private System.Windows.Forms.MaskedTextBox txtCadFuncTelefone;
+        private System.Windows.Forms.MaskedTextBox txtCadFuncDataNasc;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.MaskedTextBox txtCadFuncCPF;
     }
 }

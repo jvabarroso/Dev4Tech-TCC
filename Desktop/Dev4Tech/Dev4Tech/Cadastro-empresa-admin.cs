@@ -11,7 +11,10 @@ using System.Windows.Forms;
 namespace Dev4Tech
 {
     public partial class Cadastro_empresa_admin : Form
+
     {
+        empresaCadAdmin emAdmin = new empresaCadAdmin();
+
         public Cadastro_empresa_admin()
         {
             InitializeComponent();
@@ -27,10 +30,26 @@ namespace Dev4Tech
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Cadastro de administrador realizado com sucesso!");
-            Home t_Home = new Home();
-            t_Home.Show();
-            this.Hide();
+            try
+            {
+                emAdmin.setNome(txtCadAdmNome.Text);
+                emAdmin.setCargo(cbBoxCargoAdm.Text);
+                emAdmin.setCPF(txtCadAdmCPF.Text);
+                emAdmin.setDataNascimento(txtCadAdmDataNasc.Text);
+                emAdmin.setTelefone(txtCadAdmTelefone.Text);
+                emAdmin.setEmail(txtCadAdmEmail.Text);
+                emAdmin.setSenha(txtCadAdmSenha.Text);
+                emAdmin.inserir();
+                MessageBox.Show("Cadastro de administrador realizado com sucesso!");
+                Home t_Home = new Home();
+                t_Home.Show();
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro: {ex.Message}");
+            }
+
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
@@ -45,24 +64,9 @@ namespace Dev4Tech
             txtCadAdmNome.Text = "";
         }
 
-        private void txtCadAdmCargo_Click(object sender, EventArgs e)
-        {
-            txtCadAdmCargo.Text = "";
-        }
-
         private void txtCadAdmCPF_Click(object sender, EventArgs e)
         {
             txtCadAdmCPF.Text = "";
-        }
-
-        private void txtCadAdmDataNasc_Click(object sender, EventArgs e)
-        {
-            txtCadAdmDataNasc.Text = "";
-        }
-
-        private void txtCadAdmTelefone_Click(object sender, EventArgs e)
-        {
-            txtCadAdmTelefone.Text = "";
         }
 
         private void txtCadAdmEmail_Click(object sender, EventArgs e)
@@ -78,6 +82,11 @@ namespace Dev4Tech
         private void txtCadAdmConfirmSenha_Click(object sender, EventArgs e)
         {
             txtCadAdmConfirmSenha.Text = "";
+        }
+
+        private void txtCadAdmDataNasc_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
         }
     }
 }

@@ -12,6 +12,8 @@ namespace Dev4Tech
 {
     public partial class cadastro_funcionário : Form
     {
+        empresaCadFuncionario emCadFunc = new empresaCadFuncionario();
+
         public cadastro_funcionário()
         {
             InitializeComponent();
@@ -26,10 +28,23 @@ namespace Dev4Tech
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Sua conta foi cadastrada com sucesso");
-            Home t_Home = new Home();
-            t_Home.Show();
-            this.Hide();
+            try
+            {
+                emCadFunc.setNome(txtCadFuncNome.Text);
+                emCadFunc.setCargo(cbBoxCargoFunc.Text);
+                emCadFunc.setCPF(txtCadFuncCPF.Text);
+                emCadFunc.setEmail(txtCadFuncEmail.Text);
+                emCadFunc.setTelefone(txtCadFuncTelefone.Text);
+                emCadFunc.setSenha(txtCadFuncSenha.Text);
+                emCadFunc.inserir();
+
+                MessageBox.Show("Sua conta foi cadastrada com sucesso");
+                Home t_Home = new Home();
+                t_Home.Show();
+                this.Hide();
+            }
+            catch { }
+            
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
@@ -42,11 +57,6 @@ namespace Dev4Tech
         private void txtCadFuncNome_Click(object sender, EventArgs e)
         {
             txtCadFuncNome.Text = "";
-        }
-
-        private void txtCadFuncCargo_Click(object sender, EventArgs e)
-        {
-            txtCadFuncCargo.Text = "";
         }
 
         private void txtCadFuncCPF_Click(object sender, EventArgs e)
@@ -77,6 +87,11 @@ namespace Dev4Tech
         private void txtCadFuncConfirmSenha_Click(object sender, EventArgs e)
         {
             txtCadFuncConfirmSenha.Text = "";
+        }
+
+        private void cbBoxCargo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

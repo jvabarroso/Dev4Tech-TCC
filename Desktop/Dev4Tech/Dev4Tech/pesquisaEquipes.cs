@@ -15,6 +15,12 @@ namespace Dev4Tech
         public PesquisaEquipes()
         {
             InitializeComponent();
+
+            filtroEquipes.Items.Add("Todos");
+            filtroEquipes.Items.Add("Desenvolvedor de software");
+            filtroEquipes.Items.Add("Design");
+            filtroEquipes.Items.Add("Marketing");
+            filtroEquipes.SelectedIndex = 0; //Seleciona "Todos" por padrão
         }
 
         private void txtPesquisaEquipe_Click(object sender, EventArgs e)
@@ -62,5 +68,10 @@ namespace Dev4Tech
                 txtPesquisaEquipe.Text = "Pesquisar Equipe";
             }
             }
+
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -47,6 +47,7 @@ namespace Dev4Tech
             this.complemento = complemento;
         }
 
+
         public string getNomeEmpresa()
         {
             return this.nomeEmpresa;
@@ -85,7 +86,7 @@ namespace Dev4Tech
 
         public void inserir()
         {
-            string query = "Insert into dadosEmpresa(nomeEmpresa, CNPJ, setorEmpresarial, logradouro, numResidencia, bairro, complemento) values ('" + getNomeEmpresa() + "', '"  + getCNPJ() + "', '" + getSetorEmpresarial() +
+            string query = "Insert into dadosEmpresa(codigoID, nomeEmpresa, CNPJ, setorEmpresarial, logradouro, numResidencia, bairro, complemento) values ('" + getCodigoId() + "', '" + getNomeEmpresa() + "', '"  + getCNPJ() + "', '" + getSetorEmpresarial() +
                 "', '" + getLogradouro() + "', '" + getNumResidencia() + "', '" + getBairro()+ "', '" + getComplemento() + "')";
 
             if (this.abrirConexao() == true)
@@ -99,7 +100,7 @@ namespace Dev4Tech
         //Excluir informações do banco de dados por meio da chave primária
         public void excluir()
         {
-            string query = "delete from dadosEmpresa where CodigoId = '" + getCNPJ() + "'";
+            string query = "delete from dadosEmpresa where CodigoId = '" + getCodigoId() + "'";
             MySqlCommand cmd = new MySqlCommand(query, conectar);
             cmd.ExecuteNonQuery();
             this.fecharConexao();

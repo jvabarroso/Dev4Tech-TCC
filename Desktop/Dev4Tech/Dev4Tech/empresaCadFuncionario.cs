@@ -10,13 +10,13 @@ using System.Data;
 
 namespace Dev4Tech
 {
-    class empresa_admin : conexao
+    class empresaCadFuncionario : conexao
     {
-        private string AdminId, Email, Senha, Telefone, DataNascimento, CPF, Cargo, Nome;
+        private string FuncionarioId, Email, Senha, Telefone, DataNascimento, CPF, Cargo, Nome;
 
-        public void setAdminId(string adminId)
+        public void setFuncionarioId(string FuncionarioId)
         {
-            this.AdminId = adminId;
+            this.FuncionarioId = FuncionarioId;
         }
         public void setNome(string nome)
         {
@@ -47,9 +47,9 @@ namespace Dev4Tech
             this.Senha = senha;
         }
 
-        public string getAdminId()
+        public string getFuncionarioId()
         {
-            return this.AdminId;
+            return this.FuncionarioId;
         }
         public string getNome()
         {
@@ -83,8 +83,8 @@ namespace Dev4Tech
         //Método inserir, para mandar os dados no banco de dados
         public void inserir()
         {
-            string query = "INSERT INTO Administradores(Nome, Cargo, CPF, DataNascimento, Telefone, Email, Senha) " +
-                           "VALUES('" + getAdminId() + "','" + getNome() + "','" + getCargo() + "','" + getCPF() + "','" + getDataNascimento() + "','" + getTelefone() + "','" + getEmail() + "','" + getSenha() + "')";
+            string query = "INSERT INTO funcionario(FuncionarioId, Nome, Cargo, CPF, DataNascimento, Telefone, Email, Senha) " +
+                           "VALUES('" + getFuncionarioId() + "','" + getNome() + "','" + getCargo() + "','" + getCPF() + "','" + getDataNascimento() + "','" + getTelefone() + "','" + getEmail() + "','" + getSenha() + "')";
 
             if (this.abrirConexao())
             {
@@ -97,7 +97,7 @@ namespace Dev4Tech
         //Excluir informações do banco de dados por meio da chave primária
         public void excluir()
         {
-            string query = "DELETE FROM Administradores WHERE AdminID = '" + getAdminId() + "'";
+            string query = "DELETE FROM funcionarios WHERE FuncioanrioId = '" + getFuncionarioId() + "'";
             if (this.abrirConexao())
             {
                 MySqlCommand cmd = new MySqlCommand(query, conectar);
@@ -110,7 +110,7 @@ namespace Dev4Tech
         public DataTable Consultar()
         {
             DataTable dt = new DataTable();
-            string mSQL = "SELECT * FROM Administradores";
+            string mSQL = "SELECT * FROM funcionarios";
 
             if (this.abrirConexao())
             {

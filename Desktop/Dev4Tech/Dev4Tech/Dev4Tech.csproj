@@ -129,7 +129,8 @@
     <Compile Include="Configuracoes.Designer.cs">
       <DependentUpon>Configuracoes.cs</DependentUpon>
     </Compile>
-    <Compile Include="empresa-admin.cs" />
+    <Compile Include="empresaCadAdmin.cs" />
+    <Compile Include="empresaCadFuncionario.cs" />
     <Compile Include="empresa.cs" />
     <Compile Include="Equipes_Estatisticas.cs">
       <SubType>Form</SubType>
@@ -137,6 +138,7 @@
     <Compile Include="Equipes_Estatisticas.Designer.cs">
       <DependentUpon>Equipes_Estatisticas.cs</DependentUpon>
     </Compile>
+    <Compile Include="FiltroEquipes.cs" />
     <Compile Include="Integrantes_Equipe.cs">
       <SubType>Form</SubType>
     </Compile>
