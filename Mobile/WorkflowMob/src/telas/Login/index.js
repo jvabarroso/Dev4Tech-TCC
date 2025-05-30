@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity, Image} from 'react-native';
+import fonts from "../../styles/fonts";
 
 export default function Login({navigation}){
 
@@ -51,6 +52,7 @@ const styles = StyleSheet.create({
       },
       logo: {
         fontSize: 19,
+        fontFamily: fonts.text,
         fontWeight: 'bold',
         color: '#000',
         alignSelf: 'flex-start',
@@ -60,6 +62,7 @@ const styles = StyleSheet.create({
       titulo: {
         fontSize: 35,
         fontWeight: 'bold',
+        fontFamily: fonts.text,
         color: '#000',
         alignSelf: 'flex-start',
         marginBottom: "10%",
@@ -71,10 +74,10 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         marginBottom: "10%",
         marginLeft:20,
-
       },
       texto: {
         fontSize: 18,
+        fontFamily: fonts.text,
         color: '#999999',
         marginBottom: 5,
       },
@@ -109,6 +112,7 @@ const styles = StyleSheet.create({
       },
       textoBotao: {
         fontSize: 15,
+        fontFamily: fonts.text,
         color: '#FFFFFF',
       },
 })

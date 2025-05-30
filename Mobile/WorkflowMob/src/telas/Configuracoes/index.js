@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity, Image, ScrollView} from 'react-native';
+import fonts from "../../styles/fonts";
 import {Ionicons} from '@expo/vector-icons';
 
 export default function Configuracoes({navigation}){
@@ -176,6 +177,7 @@ const styles = StyleSheet.create({
   },
   logo:{
     fontSize: 19,
+    fontFamily: fonts.text,
     color: '#000',
     fontWeight: 'bold',
     marginTop: '7%',
@@ -184,6 +186,7 @@ const styles = StyleSheet.create({
   },
   titulo: {
     fontSize: 30,
+    fontFamily: fonts.text,
     color: '#000',
     fontWeight: 'bold',
     marginTop: '5%',
@@ -192,6 +195,7 @@ const styles = StyleSheet.create({
   },
   titulo2: {
     fontSize: 15,
+    fontFamily: fonts.text,
     color: '#000',
     fontWeight: 'bold',
     marginTop: '5%',
@@ -201,6 +205,7 @@ const styles = StyleSheet.create({
     width: '100%',
     padding: 10,
     fontSize: 17,
+    fontFamily: fonts.text,
     backgroundColor: '#1C58F2',
     borderRadius: 10,
     borderBottomWidth: 0.1,
@@ -245,29 +250,35 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: 18,
     fontWeight: 'bold',
+    fontFamily: fonts.text,
   },
   textolistacargo: {
     color: '#000',
     fontSize: 15,
+    fontFamily: fonts.text,
   },
   textofuncionario: {
     color: '#000',
     fontSize: 28,
     fontWeight: 'bold',
+    fontFamily: fonts.text,
   },
   textofuncionariocargo: {
     color: '#000',
     fontSize: 19,
+    fontFamily: fonts.text,
   },
   pontuacao: {
     fontSize: 16,
     fontWeight: 'bold',
+    fontFamily: fonts.text,
     marginBottom: 10,
     marginTop:3
   },
   pontuacaotext: {
     fontSize: 16,
     fontWeight: 'bold',
+    fontFamily: fonts.text,
     marginBottom: 10,
     color:"#5BB14F"
   },
@@ -281,6 +292,7 @@ const styles = StyleSheet.create({
   },
   voltar:{
     fontSize: 18,
+    fontFamily: fonts.text,
     fontWeight: 'bold',
     width:60,
   },

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, FlatList, TextInput } from 'react-native';
+import fonts from "../../styles/fonts";
 import { Ionicons } from '@expo/vector-icons';
 
 export default function Tarefas({ navigation }) {
@@ -118,6 +119,7 @@ const styles = StyleSheet.create({
   },
   titulo: {
     fontSize: 30,
+    fontFamily: fonts.text,
     color: '#000',
     fontWeight: 'bold',
     marginTop: '5%',
@@ -140,12 +142,14 @@ const styles = StyleSheet.create({
   },
   textobotao: {
     fontSize: 15,
+    fontFamily: fonts.text,
     color: '#FFFFFF',
   },
   navinput: {
     width: '100%',
     padding: 10,
     fontSize: 17,
+    fontFamily: fonts.text,
     backgroundColor: '#1C58F2',
     borderRadius: 10,
     borderBottomWidth: 0.1,
@@ -178,11 +182,13 @@ const styles = StyleSheet.create({
   textolistatitulo: {
     color: '#000',
     fontSize: 18,
+    fontFamily: fonts.text,
     fontWeight: 'bold',
   },
   textolista: {
     color: '#000',
     fontSize: 15,
+    fontFamily: fonts.text,
   },
   linhaInfo: {
     flexDirection: 'row',
@@ -192,6 +198,7 @@ const styles = StyleSheet.create({
   textolistacargo: {
     color: '#181A1F',
     fontSize: 13,
+    fontFamily: fonts.text,
     backgroundColor: '#DDE3F0',
     borderRadius: 15,
     paddingHorizontal: 7,
@@ -200,5 +207,6 @@ const styles = StyleSheet.create({
   textolistadata: {
     color: '#181A1F',
     fontSize: 14,
+    fontFamily: fonts.text,
   },
 });

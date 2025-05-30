@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, FlatList, TextInput } from 'react-native';
+import fonts from "../../styles/fonts";
 
 export default function Equipes({ navigation }) {
   const [equipe, setEquipe] = useState([
@@ -42,6 +43,7 @@ export default function Equipes({ navigation }) {
             />
           </View>
         )}
+        
         renderItem={({ item }) => (
           <View style={styles.containertarefas}>
             <Image source={item.imagem} style={styles.imag} />
@@ -69,6 +71,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: '5%',
     marginBottom: "8%",
+    fontFamily: fonts.text,
   },
   navinput: {
     width: '100%',
@@ -105,9 +108,11 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: 18,
     fontWeight: 'bold',
+    fontFamily: fonts.text,
   },
   textolistacargo: {
     color: '#000',
     fontSize: 15,
+    fontFamily: fonts.text,
   },
 });

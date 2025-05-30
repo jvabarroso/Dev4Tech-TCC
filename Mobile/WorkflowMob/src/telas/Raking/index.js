@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, FlatList, TextInput } from 'react-native';
+import fonts from "../../styles/fonts";
 
 export default function Raking({navigation}){
   const [equipe, setEquipe] = useState([
@@ -89,6 +90,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: '#000',
     fontWeight: 'bold',
+    fontFamily: fonts.text,
     marginTop: '5%',
     marginBottom: "8%",
   },
@@ -127,14 +129,17 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: 18,
     fontWeight: 'bold',
+    fontFamily: fonts.text,
   },
   textolistacargo: {
     color: '#000',
     fontSize: 15,
+    fontFamily: fonts.text,
   },
   colocacao:{
     fontSize: 28, 
     fontWeight: 'bold', 
+    fontFamily: fonts.text,
     marginRight: 10,
   },
 });

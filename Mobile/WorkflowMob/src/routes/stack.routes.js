@@ -13,6 +13,7 @@ import Equipes from '../../src/telas/Equipes';
 import Raking from '../../src/telas/Raking';
 import TarefaEnvio from '../../src/telas/TarefaEnvio';
 import Configuracoes from '../../src/telas/Configuracoes'
+import fonts from "../styles/fonts";
 import {Ionicons} from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator()
@@ -30,7 +31,7 @@ function Tabs(){
         name="settings-outline"
         size={24}
         color="#3f64c7"
-        style={{ marginRight: 15 }}
+        style={styles.header}
         onPress={() => navigation.navigate('Configuracoes')}
       />
     ),
@@ -119,4 +120,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  header:{
+    marginRight: 15,
+    fontFamily: fonts.text,
+  }
 });

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity, Image, CheckBox, ScrollView} from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
+import fonts from "../../styles/fonts";
 
 export default function Home({navigation}){
 
     return(
-
         <ScrollView style={styles.scroll}>
             <View style={styles.container}>
                 <View style={styles.areaperfil}>
@@ -77,6 +77,7 @@ export default function Home({navigation}){
                             </View>
                         </Card.Content>
                     </Card>
+                    
                 </View>
             </View>
         </ScrollView>
@@ -120,15 +121,18 @@ const styles = StyleSheet.create({
   textoperfil: {
     justifyContent: 'center',
     marginLeft: 20, 
+    fontFamily: fonts.text,
   },
   nome: {
     color: '#000',
     fontSize: 16,
+    fontFamily: fonts.text,
     marginBottom: 2,
   },
   profissao: {
     color: '#aaaaaa',
     fontSize: 16,
+    fontFamily: fonts.text,
   },
   areatitulo:{
     justifyContent: 'center',
@@ -139,9 +143,11 @@ const styles = StyleSheet.create({
   titulo:{
     fontSize: 24,
     marginBottom: 4,
+    fontFamily: fonts.text,
   },
   subtitulo:{
     fontSize: 20,
+    fontFamily: fonts.text,
   },
   areacard:{
     marginBottom: 25,
@@ -162,6 +168,7 @@ const styles = StyleSheet.create({
   titulocard:{
     color:"#000",
     fontWeight: 'bold',
+    fontFamily: fonts.text,
     marginBottom: -5,
   },
   paragraph:{
@@ -178,11 +185,13 @@ const styles = StyleSheet.create({
   },
   data:{
     fontSize: 11,
+    fontFamily: fonts.text,
     color: '#aaaaaa',
   },
   Entre:{
     color:"#000",
     fontSize: 11,
+    fontFamily: fonts.text,
     fontWeight: 'bold',
   },
 })
