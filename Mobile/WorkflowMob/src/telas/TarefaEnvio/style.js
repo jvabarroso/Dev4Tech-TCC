@@ -23,16 +23,36 @@ export const styles = StyleSheet.create({
         paddingVertical: 15,
         marginBottom: 10,
     },
+    nav2: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingVertical: 20,
+        marginBottom: 10,
+    },
     botaodevoltar: {
         width: 40,
         height: 40,
         justifyContent: 'center',
+    },
+    botaodevoltar2: {
+        width: 40,
+        height: 40,
+        justifyContent: 'center',
+        zIndex: 1, 
     },
     titulo: {
         fontSize: 18,
         fontFamily: fonts.text,
         fontWeight: 'bold',
         textAlign: 'center',
+        flex: 1,
+    },
+    titulo2: {
+        fontSize: 18,
+        fontFamily: fonts.text,
+        fontWeight: 'bold',
+        textAlign: 'right',
         flex: 1,
     },
     espacoHeader: {
@@ -155,4 +175,76 @@ export const styles = StyleSheet.create({
         fontFamily: fonts.text,
         fontWeight: 'bold',
     },
+    /////
+    modalContainer: {
+        flex: 1,
+        backgroundColor: '#ffffff',
+    },
+    modalContent: {
+        flex: 1,
+        padding: 20,     
+    },
+    modalMainContent: {
+        flex: 1,
+        justifyContent: 'flex-start', 
+    },
+    containermensagem:{
+        marginTop: 5,
+        justifyContent: 'center',
+    },
+    mensagem:{
+        padding:20,
+        backgroundColor:"#EEEEEE",
+        borderRadius:30,
+        borderBottomLeftRadius:1,
+        maxWidth: '80%',
+    },
+    modeltexto:{
+        fontSize:16,
+        fontFamily: fonts.text,
+        color:"#000000"
+    },
+    espacoInput: {
+        flex: 1, 
+    },
+    containerinput: {
+        position: 'relative',
+        borderWidth: 1,
+        borderColor: '#ccc',
+        borderRadius:60,
+        height: 50,
+        flexDirection: 'row',
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 }, 
+        shadowOpacity: 0.25,              
+        shadowRadius: 3.84,              
+        elevation: 5,                 
+    },
+    textInput: {
+        paddingVertical: 2, 
+        paddingHorizontal:40,
+        width:290,
+        height: 35,   
+        fontSize: 14,  
+        fontFamily: fonts.text,
+        marginTop:10,
+    },
+    botaoEnviar: {
+        marginTop:5,
+    },
+    imagemfundo:{
+        position: 'absolute',
+        resizeMode: 'cover',
+        alignSelf:"center",
+        opacity: 0.5,
+        bottom:180,
+    },
+    mensagemEnviada: {
+        marginLeft:60,
+        backgroundColor: "#1C58F2",
+        borderBottomLeftRadius: 20,
+        borderBottomRightRadius: 1,
+    },
+
 });

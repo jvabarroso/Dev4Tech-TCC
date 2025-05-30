@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { Text, View, TouchableOpacity, Image, ScrollView, Modal, TextInput } from 'react-native';
 import { styles } from './style';
 import { LayoutAnimation, UIManager, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -7,6 +7,9 @@ import { Ionicons } from '@expo/vector-icons';
 export default function TarefaEnvio({ navigation, route }) {
     const { tarefas } = route.params;
     const [descricaoExpandida, setDescricaoExpandida] = useState(false);
+    const [modalVisivel, setModalVisivel] = useState(false);
+    const [problema, setProblema] = useState('');
+    const [problemasEnviados, setProblemasEnviados] = useState([]);
 
     if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
         UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -15,6 +18,14 @@ export default function TarefaEnvio({ navigation, route }) {
     const alternarDescricao = () => {
         LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
         setDescricaoExpandida(!descricaoExpandida);
+    };
+
+    const enviarProblema = () => {
+        if (problema.trim()) {
+                setProblemasEnviados([...problemasEnviados, problema]);
+
+                setProblema(''); //Ajustar para quando eu enviar mudar a TarefaEnvio tmb
+        }
     };
 
     return (
@@ -73,13 +84,18 @@ export default function TarefaEnvio({ navigation, route }) {
 
                     <View style={styles.linha2}>
                         <Text style={styles.subtitulos}>MEU TRABALHO</Text>
-                        <TouchableOpacity style={styles.botaomostrar}>
+                        <TouchableOpacity 
+                            style={styles.botaomostrar}
+                            onPress={() => setModalVisivel(true)}
+                        >
                             <Text style={styles.textoadd}>Anexar um arquivo</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.botaomostrar}>
                             <Text style={styles.textoadd}>Adicionar uma mensagem</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.botaomostrar}>
+                        <TouchableOpacity
+                            style={styles.botaomostrar}
+                            onPress={() => setModalVisivel(true)}>
                             <Text style={styles.textoproblem}>Relatar problema</Text>
                         </TouchableOpacity>
                     </View>
@@ -88,7 +104,66 @@ export default function TarefaEnvio({ navigation, route }) {
                         <Text style={styles.textoenvio}>Enviar</Text>
                     </TouchableOpacity>
                 </View>
-            </ScrollView>
+            </ScrollView> 
+            <Modal
+                animationType="slide"
+                transparent={false}
+                visible={modalVisivel}
+                onRequestClose={() => setModalVisivel(false)}
+            >   
+                <View style={styles.modalContainer}>
+                    <View style={styles.modalContent}>
+                        <View style={styles.nav2}>
+                            <TouchableOpacity 
+                                style={styles.botaodevoltar2}
+                                onPress={() => setModalVisivel(false)}
+                            >
+                                <Ionicons name="arrow-back" size={28} color="black" />
+                            </TouchableOpacity>
+                            <Text style={styles.titulo2}>WORKFLOW</Text>
+                            <View style={styles.espacoHeader} />
+                        </View>
+                        <View style={styles.modalMainContent}>
+                            <View style={styles.containermensagem}>
+                                <View style={styles.mensagem}>
+                                    <Text style={styles.modeltexto}>Qual é o problema?</Text>
+                                </View>
+
+                                {problemasEnviados.map((item, index) => (
+                                    <View key={index} style={[styles.mensagem, styles.mensagemEnviada, {marginTop: 10}]}>
+                                        <Text style={styles.modeltexto}>{item}</Text>
+                                    </View>
+                                    ))}
+                                </View>
+
+                            <View style={styles.imagemfundo}>
+                                <Ionicons name="warning-outline" size={200} color="#999999" />                     
+                            </View>
+
+                            <View style={styles.espacoInput} />
+
+                            <View style={styles.containerinput}>
+                                <TextInput
+                                    style={styles.textInput}
+                                    multiline
+                                    numberOfLines={4}
+                                    placeholder="Reporte seu problema"
+                                    value={problema}
+                                    onChangeText={setProblema}
+                                    underlineColorAndroid="transparent"
+                                />
+                                <TouchableOpacity 
+                                    style={styles.botaoEnviar}
+                                    onPress={enviarProblema}
+                                >
+                                    <Ionicons name="paper-plane-outline" size={24} color="#1C58F2" style={styles.iconSobreposto} /> 
+                                    
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </View>
+                </View>
+            </Modal>
         </View>
     );
 }

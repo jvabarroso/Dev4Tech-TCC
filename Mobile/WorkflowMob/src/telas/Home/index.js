@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, View, TouchableOpacity, Image, CheckBox, ScrollView} from 'react-native';
+import { Text, View, TouchableOpacity, Image, ScrollView} from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
 import { styles } from './style';
 
@@ -27,23 +27,30 @@ export default function Home({navigation}){
                 </View>
 
                 <View style={styles.areacard}>
-                    <Card style={styles.cardtarequi}>
-                        <Card.Cover 
-                            source={require('../../../assets/img/equipes.png')}
-                            style={styles.imagemcard} />
-                        <Card.Content
-                            onPress={()=> navigation.navigate('Equipes')}
-                            style={styles.cardinferior}
-                        >
-                            <Title style={styles.titulocard}>Equipes</Title>
-                            <Paragraph style={styles.paragraph}>The point of using Lorem Ipsum is that....</Paragraph>
-                            <View style={styles.linhainfer}>
-                                <Text style={styles.data}>16/07/20</Text>
-                                <Text style={styles.Entre}>Entre aqui</Text>
-                            </View>
-                        </Card.Content>
-                    </Card>
-
+                    <TouchableOpacity
+                        onPress={()=> navigation.navigate('Equipes')} 
+                    >
+                        <Card style={styles.cardtarequi}>
+                            <Card.Cover 
+                                source={require('../../../assets/img/equipes.png')}
+                                style={styles.imagemcard} />
+                            <Card.Content
+                                onPress={()=> navigation.navigate('Equipes')}
+                                style={styles.cardinferior}
+                            >
+                                <Title style={styles.titulocard}>Equipes</Title>
+                                <Paragraph style={styles.paragraph}>The point of using Lorem Ipsum is that....</Paragraph>
+                                <View style={styles.linhainfer}>
+                                    <Text style={styles.data}>16/07/20</Text>
+                                    <Text style={styles.Entre}>Entre aqui</Text>
+                                </View>
+                            </Card.Content>
+                        </Card>
+                    </TouchableOpacity>
+                    
+                    <TouchableOpacity
+                         onPress={()=> navigation.navigate('Tarefas')} 
+                    >
                     <Card style={styles.cardtarequi}>
                         <Card.Cover 
                             source={require('../../../assets/img/tarefas.png')} 
@@ -60,16 +67,20 @@ export default function Home({navigation}){
                             </View>
                         </Card.Content>
                     </Card>
+                    </TouchableOpacity>
 
+                    <TouchableOpacity
+                        onPress={()=> navigation.navigate('Ranking')} 
+                    >
                     <Card style={styles.cardtarequi}>
                         <Card.Cover 
-                            source={require('../../../assets/img/raking.png')} 
+                            source={require('../../../assets/img/ranking.png')} 
                             style={styles.imagemcard}/>
                         <Card.Content
-                            onPress={()=> navigation.navigate('Raking')} 
+                            onPress={()=> navigation.navigate('Ranking')} 
                             style={styles.cardinferior}
                         >
-                            <Title style={styles.titulocard}>Raking</Title>
+                            <Title style={styles.titulocard}>Ranking</Title>
                             <Paragraph style={styles.paragraph}>The point of using Lorem Ipsum is that....</Paragraph>
                             <View style={styles.linhainfer}>
                                 <Text style={styles.data}>16/07/20</Text>
@@ -77,6 +88,7 @@ export default function Home({navigation}){
                             </View>
                         </Card.Content>
                     </Card>
+                    </TouchableOpacity>
                     
                 </View>
             </View>

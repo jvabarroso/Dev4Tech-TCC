@@ -10,7 +10,7 @@ import Login from '../../src/telas/Login';
 import Home from '../../src/telas/Home';
 import Tarefas from '../../src/telas/Tarefas';
 import Equipes from '../../src/telas/Equipes';
-import Raking from '../../src/telas/Raking';
+import Ranking from '../../src/telas/Ranking';
 import TarefaEnvio from '../../src/telas/TarefaEnvio';
 import Configuracoes from '../../src/telas/Configuracoes'
 import fonts from "../styles/fonts";
@@ -43,7 +43,7 @@ function Tabs(){
         iconName = 'list';
       } else if (route.name === 'Equipes') {
         iconName = 'people';
-      } else if (route.name === 'Raking') {
+      } else if (route.name === 'Ranking') {
         iconName = 'person';
       }
 
@@ -57,7 +57,7 @@ function Tabs(){
   <Tab.Screen name="Home" component={Home} />
   <Tab.Screen name="Tarefas" component={Tarefas} />
   <Tab.Screen name="Equipes" component={Equipes} />
-  <Tab.Screen name="Raking" component={Raking} />
+  <Tab.Screen name="Ranking" component={Ranking} />
 </Tab.Navigator>
   );
 }
@@ -94,7 +94,7 @@ export default function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="Raking"
+          name="Ranking"
           component={Tabs}
           options={{ headerShown: false }}
         />
