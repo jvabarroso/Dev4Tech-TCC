@@ -22,43 +22,43 @@ const Tab = createBottomTabNavigator()
 function Tabs(){
   const navigation = useNavigation();
   return (
-<Tab.Navigator
-  screenOptions={({ route }) => ({
-    headerTitle: 'WORKFLOW',
-    headerTitleAlign: 'center',
-    headerRight: () => (
-      <Ionicons
-        name="settings-outline"
-        size={24}
-        color="#3f64c7"
-        style={styles.header}
-        onPress={() => navigation.navigate('Configuracoes')}
-      />
-    ),
-    tabBarIcon: ({ focused, color, size }) => {
-      let iconName;
-      if (route.name === 'Home') {
-        iconName = 'home';
-      } else if (route.name === 'Tarefas') {
-        iconName = 'list';
-      } else if (route.name === 'Equipes') {
-        iconName = 'people';
-      } else if (route.name === 'Ranking') {
-        iconName = 'person';
-      }
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        headerTitle: 'WORKFLOW',
+        headerTitleAlign: 'center',
+        headerRight: () => (
+          <Ionicons
+            name="settings-outline"
+            size={24}
+            color="#3f64c7"
+            style={styles.header}
+            onPress={() => navigation.navigate('Configuracoes')}
+          />
+        ),
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+          if (route.name === 'Home') {
+            iconName = 'home';
+          } else if (route.name === 'Tarefas') {
+            iconName = 'list';
+          } else if (route.name === 'Equipes') {
+            iconName = 'people';
+          } else if (route.name === 'Ranking') {
+            iconName = 'person';
+          }
 
-      return <Ionicons name={iconName} size={size} color={color} />;
-    },
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
 
-    tabBarActiveTintColor: '#3f64c7',   
-    tabBarInactiveTintColor: 'gray',   
-  })}
->
-  <Tab.Screen name="Home" component={Home} />
-  <Tab.Screen name="Tarefas" component={Tarefas} />
-  <Tab.Screen name="Equipes" component={Equipes} />
-  <Tab.Screen name="Ranking" component={Ranking} />
-</Tab.Navigator>
+        tabBarActiveTintColor: '#3f64c7',   
+        tabBarInactiveTintColor: 'gray',   
+      })}
+    >
+      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Tarefas" component={Tarefas} />
+      <Tab.Screen name="Equipes" component={Equipes} />
+      <Tab.Screen name="Ranking" component={Ranking} />
+    </Tab.Navigator>
   );
 }
 

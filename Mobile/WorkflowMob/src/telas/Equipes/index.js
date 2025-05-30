@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Text, View, Image, FlatList, TextInput } from 'react-native';
+import { Text, View, Image, FlatList, TextInput, TouchableOpacity,} from 'react-native';
+import { Card, Title, Paragraph } from 'react-native-paper';
 import { styles } from './style';
 
 export default function Equipes({ navigation }) {
@@ -25,6 +26,11 @@ export default function Equipes({ navigation }) {
       imagem: require('../../../assets/img/image.png'),
     }
   ]);
+  const [equipeSelecionada, setEquipeSelecionada] = useState(null)
+
+  const clique = (id) => {
+    setEquipeSelecionada(id === equipeSelecionada ? null : id);
+  };
 
   return (
     <View style={styles.container}>
@@ -45,12 +51,62 @@ export default function Equipes({ navigation }) {
         )}
         
         renderItem={({ item }) => (
-          <View style={styles.containertarefas}>
-            <Image source={item.imagem} style={styles.imag} />
-            <View style={styles.textos}>
-              <Text style={styles.textolistatitulo}>{item.titulo}</Text>
-              <Text style={styles.textolistacargo}>{item.cargo}</Text>
-            </View>
+        <View>
+            <TouchableOpacity
+              style={styles.containertarefas}
+              onPress={() => clique(item.id)}
+            >
+              <Image source={item.imagem} style={styles.imag} />
+              <View style={styles.textos}>
+                <Text style={styles.textolistatitulo}>{item.titulo}</Text>
+                <Text style={styles.textolistacargo}>{item.cargo}</Text>
+              </View>
+            </TouchableOpacity>
+              {equipeSelecionada === item.id && (
+              <View style={styles.areacard}>
+                <TouchableOpacity onPress={() => navigation.navigate('Equipes')}>
+                  <Card style={styles.cardtarequi}>
+                    <Card.Cover source={require('../../../assets/img/equipes.png')} style={styles.imagemcard} />
+                    <Card.Content style={styles.cardinferior}>
+                      <Title style={styles.titulocard}>Funcionarios</Title>
+                      <Paragraph style={styles.paragraph}>The point of using Lorem Ipsum is that....</Paragraph>
+                      <View style={styles.linhainfer}>
+                        <Text style={styles.data}>16/07/20</Text>
+                        <Text style={styles.Entre}>Entre aqui</Text>
+                      </View>
+                    </Card.Content>
+                  </Card>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={() => navigation.navigate('Tarefas')}>
+                  <Card style={styles.cardtarequi}>
+                    <Card.Cover source={require('../../../assets/img/tarefas.png')} style={styles.imagemcard} />
+                    <Card.Content style={styles.cardinferior}>
+                      <Title style={styles.titulocard}>Tarefas</Title>
+                      <Paragraph style={styles.paragraph}>The point of using Lorem Ipsum is that....</Paragraph>
+                      <View style={styles.linhainfer}>
+                        <Text style={styles.data}>16/07/20</Text>
+                        <Text style={styles.Entre}>Entre aqui</Text>
+                      </View>
+                    </Card.Content>
+                  </Card>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={() => navigation.navigate('Ranking')}>
+                  <Card style={styles.cardtarequi}>
+                    <Card.Cover source={require('../../../assets/img/ranking.png')} style={styles.imagemcard} />
+                    <Card.Content style={styles.cardinferior}>
+                      <Title style={styles.titulocard}>Ranking</Title>
+                      <Paragraph style={styles.paragraph}>The point of using Lorem Ipsum is that....</Paragraph>
+                      <View style={styles.linhainfer}>
+                        <Text style={styles.data}>16/07/20</Text>
+                        <Text style={styles.Entre}>Entre aqui</Text>
+                      </View>
+                    </Card.Content>
+                  </Card>
+                </TouchableOpacity>
+              </View>
+            )}
           </View>
         )}
         contentContainerStyle={{ paddingBottom: 100 }}

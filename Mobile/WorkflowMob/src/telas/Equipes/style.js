@@ -59,4 +59,50 @@ export const styles = StyleSheet.create({
     fontSize: 15,
     fontFamily: fonts.text,
   },
+  areacard:{
+    marginBottom: 25,
+    alignItems:"center",
+  },
+  cardtarequi:{
+    marginBottom: 25,
+    width:275,
+  },
+  imagemcard:{
+    height:110,
+  },
+  cardinferior:{
+    backgroundColor: "#ffffffff",
+    borderRadius:8,
+    borderBottomWidth: -0.1,
+    borderBottomColor: '#000',
+  },
+  titulocard:{
+    color:"#000",
+    fontWeight: 'bold',
+    fontFamily: fonts.text,
+    marginBottom: -5,
+  },
+  paragraph:{
+    color:"#000",
+    fontSize: 11,
+  },
+  linhainfer:{
+    flexDirection: 'row',
+    marginTop: 11,
+    justifyContent: 'space-between',
+    width: '100%',
+    paddingHorizontal: -10,
+    marginBottom: -10,
+  },
+  data:{
+    fontSize: 11,
+    fontFamily: fonts.text,
+    color: '#aaaaaa',
+  },
+  Entre:{
+    color:"#000",
+    fontSize: 11,
+    fontFamily: fonts.text,
+    fontWeight: 'bold',
+  },
 });
