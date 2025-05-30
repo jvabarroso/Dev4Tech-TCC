@@ -103,41 +103,41 @@ export default function Configuracoes({navigation}){
             <Text style={styles.texto}>Nome</Text>
             <TextInput
               style={styles.input}
-              placeholder="✉️Entre com seu endereço de Email"
-              placeholderTextColor={"#000842"}
+              placeholder="Gabriel Kenzo" //depois mudar, mensagem para mim mesmo dnv :D
+              placeholderTextColor={"#000000"}
             />
             <Text style={styles.texto}>Data de nascimento</Text>
             <TextInput
               style={styles.input}
-              placeholder="🔒Digite sua senha"
-              placeholderTextColor={"#000842"}
+              placeholder="xx/xx/xxxx"
+              placeholderTextColor={"#000000"}
               secureTextEntry={true}
             />
             <Text style={styles.texto}>Email</Text>
             <TextInput
               style={styles.input}
-              placeholder="🔒Digite sua senha"
-              placeholderTextColor={"#000842"}
+              placeholder="joaovitinhocraft@gmail.com"
+              placeholderTextColor={"#000000"}
               secureTextEntry={true}
             />
             <Text style={styles.texto}>Telefone</Text>
             <TextInput
               style={styles.input}
-              placeholder="✉️Entre com seu endereço de Email"
-              placeholderTextColor={"#000842"}
+              placeholder="1399899989"
+              placeholderTextColor={"#000000"}
             />
             <Text style={styles.texto}>Endereço</Text>
             <TextInput
               style={styles.input}
-              placeholder="🔒Digite sua senha"
-              placeholderTextColor={"#000842"}
+              placeholder="Rua João da Fonseca, Jardim Mato Grosso, Cananeia senha"
+              placeholderTextColor={"#000000"}
               secureTextEntry={true}
             />
             <Text style={styles.texto}>Cargo</Text>
             <TextInput
               style={styles.input}
-              placeholder="🔒Digite sua senha"
-              placeholderTextColor={"#000842"}
+              placeholder="Analista de Marketing"
+              placeholderTextColor={"#000000"}
               secureTextEntry={true}
             />
           </View>

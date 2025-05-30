@@ -151,7 +151,26 @@ export const styles = StyleSheet.create({
   areaInput:{
     width: '100%',
     alignItems: 'flex-start',
-    marginBottom: "10%",
     marginLeft:20,
+    paddingVertical:10,
+  },
+  texto: {
+    fontSize: 18,
+    fontFamily: fonts.text,
+    fontWeight: 'bold',
+    color: '#000000',
+    marginBottom: 5,
+  },
+  input: {
+    width:"90%",
+    fontSize: 16,
+    borderRadius: 6,
+    borderWidth: 1,
+    borderBottomColor: '#D6D3D1',
+    backgroundColor: 'transparet',
+    paddingVertical:8,    
+    paddingHorizontal:20,
+    marginBottom: 10,
+    marginTop: 15,
   },
 })
