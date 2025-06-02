@@ -129,6 +129,12 @@
     <Compile Include="Configuracoes.Designer.cs">
       <DependentUpon>Configuracoes.cs</DependentUpon>
     </Compile>
+    <Compile Include="CriarTarefas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CriarTarefas.Designer.cs">
+      <DependentUpon>CriarTarefas.cs</DependentUpon>
+    </Compile>
     <Compile Include="empresaCadAdmin.cs" />
     <Compile Include="empresaCadFuncionario.cs" />
     <Compile Include="empresa.cs" />
@@ -139,6 +145,12 @@
       <DependentUpon>Equipes_Estatisticas.cs</DependentUpon>
     </Compile>
     <Compile Include="FiltroEquipes.cs" />
+    <Compile Include="HomeAdm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HomeAdm.Designer.cs">
+      <DependentUpon>HomeAdm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Integrantes_Equipe.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +180,12 @@
     </Compile>
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Planejamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Planejamento.Designer.cs">
+      <DependentUpon>Planejamento.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -228,8 +246,14 @@
     <EmbeddedResource Include="Configuracoes.resx">
       <DependentUpon>Configuracoes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CriarTarefas.resx">
+      <DependentUpon>CriarTarefas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Equipes_Estatisticas.resx">
       <DependentUpon>Equipes_Estatisticas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeAdm.resx">
+      <DependentUpon>HomeAdm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Integrantes_Equipe.resx">
       <DependentUpon>Integrantes_Equipe.cs</DependentUpon>
@@ -245,6 +269,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Planejamento.resx">
+      <DependentUpon>Planejamento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
