@@ -144,6 +144,7 @@
     <Compile Include="empresaCadAdmin.cs" />
     <Compile Include="empresaCadFuncionario.cs" />
     <Compile Include="empresa.cs" />
+    <Compile Include="Equipes_Cadastro.cs" />
     <Compile Include="Equipes_Estatisticas.cs">
       <SubType>Form</SubType>
     </Compile>
