@@ -10,21 +10,11 @@ using System.Windows.Forms;
 
 namespace Dev4Tech
 {
-    public partial class Integrantes_Equipe : Form
+    public partial class AdicionarEquipes : Form
     {
-        public Integrantes_Equipe()
+        public AdicionarEquipes()
         {
             InitializeComponent();
-        }
-
-        private void Integrantes_Equipe_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

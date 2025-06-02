@@ -10,19 +10,19 @@ using System.Windows.Forms;
 
 namespace Dev4Tech
 {
-    public partial class Integrantes_Equipe : Form
+    public partial class CriarTarefas : Form
     {
-        public Integrantes_Equipe()
+        public CriarTarefas()
         {
             InitializeComponent();
         }
 
-        private void Integrantes_Equipe_Load(object sender, EventArgs e)
+        private void label3_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void pictureBox4_Click(object sender, EventArgs e)
+        private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
         }
