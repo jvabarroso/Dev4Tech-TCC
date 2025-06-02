@@ -13,7 +13,18 @@ export default function Login({navigation}){
         endereco: "Rua João da Fonseca, Jardim Mato Grosso, Cananeia", //mudar isso depois, ver banco de dados
         cargo: "Desenvolvedor Web",
         senha: '1234',
-        imagem: require('../../../assets/img/fotoexemplo.png'),
+        imagem: require('../../../../assets/img/fotoexemplo.png'),
+      },
+      {
+        id: '1',
+        nome: 'Gabriel Kenzon Takeuchi',
+        datadenascimento: "16/05/1980",
+        email: 'KenzoAdm',
+        telefone: 13982176670,
+        endereco: "Rua João da Fonseca, Jardim Mato Grosso, Cananeia", //mudar isso depois, ver banco de dados
+        cargo: "Desenvolvedor Web",
+        senha: '1234',
+        imagem: require('../../../../assets/img/fotoexemplo.png'),
       },
       ]);
 
@@ -24,18 +35,22 @@ export default function Login({navigation}){
 
     const verificacao = () => {
       if (email.trim() && senha.trim()) {
+        const usuario = funcionario.find(
+          (item) => item.email === email && item.senha === senha
+        );
 
-        if(email === usuario.email && senha === usuario.senha){
-          navigation.navigate('Home');
-        }  
-        else {
-        Alert.alert('Erro', 'Email ou senha incorretos.');
+        if (usuario) {
+          if (usuario.email.includes("Adm")) {
+            navigation.navigate('HomeAdm');
+          } else {
+            navigation.navigate('Home');
+          }
+        } else {
+          Alert.alert('Erro', 'Email ou senha incorretos.');
         }
+      } else {
+        Alert.alert('Atenção', 'Preencha todos os campos.');
       }
-
-      else {
-      Alert.alert('Atenção', 'Preencha todos os campos.');
-    }
     }
   
     return (

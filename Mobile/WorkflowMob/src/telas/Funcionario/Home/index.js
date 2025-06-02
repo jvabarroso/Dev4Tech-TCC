@@ -11,13 +11,13 @@ export default function Home({navigation}){
                 <View style={styles.areaperfil}>
                     <Image 
                     style={styles.foto}
-                    source={require('../../../assets/img/fotoexemplo.png')} >
+                    source={require('../../../../assets/img/fotoexemplo.png')} >
                     </Image>
                     <View style={styles.verde}></View>
 
                     <View style={styles.textoperfil}>
-                        <Text style={styles.nome}>Ramon Trigon</Text>
-                        <Text style={styles.profissao}>Professor</Text>
+                        <Text style={styles.nome}>Kenzo</Text>
+                        <Text style={styles.profissao}>Desenvolvedor Mobile</Text>
                     </View>
                 </View>
 
@@ -32,12 +32,9 @@ export default function Home({navigation}){
                     >
                         <Card style={styles.cardtarequi}>
                             <Card.Cover 
-                                source={require('../../../assets/img/equipes.png')}
+                                source={require('../../../../assets/img/equipes.png')}
                                 style={styles.imagemcard} />
-                            <Card.Content
-                                onPress={()=> navigation.navigate('Equipes')}
-                                style={styles.cardinferior}
-                            >
+                            <Card.Content style={styles.cardinferior}>
                                 <Title style={styles.titulocard}>Equipes</Title>
                                 <Paragraph style={styles.paragraph}>The point of using Lorem Ipsum is that....</Paragraph>
                                 <View style={styles.linhainfer}>
@@ -53,12 +50,9 @@ export default function Home({navigation}){
                     >
                     <Card style={styles.cardtarequi}>
                         <Card.Cover 
-                            source={require('../../../assets/img/tarefas.png')} 
+                            source={require('../../../../assets/img/tarefas.png')} 
                             style={styles.imagemcard}/>
-                        <Card.Content
-                            onPress={()=> navigation.navigate('Tarefas')} 
-                            style={styles.cardinferior}
-                        >
+                        <Card.Content style={styles.cardinferior}>
                             <Title style={styles.titulocard}>Tarefas</Title>
                             <Paragraph style={styles.paragraph}>The point of using Lorem Ipsum is that....</Paragraph>
                             <View style={styles.linhainfer}>
@@ -74,12 +68,9 @@ export default function Home({navigation}){
                     >
                     <Card style={styles.cardtarequi}>
                         <Card.Cover 
-                            source={require('../../../assets/img/ranking.png')} 
+                            source={require('../../../../assets/img/ranking.png')} 
                             style={styles.imagemcard}/>
-                        <Card.Content
-                            onPress={()=> navigation.navigate('Ranking')} 
-                            style={styles.cardinferior}
-                        >
+                        <Card.Content style={styles.cardinferior}>
                             <Title style={styles.titulocard}>Ranking</Title>
                             <Paragraph style={styles.paragraph}>The point of using Lorem Ipsum is that....</Paragraph>
                             <View style={styles.linhainfer}>

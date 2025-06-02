@@ -12,7 +12,7 @@ export default function Ranking({navigation}){
       quantdeproblemas:6,
       tarefasatrasadas:1,
       tarefasnaoentregues: 6,
-      imagem: require('../../../assets/img/image.png'),
+      imagem: require('../../../../assets/img/image.png'),
     },
     {
       id: '2',
@@ -21,7 +21,7 @@ export default function Ranking({navigation}){
       tarefaspostadas: 10,
       tarefasatrasadas:2,
       tarefasnaoentregues: 2,
-      imagem: require('../../../assets/img/image.png'),
+      imagem: require('../../../../assets/img/image.png'),
     },
     {
       id: '3',
@@ -30,7 +30,7 @@ export default function Ranking({navigation}){
       tarefaspostadas: 30,
       tarefasatrasadas:9,
       tarefasnaoentregues: 10,
-      imagem: require('../../../assets/img/image.png'),
+      imagem: require('../../../../assets/img/image.png'),
     },
         {
       id: '4',
@@ -39,7 +39,7 @@ export default function Ranking({navigation}){
       tarefaspostadas: 30,
       tarefasatrasadas:9,
       tarefasnaoentregues: 10,
-      imagem: require('../../../assets/img/image.png'),
+      imagem: require('../../../../assets/img/image.png'),
     },
   ]);
   const equipeOrdenada = [...equipe].sort((a, b, c, d) => {

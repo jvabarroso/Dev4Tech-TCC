@@ -73,7 +73,7 @@ export default function Configuracoes({navigation}){
             <View style={styles.linha}> 
               <TouchableOpacity
                 style={styles.botaodevoltar}
-                onPress={()=> navigation.navigate('Tarefas')}
+                onPress={()=> navigation.navigate('Home')}
               >
                 <Ionicons name="chevron-back-outline" size={18} color="black" style={styles.botaodevoltar}/>
                 <Text style={styles.voltar}>Voltar</Text>
