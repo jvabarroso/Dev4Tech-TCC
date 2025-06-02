@@ -98,6 +98,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdicionarEquipes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdicionarEquipes.Designer.cs">
+      <DependentUpon>AdicionarEquipes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Cadastro-empresa-admin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -213,6 +219,9 @@
     <Compile Include="Tela_Tarefa.Designer.cs">
       <DependentUpon>Tela_Tarefa.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AdicionarEquipes.resx">
+      <DependentUpon>AdicionarEquipes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Cadastro-empresa-admin.resx">
       <DependentUpon>Cadastro-empresa-admin.cs</DependentUpon>
     </EmbeddedResource>
