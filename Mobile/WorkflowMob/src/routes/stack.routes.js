@@ -19,6 +19,7 @@ import CadastroEquipes from '../../src/telas/Gestor/CadastroEquipes';
 import CadastroFuncionario from '../../src/telas/Gestor/CadastroFuncionario';
 import CadastroTarefas from '../../src/telas/Gestor/CadastroTarefas';
 import RankingAdm from '../../src/telas/Gestor/RankingAdm';
+import RankingEstastistico from '../../src/telas/Gestor/RakingEstastistico';
 
 
 import fonts from "../styles/fonts";
@@ -152,6 +153,11 @@ export default function App() {
         <Stack.Screen
           name="HomeAdm"
           component={TabsAdm} 
+          options={{ headerShown: false }}
+        />   
+        <Stack.Screen
+          name="RankingEstastistico"
+          component={RankingEstastistico} 
           options={{ headerShown: false }}
         />        
     

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, Image, FlatList, TextInput, TouchableOpacity } from 'react-native';
+import { Text, View, Image, FlatList, TextInput, TouchableOpacity,} from 'react-native';
 import { styles } from './style';
 
 export default function RankingAdm({navigation}){
@@ -66,7 +66,7 @@ export default function RankingAdm({navigation}){
             )}
             renderItem={({ item, index}) => (
             <TouchableOpacity
-              onPress={() => navigation.navigate('TarefaEnvio', { equipe: item })}
+              onPress={() => navigation.navigate('RankingEstastistico', { equipe: item })}
             >
                 <View style={styles.containertarefas}>
                 <Text style={styles.colocacao}>{index + 1}º</Text>
