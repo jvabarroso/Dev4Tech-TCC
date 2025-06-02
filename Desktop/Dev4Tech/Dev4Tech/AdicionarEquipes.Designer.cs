@@ -38,7 +38,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtNomeEquipe = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnAddIntegrante = new System.Windows.Forms.Button();
@@ -62,7 +62,7 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnCriarEquipe = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
@@ -187,13 +187,13 @@
             this.label2.TabIndex = 100;
             this.label2.Text = "Nome da equipe";
             // 
-            // textBox1
+            // txtNomeEquipe
             // 
-            this.textBox1.Location = new System.Drawing.Point(232, 190);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(164, 20);
-            this.textBox1.TabIndex = 101;
-            this.textBox1.Text = "Digite o nome da equipe";
+            this.txtNomeEquipe.Location = new System.Drawing.Point(232, 190);
+            this.txtNomeEquipe.Name = "txtNomeEquipe";
+            this.txtNomeEquipe.Size = new System.Drawing.Size(164, 20);
+            this.txtNomeEquipe.TabIndex = 101;
+            this.txtNomeEquipe.Text = "Digite o nome da equipe";
             // 
             // label3
             // 
@@ -432,14 +432,14 @@
             this.pictureBox4.TabIndex = 0;
             this.pictureBox4.TabStop = false;
             // 
-            // button1
+            // btnCriarEquipe
             // 
-            this.button1.Location = new System.Drawing.Point(276, 472);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(120, 55);
-            this.button1.TabIndex = 115;
-            this.button1.Text = "Criar equipe";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnCriarEquipe.Location = new System.Drawing.Point(276, 472);
+            this.btnCriarEquipe.Name = "btnCriarEquipe";
+            this.btnCriarEquipe.Size = new System.Drawing.Size(120, 55);
+            this.btnCriarEquipe.TabIndex = 115;
+            this.btnCriarEquipe.Text = "Criar equipe";
+            this.btnCriarEquipe.UseVisualStyleBackColor = true;
             // 
             // textBox3
             // 
@@ -462,6 +462,9 @@
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "asd",
+            "ijn"});
             this.comboBox2.Location = new System.Drawing.Point(232, 256);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(174, 21);
@@ -476,7 +479,7 @@
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label18);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnCriarEquipe);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -485,7 +488,7 @@
             this.Controls.Add(this.btnAddIntegrante);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtNomeEquipe);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.picPerfil);
@@ -532,7 +535,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtNomeEquipe;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnAddIntegrante;
@@ -556,7 +559,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCriarEquipe;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.ComboBox comboBox2;

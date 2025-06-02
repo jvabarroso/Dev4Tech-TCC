@@ -12,7 +12,7 @@ namespace Dev4Tech
 {
     class Equipes_Cadastro : conexao
     {
-        private string equipeId, nome, categoria, img;
+        private string equipeId, nome, email, categoria, img;
 
         public void setEquipeId(string equipeId)
         {
@@ -21,6 +21,11 @@ namespace Dev4Tech
         public void setNome (string nome) {
             this.nome = nome;
         }
+        public void setEmail (string email)
+        {
+            this.email = email;
+        }
+
         public void setCategoria(string categoria)
         {
             this.categoria = categoria;
@@ -37,6 +42,10 @@ namespace Dev4Tech
         public string getNome()
         {
             return this.nome;
+        }
+        public string getEmail()
+        {
+            return this.email;
         }
         public string getCategoria()
         {

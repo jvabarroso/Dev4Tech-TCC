@@ -32,14 +32,21 @@ namespace Dev4Tech
         {
             try
             {
-                emAdmin.setNome(txtCadAdmNome.Text);
-                emAdmin.setCargo(cbBoxCargoAdm.Text);
-                emAdmin.setCPF(txtCadAdmCPF.Text);
-                emAdmin.setDataNascimento(txtCadAdmDataNasc.Text);
-                emAdmin.setTelefone(txtCadAdmTelefone.Text);
-                emAdmin.setEmail(txtCadAdmEmail.Text);
-                emAdmin.setSenha(txtCadAdmSenha.Text);
-                emAdmin.inserir();
+                if (txtCadAdmSenha.Text != txtCadAdmConfirmSenha.Text)
+                {
+                    MessageBox.Show("Erro! As duas senhas estão diferentes");
+                }
+                else
+                {
+                    emAdmin.setNome(txtCadAdmNome.Text);
+                    emAdmin.setCargo(cbBoxCargoAdm.Text);
+                    emAdmin.setCPF(txtCadAdmCPF.Text);
+                    emAdmin.setDataNascimento(txtCadAdmDataNasc.Text);
+                    emAdmin.setTelefone(txtCadAdmTelefone.Text);
+                    emAdmin.setEmail(txtCadAdmEmail.Text);
+                    emAdmin.setSenha(txtCadAdmSenha.Text);
+                    emAdmin.inserir();  }
+                
                 MessageBox.Show("Cadastro de administrador realizado com sucesso!");
                 Home t_Home = new Home();
                 t_Home.Show();

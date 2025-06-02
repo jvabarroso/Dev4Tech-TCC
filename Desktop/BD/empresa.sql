@@ -26,10 +26,23 @@ CREATE TABLE Administradores (
 create table funcionario (
     FuncionarioId int auto_increment primary key,
     Nome VARCHAR(100),
-    Cargo VARCHAR(50),
+    Cargo VARCHAR(255),
     CPF CHAR(11) UNIQUE,
     DataNascimento DATE,
     Telefone VARCHAR(20),
-    Email VARCHAR(100)  UNIQUE,
+    Email VARCHAR(255)  UNIQUE,
     Senha VARCHAR(255) 
+);
+
+create table equipes(
+equipeId int auto_increment primary key,
+nome varchar(255),
+Email varchar(255),
+foreign key (Email) references Funcionario(Email),
+img varchar(255)
+);
+
+create table categorias(
+nome varchar(255),
+categoriaId int auto_increment primary key
 );

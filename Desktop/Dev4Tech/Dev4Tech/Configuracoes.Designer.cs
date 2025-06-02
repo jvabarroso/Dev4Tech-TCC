@@ -72,6 +72,7 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.listView2 = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEquipes)).BeginInit();
@@ -543,6 +544,14 @@
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.UseVisualStyleBackColor = false;
             // 
+            // listView2
+            // 
+            this.listView2.Location = new System.Drawing.Point(230, 146);
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(847, 778);
+            this.listView2.TabIndex = 150;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            // 
             // Configuracoes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -579,6 +588,7 @@
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
+            this.Controls.Add(this.listView2);
             this.Name = "Configuracoes";
             this.Text = "Configuracoes";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -651,5 +661,6 @@
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ListView listView2;
     }
 }
