@@ -47,8 +47,8 @@ namespace Dev4Tech
                 }
                 
                 MessageBox.Show("Cadastro de administrador realizado com sucesso!");
-                Home t_Home = new Home();
-                t_Home.Show();
+                Login t_login = new Login();
+                t_login.Show();
                 this.Hide();
             }
             catch (Exception ex)

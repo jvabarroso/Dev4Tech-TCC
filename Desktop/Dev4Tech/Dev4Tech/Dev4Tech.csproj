@@ -135,6 +135,7 @@
     <Compile Include="Configuracoes.Designer.cs">
       <DependentUpon>Configuracoes.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConfiguraçõesBD.cs" />
     <Compile Include="CriarTarefas.cs">
       <SubType>Form</SubType>
     </Compile>

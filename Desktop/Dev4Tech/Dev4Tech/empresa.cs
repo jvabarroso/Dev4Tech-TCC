@@ -12,7 +12,7 @@ namespace Dev4Tech
 {
     class empresa : conexao
     {
-        private string nomeEmpresa, codigoId, setorEmpresarial, logradouro, bairro, complemento, CNPJ, numResidencia;
+        private string nomeEmpresa, codigoId, setorEmpresarial, logradouro, bairro, complemento, CNPJ, numResidencia, email, telefone;
 
         public void setNomeEmpresa(string nomeEmpresa)
         {
@@ -46,7 +46,14 @@ namespace Dev4Tech
         {
             this.complemento = complemento;
         }
-
+        public void setEmail(string email)
+        {
+            this.email = email;
+        }
+        public void setTelefone(string telefone)
+        {
+            this.telefone = telefone;
+        }
 
         public string getNomeEmpresa()
         {
@@ -80,14 +87,19 @@ namespace Dev4Tech
         {
             return this.complemento;
         }
-
+        public string getEmail()
+        {
+            return this.email;
+        }
+        public string getTelefone()
+        {
+            return this.telefone;
+        }
 
         //Método inserir, para mandar os dados no banco de dados
-
         public void inserir()
         {
-            string query = "Insert into dadosEmpresa(codigoID, nomeEmpresa, CNPJ, setorEmpresarial, logradouro, numResidencia, bairro, complemento) values ('" + getCodigoId() + "', '" + getNomeEmpresa() + "', '"  + getCNPJ() + "', '" + getSetorEmpresarial() +
-                "', '" + getLogradouro() + "', '" + getNumResidencia() + "', '" + getBairro()+ "', '" + getComplemento() + "')";
+            string query = "Insert into Empresas(nome_empresa, cnpj, endereco, data_cadastro, status) values ('" + getNomeEmpresa() + "', '" + getCNPJ() + "', '" + getLogradouro() + "', NOW(), 1)";
 
             if (this.abrirConexao() == true)
             {

@@ -47,7 +47,9 @@ namespace Dev4Tech
 
         private void btnCadastro_Click(object sender, EventArgs e)
         {
-            // Handler vazio para evitar erro CS1061
+            cadastro_funcionário cadFunc = new cadastro_funcionário();
+            cadFunc.Show();
+            this.Hide();
         }
     }
 }

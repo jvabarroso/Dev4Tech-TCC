@@ -43,7 +43,10 @@ namespace Dev4Tech
                 t_Home.Show();
                 this.Hide();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro: " + ex.Message);
+            }
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)

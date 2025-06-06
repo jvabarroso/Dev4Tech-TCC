@@ -4,7 +4,7 @@ USE Dev4Tech;
 
 -- Tabela de Empresas
 CREATE TABLE Empresas (
-    id_empresa INT PRIMARY KEY,
+    id_empresa INT PRIMARY KEY auto_increment,
     nome_empresa VARCHAR(100) NOT NULL,
     cnpj VARCHAR(14) UNIQUE NOT NULL,
     email VARCHAR(100) NOT NULL,
@@ -29,7 +29,7 @@ CREATE TABLE Administradores (
 
 -- Tabela de Funcionários
 CREATE TABLE Funcionarios (
-    FuncionarioId INT PRIMARY KEY,
+    FuncionarioId INT PRIMARY KEY auto_increment,
     Nome VARCHAR(100) NOT NULL,
     Cargo VARCHAR(255),
     CPF CHAR(11) UNIQUE,
@@ -42,7 +42,7 @@ CREATE TABLE Funcionarios (
 
 -- Tabela de Tipos de Usuário
 CREATE TABLE TiposUsuario (
-    id_tipo INT PRIMARY KEY,
+    id_tipo INT PRIMARY KEY auto_increment,
     nome VARCHAR(50) NOT NULL,
     descricao TEXT
 );
@@ -65,7 +65,7 @@ CREATE TABLE PermissoesTipoUsuario (
 
 -- Tabela de Usuários
 CREATE TABLE Usuarios (
-    id_usuario INT PRIMARY KEY,
+    id_usuario INT PRIMARY KEY auto_increment,
     id_empresa INT,
     id_tipo INT,
     nome VARCHAR(100) NOT NULL,
@@ -81,7 +81,7 @@ CREATE TABLE Usuarios (
 
 -- Tabela de Equipes
 CREATE TABLE Equipes (
-    id_equipe INT PRIMARY KEY,
+    id_equipe INT PRIMARY KEY auto_increment,
     id_empresa INT,
     nome_equipe VARCHAR(100) NOT NULL,
     descricao TEXT,
@@ -92,7 +92,7 @@ CREATE TABLE Equipes (
 
 -- Tabela de Integrantes das Equipes
 CREATE TABLE IntegrantesEquipe (
-    id_integrante INT PRIMARY KEY,
+    id_integrante INT PRIMARY KEY auto_increment,
     id_equipe INT,
     id_funcionario INT,
     data_entrada DATETIME,
@@ -104,7 +104,7 @@ CREATE TABLE IntegrantesEquipe (
 
 -- Tabela de Tarefas
 CREATE TABLE Tarefas (
-    id_tarefa INT PRIMARY KEY,
+    id_tarefa INT PRIMARY KEY auto_increment,
     id_equipe INT,
     id_criador INT,
     titulo VARCHAR(100) NOT NULL,
@@ -120,7 +120,7 @@ CREATE TABLE Tarefas (
 
 -- Tabela de Atribuições de Tarefas
 CREATE TABLE AtribuicoesTarefa (
-    id_atribuicao INT PRIMARY KEY,
+    id_atribuicao INT PRIMARY KEY auto_increment,
     id_tarefa INT,
     id_funcionario INT,
     data_atribuicao DATETIME,
@@ -131,7 +131,7 @@ CREATE TABLE AtribuicoesTarefa (
 
 -- Tabela de Comentários nas Tarefas
 CREATE TABLE ComentariosTarefa (
-    id_comentario INT PRIMARY KEY,
+    id_comentario INT PRIMARY KEY auto_increment,
     id_tarefa INT,
     id_usuario INT,
     comentario TEXT NOT NULL,
@@ -142,7 +142,7 @@ CREATE TABLE ComentariosTarefa (
 
 -- Tabela de Ranking de Equipes
 CREATE TABLE RankingEquipes (
-    id_ranking INT PRIMARY KEY,
+    id_ranking INT PRIMARY KEY auto_increment,
     id_equipe INT,
     pontuacao INT DEFAULT 0,
     data_atualizacao DATETIME,
@@ -152,7 +152,7 @@ CREATE TABLE RankingEquipes (
 
 -- Tabela de Relatórios de Problemas
 CREATE TABLE RelatoriosProblema (
-    id_relatorio INT PRIMARY KEY,
+    id_relatorio INT PRIMARY KEY auto_increment,
     id_usuario INT,
     id_tarefa INT,
     titulo VARCHAR(100) NOT NULL,
@@ -165,7 +165,7 @@ CREATE TABLE RelatoriosProblema (
 
 -- Tabela de Chat
 CREATE TABLE MensagensChat (
-    id_mensagem INT PRIMARY KEY,
+    id_mensagem INT PRIMARY KEY auto_increment,
     id_equipe INT,
     id_usuario INT,
     mensagem TEXT NOT NULL,
@@ -176,7 +176,7 @@ CREATE TABLE MensagensChat (
 
 -- Tabela de Configurações
 CREATE TABLE Configuracoes (
-    id_configuracao INT PRIMARY KEY,
+    id_configuracao INT PRIMARY KEY auto_increment,
     id_empresa INT,
     chave VARCHAR(50) NOT NULL,
     valor TEXT,

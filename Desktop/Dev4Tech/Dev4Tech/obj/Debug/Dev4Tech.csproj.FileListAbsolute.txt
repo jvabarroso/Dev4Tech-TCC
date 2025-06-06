@@ -106,3 +106,4 @@ C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj
 C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.HomeAdm.resources
 C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Planejamento.resources
 C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_funcionario.resources
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.conexao.resources
