@@ -41,31 +41,19 @@
             this.txtNomeEquipe = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.btnAddIntegrante = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.btnAddMembro = new System.Windows.Forms.Button();
+            this.cbmEmailMembro = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pbPerfilIntegrante = new System.Windows.Forms.PictureBox();
             this.btnCriarEquipe = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cmbCategoriaEquipe = new System.Windows.Forms.ComboBox();
+            this.pbImgEquipe = new System.Windows.Forms.PictureBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.picPerfil)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEquipes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCalendar)).BeginInit();
@@ -75,11 +63,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnHome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPerfilIntegrante)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImgEquipe)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // picPerfil
@@ -194,6 +180,7 @@
             this.txtNomeEquipe.Size = new System.Drawing.Size(164, 20);
             this.txtNomeEquipe.TabIndex = 101;
             this.txtNomeEquipe.Text = "Digite o nome da equipe";
+            this.txtNomeEquipe.TextChanged += new System.EventHandler(this.txtNomeEquipe_TextChanged);
             // 
             // label3
             // 
@@ -215,23 +202,23 @@
             this.label4.TabIndex = 104;
             this.label4.Text = "Adicionar membro";
             // 
-            // btnAddIntegrante
+            // btnAddMembro
             // 
-            this.btnAddIntegrante.Location = new System.Drawing.Point(470, 330);
-            this.btnAddIntegrante.Name = "btnAddIntegrante";
-            this.btnAddIntegrante.Size = new System.Drawing.Size(31, 20);
-            this.btnAddIntegrante.TabIndex = 106;
-            this.btnAddIntegrante.Text = "+";
-            this.btnAddIntegrante.UseVisualStyleBackColor = true;
+            this.btnAddMembro.Location = new System.Drawing.Point(470, 330);
+            this.btnAddMembro.Name = "btnAddMembro";
+            this.btnAddMembro.Size = new System.Drawing.Size(31, 20);
+            this.btnAddMembro.TabIndex = 106;
+            this.btnAddMembro.Text = "+";
+            this.btnAddMembro.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // cbmEmailMembro
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(232, 329);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(232, 21);
-            this.comboBox1.TabIndex = 107;
-            this.comboBox1.Text = "Digite o email do integrante para adiciona-lo";
+            this.cbmEmailMembro.FormattingEnabled = true;
+            this.cbmEmailMembro.Location = new System.Drawing.Point(232, 329);
+            this.cbmEmailMembro.Name = "cbmEmailMembro";
+            this.cbmEmailMembro.Size = new System.Drawing.Size(232, 21);
+            this.cbmEmailMembro.TabIndex = 107;
+            this.cbmEmailMembro.Text = "Digite o email do integrante para adiciona-lo";
             // 
             // label5
             // 
@@ -245,27 +232,16 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.dataGridView1);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.pictureBox2);
+            this.groupBox1.Controls.Add(this.pbPerfilIntegrante);
             this.groupBox1.Location = new System.Drawing.Point(610, 190);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(206, 303);
             this.groupBox1.TabIndex = 109;
             this.groupBox1.TabStop = false;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.Blue;
-            this.label9.Location = new System.Drawing.Point(94, 244);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(29, 16);
-            this.label9.TabIndex = 113;
-            this.label9.Text = "100";
             // 
             // label8
             // 
@@ -297,157 +273,23 @@
             this.label6.TabIndex = 110;
             this.label6.Text = "Jvitin";
             // 
-            // pictureBox2
+            // pbPerfilIntegrante
             // 
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(27, 27);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(150, 150);
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Controls.Add(this.label11);
-            this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.label13);
-            this.groupBox2.Controls.Add(this.pictureBox3);
-            this.groupBox2.Location = new System.Drawing.Point(822, 190);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(206, 303);
-            this.groupBox2.TabIndex = 114;
-            this.groupBox2.TabStop = false;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.Blue;
-            this.label10.Location = new System.Drawing.Point(94, 244);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(29, 16);
-            this.label10.TabIndex = 113;
-            this.label10.Text = "100";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(24, 244);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(76, 16);
-            this.label11.TabIndex = 112;
-            this.label11.Text = "Pontuação:";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(24, 196);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(173, 16);
-            this.label12.TabIndex = 111;
-            this.label12.Text = "Desenvolvedor de software";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(79, 180);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(44, 16);
-            this.label13.TabIndex = 110;
-            this.label13.Text = "Jvitin";
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(27, 27);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(150, 150);
-            this.pictureBox3.TabIndex = 0;
-            this.pictureBox3.TabStop = false;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.label14);
-            this.groupBox3.Controls.Add(this.label15);
-            this.groupBox3.Controls.Add(this.label16);
-            this.groupBox3.Controls.Add(this.label17);
-            this.groupBox3.Controls.Add(this.pictureBox4);
-            this.groupBox3.Location = new System.Drawing.Point(1034, 190);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(206, 303);
-            this.groupBox3.TabIndex = 114;
-            this.groupBox3.TabStop = false;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.Color.Blue;
-            this.label14.Location = new System.Drawing.Point(94, 244);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(29, 16);
-            this.label14.TabIndex = 113;
-            this.label14.Text = "100";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(24, 244);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(76, 16);
-            this.label15.TabIndex = 112;
-            this.label15.Text = "Pontuação:";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(24, 196);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(173, 16);
-            this.label16.TabIndex = 111;
-            this.label16.Text = "Desenvolvedor de software";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(79, 180);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(44, 16);
-            this.label17.TabIndex = 110;
-            this.label17.Text = "Jvitin";
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox4.Location = new System.Drawing.Point(27, 27);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(150, 150);
-            this.pictureBox4.TabIndex = 0;
-            this.pictureBox4.TabStop = false;
+            this.pbPerfilIntegrante.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbPerfilIntegrante.Location = new System.Drawing.Point(27, 27);
+            this.pbPerfilIntegrante.Name = "pbPerfilIntegrante";
+            this.pbPerfilIntegrante.Size = new System.Drawing.Size(150, 150);
+            this.pbPerfilIntegrante.TabIndex = 0;
+            this.pbPerfilIntegrante.TabStop = false;
             // 
             // btnCriarEquipe
             // 
-            this.btnCriarEquipe.Location = new System.Drawing.Point(276, 472);
+            this.btnCriarEquipe.Location = new System.Drawing.Point(259, 507);
             this.btnCriarEquipe.Name = "btnCriarEquipe";
             this.btnCriarEquipe.Size = new System.Drawing.Size(120, 55);
             this.btnCriarEquipe.TabIndex = 115;
             this.btnCriarEquipe.Text = "Criar equipe";
             this.btnCriarEquipe.UseVisualStyleBackColor = true;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(232, 397);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(164, 20);
-            this.textBox3.TabIndex = 117;
-            this.textBox3.Text = "Faça o upload da foto da equipe";
             // 
             // label18
             // 
@@ -455,37 +297,55 @@
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.Location = new System.Drawing.Point(229, 378);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(104, 16);
+            this.label18.Size = new System.Drawing.Size(169, 16);
             this.label18.TabIndex = 116;
-            this.label18.Text = "Adicionar foto";
+            this.label18.Text = "Adicionar foto à equipe";
             // 
-            // comboBox2
+            // cmbCategoriaEquipe
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.cmbCategoriaEquipe.FormattingEnabled = true;
+            this.cmbCategoriaEquipe.Items.AddRange(new object[] {
             "asd",
             "ijn"});
-            this.comboBox2.Location = new System.Drawing.Point(232, 256);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(174, 21);
-            this.comboBox2.TabIndex = 118;
-            this.comboBox2.Text = "Escolha a categoria da equipe";
+            this.cmbCategoriaEquipe.Location = new System.Drawing.Point(232, 256);
+            this.cmbCategoriaEquipe.Name = "cmbCategoriaEquipe";
+            this.cmbCategoriaEquipe.Size = new System.Drawing.Size(174, 21);
+            this.cmbCategoriaEquipe.TabIndex = 118;
+            this.cmbCategoriaEquipe.Text = "Escolha a categoria da equipe";
+            this.cmbCategoriaEquipe.SelectedIndexChanged += new System.EventHandler(this.cmbCategoriaEquipe_SelectedIndexChanged);
+            // 
+            // pbImgEquipe
+            // 
+            this.pbImgEquipe.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbImgEquipe.Location = new System.Drawing.Point(234, 403);
+            this.pbImgEquipe.Name = "pbImgEquipe";
+            this.pbImgEquipe.Size = new System.Drawing.Size(70, 70);
+            this.pbImgEquipe.TabIndex = 119;
+            this.pbImgEquipe.TabStop = false;
+            this.pbImgEquipe.Click += new System.EventHandler(this.pbImgEquipe_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(96, 244);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(42, 18);
+            this.dataGridView1.TabIndex = 120;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // AdicionarEquipes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.pbImgEquipe);
+            this.Controls.Add(this.cmbCategoriaEquipe);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.btnCriarEquipe);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.btnAddIntegrante);
+            this.Controls.Add(this.cbmEmailMembro);
+            this.Controls.Add(this.btnAddMembro);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtNomeEquipe);
@@ -511,13 +371,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPerfilIntegrante)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImgEquipe)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -538,30 +394,18 @@
         private System.Windows.Forms.TextBox txtNomeEquipe;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button btnAddIntegrante;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button btnAddMembro;
+        private System.Windows.Forms.ComboBox cbmEmailMembro;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pbPerfilIntegrante;
         private System.Windows.Forms.Button btnCriarEquipe;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cmbCategoriaEquipe;
+        private System.Windows.Forms.PictureBox pbImgEquipe;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

@@ -37,14 +37,13 @@ namespace Dev4Tech
                 emCadFunc.setTelefone(txtCadFuncTelefone.Text);
                 emCadFunc.setSenha(txtCadFuncSenha.Text);
                 emCadFunc.inserir();
-
+                
                 MessageBox.Show("Sua conta foi cadastrada com sucesso");
                 Home t_Home = new Home();
                 t_Home.Show();
                 this.Hide();
             }
             catch { }
-            
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
@@ -92,6 +91,12 @@ namespace Dev4Tech
         private void cbBoxCargo_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            // TODO: Implementar limpeza dos campos
+            MessageBox.Show("Campos limpos com sucesso!");
         }
     }
 }

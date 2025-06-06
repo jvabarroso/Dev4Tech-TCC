@@ -16,5 +16,62 @@ namespace Dev4Tech
         {
             InitializeComponent();
         }
+
+        private void btnEquipes_Click(object sender, EventArgs e)
+        {
+            Equipes_Estatisticas t_equipe = new Equipes_Estatisticas();
+            t_equipe.Show();
+            this.Hide();
+        }
+
+        private void btnRanking_Click(object sender, EventArgs e)
+        {
+            Ranking_Equipes rank_equipe = new Ranking_Equipes();
+            rank_equipe.Show();
+            this.Hide();
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            Form1 t_incial = new Form1();
+            t_incial.Show();
+            this.Hide();
+        }
+
+        private void lblTarefas_Click(object sender, EventArgs e)
+        {
+            Tarefas_Pendentes trf_pendente = new Tarefas_Pendentes();
+            trf_pendente.Show();
+            this.Hide();
+        }
+
+        private void lblGeral_Click(object sender, EventArgs e)
+        {
+            Chat_geral_equipes chatEquipe = new Chat_geral_equipes();
+            chatEquipe.Show();
+            this.Hide();
+        }
+
+        private void lblMembros_Click(object sender, EventArgs e)
+        {
+            Integrantes_Equipe t_integrantes = new Integrantes_Equipe();
+            t_integrantes.Show();
+            this.Hide();
+        }
+
+        private void btnEnviarRelato_Click(object sender, EventArgs e)
+        {
+            // TODO: Implementar envio de relato
+            MessageBox.Show("Funcionalidade em desenvolvimento");
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Tarefas_Pendentes tarefas = new Tarefas_Pendentes();
+            tarefas.Show();
+            this.Hide();
+        }
+
+        private void txtDescriçãoProblema_TextChanged(object sender, EventArgs e) { }
     }
 }

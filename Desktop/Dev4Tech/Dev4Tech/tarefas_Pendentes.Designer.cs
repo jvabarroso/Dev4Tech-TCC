@@ -78,6 +78,7 @@
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.btnHome = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblPlanejamento = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.Tarefa1.SuspendLayout();
@@ -550,6 +551,7 @@
             this.txtPesquisaTarefa.Size = new System.Drawing.Size(308, 31);
             this.txtPesquisaTarefa.TabIndex = 67;
             this.txtPesquisaTarefa.Text = "Pesquisar uma tarefa";
+            this.txtPesquisaTarefa.TextChanged += new System.EventHandler(this.txtPesquisaTarefa_TextChanged);
             // 
             // pictureBox2
             // 
@@ -650,11 +652,24 @@
             this.pictureBox1.TabIndex = 37;
             this.pictureBox1.TabStop = false;
             // 
+            // lblPlanejamento
+            // 
+            this.lblPlanejamento.AutoSize = true;
+            this.lblPlanejamento.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lblPlanejamento.Location = new System.Drawing.Point(100, 258);
+            this.lblPlanejamento.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPlanejamento.Name = "lblPlanejamento";
+            this.lblPlanejamento.Size = new System.Drawing.Size(71, 13);
+            this.lblPlanejamento.TabIndex = 130;
+            this.lblPlanejamento.Text = "Planejamento";
+            this.lblPlanejamento.Click += new System.EventHandler(this.lblPlanejamento_Click);
+            // 
             // Tarefas_Pendentes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.lblPlanejamento);
             this.Controls.Add(this.txtPesquisaTarefa);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
@@ -762,5 +777,6 @@
         private System.Windows.Forms.PictureBox pictureBox14;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TextBox txtPesquisaTarefa;
+        private System.Windows.Forms.Label lblPlanejamento;
     }
 }

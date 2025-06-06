@@ -35,18 +35,18 @@
             this.lblGeral = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.pictureBox10 = new System.Windows.Forms.PictureBox();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.picPerfilMembro = new System.Windows.Forms.PictureBox();
+            this.btnEquipes = new System.Windows.Forms.PictureBox();
+            this.btnCalendar = new System.Windows.Forms.PictureBox();
+            this.btnEstatisticas = new System.Windows.Forms.PictureBox();
+            this.btnLogout = new System.Windows.Forms.PictureBox();
+            this.btnConfigurações = new System.Windows.Forms.PictureBox();
+            this.btnHome = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblPlanejamento = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnCompletadas = new System.Windows.Forms.Label();
@@ -67,13 +67,13 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPerfilMembro)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEquipes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCalendar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEstatisticas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLogout)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnConfigurações)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnHome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
@@ -99,6 +99,7 @@
             this.lblMembros.Size = new System.Drawing.Size(50, 13);
             this.lblMembros.TabIndex = 132;
             this.lblMembros.Text = "Membros";
+            this.lblMembros.Click += new System.EventHandler(this.lblMembros_Click);
             // 
             // lblRanking
             // 
@@ -110,6 +111,7 @@
             this.lblRanking.Size = new System.Drawing.Size(47, 13);
             this.lblRanking.TabIndex = 131;
             this.lblRanking.Text = "Ranking";
+            this.lblRanking.Click += new System.EventHandler(this.lblRanking_Click);
             // 
             // lblTarefas
             // 
@@ -122,6 +124,7 @@
             this.lblTarefas.Size = new System.Drawing.Size(43, 13);
             this.lblTarefas.TabIndex = 130;
             this.lblTarefas.Text = "Tarefas";
+            this.lblTarefas.Click += new System.EventHandler(this.lblTarefas_Click);
             // 
             // lblGeral
             // 
@@ -134,6 +137,7 @@
             this.lblGeral.Size = new System.Drawing.Size(32, 13);
             this.lblGeral.TabIndex = 129;
             this.lblGeral.Text = "Geral";
+            this.lblGeral.Click += new System.EventHandler(this.lblGeral_Click);
             // 
             // groupBox1
             // 
@@ -157,15 +161,6 @@
             this.label4.TabIndex = 61;
             this.label4.Text = "Desenvolvedor de software";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(47, 17);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 13);
-            this.label3.TabIndex = 60;
-            this.label3.Text = "EQUIPE 1";
-            // 
             // pictureBox3
             // 
             this.pictureBox3.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
@@ -177,6 +172,15 @@
             this.pictureBox3.TabIndex = 39;
             this.pictureBox3.TabStop = false;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(47, 17);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(56, 13);
+            this.label3.TabIndex = 60;
+            this.label3.Text = "EQUIPE 1";
+            // 
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.SystemColors.ControlLight;
@@ -187,81 +191,87 @@
             this.pictureBox2.TabIndex = 127;
             this.pictureBox2.TabStop = false;
             // 
-            // pictureBox11
+            // picPerfilMembro
             // 
-            this.pictureBox11.BackColor = System.Drawing.Color.Blue;
-            this.pictureBox11.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
-            this.pictureBox11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox11.Location = new System.Drawing.Point(12, 609);
-            this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(24, 23);
-            this.pictureBox11.TabIndex = 126;
-            this.pictureBox11.TabStop = false;
+            this.picPerfilMembro.BackColor = System.Drawing.Color.Blue;
+            this.picPerfilMembro.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
+            this.picPerfilMembro.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picPerfilMembro.Location = new System.Drawing.Point(12, 609);
+            this.picPerfilMembro.Name = "picPerfilMembro";
+            this.picPerfilMembro.Size = new System.Drawing.Size(24, 23);
+            this.picPerfilMembro.TabIndex = 126;
+            this.picPerfilMembro.TabStop = false;
+            this.picPerfilMembro.Click += new System.EventHandler(this.picPerfilMembro_Click);
             // 
-            // pictureBox10
+            // btnEquipes
             // 
-            this.pictureBox10.BackColor = System.Drawing.Color.Blue;
-            this.pictureBox10.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_equip;
-            this.pictureBox10.Location = new System.Drawing.Point(12, 50);
-            this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(24, 23);
-            this.pictureBox10.TabIndex = 125;
-            this.pictureBox10.TabStop = false;
+            this.btnEquipes.BackColor = System.Drawing.Color.Blue;
+            this.btnEquipes.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_equip;
+            this.btnEquipes.Location = new System.Drawing.Point(12, 50);
+            this.btnEquipes.Name = "btnEquipes";
+            this.btnEquipes.Size = new System.Drawing.Size(24, 23);
+            this.btnEquipes.TabIndex = 125;
+            this.btnEquipes.TabStop = false;
+            this.btnEquipes.Click += new System.EventHandler(this.btnEquipes_Click);
             // 
-            // pictureBox9
+            // btnCalendar
             // 
-            this.pictureBox9.BackColor = System.Drawing.Color.Blue;
-            this.pictureBox9.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_calendar;
-            this.pictureBox9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox9.Location = new System.Drawing.Point(12, 89);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(24, 23);
-            this.pictureBox9.TabIndex = 124;
-            this.pictureBox9.TabStop = false;
+            this.btnCalendar.BackColor = System.Drawing.Color.Blue;
+            this.btnCalendar.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_calendar;
+            this.btnCalendar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCalendar.Location = new System.Drawing.Point(12, 89);
+            this.btnCalendar.Name = "btnCalendar";
+            this.btnCalendar.Size = new System.Drawing.Size(24, 23);
+            this.btnCalendar.TabIndex = 124;
+            this.btnCalendar.TabStop = false;
             // 
-            // pictureBox8
+            // btnEstatisticas
             // 
-            this.pictureBox8.BackColor = System.Drawing.Color.Blue;
-            this.pictureBox8.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_ranking;
-            this.pictureBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox8.Location = new System.Drawing.Point(12, 130);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(24, 23);
-            this.pictureBox8.TabIndex = 123;
-            this.pictureBox8.TabStop = false;
+            this.btnEstatisticas.BackColor = System.Drawing.Color.Blue;
+            this.btnEstatisticas.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_ranking;
+            this.btnEstatisticas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnEstatisticas.Location = new System.Drawing.Point(12, 130);
+            this.btnEstatisticas.Name = "btnEstatisticas";
+            this.btnEstatisticas.Size = new System.Drawing.Size(24, 23);
+            this.btnEstatisticas.TabIndex = 123;
+            this.btnEstatisticas.TabStop = false;
+            this.btnEstatisticas.Click += new System.EventHandler(this.btnEstatisticas_Click);
             // 
-            // pictureBox7
+            // btnLogout
             // 
-            this.pictureBox7.BackColor = System.Drawing.Color.Blue;
-            this.pictureBox7.BackgroundImage = global::Dev4Tech.Properties.Resources.Nav_Icon_Item;
-            this.pictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox7.Location = new System.Drawing.Point(12, 566);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(24, 23);
-            this.pictureBox7.TabIndex = 122;
-            this.pictureBox7.TabStop = false;
+            this.btnLogout.BackColor = System.Drawing.Color.Blue;
+            this.btnLogout.BackgroundImage = global::Dev4Tech.Properties.Resources.Nav_Icon_Item;
+            this.btnLogout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnLogout.Location = new System.Drawing.Point(12, 566);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(24, 23);
+            this.btnLogout.TabIndex = 122;
+            this.btnLogout.TabStop = false;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
-            // pictureBox6
+            // btnConfigurações
             // 
-            this.pictureBox6.BackColor = System.Drawing.Color.Blue;
-            this.pictureBox6.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_config;
-            this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox6.Location = new System.Drawing.Point(12, 537);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(24, 23);
-            this.pictureBox6.TabIndex = 121;
-            this.pictureBox6.TabStop = false;
+            this.btnConfigurações.BackColor = System.Drawing.Color.Blue;
+            this.btnConfigurações.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_config;
+            this.btnConfigurações.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnConfigurações.Location = new System.Drawing.Point(12, 537);
+            this.btnConfigurações.Name = "btnConfigurações";
+            this.btnConfigurações.Size = new System.Drawing.Size(24, 23);
+            this.btnConfigurações.TabIndex = 121;
+            this.btnConfigurações.TabStop = false;
+            this.btnConfigurações.Click += new System.EventHandler(this.btnConfigurações_Click);
             // 
-            // pictureBox5
+            // btnHome
             // 
-            this.pictureBox5.BackColor = System.Drawing.Color.Blue;
-            this.pictureBox5.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_Home;
-            this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox5.Location = new System.Drawing.Point(12, 11);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(24, 23);
-            this.pictureBox5.TabIndex = 120;
-            this.pictureBox5.TabStop = false;
+            this.btnHome.BackColor = System.Drawing.Color.Blue;
+            this.btnHome.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_Home;
+            this.btnHome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnHome.Location = new System.Drawing.Point(12, 11);
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Size = new System.Drawing.Size(24, 23);
+            this.btnHome.TabIndex = 120;
+            this.btnHome.TabStop = false;
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
             // 
             // pictureBox1
             // 
@@ -272,17 +282,18 @@
             this.pictureBox1.TabIndex = 119;
             this.pictureBox1.TabStop = false;
             // 
-            // label1
+            // lblPlanejamento
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(100, 256);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 13);
-            this.label1.TabIndex = 133;
-            this.label1.Text = "Planejamento";
+            this.lblPlanejamento.AutoSize = true;
+            this.lblPlanejamento.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lblPlanejamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlanejamento.Location = new System.Drawing.Point(100, 256);
+            this.lblPlanejamento.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPlanejamento.Name = "lblPlanejamento";
+            this.lblPlanejamento.Size = new System.Drawing.Size(83, 13);
+            this.lblPlanejamento.TabIndex = 133;
+            this.lblPlanejamento.Text = "Planejamento";
+            this.lblPlanejamento.Click += new System.EventHandler(this.lblPlanejamento_Click);
             // 
             // label2
             // 
@@ -480,20 +491,20 @@
             this.Controls.Add(this.btnPendentes);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblPlanejamento);
             this.Controls.Add(this.lblMembros);
             this.Controls.Add(this.lblRanking);
             this.Controls.Add(this.lblTarefas);
             this.Controls.Add(this.lblGeral);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox11);
-            this.Controls.Add(this.pictureBox10);
-            this.Controls.Add(this.pictureBox9);
-            this.Controls.Add(this.pictureBox8);
-            this.Controls.Add(this.pictureBox7);
-            this.Controls.Add(this.pictureBox6);
-            this.Controls.Add(this.pictureBox5);
+            this.Controls.Add(this.picPerfilMembro);
+            this.Controls.Add(this.btnEquipes);
+            this.Controls.Add(this.btnCalendar);
+            this.Controls.Add(this.btnEstatisticas);
+            this.Controls.Add(this.btnLogout);
+            this.Controls.Add(this.btnConfigurações);
+            this.Controls.Add(this.btnHome);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox12);
@@ -504,13 +515,13 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPerfilMembro)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEquipes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCalendar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEstatisticas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLogout)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnConfigurações)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnHome)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
@@ -540,15 +551,15 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox11;
-        private System.Windows.Forms.PictureBox pictureBox10;
-        private System.Windows.Forms.PictureBox pictureBox9;
-        private System.Windows.Forms.PictureBox pictureBox8;
-        private System.Windows.Forms.PictureBox pictureBox7;
-        private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox picPerfilMembro;
+        private System.Windows.Forms.PictureBox btnEquipes;
+        private System.Windows.Forms.PictureBox btnCalendar;
+        private System.Windows.Forms.PictureBox btnEstatisticas;
+        private System.Windows.Forms.PictureBox btnLogout;
+        private System.Windows.Forms.PictureBox btnConfigurações;
+        private System.Windows.Forms.PictureBox btnHome;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblPlanejamento;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label btnCompletadas;

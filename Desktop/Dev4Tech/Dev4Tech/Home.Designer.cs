@@ -52,7 +52,7 @@
             this.btnCalendar = new System.Windows.Forms.PictureBox();
             this.btnRanking = new System.Windows.Forms.PictureBox();
             this.btnLogout = new System.Windows.Forms.PictureBox();
-            this.btnConfig = new System.Windows.Forms.PictureBox();
+            this.btnConfigurações = new System.Windows.Forms.PictureBox();
             this.btnHome = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
@@ -66,7 +66,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnCalendar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRanking)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnLogout)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnConfig)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnConfigurações)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnHome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -327,16 +327,17 @@
             this.btnLogout.TabStop = false;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
-            // btnConfig
+            // btnConfigurações
             // 
-            this.btnConfig.BackColor = System.Drawing.Color.Blue;
-            this.btnConfig.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_config;
-            this.btnConfig.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnConfig.Location = new System.Drawing.Point(12, 538);
-            this.btnConfig.Name = "btnConfig";
-            this.btnConfig.Size = new System.Drawing.Size(24, 23);
-            this.btnConfig.TabIndex = 11;
-            this.btnConfig.TabStop = false;
+            this.btnConfigurações.BackColor = System.Drawing.Color.Blue;
+            this.btnConfigurações.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_config;
+            this.btnConfigurações.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnConfigurações.Location = new System.Drawing.Point(12, 538);
+            this.btnConfigurações.Name = "btnConfigurações";
+            this.btnConfigurações.Size = new System.Drawing.Size(24, 23);
+            this.btnConfigurações.TabIndex = 11;
+            this.btnConfigurações.TabStop = false;
+            this.btnConfigurações.Click += new System.EventHandler(this.btnConfigurações_Click);
             // 
             // btnHome
             // 
@@ -370,7 +371,7 @@
             this.Controls.Add(this.btnCalendar);
             this.Controls.Add(this.btnRanking);
             this.Controls.Add(this.btnLogout);
-            this.Controls.Add(this.btnConfig);
+            this.Controls.Add(this.btnConfigurações);
             this.Controls.Add(this.btnHome);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox3);
@@ -394,7 +395,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnCalendar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRanking)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnLogout)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnConfig)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnConfigurações)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnHome)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -425,7 +426,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnEntrarRanking;
         private System.Windows.Forms.PictureBox btnHome;
-        private System.Windows.Forms.PictureBox btnConfig;
+        private System.Windows.Forms.PictureBox btnConfigurações;
         private System.Windows.Forms.PictureBox btnLogout;
         private System.Windows.Forms.PictureBox btnRanking;
         private System.Windows.Forms.PictureBox btnCalendar;

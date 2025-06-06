@@ -42,22 +42,17 @@ namespace Dev4Tech
             this.Hide();
         }
 
-        private void btnEquipe_Click(object sender, EventArgs e)
+        private void btnEquipes_Click(object sender, EventArgs e)
         {
-            PesquisaEquipes pesquisa_equipes = new PesquisaEquipes();
-            pesquisa_equipes.Show();
+            Equipes_Estatisticas t_Equipes = new Equipes_Estatisticas();
+            t_Equipes.Show();
             this.Hide();
-        }
-
-        private void btnCalendar_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnRanking_Click(object sender, EventArgs e)
         {
-            Ranking_Equipes rank_equipe = new Ranking_Equipes();
-            rank_equipe.Show();
+            Ranking_Equipes t_Ranking = new Ranking_Equipes();
+            t_Ranking.Show();
             this.Hide();
         }
 
@@ -67,11 +62,50 @@ namespace Dev4Tech
             {
                 txtPesquisaEquipe.Text = "Pesquisar Equipe";
             }
-            }
+        }
 
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
 
         }
+
+        private void btnTarefas_Click(object sender, EventArgs e)
+        {
+            Tarefas_Pendentes t_Tarefas = new Tarefas_Pendentes();
+            t_Tarefas.Show();
+            this.Hide();
+        }
+
+        private void btnChat_Click(object sender, EventArgs e)
+        {
+            Chat_geral_equipes t_Chat = new Chat_geral_equipes();
+            t_Chat.Show();
+            this.Hide();
+        }
+
+        private void btnIntegrantes_Click(object sender, EventArgs e)
+        {
+            Integrantes_Equipe t_Integrantes = new Integrantes_Equipe();
+            t_Integrantes.Show();
+            this.Hide();
+        }
+
+        private void btnPesquisar_Click(object sender, EventArgs e)
+        {
+            // TODO: Implementar pesquisa de equipes
+            MessageBox.Show("Funcionalidade em desenvolvimento");
+        }
+
+        private void btnAdicionarEquipe_Click(object sender, EventArgs e)
+        {
+            AdicionarEquipes adicionarEquipe = new AdicionarEquipes();
+            adicionarEquipe.Show();
+            this.Hide();
+        }
+
+        private void btnEquipe_Click(object sender, EventArgs e) { }
+        private void btnCalendar_Click(object sender, EventArgs e) { }
+        private void lblRanking_Click(object sender, EventArgs e) { }
+        private void lblEquipe_Click(object sender, EventArgs e) { }
     }
 }

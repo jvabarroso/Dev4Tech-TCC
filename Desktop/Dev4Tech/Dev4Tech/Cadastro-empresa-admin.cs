@@ -11,7 +11,6 @@ using System.Windows.Forms;
 namespace Dev4Tech
 {
     public partial class Cadastro_empresa_admin : Form
-
     {
         empresaCadAdmin emAdmin = new empresaCadAdmin();
 
@@ -25,7 +24,6 @@ namespace Dev4Tech
             Login t_login = new Login();
             t_login.Show();
             this.Hide();
-
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
@@ -45,7 +43,8 @@ namespace Dev4Tech
                     emAdmin.setTelefone(txtCadAdmTelefone.Text);
                     emAdmin.setEmail(txtCadAdmEmail.Text);
                     emAdmin.setSenha(txtCadAdmSenha.Text);
-                    emAdmin.inserir();  }
+                    emAdmin.inserir();
+                }
                 
                 MessageBox.Show("Cadastro de administrador realizado com sucesso!");
                 Home t_Home = new Home();
@@ -56,7 +55,6 @@ namespace Dev4Tech
             {
                 MessageBox.Show($"Erro: {ex.Message}");
             }
-
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
