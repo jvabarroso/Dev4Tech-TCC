@@ -66,15 +66,15 @@ export default function RankingAdm({navigation}){
             )}
             renderItem={({ item, index}) => (
             <TouchableOpacity
-              onPress={() => navigation.navigate('RankingEstastistico', { equipe: item })}
+              onPress={() => navigation.navigate('RankingEstastistico', { equipe: item, index })}
             >
                 <View style={styles.containertarefas}>
-                <Text style={styles.colocacao}>{index + 1}º</Text>
-                <Image source={item.imagem} style={styles.imag} />
-                <View style={styles.textos}>
-                  <Text style={styles.textolistatitulo}>{item.titulo}</Text>
-                  <Text style={styles.textolistacargo}>{item.cargo}</Text>
-                </View>
+                  <Text style={styles.colocacao}>{index + 1}º</Text>
+                  <Image source={item.imagem} style={styles.imag} />
+                  <View style={styles.textos}>
+                    <Text style={styles.textolistatitulo}>{item.titulo}</Text>
+                    <Text style={styles.textolistacargo}>{item.cargo}</Text>
+                  </View>
               </View>
             </TouchableOpacity>
 
