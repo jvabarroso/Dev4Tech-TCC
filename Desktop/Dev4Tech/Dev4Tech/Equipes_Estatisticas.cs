@@ -84,5 +84,32 @@ namespace Dev4Tech
         {
 
         }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Equipes_Estatisticas_Load(object sender, EventArgs e)
+        {
+            //Limpa o gráfico 
+            foreach (var Series in chart1.Series) { Series.Points.Clear(); }
+
+
+            //Limpa o gráfico 
+            foreach (var Series in chart1.Series) { Series.Points.Clear(); }
+
+            chart1.Series["Contribuições"].Points.AddXY("Tarefas não entregues", 15);
+            chart1.Series["Contribuições"].Points.AddXY("Tarefas Atrasadas", 3);
+            chart1.Series["Contribuições"].Points.AddXY("Alerta de Problemas", 38);
+            chart1.Series["Contribuições"].Points.AddXY("Tarefas Postadas", 46);
+
+            chart2.Series["Desempenho"].Points.AddXY("Pontos Perdidos", 20);
+            chart2.Series["Desempenho"].Points.AddXY("Pontos Ganhos", 80);
+
+            chart3.Series["Entrega"].Points.AddXY("Meta", 5);
+            chart3.Series["Entrega"].Points.AddXY("Pontos Perdidos", 15);
+            chart3.Series["Entrega"].Points.AddXY("Pontos Obtidos", 80);
+        }
     }
 }

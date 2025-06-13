@@ -61,7 +61,10 @@ namespace Dev4Tech
 
         private void label1_Click(object sender, EventArgs e) { }
         private void groupBox1_Enter(object sender, EventArgs e) { }
-        private void btnEntrarEquipes_Click(object sender, EventArgs e) { }
+        private void btnEntrarEquipes_Click(object sender, EventArgs e) {
+
+
+        }
         private void btnEntrarRanking_Click(object sender, EventArgs e) { }
         private void btnConfiguracoes_Click(object sender, EventArgs e) { }
         private void btnHome_Click(object sender, EventArgs e) { }
