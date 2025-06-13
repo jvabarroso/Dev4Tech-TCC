@@ -9,9 +9,7 @@ CREATE TABLE Empresas (
     cnpj VARCHAR(14) UNIQUE NOT NULL,
     email VARCHAR(100) NOT NULL,
     telefone VARCHAR(15),
-    endereco VARCHAR(200),
-    data_cadastro DATETIME,
-    status BIT DEFAULT 1
+    numResidencia VARCHAR(200)
 );
 
 -- Tabela de Administradores
@@ -36,8 +34,7 @@ CREATE TABLE Funcionarios (
     DataNascimento DATE,
     Telefone VARCHAR(20),
     Email VARCHAR(255) UNIQUE,
-    Senha VARCHAR(255),
-    status BIT DEFAULT 1
+    Senha VARCHAR(255)
 );
 
 -- Tabela de Tipos de Usuário

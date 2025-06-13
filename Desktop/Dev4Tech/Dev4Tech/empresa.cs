@@ -99,7 +99,7 @@ namespace Dev4Tech
         //Método inserir, para mandar os dados no banco de dados
         public void inserir()
         {
-            string query = "Insert into Empresas(nome_empresa, cnpj, endereco, data_cadastro, status) values ('" + getNomeEmpresa() + "', '" + getCNPJ() + "', '" + getLogradouro() + "', NOW(), 1)";
+            string query = "Insert into Empresas(id_empresa, nome_empresa, cnpj, logradouro, numResidencia, bairro, complemento) values ('" + getCodigoId() + "', '" + getNomeEmpresa() + "', '" + getCNPJ() + "', '" + getLogradouro() + "', '" +getNumResidencia() + "', '" + getBairro() + "', '"+ getComplemento() + "')";
 
             if (this.abrirConexao() == true)
             {

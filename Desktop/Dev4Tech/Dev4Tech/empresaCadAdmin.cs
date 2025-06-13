@@ -84,7 +84,7 @@ namespace Dev4Tech
         public void inserir()
         {
             string query = "INSERT INTO Administradores(AdminId,Nome, Cargo, CPF, DataNascimento, Telefone, Email, Senha, tipo_usuario) " +
-                           "VALUES('" + getNome() + "','" + getCargo() + "','" + getCPF() + "','" + getDataNascimento() + "','" + getTelefone() + "','" + getEmail() + "','" + getSenha() + "', 'admin')";
+                           "VALUES('" + getNome() + "','" + getCargo() + "','" + getCPF() + "','" + getDataNascimento() + "','" + getTelefone() + "','" + getEmail() + "','" + getSenha() + "')";
 
             if (this.abrirConexao())
             {
