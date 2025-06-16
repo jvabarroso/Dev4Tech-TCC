@@ -116,19 +116,67 @@ export const styles = StyleSheet.create({
     containerbarras:{
       flexDirection: 'row',
       height: 200, 
-      padding: 20,
+      padding: 8,
     },
     colunagrafico:{
-      gap:40,
-      marginTop:7,
+      gap:30,
       marginRight: 10,
+      paddingVertical:15,
     },
     textobarras:{
-      fontSize: 15,
-      borderRadius:100,
+      fontSize: 14,
+
+    },
+    color:{
+      color:"#0E499E"
     },
     barras:{
       flex:1,
-    }
+      height: 163, // ou outro valor adequado
+      paddingVertical:14,
+    },
+    circleProgressView:{
+      flexDirection: 'row', 
+      alignItems: 'center', 
+      padding:10,
+    },
+    areapontos:{
+      paddingVertical:5,
+      paddingHorizontal:20,
+    },
+    textopontos:{
+      fontSize: 16,
+      fontFamily: fonts.text,
+      color: '#000',
+      marginVertical: 2,
+    },
+    linhaIconeTexto: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginVertical: 4,
+      gap: 6, 
+  },
+    azul:{
+      width:10,
+      height:10,
+      borderRadius:"100%",
+      backgroundColor:"#0E499E",
+    },
+    cinza:{
+      width:10,
+      height:10,
+      borderRadius:"100%",
+      backgroundColor:"#e0e0e0",
+    },
+    verde:{
+      width:10,
+      height:10,
+      borderRadius:"100%",
+      backgroundColor:"#5BB14F",
+    },
+    numberInside:{
+      fontFamily: fonts.text,
+      fontSize:20,
+    },
 
 });

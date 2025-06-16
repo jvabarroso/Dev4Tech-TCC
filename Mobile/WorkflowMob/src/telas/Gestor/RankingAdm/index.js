@@ -16,7 +16,7 @@ export default function RankingAdm({navigation}){
     },
     {
       id: '2',
-      titulo: 'Equipe 2',
+      titulo: 'Igor Felix Natly',
       cargo: 'Design',
       tarefaspostadas: 10,
       tarefasatrasadas:2,
