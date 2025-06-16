@@ -23,6 +23,55 @@ namespace Dev4Tech
             filtroEquipes.SelectedIndex = 0; //Seleciona "Todos" por padrão
         }
 
+        private int mensagensCount = 0;
+        private int margemTopo = 30;
+        private int margemEsquerda = 350;
+        private int espacamentoVertical = 20;
+        private int alturaMensagem = 50;
+
+        private void AdicionarEquipes(string texto)
+        {
+            int x = margemEsquerda; // fixa na coluna esquerda
+            int y = margemTopo + (alturaMensagem + espacamentoVertical) * mensagensCount; // empilha verticalmente
+
+            // Cria painel da mensagem
+            Panel EquipesPanel = new Panel();
+            EquipesPanel.Width = 350;
+            EquipesPanel.Height = alturaMensagem;
+            EquipesPanel.BackColor = Color.White;
+            EquipesPanel.BorderStyle = BorderStyle.FixedSingle;
+            EquipesPanel.Left = x;
+            EquipesPanel.Top = y;
+
+            // Avatar
+            PictureBox avatar = new PictureBox();
+            avatar.Image = Properties.Resources.icon_equip;
+            avatar.SizeMode = PictureBoxSizeMode.StretchImage;
+            avatar.Width = 32;
+            avatar.Height = 32;
+            avatar.Left = 10;
+            avatar.Top = 6;
+            avatar.BorderStyle = BorderStyle.FixedSingle;
+
+            // Label da mensagem
+            Label lblMensagem = new Label();
+            lblMensagem.Text = texto;
+            lblMensagem.Font = new Font("Segoe UI", 10, FontStyle.Regular);
+            lblMensagem.AutoSize = false;
+            lblMensagem.Width = 270;
+            lblMensagem.Height = 32;
+            lblMensagem.Left = 50;
+            lblMensagem.Top = 6;
+            lblMensagem.TextAlign = ContentAlignment.MiddleLeft;
+
+            EquipesPanel.Controls.Add(avatar);
+            EquipesPanel.Controls.Add(lblMensagem);
+
+            panelEquipes.Controls.Add(EquipesPanel);
+
+            mensagensCount++;
+        }
+
         private void txtPesquisaEquipe_Click(object sender, EventArgs e)
         {
             txtPesquisaEquipe.Text = "";

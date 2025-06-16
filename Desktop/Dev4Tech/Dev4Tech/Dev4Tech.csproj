@@ -98,6 +98,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddEquipes.cs" />
     <Compile Include="AdicionarEquipes.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -41,6 +41,14 @@ CREATE TABLE Funcionarios (
     Senha VARCHAR(255)
 );
 
+CREATE TABLE MensagensChat (
+    id_mensagem INT PRIMARY KEY auto_increment,
+    texto varchar(255) NOT NULL,
+    data_envio DATETIME
+);
+
+drop table mensagenschat;
+
 -- Tabela de Tipos de Usuário
 CREATE TABLE TiposUsuario (
     id_tipo INT PRIMARY KEY auto_increment,
@@ -165,15 +173,7 @@ CREATE TABLE RelatoriosProblema (
 );
 
 -- Tabela de Chat
-CREATE TABLE MensagensChat (
-    id_mensagem INT PRIMARY KEY auto_increment,
-    id_equipe INT,
-    id_usuario INT,
-    mensagem TEXT NOT NULL,
-    data_envio DATETIME,
-    FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe),
-    FOREIGN KEY (id_usuario) REFERENCES Funcionarios(FuncionarioId)
-);
+
 
 -- Tabela de Configurações
 CREATE TABLE Configuracoes (
