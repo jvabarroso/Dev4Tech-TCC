@@ -7,28 +7,32 @@ CREATE TABLE Empresas (
     id_empresa INT PRIMARY KEY auto_increment,
     nome_empresa VARCHAR(100) NOT NULL,
     cnpj VARCHAR(14) UNIQUE NOT NULL,
+    logradouro varchar(255),
     email VARCHAR(100) NOT NULL,
     telefone VARCHAR(15),
-    numResidencia VARCHAR(200)
+    numResidencia VARCHAR(200),
+    bairro varchar(255),
+    complemento varchar(255)
 );
 
+drop table empresas;
 -- Tabela de Administradores
 CREATE TABLE Administradores (
-    AdminId INT PRIMARY KEY,
-    Nome VARCHAR(100) NOT NULL,
-    Cargo VARCHAR(50) NOT NULL,
-    CPF CHAR(11) NOT NULL UNIQUE,
-    DataNascimento DATE NOT NULL,
+    AdminId INT PRIMARY KEY auto_increment,
+    Nome VARCHAR(100),
+    Cargo VARCHAR(50),
+    CPF CHAR(11) UNIQUE,
+    DataNascimento DATE,
     Telefone VARCHAR(20),
-    Email VARCHAR(100) NOT NULL UNIQUE,
-    Senha VARCHAR(255) NOT NULL,
-    tipo_usuario VARCHAR(20) NOT NULL DEFAULT 'admin'
+    Email VARCHAR(100) unique,
+    Senha VARCHAR(255)
 );
+
 
 -- Tabela de Funcionários
 CREATE TABLE Funcionarios (
     FuncionarioId INT PRIMARY KEY auto_increment,
-    Nome VARCHAR(100) NOT NULL,
+    Nome VARCHAR(100),
     Cargo VARCHAR(255),
     CPF CHAR(11) UNIQUE,
     DataNascimento DATE,

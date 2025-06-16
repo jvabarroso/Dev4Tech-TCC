@@ -94,5 +94,10 @@ namespace Dev4Tech
         }
 
         private void txtNumResidencia_TextChanged(object sender, EventArgs e) { }
+
+        private void txtLogradouroEmpresa_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

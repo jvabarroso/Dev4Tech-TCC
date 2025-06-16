@@ -47,15 +47,8 @@
             this.lblMembros = new System.Windows.Forms.Label();
             this.txtDigitarMensagem = new System.Windows.Forms.TextBox();
             this.btnEnviarMensagem = new System.Windows.Forms.PictureBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.picboxPerfil1 = new System.Windows.Forms.PictureBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.picboxPerfil2 = new System.Windows.Forms.PictureBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.pictureBox14 = new System.Windows.Forms.PictureBox();
+            this.flowLayoutPanelMensagens = new System.Windows.Forms.FlowLayoutPanel();
+            this.panelMensagens = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.picPerfil)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEquipes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCalendar)).BeginInit();
@@ -68,12 +61,7 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEnviarMensagem)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picboxPerfil1)).BeginInit();
-            this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picboxPerfil2)).BeginInit();
-            this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
+            this.flowLayoutPanelMensagens.SuspendLayout();
             this.SuspendLayout();
             // 
             // picPerfil
@@ -169,7 +157,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.pictureBox2.Location = new System.Drawing.Point(52, -2);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(306, 682);
             this.pictureBox2.TabIndex = 37;
@@ -181,9 +169,9 @@
             this.groupBox1.Controls.Add(this.pictureBox3);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(80, 73);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(186, 81);
             this.groupBox1.TabIndex = 38;
             this.groupBox1.TabStop = false;
@@ -202,7 +190,7 @@
             this.pictureBox3.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox3.Location = new System.Drawing.Point(4, 17);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(38, 41);
             this.pictureBox3.TabIndex = 39;
@@ -268,7 +256,7 @@
             // txtDigitarMensagem
             // 
             this.txtDigitarMensagem.Location = new System.Drawing.Point(493, 567);
-            this.txtDigitarMensagem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtDigitarMensagem.Margin = new System.Windows.Forms.Padding(2);
             this.txtDigitarMensagem.Multiline = true;
             this.txtDigitarMensagem.Name = "txtDigitarMensagem";
             this.txtDigitarMensagem.Size = new System.Drawing.Size(596, 39);
@@ -283,120 +271,35 @@
             this.btnEnviarMensagem.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_enviarMensagem;
             this.btnEnviarMensagem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnEnviarMensagem.Location = new System.Drawing.Point(1047, 570);
-            this.btnEnviarMensagem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEnviarMensagem.Margin = new System.Windows.Forms.Padding(2);
             this.btnEnviarMensagem.Name = "btnEnviarMensagem";
             this.btnEnviarMensagem.Size = new System.Drawing.Size(40, 35);
             this.btnEnviarMensagem.TabIndex = 44;
             this.btnEnviarMensagem.TabStop = false;
             this.btnEnviarMensagem.Click += new System.EventHandler(this.btnEnviarMensagem_Click);
             // 
-            // groupBox2
+            // flowLayoutPanelMensagens
             // 
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.picboxPerfil1);
-            this.groupBox2.Location = new System.Drawing.Point(491, 96);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox2.Size = new System.Drawing.Size(283, 53);
-            this.groupBox2.TabIndex = 45;
-            this.groupBox2.TabStop = false;
+            this.flowLayoutPanelMensagens.AutoScroll = true;
+            this.flowLayoutPanelMensagens.Controls.Add(this.panelMensagens);
+            this.flowLayoutPanelMensagens.Location = new System.Drawing.Point(363, 3);
+            this.flowLayoutPanelMensagens.Name = "flowLayoutPanelMensagens";
+            this.flowLayoutPanelMensagens.Size = new System.Drawing.Size(817, 666);
+            this.flowLayoutPanelMensagens.TabIndex = 47;
             // 
-            // label7
+            // panelMensagens
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(50, 24);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(68, 13);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "Mensagem 1";
-            // 
-            // picboxPerfil1
-            // 
-            this.picboxPerfil1.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
-            this.picboxPerfil1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picboxPerfil1.Location = new System.Drawing.Point(10, 18);
-            this.picboxPerfil1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.picboxPerfil1.Name = "picboxPerfil1";
-            this.picboxPerfil1.Size = new System.Drawing.Size(25, 25);
-            this.picboxPerfil1.TabIndex = 0;
-            this.picboxPerfil1.TabStop = false;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.label8);
-            this.groupBox3.Controls.Add(this.picboxPerfil2);
-            this.groupBox3.Location = new System.Drawing.Point(805, 166);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox3.Size = new System.Drawing.Size(283, 53);
-            this.groupBox3.TabIndex = 46;
-            this.groupBox3.TabStop = false;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(50, 24);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(68, 13);
-            this.label8.TabIndex = 1;
-            this.label8.Text = "Mensagem 2";
-            // 
-            // picboxPerfil2
-            // 
-            this.picboxPerfil2.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
-            this.picboxPerfil2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picboxPerfil2.Location = new System.Drawing.Point(10, 18);
-            this.picboxPerfil2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.picboxPerfil2.Name = "picboxPerfil2";
-            this.picboxPerfil2.Size = new System.Drawing.Size(25, 25);
-            this.picboxPerfil2.TabIndex = 0;
-            this.picboxPerfil2.TabStop = false;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.label9);
-            this.groupBox4.Controls.Add(this.pictureBox14);
-            this.groupBox4.Location = new System.Drawing.Point(491, 247);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox4.Size = new System.Drawing.Size(283, 53);
-            this.groupBox4.TabIndex = 46;
-            this.groupBox4.TabStop = false;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(50, 24);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(68, 13);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "Mensagem 3";
-            // 
-            // pictureBox14
-            // 
-            this.pictureBox14.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
-            this.pictureBox14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox14.Location = new System.Drawing.Point(10, 18);
-            this.pictureBox14.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.pictureBox14.Name = "pictureBox14";
-            this.pictureBox14.Size = new System.Drawing.Size(25, 25);
-            this.pictureBox14.TabIndex = 0;
-            this.pictureBox14.TabStop = false;
+            this.panelMensagens.AutoScroll = true;
+            this.panelMensagens.Location = new System.Drawing.Point(3, 3);
+            this.panelMensagens.Name = "panelMensagens";
+            this.panelMensagens.Size = new System.Drawing.Size(814, 556);
+            this.panelMensagens.TabIndex = 2;
             // 
             // Chat_geral_equipes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnEnviarMensagem);
             this.Controls.Add(this.txtDigitarMensagem);
             this.Controls.Add(this.lblMembros);
@@ -413,9 +316,11 @@
             this.Controls.Add(this.btnConfig);
             this.Controls.Add(this.btnHome);
             this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Controls.Add(this.flowLayoutPanelMensagens);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Chat_geral_equipes";
             this.Text = "Chat_geral_equipes";
+            this.Load += new System.EventHandler(this.Chat_geral_equipes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picPerfil)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEquipes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCalendar)).EndInit();
@@ -429,15 +334,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEnviarMensagem)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picboxPerfil1)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picboxPerfil2)).EndInit();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
+            this.flowLayoutPanelMensagens.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -464,14 +361,7 @@
         private System.Windows.Forms.Label lblMembros;
         private System.Windows.Forms.TextBox txtDigitarMensagem;
         private System.Windows.Forms.PictureBox btnEnviarMensagem;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.PictureBox picboxPerfil1;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.PictureBox picboxPerfil2;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.PictureBox pictureBox14;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelMensagens;
+        private System.Windows.Forms.Panel panelMensagens;
     }
 }
