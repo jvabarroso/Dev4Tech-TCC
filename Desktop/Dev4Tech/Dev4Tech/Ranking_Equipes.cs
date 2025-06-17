@@ -17,38 +17,6 @@ namespace Dev4Tech
             InitializeComponent();
         }
 
-        private void lblGeral_Click(object sender, EventArgs e)
-        {
-            Chat_geral_equipes chat_equipe = new Chat_geral_equipes();
-            chat_equipe.Show();
-            this.Hide();
-        }
-
-        private void lblTarefas_Click(object sender, EventArgs e)
-        {
-            Tarefas_Pendentes trf_pendente = new Tarefas_Pendentes();
-            trf_pendente.Show();
-            this.Hide(); 
-        }
-
-        private void lblRanking_Click(object sender, EventArgs e)
-        {
-            Ranking_Equipes rank_equipe = new Ranking_Equipes();
-            rank_equipe.Show();
-            this.Hide();
-        }
-
-        private void btnLogout_Click(object sender, EventArgs e)
-        {
-            Form1 t_inicial = new Form1();
-            t_inicial.Show();
-            this.Hide(); 
-        }
-
-
-  
-
-
         private void btnHome_Click(object sender, EventArgs e)
         {
             Home t_Home = new Home();
@@ -58,17 +26,53 @@ namespace Dev4Tech
 
         private void btnEquipes_Click(object sender, EventArgs e)
         {
-            PesquisaEquipes pesquisa_equipe = new PesquisaEquipes();
-            pesquisa_equipe.Show();
+            Equipes_Estatisticas t_Equipes = new Equipes_Estatisticas();
+            t_Equipes.Show();
             this.Hide();
         }
 
         private void btnRanking_Click(object sender, EventArgs e)
         {
-            Ranking_Equipes rank_equipe = new Ranking_Equipes();
-            rank_equipe.Show();
+            Ranking_Equipes t_Ranking = new Ranking_Equipes();
+            t_Ranking.Show();
             this.Hide();
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            Form1 t_incial = new Form1();
+            t_incial.Show();
+            this.Hide();
+        }
+
+        private void btnTarefas_Click(object sender, EventArgs e)
+        {
+            Tarefas_Pendentes t_Tarefas = new Tarefas_Pendentes();
+            t_Tarefas.Show();
+            this.Hide();
+        }
+
+        private void btnChat_Click(object sender, EventArgs e)
+        {
+            Chat_geral_equipes t_Chat = new Chat_geral_equipes();
+            t_Chat.Show();
+            this.Hide();
+        }
+
+        private void btnIntegrantes_Click(object sender, EventArgs e)
+        {
+            Integrantes_Equipe t_Integrantes = new Integrantes_Equipe();
+            t_Integrantes.Show();
+            this.Hide();
+        }
+
+        private void lblPlanejamento_Click(object sender, EventArgs e)
+        {
 
         }
+
+        private void lblGeral_Click(object sender, EventArgs e) { }
+        private void lblRanking_Click(object sender, EventArgs e) { }
+        private void lblTarefas_Click(object sender, EventArgs e) { }
     }
 }

@@ -32,13 +32,13 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.picPerfilMembro = new System.Windows.Forms.PictureBox();
             this.btnEquipes = new System.Windows.Forms.PictureBox();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.btnRanking = new System.Windows.Forms.PictureBox();
             this.btnLogout = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.btnConfigurações = new System.Windows.Forms.PictureBox();
+            this.btnHome = new System.Windows.Forms.PictureBox();
             this.IconeFuncionario = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -52,9 +52,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.txtDataNasc = new System.Windows.Forms.TextBox();
+            this.txtNome = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -71,15 +71,16 @@
             this.label15 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnTrocarFotoPerfil = new System.Windows.Forms.Button();
+            this.listView2 = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPerfilMembro)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEquipes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRanking)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnLogout)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnConfigurações)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnHome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.IconeFuncionario)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
@@ -123,16 +124,17 @@
             this.pictureBox2.TabIndex = 106;
             this.pictureBox2.TabStop = false;
             // 
-            // pictureBox11
+            // picPerfilMembro
             // 
-            this.pictureBox11.BackColor = System.Drawing.Color.Blue;
-            this.pictureBox11.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
-            this.pictureBox11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox11.Location = new System.Drawing.Point(12, 610);
-            this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(24, 23);
-            this.pictureBox11.TabIndex = 113;
-            this.pictureBox11.TabStop = false;
+            this.picPerfilMembro.BackColor = System.Drawing.Color.Blue;
+            this.picPerfilMembro.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
+            this.picPerfilMembro.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picPerfilMembro.Location = new System.Drawing.Point(12, 610);
+            this.picPerfilMembro.Name = "picPerfilMembro";
+            this.picPerfilMembro.Size = new System.Drawing.Size(24, 23);
+            this.picPerfilMembro.TabIndex = 113;
+            this.picPerfilMembro.TabStop = false;
+            this.picPerfilMembro.Click += new System.EventHandler(this.picPerfilMembro_Click);
             // 
             // btnEquipes
             // 
@@ -143,6 +145,7 @@
             this.btnEquipes.Size = new System.Drawing.Size(24, 23);
             this.btnEquipes.TabIndex = 112;
             this.btnEquipes.TabStop = false;
+            this.btnEquipes.Click += new System.EventHandler(this.btnEquipes_Click);
             // 
             // pictureBox9
             // 
@@ -165,6 +168,7 @@
             this.btnRanking.Size = new System.Drawing.Size(24, 23);
             this.btnRanking.TabIndex = 110;
             this.btnRanking.TabStop = false;
+            this.btnRanking.Click += new System.EventHandler(this.btnRanking_Click);
             // 
             // btnLogout
             // 
@@ -176,28 +180,31 @@
             this.btnLogout.Size = new System.Drawing.Size(24, 23);
             this.btnLogout.TabIndex = 109;
             this.btnLogout.TabStop = false;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
-            // pictureBox6
+            // btnConfigurações
             // 
-            this.pictureBox6.BackColor = System.Drawing.Color.Blue;
-            this.pictureBox6.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_config;
-            this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox6.Location = new System.Drawing.Point(12, 538);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(24, 23);
-            this.pictureBox6.TabIndex = 108;
-            this.pictureBox6.TabStop = false;
+            this.btnConfigurações.BackColor = System.Drawing.Color.Blue;
+            this.btnConfigurações.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_config;
+            this.btnConfigurações.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnConfigurações.Location = new System.Drawing.Point(12, 538);
+            this.btnConfigurações.Name = "btnConfigurações";
+            this.btnConfigurações.Size = new System.Drawing.Size(24, 23);
+            this.btnConfigurações.TabIndex = 108;
+            this.btnConfigurações.TabStop = false;
+            this.btnConfigurações.Click += new System.EventHandler(this.btnConfigurações_Click);
             // 
-            // pictureBox5
+            // btnHome
             // 
-            this.pictureBox5.BackColor = System.Drawing.Color.Blue;
-            this.pictureBox5.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_Home;
-            this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox5.Location = new System.Drawing.Point(12, 12);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(24, 23);
-            this.pictureBox5.TabIndex = 107;
-            this.pictureBox5.TabStop = false;
+            this.btnHome.BackColor = System.Drawing.Color.Blue;
+            this.btnHome.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_Home;
+            this.btnHome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnHome.Location = new System.Drawing.Point(12, 12);
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Size = new System.Drawing.Size(24, 23);
+            this.btnHome.TabIndex = 107;
+            this.btnHome.TabStop = false;
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
             // 
             // IconeFuncionario
             // 
@@ -333,35 +340,38 @@
             this.textBox3.TabIndex = 138;
             this.textBox3.Text = "(13) 12345-6789";
             // 
-            // textBox2
+            // txtEmail
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(292, 657);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(685, 37);
-            this.textBox2.TabIndex = 137;
-            this.textBox2.Text = "IgorFelix@gmail.com";
+            this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmail.Location = new System.Drawing.Point(292, 657);
+            this.txtEmail.Multiline = true;
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(685, 37);
+            this.txtEmail.TabIndex = 137;
+            this.txtEmail.Text = "IgorFelix@gmail.com";
+            this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
             // 
-            // textBox7
+            // txtDataNasc
             // 
-            this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox7.Location = new System.Drawing.Point(292, 577);
-            this.textBox7.Multiline = true;
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(685, 37);
-            this.textBox7.TabIndex = 136;
-            this.textBox7.Text = "XX/XX/XXXX";
+            this.txtDataNasc.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDataNasc.Location = new System.Drawing.Point(292, 577);
+            this.txtDataNasc.Multiline = true;
+            this.txtDataNasc.Name = "txtDataNasc";
+            this.txtDataNasc.Size = new System.Drawing.Size(685, 37);
+            this.txtDataNasc.TabIndex = 136;
+            this.txtDataNasc.Text = "XX/XX/XXXX";
+            this.txtDataNasc.TextChanged += new System.EventHandler(this.txtDataNasc_TextChanged);
             // 
-            // textBox1
+            // txtNome
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(292, 500);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(685, 37);
-            this.textBox1.TabIndex = 135;
-            this.textBox1.Text = " Igor Felix";
+            this.txtNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNome.Location = new System.Drawing.Point(292, 500);
+            this.txtNome.Multiline = true;
+            this.txtNome.Name = "txtNome";
+            this.txtNome.Size = new System.Drawing.Size(685, 37);
+            this.txtNome.TabIndex = 135;
+            this.txtNome.Text = " Igor Felix";
+            this.txtNome.TextChanged += new System.EventHandler(this.txtNome_TextChanged);
             // 
             // groupBox2
             // 
@@ -529,26 +539,34 @@
             this.label16.TabIndex = 148;
             this.label16.Text = "Cargo:";
             // 
-            // button1
+            // btnTrocarFotoPerfil
             // 
-            this.button1.BackColor = System.Drawing.Color.Blue;
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.Location = new System.Drawing.Point(234, 106);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(172, 40);
-            this.button1.TabIndex = 149;
-            this.button1.Text = "Trocar a foto de perfil";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnTrocarFotoPerfil.BackColor = System.Drawing.Color.Blue;
+            this.btnTrocarFotoPerfil.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnTrocarFotoPerfil.Image = ((System.Drawing.Image)(resources.GetObject("btnTrocarFotoPerfil.Image")));
+            this.btnTrocarFotoPerfil.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnTrocarFotoPerfil.Location = new System.Drawing.Point(234, 106);
+            this.btnTrocarFotoPerfil.Name = "btnTrocarFotoPerfil";
+            this.btnTrocarFotoPerfil.Size = new System.Drawing.Size(172, 40);
+            this.btnTrocarFotoPerfil.TabIndex = 149;
+            this.btnTrocarFotoPerfil.Text = "Trocar a foto de perfil";
+            this.btnTrocarFotoPerfil.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTrocarFotoPerfil.UseVisualStyleBackColor = false;
+            // 
+            // listView2
+            // 
+            this.listView2.Location = new System.Drawing.Point(230, 146);
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(847, 778);
+            this.listView2.TabIndex = 150;
+            this.listView2.UseCompatibleStateImageBehavior = false;
             // 
             // Configuracoes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 683);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnTrocarFotoPerfil);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.groupBox1);
@@ -560,35 +578,36 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtEmail);
+            this.Controls.Add(this.txtDataNasc);
+            this.Controls.Add(this.txtNome);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.IconeFuncionario);
-            this.Controls.Add(this.pictureBox11);
+            this.Controls.Add(this.picPerfilMembro);
             this.Controls.Add(this.btnEquipes);
             this.Controls.Add(this.pictureBox9);
             this.Controls.Add(this.btnRanking);
             this.Controls.Add(this.btnLogout);
-            this.Controls.Add(this.pictureBox6);
-            this.Controls.Add(this.pictureBox5);
+            this.Controls.Add(this.btnConfigurações);
+            this.Controls.Add(this.btnHome);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
+            this.Controls.Add(this.listView2);
             this.Name = "Configuracoes";
             this.Text = "Configuracoes";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPerfilMembro)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEquipes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRanking)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnLogout)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnConfigurações)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnHome)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.IconeFuncionario)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -611,13 +630,13 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox11;
+        private System.Windows.Forms.PictureBox picPerfilMembro;
         private System.Windows.Forms.PictureBox btnEquipes;
         private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.PictureBox btnRanking;
         private System.Windows.Forms.PictureBox btnLogout;
-        private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox btnConfigurações;
+        private System.Windows.Forms.PictureBox btnHome;
         private System.Windows.Forms.PictureBox IconeFuncionario;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -631,9 +650,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.TextBox txtDataNasc;
+        private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.PictureBox pictureBox13;
         private System.Windows.Forms.Label label5;
@@ -650,6 +669,7 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnTrocarFotoPerfil;
+        private System.Windows.Forms.ListView listView2;
     }
 }

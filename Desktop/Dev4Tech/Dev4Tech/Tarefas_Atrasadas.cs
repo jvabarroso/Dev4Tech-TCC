@@ -98,6 +98,16 @@ namespace Dev4Tech
             t_tarefa.Show();
             this.Hide();
         }
+
+        private void txtPesquisaTarefa_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblPlanejamento_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

@@ -83,7 +83,7 @@ namespace Dev4Tech
         //Método inserir, para mandar os dados no banco de dados
         public void inserir()
         {
-            string query = "INSERT INTO Administradores(adminId, Nome, Cargo, CPF, DataNascimento, Telefone, Email, Senha) " +
+            string query = "INSERT INTO Administradores(AdminId,Nome, Cargo, CPF, DataNascimento, Telefone, Email, Senha) " +
                            "VALUES('" + getAdminId() + "','" + getNome() + "','" + getCargo() + "','" + getCPF() + "','" + getDataNascimento() + "','" + getTelefone() + "','" + getEmail() + "','" + getSenha() + "')";
 
             if (this.abrirConexao())

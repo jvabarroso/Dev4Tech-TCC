@@ -16,7 +16,7 @@ namespace Dev4Tech
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Cadastro_empresa_admin());
+            Application.Run(new AdicionarEquipes());
         }
     }
 }

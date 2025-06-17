@@ -211,6 +211,7 @@
             this.txtLogradouroEmpresa.TabIndex = 25;
             this.txtLogradouroEmpresa.Text = "Digite o logradouro da empresa";
             this.txtLogradouroEmpresa.Click += new System.EventHandler(this.txtLogradouroEmpresa_Click);
+            this.txtLogradouroEmpresa.TextChanged += new System.EventHandler(this.txtLogradouroEmpresa_TextChanged);
             // 
             // txtSetorEmpresa
             // 

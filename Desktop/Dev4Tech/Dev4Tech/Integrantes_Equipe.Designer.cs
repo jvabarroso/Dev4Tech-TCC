@@ -28,14 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.btnEquipes = new System.Windows.Forms.PictureBox();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.btnRanking = new System.Windows.Forms.PictureBox();
-            this.btnLogout = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Integrantes_Equipe));
             this.lblMembros = new System.Windows.Forms.Label();
             this.lblRanking = new System.Windows.Forms.Label();
             this.lblTarefas = new System.Windows.Forms.Label();
@@ -44,8 +37,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblPlanejamento = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.pictureBox18 = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -58,112 +50,41 @@
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.txtProcurarMebros = new System.Windows.Forms.TextBox();
+            this.btnMostrarMembros = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnEquipes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnRanking)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnLogout)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.btnEquipes = new System.Windows.Forms.PictureBox();
+            this.btnCalendar = new System.Windows.Forms.PictureBox();
+            this.btnRanking = new System.Windows.Forms.PictureBox();
+            this.btnLogout = new System.Windows.Forms.PictureBox();
+            this.btnConfigurações = new System.Windows.Forms.PictureBox();
+            this.btnHome = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEquipes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCalendar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnRanking)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLogout)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnConfigurações)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnHome)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox11
-            // 
-            this.pictureBox11.BackColor = System.Drawing.Color.Blue;
-            this.pictureBox11.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
-            this.pictureBox11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox11.Location = new System.Drawing.Point(12, 610);
-            this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(24, 23);
-            this.pictureBox11.TabIndex = 120;
-            this.pictureBox11.TabStop = false;
-            // 
-            // btnEquipes
-            // 
-            this.btnEquipes.BackColor = System.Drawing.Color.Blue;
-            this.btnEquipes.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_equip;
-            this.btnEquipes.Location = new System.Drawing.Point(12, 51);
-            this.btnEquipes.Name = "btnEquipes";
-            this.btnEquipes.Size = new System.Drawing.Size(24, 23);
-            this.btnEquipes.TabIndex = 119;
-            this.btnEquipes.TabStop = false;
-            // 
-            // pictureBox9
-            // 
-            this.pictureBox9.BackColor = System.Drawing.Color.Blue;
-            this.pictureBox9.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_calendar;
-            this.pictureBox9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox9.Location = new System.Drawing.Point(12, 90);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(24, 23);
-            this.pictureBox9.TabIndex = 118;
-            this.pictureBox9.TabStop = false;
-            // 
-            // btnRanking
-            // 
-            this.btnRanking.BackColor = System.Drawing.Color.Blue;
-            this.btnRanking.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_ranking;
-            this.btnRanking.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnRanking.Location = new System.Drawing.Point(12, 131);
-            this.btnRanking.Name = "btnRanking";
-            this.btnRanking.Size = new System.Drawing.Size(24, 23);
-            this.btnRanking.TabIndex = 117;
-            this.btnRanking.TabStop = false;
-            // 
-            // btnLogout
-            // 
-            this.btnLogout.BackColor = System.Drawing.Color.Blue;
-            this.btnLogout.BackgroundImage = global::Dev4Tech.Properties.Resources.Nav_Icon_Item;
-            this.btnLogout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnLogout.Location = new System.Drawing.Point(12, 567);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(24, 23);
-            this.btnLogout.TabIndex = 116;
-            this.btnLogout.TabStop = false;
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.BackColor = System.Drawing.Color.Blue;
-            this.pictureBox6.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_config;
-            this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox6.Location = new System.Drawing.Point(12, 538);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(24, 23);
-            this.pictureBox6.TabIndex = 115;
-            this.pictureBox6.TabStop = false;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.BackColor = System.Drawing.Color.Blue;
-            this.pictureBox5.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_Home;
-            this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox5.Location = new System.Drawing.Point(12, 12);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(24, 23);
-            this.pictureBox5.TabIndex = 114;
-            this.pictureBox5.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.Color.Blue;
-            this.pictureBox2.Location = new System.Drawing.Point(-2, -1);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(54, 688);
-            this.pictureBox2.TabIndex = 121;
-            this.pictureBox2.TabStop = false;
             // 
             // lblMembros
             // 
@@ -176,6 +97,7 @@
             this.lblMembros.Size = new System.Drawing.Size(57, 13);
             this.lblMembros.TabIndex = 127;
             this.lblMembros.Text = "Membros";
+            this.lblMembros.Click += new System.EventHandler(this.lblMembros_Click);
             // 
             // lblRanking
             // 
@@ -187,6 +109,7 @@
             this.lblRanking.Size = new System.Drawing.Size(47, 13);
             this.lblRanking.TabIndex = 126;
             this.lblRanking.Text = "Ranking";
+            this.lblRanking.Click += new System.EventHandler(this.lblRanking_Click);
             // 
             // lblTarefas
             // 
@@ -199,6 +122,7 @@
             this.lblTarefas.Size = new System.Drawing.Size(43, 13);
             this.lblTarefas.TabIndex = 125;
             this.lblTarefas.Text = "Tarefas";
+            this.lblTarefas.Click += new System.EventHandler(this.lblTarefas_Click);
             // 
             // lblGeral
             // 
@@ -211,6 +135,7 @@
             this.lblGeral.Size = new System.Drawing.Size(32, 13);
             this.lblGeral.TabIndex = 124;
             this.lblGeral.Text = "Geral";
+            this.lblGeral.Click += new System.EventHandler(this.lblGeral_Click);
             // 
             // groupBox1
             // 
@@ -254,26 +179,17 @@
             this.label3.TabIndex = 60;
             this.label3.Text = "EQUIPE 1";
             // 
-            // pictureBox1
+            // lblPlanejamento
             // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.pictureBox1.Location = new System.Drawing.Point(52, -1);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(306, 688);
-            this.pictureBox1.TabIndex = 122;
-            this.pictureBox1.TabStop = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label1.Location = new System.Drawing.Point(100, 259);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 13);
-            this.label1.TabIndex = 128;
-            this.label1.Text = "Planejamento";
+            this.lblPlanejamento.AutoSize = true;
+            this.lblPlanejamento.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lblPlanejamento.Location = new System.Drawing.Point(100, 259);
+            this.lblPlanejamento.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPlanejamento.Name = "lblPlanejamento";
+            this.lblPlanejamento.Size = new System.Drawing.Size(71, 13);
+            this.lblPlanejamento.TabIndex = 128;
+            this.lblPlanejamento.Text = "Planejamento";
+            this.lblPlanejamento.Click += new System.EventHandler(this.lblPlanejamento_Click);
             // 
             // groupBox2
             // 
@@ -402,22 +318,25 @@
             this.label9.TabIndex = 130;
             this.label9.Text = "Membros da Equipe";
             // 
-            // textBox1
+            // txtProcurarMebros
             // 
-            this.textBox1.Location = new System.Drawing.Point(437, 165);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(641, 39);
-            this.textBox1.TabIndex = 131;
+            this.txtProcurarMebros.Location = new System.Drawing.Point(437, 165);
+            this.txtProcurarMebros.Multiline = true;
+            this.txtProcurarMebros.Name = "txtProcurarMebros";
+            this.txtProcurarMebros.Size = new System.Drawing.Size(641, 39);
+            this.txtProcurarMebros.TabIndex = 131;
+            this.txtProcurarMebros.TextChanged += new System.EventHandler(this.txtProcurarMebros_TextChanged);
             // 
-            // button1
+            // btnMostrarMembros
             // 
-            this.button1.Location = new System.Drawing.Point(1084, 165);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(37, 38);
-            this.button1.TabIndex = 132;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnMostrarMembros.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnMostrarMembros.BackgroundImage")));
+            this.btnMostrarMembros.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnMostrarMembros.Location = new System.Drawing.Point(1084, 165);
+            this.btnMostrarMembros.Name = "btnMostrarMembros";
+            this.btnMostrarMembros.Size = new System.Drawing.Size(37, 38);
+            this.btnMostrarMembros.TabIndex = 132;
+            this.btnMostrarMembros.UseVisualStyleBackColor = true;
+            this.btnMostrarMembros.Click += new System.EventHandler(this.btnMostrarMembros_Click);
             // 
             // label10
             // 
@@ -431,17 +350,134 @@
             this.label10.TabIndex = 133;
             this.label10.Text = "Procurar Membros";
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.pictureBox4);
+            this.groupBox3.Location = new System.Drawing.Point(449, 232);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(712, 569);
+            this.groupBox3.TabIndex = 134;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "groupBox3";
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::Dev4Tech.Properties.Resources.grafico_subindo_inflacao_ocde;
+            this.pictureBox4.Location = new System.Drawing.Point(79, 60);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(100, 41);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 0;
+            this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.pictureBox1.Location = new System.Drawing.Point(52, -1);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(306, 688);
+            this.pictureBox1.TabIndex = 122;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox11
+            // 
+            this.pictureBox11.BackColor = System.Drawing.Color.Blue;
+            this.pictureBox11.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
+            this.pictureBox11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox11.Location = new System.Drawing.Point(12, 610);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Size = new System.Drawing.Size(24, 23);
+            this.pictureBox11.TabIndex = 120;
+            this.pictureBox11.TabStop = false;
+            // 
+            // btnEquipes
+            // 
+            this.btnEquipes.BackColor = System.Drawing.Color.Blue;
+            this.btnEquipes.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_equip;
+            this.btnEquipes.Location = new System.Drawing.Point(12, 51);
+            this.btnEquipes.Name = "btnEquipes";
+            this.btnEquipes.Size = new System.Drawing.Size(24, 23);
+            this.btnEquipes.TabIndex = 119;
+            this.btnEquipes.TabStop = false;
+            // 
+            // btnCalendar
+            // 
+            this.btnCalendar.BackColor = System.Drawing.Color.Blue;
+            this.btnCalendar.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_calendar;
+            this.btnCalendar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCalendar.Location = new System.Drawing.Point(12, 90);
+            this.btnCalendar.Name = "btnCalendar";
+            this.btnCalendar.Size = new System.Drawing.Size(24, 23);
+            this.btnCalendar.TabIndex = 118;
+            this.btnCalendar.TabStop = false;
+            // 
+            // btnRanking
+            // 
+            this.btnRanking.BackColor = System.Drawing.Color.Blue;
+            this.btnRanking.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_ranking;
+            this.btnRanking.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRanking.Location = new System.Drawing.Point(12, 131);
+            this.btnRanking.Name = "btnRanking";
+            this.btnRanking.Size = new System.Drawing.Size(24, 23);
+            this.btnRanking.TabIndex = 117;
+            this.btnRanking.TabStop = false;
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.BackColor = System.Drawing.Color.Blue;
+            this.btnLogout.BackgroundImage = global::Dev4Tech.Properties.Resources.Nav_Icon_Item;
+            this.btnLogout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnLogout.Location = new System.Drawing.Point(12, 567);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(24, 23);
+            this.btnLogout.TabIndex = 116;
+            this.btnLogout.TabStop = false;
+            // 
+            // btnConfigurações
+            // 
+            this.btnConfigurações.BackColor = System.Drawing.Color.Blue;
+            this.btnConfigurações.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_config;
+            this.btnConfigurações.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnConfigurações.Location = new System.Drawing.Point(12, 538);
+            this.btnConfigurações.Name = "btnConfigurações";
+            this.btnConfigurações.Size = new System.Drawing.Size(24, 23);
+            this.btnConfigurações.TabIndex = 115;
+            this.btnConfigurações.TabStop = false;
+            // 
+            // btnHome
+            // 
+            this.btnHome.BackColor = System.Drawing.Color.Blue;
+            this.btnHome.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_Home;
+            this.btnHome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnHome.Location = new System.Drawing.Point(12, 12);
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Size = new System.Drawing.Size(24, 23);
+            this.btnHome.TabIndex = 114;
+            this.btnHome.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Blue;
+            this.pictureBox2.Location = new System.Drawing.Point(-2, -1);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(54, 688);
+            this.pictureBox2.TabIndex = 121;
+            this.pictureBox2.TabStop = false;
+            // 
             // Integrantes_Equipe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 683);
+            this.ClientSize = new System.Drawing.Size(1266, 838);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.btnMostrarMembros);
+            this.Controls.Add(this.txtProcurarMebros);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblPlanejamento);
             this.Controls.Add(this.lblMembros);
             this.Controls.Add(this.lblRanking);
             this.Controls.Add(this.lblTarefas);
@@ -450,27 +486,18 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox11);
             this.Controls.Add(this.btnEquipes);
-            this.Controls.Add(this.pictureBox9);
+            this.Controls.Add(this.btnCalendar);
             this.Controls.Add(this.btnRanking);
             this.Controls.Add(this.btnLogout);
-            this.Controls.Add(this.pictureBox6);
-            this.Controls.Add(this.pictureBox5);
+            this.Controls.Add(this.btnConfigurações);
+            this.Controls.Add(this.btnHome);
             this.Controls.Add(this.pictureBox2);
             this.Name = "Integrantes_Equipe";
             this.Text = "Integrantes_Equipe";
             this.Load += new System.EventHandler(this.Integrantes_Equipe_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnEquipes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnRanking)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnLogout)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
@@ -478,6 +505,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEquipes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCalendar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnRanking)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLogout)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnConfigurações)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnHome)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -487,11 +525,11 @@
 
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.PictureBox btnEquipes;
-        private System.Windows.Forms.PictureBox pictureBox9;
+        private System.Windows.Forms.PictureBox btnCalendar;
         private System.Windows.Forms.PictureBox btnRanking;
         private System.Windows.Forms.PictureBox btnLogout;
-        private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox btnConfigurações;
+        private System.Windows.Forms.PictureBox btnHome;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label lblMembros;
         private System.Windows.Forms.Label lblRanking;
@@ -502,7 +540,7 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblPlanejamento;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.PictureBox pictureBox18;
         private System.Windows.Forms.Label label8;
@@ -515,8 +553,11 @@
         private System.Windows.Forms.PictureBox pictureBox12;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtProcurarMebros;
+        private System.Windows.Forms.Button btnMostrarMembros;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

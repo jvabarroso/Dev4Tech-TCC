@@ -11,7 +11,6 @@ using System.Windows.Forms;
 namespace Dev4Tech
 {
     public partial class Cadastro_empresa_admin : Form
-
     {
         empresaCadAdmin emAdmin = new empresaCadAdmin();
 
@@ -25,31 +24,37 @@ namespace Dev4Tech
             Login t_login = new Login();
             t_login.Show();
             this.Hide();
-
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
             try
             {
-                emAdmin.setNome(txtCadAdmNome.Text);
-                emAdmin.setCargo(cbBoxCargoAdm.Text);
-                emAdmin.setCPF(txtCadAdmCPF.Text);
-                emAdmin.setDataNascimento(txtCadAdmDataNasc.Text);
-                emAdmin.setTelefone(txtCadAdmTelefone.Text);
-                emAdmin.setEmail(txtCadAdmEmail.Text);
-                emAdmin.setSenha(txtCadAdmSenha.Text);
-                emAdmin.inserir();
+                if (txtCadAdmSenha.Text != txtCadAdmConfirmSenha.Text)
+                {
+                    MessageBox.Show("Erro! As duas senhas estão diferentes");
+                }
+                else
+                {
+                    emAdmin.setNome(txtCadAdmNome.Text);
+                    emAdmin.setCargo(cbBoxCargoAdm.Text);
+                    emAdmin.setCPF(txtCadAdmCPF.Text);
+                    emAdmin.setDataNascimento(txtCadAdmDataNasc.Text);
+                    emAdmin.setTelefone(txtCadAdmTelefone.Text);
+                    emAdmin.setEmail(txtCadAdmEmail.Text);
+                    emAdmin.setSenha(txtCadAdmSenha.Text);
+                    emAdmin.inserir();
+                }
+                
                 MessageBox.Show("Cadastro de administrador realizado com sucesso!");
-                Home t_Home = new Home();
-                t_Home.Show();
+                Login t_login = new Login();
+                t_login.Show();
                 this.Hide();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Erro: {ex.Message}");
             }
-
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
