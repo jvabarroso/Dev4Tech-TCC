@@ -93,6 +93,7 @@
             this.txtPesquisaEquipe.TabIndex = 30;
             this.txtPesquisaEquipe.Text = "Pesquisar equipe";
             this.txtPesquisaEquipe.Click += new System.EventHandler(this.txtPesquisaEquipe_Click);
+            this.txtPesquisaEquipe.TextChanged += new System.EventHandler(this.txtPesquisaEquipe_TextChanged);
             this.txtPesquisaEquipe.Leave += new System.EventHandler(this.txtPesquisarEquipe_Leave);
             // 
             // pictureBox11
@@ -198,6 +199,7 @@
             this.filtroEquipes.Name = "filtroEquipes";
             this.filtroEquipes.Size = new System.Drawing.Size(144, 21);
             this.filtroEquipes.TabIndex = 63;
+            this.filtroEquipes.SelectedIndexChanged += new System.EventHandler(this.filtroEquipes_SelectedIndexChanged);
             // 
             // btnFiltrar
             // 
@@ -310,6 +312,7 @@
             this.panelEquipes.Name = "panelEquipes";
             this.panelEquipes.Size = new System.Drawing.Size(577, 380);
             this.panelEquipes.TabIndex = 68;
+            this.panelEquipes.Paint += new System.Windows.Forms.PaintEventHandler(this.panelEquipes_Paint);
             // 
             // PesquisaEquipes
             // 
