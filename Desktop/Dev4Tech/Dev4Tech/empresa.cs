@@ -13,6 +13,12 @@ namespace Dev4Tech
     class empresa : conexao
     {
         private string nomeEmpresa, codigoId, setorEmpresarial, logradouro, bairro, complemento, CNPJ, numResidencia, email, telefone;
+        private DateTime data_cad;
+
+        public void setData_cad (DateTime data_cad)
+        {
+            this.data_cad = data_cad;
+        }
 
         public void setNomeEmpresa(string nomeEmpresa)
         {
@@ -53,6 +59,11 @@ namespace Dev4Tech
         public void setTelefone(string telefone)
         {
             this.telefone = telefone;
+        }
+
+        public DateTime getData_cad()
+        {
+            return this.data_cad;
         }
 
         public string getNomeEmpresa()
@@ -99,7 +110,7 @@ namespace Dev4Tech
         //Método inserir, para mandar os dados no banco de dados
         public void inserir()
         {
-            string query = "Insert into Empresas(id_empresa, nome_empresa, cnpj, logradouro, numResidencia, bairro, complemento) values ('" + getCodigoId() + "', '" + getNomeEmpresa() + "', '" + getCNPJ() + "', '" + getLogradouro() + "', '" +getNumResidencia() + "', '" + getBairro() + "', '"+ getComplemento() + "')";
+            string query = "Insert into Empresas(id_empresa, nome_empresa, cnpj, logradouro, numResidencia, bairro, complemento, data_cad) values ('" + getCodigoId() + "', '" + getNomeEmpresa() + "', '" + getCNPJ() + "', '" + getLogradouro() + "', '" +getNumResidencia() + "', '" + getBairro() + "', '" + getComplemento() + "', '" + getData_cad().ToString("yyyy-MM-dd HH:mm:ss") + "')";
 
             if (this.abrirConexao() == true)
             {
