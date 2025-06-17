@@ -12,8 +12,6 @@ namespace Dev4Tech
 {
     public partial class AdicionarEquipes : Form
     {
-<<<<<<< HEAD
-
         AddEquipes equipe = new AddEquipes();
         private List<string> membrosSelecionados = new List<string>();
 
@@ -23,14 +21,12 @@ namespace Dev4Tech
             this.Load += AdicionarEquipes_Load;
             btnAddMembro.Click += btnAddMembro_Click;
             btnCriarEquipe.Click += btnCriarEquipe_Click;
-
         }
 
         private void AdicionarEquipes_Load(object sender, EventArgs e)
         {
             CarregarCategorias();
             CarregarEmailsFuncionarios();
-
             cmbCategoriaEquipe.DropDownStyle = ComboBoxStyle.DropDown;
         }
 
@@ -51,6 +47,7 @@ namespace Dev4Tech
                 MessageBox.Show("Erro ao carregar categorias: " + ex.Message);
             }
         }
+
         private void CarregarEmailsFuncionarios()
         {
             try
@@ -67,11 +64,6 @@ namespace Dev4Tech
             {
                 MessageBox.Show("Erro ao carregar emails: " + ex.Message);
             }
-=======
-        public AdicionarEquipes()
-        {
-            InitializeComponent();
->>>>>>> 84c1efa37aa2833043764843579cbc8d64b56f55
         }
 
         private void btnHome_Click(object sender, EventArgs e)
@@ -123,15 +115,6 @@ namespace Dev4Tech
             this.Hide();
         }
 
-<<<<<<< HEAD
-=======
-        private void btnAdicionar_Click(object sender, EventArgs e)
-        {
-            // TODO: Implementar adição de equipe
-            MessageBox.Show("Funcionalidade em desenvolvimento");
-        }
-
->>>>>>> 84c1efa37aa2833043764843579cbc8d64b56f55
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             PesquisaEquipes pesquisaEquipes = new PesquisaEquipes();
@@ -158,7 +141,6 @@ namespace Dev4Tech
         {
 
         }
-<<<<<<< HEAD
 
         private void cbmEmailMembro_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -173,7 +155,6 @@ namespace Dev4Tech
             {
                 membrosSelecionados.Add(emailSelecionado);
                 MessageBox.Show($"Membro {emailSelecionado} adicionado.");
-                // Aqui você pode atualizar uma lista visual para mostrar os membros adicionados, se desejar
             }
             else
             {
@@ -209,10 +190,8 @@ namespace Dev4Tech
                 equipe.setNomeEquipe(nomeEquipe);
                 equipe.setCategoria(categoria);
 
-                // Insere equipe e obtém o id
                 int idEquipe = equipe.InserirEquipeRetornandoId();
 
-                // Insere membros na tabela associativa
                 foreach (string email in membrosSelecionados)
                 {
                     equipe.InserirMembroEquipe(idEquipe, email);
@@ -227,16 +206,12 @@ namespace Dev4Tech
             }
         }
 
-
         private void LimparFormulario()
         {
             txtNomeEquipe.Clear();
             cmbCategoriaEquipe.Text = "";
             cbmEmailMembro.Text = "";
             membrosSelecionados.Clear();
-            // Atualize a lista visual de membros adicionados, se houver
         }
-=======
->>>>>>> 84c1efa37aa2833043764843579cbc8d64b56f55
     }
 }
