@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Text, View, TouchableOpacity, Image, ScrollView, TextInput} from 'react-native';
-import { Card, Title, Paragraph } from 'react-native-paper';
 import { styles } from './style';
+
+import { Ionicons } from '@expo/vector-icons';
 
 export default function CadastroEquipes({navigation}){
 

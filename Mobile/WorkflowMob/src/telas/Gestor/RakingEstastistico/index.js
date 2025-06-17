@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, Image, FlatList, TextInput, TouchableOpacity, ScrollView} from 'react-native';
-import { BarChart, Grid, XAxis} from 'react-native-svg-charts';
-import { AnimatedCircularProgress } from 'react-native-circular-progress';
+/*import { BarChart, Grid, XAxis} from 'react-native-svg-charts';*/
+/*import { AnimatedCircularProgress } from 'react-native-circular-progress';*/
 
 import { styles } from './style';
 import { Ionicons } from '@expo/vector-icons';
@@ -40,7 +40,7 @@ export default function RankingEstastistico({navigation, route}){
                 contentContainerStyle={styles.containerConteudo}
                 showsVerticalScrollIndicator={false}
             >
-                <View style={styles.nav}>
+                {/* <View style={styles.nav}>
                     <TouchableOpacity 
                         style={styles.botaodevoltar}
                         onPress={() => navigation.navigate('HomeAdm', { screen: 'RankingAdm' })}
@@ -173,7 +173,7 @@ export default function RankingEstastistico({navigation, route}){
                             </View>   
                         </View>
                     )}  
-                </View>
+                </View> */}
             </ScrollView> 
         </View>
   );
