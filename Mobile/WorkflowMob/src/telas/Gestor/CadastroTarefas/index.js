@@ -52,6 +52,8 @@ export default function CadastroTarefas({navigation}){
                     <Text style={styles.texto}>Instruções</Text>
                     <TextInput
                         style={styles.inputinstrucoes}
+                        multiline
+                        numberOfLines={7}
                         placeholder="Alteração nos valores contratuais."
                         placeholderTextColor={"#000000"}
                     />
