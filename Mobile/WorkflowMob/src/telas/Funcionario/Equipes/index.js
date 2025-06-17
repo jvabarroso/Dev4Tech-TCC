@@ -13,7 +13,7 @@ export default function Equipes({ navigation }) {
       quantdeproblemas:6,
       tarefasatrasadas:1,
       tarefasnaoentregues: 6,
-      imagem: require('../../../assets/img/image.png'),
+      imagem: require('../../../../assets/img/image.png'),
     },
     {
       id: '2',
@@ -23,7 +23,7 @@ export default function Equipes({ navigation }) {
       quantdeproblemas:2,
       tarefasatrasadas:2,
       tarefasnaoentregues: 2,
-      imagem: require('../../../assets/img/image.png'),
+      imagem: require('../../../../assets/img/image.png'),
     }
   ]);
   const [equipeSelecionada, setEquipeSelecionada] = useState(null)
@@ -66,7 +66,7 @@ export default function Equipes({ navigation }) {
               <View style={styles.areacard}>
                 <TouchableOpacity onPress={() => navigation.navigate('Equipes')}>
                   <Card style={styles.cardtarequi}>
-                    <Card.Cover source={require('../../../assets/img/equipes.png')} style={styles.imagemcard} />
+                    <Card.Cover source={require('../../../../assets/img/equipes.png')} style={styles.imagemcard} />
                     <Card.Content style={styles.cardinferior}>
                       <Title style={styles.titulocard}>Funcionarios</Title>
                       <Paragraph style={styles.paragraph}>The point of using Lorem Ipsum is that....</Paragraph>
@@ -80,7 +80,7 @@ export default function Equipes({ navigation }) {
 
                 <TouchableOpacity onPress={() => navigation.navigate('Tarefas')}>
                   <Card style={styles.cardtarequi}>
-                    <Card.Cover source={require('../../../assets/img/tarefas.png')} style={styles.imagemcard} />
+                    <Card.Cover source={require('../../../../assets/img/tarefas.png')} style={styles.imagemcard} />
                     <Card.Content style={styles.cardinferior}>
                       <Title style={styles.titulocard}>Tarefas</Title>
                       <Paragraph style={styles.paragraph}>The point of using Lorem Ipsum is that....</Paragraph>
@@ -94,7 +94,7 @@ export default function Equipes({ navigation }) {
 
                 <TouchableOpacity onPress={() => navigation.navigate('Ranking')}>
                   <Card style={styles.cardtarequi}>
-                    <Card.Cover source={require('../../../assets/img/ranking.png')} style={styles.imagemcard} />
+                    <Card.Cover source={require('../../../../assets/img/ranking.png')} style={styles.imagemcard} />
                     <Card.Content style={styles.cardinferior}>
                       <Title style={styles.titulocard}>Ranking</Title>
                       <Paragraph style={styles.paragraph}>The point of using Lorem Ipsum is that....</Paragraph>

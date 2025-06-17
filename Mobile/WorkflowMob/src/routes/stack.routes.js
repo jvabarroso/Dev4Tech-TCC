@@ -5,14 +5,23 @@ import { createStackNavigator} from '@react-navigation/stack';
 import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { useNavigation } from '@react-navigation/native';
 
-import Inicio from '../../src/telas/Inicio';
-import Login from '../../src/telas/Login';
-import Home from '../../src/telas/Home';
-import Tarefas from '../../src/telas/Tarefas';
-import Equipes from '../../src/telas/Equipes';
-import Ranking from '../../src/telas/Ranking';
-import TarefaEnvio from '../../src/telas/TarefaEnvio';
+import Inicio from '../../src/telas/Funcionario/Inicio';
+import Login from '../../src/telas/Funcionario/Login';
+import Home from '../../src/telas/Funcionario/Home';
+import Tarefas from '../../src/telas/Funcionario/Tarefas';
+import Equipes from '../../src/telas/Funcionario/Equipes';
+import Ranking from '../../src/telas/Funcionario/Ranking';
+import TarefaEnvio from '../../src/telas/Funcionario/TarefaEnvio';
 import Configuracoes from '../../src/telas/Configuracoes'
+
+import HomeAdm from '../../src/telas/Gestor/HomeAdm';
+import CadastroEquipes from '../../src/telas/Gestor/CadastroEquipes';
+import CadastroFuncionario from '../../src/telas/Gestor/CadastroFuncionario';
+import CadastroTarefas from '../../src/telas/Gestor/CadastroTarefas';
+import RankingAdm from '../../src/telas/Gestor/RankingAdm';
+import RankingEstastistico from '../../src/telas/Gestor/RakingEstastistico';
+
+
 import fonts from "../styles/fonts";
 import {Ionicons} from '@expo/vector-icons';
 
@@ -62,6 +71,54 @@ function Tabs(){
   );
 }
 
+function TabsAdm(){
+  const navigation = useNavigation();
+  return (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        headerTitle: 'WORKFLOW',
+        headerTitleAlign: 'center',
+        headerRight: () => (
+          <Ionicons
+            name="settings-outline"
+            size={24}
+            color="#3f64c7"
+            style={styles.header}
+            onPress={() => navigation.navigate('Configuracoes')}
+          />
+        ),
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+          if (route.name === 'HomeAdm') {
+            iconName = 'home';
+          } else if (route.name === 'CadastroFuncionario') {
+            iconName = 'person-circle-outline';
+          } else if (route.name === 'CadastroTarefas') {
+            iconName = 'list';
+          } else if (route.name === 'CadastroEquipes') {
+            iconName = 'people';
+          } else if (route.name === 'RankingAdm') {
+            iconName = 'person';
+          }
+
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+
+        tabBarActiveTintColor: '#3f64c7',   
+        tabBarInactiveTintColor: 'gray',   
+      })}
+    >
+      <Tab.Screen name="HomeAdm" component={HomeAdm} />
+      <Tab.Screen name="CadastroFuncionario" component={CadastroFuncionario} />
+      <Tab.Screen name="CadastroTarefas" component={CadastroTarefas} />
+      <Tab.Screen name="CadastroEquipes" component={CadastroEquipes} />
+      <Tab.Screen name="RankingAdm" component={RankingAdm} />
+    </Tab.Navigator>
+  );
+}
+
+
+
 export default function App() {
 
   const Stack = createStackNavigator();
@@ -84,21 +141,6 @@ export default function App() {
           options={{ headerShown: false }}
         />        
         <Stack.Screen
-          name="Equipes"
-          component={Tabs}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Tarefas"
-          component={Tabs} 
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Ranking"
-          component={Tabs}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
           name="TarefaEnvio"
           component={TarefaEnvio} 
           options={{ headerShown: false }}
@@ -108,6 +150,17 @@ export default function App() {
           component={Configuracoes} 
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="HomeAdm"
+          component={TabsAdm} 
+          options={{ headerShown: false }}
+        />   
+        <Stack.Screen
+          name="RankingEstastistico"
+          component={RankingEstastistico} 
+          options={{ headerShown: false }}
+        />        
+    
       </Stack.Navigator>
     </NavigationContainer>
   );

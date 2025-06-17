@@ -41,7 +41,7 @@ export default function TarefaEnvio({ navigation, route }) {
                 <View style={styles.nav}>
                     <TouchableOpacity 
                         style={styles.botaodevoltar}
-                        onPress={() => navigation.navigate('Tarefas')}
+                        onPress={() => navigation.navigate('Home', { screen: 'Tarefas' })}
                     >
                         <Ionicons name="arrow-back" size={24} color="black" />
                     </TouchableOpacity>

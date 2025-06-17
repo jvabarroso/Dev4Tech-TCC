@@ -12,6 +12,7 @@ namespace Dev4Tech
 {
     public partial class AdicionarEquipes : Form
     {
+<<<<<<< HEAD
 
         AddEquipes equipe = new AddEquipes();
         private List<string> membrosSelecionados = new List<string>();
@@ -66,6 +67,11 @@ namespace Dev4Tech
             {
                 MessageBox.Show("Erro ao carregar emails: " + ex.Message);
             }
+=======
+        public AdicionarEquipes()
+        {
+            InitializeComponent();
+>>>>>>> 84c1efa37aa2833043764843579cbc8d64b56f55
         }
 
         private void btnHome_Click(object sender, EventArgs e)
@@ -117,6 +123,15 @@ namespace Dev4Tech
             this.Hide();
         }
 
+<<<<<<< HEAD
+=======
+        private void btnAdicionar_Click(object sender, EventArgs e)
+        {
+            // TODO: Implementar adição de equipe
+            MessageBox.Show("Funcionalidade em desenvolvimento");
+        }
+
+>>>>>>> 84c1efa37aa2833043764843579cbc8d64b56f55
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             PesquisaEquipes pesquisaEquipes = new PesquisaEquipes();
@@ -143,6 +158,7 @@ namespace Dev4Tech
         {
 
         }
+<<<<<<< HEAD
 
         private void cbmEmailMembro_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -220,5 +236,7 @@ namespace Dev4Tech
             membrosSelecionados.Clear();
             // Atualize a lista visual de membros adicionados, se houver
         }
+=======
+>>>>>>> 84c1efa37aa2833043764843579cbc8d64b56f55
     }
 }

@@ -16,7 +16,11 @@ namespace Dev4Tech
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+<<<<<<< HEAD
             Application.Run(new AdicionarEquipes());
+=======
+            Application.Run(new Chat_geral_equipes());
+>>>>>>> 84c1efa37aa2833043764843579cbc8d64b56f55
         }
     }
 }

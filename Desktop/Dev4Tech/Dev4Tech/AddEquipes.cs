@@ -46,14 +46,25 @@ namespace Dev4Tech
         private int ObterOuInserirCategoria(string nomeCategoria)
         {
             int idCategoria = 0;
+<<<<<<< HEAD
             string selectQuery = "SELECT id_categoria FROM Categorias WHERE nome_categoria = '" + nomeCategoria + "'";
             string insertQuery = "INSERT INTO Categorias (nome_categoria) VALUES ('" + nomeCategoria + "')";
 
             if (this.abrirConexao() == true)
+=======
+            string selectQuery = "SELECT id_categoria FROM Categorias WHERE nome_categoria = @nome";
+            string insertQuery = "INSERT INTO Categorias (nome_categoria) VALUES (@nome)";
+
+            if (this.abrirConexao())
+>>>>>>> 84c1efa37aa2833043764843579cbc8d64b56f55
             {
                 try
                 {
                     MySqlCommand cmdSelect = new MySqlCommand(selectQuery, conectar);
+<<<<<<< HEAD
+=======
+                    cmdSelect.Parameters.AddWithValue("@nome", nomeCategoria);
+>>>>>>> 84c1efa37aa2833043764843579cbc8d64b56f55
                     object result = cmdSelect.ExecuteScalar();
 
                     if (result != null)
@@ -63,6 +74,10 @@ namespace Dev4Tech
                     else
                     {
                         MySqlCommand cmdInsert = new MySqlCommand(insertQuery, conectar);
+<<<<<<< HEAD
+=======
+                        cmdInsert.Parameters.AddWithValue("@nome", nomeCategoria);
+>>>>>>> 84c1efa37aa2833043764843579cbc8d64b56f55
                         cmdInsert.ExecuteNonQuery();
 
                         idCategoria = (int)cmdInsert.LastInsertedId;
@@ -80,13 +95,23 @@ namespace Dev4Tech
         private int ObterIdFuncionarioPorEmail(string email)
         {
             int idFuncionario = 0;
+<<<<<<< HEAD
             string query = "SELECT FuncionarioId FROM Funcionarios WHERE email = '" + email + "'";
 
             if (this.abrirConexao() == true)
+=======
+            string query = "SELECT FuncionarioId FROM Funcionarios WHERE email = @Email";
+
+            if (this.abrirConexao())
+>>>>>>> 84c1efa37aa2833043764843579cbc8d64b56f55
             {
                 try
                 {
                     MySqlCommand cmd = new MySqlCommand(query, conectar);
+<<<<<<< HEAD
+=======
+                    cmd.Parameters.AddWithValue("@Email", email);
+>>>>>>> 84c1efa37aa2833043764843579cbc8d64b56f55
                     object result = cmd.ExecuteScalar();
 
                     if (result != null)
@@ -105,6 +130,7 @@ namespace Dev4Tech
             }
             return idFuncionario;
         }
+<<<<<<< HEAD
         public DataTable ConsultarCategorias()
         {
             DataTable dt = new DataTable();
@@ -196,6 +222,8 @@ namespace Dev4Tech
             }
         }
 
+=======
+>>>>>>> 84c1efa37aa2833043764843579cbc8d64b56f55
 
         // Método inserir para cadastrar a equipe
         public void inserir()
@@ -208,13 +236,26 @@ namespace Dev4Tech
             int idCategoria = ObterOuInserirCategoria(getCategoria());
             int idFuncionario = ObterIdFuncionarioPorEmail(getEmailFuncionario());
 
+<<<<<<< HEAD
             string query = "INSERT INTO Equipes (nome_equipe, id_categoria, FuncionarioId) VALUES ('" + getNomeEquipe() + "', '" + idCategoria + "', '" + idFuncionario + "')";
 
             if (this.abrirConexao() == true)
+=======
+            string query = "INSERT INTO Equipes (nome_equipe, id_categoria, FuncionarioId) " +
+                           "VALUES (@nomeEquipe, @idCategoria, @idFuncionario)";
+
+            if (this.abrirConexao())
+>>>>>>> 84c1efa37aa2833043764843579cbc8d64b56f55
             {
                 try
                 {
                     MySqlCommand cmd = new MySqlCommand(query, conectar);
+<<<<<<< HEAD
+=======
+                    cmd.Parameters.AddWithValue("@nomeEquipe", getNomeEquipe());
+                    cmd.Parameters.AddWithValue("@idCategoria", idCategoria);
+                    cmd.Parameters.AddWithValue("@idFuncionario", idFuncionario);
+>>>>>>> 84c1efa37aa2833043764843579cbc8d64b56f55
                     cmd.ExecuteNonQuery();
                 }
                 finally
@@ -224,16 +265,29 @@ namespace Dev4Tech
             }
         }
 
+<<<<<<< HEAD
         // Método excluir equipe pelo id (opcional)
         public void excluir(int idEquipe)
         {
             string query = "DELETE FROM Equipes WHERE id_equipe = '" + idEquipe + "'";
 
             if (this.abrirConexao() == true)
+=======
+        // Método para excluir equipe pelo id (opcional)
+        public void excluir(int idEquipe)
+        {
+            string query = "DELETE FROM Equipes WHERE id_equipe = @idEquipe";
+
+            if (this.abrirConexao())
+>>>>>>> 84c1efa37aa2833043764843579cbc8d64b56f55
             {
                 try
                 {
                     MySqlCommand cmd = new MySqlCommand(query, conectar);
+<<<<<<< HEAD
+=======
+                    cmd.Parameters.AddWithValue("@idEquipe", idEquipe);
+>>>>>>> 84c1efa37aa2833043764843579cbc8d64b56f55
                     cmd.ExecuteNonQuery();
                 }
                 finally
@@ -252,7 +306,11 @@ namespace Dev4Tech
                            "JOIN Categorias c ON e.id_categoria = c.id_categoria " +
                            "JOIN Funcionarios f ON e.FuncionarioId = f.FuncionarioId";
 
+<<<<<<< HEAD
             if (this.abrirConexao() == true)
+=======
+            if (this.abrirConexao())
+>>>>>>> 84c1efa37aa2833043764843579cbc8d64b56f55
             {
                 try
                 {

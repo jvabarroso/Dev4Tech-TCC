@@ -1,74 +1,67 @@
 import { StyleSheet } from "react-native";
-import fonts from "../../styles/fonts";
+import fonts from "../../../styles/fonts";
 
 
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: "#ffffff"
-  },
-  scroll: {
-    flex: 1,
-    width: '100%',
-  },
-  areaperfil:{
-    flexDirection: 'row',
-    marginTop: 15,
-    width: '100%',
+    backgroundColor: "#ffffff",
     paddingHorizontal: 20,
   },
-  foto:{
-    width: 120,
-    height: 120,
-    marginLeft: 18,
-    borderRadius: 60
-  },
-  verde:{
-    width:20,
-    height:20,
-    borderRadius:"100%",
-    borderWidth: 3.5,
-    borderColor: '#F5F9F9',
-    backgroundColor:"#2EBA4E",
-    right:28,
-    top:95,
-  },
-  textoperfil: {
-    justifyContent: 'center',
-    marginLeft: 20, 
-    fontFamily: fonts.text,
-  },
-  nome: {
+  titulo: {
+    fontSize: 30,
     color: '#000',
-    fontSize: 16,
-    fontFamily: fonts.text,
-    marginBottom: 2,
-  },
-  profissao: {
-    color: '#aaaaaa',
-    fontSize: 16,
+    fontWeight: 'bold',
+    marginTop: '5%',
+    marginBottom: "8%",
     fontFamily: fonts.text,
   },
-  areatitulo:{
-    justifyContent: 'center',
-    marginRight: 50,
-    marginTop: 20,
-    marginBottom: 30,
+  navinput: {
+    width: '100%',
+    padding: 10,
+    fontSize: 17,
+    backgroundColor: '#1C58F2',
+    borderRadius: 10,
+    borderBottomWidth: 0.1,
+    borderBottomColor: '#000',
+    marginBottom: 15,
+    color: '#fff',
   },
-  titulo:{
-    fontSize: 24,
-    marginBottom: 4,
+  flat: {
+    flex: 1,
+  },
+  containertarefas: {
+    backgroundColor: '#F5F7FC',
+    borderRadius: 10,
+    padding: 10,
+    marginBottom: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  imag: {
+    width: 45,
+    height: 45,
+    marginLeft: 10,
+  },
+  textos: {
+    marginLeft: 15,
+    flex: 1,
+  },
+  textolistatitulo: {
+    color: '#000',
+    fontSize: 18,
+    fontWeight: 'bold',
     fontFamily: fonts.text,
   },
-  subtitulo:{
-    fontSize: 20,
+  textolistacargo: {
+    color: '#000',
+    fontSize: 15,
     fontFamily: fonts.text,
   },
   areacard:{
     marginBottom: 25,
+    alignItems:"center",
   },
   cardtarequi:{
     marginBottom: 25,
@@ -112,4 +105,4 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.text,
     fontWeight: 'bold',
   },
-})
+});

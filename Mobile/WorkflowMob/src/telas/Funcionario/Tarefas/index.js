@@ -12,7 +12,7 @@ export default function Tarefas({ navigation }) {
       datadeentrega: '16/02/2025',
       datadeenvio: '07/02/2025',
       selproblema: false,
-      imagem: require('../../../assets/img/fotoexemplo.png'),
+      imagem: require('../../../../assets/img/fotoexemplo.png'),
     },
     {
       id: '2',
@@ -22,7 +22,7 @@ export default function Tarefas({ navigation }) {
       datadeentrega: '20/02/2025',
       datadeenvio: '07/02/2025',
       selproblema: true,
-      imagem: require('../../../assets/img/image.png'),
+      imagem: require('../../../../assets/img/image.png'),
     },
     {
       id: '3',
@@ -32,7 +32,7 @@ export default function Tarefas({ navigation }) {
       datadeentrega: '20/02/2025',
       datadeenvio: '07/02/2025',
       selproblema: false,
-      imagem: require('../../../assets/img/image.png'),
+      imagem: require('../../../../assets/img/image.png'),
     },
     {
       id: '4',
@@ -42,7 +42,7 @@ export default function Tarefas({ navigation }) {
       datadeentrega: '20/02/2025',
       datadeenvio: '07/02/2025',
       selproblema: false,
-      imagem: require('../../../assets/img/image.png'),
+      imagem: require('../../../../assets/img/image.png'),
     },
   ]);
 
