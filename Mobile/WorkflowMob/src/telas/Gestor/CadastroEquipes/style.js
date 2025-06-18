@@ -21,7 +21,6 @@ export const styles = StyleSheet.create({
   },
   areaInput:{
     width: '100%',
-    alignItems: 'center', 
     paddingVertical:10,
     paddingHorizontal: 20,
   },
@@ -74,6 +73,8 @@ export const styles = StyleSheet.create({
     paddingHorizontal:20,
     marginBottom: 10,
     marginTop: 15,
+    alignItems:"center",
+    justifyContent:"center"
   },
   linha:{
     flexDirection: 'row',
@@ -96,6 +97,7 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
     flexDirection: 'row',
     alignItems: 'center',
+    alignSelf: 'flex-start'
   },
   imag: {
     width: 35,
@@ -122,6 +124,13 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.text,
     fontWeight: 'bold',
     color: '#000000',
+  },
+  textobotao2: {
+    fontSize: 16,
+    fontFamily: fonts.text,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    alignItems:"center"
   },
   botaocriar: {
     width: 200,

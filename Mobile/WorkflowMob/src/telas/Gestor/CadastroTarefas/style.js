@@ -21,7 +21,6 @@ export const styles = StyleSheet.create({
   },
   areaInput:{
     width: '100%',
-    alignItems: 'center',
     paddingVertical:10,
     paddingHorizontal: 20,
   },
@@ -84,6 +83,7 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
     flexDirection: 'row',
     alignItems: 'center',
+    alignSelf: 'flex-start'
   },
   imag: {
     width: 35,
