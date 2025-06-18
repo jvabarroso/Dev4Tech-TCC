@@ -38,7 +38,6 @@ export const styles = StyleSheet.create({
   },
   input: {
     width:"90%",
-    fontSize: 16,
     borderRadius: 6,
     borderWidth: 1,
     borderBottomColor: '#D6D3D1',
@@ -49,8 +48,8 @@ export const styles = StyleSheet.create({
     marginTop: 15,
   },
   inputequipe: {
+    flex: 1,
     width:"70%",
-    fontSize: 16,
     borderRadius: 6,
     borderWidth: 1,
     borderBottomColor: '#D6D3D1',
@@ -62,9 +61,7 @@ export const styles = StyleSheet.create({
     marginRight:20,
   },
   inputadicionar: {
-    width:"10%",
-    height:"65%",
-    fontSize: 16,
+    width:"15%",
     borderRadius: 6,
     borderWidth: 1,
     borderBottomColor: '#000000',
@@ -76,6 +73,7 @@ export const styles = StyleSheet.create({
     alignItems:"center",
     justifyContent:"center"
   },
+
   linha:{
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -126,10 +124,17 @@ export const styles = StyleSheet.create({
     color: '#000000',
   },
   textobotao2: {
-    fontSize: 16,
+    fontSize: 13,
     fontFamily: fonts.text,
     fontWeight: 'bold',
     color: '#ffffff',
+    alignItems:"center"
+  },
+  textobotao3: {
+    fontSize: 16,
+    fontFamily: fonts.text,
+    fontWeight: 'bold',
+    color: '#D6D3D1',
     alignItems:"center"
   },
   botaocriar: {

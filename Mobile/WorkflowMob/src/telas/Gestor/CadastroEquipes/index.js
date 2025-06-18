@@ -116,7 +116,7 @@ export default function CadastroEquipes({navigation}){
     
     const confirmodeequipe = (funcionarioselecionada) => 
         {   
-            setFuncionariosselecionada(funcionarioselecionada.nome);
+            setfuncionariosselecionada(funcionarioselecionada.nome);
             setFuncionarios(valorAtual => !valorAtual); 
         };
 
@@ -152,7 +152,7 @@ export default function CadastroEquipes({navigation}){
                     <Text style={styles.texto}>Adicionar membros à equipe</Text>
                     <View style={styles.linha}>
                         <TouchableOpacity
-                            style={[styles.inputequipe, styles.linha]}
+                            style={styles.inputequipe}
                             onPress={cliqueinformacao}
                         >
                             <Text style={styles.textobotao}>{funcionarioselecionada || "Selecione uma funcionario"}</Text> 
@@ -161,6 +161,7 @@ export default function CadastroEquipes({navigation}){
 
                         <TouchableOpacity
                             style={styles.inputadicionar}
+                            onPress={cliquefuncionario}
                         >
                             <Text style={styles.textobotao2}>+</Text> 
                         </TouchableOpacity>
@@ -181,6 +182,28 @@ export default function CadastroEquipes({navigation}){
                     ))}
 
                     <Text style={styles.texto}>Membros da Equipe</Text>
+
+                    {!equipes && funcionario.map(item => (
+                        <TouchableOpacity
+                            key={item.id}
+                            style={styles.containerequipes}
+                            onPress={() => confirmodeequipe(item)}
+                        >
+                        <Image source={item.imagem} style={styles.imag} />
+                        <View style={styles.textos}>
+                            <Text style={styles.textolistatitulo}>{item.nome}</Text>
+                            <Text style={styles.textolistatitulo}>{item.equipe}</Text>
+                            <Text style={styles.textolistacargo}>{item.cargo}</Text>
+                        </View>
+                        </TouchableOpacity>
+                    ))}
+
+                    <TouchableOpacity
+                        style={styles.inputfuncionario}
+                        onPress={cliquefuncionario}
+                    >
+                        <Text style={styles.textobotao3}>Ver Equipe</Text> 
+                    </TouchableOpacity>
 
                     <TouchableOpacity style={styles.botaocriar}>
                         <Text style={styles.textocriar}>Criar</Text>
