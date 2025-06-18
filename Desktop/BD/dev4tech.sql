@@ -43,6 +43,8 @@ CREATE TABLE Funcionarios (
     Senha VARCHAR(255)
 );
 
+alter table funcionarios add data_cadFunc DATETIME;
+
 CREATE TABLE MensagensChat (
     id_mensagem INT PRIMARY KEY auto_increment,
     texto varchar(255) NOT NULL,

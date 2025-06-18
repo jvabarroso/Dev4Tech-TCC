@@ -43,6 +43,7 @@ namespace Dev4Tech
                     emAdmin.setTelefone(txtCadAdmTelefone.Text);
                     emAdmin.setEmail(txtCadAdmEmail.Text);
                     emAdmin.setSenha(txtCadAdmSenha.Text);
+                    emAdmin.setData_cadAdmin(DateTime.Now);
                     emAdmin.inserir();
                 }
                 

@@ -13,6 +13,7 @@ namespace Dev4Tech
     class empresaCadFuncionario : conexao
     {
         private string FuncionarioId, Email, Senha, Telefone, DataNascimento, CPF, Cargo, Nome;
+        DateTime data_cadFunc;
 
         public void setFuncionarioId(string FuncionarioId)
         {
@@ -45,6 +46,11 @@ namespace Dev4Tech
         public void setSenha(string senha)
         {
             this.Senha = senha;
+        }
+
+        public void setData_cadFunc (DateTime data_cadFunc)
+        {
+            this.data_cadFunc = data_cadFunc;
         }
 
         public string getFuncionarioId()
@@ -80,11 +86,16 @@ namespace Dev4Tech
             return this.Senha;
         }
 
+        public DateTime getData_cadFunc()
+        {
+            return this.data_cadFunc;
+        }
+
         //Método inserir, para mandar os dados no banco de dados
         public void inserir()
         {
-            string query = "INSERT INTO Funcionarios(FuncionarioId, Nome, Cargo, CPF, Telefone, Email, Senha) " +
-                           "VALUES('" + getFuncionarioId() + "','" + getNome() + "','" + getCargo() + "','" + getCPF() + "','" + getTelefone() + "','" + getEmail() + "','" + getSenha() + "')";
+            string query = "INSERT INTO Funcionarios(FuncionarioId, Nome, Cargo, CPF, Telefone, Email, Senha, data_cadFunc) " +
+                           "VALUES('" + getFuncionarioId() + "','" + getNome() + "','" + getCargo() + "','" + getCPF() + "','" + getTelefone() + "','" + getEmail() + "','" + getSenha() + "','" + getData_cadFunc() + "')";
 
             if (this.abrirConexao())
             {
