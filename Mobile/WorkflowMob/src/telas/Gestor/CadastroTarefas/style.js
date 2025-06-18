@@ -21,8 +21,6 @@ export const styles = StyleSheet.create({
   },
   areaInput:{
     width: '100%',
-    alignItems: 'flex-start',
-    marginLeft:20,
     paddingVertical:10,
     paddingHorizontal: 20,
   },
@@ -57,11 +55,12 @@ export const styles = StyleSheet.create({
     borderRadius: 6,
     borderWidth: 1,
     borderBottomColor: '#D6D3D1',
-    backgroundColor: 'transparet',
+    backgroundColor: 'transparent',
     paddingVertical:8,    
     paddingHorizontal:20,
     marginBottom: 10,
     marginTop: 15,
+    textAlignVertical: 'top'
   },
   linha:{
     flexDirection: 'row',
@@ -84,6 +83,7 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
     flexDirection: 'row',
     alignItems: 'center',
+    alignSelf: 'flex-start'
   },
   imag: {
     width: 35,

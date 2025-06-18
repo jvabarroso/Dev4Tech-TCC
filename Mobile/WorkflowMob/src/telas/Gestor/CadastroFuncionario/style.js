@@ -21,8 +21,7 @@ export const styles = StyleSheet.create({
   },
   areaInput:{
     width: '100%',
-    alignItems: 'flex-start',
-    marginLeft:20,
+    alignItems: 'center', 
     paddingVertical:10,
     paddingHorizontal: 20,
   },
