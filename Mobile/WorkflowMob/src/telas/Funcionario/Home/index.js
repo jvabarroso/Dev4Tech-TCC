@@ -3,7 +3,21 @@ import { Text, View, TouchableOpacity, Image, ScrollView} from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
 import { styles } from './style';
 
-export default function Home({navigation}){
+export default function Home({navigation, route}){
+
+  const usuarioRecebido = route.params?.usuario || {};
+
+    const usuarioPadrao = {
+        nome: 'Usuário não identificado',
+        cargo: 'Cargo não definido',
+        imagem: require('../../../../assets/img/fotoexemplo.png'),
+    };
+
+    const usuario = {
+        ...usuarioPadrao,
+        ...usuarioRecebido
+    };
+    //resolver isso
 
     return(
         <ScrollView style={styles.scroll}>

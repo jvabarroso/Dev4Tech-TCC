@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, Image, FlatList, TextInput, TouchableOpacity,} from 'react-native';
+import { Text, View, Image, TextInput, TouchableOpacity, ScrollView} from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
 import { styles } from './style';
 
@@ -24,7 +24,37 @@ export default function Equipes({ navigation }) {
       tarefasatrasadas:2,
       tarefasnaoentregues: 2,
       imagem: require('../../../../assets/img/image.png'),
-    }
+    },
+    {
+    id: '3',
+    titulo: 'Equipe 3',
+    cargo: 'Marketing Digital',
+    tarefaspostadas: 15,
+    quantdeproblemas: 3,
+    tarefasatrasadas: 1,
+    tarefasnaoentregues: 1,
+    imagem: require('../../../../assets/img/image.png'),
+    },
+    {
+    id: '4',
+    titulo: 'Equipe 4',
+    cargo: 'Infraestrutura de TI',
+    tarefaspostadas: 18,
+    quantdeproblemas: 5,
+    tarefasatrasadas: 2,
+    tarefasnaoentregues: 3,
+    imagem: require('../../../../assets/img/image.png'),
+    },
+    {
+    id: '5',
+    titulo: 'Equipe 5',
+    cargo: 'Suporte Técnico',
+    tarefaspostadas: 12,
+    quantdeproblemas: 1,
+    tarefasatrasadas: 0,
+    tarefasnaoentregues: 1,
+    imagem: require('../../../../assets/img/image.png'),
+   }
   ]);
   const [equipeSelecionada, setEquipeSelecionada] = useState(null)
 
@@ -34,25 +64,20 @@ export default function Equipes({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={equipe}
-        keyExtractor={(item) => item.id}
-        style={styles.flat}
-        ListHeaderComponent={() => (
+      <ScrollView contentContainerStyle={styles.scrollContent}>
           <View>
             <Text style={styles.titulo}>Equipes</Text>
-
             <TextInput
               style={styles.navinput}
               placeholder="🔍 Pesquisa uma equipe"
               placeholderTextColor="#ffffff"
             />
           </View>
-        )}
-        
-        renderItem={({ item }) => (
+
+        {equipe.map(item => (
         <View>
             <TouchableOpacity
+              key={item.id}
               style={styles.containertarefas}
               onPress={() => clique(item.id)}
             >
@@ -64,7 +89,10 @@ export default function Equipes({ navigation }) {
             </TouchableOpacity>
               {equipeSelecionada === item.id && (
               <View style={styles.areacard}>
-                <TouchableOpacity onPress={() => navigation.navigate('Equipes')}>
+                <TouchableOpacity 
+                  key={item.id}
+                  onPress={() => navigation.navigate('Equipes')}
+                >
                   <Card style={styles.cardtarequi}>
                     <Card.Cover source={require('../../../../assets/img/equipes.png')} style={styles.imagemcard} />
                     <Card.Content style={styles.cardinferior}>
@@ -78,7 +106,10 @@ export default function Equipes({ navigation }) {
                   </Card>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => navigation.navigate('Tarefas')}>
+                <TouchableOpacity 
+                  key={item.id}
+                  onPress={() => navigation.navigate('Tarefas')}
+                >
                   <Card style={styles.cardtarequi}>
                     <Card.Cover source={require('../../../../assets/img/tarefas.png')} style={styles.imagemcard} />
                     <Card.Content style={styles.cardinferior}>
@@ -92,7 +123,10 @@ export default function Equipes({ navigation }) {
                   </Card>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => navigation.navigate('Ranking')}>
+                <TouchableOpacity 
+                  key={item.id}
+                  onPress={() => navigation.navigate('Ranking')}
+                >
                   <Card style={styles.cardtarequi}>
                     <Card.Cover source={require('../../../../assets/img/ranking.png')} style={styles.imagemcard} />
                     <Card.Content style={styles.cardinferior}>
@@ -108,9 +142,8 @@ export default function Equipes({ navigation }) {
               </View>
             )}
           </View>
-        )}
-        contentContainerStyle={{ paddingBottom: 100 }}
-      />
+        ))}
+      </ScrollView>
     </View>
   );
 }

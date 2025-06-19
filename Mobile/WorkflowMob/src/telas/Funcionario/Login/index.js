@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, View, TouchableOpacity, Alert} from 'react-native';
+import {Text, TextInput, View, TouchableOpacity, Alert} from 'react-native';
 import { styles } from './style';
 
 export default function Login({navigation}){
@@ -16,7 +16,7 @@ export default function Login({navigation}){
         imagem: require('../../../../assets/img/fotoexemplo.png'),
       },
       {
-        id: '1',
+        id: '2',
         nome: 'Gabriel Kenzon Takeuchi',
         datadenascimento: "16/05/1980",
         email: 'KenzoAdm',
@@ -35,15 +35,15 @@ export default function Login({navigation}){
 
     const verificacao = () => {
       if (email.trim() && senha.trim()) {
-        const usuario = funcionario.find(
+        const usuarioLogado = funcionario.find(
           (item) => item.email === email && item.senha === senha
         );
 
-        if (usuario) {
-          if (usuario.email.includes("Adm")) {
-            navigation.navigate('HomeAdm');
+        if (usuarioLogado) {
+          if (usuarioLogado.email.includes("Adm")) {
+            navigation.navigate('HomeAdm', { usuario: usuarioLogado } );
           } else {
-            navigation.navigate('Home');
+            navigation.navigate('Home', { usuario: usuarioLogado });
           }
         } else {
           Alert.alert('Erro', 'Email ou senha incorretos.');
@@ -57,7 +57,7 @@ export default function Login({navigation}){
         <View style={styles.container}>
           <Text style={styles.logo}>WORKFLOW</Text>
           <Text style={styles.titulo}>Login</Text>
-      
+
           <View style={styles.area}>
             <Text style={styles.texto}>Email</Text>
             <TextInput

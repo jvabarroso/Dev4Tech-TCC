@@ -31,16 +31,18 @@ export const styles = StyleSheet.create({
     marginTop:40,
   },
   area: {
-    width: '100%',
-    alignItems: 'flex-start',
+    width: '90%',
+    alignItems: 'center',
+    alignContent:"center",
     marginBottom: "10%",
-    marginLeft:20,
   },
   texto: {
     fontSize: 18,
     fontFamily: fonts.text,
+    fontWeight: 'bold',
     color: '#999999',
-    marginBottom: 5,
+    alignSelf:"flex-start",
+    paddingHorizontal:10,
   },
   input: {
     width: '100%',
@@ -50,8 +52,9 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     borderBottomWidth: 1.4,
     borderBottomColor: '#000',
-    backgroundColor: 'transparet',
+    backgroundColor: 'transparent',
     marginBottom: 15,    
+    alignSelf: 'center',
   },
   senha: {
     color: '#0000FF',

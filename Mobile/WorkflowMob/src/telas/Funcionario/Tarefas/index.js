@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image, FlatList, TextInput } from 'react-native';
+import { Text, View, TouchableOpacity, Image, TextInput, ScrollView  } from 'react-native';
 import { styles } from './style';
 
 export default function Tarefas({ navigation }) {
@@ -52,11 +52,7 @@ export default function Tarefas({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={tarefas}
-        keyExtractor={(item) => item.id}
-        style={styles.flat}
-        ListHeaderComponent={() => (
+      <ScrollView contentContainerStyle={styles.scrollContent}>
           <View>
             <Text style={styles.titulo}>Tarefas</Text>
 
@@ -89,9 +85,9 @@ export default function Tarefas({ navigation }) {
               placeholderTextColor="#ffffff"
             />
           </View>
-        )}
-        renderItem={({ item }) => (
+        {tarefas.map(item => (
           <TouchableOpacity
+            key={item.id}
             onPress={() => navigation.navigate('TarefaEnvio', { tarefas: item })}
             style={styles.containertarefas}
           >
@@ -108,9 +104,8 @@ export default function Tarefas({ navigation }) {
               <Text style={styles.textolistadata}>{item.datadeentrega}</Text>
             </View>
           </TouchableOpacity>
-        )}
-        contentContainerStyle={{ paddingBottom: 100 }}
-      />
+        ))}
+      </ScrollView>
     </View>
   );
 }

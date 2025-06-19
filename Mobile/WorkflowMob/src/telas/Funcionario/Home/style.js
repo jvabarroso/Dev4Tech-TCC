@@ -38,7 +38,6 @@ export const styles = StyleSheet.create({
   },
   textoperfil: {
     justifyContent: 'center',
-    marginLeft: 20, 
     fontFamily: fonts.text,
   },
   nome: {
@@ -91,6 +90,7 @@ export const styles = StyleSheet.create({
   },
   paragraph:{
     color:"#000",
+    fontFamily: fonts.text,
     fontSize: 11,
   },
   linhainfer:{

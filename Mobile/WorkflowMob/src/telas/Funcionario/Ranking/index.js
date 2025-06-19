@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, Image, FlatList, TextInput } from 'react-native';
+import { Text, View, Image, ScrollView, TextInput } from 'react-native';
 import { styles } from './style';
 
 export default function Ranking({navigation}){
@@ -49,11 +49,7 @@ export default function Ranking({navigation}){
   }); //Por enquanto manter assim, depois mudar para se tornar mais dinamico.
     return(
       <View style={styles.container}>
-          <FlatList
-            data={equipeOrdenada}
-            keyExtractor={(item) => item.id}
-            style={styles.flat}
-            ListHeaderComponent={() => (
+        <ScrollView contentContainerStyle={styles.scrollContent}>
               <View>
                 <Text style={styles.titulo}>Ranking de Equipes</Text>
 
@@ -63,8 +59,8 @@ export default function Ranking({navigation}){
                   placeholderTextColor="#ffffff"
                 />
               </View>
-            )}
-            renderItem={({ item, index}) => (
+
+            {equipe.map((item, index) => (
               <View style={styles.containertarefas}>
                 <Text style={styles.colocacao}>{index + 1}º</Text>
                 <Image source={item.imagem} style={styles.imag} />
@@ -73,9 +69,8 @@ export default function Ranking({navigation}){
                   <Text style={styles.textolistacargo}>{item.cargo}</Text>
                 </View>
               </View>
-            )}
-            contentContainerStyle={{ paddingBottom: 100 }}
-          />
+            ))}
+          </ScrollView>
         </View>
   );
 }

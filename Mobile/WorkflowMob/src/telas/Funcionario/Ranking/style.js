@@ -7,7 +7,9 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#ffffff",
-    paddingHorizontal: 20,
+  },
+  scrollContent: {
+    padding: 16,
   },
   titulo: {
     fontSize: 30,
@@ -21,7 +23,7 @@ export const styles = StyleSheet.create({
     width: '100%',
     padding: 10,
     fontSize: 17,
-    backgroundColor: '#1C58F2',
+    backgroundColor: '#1A5CFF',
     borderRadius: 10,
     borderBottomWidth: 0.1,
     borderBottomColor: '#000',

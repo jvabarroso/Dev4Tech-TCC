@@ -7,7 +7,9 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#ffffff",
-    paddingHorizontal: 20,
+  },
+  scrollContent: {
+    padding: 16,
   },
   titulo: {
     fontSize: 30,
@@ -15,16 +17,17 @@ export const styles = StyleSheet.create({
     color: '#000',
     fontWeight: 'bold',
     marginTop: '5%',
-    marginBottom: "10%",
   },
   areabotao: {
-    marginBottom: 20,
+    padding: 10,
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    alignContent:"space-around"
+    
   },
   botao: {
-    backgroundColor: '#1C58F2',
+    backgroundColor: '#1A5CFF',
     paddingVertical: 10,
     paddingHorizontal: 15,
     marginHorizontal: 6,
@@ -33,7 +36,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   textobotao: {
-    fontSize: 15,
+    fontSize: 13,
     fontFamily: fonts.text,
     color: '#FFFFFF',
   },

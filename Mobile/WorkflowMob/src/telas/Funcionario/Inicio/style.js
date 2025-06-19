@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#000',
     marginBottom: 10,
-    marginRight: 110,
+    paddingHorizontal: 10,
   },
   subtitulo: {
     fontFamily: fonts.text,
