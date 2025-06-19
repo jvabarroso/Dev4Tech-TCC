@@ -13,9 +13,16 @@ CREATE TABLE Empresas (
     numResidencia VARCHAR(200),
     bairro varchar(255),
     complemento varchar(255),
+<<<<<<< HEAD
     data_cadEm DATETIME
 );
 
+=======
+    data_cad DATETIME
+);
+
+alter table empresas add data_cad DATETIME;
+>>>>>>> c1e5d468858d85b13d37cd5c5733fe2d1fcfd1ef
 
 -- Tabela de Administradores
 CREATE TABLE Administradores (
@@ -44,12 +51,17 @@ CREATE TABLE Funcionarios (
     data_cadFunc DATETIME
 );
 
+alter table funcionarios add data_cadFunc DATETIME;
+
 CREATE TABLE MensagensChat (
     id_mensagem INT PRIMARY KEY auto_increment,
     texto varchar(255) NOT NULL,
     data_envio DATETIME
 );
+<<<<<<< HEAD
 
+=======
+>>>>>>> c1e5d468858d85b13d37cd5c5733fe2d1fcfd1ef
 -- Tabela Categorias
 CREATE TABLE Categorias (
     id_categoria INT AUTO_INCREMENT PRIMARY KEY,
@@ -72,7 +84,10 @@ CREATE TABLE Equipes_Membros (
     FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (FuncionarioId) REFERENCES Funcionarios(FuncionarioId) ON DELETE CASCADE ON UPDATE CASCADE
 );
+<<<<<<< HEAD
 
+=======
+>>>>>>> c1e5d468858d85b13d37cd5c5733fe2d1fcfd1ef
 drop table mensagenschat;
 
 -- Tabela de Tipos de Usuário

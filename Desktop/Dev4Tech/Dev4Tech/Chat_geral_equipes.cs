@@ -42,7 +42,7 @@ private int alturaMensagem = 50;
 
             // Avatar
             PictureBox avatar = new PictureBox();
-            avatar.Image = Properties.Resources.icon_perfil;
+            avatar.Image = Properties.Resources.icon_EquipLogo;
             avatar.SizeMode = PictureBoxSizeMode.StretchImage;
             avatar.Width = 32;
             avatar.Height = 32;

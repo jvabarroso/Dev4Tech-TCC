@@ -16,7 +16,11 @@ namespace Dev4Tech
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+<<<<<<< HEAD
             Application.Run(new PesquisaEquipes());
+=======
+            Application.Run(new Cadastro_empresa());
+>>>>>>> c1e5d468858d85b13d37cd5c5733fe2d1fcfd1ef
         }
     }
 }

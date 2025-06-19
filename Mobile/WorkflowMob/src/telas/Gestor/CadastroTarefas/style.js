@@ -6,109 +6,124 @@ import fonts from "../../../styles/fonts";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: "#ffffff"
+    backgroundColor: "#ffffff",
   },
-  scroll: {
+  scrollContent: {
+    padding: 16,
+  },
+  titulo: {
+    fontSize: 25,
+    fontFamily: fonts.text,
+    fontWeight: 'bold',
+    padding: 10,
+    alignSelf:"flex-start",
     flex: 1,
-    width: '100%',
   },
-  areaperfil:{
-    flexDirection: 'row',
-    marginTop: 15,
+  areaInput:{
     width: '100%',
+    paddingVertical:10,
     paddingHorizontal: 20,
   },
-  foto:{
-    width: 120,
-    height: 120,
-    marginLeft: 18,
-    borderRadius: 60
-  },
-  verde:{
-    width:20,
-    height:20,
-    borderRadius:"100%",
-    borderWidth: 3.5,
-    borderColor: '#F5F9F9',
-    backgroundColor:"#2EBA4E",
-    right:28,
-    top:95,
-  },
-  textoperfil: {
-    justifyContent: 'center',
-    marginLeft: 20, 
+  texto: {
+    fontSize: 18,
     fontFamily: fonts.text,
+    fontWeight: 'bold',
+    color: '#5e5e5e',
   },
-  nome: {
-    color: '#000',
+  textoanexo: {
+    fontSize: 14,
+    fontFamily: fonts.text,
+    fontWeight: 'bold',
+    color: '#3288D7',
+  },
+  input: {
+    width:"90%",
     fontSize: 16,
-    fontFamily: fonts.text,
-    marginBottom: 2,
+    borderRadius: 6,
+    borderWidth: 1,
+    borderBottomColor: '#D6D3D1',
+    backgroundColor: 'transparet',
+    paddingVertical:8,    
+    paddingHorizontal:20,
+    marginBottom: 10,
+    marginTop: 15,
   },
-  profissao: {
-    color: '#aaaaaa',
+  inputinstrucoes: {
+    width:"90%",
+    height: 160,
     fontSize: 16,
-    fontFamily: fonts.text,
+    borderRadius: 6,
+    borderWidth: 1,
+    borderBottomColor: '#D6D3D1',
+    backgroundColor: 'transparent',
+    paddingVertical:8,    
+    paddingHorizontal:20,
+    marginBottom: 10,
+    marginTop: 15,
+    textAlignVertical: 'top'
   },
-  areatitulo:{
-    justifyContent: 'center',
-    marginRight: 50,
-    marginTop: 20,
-    marginBottom: 30,
+  linha:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop:10,
   },
-  titulo:{
-    fontSize: 24,
-    marginBottom: 4,
-    fontFamily: fonts.text,
-  },
-  subtitulo:{
-    fontSize: 20,
-    fontFamily: fonts.text,
-  },
-  areacard:{
-    marginBottom: 25,
-  },
-  cardtarequi:{
-    marginBottom: 25,
-    width:275,
-  },
-  imagemcard:{
-    height:110,
-  },
-  cardinferior:{
-    backgroundColor: "#ffffffff",
-    borderRadius:8,
-    borderBottomWidth: -0.1,
+  botaoanexo:{
+    alignContent:"flex-start",
+    backgroundColor:"#ffffff",
+    borderRadius:30,
+    borderBottom: 0.1,
     borderBottomColor: '#000',
+    padding:10,
+    width: 160,
+    height: 40,
   },
-  titulocard:{
-    color:"#000",
+  containerequipes: {
+    borderRadius: 10,
+    padding: 10,
+    marginBottom: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'flex-start'
+  },
+  imag: {
+    width: 35,
+    height: 35,
+    marginLeft: 10,
+  },
+  textos: {
+    marginLeft: 15,
+    flex: 1,
+  },
+  textolistatitulo: {
+    color: '#000',
+    fontSize: 15,
     fontWeight: 'bold',
     fontFamily: fonts.text,
-    marginBottom: -5,
   },
-  paragraph:{
-    color:"#000",
-    fontSize: 11,
-  },
-  linhainfer:{
-    flexDirection: 'row',
-    marginTop: 11,
-    justifyContent: 'space-between',
-    width: '100%',
-    paddingHorizontal: -10,
-    marginBottom: -10,
-  },
-  data:{
-    fontSize: 11,
+  textolistacargo: {
+    color: '#000',
+    fontSize: 13,
     fontFamily: fonts.text,
-    color: '#aaaaaa',
   },
-  Entre:{
-    color:"#000",
-    fontSize: 11,
+  textobotao: {
+    fontSize: 14,
+    fontFamily: fonts.text,
+    fontWeight: 'bold',
+    color: '#5e5e5e',
+  },
+  botaocriar: {
+    width: 200,
+    backgroundColor: '#5BB14F',
+    paddingVertical: 12,
+    paddingHorizontal: 30,
+    borderRadius: 10,
+    alignItems: 'center',
+    alignSelf: 'center',
+    marginTop: 20,
+  },
+  textocriar: {
+    color: '#fff',
+    fontSize: 14,
     fontFamily: fonts.text,
     fontWeight: 'bold',
   },

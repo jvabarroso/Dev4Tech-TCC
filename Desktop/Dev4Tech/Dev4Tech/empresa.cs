@@ -13,7 +13,16 @@ namespace Dev4Tech
     class empresa : conexao
     {
         private string nomeEmpresa, codigoId, setorEmpresarial, logradouro, bairro, complemento, CNPJ, numResidencia, email, telefone;
+<<<<<<< HEAD
         DateTime data_cadEm;
+=======
+        private DateTime data_cad;
+
+        public void setData_cad (DateTime data_cad)
+        {
+            this.data_cad = data_cad;
+        }
+>>>>>>> c1e5d468858d85b13d37cd5c5733fe2d1fcfd1ef
 
         public void setData_cadEm(DateTime data_cadEm)
         {
@@ -60,10 +69,18 @@ namespace Dev4Tech
             this.telefone = telefone;
         }
 
+<<<<<<< HEAD
         public DateTime getData_cadEm()
         {
             return this.data_cadEm;
         }
+=======
+        public DateTime getData_cad()
+        {
+            return this.data_cad;
+        }
+
+>>>>>>> c1e5d468858d85b13d37cd5c5733fe2d1fcfd1ef
         public string getNomeEmpresa()
         {
             return this.nomeEmpresa;
@@ -108,7 +125,11 @@ namespace Dev4Tech
         //Método inserir, para mandar os dados no banco de dados
         public void inserir()
         {
+<<<<<<< HEAD
             string query = "Insert into Empresas(id_empresa, nome_empresa, cnpj, logradouro, numResidencia, bairro, complemento, data_cadEm) values ('" + getCodigoId() + "', '" + getNomeEmpresa() + "', '" + getCNPJ() + "', '" + getLogradouro() + "', '" +getNumResidencia() + "', '" + getBairro() + "', '"+ getComplemento() + "','" + getData_cadEm().ToString("yyyy-MM-dd HH:mm:ss") + "')";
+=======
+            string query = "Insert into Empresas(id_empresa, nome_empresa, cnpj, logradouro, numResidencia, bairro, complemento, data_cad) values ('" + getCodigoId() + "', '" + getNomeEmpresa() + "', '" + getCNPJ() + "', '" + getLogradouro() + "', '" +getNumResidencia() + "', '" + getBairro() + "', '" + getComplemento() + "', '" + getData_cad().ToString("yyyy-MM-dd HH:mm:ss") + "')";
+>>>>>>> c1e5d468858d85b13d37cd5c5733fe2d1fcfd1ef
 
             if (this.abrirConexao() == true)
             {

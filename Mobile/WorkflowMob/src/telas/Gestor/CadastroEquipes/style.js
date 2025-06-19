@@ -6,13 +6,10 @@ import fonts from "../../../styles/fonts";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: "#ffffff"
+    backgroundColor: "#ffffff",
   },
-  scroll: {
-    flex: 1,
-    width: '100%',
+  scrollContent: {
+    padding: 16,
   },
   titulo: {
     fontSize: 25,
@@ -24,8 +21,6 @@ export const styles = StyleSheet.create({
   },
   areaInput:{
     width: '100%',
-    alignItems: 'flex-start',
-    marginLeft:20,
     paddingVertical:10,
     paddingHorizontal: 20,
   },
@@ -35,9 +30,14 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#5e5e5e',
   },
+  textoanexo: {
+    fontSize: 14,
+    fontFamily: fonts.text,
+    fontWeight: 'bold',
+    color: '#3288D7',
+  },
   input: {
     width:"90%",
-    fontSize: 16,
     borderRadius: 6,
     borderWidth: 1,
     borderBottomColor: '#D6D3D1',
@@ -46,5 +46,111 @@ export const styles = StyleSheet.create({
     paddingHorizontal:20,
     marginBottom: 10,
     marginTop: 15,
+  },
+  inputequipe: {
+    flex: 1,
+    width:"70%",
+    borderRadius: 6,
+    borderWidth: 1,
+    borderBottomColor: '#D6D3D1',
+    backgroundColor: '#ffffff',
+    paddingVertical:8,    
+    paddingHorizontal:20,
+    marginBottom: 10,
+    marginTop: 15,
+    marginRight:20,
+  },
+  inputadicionar: {
+    width:"15%",
+    borderRadius: 6,
+    borderWidth: 1,
+    borderBottomColor: '#000000',
+    backgroundColor: '#0C21C1',
+    paddingVertical:8,    
+    paddingHorizontal:20,
+    marginBottom: 10,
+    marginTop: 15,
+    alignItems:"center",
+    justifyContent:"center"
+  },
+
+  linha:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop:10,
+  },
+  botaoanexo:{
+    alignContent:"flex-start",
+    backgroundColor:"#ffffff",
+    borderRadius:30,
+    borderBottom: 0.1,
+    borderBottomColor: '#000',
+    padding:10,
+    width: 160,
+    height: 40,
+  },
+  containerequipes: {
+    borderRadius: 10,
+    padding: 10,
+    marginBottom: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'flex-start'
+  },
+  imag: {
+    width: 35,
+    height: 35,
+    marginLeft: 10,
+  },
+  textos: {
+    marginLeft: 15,
+    flex: 1,
+  },
+  textolistatitulo: {
+    color: '#000',
+    fontSize: 15,
+    fontWeight: 'bold',
+    fontFamily: fonts.text,
+  },
+  textolistacargo: {
+    color: '#000',
+    fontSize: 13,
+    fontFamily: fonts.text,
+  },
+  textobotao: {
+    fontSize: 14,
+    fontFamily: fonts.text,
+    fontWeight: 'bold',
+    color: '#000000',
+  },
+  textobotao2: {
+    fontSize: 13,
+    fontFamily: fonts.text,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    alignItems:"center"
+  },
+  textobotao3: {
+    fontSize: 16,
+    fontFamily: fonts.text,
+    fontWeight: 'bold',
+    color: '#D6D3D1',
+    alignItems:"center"
+  },
+  botaocriar: {
+    width: 200,
+    backgroundColor: '#5BB14F',
+    paddingVertical: 12,
+    paddingHorizontal: 30,
+    borderRadius: 10,
+    alignItems: 'center',
+    alignSelf: 'center',
+    marginTop: 20,
+  },
+  textocriar: {
+    color: '#fff',
+    fontSize: 14,
+    fontFamily: fonts.text,
+    fontWeight: 'bold',
   },
 })

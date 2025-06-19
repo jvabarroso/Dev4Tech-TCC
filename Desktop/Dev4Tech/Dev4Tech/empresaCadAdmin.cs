@@ -52,9 +52,15 @@ namespace Dev4Tech
             this.Senha = senha;
         }
 
+<<<<<<< HEAD
         public DateTime getData_cadAdmin()
         {
             return this.data_cadAdmin;
+=======
+        public void setData_cadAdmin (DateTime data_cadAdmin)
+        {
+            this.data_cadAdmin = data_cadAdmin;
+>>>>>>> c1e5d468858d85b13d37cd5c5733fe2d1fcfd1ef
         }
 
         public string getAdminId()
@@ -89,12 +95,20 @@ namespace Dev4Tech
         {
             return this.Senha;
         }
+        public DateTime getData_cadAdmin()
+        {
+            return this.data_cadAdmin;
+        }
 
         //Método inserir, para mandar os dados no banco de dados
         public void inserir()
         {
             string query = "INSERT INTO Administradores(AdminId,Nome, Cargo, CPF, DataNascimento, Telefone, Email, Senha, data_cadAdmin) " +
+<<<<<<< HEAD
                            "VALUES('" + getAdminId() + "','" + getNome() + "','" + getCargo() + "','" + getCPF() + "','" + getDataNascimento() + "','" + getTelefone() + "','" + getEmail() + "','" + getSenha() + "','" + getData_cadAdmin().ToString("yyyy-MM-dd HH:mm:ss") + "')";
+=======
+                           "VALUES('" + getAdminId() + "','" + getNome() + "','" + getCargo() + "','" + getCPF() + "','" + getDataNascimento() + "','" + getTelefone() + "','" + getEmail() + "','" + getSenha() + "','" + getData_cadAdmin() + "')";
+>>>>>>> c1e5d468858d85b13d37cd5c5733fe2d1fcfd1ef
 
             if (this.abrirConexao())
             {
