@@ -30,6 +30,8 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.text,
     fontWeight: 'bold',
     color: '#5e5e5e',
+    alignSelf:"flex-start",
+    paddingHorizontal:10,
   },
   textobotao: {
     fontSize: 14,
@@ -55,6 +57,9 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
     flexDirection: 'row',
     alignItems: 'center',
+    width: '90%',
+    alignSelf: 'center',
+    marginLeft: '5%',
   },
   imag: {
     width: 35,

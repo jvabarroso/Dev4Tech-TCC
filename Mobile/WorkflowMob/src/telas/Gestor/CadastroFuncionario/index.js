@@ -47,7 +47,7 @@ export default function CadastroFuncionario({navigation}){
         <ScrollView contentContainerStyle={styles.scrollContent}>
             <Text style={styles.titulo}>Cadastrar Funcionário</Text>
                     <View style={styles.areaInput}>
-                        <Text style={styles.texto}>Nome</Text>
+                        <Text style={styles.texto}>Nome do funcionário</Text>
                         <TextInput
                             style={styles.input}
                             placeholder="Gabriel Kenzo" //depois mudar, mensagem para mim mesmo dnv :D
@@ -80,7 +80,7 @@ export default function CadastroFuncionario({navigation}){
                             placeholderTextColor={"#000000"}
                             secureTextEntry={true}
                         />
-                        <Text style={styles.texto}>Categoria do funcionario</Text>
+                        <Text style={styles.texto}>Categoria do funcionário</Text>
                         <TextInput
                             style={styles.input}
                             placeholder="Analista de Marketing"

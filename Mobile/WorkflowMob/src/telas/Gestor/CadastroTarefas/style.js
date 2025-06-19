@@ -21,6 +21,7 @@ export const styles = StyleSheet.create({
   },
   areaInput:{
     width: '100%',
+    alignItems: 'center', 
     paddingVertical:10,
     paddingHorizontal: 20,
   },
@@ -29,12 +30,19 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.text,
     fontWeight: 'bold',
     color: '#5e5e5e',
+    alignSelf:"flex-start",
+    paddingHorizontal:10,
   },
   textoanexo: {
     fontSize: 14,
     fontFamily: fonts.text,
     fontWeight: 'bold',
     color: '#3288D7',
+  },
+  textosanexo:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 10,
   },
   input: {
     width:"90%",
@@ -69,13 +77,13 @@ export const styles = StyleSheet.create({
   },
   botaoanexo:{
     alignContent:"flex-start",
+    alignSelf:"flex-start",
     backgroundColor:"#ffffff",
-    borderRadius:30,
-    borderBottom: 0.1,
-    borderBottomColor: '#000',
+    borderRadius:10,
+    borderWidth: 1,
+    borderBottom: 0.10,
+    borderColor: '#F5F5F5',
     padding:10,
-    width: 160,
-    height: 40,
   },
   containerequipes: {
     borderRadius: 10,
@@ -83,7 +91,9 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
     flexDirection: 'row',
     alignItems: 'center',
-    alignSelf: 'flex-start'
+    width: '90%',
+    alignSelf: 'center', 
+    marginLeft: '5%', 
   },
   imag: {
     width: 35,

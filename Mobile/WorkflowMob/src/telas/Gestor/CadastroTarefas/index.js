@@ -60,13 +60,15 @@ export default function CadastroTarefas({navigation}){
                     <TouchableOpacity
                         style={[styles.botaoanexo,styles.linha]}
                     >
-                        <Ionicons name="document-text-outline" size={18} color="#3288D7" />
-                        <Text style={styles.textoanexo}>Anexar Arquivo</Text>
+                        <View style={styles.textosanexo}>
+                            <Ionicons name="document-text-outline" size={18} color="#3288D7" />
+                            <Text style={styles.textoanexo}>Anexar Arquivo</Text>  
+                        </View>
                     </TouchableOpacity>
 
                     <Text style={styles.texto}>Equipes</Text>
                         <TouchableOpacity
-                            style={[styles.input, styles.linha]}
+                            style={styles.input}
                             onPress={cliqueinformacao}
                         >
                             <Text style={styles.textobotao}>{equipeselecionada || "Selecione uma equipe"}</Text> 

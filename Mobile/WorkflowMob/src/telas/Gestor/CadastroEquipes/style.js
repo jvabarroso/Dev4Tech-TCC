@@ -21,6 +21,7 @@ export const styles = StyleSheet.create({
   },
   areaInput:{
     width: '100%',
+    alignItems: 'center', 
     paddingVertical:10,
     paddingHorizontal: 20,
   },
@@ -29,6 +30,8 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.text,
     fontWeight: 'bold',
     color: '#5e5e5e',
+    alignSelf:"flex-start",
+    paddingHorizontal:10,
   },
   textoanexo: {
     fontSize: 14,
@@ -49,7 +52,7 @@ export const styles = StyleSheet.create({
   },
   inputequipe: {
     flex: 1,
-    width:"70%",
+    width:"100%",
     borderRadius: 6,
     borderWidth: 1,
     borderBottomColor: '#D6D3D1',
@@ -58,7 +61,6 @@ export const styles = StyleSheet.create({
     paddingHorizontal:20,
     marginBottom: 10,
     marginTop: 15,
-    marginRight:20,
   },
   inputadicionar: {
     width:"15%",
@@ -73,11 +75,17 @@ export const styles = StyleSheet.create({
     alignItems:"center",
     justifyContent:"center"
   },
+  inputfuncionario: {
+    width:"35%",
+    marginBottom: 10,
+    marginTop: 15,
+    alignSelf:"flex-end",
+    paddingHorizontal:10,
+  },
 
   linha:{
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop:10,
   },
   botaoanexo:{
     alignContent:"flex-start",
@@ -95,7 +103,8 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
     flexDirection: 'row',
     alignItems: 'center',
-    alignSelf: 'flex-start'
+    width: '90%',
+    alignSelf: 'center', 
   },
   imag: {
     width: 35,
@@ -131,11 +140,11 @@ export const styles = StyleSheet.create({
     alignItems:"center"
   },
   textobotao3: {
-    fontSize: 16,
+    fontSize: 13,
     fontFamily: fonts.text,
     fontWeight: 'bold',
     color: '#D6D3D1',
-    alignItems:"center"
+    alignSelf:"flex-start",
   },
   botaocriar: {
     width: 200,

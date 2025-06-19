@@ -86,6 +86,7 @@ export default function CadastroEquipes({navigation}){
           id: '1',
           titulo: 'Equipe 1',
           cargo: 'Desenvolvimento de Software',
+          membros: null,
           tarefaspostadas: 20,
           quantdeproblemas:6,
           tarefasatrasadas:1,
@@ -96,6 +97,7 @@ export default function CadastroEquipes({navigation}){
           id: '2',
           titulo: 'Equipe 2',
           cargo: 'Design',
+          membros: null,
           tarefaspostadas: 10,
           quantdeproblemas:2,
           tarefasatrasadas:2,
@@ -105,30 +107,55 @@ export default function CadastroEquipes({navigation}){
       ]);
       
     const [funcionarios, setFuncionarios] = useState(true);
+    
+
+    const [nomeEquipe, setNomeEquipe] = useState('');
+    const [categoriaEquipe, setCategoriaEquipe] = useState('');
+    const [membrosSelecionados, setMembrosSelecionados] = useState([]);
+
+    const [mostrarMembros, setMostrarMembros] = useState(false);
+    const [mostrarListaFuncionarios, setMostrarListaFuncionarios] = useState(false);
     const [funcionarioselecionada, setfuncionariosselecionada] = useState(null);
-    const [equipes, setequipes] = useState(true);
-    const [equipeselecionada, setEquipeselecionada] = useState(null);
 
-    const cliqueinformacao = () => 
-        {
-            setFuncionarios(valorAtual => !valorAtual); 
+
+    const cliqueinformacao = () => {
+        setMostrarListaFuncionarios(!mostrarListaFuncionarios);
+        setFuncionarios(!funcionarios);
         };
     
-    const confirmodeequipe = (funcionarioselecionada) => 
-        {   
-            setfuncionariosselecionada(funcionarioselecionada.nome);
-            setFuncionarios(valorAtual => !valorAtual); 
+    const confirmodeequipe = (funcionarioselecionada) => {   
+        setfuncionariosselecionada(funcionarioselecionada.nome);
+        adicionarFuncionario(funcionarioselecionada)
+        setMostrarListaFuncionarios(false); // Fecha a lista após seleção
         };
 
-    const cliquefuncionario = (funcionarioselecionada,equipeselecionada) => 
-        {
-            if(funcionarioselecionada.equipe == null){
-                setfuncionariosselecionada(equipeselecionada.titulo);
-                setequipes(valorAtual => !valorAtual); 
-
-            }
-        };
+    const adicionarFuncionario = (funcionario) => {
+        if (!membrosSelecionados.includes(funcionario.id)) {
+            setMembrosSelecionados([...membrosSelecionados, funcionario.id]);
+        }
+    };  
     
+    const criarEquipe = () => {
+    const novaEquipe = {
+        id: Date.now().toString(),
+        titulo: nomeEquipe,
+        cargo: categoriaEquipe,
+        membros: membrosSelecionados,
+        tarefaspostadas: 0,
+        quantdeproblemas: 0,
+        tarefasatrasadas: 0,
+        tarefasnaoentregues: 0,
+        imagem: require('../../../../assets/img/image.png')
+    };
+
+        setEquipe([...equipe, novaEquipe]);
+
+        setNomeEquipe('');
+        setCategoriaEquipe('');
+        setMembrosSelecionados([]);
+    };
+    
+        
 
     
     return(
@@ -140,12 +167,16 @@ export default function CadastroEquipes({navigation}){
                     <TextInput
                         style={styles.input}
                         placeholder="Digite o nome da equipe"
+                        value={nomeEquipe}
+                        onChangeText={setNomeEquipe} 
                         placeholderTextColor={"#000000"}
                     />
                     <Text style={styles.texto}>Categoria da equipe</Text>
                     <TextInput
                         style={styles.input}
                         placeholder="Digite a categoria da equipe"
+                        value={categoriaEquipe}
+                        onChangeText={setCategoriaEquipe} 
                         placeholderTextColor={"#000000"}
                         secureTextEntry={true}
                     />
@@ -155,22 +186,17 @@ export default function CadastroEquipes({navigation}){
                             style={styles.inputequipe}
                             onPress={cliqueinformacao}
                         >
-                            <Text style={styles.textobotao}>{funcionarioselecionada || "Selecione uma funcionario"}</Text> 
-                            <Ionicons name="caret-down-outline" size={18} color="black" />
-                        </TouchableOpacity>
-
-                        <TouchableOpacity
-                            style={styles.inputadicionar}
-                            onPress={cliquefuncionario}
-                        >
-                            <Text style={styles.textobotao2}>+</Text> 
+                            <View style={styles.linha}>
+                                <Text style={styles.textobotao}>{funcionarioselecionada || "Selecione uma funcionario"}</Text> 
+                                <Ionicons name="caret-down-outline" size={18} color="black" />     
+                            </View>
                         </TouchableOpacity>
                     </View>
 
-                    {!funcionarios && funcionario.map(item => (
+                    {mostrarListaFuncionarios && funcionario.map(item => (
                         <TouchableOpacity
                             key={item.id}
-                            style={styles.containerequipes}
+                            style={styles.containerequipes}       
                             onPress={() => confirmodeequipe(item)}
                         >
                         <Image source={item.imagem} style={styles.imag} />
@@ -181,31 +207,37 @@ export default function CadastroEquipes({navigation}){
                         </TouchableOpacity>
                     ))}
 
-                    <Text style={styles.texto}>Membros da Equipe</Text>
+                    <Text style={styles.texto}>Membros da Equipe ({membrosSelecionados.length})</Text>
 
-                    {!equipes && funcionario.map(item => (
-                        <TouchableOpacity
-                            key={item.id}
-                            style={styles.containerequipes}
-                            onPress={() => confirmodeequipe(item)}
+                    {mostrarMembros && membrosSelecionados.map(membroId => {
+                        const membro = funcionario.find(f => f.id === membroId);
+                            
+                        if (!membro) return null;
+                        return (
+                        <View 
+                            key={membroId}
+                            style={styles.containerequipes} 
                         >
-                        <Image source={item.imagem} style={styles.imag} />
-                        <View style={styles.textos}>
-                            <Text style={styles.textolistatitulo}>{item.nome}</Text>
-                            <Text style={styles.textolistatitulo}>{item.equipe}</Text>
-                            <Text style={styles.textolistacargo}>{item.cargo}</Text>
+                            <Image source={membro.imagem} style={styles.imag} />
+                            <View style={styles.textos}>
+                                <Text style={styles.textolistatitulo}>{membro.nome}</Text>
+                                <Text style={styles.textolistacargo}>{membro.cargo}</Text>
+                            </View>
                         </View>
-                        </TouchableOpacity>
-                    ))}
+                        );
+                    })}
 
-                    <TouchableOpacity
+                    <TouchableOpacity 
                         style={styles.inputfuncionario}
-                        onPress={cliquefuncionario}
+                        onPress={() => setMostrarMembros(!mostrarMembros)}
                     >
-                        <Text style={styles.textobotao3}>Ver Equipe</Text> 
+                        <Text style={styles.textobotao3}>{mostrarMembros ? 'Ocultar' : 'Ver mais'}</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.botaocriar}>
+                    <TouchableOpacity 
+                        style={styles.botaocriar}
+                        onPress={criarEquipe}
+                    >
                         <Text style={styles.textocriar}>Criar</Text>
                     </TouchableOpacity>
                 </View>
