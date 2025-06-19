@@ -155,7 +155,6 @@ C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4
 C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefa_Enviada.resources
 C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_Tarefa.resources
 C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.GenerateResource.Cache
-<<<<<<< HEAD
 C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe.config
 C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe
 C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.pdb
@@ -207,5 +206,4 @@ C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech
 C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.GenerateResource.Cache
 C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.exe
 C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.pdb
-=======
 >>>>>>> 84c1efa37aa2833043764843579cbc8d64b56f55

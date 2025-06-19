@@ -38,6 +38,7 @@ namespace Dev4Tech
                 em.setNumResidencia(txtNumResidencia.Text);
                 em.setBairro(txtBairroEmpresa.Text);
                 em.setComplemento(txtComplementoEmpresa.Text);
+                em.setData_cadEm(DateTime.Now);
                 em.inserir();
                 
                 MessageBox.Show("Cadastro realizado com sucesso!");
