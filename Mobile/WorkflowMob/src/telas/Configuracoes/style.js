@@ -3,30 +3,26 @@ import fonts from "../../styles/fonts";
 
 
 
-export const styles = StyleSheet.create({
+export const getStyles = (theme) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ffffff",
+    backgroundColor: theme.background,
   },
-  scrollView: {
-    flex: 1,
-  },
-  containerConteudo: {
-    paddingHorizontal: 20,
-    paddingTop: 15,
-    paddingBottom: 40,
+  scrollContent: {
+    padding: 16,
   },
   nav:{
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingVertical: 15,
-    marginBottom: 10,
   },
   botaodevoltar:{
     width:30,
     height:30,
     marginLeft: 1,
+    color:"#0C21C1",
+    fontWeight: '300',
     flexDirection: 'row',
     marginTop:3
   },
@@ -34,13 +30,14 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: fonts.text,
     fontWeight: 'bold',
+    color: theme.text,
     textAlign: 'center',
     flex: 1,
   },
   titulo: {
     fontSize: 30,
     fontFamily: fonts.text,
-    color: '#000',
+    color: theme.text,
     fontWeight: 'bold',
     paddingVertical:15,
     marginLeft:20,
@@ -48,10 +45,9 @@ export const styles = StyleSheet.create({
   titulo2: {
     fontSize: 15,
     fontFamily: fonts.text,
-    color: '#000',
+    color: theme.text,
     fontWeight: 'bold',
-    marginTop: '5%',
-    marginBottom: "8%",
+    padding:15,
   },
   navinput: {
     width: '100%',
@@ -62,14 +58,14 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     borderBottomWidth: 0.1,
     borderBottomColor: '#000',
-    marginBottom: 15,
-    color: '#fff',
+    marginBottom: 10,
+    color: theme.text,
   },
   flat: {
     flex: 1,
   },
   containertarefas: {
-    backgroundColor: '#F5F7FC',
+    backgroundColor: theme.inputBackground,
     borderRadius: 10,
     padding: 10,
     marginBottom: 20,
@@ -77,12 +73,14 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   containerfuncionario: {
-    backgroundColor: '#ffffff',
+    backgroundColor: theme.inputBackground,
     borderRadius: 10,
     padding: 10,
-    marginBottom: 20,
+    marginBottom: 10,
     flexDirection: 'row',
     alignItems: 'center',
+    alignSelf:"center",
+    marginRight:10,
   },
   imag: {
     width: 45,
@@ -99,30 +97,32 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   textolistatitulo: {
-    color: '#000',
+    color: theme.text,
     fontSize: 18,
     fontWeight: 'bold',
     fontFamily: fonts.text,
   },
   textolistacargo: {
-    color: '#000',
+    color: theme.text,
     fontSize: 15,
     fontFamily: fonts.text,
   },
   textofuncionario: {
-    color: '#000',
+    color: theme.text,
     fontSize: 28,
     fontWeight: 'bold',
     fontFamily: fonts.text,
   },
   textofuncionariocargo: {
-    color: '#000',
+    color: theme.text,
     fontSize: 19,
+    fontWeight: '300',
     fontFamily: fonts.text,
   },
   pontuacao: {
     fontSize: 16,
     fontWeight: 'bold',
+    color: theme.text,
     fontFamily: fonts.text,
     marginBottom: 10,
     marginTop:3
@@ -145,7 +145,8 @@ export const styles = StyleSheet.create({
   voltar:{
     fontSize: 18,
     fontFamily: fonts.text,
-    fontWeight: 'bold',
+    color:"#0C21C1",
+    fontWeight: '300',
     width:60,
   },
   areaInput:{
@@ -158,7 +159,7 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: fonts.text,
     fontWeight: 'bold',
-    color: '#000000',
+    color: theme.text,
     marginBottom: 5,
   },
   input: {
@@ -167,10 +168,61 @@ export const styles = StyleSheet.create({
     borderRadius: 6,
     borderWidth: 1,
     borderBottomColor: '#D6D3D1',
-    backgroundColor: 'transparet',
+    backgroundColor: theme.inputBackground,
     paddingVertical:8,    
     paddingHorizontal:20,
     marginBottom: 10,
     marginTop: 15,
   },
-})
+  botaoeditar: {
+    backgroundColor: '#1C58F2',
+    paddingVertical: 10,
+    paddingHorizontal: 30,
+    borderRadius: 10,
+    alignItems: 'center',
+    alignSelf: 'center',
+    marginTop: 20,
+  },
+  botaosair: {
+    backgroundColor: '#F21C1C',
+    paddingVertical: 10,
+    paddingHorizontal: 30,
+    borderRadius: 10,
+    alignItems: 'flex-start',
+    alignSelf: 'flex-start',
+    marginTop: 20,
+  },
+  textoeditar: {
+    color: "#ffff",
+    fontSize: 16,
+    fontFamily: fonts.text,
+    fontWeight: 'bold',
+  },
+  inputfuncionario: {
+    width:"35%",
+    marginBottom: 10,
+    marginTop: 15,
+    alignSelf:"flex-start",
+    paddingHorizontal:10,
+  },
+  textobotao3: {
+    fontSize: 13,
+    fontFamily: fonts.text,
+    fontWeight: 'bold',
+    color: '#D6D3D1',
+    alignSelf:"flex-start",
+    width: 150,
+  },
+  textomodo: {
+    color: theme.text,
+    fontSize: 15,
+    fontFamily: fonts.text,
+  },
+  botaomodo: {
+    backgroundColor: theme.background,
+    paddingHorizontal: 30,
+    borderRadius: 10,
+    alignItems: 'center',
+    alignSelf: 'center',
+  },  
+});

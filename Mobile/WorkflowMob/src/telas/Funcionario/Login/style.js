@@ -3,10 +3,10 @@ import fonts from "../../../styles/fonts";
 
 
 
-export const styles = StyleSheet.create({
+export const  getStyles = (theme) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: theme.background,
     padding: 20,
     alignItems: 'center',
     justifyContent: 'center',
@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
     fontSize: 19,
     fontFamily: fonts.text,
     fontWeight: 'bold',
-    color: '#000',
+    color: theme.text,
     alignSelf: 'flex-start',
     marginBottom: "28%",
     marginLeft: "2%",
@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
     fontSize: 35,
     fontWeight: 'bold',
     fontFamily: fonts.text,
-    color: '#000',
+    color: theme.text,
     alignSelf: 'flex-start',
     marginBottom: "10%",
     marginLeft:10,
@@ -40,19 +40,19 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: fonts.text,
     fontWeight: 'bold',
-    color: '#999999',
+    color: theme.text2,
     alignSelf:"flex-start",
     paddingHorizontal:10,
   },
   input: {
     width: '100%',
-    color: '#000842',
+    backgroundColor: theme.inputBackground3,
+    color:theme.text,
     padding: 10,
     fontSize: 16,
     borderRadius: 10,
     borderBottomWidth: 1.4,
     borderBottomColor: '#000',
-    backgroundColor: 'transparent',
     marginBottom: 15,    
     alignSelf: 'center',
   },

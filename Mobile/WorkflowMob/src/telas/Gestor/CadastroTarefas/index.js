@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import { Text, View, TouchableOpacity, Image, ScrollView, TextInput} from 'react-native';
-import { styles } from './style';
+import { getStyles } from './style';
+import { useTheme } from '../../../styles/themecontext'
+
 
 import { Ionicons } from '@expo/vector-icons';
 
 export default function CadastroTarefas({navigation}){
+    const { theme } = useTheme();
+    const styles = getStyles(theme);
+    
     const [equipe, setEquipe] = useState([
         {
             id: '1',
@@ -55,7 +60,7 @@ export default function CadastroTarefas({navigation}){
                         multiline
                         numberOfLines={7}
                         placeholder="Alteração nos valores contratuais."
-                        placeholderTextColor={"#000000"}
+                        placeholderTextColor={theme.text}
                     />
                     <TouchableOpacity
                         style={[styles.botaoanexo,styles.linha]}
@@ -91,7 +96,7 @@ export default function CadastroTarefas({navigation}){
                     <TextInput
                         style={styles.input}
                         placeholder="xx/xx/xxxx"
-                        placeholderTextColor={"#000000"}
+                        placeholderTextColor={theme.text}
                         secureTextEntry={true}
                     />
                     <TouchableOpacity style={styles.botaocriar}>

@@ -3,12 +3,12 @@ import fonts from "../../../styles/fonts";
 
 
 
-export const styles = StyleSheet.create({
+export const getStyles = (theme) => StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: "#ffffff"
+    backgroundColor: theme.background
   },
   scroll: {
     flex: 1,
@@ -41,13 +41,13 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.text,
   },
   nome: {
-    color: '#000',
+    color: theme.text,
     fontSize: 16,
     fontFamily: fonts.text,
     marginBottom: 2,
   },
   profissao: {
-    color: '#aaaaaa',
+    color: theme.text2,
     fontSize: 16,
     fontFamily: fonts.text,
   },
@@ -60,10 +60,12 @@ export const styles = StyleSheet.create({
   titulo:{
     fontSize: 24,
     marginBottom: 4,
+    color: theme.text,
     fontFamily: fonts.text,
   },
   subtitulo:{
     fontSize: 20,
+    color: theme.text,
     fontFamily: fonts.text,
   },
   areacard:{
@@ -77,19 +79,19 @@ export const styles = StyleSheet.create({
     height:110,
   },
   cardinferior:{
-    backgroundColor: "#ffffffff",
+    backgroundColor: theme.background,
     borderRadius:8,
     borderBottomWidth: -0.1,
     borderBottomColor: '#000',
   },
   titulocard:{
-    color:"#000",
+    color:theme.text,
     fontWeight: 'bold',
     fontFamily: fonts.text,
     marginBottom: -5,
   },
   paragraph:{
-    color:"#000",
+    color:theme.text,
     fontFamily: fonts.text,
     fontSize: 11,
   },
@@ -104,10 +106,10 @@ export const styles = StyleSheet.create({
   data:{
     fontSize: 11,
     fontFamily: fonts.text,
-    color: '#aaaaaa',
+    color:theme.text2,
   },
   Entre:{
-    color:"#000",
+    color:theme.text,
     fontSize: 11,
     fontFamily: fonts.text,
     fontWeight: 'bold',

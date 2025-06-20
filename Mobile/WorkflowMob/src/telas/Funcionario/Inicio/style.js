@@ -3,17 +3,17 @@ import fonts from "../../../styles/fonts";
 
 
 
-export const styles = StyleSheet.create({
+export const getStyles = (theme) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: theme.background,
     alignItems: 'center',
     justifyContent: 'center',
   },
   logo: {
     fontSize: 19,
     fontFamily: fonts.text,
-    color: '#000',
+    color: theme.text,
     fontWeight: 'bold',
     flexDirection: 'row',
     paddingBottom: 5,
@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.text,
     fontSize: 35,
     fontWeight: 'bold',
-    color: '#000',
+    color: theme.text,
     marginBottom: 10,
     paddingHorizontal: 10,
   },
@@ -37,7 +37,7 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.text,
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#000',
+    color: theme.text,
     marginBottom: 10,
     marginRight: 40,
     width:300,

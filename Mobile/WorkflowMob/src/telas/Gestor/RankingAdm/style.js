@@ -3,15 +3,15 @@ import fonts from "../../../styles/fonts";
 
 
 
-export const styles = StyleSheet.create({
+export const getStyles = (theme) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ffffff",
+    backgroundColor: theme.background,
     paddingHorizontal: 20,
   },
   titulo: {
     fontSize: 30,
-    color: '#000',
+    color: theme.text,
     fontWeight: 'bold',
     fontFamily: fonts.text,
     marginTop: '5%',
@@ -26,13 +26,13 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 0.1,
     borderBottomColor: '#000',
     marginBottom: 15,
-    color: '#fff',
+    color: theme.text,
   },
   flat: {
     flex: 1,
   },
   containertarefas: {
-    backgroundColor: '#F5F7FC',
+    backgroundColor: theme.inputBackground,
     borderRadius: 10,
     padding: 10,
     marginBottom: 20,
@@ -49,19 +49,20 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   textolistatitulo: {
-    color: '#000',
+    color: theme.text,
     fontSize: 18,
     fontWeight: 'bold',
     fontFamily: fonts.text,
   },
   textolistacargo: {
-    color: '#000',
+    color: theme.text,
     fontSize: 15,
     fontFamily: fonts.text,
   },
   colocacao:{
     fontSize: 28, 
-    fontWeight: 'bold', 
+    fontWeight: 'bold',
+    color: theme.text, 
     fontFamily: fonts.text,
     marginRight: 10,
   },

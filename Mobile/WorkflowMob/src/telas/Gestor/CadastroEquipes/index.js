@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Text, View, TouchableOpacity, Image, ScrollView, TextInput} from 'react-native';
-import { styles } from './style';
+import { getStyles } from './style';
+import { useTheme } from '../../../styles/themecontext'
 
 import { Ionicons } from '@expo/vector-icons';
 
 export default function CadastroEquipes({navigation}){
+    const { theme } = useTheme();
+    const styles = getStyles(theme);
 
     const [funcionario, setFuncionario] = useState([
     {
@@ -169,7 +172,7 @@ export default function CadastroEquipes({navigation}){
                         placeholder="Digite o nome da equipe"
                         value={nomeEquipe}
                         onChangeText={setNomeEquipe} 
-                        placeholderTextColor={"#000000"}
+                        placeholderTextColor={theme.text}
                     />
                     <Text style={styles.texto}>Categoria da equipe</Text>
                     <TextInput
@@ -177,7 +180,7 @@ export default function CadastroEquipes({navigation}){
                         placeholder="Digite a categoria da equipe"
                         value={categoriaEquipe}
                         onChangeText={setCategoriaEquipe} 
-                        placeholderTextColor={"#000000"}
+                        placeholderTextColor={theme.text}
                         secureTextEntry={true}
                     />
                     <Text style={styles.texto}>Adicionar membros à equipe</Text>

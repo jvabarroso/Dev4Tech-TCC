@@ -3,10 +3,10 @@ import fonts from "../../../styles/fonts";
 
 
 
-export const styles = StyleSheet.create({
+export const getStyles = (theme) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ffffff",
+    backgroundColor: theme.background,
   },
   scrollContent: {
     padding: 16,
@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
   titulo: {
     fontSize: 30,
     fontFamily: fonts.text,
-    color: '#000',
+    color: theme.text,
     fontWeight: 'bold',
     marginTop: '5%',
   },
@@ -56,7 +56,7 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   containertarefas: {
-    backgroundColor: '#F5F7FC',
+    backgroundColor: theme.inputBackground,
     borderRadius: 10,
     padding: 15,
     marginBottom: 20,
@@ -75,13 +75,13 @@ export const styles = StyleSheet.create({
     height: 45,
   },
   textolistatitulo: {
-    color: '#000',
+    color: theme.text,
     fontSize: 18,
     fontFamily: fonts.text,
     fontWeight: 'bold',
   },
   textolista: {
-    color: '#000',
+    color: theme.text,
     fontSize: 15,
     fontFamily: fonts.text,
   },
@@ -91,16 +91,16 @@ export const styles = StyleSheet.create({
     marginTop: 5,
   },
   textolistacargo: {
-    color: '#181A1F',
+    color: theme.text,
     fontSize: 13,
     fontFamily: fonts.text,
-    backgroundColor: '#DDE3F0',
+    backgroundColor: theme.inputBackground2,
     borderRadius: 15,
     paddingHorizontal: 7,
     paddingVertical: 3,
   },
   textolistadata: {
-    color: '#181A1F',
+    color: theme.text,
     fontSize: 14,
     fontFamily: fonts.text,
   },

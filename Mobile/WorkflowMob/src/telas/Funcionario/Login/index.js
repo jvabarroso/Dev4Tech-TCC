@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import {Text, TextInput, View, TouchableOpacity, Alert} from 'react-native';
-import { styles } from './style';
+import { getStyles } from './style';
+import { useTheme } from '../../../styles/themecontext'
 
 export default function Login({navigation}){
+    const { theme } = useTheme();
+    const styles = getStyles(theme);
+
     const [funcionario, setFuncionario] = useState([
       {
         id: '1',
@@ -63,14 +67,14 @@ export default function Login({navigation}){
             <TextInput
               style={styles.input}
               placeholder="✉️Entre com seu endereço de Email"
-              placeholderTextColor={"#000842"}
+              placeholderTextColor={theme.text}
               onChangeText={email => setEmail(email)}
             />
             <Text style={styles.texto}>Senha</Text>
             <TextInput
               style={styles.input}
               placeholder="🔒Digite sua senha"
-              placeholderTextColor={"#000842"}
+              placeholderTextColor={theme.text}
               secureTextEntry={true}
               onChangeText={senha => setSenha(senha)}
             />

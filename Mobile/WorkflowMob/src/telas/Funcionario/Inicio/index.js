@@ -1,8 +1,11 @@
 import React from 'react';
 import { Text, View, TouchableOpacity} from 'react-native';
-import { styles } from './style';
+import { getStyles } from './style';
+import { useTheme } from '../../../styles/themecontext'
 
 export default function Inicio({navigation}){
+    const { theme } = useTheme();
+    const styles = getStyles(theme);
 
     return(
         <View style={styles.container}>

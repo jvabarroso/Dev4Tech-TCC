@@ -3,10 +3,11 @@ import fonts from "../../../styles/fonts";
 
 
 
-export const styles = StyleSheet.create({
-    container: {
+export const getStyles = (theme) => StyleSheet.create({
+
+   container: {
         flex: 1,
-        backgroundColor: "#ffffff",
+        backgroundColor: theme.background
     },
     scrollView: {
         flex: 1,
@@ -44,6 +45,7 @@ export const styles = StyleSheet.create({
     },
     titulo: {
         fontSize: 18,
+        color: theme.text,
         fontFamily: fonts.text,
         fontWeight: 'bold',
         textAlign: 'center',
@@ -51,6 +53,7 @@ export const styles = StyleSheet.create({
     },
     titulo2: {
         fontSize: 18,
+        color: theme.text,
         fontFamily: fonts.text,
         fontWeight: 'bold',
         textAlign: 'right',
@@ -73,13 +76,13 @@ export const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         fontFamily: fonts.text,
-        color: "#000000",
+        color: theme.text,
         marginBottom: 5,
     },
     datadeenvio: {
         fontSize: 13,
         fontFamily: fonts.text,
-        color: "#aaaaaa",
+        color: theme.text2,
         marginBottom: 20,
     },
     
@@ -99,16 +102,16 @@ export const styles = StyleSheet.create({
         fontSize: 13,
         fontFamily: fonts.text,
         fontWeight: 'bold',
-        color: "#181A1F",
+        color: theme.text2,
         marginBottom: 5,
     },
     datas: {
         fontSize: 14,
         fontFamily: fonts.text,
-        color: '#000',
+        color: theme.text,
     },
     cargos: {
-        backgroundColor: '#F5F7FC',
+        backgroundColor: theme.inputBackground,
         borderRadius: 20,
         paddingHorizontal: 12,
         paddingVertical: 5,
@@ -117,7 +120,7 @@ export const styles = StyleSheet.create({
     textoCargo: {
         fontSize: 14,
         fontFamily: fonts.text,
-        color: '#181A1F',
+        color: theme.text,
     },
     
     linha2: {
@@ -128,13 +131,13 @@ export const styles = StyleSheet.create({
         fontSize: 14,
         fontFamily: fonts.text,
         fontWeight: 'bold',
-        color: '#000',
+        color: theme.text,
         marginBottom: 10,
     },
     descricao2: {
         fontSize: 14,
         fontFamily: fonts.text,
-        color: '#333',
+        color: theme.text2,
         marginBottom: 5,
         lineHeight: 20,
     },
@@ -178,7 +181,7 @@ export const styles = StyleSheet.create({
     },
     modalContainer: {
         flex: 1,
-        backgroundColor: '#ffffff',
+        backgroundColor: theme.background
     },
     modalContent: {
         flex: 1,
@@ -194,7 +197,7 @@ export const styles = StyleSheet.create({
     },
     mensagem:{
         padding:20,
-        backgroundColor:"#EEEEEE",
+        backgroundColor: theme.inputBackground,
         borderRadius:30,
         borderBottomLeftRadius:1,
         maxWidth: '80%',
@@ -203,7 +206,7 @@ export const styles = StyleSheet.create({
     modeltexto:{
         fontSize:16,
         fontFamily: fonts.text,
-        color:"#000000"
+        color: theme.text
     },
     espacoInput: {
         flex: 1, 
@@ -230,9 +233,6 @@ export const styles = StyleSheet.create({
         fontSize: 14,  
         fontFamily: fonts.text,
         marginTop:10,
-    },
-    botaoEnviar: {
-        marginTop:5,
     },
     imagemfundo:{
         position: 'absolute',

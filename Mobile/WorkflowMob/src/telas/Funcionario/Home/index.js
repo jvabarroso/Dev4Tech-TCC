@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Text, View, TouchableOpacity, Image, ScrollView} from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
-import { styles } from './style';
+import { getStyles } from './style';
+import { useTheme } from '../../../styles/themecontext'
 
 export default function Home({navigation, route}){
+  const { theme } = useTheme();
+  const styles = getStyles(theme);
 
   const usuarioRecebido = route.params?.usuario || {};
 

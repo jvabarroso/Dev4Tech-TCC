@@ -3,10 +3,10 @@ import fonts from "../../../styles/fonts";
 
 
 
-export const styles = StyleSheet.create({
+export const getStyles = (theme) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ffffff",
+    backgroundColor: theme.background
   },
   scrollContent: {
     padding: 16,
@@ -14,6 +14,7 @@ export const styles = StyleSheet.create({
   titulo: {
     fontSize: 25,
     fontFamily: fonts.text,
+    color: theme.text,
     fontWeight: 'bold',
     padding: 10,
     alignSelf:"flex-start",
@@ -29,7 +30,7 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: fonts.text,
     fontWeight: 'bold',
-    color: '#5e5e5e',
+    color: theme.text3,
     alignSelf:"flex-start",
     paddingHorizontal:10,
   },
@@ -50,7 +51,7 @@ export const styles = StyleSheet.create({
     borderRadius: 6,
     borderWidth: 1,
     borderBottomColor: '#D6D3D1',
-    backgroundColor: 'transparet',
+    backgroundColor: theme.inputBackground,
     paddingVertical:8,    
     paddingHorizontal:20,
     marginBottom: 10,
@@ -63,7 +64,7 @@ export const styles = StyleSheet.create({
     borderRadius: 6,
     borderWidth: 1,
     borderBottomColor: '#D6D3D1',
-    backgroundColor: 'transparent',
+    backgroundColor: theme.inputBackground,
     paddingVertical:8,    
     paddingHorizontal:20,
     marginBottom: 10,
@@ -78,11 +79,11 @@ export const styles = StyleSheet.create({
   botaoanexo:{
     alignContent:"flex-start",
     alignSelf:"flex-start",
-    backgroundColor:"#ffffff",
+    backgroundColor: theme.inputBackground,
     borderRadius:10,
     borderWidth: 1,
     borderBottom: 0.10,
-    borderColor: '#F5F5F5',
+    borderColor: theme.border,
     padding:10,
   },
   containerequipes: {
@@ -105,13 +106,13 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   textolistatitulo: {
-    color: '#000',
+    color: theme.text,
     fontSize: 15,
     fontWeight: 'bold',
     fontFamily: fonts.text,
   },
   textolistacargo: {
-    color: '#000',
+    color: theme.text,
     fontSize: 13,
     fontFamily: fonts.text,
   },
@@ -119,7 +120,7 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: fonts.text,
     fontWeight: 'bold',
-    color: '#5e5e5e',
+    color: theme.text3,
   },
   botaocriar: {
     width: 200,
