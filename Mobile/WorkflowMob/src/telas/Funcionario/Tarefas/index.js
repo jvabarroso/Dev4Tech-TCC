@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { Text, View, TouchableOpacity, Image, TextInput, ScrollView  } from 'react-native';
-import { styles } from './style';
+import { getStyles } from './style';
+import { useTheme } from '../../../styles/themecontext'
 
 export default function Tarefas({ navigation }) {
+  const { theme } = useTheme();
+  const styles = getStyles(theme);
+
   const [tarefas, setTarefas] = useState([
     {
       id: '1',

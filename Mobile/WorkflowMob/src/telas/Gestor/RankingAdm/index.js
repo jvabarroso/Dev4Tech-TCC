@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { Text, View, Image, FlatList, TextInput, TouchableOpacity,} from 'react-native';
-import { styles } from './style';
+import { getStyles } from './style';
+import { useTheme } from '../../../styles/themecontext'
 
 export default function RankingAdm({navigation}){
+  const { theme } = useTheme();
+  const styles = getStyles(theme);
+  
   const [equipe, setEquipe] = useState([
     {
       id: '1',

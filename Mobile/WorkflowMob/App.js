@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import Routes from "./src/routes";
 import FlashMessage from "react-native-flash-message";
-
+import { ThemeProvider } from './src/styles/themecontext';
 import AppLoading from 'expo-app-loading';
 
 
@@ -22,8 +22,10 @@ export default function App() {
 
   return (
     <>
+    <ThemeProvider>
     <Routes />
     <FlashMessage icon="auto" duration={5500} style={{ marginTop: 0 }} />
+    </ThemeProvider>
     </>
   );
   }

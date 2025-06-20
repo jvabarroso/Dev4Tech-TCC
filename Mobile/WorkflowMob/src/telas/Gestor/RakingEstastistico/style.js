@@ -3,10 +3,10 @@ import fonts from "../../../styles/fonts";
 
 
 
-export const styles = StyleSheet.create({
+export const getStyles = (theme) => StyleSheet.create({
    container: {
       flex: 1,
-      backgroundColor: "#ffffff",
+      backgroundColor: theme.background,
     },
     scrollView: {
       flex: 1,
@@ -31,6 +31,7 @@ export const styles = StyleSheet.create({
     },
     titulo: {
       fontSize: 18,
+      color: theme.text,
       fontFamily: fonts.text,
       fontWeight: 'bold',
       textAlign: 'center',
@@ -42,7 +43,7 @@ export const styles = StyleSheet.create({
     titulossub: {
       fontSize: 30,
       fontFamily: fonts.text,
-      color: '#000',
+      color: theme.text,
       fontWeight: 'bold',
     },
     navinput: {
@@ -58,7 +59,7 @@ export const styles = StyleSheet.create({
       color: '#fff',
     },
     containertarefas: {
-      backgroundColor: '#F5F7FC',
+      backgroundColor: theme.input.Background,
       borderRadius: 10,
       padding: 10,
       marginBottom: 20,
@@ -75,13 +76,13 @@ export const styles = StyleSheet.create({
       flex: 1,
     },
     textolistatitulo: {
-      color: '#000',
+      color: theme.text,
       fontSize: 18,
       fontWeight: 'bold',
       fontFamily: fonts.text,
     },
     textolistacargo: {
-      color: '#000',
+      color: theme.text,
       fontSize: 15,
       fontFamily: fonts.text,
     },
@@ -97,7 +98,7 @@ export const styles = StyleSheet.create({
     tituloestastisca: {
       fontSize: 30,
       fontFamily: fonts.text,
-      color: '#000',
+      color: theme.text,
       fontWeight: 'bold',
       marginRight:150,
     },
@@ -109,7 +110,7 @@ export const styles = StyleSheet.create({
     titulodetalhes:{
       fontSize: 20,
       fontFamily: fonts.text,
-      color: '#000',
+      color: theme.text,
       fontWeight: 'bold',
       paddingHorizontal:5
     },
@@ -147,7 +148,7 @@ export const styles = StyleSheet.create({
     textopontos:{
       fontSize: 16,
       fontFamily: fonts.text,
-      color: '#000',
+      color: theme.text,
       marginVertical: 2,
     },
     linhaIconeTexto: {
@@ -176,6 +177,7 @@ export const styles = StyleSheet.create({
     },
     numberInside:{
       fontFamily: fonts.text,
+      color: theme.text,
       fontSize:20,
     },
 

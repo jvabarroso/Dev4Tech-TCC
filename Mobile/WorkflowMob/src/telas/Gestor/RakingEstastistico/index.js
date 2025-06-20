@@ -3,10 +3,14 @@ import { Text, View, Image, FlatList, TextInput, TouchableOpacity, ScrollView} f
 {/* import { BarChart, Grid, XAxis} from 'react-native-svg-charts';*/}
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 
-import { styles } from './style';
+import { getStyles } from './style';
+import { useTheme } from '../../../styles/themecontext'
 import { Ionicons } from '@expo/vector-icons';
 
 export default function RankingEstastistico({navigation, route}){
+    const { theme } = useTheme();
+    const styles = getStyles(theme);
+
     const { equipe, index } = route.params;
     const [verificacaoinfor, setVerificacaoinfor] = useState(true);
     const [verificacaodesem, setVerificacaodesem] = useState(true);
@@ -45,7 +49,7 @@ export default function RankingEstastistico({navigation, route}){
                         style={styles.botaodevoltar}
                         onPress={() => navigation.navigate('HomeAdm', { screen: 'RankingAdm' })}
                     >
-                        <Ionicons name="arrow-back" size={24} color="black" />
+                        <Ionicons name="arrow-back" size={24} color={theme.text} />
                     </TouchableOpacity>
                     <Text style={styles.titulo}>WORKFLOW</Text>
                     <View style={styles.espacoHeader} />

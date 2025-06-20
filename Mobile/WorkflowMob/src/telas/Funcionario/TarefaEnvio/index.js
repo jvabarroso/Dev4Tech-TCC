@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { Text, View, TouchableOpacity, Image, ScrollView, Modal, TextInput } from 'react-native';
-import { styles } from './style';
+import { getStyles } from './style';
+import { useTheme } from '../../../styles/themecontext'
 import { LayoutAnimation, UIManager, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 export default function TarefaEnvio({ navigation, route }) {
+    const { theme } = useTheme();
+    const styles = getStyles(theme);
+
     const { tarefas } = route.params;
     const [descricaoExpandida, setDescricaoExpandida] = useState(false);
     const [modalVisivel, setModalVisivel] = useState(false);
@@ -43,7 +47,7 @@ export default function TarefaEnvio({ navigation, route }) {
                         style={styles.botaodevoltar}
                         onPress={() => navigation.navigate('Home', { screen: 'Tarefas' })}
                     >
-                        <Ionicons name="arrow-back" size={24} color="black" />
+                        <Ionicons name="arrow-back" size={24} color={theme.text} />
                     </TouchableOpacity>
                     <Text style={styles.titulo}>WORKFLOW</Text>
                     <View style={styles.espacoHeader} />
@@ -167,12 +171,13 @@ export default function TarefaEnvio({ navigation, route }) {
                                     multiline
                                     numberOfLines={4}
                                     placeholder="Reporte seu problema"
+                                    placeholderTextColor={theme.text}
                                     value={problema}
                                     onChangeText={setProblema}
                                     underlineColorAndroid="transparent"
                                 />
                                 <TouchableOpacity 
-                                    style={styles.botaoEnviar}
+                                    style={styles.botaoenviar}
                                     onPress={enviarProblema}
                                 >
                                     <Ionicons name="paper-plane-outline" size={24} color="#1C58F2" style={styles.iconSobreposto} /> 

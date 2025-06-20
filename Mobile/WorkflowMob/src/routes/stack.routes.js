@@ -5,6 +5,9 @@ import { createStackNavigator} from '@react-navigation/stack';
 import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { useNavigation } from '@react-navigation/native';
 
+import { getStyles } from './styles';
+import { useTheme } from '../styles/themecontext'
+
 import Inicio from '../../src/telas/Funcionario/Inicio';
 import Login from '../../src/telas/Funcionario/Login';
 import Home from '../../src/telas/Funcionario/Home';
@@ -25,21 +28,28 @@ import RankingEstastistico from '../../src/telas/Gestor/RakingEstastistico';
 import fonts from "../styles/fonts";
 import {Ionicons} from '@expo/vector-icons';
 
+
+
 const Tab = createBottomTabNavigator()
 
 
 function Tabs(){
+  const { theme } = useTheme();
+  const styles = getStyles(theme);
+
   const navigation = useNavigation();
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
+        headerStyle:   { backgroundColor: theme.background },
+        headerTintColor: theme.text,
         headerTitle: 'WORKFLOW',
         headerTitleAlign: 'center',
         headerRight: () => (
           <Ionicons
             name="settings-outline"
             size={24}
-            color="#3f64c7"
+            color={theme.text}
             style={styles.header}
             onPress={() => navigation.navigate('Configuracoes')}
           />
@@ -55,12 +65,19 @@ function Tabs(){
           } else if (route.name === 'Ranking') {
             iconName = 'person';
           }
+          const iconColor = focused
+            ? theme.primary   
+            : theme.text; 
 
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return <Ionicons name={iconName} size={size} color={iconColor} />;
         },
 
-        tabBarActiveTintColor: '#3f64c7',   
-        tabBarInactiveTintColor: 'gray',   
+        tabBarActiveTintColor: theme.primary,   
+        tabBarInactiveTintColor: theme.textSecondary, 
+
+        tabBarStyle: {
+          backgroundColor: theme.background,
+        },
       })}
     >
       <Tab.Screen name="Home" component={Home} />
@@ -71,18 +88,23 @@ function Tabs(){
   );
 }
 
-function TabsAdm(){
+function TabsAdm(){  
+  const { theme } = useTheme();
+  const styles = getStyles(theme);
+
   const navigation = useNavigation();
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
+        headerStyle:   { backgroundColor: theme.background },
+        headerTintColor: theme.text,
         headerTitle: 'WORKFLOW',
         headerTitleAlign: 'center',
         headerRight: () => (
           <Ionicons
             name="settings-outline"
             size={24}
-            color="#3f64c7"
+            color={theme.text}
             style={styles.header}
             onPress={() => navigation.navigate('Configuracoes')}
           />
@@ -101,11 +123,19 @@ function TabsAdm(){
             iconName = 'person';
           }
 
-          return <Ionicons name={iconName} size={size} color={color} />;
+          const iconColor = focused
+            ? theme.primary   
+            : theme.text; 
+
+          return <Ionicons name={iconName} size={size} color={iconColor} />;
         },
 
-        tabBarActiveTintColor: '#3f64c7',   
-        tabBarInactiveTintColor: 'gray',   
+        tabBarActiveTintColor: theme.primary,   
+        tabBarInactiveTintColor: theme.textSecondary, 
+        
+        tabBarStyle: {
+          backgroundColor: theme.background,
+        },
       })}
     >
       <Tab.Screen name="HomeAdm" component={HomeAdm} />
@@ -166,15 +196,3 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  header:{
-    marginRight: 15,
-    fontFamily: fonts.text,
-  }
-});

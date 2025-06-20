@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { Text, View, Image, TextInput, TouchableOpacity, ScrollView} from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
-import { styles } from './style';
+import { getStyles } from './style';
+import { useTheme } from '../../../styles/themecontext'
 
 export default function Equipes({ navigation }) {
+  const { theme, toggleTheme } = useTheme();
+  const styles = getStyles(theme);
+  
   const [equipe, setEquipe] = useState([
     {
       id: '1',
@@ -70,7 +74,7 @@ export default function Equipes({ navigation }) {
             <TextInput
               style={styles.navinput}
               placeholder="🔍 Pesquisa uma equipe"
-              placeholderTextColor="#ffffff"
+              placeholderTextColor={theme.text}
             />
           </View>
 

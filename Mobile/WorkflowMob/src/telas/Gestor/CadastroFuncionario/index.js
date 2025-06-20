@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import { Text, View, TouchableOpacity, Image, ScrollView, TextInput} from 'react-native';
-import { styles } from './style';
+import { getStyles } from './style';
+import { useTheme } from '../../../styles/themecontext'
+
 
 import { Ionicons } from '@expo/vector-icons';
 
 export default function CadastroFuncionario({navigation}){
+    const { theme } = useTheme();
+    const styles = getStyles(theme);
+    
     const [equipe, setEquipe] = useState([
         {
           id: '1',
@@ -51,40 +56,40 @@ export default function CadastroFuncionario({navigation}){
                         <TextInput
                             style={styles.input}
                             placeholder="Gabriel Kenzo" //depois mudar, mensagem para mim mesmo dnv :D
-                            placeholderTextColor={"#000000"}
+                            placeholderTextColor={theme.text}
                         />
                         <Text style={styles.texto}>Data de nascimento</Text>
                         <TextInput
                             style={styles.input}
                             placeholder="xx/xx/xxxx"
-                            placeholderTextColor={"#000000"}
+                            placeholderTextColor={theme.text}
                             secureTextEntry={true}
                         />
                         <Text style={styles.texto}>Email</Text>
                         <TextInput
                             style={styles.input}
                             placeholder="joaovitinhocraft@gmail.com"
-                            placeholderTextColor={"#000000"}
+                            placeholderTextColor={theme.text}
                             secureTextEntry={true}
                         />
                         <Text style={styles.texto}>Telefone</Text>
                         <TextInput
                             style={styles.input}
                             placeholder="1399899989"
-                            placeholderTextColor={"#000000"}
+                            placeholderTextColor={theme.text}
                         />
                         <Text style={styles.texto}>Endereço</Text>
                         <TextInput
                             style={styles.input}
                             placeholder="Rua João da Fonseca, Jardim Mato Grosso, Cananeia senha"
-                            placeholderTextColor={"#000000"}
+                            placeholderTextColor={theme.text}
                             secureTextEntry={true}
                         />
                         <Text style={styles.texto}>Categoria do funcionário</Text>
                         <TextInput
                             style={styles.input}
                             placeholder="Analista de Marketing"
-                            placeholderTextColor={"#000000"}
+                            placeholderTextColor={theme.text}
                             secureTextEntry={true}
                         />
                         <Text style={styles.texto}>Adicionar a uma equipe</Text>
