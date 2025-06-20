@@ -68,7 +68,7 @@ namespace Dev4Tech
 
         private void btnCriarTarefa_Click(object sender, EventArgs e)
         {
-            CriarTarefas criarTarefa = new CriarTarefas();
+            AdicionarTarefa criarTarefa = new AdicionarTarefa();
             criarTarefa.Show();
             this.Hide();
         }

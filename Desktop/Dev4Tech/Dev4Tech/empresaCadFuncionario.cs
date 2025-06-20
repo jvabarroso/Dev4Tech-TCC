@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 //Biblioteca de conexão do SQL
-using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.Data;
 
@@ -14,14 +13,11 @@ namespace Dev4Tech
     {
         private string FuncionarioId, Email, Senha, Telefone, DataNascimento, CPF, Cargo, Nome;
         DateTime data_cadFunc;
-<<<<<<< HEAD
 
         public void setData_cadFunc(DateTime data_cadFunc)
         {
             this.data_cadFunc = data_cadFunc;
         }
-=======
->>>>>>> c1e5d468858d85b13d37cd5c5733fe2d1fcfd1ef
 
         public void setFuncionarioId(string FuncionarioId)
         {
@@ -54,19 +50,7 @@ namespace Dev4Tech
         public void setSenha(string senha)
         {
             this.Senha = senha;
-        }
-
-<<<<<<< HEAD
-        public DateTime getData_cadFunc()
-        {
-            return this.data_cadFunc;
         } 
-=======
-        public void setData_cadFunc (DateTime data_cadFunc)
-        {
-            this.data_cadFunc = data_cadFunc;
-        }
->>>>>>> c1e5d468858d85b13d37cd5c5733fe2d1fcfd1ef
 
         public string getFuncionarioId()
         {

@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Dev4Tech
@@ -15,6 +11,187 @@ namespace Dev4Tech
         public Tela_Tarefa()
         {
             InitializeComponent();
+        }
+        private int idEquipeAtual = 0; // ID da equipe selecionada ao abrir a tela
+        private int idTarefaExibida = 1; // ID da tarefa atualmente exibida na tela
+        private string caminhoArquivoEntrega = ""; // Caminho do arquivo para a entrega
+
+        public Tela_Tarefa(int idEquipe)
+        {
+            InitializeComponent();
+            idEquipeAtual = idEquipe; // Define a equipe atual
+            txtNomeEquipe.Text = BuscarNomeEquipe(idEquipeAtual); // Exibe o nome da equipe
+
+            // Inicializa eventos
+            btnEnviar.Click += BtnEnviar_Click;
+            lblArquivoEntregaTarefa.Click += LblArquivoEntregaTarefa_Click;
+
+            // Carrega as tarefas na ComboBox
+            CarregarTarefasNoComboBox();
+        }
+
+        private void CarregarTarefasNoComboBox()
+        {
+            try
+            {
+                EntregaTarefa entrTarefa = new EntregaTarefa();
+                DataTable dtTarefas = entrTarefa.BuscarTodasTarefasPorEquipe(idEquipeAtual);
+
+                if (dtTarefas != null && dtTarefas.Rows.Count > 0)
+                {
+                    cmbTarefas.DataSource = dtTarefas;
+                    cmbTarefas.DisplayMember = "instrucoes";
+                    cmbTarefas.ValueMember = "id_tarefa";
+                    cmbTarefas.SelectedIndex = 1; // Seleciona a primeira tarefa
+                }
+                else
+                {
+                    cmbTarefas.DataSource = null;
+                    cmbTarefas.Items.Clear();
+                    MessageBox.Show("Nenhuma tarefa encontrada para esta equipe.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar tarefas: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void CarregarDetalhesTarefa(int idTarefa)
+        {
+            EntregaTarefa entrTarefa = new EntregaTarefa();
+            DataRow tarefa = entrTarefa.BuscarTarefaPorId(idTarefa);
+
+            if (tarefa != null)
+            {
+                idTarefaExibida = Convert.ToInt32(tarefa["id_tarefa"]);
+                lblInstrucoes.Text = tarefa["instrucoes"].ToString();
+
+                // Remove handlers anteriores para evitar duplicação
+                lblArquivoTarefa.Click -= LblArquivoTarefa_Click;
+
+                // Configura o label do arquivo da tarefa
+                if (tarefa["nome_arquivo"] != DBNull.Value && !string.IsNullOrEmpty(tarefa["nome_arquivo"].ToString()))
+                {
+                    lblArquivoTarefa.Text = "Arquivo: " + tarefa["nome_arquivo"].ToString();
+                    lblArquivoTarefa.ForeColor = Color.Blue;
+                    lblArquivoTarefa.Cursor = Cursors.Hand;
+                    lblArquivoTarefa.Click += LblArquivoTarefa_Click;
+                }
+                else
+                {
+                    lblArquivoTarefa.Text = "Nenhum arquivo anexado à tarefa.";
+                    lblArquivoTarefa.ForeColor = SystemColors.ControlText;
+                    lblArquivoTarefa.Cursor = Cursors.Default;
+                }
+
+                btnEnviar.Enabled = true;
+                LimparCamposEntrega();
+            }
+            else
+            {
+                lblInstrucoes.Text = "Detalhes da tarefa não encontrados.";
+                lblArquivoTarefa.Text = "";
+                btnEnviar.Enabled = false;
+            }
+        }
+
+        // Evento para abrir arquivo da tarefa
+        private void LblArquivoTarefa_Click(object sender, EventArgs e)
+        {
+            if (idTarefaExibida == 1) return;
+
+            EntregaTarefa entrTarefa = new EntregaTarefa();
+            DataRow tarefa = entrTarefa.BuscarTarefaPorId(idTarefaExibida);
+
+            if (tarefa != null && tarefa["arquivo_blob"] != DBNull.Value)
+            {
+                try
+                {
+                    byte[] arquivo = (byte[])tarefa["arquivo_blob"];
+                    string tempPath = Path.Combine(Path.GetTempPath(), tarefa["nome_arquivo"].ToString());
+                    File.WriteAllBytes(tempPath, arquivo);
+                    System.Diagnostics.Process.Start(tempPath);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao abrir o arquivo: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        // Busca o nome da equipe pelo ID
+        private string BuscarNomeEquipe(int idEquipe)
+        {
+            string nome = "";
+            using (var conn = new MySql.Data.MySqlClient.MySqlConnection("server=localhost;database=Dev4Tech;uid=seu_usuario;pwd=sua_senha;"))
+            {
+                conn.Open();
+                var cmd = new MySql.Data.MySqlClient.MySqlCommand("SELECT nome_equipe FROM Equipes WHERE id_equipe = @id", conn);
+                cmd.Parameters.AddWithValue("@id", idEquipe);
+                var result = cmd.ExecuteScalar();
+                nome = result != null ? result.ToString() : "";
+            }
+            return nome;
+        }
+
+        // Evento para clicar e anexar arquivo de entrega
+        private void LblArquivoEntregaTarefa_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Todos os arquivos (*.*)|*.*";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                caminhoArquivoEntrega = ofd.FileName;
+                lblArquivoEntregaTarefa.Text = Path.GetFileName(caminhoArquivoEntrega);
+                lblArquivoEntregaTarefa.ForeColor = Color.Blue;
+            }
+        }
+
+        // Evento do botão Enviar entrega
+        private void BtnEnviar_Click(object sender, EventArgs e)
+        {
+            if (idTarefaExibida == 0)
+            {
+                MessageBox.Show("Não há tarefa para ser entregue.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtDescrição.Text))
+            {
+                MessageBox.Show("Por favor, descreva sua entrega.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            byte[] arquivoBytes = null;
+            string nomeArquivo = null;
+
+            if (!string.IsNullOrEmpty(caminhoArquivoEntrega))
+            {
+                try
+                {
+                    arquivoBytes = File.ReadAllBytes(caminhoArquivoEntrega);
+                    nomeArquivo = Path.GetFileName(caminhoArquivoEntrega);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao ler o arquivo de entrega: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
+            EntregaTarefa entrTarefa = new EntregaTarefa();
+            try
+            {
+                entrTarefa.RegistrarEntrega(idTarefaExibida, idEquipeAtual, txtDescrição.Text, nomeArquivo, arquivoBytes);
+                MessageBox.Show("Entrega registrada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LimparCamposEntrega();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao registrar a entrega: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnHome_Click(object sender, EventArgs e)
@@ -45,61 +222,6 @@ namespace Dev4Tech
             this.Hide();
         }
 
-        private void btnReportarProblema_Click(object sender, EventArgs e)
-        {
-            Relato_Problema relato = new Relato_Problema();
-            relato.Show();
-            this.Hide();
-        }
-
-        private void btnEnviarComentario_Click(object sender, EventArgs e)
-        {
-            // TODO: Implementar envio de comentário
-            MessageBox.Show("Funcionalidade em desenvolvimento");
-        }
-
-        private void btnPlanejamento_Click(object sender, EventArgs e)
-        {
-            Planejamento planejamento = new Planejamento();
-            planejamento.Show();
-            this.Hide();
-        }
-
-        private void btnIntegrantes_Click(object sender, EventArgs e)
-        {
-            Integrantes_Equipe integrantes = new Integrantes_Equipe();
-            integrantes.Show();
-            this.Hide();
-        }
-
-        private void btnRankingEquipes_Click(object sender, EventArgs e)
-        {
-            Ranking_Equipes ranking = new Ranking_Equipes();
-            ranking.Show();
-            this.Hide();
-        }
-
-        private void btnTarefasPendentes_Click(object sender, EventArgs e)
-        {
-            Tarefas_Pendentes tarefas = new Tarefas_Pendentes();
-            tarefas.Show();
-            this.Hide();
-        }
-
-        private void btnChatGeral_Click(object sender, EventArgs e)
-        {
-            Chat_geral_equipes chat = new Chat_geral_equipes();
-            chat.Show();
-            this.Hide();
-        }
-
-        private void btnEquipesEstatisticas_Click(object sender, EventArgs e)
-        {
-            Equipes_Estatisticas t_equipe = new Equipes_Estatisticas();
-            t_equipe.Show();
-            this.Hide();
-        }
-
         private void lblTarefas_Click(object sender, EventArgs e)
         {
             Tarefas_Pendentes trf_pendente = new Tarefas_Pendentes();
@@ -121,8 +243,29 @@ namespace Dev4Tech
             this.Hide();
         }
 
+        private void btnAplicar_Click(object sender, EventArgs e)
+        {
+            if (cmbTarefas.SelectedValue != null)
+            {
+                int idTarefaSelecionada = Convert.ToInt32(cmbTarefas.SelectedValue);
+                CarregarDetalhesTarefa(idTarefaSelecionada);
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecione uma tarefa na lista.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void LimparCamposEntrega()
+        {
+            txtDescrição.Clear();
+            lblArquivoEntregaTarefa.Text = "Clique para anexar arquivo";
+            lblArquivoEntregaTarefa.ForeColor = Color.Gray;
+            caminhoArquivoEntrega = "";
+        }
+
+        // Métodos não utilizados foram removidos para clareza
         private void lblRanking_Click(object sender, EventArgs e) { }
-        private void btnEnviar_Click(object sender, EventArgs e) { }
         private void btnRelatarProblema_Click(object sender, EventArgs e) { }
         private void txtDescrição_TextChanged(object sender, EventArgs e) { }
         private void btnConfigurações_Click(object sender, EventArgs e) { }

@@ -99,6 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddEquipes.cs" />
+    <Compile Include="AddTarefas.cs" />
     <Compile Include="AdicionarEquipes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,15 +139,16 @@
       <DependentUpon>Configuracoes.cs</DependentUpon>
     </Compile>
     <Compile Include="ConfiguraçõesBD.cs" />
-    <Compile Include="CriarTarefas.cs">
+    <Compile Include="AdicionarTarefa.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CriarTarefas.Designer.cs">
-      <DependentUpon>CriarTarefas.cs</DependentUpon>
+    <Compile Include="AdicionarTarefa.Designer.cs">
+      <DependentUpon>AdicionarTarefa.cs</DependentUpon>
     </Compile>
     <Compile Include="empresaCadAdmin.cs" />
     <Compile Include="empresaCadFuncionario.cs" />
     <Compile Include="empresa.cs" />
+    <Compile Include="EntregaTarefa.cs" />
     <Compile Include="Equipes_Cadastro.cs" />
     <Compile Include="Equipes_Estatisticas.cs">
       <SubType>Form</SubType>
@@ -259,8 +261,8 @@
     <EmbeddedResource Include="Configuracoes.resx">
       <DependentUpon>Configuracoes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CriarTarefas.resx">
-      <DependentUpon>CriarTarefas.cs</DependentUpon>
+    <EmbeddedResource Include="AdicionarTarefa.resx">
+      <DependentUpon>AdicionarTarefa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Equipes_Estatisticas.resx">
       <DependentUpon>Equipes_Estatisticas.cs</DependentUpon>

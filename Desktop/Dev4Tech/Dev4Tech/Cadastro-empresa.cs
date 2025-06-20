@@ -30,7 +30,6 @@ namespace Dev4Tech
         {
             try
             {
-                // Não há confirmação de senha no formulário, então não precisa comparar
                 em.setNomeEmpresa(txtNomeEmpresa.Text);
                 em.setCNPJ(txtCNPJEmpresa.Text);
                 em.setSetorEmpresarial(txtSetorEmpresa.Text);
@@ -38,11 +37,7 @@ namespace Dev4Tech
                 em.setNumResidencia(txtNumResidencia.Text);
                 em.setBairro(txtBairroEmpresa.Text);
                 em.setComplemento(txtComplementoEmpresa.Text);
-<<<<<<< HEAD
                 em.setData_cadEm(DateTime.Now);
-=======
-                em.setData_cad(DateTime.Now);
->>>>>>> c1e5d468858d85b13d37cd5c5733fe2d1fcfd1ef
                 em.inserir();
                 
                 MessageBox.Show("Cadastro realizado com sucesso!");
@@ -88,7 +83,6 @@ namespace Dev4Tech
 
         private void txtNomeEmpresa_TextChanged(object sender, EventArgs e)
         {
-            // Pode ser deixado vazio ou adicionar lógica se necessário
         }
 
         private void lblLogin_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

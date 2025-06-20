@@ -42,14 +42,9 @@ namespace Dev4Tech
             return this.emailFuncionario;
         }
 
-        // Método para obter o id da categoria, inserindo se não existir
         private int ObterOuInserirCategoria(string nomeCategoria)
         {
             int idCategoria = 0;
-<<<<<<< HEAD
-=======
-
->>>>>>> c1e5d468858d85b13d37cd5c5733fe2d1fcfd1ef
             string selectQuery = "SELECT id_categoria FROM Categorias WHERE nome_categoria = @nome";
             string insertQuery = "INSERT INTO Categorias (nome_categoria) VALUES (@nome)";
 
@@ -81,7 +76,6 @@ namespace Dev4Tech
             return idCategoria;
         }
 
-        // Método para obter o id do funcionário pelo email
         private int ObterIdFuncionarioPorEmail(string email)
         {
             int idFuncionario = 0;
@@ -203,10 +197,6 @@ namespace Dev4Tech
             }
         }
 
-<<<<<<< HEAD
-        // Método inserir para cadastrar a equipe
-=======
->>>>>>> c1e5d468858d85b13d37cd5c5733fe2d1fcfd1ef
         public void inserir()
         {
             if (string.IsNullOrEmpty(getNomeEquipe()) || string.IsNullOrEmpty(getCategoria()) || string.IsNullOrEmpty(getEmailFuncionario()))

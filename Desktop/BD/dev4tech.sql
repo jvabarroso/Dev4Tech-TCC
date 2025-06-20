@@ -13,16 +13,8 @@ CREATE TABLE Empresas (
     numResidencia VARCHAR(200),
     bairro varchar(255),
     complemento varchar(255),
-<<<<<<< HEAD
     data_cadEm DATETIME
 );
-
-=======
-    data_cad DATETIME
-);
-
-alter table empresas add data_cad DATETIME;
->>>>>>> c1e5d468858d85b13d37cd5c5733fe2d1fcfd1ef
 
 -- Tabela de Administradores
 CREATE TABLE Administradores (
@@ -51,17 +43,12 @@ CREATE TABLE Funcionarios (
     data_cadFunc DATETIME
 );
 
-alter table funcionarios add data_cadFunc DATETIME;
-
 CREATE TABLE MensagensChat (
     id_mensagem INT PRIMARY KEY auto_increment,
     texto varchar(255) NOT NULL,
     data_envio DATETIME
 );
-<<<<<<< HEAD
 
-=======
->>>>>>> c1e5d468858d85b13d37cd5c5733fe2d1fcfd1ef
 -- Tabela Categorias
 CREATE TABLE Categorias (
     id_categoria INT AUTO_INCREMENT PRIMARY KEY,
@@ -84,61 +71,29 @@ CREATE TABLE Equipes_Membros (
     FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (FuncionarioId) REFERENCES Funcionarios(FuncionarioId) ON DELETE CASCADE ON UPDATE CASCADE
 );
-<<<<<<< HEAD
 
-=======
->>>>>>> c1e5d468858d85b13d37cd5c5733fe2d1fcfd1ef
-drop table mensagenschat;
-
--- Tabela de Tipos de Usuário
-CREATE TABLE TiposUsuario (
-    id_tipo INT PRIMARY KEY auto_increment,
-    nome VARCHAR(50) NOT NULL,
-    descricao TEXT
+CREATE TABLE Tarefas (
+    id_tarefa INT AUTO_INCREMENT PRIMARY KEY,
+    instrucoes VARCHAR(255) NOT NULL,
+    id_equipe INT NOT NULL,
+    data_entrega DATE NOT NULL,
+    nome_arquivo VARCHAR(255),
+    arquivo_blob LONGBLOB,
+    FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
--- Tabela de Permissões
-CREATE TABLE Permissoes (
-    id_permissao INT PRIMARY KEY,
-    nome VARCHAR(50) NOT NULL,
-    descricao TEXT
-);
-
--- Tabela de Permissões por Tipo de Usuário
-CREATE TABLE PermissoesTipoUsuario (
-    id_tipo INT,
-    id_permissao INT,
-    PRIMARY KEY (id_tipo, id_permissao),
-    FOREIGN KEY (id_tipo) REFERENCES TiposUsuario(id_tipo),
-    FOREIGN KEY (id_permissao) REFERENCES Permissoes(id_permissao)
-);
-
--- Tabela de Usuários
-CREATE TABLE Usuarios (
-    id_usuario INT PRIMARY KEY auto_increment,
-    id_empresa INT,
-    id_tipo INT,
-    nome VARCHAR(100) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    senha VARCHAR(255) NOT NULL,
-    cargo VARCHAR(50),
-    data_cadastro DATETIME,
-    ultimo_acesso DATETIME,
-    status BIT DEFAULT 1,
-    FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa),
-    FOREIGN KEY (id_tipo) REFERENCES TiposUsuario(id_tipo)
-);
-
--- Tabela de Equipes
-CREATE TABLE Equipes (
-    id_equipe INT PRIMARY KEY auto_increment,
-    id_empresa INT,
-    nome_equipe VARCHAR(100) NOT NULL,
+CREATE TABLE EntregasTarefa (
+    id_entrega INT AUTO_INCREMENT PRIMARY KEY,
+    id_tarefa INT NOT NULL,
+    id_equipe INT NOT NULL,
     descricao TEXT,
-    data_criacao DATETIME,
-    status BIT DEFAULT 1,
-    FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa)
+    nome_arquivo VARCHAR(255),
+    arquivo_blob LONGBLOB,
+    data_entrega DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_tarefa) REFERENCES Tarefas(id_tarefa) ON DELETE CASCADE,
+    FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE
 );
+
 
 -- Tabela de Integrantes das Equipes
 CREATE TABLE IntegrantesEquipe (
