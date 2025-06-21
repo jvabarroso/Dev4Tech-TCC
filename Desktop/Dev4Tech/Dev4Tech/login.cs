@@ -27,13 +27,13 @@ namespace Dev4Tech
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-
             string email = txtEmail.Text.Trim();
             string senha = txtSenha.Text.Trim();
 
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(senha))
             {
                 MessageBox.Show("Preencha o Email e a senha para efetuar o Login");
+                return;
             }
 
             LoginVerify lv = new LoginVerify();
@@ -41,13 +41,26 @@ namespace Dev4Tech
 
             if (loginValido)
             {
+                empresaCadFuncionario empresa = new empresaCadFuncionario();
+                var funcionario = empresa.ObterFuncionarioPorEmailSenha(email, senha);
 
-                Home h = new Home();
-                h.Show();
-                this.Hide();
+                if (funcionario != null)
+                {
+                    Configuracoes config = new Configuracoes(email, senha);
+                    config.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao carregar dados do funcionário.");
+                }
             }
-            else { MessageBox.Show("Errou, tenta denovo"); }
+            else
+            {
+                MessageBox.Show("Email ou senha incorretos.");
+            }
         }
+
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {

@@ -15,14 +15,50 @@ namespace Dev4Tech
     public partial class Configuracoes : Form
     {
 
-        public Configuracoes()
+        private empresaCadFuncionario funcionario;
+
+        public Configuracoes(string email, string senha)
         {
             InitializeComponent();
+            empresaCadFuncionario empresa = new empresaCadFuncionario();
+            funcionario = empresa.ObterFuncionarioPorEmailSenha(email, senha);
+
+            if (funcionario != null)
+            {
+                PreencherCampos();
+            }
+            else
+            {
+                MessageBox.Show("Funcionário não encontrado.");
+                this.Close();
+            }
         }
 
-        private void btnSalvar_Click(object sender, EventArgs e)
+        private void CarregarFuncionario(string email, string senha)
         {
-            MessageBox.Show("Funcionalidade em desenvolvimento");
+            empresaCadFuncionario empresa = new empresaCadFuncionario();
+            funcionario = empresa.ObterFuncionarioPorEmailSenha(email, senha);
+
+            if (funcionario != null)
+            {
+                PreencherCampos();
+            }
+            else
+            {
+                MessageBox.Show("Funcionário não encontrado ou dados incorretos.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
+        }
+
+        private void PreencherCampos()
+        {
+            txtNome.Text = funcionario.getNome();
+            lblCargo.Text = funcionario.getCargo();
+            txtCPF.Text = funcionario.getCPF();
+            txtDataNascFunc.Text = funcionario.getDataNascimento().ToString("dd/MM/yyyy");
+            txtTelefone.Text = funcionario.getTelefone();
+            txtEmail.Text = funcionario.getEmail();
+            textBox1.Text = $"{funcionario.getEndereço()}, {funcionario.getNumero()}";
         }
 
         private void label8_Click(object sender, EventArgs e) { }
@@ -38,5 +74,30 @@ namespace Dev4Tech
         private void btnRanking_Click(object sender, EventArgs e) { Ranking_Equipes rank_equipe = new Ranking_Equipes(); rank_equipe.Show(); this.Hide(); }
         private void picPerfilMembro_Click(object sender, EventArgs e) { Integrantes_Equipe t_integrantes = new Integrantes_Equipe(); t_integrantes.Show(); this.Hide(); }
         private void txtEmail_TextChanged(object sender, EventArgs e) { }
+
+        private void txtDataNascFunc_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void txtTelefone_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void txtCPF_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelEquipes_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

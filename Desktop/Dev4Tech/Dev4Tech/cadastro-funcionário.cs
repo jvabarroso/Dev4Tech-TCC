@@ -38,6 +38,8 @@ namespace Dev4Tech
                 emCadFunc.setSenha(txtCadFuncSenha.Text);
                 emCadFunc.setDataNascimento(DateTime.Today);
                 emCadFunc.setData_cadFunc(DateTime.Now);
+                emCadFunc.setEndereço(txtEndereço.Text);
+                emCadFunc.setNumero(txtEndereçoNum.Text);
                 emCadFunc.inserir();
                 
                 MessageBox.Show("Sua conta foi cadastrada com sucesso");

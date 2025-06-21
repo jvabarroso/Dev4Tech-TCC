@@ -11,12 +11,22 @@ namespace Dev4Tech
 {
     class empresaCadFuncionario : conexao
     {
-        private string FuncionarioId, Email, Senha, Telefone, CPF, Cargo, Nome;
+        private string FuncionarioId, Email, Senha, Telefone, CPF, Cargo, Nome, endereço, numero;
         DateTime data_cadFunc, DataNascimento;
 
         public void setData_cadFunc(DateTime data_cadFunc)
         {
             this.data_cadFunc = data_cadFunc;
+        }
+
+        public void setNumero(string numero)
+        {
+            this.numero = numero;
+        }
+
+        public void setEndereço (string endereço)
+        {
+            this.endereço = endereço;
         }
 
         public void setFuncionarioId(string FuncionarioId)
@@ -52,6 +62,14 @@ namespace Dev4Tech
             this.Senha = senha;
         } 
 
+        public string getEndereço()
+        {
+            return this.endereço;
+        }
+        public string getNumero()
+        {
+            return this.numero;
+        }
         public string getFuncionarioId()
         {
             return this.FuncionarioId;
@@ -90,11 +108,54 @@ namespace Dev4Tech
             return this.data_cadFunc;
         }
 
+        public empresaCadFuncionario ObterFuncionarioPorEmailSenha(string email, string senha)
+        {
+            empresaCadFuncionario func = null;
+
+            // Monta a query concatenando diretamente os valores
+            string query = "SELECT FuncionarioId, Nome, Cargo, CPF, DataNascimento, Telefone, Email, endereço, numero " +
+                           "FROM Funcionarios WHERE Email = '" + getEmail() + "' AND Senha = '" + getSenha() + "' LIMIT 1";
+
+            if (this.abrirConexao())
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, conectar);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            func = new empresaCadFuncionario();
+
+                            func.setFuncionarioId(reader["FuncionarioId"].ToString());
+                            func.setNome(reader["Nome"].ToString());
+                            func.setCargo(reader["Cargo"].ToString());
+                            func.setCPF(reader["CPF"].ToString());
+                            func.setDataNascimento(Convert.ToDateTime(reader["DataNascimento"]));
+                            func.setTelefone(reader["Telefone"].ToString());
+                            func.setEmail(reader["Email"].ToString());
+                            func.setEndereço(reader["endereço"].ToString());
+                            func.setNumero(reader["numero"].ToString());
+                        }
+                    }
+                }
+                finally
+                {
+                    this.fecharConexao();
+                }
+            }
+
+            return func;
+        }
+
+
+
         //Método inserir, para mandar os dados no banco de dados
         public void inserir()
         {
-            string query = "INSERT INTO Funcionarios(FuncionarioId, Nome, Cargo, CPF, DataNascimento, Telefone, Email, Senha, data_cadFunc) " +
-                           "VALUES('" + getFuncionarioId() + "','" + getNome() + "','" + getCargo() + "','" + getCPF() + "','" + getDataNascimento().ToString("yyyy-MM-dd HH:mm:ss") + "','" + getTelefone() + "','" + getEmail() + "','" + getSenha() + "','" + getData_cadFunc().ToString("yyyy-MM-dd HH:mm:ss") + "')";
+            string query = "INSERT INTO Funcionarios(FuncionarioId, Nome, Cargo, CPF, DataNascimento, Telefone, Email, Senha, data_cadFunc, endereço, numero) " +
+                           "VALUES('" + getFuncionarioId() + "','" + getNome() + "','" + getCargo() + "','" + getCPF() + "','" + getDataNascimento().ToString("yyyy-MM-dd HH:mm:ss") + "','" + getTelefone() + "','" + getEmail() + "','" + getSenha() + "','" + getData_cadFunc().ToString("yyyy-MM-dd HH:mm:ss") + "','" + getEndereço() + "','" + getNumero() + "')";
 
             if (this.abrirConexao())
             {

@@ -61,9 +61,6 @@ namespace Dev4Tech
 
         private void btnConfiguracoes_Click(object sender, EventArgs e)
         {
-            Configuracoes config = new Configuracoes();
-            config.Show();
-            this.Hide();
         }
 
         private void btnCriarTarefa_Click(object sender, EventArgs e)
