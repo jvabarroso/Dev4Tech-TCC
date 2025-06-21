@@ -74,12 +74,14 @@ CREATE TABLE Equipes_Membros (
 
 CREATE TABLE Tarefas (
     id_tarefa INT AUTO_INCREMENT PRIMARY KEY,
+    nomeTarefa VARCHAR(255) NOT NULL,
     instrucoes VARCHAR(255) NOT NULL,
     id_equipe INT NOT NULL,
     data_entrega DATE NOT NULL,
     nome_arquivo VARCHAR(255),
     arquivo_blob LONGBLOB,
-    FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE ON UPDATE CASCADE,
+    nomeTarefa VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE EntregasTarefa (
@@ -94,6 +96,10 @@ CREATE TABLE EntregasTarefa (
     FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE
 );
 
+CREATE TABLE RelatoProblema (
+idProblema INT PRIMARY KEY AUTO_INCREMENT,
+descrição TEXT NOT NULL
+);
 
 -- Tabela de Integrantes das Equipes
 CREATE TABLE IntegrantesEquipe (

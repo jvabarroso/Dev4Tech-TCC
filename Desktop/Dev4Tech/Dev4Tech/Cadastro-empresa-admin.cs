@@ -39,7 +39,7 @@ namespace Dev4Tech
                     emAdmin.setNome(txtCadAdmNome.Text);
                     emAdmin.setCargo(cbBoxCargoAdm.Text);
                     emAdmin.setCPF(txtCadAdmCPF.Text);
-                    emAdmin.setDataNascimento(txtCadAdmDataNasc.Text);
+                    emAdmin.setDataNascimento(DateTime.Today);
                     emAdmin.setTelefone(txtCadAdmTelefone.Text);
                     emAdmin.setEmail(txtCadAdmEmail.Text);
                     emAdmin.setSenha(txtCadAdmSenha.Text);

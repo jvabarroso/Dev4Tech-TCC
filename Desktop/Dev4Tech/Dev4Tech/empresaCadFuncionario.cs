@@ -11,8 +11,8 @@ namespace Dev4Tech
 {
     class empresaCadFuncionario : conexao
     {
-        private string FuncionarioId, Email, Senha, Telefone, DataNascimento, CPF, Cargo, Nome;
-        DateTime data_cadFunc;
+        private string FuncionarioId, Email, Senha, Telefone, CPF, Cargo, Nome;
+        DateTime data_cadFunc, DataNascimento;
 
         public void setData_cadFunc(DateTime data_cadFunc)
         {
@@ -35,7 +35,7 @@ namespace Dev4Tech
         {
             this.CPF = cpf;
         }
-        public void setDataNascimento(string dataNascimento)
+        public void setDataNascimento(DateTime dataNascimento)
         {
             this.DataNascimento = dataNascimento;
         }
@@ -68,7 +68,7 @@ namespace Dev4Tech
         {
             return this.CPF;
         }
-        public string getDataNascimento()
+        public DateTime getDataNascimento()
         {
             return this.DataNascimento;
         }
@@ -93,8 +93,8 @@ namespace Dev4Tech
         //Método inserir, para mandar os dados no banco de dados
         public void inserir()
         {
-            string query = "INSERT INTO Funcionarios(FuncionarioId, Nome, Cargo, CPF, Telefone, Email, Senha, data_cadFunc) " +
-                           "VALUES('" + getFuncionarioId() + "','" + getNome() + "','" + getCargo() + "','" + getCPF() + "','" + getTelefone() + "','" + getEmail() + "','" + getSenha() + "','" + getData_cadFunc() + "')";
+            string query = "INSERT INTO Funcionarios(FuncionarioId, Nome, Cargo, CPF, DataNascimento, Telefone, Email, Senha, data_cadFunc) " +
+                           "VALUES('" + getFuncionarioId() + "','" + getNome() + "','" + getCargo() + "','" + getCPF() + "','" + getDataNascimento().ToString("yyyy-MM-dd HH:mm:ss") + "','" + getTelefone() + "','" + getEmail() + "','" + getSenha() + "','" + getData_cadFunc().ToString("yyyy-MM-dd HH:mm:ss") + "')";
 
             if (this.abrirConexao())
             {

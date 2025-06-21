@@ -32,29 +32,13 @@ namespace Dev4Tech
 
         private void CarregarTarefasNoComboBox()
         {
-            try
-            {
-                EntregaTarefa entrTarefa = new EntregaTarefa();
-                DataTable dtTarefas = entrTarefa.BuscarTodasTarefasPorEquipe(idEquipeAtual);
+            EntregaTarefa entrTarefa = new EntregaTarefa();
+            DataTable dtTarefas = entrTarefa.BuscarTodasTarefasPorEquipe(idEquipeAtual);
 
-                if (dtTarefas != null && dtTarefas.Rows.Count > 0)
-                {
-                    cmbTarefas.DataSource = dtTarefas;
-                    cmbTarefas.DisplayMember = "instrucoes";
-                    cmbTarefas.ValueMember = "id_tarefa";
-                    cmbTarefas.SelectedIndex = 1; // Seleciona a primeira tarefa
-                }
-                else
-                {
-                    cmbTarefas.DataSource = null;
-                    cmbTarefas.Items.Clear();
-                    MessageBox.Show("Nenhuma tarefa encontrada para esta equipe.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao carregar tarefas: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            cmbTarefas.DataSource = dtTarefas;
+            cmbTarefas.DisplayMember = "NomeTarefa"; // Alterado para o novo campo
+            cmbTarefas.ValueMember = "id_tarefa";
+            cmbTarefas.SelectedIndex = -1;
         }
 
 
@@ -208,6 +192,11 @@ namespace Dev4Tech
             this.Hide();
         }
 
+        private void btnEnviar_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void btnRanking_Click(object sender, EventArgs e)
         {
             Ranking_Equipes rank_equipe = new Ranking_Equipes();
@@ -264,7 +253,7 @@ namespace Dev4Tech
             caminhoArquivoEntrega = "";
         }
 
-        // Métodos não utilizados foram removidos para clareza
+        // Não remova
         private void lblRanking_Click(object sender, EventArgs e) { }
         private void btnRelatarProblema_Click(object sender, EventArgs e) { }
         private void txtDescrição_TextChanged(object sender, EventArgs e) { }

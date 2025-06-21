@@ -10,8 +10,8 @@ namespace Dev4Tech
 {
     class empresaCadAdmin : conexao
     {
-        private string AdminId, Email, Senha, Telefone, DataNascimento, CPF, Cargo, Nome;
-        private DateTime data_cadAdmin;
+        private string AdminId, Email, Senha, Telefone, CPF, Cargo, Nome;
+        private DateTime data_cadAdmin, DataNascimento;
 
         public void setData_cadAdmin(DateTime data_cadAdmin)
         {
@@ -33,7 +33,7 @@ namespace Dev4Tech
         {
             this.CPF = cpf;
         }
-        public void setDataNascimento(string dataNascimento)
+        public void setDataNascimento(DateTime dataNascimento)
         {
             this.DataNascimento = dataNascimento;
         }
@@ -70,7 +70,7 @@ namespace Dev4Tech
         {
             return this.CPF;
         }
-        public string getDataNascimento()
+        public DateTime getDataNascimento()
         {
             return this.DataNascimento;
         }
@@ -91,7 +91,7 @@ namespace Dev4Tech
         public void inserir()
         {
             string query = "INSERT INTO Administradores(AdminId,Nome, Cargo, CPF, DataNascimento, Telefone, Email, Senha, data_cadAdmin) " +
-                           "VALUES('" + getAdminId() + "','" + getNome() + "','" + getCargo() + "','" + getCPF() + "','" + getDataNascimento() + "','" + getTelefone() + "','" + getEmail() + "','" + getSenha() + "','" + getData_cadAdmin().ToString("yyyy-MM-dd HH:mm:ss") + "')";
+                           "VALUES('" + getAdminId() + "','" + getNome() + "','" + getCargo() + "','" + getCPF() + "','" + getDataNascimento().ToString("yyyy-MM-dd HH:mm:ss") + "','" + getTelefone() + "','" + getEmail() + "','" + getSenha() + "','" + getData_cadAdmin().ToString("yyyy-MM-dd HH:mm:ss") + "')";
 
             if (this.abrirConexao())
             {

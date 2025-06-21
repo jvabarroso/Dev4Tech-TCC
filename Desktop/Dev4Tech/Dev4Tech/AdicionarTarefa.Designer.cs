@@ -47,6 +47,7 @@
             this.cmbAddEquipe = new System.Windows.Forms.ComboBox();
             this.txtInstruções = new System.Windows.Forms.TextBox();
             this.btnAddTarefas = new System.Windows.Forms.Button();
+            this.txtNomeTarefa = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.picPerfil)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEquipes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCalendar)).BeginInit();
@@ -248,10 +249,20 @@
             this.btnAddTarefas.TabIndex = 55;
             this.btnAddTarefas.Text = "Adicionar Tarefa";
             this.btnAddTarefas.UseVisualStyleBackColor = true;
+            this.btnAddTarefas.Click += new System.EventHandler(this.btnAddTarefas_Click_1);
+            // 
+            // txtNomeTarefa
+            // 
+            this.txtNomeTarefa.Location = new System.Drawing.Point(613, 336);
+            this.txtNomeTarefa.Multiline = true;
+            this.txtNomeTarefa.Name = "txtNomeTarefa";
+            this.txtNomeTarefa.Size = new System.Drawing.Size(186, 47);
+            this.txtNomeTarefa.TabIndex = 56;
             // 
             // AdicionarTarefa
             // 
             this.ClientSize = new System.Drawing.Size(1685, 838);
+            this.Controls.Add(this.txtNomeTarefa);
             this.Controls.Add(this.btnAddTarefas);
             this.Controls.Add(this.txtInstruções);
             this.Controls.Add(this.cmbAddEquipe);
@@ -305,5 +316,6 @@
         private System.Windows.Forms.ComboBox cmbAddEquipe;
         private System.Windows.Forms.TextBox txtInstruções;
         private System.Windows.Forms.Button btnAddTarefas;
+        private System.Windows.Forms.TextBox txtNomeTarefa;
     }
 }

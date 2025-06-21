@@ -36,7 +36,7 @@ namespace Dev4Tech
                 emCadFunc.setEmail(txtCadFuncEmail.Text);
                 emCadFunc.setTelefone(txtCadFuncTelefone.Text);
                 emCadFunc.setSenha(txtCadFuncSenha.Text);
-                emCadFunc.setDataNascimento(txtCadFuncDataNasc.Text);
+                emCadFunc.setDataNascimento(DateTime.Today);
                 emCadFunc.setData_cadFunc(DateTime.Now);
                 emCadFunc.inserir();
                 
