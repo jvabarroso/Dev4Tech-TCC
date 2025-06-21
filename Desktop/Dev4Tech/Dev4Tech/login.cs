@@ -1,13 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 
 namespace Dev4Tech
 {
@@ -46,7 +38,7 @@ namespace Dev4Tech
 
                 if (funcionario != null)
                 {
-                    Configuracoes config = new Configuracoes(email, senha);
+                    Configuracoes config = new Configuracoes(funcionario);
                     config.Show();
                     this.Hide();
                 }
@@ -61,7 +53,6 @@ namespace Dev4Tech
             }
         }
 
-
         private void btnVoltar_Click(object sender, EventArgs e)
         {
             Form1 t_incial = new Form1();
@@ -69,14 +60,7 @@ namespace Dev4Tech
             this.Hide();
         }
 
-        private void txtEmail_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtSenha_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        private void txtEmail_TextChanged(object sender, EventArgs e) { }
+        private void txtSenha_TextChanged(object sender, EventArgs e) { }
     }
 }

@@ -9,7 +9,7 @@ using MySql.Data.MySqlClient;
 
 namespace Dev4Tech
 {
-    class conexao
+    public class conexao
     {
         public MySqlConnection conectar;
         public string servidor, database, usuario, senha;

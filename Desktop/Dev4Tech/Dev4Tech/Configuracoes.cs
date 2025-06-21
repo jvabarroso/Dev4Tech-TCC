@@ -1,21 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data;
-using MySql.Data.MySqlClient;
 
 namespace Dev4Tech
 {
     public partial class Configuracoes : Form
     {
-
         private empresaCadFuncionario funcionario;
+
+        public Configuracoes(empresaCadFuncionario func)
+        {
+            InitializeComponent();
+            funcionario = func;
+            PreencherCampos();
+        }
 
         public Configuracoes(string email, string senha)
         {
@@ -32,6 +29,11 @@ namespace Dev4Tech
                 MessageBox.Show("Funcionário não encontrado.");
                 this.Close();
             }
+        }
+
+        private Configuracoes()
+        {
+            InitializeComponent();
         }
 
         private void CarregarFuncionario(string email, string senha)
@@ -74,30 +76,10 @@ namespace Dev4Tech
         private void btnRanking_Click(object sender, EventArgs e) { Ranking_Equipes rank_equipe = new Ranking_Equipes(); rank_equipe.Show(); this.Hide(); }
         private void picPerfilMembro_Click(object sender, EventArgs e) { Integrantes_Equipe t_integrantes = new Integrantes_Equipe(); t_integrantes.Show(); this.Hide(); }
         private void txtEmail_TextChanged(object sender, EventArgs e) { }
-
-        private void txtDataNascFunc_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
-
-        private void txtTelefone_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
-
-        private void txtCPF_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panelEquipes_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+        private void txtDataNascFunc_MaskInputRejected(object sender, MaskInputRejectedEventArgs e) { }
+        private void txtTelefone_MaskInputRejected(object sender, MaskInputRejectedEventArgs e) { }
+        private void txtCPF_MaskInputRejected(object sender, MaskInputRejectedEventArgs e) { }
+        private void textBox1_TextChanged(object sender, EventArgs e) { }
+        private void panelEquipes_Paint(object sender, PaintEventArgs e) { }
     }
 }

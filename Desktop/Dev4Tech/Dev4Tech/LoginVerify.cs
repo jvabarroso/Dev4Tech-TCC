@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Data;
 using MySql.Data.MySqlClient;
 
 namespace Dev4Tech
 {
-    class LoginVerify : conexao
+        class LoginVerify : conexao
     {
         public bool ValidarLogin(string email, string senha)
         {
@@ -25,10 +26,6 @@ namespace Dev4Tech
                         long countLong = (long)result;
                         int count = Convert.ToInt32(countLong);
                         valido = (count > 0);
-                    }
-                    else
-                    {
-                        valido = false;
                     }
                 }
                 finally
