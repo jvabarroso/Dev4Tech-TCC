@@ -13,6 +13,9 @@ import Login from '../../src/telas/Funcionario/Login';
 import Home from '../../src/telas/Funcionario/Home';
 import Tarefas from '../../src/telas/Funcionario/Tarefas';
 import Equipes from '../../src/telas/Funcionario/Equipes';
+import EquipeFuncionario from '../../src/telas/Funcionario/EquipeFuncionario';
+import EquipeRanking from '../../src/telas/Funcionario/EquipeRanking';
+import EquipeTarefas from '../../src/telas/Funcionario/EquipeTarefas';
 import Ranking from '../../src/telas/Funcionario/Ranking';
 import TarefaEnvio from '../../src/telas/Funcionario/TarefaEnvio';
 import Configuracoes from '../../src/telas/Configuracoes'
@@ -169,7 +172,22 @@ export default function App() {
           name="Home"
           component={Tabs} 
           options={{ headerShown: false }}
-        />        
+        /> 
+        <Stack.Screen
+          name="EquipeFuncionario"
+          component={EquipeFuncionario}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="EquipeTarefas"
+          component={EquipeTarefas}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="EquipeRanking"
+          component={EquipeRanking} 
+          options={{ headerShown: false }}
+        />                
         <Stack.Screen
           name="TarefaEnvio"
           component={TarefaEnvio} 
