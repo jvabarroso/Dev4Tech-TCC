@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import { Text, View, TouchableOpacity, Image, TextInput, ScrollView  } from 'react-native';
+import { Text, View, Image, TextInput, TouchableOpacity, ScrollView} from 'react-native';
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
+import { Ionicons } from '@expo/vector-icons';
 
-export default function Tarefas({ navigation }) {
+export default function EquipeTarefas({ navigation, route }) {
   const { theme } = useTheme();
   const styles = getStyles(theme);
 
+  const { equipe } = route.params;
+  
   const [tarefas, setTarefas] = useState([
     {
       id: '1',
@@ -119,52 +122,68 @@ export default function Tarefas({ navigation }) {
         </View>
       </TouchableOpacity>
   ));
-
-
+  
   function limitarTexto(texto, limite) {
     return texto.length > limite ? texto.substring(0, limite) + '...' : texto;
   }
 
-
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
-          <View>
-            <Text style={styles.titulo}>Tarefas</Text>
 
-            <View style={styles.areabotao}>
-              <TouchableOpacity
-                style={[styles.botao, { backgroundColor: tarefaspendentes ? '#1A5CFF' : theme.inputBackground }]}
-                onPress={botaopendente}
-              >
-                <Text style={[styles.textobotao, { color: tarefaspendentes ? theme.text4 : theme.text }]}>Pendente</Text>
-              </TouchableOpacity>
+        <View style={styles.nav}>
+          <TouchableOpacity 
+            style={styles.botaodevoltar}
+            onPress={() => navigation.goBack()}
+          >
+            <Ionicons name="arrow-back" size={24} color={theme.text} />
+          </TouchableOpacity>
+            <Text style={styles.titulo}>WORKFLOW</Text>
+            <View style={styles.espacoHeader} />
+        </View>
 
-              <TouchableOpacity
-                style={[styles.botao, { backgroundColor: tarefasatrasadas ? '#1A5CFF' : theme.inputBackground }]}
-                onPress={botaoatrasado}
-              >
-                <Text style={[styles.textobotao, { color: tarefasatrasadas ? theme.text4 : theme.text }]}>Atrasados</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={[styles.botao, { backgroundColor: tarefascompletados ? '#1A5CFF' : theme.inputBackground }]}
-                onPress={botaocompletado}
-              >
-                <Text style={[styles.textobotao, { color: tarefascompletados ? theme.text4 : theme.text }]}>Completados</Text>
-              </TouchableOpacity>
-            </View>
-
-            <TextInput
-              style={styles.navinput}
-              placeholder="🔍 Pesquisa uma tarefa"
-              placeholderTextColor="#ffffff"
-            />
+        <View style={styles.containertarefas2}>
+          <Image source={equipe.imagem} style={styles.imag} />
+          <View style={styles.textos}>
+            <Text style={styles.textolistatitulo}>{equipe.titulo}</Text>
+            <Text style={styles.textolistacargo}>{equipe.cargo}</Text>
           </View>
+        </View>
 
-          {tarefaspendentes && renderTarefas(item => item.pendente)}
-          {tarefasatrasadas && renderTarefas(item => item.atrasado)}
-          {tarefascompletados && renderTarefas(item => item.completado)}
+        <Text style={styles.titulo2}>Tarefas</Text>
+
+        <View style={styles.areabotao}>
+          <TouchableOpacity
+            style={[styles.botao, { backgroundColor: tarefaspendentes ? '#1A5CFF' : theme.inputBackground }]}
+            onPress={botaopendente}
+          >
+            <Text style={[styles.textobotao, { color: tarefaspendentes ? theme.text4 : theme.text }]}>Pendente</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.botao, { backgroundColor: tarefasatrasadas ? '#1A5CFF' : theme.inputBackground }]}
+            onPress={botaoatrasado}
+          >
+            <Text style={[styles.textobotao, { color: tarefasatrasadas ? theme.text4 : theme.text }]}>Atrasados</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.botao, { backgroundColor: tarefascompletados ? '#1A5CFF' : theme.inputBackground }]}
+            onPress={botaocompletado}
+          >
+            <Text style={[styles.textobotao, { color: tarefascompletados ? theme.text4 : theme.text }]}>Completados</Text>
+          </TouchableOpacity>
+        </View>
+
+        <TextInput
+          style={styles.navinput}
+          placeholder="🔍 Pesquisa uma tarefa"
+          placeholderTextColor="#ffffff"
+        />
+
+        {tarefaspendentes && renderTarefas(item => item.pendente)}
+        {tarefasatrasadas && renderTarefas(item => item.atrasado)}
+        {tarefascompletados && renderTarefas(item => item.completado)}
 
       </ScrollView>
     </View>

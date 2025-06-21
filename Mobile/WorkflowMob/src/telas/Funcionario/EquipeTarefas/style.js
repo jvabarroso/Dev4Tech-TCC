@@ -13,10 +13,16 @@ export const getStyles = (theme) => StyleSheet.create({
   },
   titulo: {
     fontSize: 30,
-    fontFamily: fonts.text,
     color: theme.text,
     fontWeight: 'bold',
-    marginTop: '5%',
+    fontFamily: fonts.text,
+  },
+  titulo2: {
+    fontSize: 20,
+    color: theme.text,
+    fontWeight: 'bold',
+    fontFamily: fonts.text,
+    padding:10,
   },
   areabotao: {
     padding: 10,
@@ -59,6 +65,14 @@ export const getStyles = (theme) => StyleSheet.create({
     padding: 15,
     marginBottom: 20,
   },
+  containertarefas2: {
+    backgroundColor: theme.inputBackground,
+    borderRadius: 10,
+    padding: 10,
+    marginBottom: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   linhaTarefa: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -71,6 +85,10 @@ export const getStyles = (theme) => StyleSheet.create({
   imag: {
     width: 45,
     height: 45,
+  },
+  textos: {
+    marginLeft: 15,
+    flex: 1,
   },
   textolistatitulo: {
     color: theme.text,
@@ -101,5 +119,21 @@ export const getStyles = (theme) => StyleSheet.create({
     color: theme.text,
     fontSize: 14,
     fontFamily: fonts.text,
+  },
+  nav: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingVertical: 15,
+    marginBottom: 10,
+    marginTop:15,
+  },
+  botaodevoltar: {
+    width: 40,
+    height: 40,
+    justifyContent: 'center',
+  },
+  espacoHeader: {
+        width: 40,
   },
 });
