@@ -258,6 +258,7 @@
             this.txtNomeTarefa.Name = "txtNomeTarefa";
             this.txtNomeTarefa.Size = new System.Drawing.Size(186, 47);
             this.txtNomeTarefa.TabIndex = 56;
+            this.txtNomeTarefa.TextChanged += new System.EventHandler(this.txtNomeTarefa_TextChanged);
             // 
             // AdicionarTarefa
             // 

@@ -515,6 +515,7 @@
             this.cmbTarefas.Name = "cmbTarefas";
             this.cmbTarefas.Size = new System.Drawing.Size(121, 24);
             this.cmbTarefas.TabIndex = 130;
+            this.cmbTarefas.SelectedIndexChanged += new System.EventHandler(this.cmbTarefas_SelectedIndexChanged);
             // 
             // label3
             // 

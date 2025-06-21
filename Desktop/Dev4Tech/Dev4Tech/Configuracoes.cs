@@ -24,7 +24,7 @@ namespace Dev4Tech
         {
             MessageBox.Show("Funcionalidade em desenvolvimento");
         }
-        private void btnCancelar_Click(object sender, EventArgs e) { }
+
         private void label8_Click(object sender, EventArgs e) { }
         private void label1_Click(object sender, EventArgs e) { }
         private void label2_Click(object sender, EventArgs e) { }
@@ -37,7 +37,6 @@ namespace Dev4Tech
         private void btnLogout_Click(object sender, EventArgs e) { Form1 t_incial = new Form1(); t_incial.Show(); this.Hide(); }
         private void btnRanking_Click(object sender, EventArgs e) { Ranking_Equipes rank_equipe = new Ranking_Equipes(); rank_equipe.Show(); this.Hide(); }
         private void picPerfilMembro_Click(object sender, EventArgs e) { Integrantes_Equipe t_integrantes = new Integrantes_Equipe(); t_integrantes.Show(); this.Hide(); }
-        private void txtDataNasc_TextChanged(object sender, EventArgs e) { }
         private void txtEmail_TextChanged(object sender, EventArgs e) { }
     }
 }

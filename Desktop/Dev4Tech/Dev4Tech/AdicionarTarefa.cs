@@ -37,6 +37,7 @@ namespace Dev4Tech
         // Busca as equipes reais do banco
 
 
+
         // Evento para anexar arquivo
         private void BtnAnexarArquivos_Click(object sender, EventArgs e)
         {
@@ -133,6 +134,11 @@ namespace Dev4Tech
         }
 
         private void btnAddTarefas_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNomeTarefa_TextChanged(object sender, EventArgs e)
         {
 
         }

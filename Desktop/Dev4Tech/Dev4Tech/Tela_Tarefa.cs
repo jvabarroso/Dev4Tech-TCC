@@ -234,6 +234,7 @@ namespace Dev4Tech
 
         private void btnAplicar_Click(object sender, EventArgs e)
         {
+            EntregaTarefa entrTarefa = new EntregaTarefa();
             if (cmbTarefas.SelectedValue != null)
             {
                 int idTarefaSelecionada = Convert.ToInt32(cmbTarefas.SelectedValue);
@@ -259,5 +260,10 @@ namespace Dev4Tech
         private void txtDescrição_TextChanged(object sender, EventArgs e) { }
         private void btnConfigurações_Click(object sender, EventArgs e) { }
         private void lblPlanejamento_Click(object sender, EventArgs e) { }
+
+        private void cmbTarefas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
