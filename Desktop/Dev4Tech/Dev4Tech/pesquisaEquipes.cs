@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Dev4Tech
@@ -27,7 +23,7 @@ namespace Dev4Tech
         private int margemTopo = 30;
         private int margemEsquerda = 350;
         private int espacamentoVertical = 20;
-        private int alturaMensagem = 50;
+        private int alturaMensagem = 110;
 
         private void txtPesquisaEquipe_Click(object sender, EventArgs e)
         {
@@ -77,42 +73,61 @@ namespace Dev4Tech
             DataTable dt = filtro.ObterEquipesComMembros(filtroCategoria);
 
             var equipes = dt.AsEnumerable()
-                            .GroupBy(row => new
-                            {
-                                id_equipe = row.Field<int>("id_equipe"),
-                                nome_equipe = row.Field<string>("nome_equipe"),
-                                categoria = row.Field<string>("nome_categoria")
-                            });
+    .GroupBy(row => new
+    {
+        id_equipe = row.Field<int>("id_equipe"),
+        nome_equipe = row.Field<string>("nome_equipe"),
+        categoria = row.Field<string>("nome_categoria"),
+        dias_desde_ultima_atividade = row.IsNull("dias_desde_ultima_atividade")
+            ? -1
+            : Convert.ToInt32(row["dias_desde_ultima_atividade"])
+    });
+
+
 
             foreach (var equipe in equipes)
             {
-                AdicionarPainelEquipe(equipe.Key.nome_equipe, equipe.Key.categoria, equipe.Select(r => r.Field<string>("nome_funcionario")).ToList());
+                AdicionarPainelEquipe(
+                    equipe.Key.nome_equipe,
+                    equipe.Key.categoria,
+                    equipe.Select(r => r.Field<string>("nome_funcionario")).ToList(),
+                    equipe.Key.id_equipe,
+                    equipe.Key.dias_desde_ultima_atividade
+                );
             }
         }
 
-        private void AdicionarPainelEquipe(string nomeEquipe, string categoria, List<string> membros)
+        private void AdicionarPainelEquipe(string nomeEquipe, string categoria, System.Collections.Generic.List<string> membros, int idEquipe, int diasDesdeUltimaAtividade)
         {
             int x = margemEsquerda;
             int y = margemTopo + (alturaMensagem + espacamentoVertical) * mensagensCount;
 
             Panel equipePanel = new Panel
             {
-                Width = 600,
-                Height = 80,
+                Width = 350,
+                Height = alturaMensagem,
                 BackColor = Color.White,
                 BorderStyle = BorderStyle.FixedSingle,
                 Left = x,
-                Top = y
+                Top = y,
+                Cursor = Cursors.Hand
+            };
+
+            equipePanel.Click += (s, e) =>
+            {
+                Chat_geral_equipes chatForm = new Chat_geral_equipes(idEquipe);
+                chatForm.Show();
+                this.Hide();
             };
 
             PictureBox picEquipe = new PictureBox
             {
                 Image = Properties.Resources.icon_EquipLogo,
                 SizeMode = PictureBoxSizeMode.StretchImage,
-                Width = 50,
-                Height = 50,
+                Width = 40,
+                Height = 40,
                 Left = 10,
-                Top = 15,
+                Top = 10,
                 BorderStyle = BorderStyle.FixedSingle
             };
             equipePanel.Controls.Add(picEquipe);
@@ -120,24 +135,50 @@ namespace Dev4Tech
             Label lblNomeEquipe = new Label
             {
                 Text = nomeEquipe,
-                Font = new Font("Segoe UI", 12, FontStyle.Bold),
-                Left = 70,
-                Top = 10,
+                Font = new Font("Segoe UI", 11, FontStyle.Bold),
+                Left = 60,
+                Top = 5,
                 AutoSize = true
             };
             equipePanel.Controls.Add(lblNomeEquipe);
 
             Label lblCategoria = new Label
             {
-                Text = "Categoria: " + categoria,
-                Font = new Font("Segoe UI", 10, FontStyle.Italic),
-                Left = 70,
-                Top = 35,
+                Text = categoria,
+                Font = new Font("Segoe UI", 10, FontStyle.Regular),
+                Left = 60,
+                Top = 30,
                 AutoSize = true
             };
             equipePanel.Controls.Add(lblCategoria);
 
-            int fotoLeft = 300;
+            string textoAtividade = diasDesdeUltimaAtividade == -1
+                ? "Nunca ativo"
+                : $"Ativo há {diasDesdeUltimaAtividade} dia(s)";
+
+            Label lblAtividade = new Label
+            {
+                Text = textoAtividade,
+                Font = new Font("Segoe UI", 8, FontStyle.Italic),
+                ForeColor = diasDesdeUltimaAtividade > 7 ? Color.Red : Color.Green,
+                Left = 60,
+                Top = 50,
+                AutoSize = true
+            };
+            equipePanel.Controls.Add(lblAtividade);
+
+            Label lblColaboradores = new Label
+            {
+                Text = "Colaboradores",
+                Font = new Font("Segoe UI", 9, FontStyle.Regular),
+                Left = 60,
+                Top = 70,
+                AutoSize = true
+            };
+            equipePanel.Controls.Add(lblColaboradores);
+
+            int fotoLeft = 60;
+            int fotoTop = 90;
             foreach (var membro in membros)
             {
                 PictureBox picMembro = new PictureBox
@@ -147,7 +188,7 @@ namespace Dev4Tech
                     Width = 32,
                     Height = 32,
                     Left = fotoLeft,
-                    Top = 24,
+                    Top = fotoTop,
                     BorderStyle = BorderStyle.FixedSingle,
                     Cursor = Cursors.Hand,
                     Tag = membro
@@ -159,13 +200,14 @@ namespace Dev4Tech
                 };
 
                 equipePanel.Controls.Add(picMembro);
-                fotoLeft += 40;
+                fotoLeft += 38;
             }
 
             panelEquipes.Controls.Add(equipePanel);
             mensagensCount++;
         }
 
+        // Métodos e eventos restantes (mantidos)
         private void btnEquipe_Click(object sender, EventArgs e) { }
         private void btnCalendar_Click(object sender, EventArgs e) { }
         private void txtPesquisaEquipe_TextChanged(object sender, EventArgs e) { }

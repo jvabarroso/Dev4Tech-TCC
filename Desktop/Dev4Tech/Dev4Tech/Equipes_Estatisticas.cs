@@ -111,5 +111,40 @@ namespace Dev4Tech
             chart3.Series["Entrega"].Points.AddXY("Pontos Perdidos", 15);
             chart3.Series["Entrega"].Points.AddXY("Pontos Obtidos", 80);
         }
+
+        private void btnHome_Click_1(object sender, EventArgs e)
+        {
+            Home h = new Home();
+            h.Show();
+            this.Hide();
+        }
+
+        private void btnEquipes_Click_1(object sender, EventArgs e)
+        {
+            Equipes_Estatisticas equip_e = new Equipes_Estatisticas();
+            equip_e.Show();
+            this.Hide();
+        }
+
+        private void btnRanking_Click_1(object sender, EventArgs e)
+        {
+            Ranking_Equipes rank = new Ranking_Equipes();
+            rank.Show();
+            this.Hide();
+        }
+
+        private void btnConfig_Click(object sender, EventArgs e)
+        {
+            //Configuracoes config = new Configuracoes();
+            //config.Show();
+            //this.Hide();
+        }
+
+        private void btnLogout_Click_1(object sender, EventArgs e)
+        {
+            Form1 f1 = new Form1();
+            f1.Show();
+            this.Hide();
+        }
     }
 }

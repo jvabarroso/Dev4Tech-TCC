@@ -80,6 +80,7 @@
             this.btnEquipes.Size = new System.Drawing.Size(32, 28);
             this.btnEquipes.TabIndex = 42;
             this.btnEquipes.TabStop = false;
+            this.btnEquipes.Click += new System.EventHandler(this.btnEquipes_Click);
             // 
             // btnCalendar
             // 
@@ -104,6 +105,7 @@
             this.btnRanking.Size = new System.Drawing.Size(32, 28);
             this.btnRanking.TabIndex = 40;
             this.btnRanking.TabStop = false;
+            this.btnRanking.Click += new System.EventHandler(this.btnRanking_Click);
             // 
             // btnLogout
             // 
@@ -116,6 +118,7 @@
             this.btnLogout.Size = new System.Drawing.Size(32, 28);
             this.btnLogout.TabIndex = 39;
             this.btnLogout.TabStop = false;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // btnConfig
             // 
@@ -128,6 +131,7 @@
             this.btnConfig.Size = new System.Drawing.Size(32, 28);
             this.btnConfig.TabIndex = 38;
             this.btnConfig.TabStop = false;
+            this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
             // 
             // btnHome
             // 
@@ -140,6 +144,7 @@
             this.btnHome.Size = new System.Drawing.Size(32, 28);
             this.btnHome.TabIndex = 37;
             this.btnHome.TabStop = false;
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
             // 
             // pictureBox2
             // 

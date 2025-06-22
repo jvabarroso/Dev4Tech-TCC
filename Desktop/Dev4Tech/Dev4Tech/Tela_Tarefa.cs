@@ -36,7 +36,7 @@ namespace Dev4Tech
             DataTable dtTarefas = entrTarefa.BuscarTodasTarefasPorEquipe(idEquipeAtual);
 
             cmbTarefas.DataSource = dtTarefas;
-            cmbTarefas.DisplayMember = "NomeTarefa"; // Alterado para o novo campo
+            cmbTarefas.DisplayMember = "nomeTarefa"; // Alterado para o novo campo
             cmbTarefas.ValueMember = "id_tarefa";
             cmbTarefas.SelectedIndex = -1;
         }

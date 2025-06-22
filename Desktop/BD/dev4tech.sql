@@ -40,8 +40,12 @@ CREATE TABLE Funcionarios (
     Telefone VARCHAR(20),
     Email VARCHAR(255) UNIQUE,
     Senha VARCHAR(255),
-    data_cadFunc DATETIME
+    data_cadFunc DATETIME,
+    endereço VARCHAR(255) NOT NULL,
+    numero VARCHAR(255) NOT NULL
 );
+
+ALTER TABLE funcionarios ADD numero VARCHAR(255) NOT NULL;
 
 CREATE TABLE MensagensChat (
     id_mensagem INT PRIMARY KEY auto_increment,

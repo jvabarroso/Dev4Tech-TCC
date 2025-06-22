@@ -70,11 +70,16 @@ namespace Dev4Tech
         private void label13_Click(object sender, EventArgs e) { }
         private void txtNome_TextChanged(object sender, EventArgs e) { }
         private void btnConfigurações_Click(object sender, EventArgs e) { }
-        private void btnEquipes_Click(object sender, EventArgs e) { Equipes_Estatisticas t_equipe = new Equipes_Estatisticas(); t_equipe.Show(); this.Hide(); }
+        private void btnEquipes_Click(object sender, EventArgs e)
+        {
+            Equipes_Estatisticas t_equipe = new Equipes_Estatisticas();
+            t_equipe.Show();
+            this.Hide();
+        }
         private void btnHome_Click(object sender, EventArgs e) { Home t_Home = new Home(); t_Home.Show(); this.Hide(); }
         private void btnLogout_Click(object sender, EventArgs e) { Form1 t_incial = new Form1(); t_incial.Show(); this.Hide(); }
         private void btnRanking_Click(object sender, EventArgs e) { Ranking_Equipes rank_equipe = new Ranking_Equipes(); rank_equipe.Show(); this.Hide(); }
-        private void picPerfilMembro_Click(object sender, EventArgs e) { Integrantes_Equipe t_integrantes = new Integrantes_Equipe(); t_integrantes.Show(); this.Hide(); }
+        private void picPerfilMembro_Click(object sender, EventArgs e) { }
         private void txtEmail_TextChanged(object sender, EventArgs e) { }
         private void txtDataNascFunc_MaskInputRejected(object sender, MaskInputRejectedEventArgs e) { }
         private void txtTelefone_MaskInputRejected(object sender, MaskInputRejectedEventArgs e) { }

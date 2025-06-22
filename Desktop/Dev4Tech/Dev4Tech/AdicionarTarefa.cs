@@ -142,5 +142,40 @@ namespace Dev4Tech
         {
 
         }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            Home h = new Home();
+            h.Show();
+            this.Hide();
+        }
+
+        private void btnEquipes_Click(object sender, EventArgs e)
+        {
+            Equipes_Estatisticas equip_e = new Equipes_Estatisticas();
+            equip_e.Show();
+            this.Hide();
+        }
+
+        private void btnRanking_Click(object sender, EventArgs e)
+        {
+            Ranking_Equipes rk = new Ranking_Equipes();
+            rk.Show();
+            this.Hide();
+        }
+
+        private void btnConfig_Click(object sender, EventArgs e)
+        {
+            //Configuracoes config = new Configuracoes();
+            //config.Show();
+            //this.Hide();
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            Form1 f1 = new Form1();
+            f1.Show();
+            this.Hide();
+        }
     }
 }

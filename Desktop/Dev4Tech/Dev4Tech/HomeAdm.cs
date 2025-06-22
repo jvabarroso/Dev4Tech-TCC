@@ -38,37 +38,6 @@ namespace Dev4Tech
             this.Hide();
         }
 
-        private void lblTarefas_Click(object sender, EventArgs e)
-        {
-            Tarefas_Pendentes trf_pendente = new Tarefas_Pendentes();
-            trf_pendente.Show();
-            this.Hide();
-        }
-
-        private void lblGeral_Click(object sender, EventArgs e)
-        {
-            Chat_geral_equipes chatEquipe = new Chat_geral_equipes();
-            chatEquipe.Show();
-            this.Hide();
-        }
-
-        private void lblMembros_Click(object sender, EventArgs e)
-        {
-            Integrantes_Equipe t_integrantes = new Integrantes_Equipe();
-            t_integrantes.Show();
-            this.Hide();
-        }
-
-        private void btnConfiguracoes_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void btnCriarTarefa_Click(object sender, EventArgs e)
-        {
-            AdicionarTarefa criarTarefa = new AdicionarTarefa();
-            criarTarefa.Show();
-            this.Hide();
-        }
 
         private void btnHome_Click(object sender, EventArgs e)
         {
@@ -77,25 +46,39 @@ namespace Dev4Tech
             this.Hide();
         }
 
-        private void btnPlanejamento_Click(object sender, EventArgs e)
+
+        private void btnConfigurações_Click(object sender, EventArgs e) {
+            //Configuracoes config = new Configuracoes();
+            //config.Show();
+            //this.Hide();
+        }
+
+        private void btnEntrarEquipes_Click(object sender, EventArgs e)
         {
-            Planejamento planejamento = new Planejamento();
-            planejamento.Show();
+            AdicionarEquipes addE = new AdicionarEquipes();
+            addE.Show();
             this.Hide();
         }
 
-        private void btnGerenciarEquipes_Click(object sender, EventArgs e)
+        private void btnEntrarTarefas_Click(object sender, EventArgs e)
         {
-            // TODO: Implementar gerenciamento de equipes
-            MessageBox.Show("Funcionalidade em desenvolvimento");
+            AdicionarTarefa addT = new AdicionarTarefa();
+            addT.Show();
+            this.Hide();
         }
 
-        private void btnGerenciarUsuarios_Click(object sender, EventArgs e)
+        private void btnEntrarCadastroFuncionario_Click(object sender, EventArgs e)
         {
-            // TODO: Implementar gerenciamento de usuários
-            MessageBox.Show("Funcionalidade em desenvolvimento");
+            cadastro_funcionário cadFunc = new cadastro_funcionário();
+            cadFunc.Show();
+            this.Hide();
         }
 
-        private void btnConfigurações_Click(object sender, EventArgs e) { }
+        private void btnEntrarRanking_Click(object sender, EventArgs e)
+        {
+            Equipes_Estatisticas equip_e = new Equipes_Estatisticas();
+            equip_e.Show();
+            this.Hide();
+        }
     }
 }

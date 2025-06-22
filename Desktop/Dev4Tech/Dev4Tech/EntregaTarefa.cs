@@ -59,7 +59,7 @@ namespace Dev4Tech
         public DataTable BuscarTodasTarefasPorEquipe(int idEquipe)
         {
             DataTable dt = new DataTable();
-            string query = "SELECT id_tarefa, instrucoes FROM Tarefas WHERE id_equipe = @idEquipe ORDER BY data_entrega DESC";
+            string query = "SELECT id_tarefa, nomeTarefa FROM Tarefas WHERE id_equipe = @idEquipe ORDER BY data_entrega DESC";
 
             if (abrirConexao())
             {

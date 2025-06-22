@@ -66,11 +66,14 @@ namespace Dev4Tech
 
         }
         private void btnEntrarRanking_Click(object sender, EventArgs e) { }
-        private void btnConfiguracoes_Click(object sender, EventArgs e) { }
         private void btnHome_Click(object sender, EventArgs e) { }
         private void Home_Load(object sender, EventArgs e) { }
         private void groupBox2_Enter(object sender, EventArgs e) { }
         private void btnEntrarTarefas_Click(object sender, EventArgs e) { }
-        private void btnConfigurações_Click(object sender, EventArgs e) { }
+        private void btnConfigurações_Click(object sender, EventArgs e)
+        { //Configuracoes config = new Configuracoes();
+          //config.Show();
+          //this.Hide(); 
+        }
+        }
     }
-}
