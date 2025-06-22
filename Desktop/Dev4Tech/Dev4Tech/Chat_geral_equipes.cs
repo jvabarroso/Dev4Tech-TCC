@@ -8,6 +8,8 @@ namespace Dev4Tech
     public partial class Chat_geral_equipes : Form
     {
         private int idEquipe;
+        private string nomeEquipe;
+        private string categoriaEquipe;
         private Chat_Mensagens messageChat = new Chat_Mensagens();
 
         private int mensagensCount = 0;
@@ -16,18 +18,29 @@ namespace Dev4Tech
         private int espacamentoVertical = 20;
         private int alturaMensagem = 50;
 
-        // Construtor padrão para evitar erros em chamadas sem parâmetro
+        // Construtor padrão (sem parâmetros) para chamadas existentes e Designer
         public Chat_geral_equipes()
         {
             InitializeComponent();
-            idEquipe = 0; // Ou outro valor padrão
+            idEquipe = 0;
+            nomeEquipe = "Equipe não definida";
+            categoriaEquipe = "Categoria não definida";
+
+            lblNomeEquipe.Text = nomeEquipe;
+            lblCategoriaEquipe.Text = categoriaEquipe;
         }
 
-        // Construtor que recebe idEquipe
-        public Chat_geral_equipes(int idEquipe)
+        // Construtor com parâmetros para abrir chat de equipe específica
+        public Chat_geral_equipes(int idEquipe, string nomeEquipe, string categoriaEquipe)
         {
             InitializeComponent();
             this.idEquipe = idEquipe;
+            this.nomeEquipe = nomeEquipe;
+            this.categoriaEquipe = categoriaEquipe;
+
+            lblNomeEquipe.Text = nomeEquipe;
+            lblCategoriaEquipe.Text = categoriaEquipe;
+
             CarregarMensagens();
         }
 
@@ -110,7 +123,20 @@ namespace Dev4Tech
             }
         }
 
-        // Métodos e eventos restantes (mantidos)
+        // Métodos de evento exigidos pelo Designer
+
+        private void lblRanking_Click(object sender, EventArgs e)
+        {
+            // Pode implementar ou deixar vazio
+        }
+
+        private void Chat_geral_equipes_Load(object sender, EventArgs e)
+        {
+            // Pode implementar ou deixar vazio
+        }
+
+        // Outros eventos e métodos que você já tinha
+
         private void btnEquipes_Click(object sender, EventArgs e)
         {
             Equipes_Estatisticas t_equipe = new Equipes_Estatisticas();
@@ -180,16 +206,9 @@ namespace Dev4Tech
             txtDigitarMensagem.Text = "";
         }
 
-        private void txtDigitarMensagem_TextChanged(object sender, EventArgs e) { }
-        private void Chat_geral_equipes_Load(object sender, EventArgs e)
+        private void txtDigitarMensagem_TextChanged(object sender, EventArgs e)
         {
-            // vazio ou código desejado
+            // Sem alterações
         }
-
-        private void lblRanking_Click(object sender, EventArgs e)
-        {
-            // vazio ou código desejado
-        }
-
     }
 }

@@ -73,17 +73,13 @@ namespace Dev4Tech
             DataTable dt = filtro.ObterEquipesComMembros(filtroCategoria);
 
             var equipes = dt.AsEnumerable()
-    .GroupBy(row => new
-    {
-        id_equipe = row.Field<int>("id_equipe"),
-        nome_equipe = row.Field<string>("nome_equipe"),
-        categoria = row.Field<string>("nome_categoria"),
-        dias_desde_ultima_atividade = row.IsNull("dias_desde_ultima_atividade")
-            ? -1
-            : Convert.ToInt32(row["dias_desde_ultima_atividade"])
-    });
-
-
+                            .GroupBy(row => new
+                            {
+                                id_equipe = row.Field<int>("id_equipe"),
+                                nome_equipe = row.Field<string>("nome_equipe"),
+                                categoria = row.Field<string>("nome_categoria"),
+                                dias_desde_ultima_atividade = row.IsNull("dias_desde_ultima_atividade") ? -1 : Convert.ToInt32(row["dias_desde_ultima_atividade"])
+                            });
 
             foreach (var equipe in equipes)
             {
@@ -115,7 +111,7 @@ namespace Dev4Tech
 
             equipePanel.Click += (s, e) =>
             {
-                Chat_geral_equipes chatForm = new Chat_geral_equipes(idEquipe);
+                Chat_geral_equipes chatForm = new Chat_geral_equipes(idEquipe, nomeEquipe, categoria);
                 chatForm.Show();
                 this.Hide();
             };
@@ -207,7 +203,7 @@ namespace Dev4Tech
             mensagensCount++;
         }
 
-        // Métodos e eventos restantes (mantidos)
+        // Métodos e eventos que você já tinha (mantidos)
         private void btnEquipe_Click(object sender, EventArgs e) { }
         private void btnCalendar_Click(object sender, EventArgs e) { }
         private void txtPesquisaEquipe_TextChanged(object sender, EventArgs e) { }
