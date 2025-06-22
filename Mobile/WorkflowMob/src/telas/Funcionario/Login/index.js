@@ -3,60 +3,47 @@ import {Text, TextInput, View, TouchableOpacity, Alert} from 'react-native';
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
 
+import api from '../../../../services/api';
+
 export default function Login({navigation}){
     const { theme } = useTheme();
     const styles = getStyles(theme);
 
-    const [funcionario, setFuncionario] = useState([
-      {
-        id: '1',
-        nome: 'Gabriel Kenzon Takeuchi',
-        datadenascimento: "16/05/1980",
-        email: 'Kenzo',
-        telefone: 13982176670,
-        endereco: "Rua João da Fonseca, Jardim Mato Grosso, Cananeia", //mudar isso depois, ver banco de dados
-        cargo: "Desenvolvedor Web",
-        senha: '1234',
-        imagem: require('../../../../assets/img/fotoexemplo.png'),
-      },
-      {
-        id: '2',
-        nome: 'Gabriel Kenzon Takeuchi',
-        datadenascimento: "16/05/1980",
-        email: 'KenzoAdm',
-        telefone: 13982176670,
-        endereco: "Rua João da Fonseca, Jardim Mato Grosso, Cananeia", //mudar isso depois, ver banco de dados
-        cargo: "Desenvolvedor Web",
-        senha: '1234',
-        imagem: require('../../../../assets/img/fotoexemplo.png'),
-      },
-      ]);
-
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-    const usuario = funcionario[0];
-    const [isSelected, setSelection] = useState(false);
 
-    const verificacao = () => {
+    const verificacao = async () => {
       if (email.trim() && senha.trim()) {
-        const usuarioLogado = funcionario.find(
-          (item) => item.email === email && item.senha === senha
-        );
+        try{
+          console.log('Dados enviados:', { Email: email, Senha: senha });
+          const response = await api.post('dev4tec/login.php', {
+            Email: email,
+            Senha: senha
+          });
+          console.log('Resposta da API:', response.data);
 
-        if (usuarioLogado) {
-          if (usuarioLogado.email.includes("Adm")) {
-            navigation.navigate('HomeAdm', { usuario: usuarioLogado } );
-          } else {
-            navigation.navigate('Home', { usuario: usuarioLogado });
-          }
-        } else {
-          Alert.alert('Erro', 'Email ou senha incorretos.');
+          const json = response.data;
+          
+          if (json.success) {
+            if (json.role === 'administrador') {
+              navigation.navigate('HomeAdm', { usuario: json.usuario } );
+            } else if (json.role === 'funcionario') {
+              navigation.navigate('Home', { usuario: json.usuario });
+            } else {
+            Alert.alert('Erro', 'Email ou senha incorretos.');
+            }
+          }else {
+            Alert.alert('Atenção', 'Preencha todos os campos.');
+            } 
+        }catch (error) {
+          Alert.alert('Erro', 'Não foi possível conectar ao servidor.');
+          console.error(error);
         }
-      } else {
-        Alert.alert('Atenção', 'Preencha todos os campos.');
+        } else {
+            Alert.alert('Atenção', 'Preencha todos os campos.');
       }
-    }
-  
+    };
+
     return (
         <View style={styles.container}>
           <Text style={styles.logo}>WORKFLOW</Text>
