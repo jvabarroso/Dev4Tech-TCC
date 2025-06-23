@@ -45,6 +45,7 @@ CREATE TABLE Funcionarios (
     numero VARCHAR(255) NOT NULL
 );
 
+ALTER TABLE Funcionarios CHANGE COLUMN endereço endereco VARCHAR(255) NOT NULL;
 
 CREATE TABLE MensagensChat (
     id_mensagem INT PRIMARY KEY auto_increment,

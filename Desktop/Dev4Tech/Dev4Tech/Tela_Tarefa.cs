@@ -74,7 +74,7 @@ namespace Dev4Tech
         }
 
         // Carrega detalhes da tarefa selecionada e atualiza a interface
-        private void CarregarDetalhesTarefa(int idTarefa)
+        public void CarregarDetalhesTarefa(int idTarefa)
         {
             EntregaTarefa entrTarefa = new EntregaTarefa();
             DataRow tarefa = entrTarefa.BuscarTarefaPorId(idTarefa);
@@ -147,7 +147,7 @@ namespace Dev4Tech
         private string BuscarNomeEquipe(int idEquipe)
         {
             string nome = "";
-            using (var conn = new MySqlConnection("server=localhost;database=Dev4Tech;uid=seu_usuario;pwd=sua_senha;"))
+            using (var conn = new MySqlConnection("server=localhost;database=Dev4Tech;uid=root;pwd=;"))
             {
                 conn.Open();
                 var cmd = new MySqlCommand("SELECT nome_equipe FROM Equipes WHERE id_equipe = @id", conn);

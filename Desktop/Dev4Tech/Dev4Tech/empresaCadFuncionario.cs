@@ -11,7 +11,7 @@ namespace Dev4Tech
 
         public void setData_cadFunc(DateTime data_cadFunc) { this.data_cadFunc = data_cadFunc; }
         public void setNumero(string numero) { this.numero = numero; }
-        public void setEndereço(string endereco) { this.endereco = endereco; }
+        public void setEndereco(string endereco) { this.endereco = endereco; }
         public void setFuncionarioId(string FuncionarioId) { this.FuncionarioId = FuncionarioId; }
         public void setNome(string nome) { this.Nome = nome; }
         public void setCargo(string cargo) { this.Cargo = cargo; }
@@ -61,7 +61,7 @@ namespace Dev4Tech
                             func.setDataNascimento(Convert.ToDateTime(reader["DataNascimento"]));
                             func.setTelefone(reader["Telefone"].ToString());
                             func.setEmail(reader["Email"].ToString());
-                            func.setEndereço(reader["endereco"].ToString());
+                            func.setEndereco(reader["endereco"].ToString());
                             func.setNumero(reader["numero"].ToString());
                             func.setData_cadFunc(Convert.ToDateTime(reader["data_cadFunc"]));
                             func.setSenha(reader["Senha"].ToString());

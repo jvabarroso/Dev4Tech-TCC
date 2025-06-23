@@ -79,6 +79,7 @@
             this.btnHome = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblPlanejamento = new System.Windows.Forms.Label();
+            this.panelTarefas = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.Tarefa1.SuspendLayout();
@@ -98,6 +99,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnHome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panelTarefas.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblMembros
@@ -249,7 +251,7 @@
             this.Tarefa1.Controls.Add(this.label7);
             this.Tarefa1.Controls.Add(this.pictureBox4);
             this.Tarefa1.Controls.Add(this.label8);
-            this.Tarefa1.Location = new System.Drawing.Point(450, 282);
+            this.Tarefa1.Location = new System.Drawing.Point(11, 140);
             this.Tarefa1.Margin = new System.Windows.Forms.Padding(2);
             this.Tarefa1.Name = "Tarefa1";
             this.Tarefa1.Padding = new System.Windows.Forms.Padding(2);
@@ -325,7 +327,7 @@
             this.groupBox2.Controls.Add(this.label15);
             this.groupBox2.Controls.Add(this.pictureBox12);
             this.groupBox2.Controls.Add(this.label16);
-            this.groupBox2.Location = new System.Drawing.Point(748, 282);
+            this.groupBox2.Location = new System.Drawing.Point(311, 140);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
@@ -400,7 +402,7 @@
             this.groupBox4.Controls.Add(this.label20);
             this.groupBox4.Controls.Add(this.pictureBox13);
             this.groupBox4.Controls.Add(this.label21);
-            this.groupBox4.Location = new System.Drawing.Point(748, 403);
+            this.groupBox4.Location = new System.Drawing.Point(311, 14);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
@@ -475,7 +477,7 @@
             this.groupBox5.Controls.Add(this.label25);
             this.groupBox5.Controls.Add(this.pictureBox14);
             this.groupBox5.Controls.Add(this.label26);
-            this.groupBox5.Location = new System.Drawing.Point(450, 403);
+            this.groupBox5.Location = new System.Drawing.Point(12, 14);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(2);
@@ -664,17 +666,25 @@
             this.lblPlanejamento.Text = "Planejamento";
             this.lblPlanejamento.Click += new System.EventHandler(this.lblPlanejamento_Click);
             // 
+            // panelTarefas
+            // 
+            this.panelTarefas.Controls.Add(this.groupBox4);
+            this.panelTarefas.Controls.Add(this.groupBox2);
+            this.panelTarefas.Controls.Add(this.groupBox5);
+            this.panelTarefas.Controls.Add(this.Tarefa1);
+            this.panelTarefas.Location = new System.Drawing.Point(422, 264);
+            this.panelTarefas.Name = "panelTarefas";
+            this.panelTarefas.Size = new System.Drawing.Size(790, 388);
+            this.panelTarefas.TabIndex = 131;
+            // 
             // Tarefas_Pendentes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.panelTarefas);
             this.Controls.Add(this.lblPlanejamento);
             this.Controls.Add(this.txtPesquisaTarefa);
-            this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.Tarefa1);
             this.Controls.Add(this.btnCompletadas);
             this.Controls.Add(this.btnEmAtraso);
             this.Controls.Add(this.btnPendentes);
@@ -720,6 +730,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnHome)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panelTarefas.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -778,5 +789,6 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TextBox txtPesquisaTarefa;
         private System.Windows.Forms.Label lblPlanejamento;
+        private System.Windows.Forms.Panel panelTarefas;
     }
 }

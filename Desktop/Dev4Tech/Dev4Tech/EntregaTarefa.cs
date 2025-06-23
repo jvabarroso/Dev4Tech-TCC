@@ -55,6 +55,29 @@ namespace Dev4Tech
                 }
             }
         }
+
+        // Retorna todas as tarefas pendentes da equipe (você pode filtrar por status se quiser)
+        public DataTable BuscarTarefasPendentesPorEquipe(int idEquipe)
+        {
+            DataTable dt = new DataTable();
+            string query = "SELECT * FROM Tarefas WHERE id_equipe = @idEquipe ORDER BY data_entrega DESC";
+            if (abrirConexao())
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, conectar);
+                    cmd.Parameters.AddWithValue("@idEquipe", idEquipe);
+                    MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                    da.Fill(dt);
+                }
+                finally
+                {
+                    fecharConexao();
+                }
+            }
+            return dt;
+        }
+
         // NOVO MÉTODO: Busca todas as tarefas para uma equipe (para preencher o ComboBox)
         public DataTable BuscarTodasTarefasPorEquipe(int idEquipe)
         {

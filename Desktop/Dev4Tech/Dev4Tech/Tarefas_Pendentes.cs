@@ -15,14 +15,119 @@ namespace Dev4Tech
         public Tarefas_Pendentes()
         {
             InitializeComponent();
+            CarregarTarefasPendentes();
         }
 
-        private void btnEquipes_Click(object sender, EventArgs e)
+        private void CarregarTarefasPendentes()
         {
-            Equipes_Estatisticas t_equipe = new Equipes_Estatisticas();
-            t_equipe.Show();
-            this.Hide();
+            // Substitua pelo id da equipe logada/selecionada
+            int idEquipe = 1; // Exemplo fixo, troque pelo valor correto do seu sistema
+
+            panelTarefas.Controls.Clear();
+
+            EntregaTarefa entregaTarefa = new EntregaTarefa();
+            DataTable dt = entregaTarefa.BuscarTarefasPendentesPorEquipe(idEquipe);
+
+            int margemTopo = 20;
+            int margemEsquerda = 20;
+            int espacamentoVertical = 20;
+            int espacamentoHorizontal = 20;
+            int larguraPanel = 350;
+            int alturaPanel = 100;
+            int colunas = 2;
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                DataRow row = dt.Rows[i];
+
+                Panel tarefaPanel = new Panel
+                {
+                    Width = larguraPanel,
+                    Height = alturaPanel,
+                    BackColor = Color.White,
+                    BorderStyle = BorderStyle.FixedSingle,
+                    Left = margemEsquerda + (i % colunas) * (larguraPanel + espacamentoHorizontal),
+                    Top = margemTopo + (i / colunas) * (alturaPanel + espacamentoVertical),
+                    Cursor = Cursors.Hand,
+                    Tag = row["id_tarefa"]
+                };
+
+                tarefaPanel.Click += (s, e) =>
+                {
+                    int idTarefa = Convert.ToInt32(((Panel)s).Tag);
+                    Tela_Tarefa telaTarefa = new Tela_Tarefa(idEquipe);
+                    telaTarefa.CarregarDetalhesTarefa(idTarefa); // Torne este método público em Tela_Tarefa
+                    telaTarefa.Show();
+                    this.Hide();
+                };
+
+                PictureBox pic = new PictureBox
+                {
+                    Image = Properties.Resources.icon_EquipLogo, // Use o ícone desejado
+                    SizeMode = PictureBoxSizeMode.StretchImage,
+                    Width = 40,
+                    Height = 40,
+                    Left = 10,
+                    Top = 10
+                };
+                tarefaPanel.Controls.Add(pic);
+
+                Label lblNome = new Label
+                {
+                    Text = row["nomeTarefa"].ToString(),
+                    Font = new Font("Segoe UI", 11, FontStyle.Bold),
+                    Left = 60,
+                    Top = 5,
+                    AutoSize = true
+                };
+                tarefaPanel.Controls.Add(lblNome);
+
+                Label lblSub = new Label
+                {
+                    Text = "GitLab", // Ou outro campo se desejar
+                    Font = new Font("Segoe UI", 10, FontStyle.Regular),
+                    Left = 60,
+                    Top = 30,
+                    AutoSize = true
+                };
+                tarefaPanel.Controls.Add(lblSub);
+
+                Label lblCategoria = new Label
+                {
+                    Text = "Administração", // Ou outro campo se desejar
+                    Font = new Font("Segoe UI", 9, FontStyle.Regular),
+                    Left = 60,
+                    Top = 50,
+                    AutoSize = true
+                };
+                tarefaPanel.Controls.Add(lblCategoria);
+
+                Label lblConclusao = new Label
+                {
+                    Text = "Conclusão em " + Convert.ToDateTime(row["data_entrega"]).ToString("dd/MM/yy") + " às 00:00",
+                    Font = new Font("Segoe UI", 9, FontStyle.Regular),
+                    Left = 60,
+                    Top = 70,
+                    AutoSize = true
+                };
+                tarefaPanel.Controls.Add(lblConclusao);
+
+                Label lblStatus = new Label
+                {
+                    Text = "Pendente",
+                    Font = new Font("Segoe UI", 9, FontStyle.Bold),
+                    ForeColor = Color.Black,
+                    BackColor = Color.Yellow,
+                    Left = larguraPanel - 90,
+                    Top = 10,
+                    AutoSize = true
+                };
+                tarefaPanel.Controls.Add(lblStatus);
+
+                panelTarefas.Controls.Add(tarefaPanel);
+            }
         }
+
 
         private void btnRanking_Click(object sender, EventArgs e)
         {
@@ -57,25 +162,6 @@ namespace Dev4Tech
             Integrantes_Equipe t_integrantes = new Integrantes_Equipe();
             t_integrantes.Show();
             this.Hide();
-        }
-
-        private void btnConcluirTarefa_Click(object sender, EventArgs e)
-        {
-            // TODO: Implementar conclusão de tarefa
-            MessageBox.Show("Funcionalidade em desenvolvimento");
-        }
-
-        private void btnReportarProblema_Click(object sender, EventArgs e)
-        {
-            Relato_Problema relato = new Relato_Problema();
-            relato.Show();
-            this.Hide();
-        }
-
-        private void btnEnviarComentario_Click(object sender, EventArgs e)
-        {
-            // TODO: Implementar envio de comentários
-            MessageBox.Show("Funcionalidade em desenvolvimento");
         }
 
         private void lblRanking_Click(object sender, EventArgs e) { }

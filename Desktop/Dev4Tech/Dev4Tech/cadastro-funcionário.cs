@@ -38,7 +38,7 @@ namespace Dev4Tech
                 emCadFunc.setSenha(txtCadFuncSenha.Text);
                 emCadFunc.setDataNascimento(DateTime.Today);
                 emCadFunc.setData_cadFunc(DateTime.Now);
-                emCadFunc.setEndereço(txtEndereço.Text);
+                emCadFunc.setEndereco(txtEndereço.Text);
                 emCadFunc.setNumero(txtEndereçoNum.Text);
                 emCadFunc.inserir();
                 
@@ -65,21 +65,6 @@ namespace Dev4Tech
             txtCadFuncNome.Text = "";
         }
 
-        private void txtCadFuncCPF_Click(object sender, EventArgs e)
-        {
-            txtCadFuncCPF.Text = "";
-        }
-
-        private void txtCadFuncDataNasc_Click(object sender, EventArgs e)
-        {
-            txtCadFuncDataNasc.Text = "";
-        }
-
-        private void txtCadFuncTelefone_Click(object sender, EventArgs e)
-        {
-            txtCadFuncTelefone.Text = "";
-        }
-
         private void txtCadFuncEmail_Click(object sender, EventArgs e)
         {
             txtCadFuncEmail.Text = "";
@@ -98,12 +83,6 @@ namespace Dev4Tech
         private void cbBoxCargo_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void btnLimpar_Click(object sender, EventArgs e)
-        {
-            // TODO: Implementar limpeza dos campos
-            MessageBox.Show("Campos limpos com sucesso!");
         }
     }
 }
