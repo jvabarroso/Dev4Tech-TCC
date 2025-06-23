@@ -23,12 +23,12 @@ namespace Dev4Tech
                 try
                 {
                     MySqlCommand cmd = new MySqlCommand(query, conectar);
-                    // Correção: Usar NomeTarefa corretamente
                     cmd.Parameters.AddWithValue("@nome", NomeTarefa);
                     cmd.Parameters.AddWithValue("@instr", Instrucoes);
                     cmd.Parameters.AddWithValue("@idEq", IdEquipe);
                     cmd.Parameters.AddWithValue("@data", DataEntrega);
                     cmd.Parameters.AddWithValue("@nomeArq", NomeArquivo);
+                    // Se ArquivoBlob for nulo, passa DBNull.Value para evitar erro no banco
                     cmd.Parameters.AddWithValue("@arqBlob", (object)ArquivoBlob ?? DBNull.Value);
                     cmd.ExecuteNonQuery();
                 }

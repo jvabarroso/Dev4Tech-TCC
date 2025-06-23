@@ -3,45 +3,77 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace Dev4Tech
 {
     public partial class Tela_Tarefa : Form
     {
+        private int idEquipeAtual = 0; // ID da equipe selecionada
+        private int idTarefaExibida = 0; // ID da tarefa atualmente exibida
+        private string caminhoArquivoEntrega = ""; // Caminho do arquivo para entrega
+
+        // Construtor padrão para evitar erros em chamadas sem parâmetros
         public Tela_Tarefa()
         {
             InitializeComponent();
+            // Opcional: inicializar variáveis padrão ou mostrar mensagem
         }
-        private int idEquipeAtual = 0; // ID da equipe selecionada ao abrir a tela
-        private int idTarefaExibida = 1; // ID da tarefa atualmente exibida na tela
-        private string caminhoArquivoEntrega = ""; // Caminho do arquivo para a entrega
 
+        // Construtor que recebe o ID da equipe para carregar dados específicos
         public Tela_Tarefa(int idEquipe)
         {
             InitializeComponent();
-            idEquipeAtual = idEquipe; // Define a equipe atual
-            txtNomeEquipe.Text = BuscarNomeEquipe(idEquipeAtual); // Exibe o nome da equipe
+            idEquipeAtual = idEquipe;
+            txtNomeEquipe.Text = BuscarNomeEquipe(idEquipeAtual);
 
-            // Inicializa eventos
             btnEnviar.Click += BtnEnviar_Click;
             lblArquivoEntregaTarefa.Click += LblArquivoEntregaTarefa_Click;
 
-            // Carrega as tarefas na ComboBox
+            // Adiciona evento para atualizar detalhes ao mudar seleção no ComboBox
+            cmbTarefas.SelectedIndexChanged += cmbTarefas_SelectedIndexChanged;
+
             CarregarTarefasNoComboBox();
         }
 
+        // Carrega todas as tarefas da equipe no ComboBox cmbTarefas
         private void CarregarTarefasNoComboBox()
         {
             EntregaTarefa entrTarefa = new EntregaTarefa();
             DataTable dtTarefas = entrTarefa.BuscarTodasTarefasPorEquipe(idEquipeAtual);
 
-            cmbTarefas.DataSource = dtTarefas;
-            cmbTarefas.DisplayMember = "nomeTarefa"; // Alterado para o novo campo
-            cmbTarefas.ValueMember = "id_tarefa";
-            cmbTarefas.SelectedIndex = -1;
+            if (dtTarefas != null && dtTarefas.Rows.Count > 0)
+            {
+                cmbTarefas.DataSource = null; // limpa antes
+                cmbTarefas.DataSource = dtTarefas;
+                cmbTarefas.DisplayMember = "nomeTarefa"; // nome exato da coluna
+                cmbTarefas.ValueMember = "id_tarefa";
+                cmbTarefas.SelectedIndex = 0; // seleciona o primeiro item para mostrar texto
+            }
+            else
+            {
+                cmbTarefas.DataSource = null;
+                cmbTarefas.Items.Clear();
+                cmbTarefas.Text = "Nenhuma tarefa encontrada";
+                LimparDetalhesTarefa();
+            }
         }
 
+        // Evento chamado quando o usuário seleciona uma tarefa diferente no ComboBox
+        private void cmbTarefas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idTarefa;
+            if (cmbTarefas.SelectedValue != null && int.TryParse(cmbTarefas.SelectedValue.ToString(), out idTarefa))
+            {
+                CarregarDetalhesTarefa(idTarefa);
+            }
+            else
+            {
+                LimparDetalhesTarefa();
+            }
+        }
 
+        // Carrega detalhes da tarefa selecionada e atualiza a interface
         private void CarregarDetalhesTarefa(int idTarefa)
         {
             EntregaTarefa entrTarefa = new EntregaTarefa();
@@ -52,10 +84,8 @@ namespace Dev4Tech
                 idTarefaExibida = Convert.ToInt32(tarefa["id_tarefa"]);
                 lblInstrucoes.Text = tarefa["instrucoes"].ToString();
 
-                // Remove handlers anteriores para evitar duplicação
                 lblArquivoTarefa.Click -= LblArquivoTarefa_Click;
 
-                // Configura o label do arquivo da tarefa
                 if (tarefa["nome_arquivo"] != DBNull.Value && !string.IsNullOrEmpty(tarefa["nome_arquivo"].ToString()))
                 {
                     lblArquivoTarefa.Text = "Arquivo: " + tarefa["nome_arquivo"].ToString();
@@ -75,16 +105,24 @@ namespace Dev4Tech
             }
             else
             {
-                lblInstrucoes.Text = "Detalhes da tarefa não encontrados.";
-                lblArquivoTarefa.Text = "";
-                btnEnviar.Enabled = false;
+                LimparDetalhesTarefa();
             }
         }
 
-        // Evento para abrir arquivo da tarefa
+        // Limpa os detalhes da tarefa da tela
+        private void LimparDetalhesTarefa()
+        {
+            idTarefaExibida = 0;
+            lblInstrucoes.Text = "";
+            lblArquivoTarefa.Text = "";
+            btnEnviar.Enabled = false;
+            LimparCamposEntrega();
+        }
+
+        // Evento para abrir o arquivo anexado à tarefa
         private void LblArquivoTarefa_Click(object sender, EventArgs e)
         {
-            if (idTarefaExibida == 1) return;
+            if (idTarefaExibida == 0) return;
 
             EntregaTarefa entrTarefa = new EntregaTarefa();
             DataRow tarefa = entrTarefa.BuscarTarefaPorId(idTarefaExibida);
@@ -105,14 +143,14 @@ namespace Dev4Tech
             }
         }
 
-        // Busca o nome da equipe pelo ID
+        // Busca o nome da equipe pelo ID no banco
         private string BuscarNomeEquipe(int idEquipe)
         {
             string nome = "";
-            using (var conn = new MySql.Data.MySqlClient.MySqlConnection("server=localhost;database=Dev4Tech;uid=seu_usuario;pwd=sua_senha;"))
+            using (var conn = new MySqlConnection("server=localhost;database=Dev4Tech;uid=seu_usuario;pwd=sua_senha;"))
             {
                 conn.Open();
-                var cmd = new MySql.Data.MySqlClient.MySqlCommand("SELECT nome_equipe FROM Equipes WHERE id_equipe = @id", conn);
+                var cmd = new MySqlCommand("SELECT nome_equipe FROM Equipes WHERE id_equipe = @id", conn);
                 cmd.Parameters.AddWithValue("@id", idEquipe);
                 var result = cmd.ExecuteScalar();
                 nome = result != null ? result.ToString() : "";
@@ -120,7 +158,7 @@ namespace Dev4Tech
             return nome;
         }
 
-        // Evento para clicar e anexar arquivo de entrega
+        // Evento para anexar arquivo de entrega
         private void LblArquivoEntregaTarefa_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -133,7 +171,7 @@ namespace Dev4Tech
             }
         }
 
-        // Evento do botão Enviar entrega
+        // Evento para enviar a entrega da tarefa
         private void BtnEnviar_Click(object sender, EventArgs e)
         {
             if (idTarefaExibida == 0)
@@ -178,6 +216,16 @@ namespace Dev4Tech
             }
         }
 
+        // Limpa campos após entrega
+        private void LimparCamposEntrega()
+        {
+            txtDescrição.Clear();
+            lblArquivoEntregaTarefa.Text = "Clique para anexar arquivo";
+            lblArquivoEntregaTarefa.ForeColor = Color.Gray;
+            caminhoArquivoEntrega = "";
+        }
+
+        // Eventos e métodos adicionais (mantidos)
         private void btnHome_Click(object sender, EventArgs e)
         {
             Home home = new Home();
@@ -190,11 +238,6 @@ namespace Dev4Tech
             Equipes_Estatisticas t_equipe = new Equipes_Estatisticas();
             t_equipe.Show();
             this.Hide();
-        }
-
-        private void btnEnviar_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnRanking_Click(object sender, EventArgs e)
@@ -234,11 +277,13 @@ namespace Dev4Tech
 
         private void btnAplicar_Click(object sender, EventArgs e)
         {
-            EntregaTarefa entrTarefa = new EntregaTarefa();
             if (cmbTarefas.SelectedValue != null)
             {
-                int idTarefaSelecionada = Convert.ToInt32(cmbTarefas.SelectedValue);
-                CarregarDetalhesTarefa(idTarefaSelecionada);
+                int idTarefaSelecionada;
+                if (int.TryParse(cmbTarefas.SelectedValue.ToString(), out idTarefaSelecionada))
+                {
+                    CarregarDetalhesTarefa(idTarefaSelecionada);
+                }
             }
             else
             {
@@ -246,24 +291,11 @@ namespace Dev4Tech
             }
         }
 
-        private void LimparCamposEntrega()
-        {
-            txtDescrição.Clear();
-            lblArquivoEntregaTarefa.Text = "Clique para anexar arquivo";
-            lblArquivoEntregaTarefa.ForeColor = Color.Gray;
-            caminhoArquivoEntrega = "";
-        }
-
-        // Não remova
         private void lblRanking_Click(object sender, EventArgs e) { }
         private void btnRelatarProblema_Click(object sender, EventArgs e) { }
         private void txtDescrição_TextChanged(object sender, EventArgs e) { }
         private void btnConfigurações_Click(object sender, EventArgs e) { }
         private void lblPlanejamento_Click(object sender, EventArgs e) { }
-
-        private void cmbTarefas_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+        private void btnEnviar_Click(object sender, EventArgs e) { }
     }
 }

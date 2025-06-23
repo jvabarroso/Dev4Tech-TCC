@@ -67,6 +67,21 @@ CREATE TABLE Equipes (
     FOREIGN KEY (id_categoria) REFERENCES Categorias(id_categoria) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
+-- Adicionar coluna id_equipe na tabela de mensagens
+ALTER TABLE MensagensChat
+ADD COLUMN id_equipe INT NOT NULL,
+ADD FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE;
+
+-- Criar tabela para armazenar última atividade
+CREATE TABLE UltimaAtividadeEquipe (
+    id_equipe INT PRIMARY KEY,
+    ultima_atividade DATETIME NOT NULL,
+    FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE
+);
+
+ALTER TABLE Equipes ADD COLUMN data_criacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
+
 CREATE TABLE Equipes_Membros (
     id_equipe INT NOT NULL,
     FuncionarioId INT NOT NULL,
@@ -85,7 +100,6 @@ CREATE TABLE Tarefas (
     nome_arquivo VARCHAR(255),
     arquivo_blob LONGBLOB,
     FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE ON UPDATE CASCADE,
-    nomeTarefa VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE EntregasTarefa (
@@ -103,34 +117,6 @@ CREATE TABLE EntregasTarefa (
 CREATE TABLE RelatoProblema (
 idProblema INT PRIMARY KEY AUTO_INCREMENT,
 descrição TEXT NOT NULL
-);
-
--- Tabela de Integrantes das Equipes
-CREATE TABLE IntegrantesEquipe (
-    id_integrante INT PRIMARY KEY auto_increment,
-    id_equipe INT,
-    id_funcionario INT,
-    data_entrada DATETIME,
-    cargo_equipe VARCHAR(50),
-    status BIT DEFAULT 1,
-    FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe),
-    FOREIGN KEY (id_funcionario) REFERENCES Funcionarios(FuncionarioId)
-);
-
--- Tabela de Tarefas
-CREATE TABLE Tarefas (
-    id_tarefa INT PRIMARY KEY auto_increment,
-    id_equipe INT,
-    id_criador INT,
-    titulo VARCHAR(100) NOT NULL,
-    descricao TEXT,
-    data_criacao DATETIME,
-    data_limite DATETIME,
-    data_conclusao DATETIME,
-    prioridade VARCHAR(10) DEFAULT 'media',
-    status VARCHAR(20) DEFAULT 'pendente',
-    FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe),
-    FOREIGN KEY (id_criador) REFERENCES Administradores(AdminId)
 );
 
 -- Tabela de Atribuições de Tarefas

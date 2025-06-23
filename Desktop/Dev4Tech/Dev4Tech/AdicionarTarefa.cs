@@ -7,14 +7,13 @@ namespace Dev4Tech
 {
     public partial class AdicionarTarefa : Form
     {
-        // Guarda o caminho do arquivo selecionado
         private string caminhoArquivoSelecionado = "";
 
         public AdicionarTarefa()
         {
             InitializeComponent();
 
-            // Carrega as equipes no ComboBox ao iniciar a tela
+            // Carrega equipes no ComboBox
             CarregarEquipes();
 
             // Configura eventos dos botões
@@ -22,7 +21,7 @@ namespace Dev4Tech
             btnAddTarefas.Click += BtnAddTarefas_Click;
         }
 
-        // Carrega equipes para o ComboBox cmbAddEquipe buscando do banco
+        // Busca equipes do banco e carrega no ComboBox
         private void CarregarEquipes()
         {
             AddTarefas tarefa = new AddTarefas();
@@ -31,12 +30,8 @@ namespace Dev4Tech
             cmbAddEquipe.DataSource = dt;
             cmbAddEquipe.DisplayMember = "nome_equipe";
             cmbAddEquipe.ValueMember = "id_equipe";
-            cmbAddEquipe.SelectedIndex = -1; // Nenhuma selecionada inicialmente
+            cmbAddEquipe.SelectedIndex = -1;
         }
-
-        // Busca as equipes reais do banco
-
-
 
         // Evento para anexar arquivo
         private void BtnAnexarArquivos_Click(object sender, EventArgs e)
@@ -54,7 +49,7 @@ namespace Dev4Tech
         // Evento para adicionar tarefa no banco
         private void BtnAddTarefas_Click(object sender, EventArgs e)
         {
-            // Validação básica
+            // Validações básicas
             if (string.IsNullOrWhiteSpace(txtInstruções.Text))
             {
                 MessageBox.Show("Por favor, preencha as instruções da tarefa.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -76,7 +71,7 @@ namespace Dev4Tech
                 return;
             }
 
-            // Coleta dados
+            // Dados coletados do formulário
             string nomeTarefa = txtNomeTarefa.Text.Trim();
             string instrucoes = txtInstruções.Text.Trim();
             int idEquipe = Convert.ToInt32(cmbAddEquipe.SelectedValue);
@@ -84,7 +79,7 @@ namespace Dev4Tech
             byte[] arquivoBytes = null;
             string nomeArquivo = "";
 
-            // Lê arquivo se foi selecionado
+            // Lê arquivo se selecionado
             if (!string.IsNullOrEmpty(caminhoArquivoSelecionado))
             {
                 try
@@ -122,7 +117,7 @@ namespace Dev4Tech
             }
         }
 
-        // Limpa os campos do formulário após salvar
+        // Limpa campos após inserção
         private void LimparFormulario()
         {
             txtInstruções.Clear();
@@ -133,16 +128,7 @@ namespace Dev4Tech
             lblArquivosSelecionado.Text = "Nenhum arquivo selecionado";
         }
 
-        private void btnAddTarefas_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtNomeTarefa_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        // Eventos mantidos
         private void btnHome_Click(object sender, EventArgs e)
         {
             Home h = new Home();
@@ -166,9 +152,7 @@ namespace Dev4Tech
 
         private void btnConfig_Click(object sender, EventArgs e)
         {
-            //Configuracoes config = new Configuracoes();
-            //config.Show();
-            //this.Hide();
+            // Configurações futuras
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -177,5 +161,15 @@ namespace Dev4Tech
             f1.Show();
             this.Hide();
         }
+        private void btnAddTarefas_Click_1(object sender, EventArgs e)
+        {
+            // Pode deixar vazio ou implementar o que for necessário
+        }
+
+        private void txtNomeTarefa_TextChanged(object sender, EventArgs e)
+        {
+            // Pode deixar vazio ou implementar o que for necessário
+        }
+
     }
 }
