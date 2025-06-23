@@ -99,7 +99,7 @@ CREATE TABLE Tarefas (
     data_entrega DATE NOT NULL,
     nome_arquivo VARCHAR(255),
     arquivo_blob LONGBLOB,
-    FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE EntregasTarefa (
