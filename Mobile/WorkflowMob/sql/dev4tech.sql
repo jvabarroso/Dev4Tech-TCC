@@ -41,7 +41,7 @@ CREATE TABLE Funcionarios (
     Email VARCHAR(255) UNIQUE,
     Senha VARCHAR(255),
     data_cadFunc DATETIME,
-    endereço VARCHAR(255) NOT NULL,
+    endereco VARCHAR(255) NOT NULL,
     numero VARCHAR(255) NOT NULL
 );
 

@@ -4,23 +4,20 @@ import { getStyles } from './style';
 import { useTheme } from '../../styles/themecontext'
 import {Ionicons} from '@expo/vector-icons';
 
-export default function Configuracoes({navigation}){
+export default function Configuracoes({navigation, route}){
     const { theme, toggleTheme } = useTheme();
     const styles = getStyles(theme);
 
-    const [funcionario, setFuncionario] = useState([
-      {
-        id: '1',
-        nome: 'Gabriel Kenzon Takeuchi',
-        datadenascimento: "16/05/1980",
-        email: 'gabrieltakeuchi417@gmail.com',
-        telefone: 13982176670,
-        endereco: "Rua João da Fonseca, Jardim Mato Grosso, Cananeia", //mudar isso depois, ver banco de dados
-        cargo: "Desenvolvedor Web",
-        senha: 1234,
-        imagem: require('../../../assets/img/fotoexemplo.png'),
-      },
-      ]);
+    const usuario = route.params?.usuario || {
+      nome: 'Usuário não identificado',
+      cargo: 'Cargo não definido',
+      dataNascimento: "Data não definido",
+      email:"Email não definido",
+      telefone:'Telefone não definido',
+      endereco:'Endereço não definido',
+      cpf:"CPF não definido"
+    };
+    
 
     const [equipe, setEquipe] = useState([
       {
@@ -95,8 +92,8 @@ export default function Configuracoes({navigation}){
             <View style={styles.containerfuncionario}>
               <Image source={require('../../../assets/img/image.png')} style={styles.imagemfuncionario} />
               <View style={styles.textos}>
-                <Text style={styles.textofuncionario}>Funcionario 1</Text>
-                <Text style={styles.textofuncionariocargo}>Professor</Text>
+                <Text style={styles.textofuncionario}>{usuario.nome}</Text>
+                <Text style={styles.textofuncionariocargo}>{usuario.cargo}</Text>
               </View>
             </View>
 
@@ -133,40 +130,47 @@ export default function Configuracoes({navigation}){
                 <Text style={styles.texto}>Nome</Text>
                 <TextInput
                   style={styles.input}
-                  placeholder="Gabriel Kenzo" //depois mudar, mensagem para mim mesmo dnv :D
+                  placeholder={usuario.nome} //depois mudar, mensagem para mim mesmo dnv :D
                   placeholderTextColor={theme.text}
                 />
                 <Text style={styles.texto}>Data de nascimento</Text>
                 <TextInput
                   style={styles.input}
-                  placeholder="xx/xx/xxxx"
+                  placeholder={usuario.dataNascimento}
+                  placeholderTextColor={theme.text}
+                  secureTextEntry={true}
+                />
+                <Text style={styles.texto}>CPF</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder={usuario.cpf}
                   placeholderTextColor={theme.text}
                   secureTextEntry={true}
                 />
                 <Text style={styles.texto}>Email</Text>
                 <TextInput
                   style={styles.input}
-                  placeholder="joaovitinhocraft@gmail.com"
+                  placeholder={usuario.email}
                   placeholderTextColor={theme.text}
                   secureTextEntry={true}
                 />
                 <Text style={styles.texto}>Telefone</Text>
                 <TextInput
                   style={styles.input}
-                  placeholder="1399899989"
+                  placeholder={usuario.telefone}
                   placeholderTextColor={theme.text}
                 />
                 <Text style={styles.texto}>Endereço</Text>
                 <TextInput
                   style={styles.input}
-                  placeholder="Rua João da Fonseca, Jardim Mato Grosso, Cananeia senha"
+                  placeholder={usuario.endereco}
                   placeholderTextColor={theme.text}
                   secureTextEntry={true}
                 />
                 <Text style={styles.texto}>Cargo</Text>
                 <TextInput
                   style={styles.input}
-                  placeholder="Analista de Marketing"
+                  placeholder={usuario.cargo}
                   placeholderTextColor={theme.text}
                   secureTextEntry={true}
                 />

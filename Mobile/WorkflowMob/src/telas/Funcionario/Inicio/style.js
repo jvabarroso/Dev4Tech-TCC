@@ -31,7 +31,8 @@ export const getStyles = (theme) => StyleSheet.create({
     fontWeight: 'bold',
     color: theme.text,
     marginBottom: 10,
-    paddingHorizontal: 10,
+    marginRight:100,
+    paddingHorizontal:10,
   },
   subtitulo: {
     fontFamily: fonts.text,

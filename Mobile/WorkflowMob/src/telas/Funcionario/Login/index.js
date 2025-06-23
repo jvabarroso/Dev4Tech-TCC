@@ -13,34 +13,36 @@ export default function Login({navigation}){
     const [senha, setSenha] = useState('');
 
     const verificacao = async () => {
-      if (email.trim() && senha.trim()) {
-        try{
-          console.log('Dados enviados:', { Email: email, Senha: senha });
-          const response = await api.post('dev4tec/login.php', {
-            Email: email,
-            Senha: senha
-          });
-          console.log('Resposta da API:', response.data);
+      if (!email.trim() || !senha.trim()) {
+        Alert.alert('Atenção', 'Preencha todos os campos.');
+        return;
+      }
 
-          const json = response.data;
-          
-          if (json.success) {
-            if (json.role === 'administrador') {
-              navigation.navigate('HomeAdm', { usuario: json.usuario } );
-            } else if (json.role === 'funcionario') {
-              navigation.navigate('Home', { usuario: json.usuario });
-            } else {
-            Alert.alert('Erro', 'Email ou senha incorretos.');
-            }
-          }else {
-            Alert.alert('Atenção', 'Preencha todos os campos.');
-            } 
-        }catch (error) {
-          Alert.alert('Erro', 'Não foi possível conectar ao servidor.');
-          console.error(error);
-        }
+      try {
+        
+        const response = await api.post('dev4tec/login.php', {
+          Email: email,
+          Senha: senha
+        }, {
+          headers: { 'Content-Type': 'application/json' }
+        });
+        
+        const json = response.data;
+
+        if (json.success) {
+          if (json.role === 'administrador') {
+            navigation.navigate('HomeAdm', { usuario: json.usuario});
+          } else if (json.role === 'funcionario') {
+            navigation.navigate('Home', { usuario: json.usuario});
+          }
         } else {
-            Alert.alert('Atenção', 'Preencha todos os campos.');
+          Alert.alert('Erro', json.message || 'Credenciais inválidas');
+        }
+      } catch (error) {
+        Alert.alert(
+          'Erro', 
+          error.response?.data?.message || 'Não foi possível conectar ao servidor'
+        );
       }
     };
 
