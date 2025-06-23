@@ -5,22 +5,15 @@ import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
 
 export default function Home({navigation, route}){
+
   const { theme } = useTheme();
   const styles = getStyles(theme);
 
-  const usuarioRecebido = route.params?.usuario || {};
-
-    const usuarioPadrao = {
-        nome: 'Usuário não identificado',
-        cargo: 'Cargo não definido',
-        imagem: require('../../../../assets/img/fotoexemplo.png'),
-    };
-
-    const usuario = {
-        ...usuarioPadrao,
-        ...usuarioRecebido
-    };
-    //resolver isso
+  const usuario = route.params?.usuario || {
+    nome: 'Usuário não identificado',
+    cargo: 'Cargo não definido',
+  };
+    console.log('Dados recebidos na Home:', route.params);
 
     return(
         <ScrollView style={styles.scroll}>
@@ -33,8 +26,8 @@ export default function Home({navigation, route}){
                     <View style={styles.verde}></View>
 
                     <View style={styles.textoperfil}>
-                        <Text style={styles.nome}>Kenzo</Text>
-                        <Text style={styles.profissao}>Desenvolvedor Mobile</Text>
+                        <Text style={styles.nome}>{usuario.nome}</Text>
+                        <Text style={styles.profissao}>{usuario.cargo}</Text>
                     </View>
                 </View>
 

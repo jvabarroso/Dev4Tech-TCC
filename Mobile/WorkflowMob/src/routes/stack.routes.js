@@ -27,18 +27,17 @@ import CadastroTarefas from '../../src/telas/Gestor/CadastroTarefas';
 import RankingAdm from '../../src/telas/Gestor/RankingAdm';
 import RankingEstastistico from '../../src/telas/Gestor/RakingEstastistico';
 
-
 import fonts from "../styles/fonts";
 import {Ionicons} from '@expo/vector-icons';
 
 
-
 const Tab = createBottomTabNavigator()
 
-
-function Tabs(){
+function Tabs({route}){
   const { theme } = useTheme();
   const styles = getStyles(theme);
+
+  const usuario = route.params?.usuario || null;
 
   const navigation = useNavigation();
   return (
@@ -54,7 +53,7 @@ function Tabs(){
             size={24}
             color={theme.text}
             style={styles.header}
-            onPress={() => navigation.navigate('Configuracoes')}
+            onPress={() => navigation.navigate('Configuracoes', { usuario })}
           />
         ),
         tabBarIcon: ({ focused, color, size }) => {
@@ -83,7 +82,7 @@ function Tabs(){
         },
       })}
     >
-      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Home" component={Home} initialParams={{ usuario }}  />
       <Tab.Screen name="Tarefas" component={Tarefas} />
       <Tab.Screen name="Equipes" component={Equipes} />
       <Tab.Screen name="Ranking" component={Ranking} />
@@ -91,9 +90,10 @@ function Tabs(){
   );
 }
 
-function TabsAdm(){  
+function TabsAdm({route}){  
   const { theme } = useTheme();
   const styles = getStyles(theme);
+  const usuario = route.params?.usuario || null;
 
   const navigation = useNavigation();
   return (
@@ -109,7 +109,7 @@ function TabsAdm(){
             size={24}
             color={theme.text}
             style={styles.header}
-            onPress={() => navigation.navigate('Configuracoes')}
+            onPress={() => navigation.navigate('Configuracoes', { usuario: json.usuario})}
           />
         ),
         tabBarIcon: ({ focused, color, size }) => {
@@ -141,7 +141,7 @@ function TabsAdm(){
         },
       })}
     >
-      <Tab.Screen name="HomeAdm" component={HomeAdm} />
+      <Tab.Screen name="HomeAdm" component={HomeAdm} initialParams={{ usuario }}/>
       <Tab.Screen name="CadastroFuncionario" component={CadastroFuncionario} />
       <Tab.Screen name="CadastroTarefas" component={CadastroTarefas} />
       <Tab.Screen name="CadastroEquipes" component={CadastroEquipes} />
