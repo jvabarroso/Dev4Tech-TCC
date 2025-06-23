@@ -62,14 +62,24 @@ namespace Dev4Tech
         private void label1_Click(object sender, EventArgs e) { }
         private void groupBox1_Enter(object sender, EventArgs e) { }
         private void btnEntrarEquipes_Click(object sender, EventArgs e) {
-
+            PesquisaEquipes p = new PesquisaEquipes();
+            p.Show();
+            this.Hide();
 
         }
-        private void btnEntrarRanking_Click(object sender, EventArgs e) { }
+        private void btnEntrarRanking_Click(object sender, EventArgs e) {
+            Ranking_Equipes rank = new Ranking_Equipes();
+            rank.Show();
+            this.Hide();
+        }
         private void btnHome_Click(object sender, EventArgs e) { }
         private void Home_Load(object sender, EventArgs e) { }
         private void groupBox2_Enter(object sender, EventArgs e) { }
-        private void btnEntrarTarefas_Click(object sender, EventArgs e) { }
+        private void btnEntrarTarefas_Click(object sender, EventArgs e) {
+            Tarefas_Pendentes tp = new Tarefas_Pendentes();
+            tp.Show();
+            this.Hide();
+        }
         private void btnConfigurações_Click(object sender, EventArgs e)
         { //Configuracoes config = new Configuracoes();
           //config.Show();
