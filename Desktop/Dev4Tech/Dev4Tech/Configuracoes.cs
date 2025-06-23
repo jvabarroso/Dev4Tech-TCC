@@ -60,7 +60,7 @@ namespace Dev4Tech
             txtDataNascFunc.Text = funcionario.getDataNascimento().ToString("dd/MM/yyyy");
             txtTelefone.Text = funcionario.getTelefone();
             txtEmail.Text = funcionario.getEmail();
-            textBox1.Text = $"{funcionario.getEndereço()}, {funcionario.getNumero()}";
+            textBox1.Text = $"{funcionario.getEndereco()}, {funcionario.getNumero()}";
         }
 
         private void label8_Click(object sender, EventArgs e) { }

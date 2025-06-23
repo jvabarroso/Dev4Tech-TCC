@@ -21,7 +21,7 @@ namespace Dev4Tech
         public void setEmail(string email) { this.Email = email; }
         public void setSenha(string senha) { this.Senha = senha; }
 
-        public string getEndereço() { return this.endereco; }
+        public string getEndereco() { return this.endereco; }
         public string getNumero() { return this.numero; }
         public string getFuncionarioId() { return this.FuncionarioId; }
         public string getNome() { return this.Nome; }
@@ -37,7 +37,7 @@ namespace Dev4Tech
         {
             empresaCadFuncionario func = null;
 
-            string query = "SELECT FuncionarioId, Nome, Cargo, CPF, DataNascimento, Telefone, Email, endereço, numero, data_cadFunc, Senha " +
+            string query = "SELECT FuncionarioId, Nome, Cargo, CPF, DataNascimento, Telefone, Email, endereco, numero, data_cadFunc, Senha " +
                            "FROM Funcionarios WHERE Email = @Email AND Senha = @Senha LIMIT 1";
 
             if (this.abrirConexao())
@@ -61,7 +61,7 @@ namespace Dev4Tech
                             func.setDataNascimento(Convert.ToDateTime(reader["DataNascimento"]));
                             func.setTelefone(reader["Telefone"].ToString());
                             func.setEmail(reader["Email"].ToString());
-                            func.setEndereço(reader["endereço"].ToString());
+                            func.setEndereço(reader["endereco"].ToString());
                             func.setNumero(reader["numero"].ToString());
                             func.setData_cadFunc(Convert.ToDateTime(reader["data_cadFunc"]));
                             func.setSenha(reader["Senha"].ToString());
@@ -79,8 +79,8 @@ namespace Dev4Tech
 
         public void inserir()
         {
-            string query = "INSERT INTO Funcionarios(FuncionarioId, Nome, Cargo, CPF, DataNascimento, Telefone, Email, Senha, data_cadFunc, endereço, numero) " +
-                           "VALUES('" + getFuncionarioId() + "','" + getNome() + "','" + getCargo() + "','" + getCPF() + "','" + getDataNascimento().ToString("yyyy-MM-dd HH:mm:ss") + "','" + getTelefone() + "','" + getEmail() + "','" + getSenha() + "','" + getData_cadFunc().ToString("yyyy-MM-dd HH:mm:ss") + "','" + getEndereço() + "','" + getNumero() + "')";
+            string query = "INSERT INTO Funcionarios(FuncionarioId, Nome, Cargo, CPF, DataNascimento, Telefone, Email, Senha, data_cadFunc, endereco, numero) " +
+                           "VALUES('" + getFuncionarioId() + "','" + getNome() + "','" + getCargo() + "','" + getCPF() + "','" + getDataNascimento().ToString("yyyy-MM-dd HH:mm:ss") + "','" + getTelefone() + "','" + getEmail() + "','" + getSenha() + "','" + getData_cadFunc().ToString("yyyy-MM-dd HH:mm:ss") + "','" + getEndereco() + "','" + getNumero() + "')";
 
             if (this.abrirConexao())
             {
