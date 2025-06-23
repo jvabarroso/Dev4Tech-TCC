@@ -115,8 +115,12 @@ CREATE TABLE EntregasTarefa (
 );
 
 CREATE TABLE RelatoProblema (
-idProblema INT PRIMARY KEY AUTO_INCREMENT,
-descrição TEXT NOT NULL
+	idProblema INT PRIMARY KEY AUTO_INCREMENT,
+	id_tarefa int not null,
+	id_equipe INT NOT NULL,
+   FOREIGN KEY (id_tarefa) REFERENCES Tarefas(id_tarefa) ON DELETE CASCADE,
+   FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE,
+	descricao TEXT NOT NULL
 );
 
 -- Tabela de Atribuições de Tarefas
@@ -130,16 +134,6 @@ CREATE TABLE AtribuicoesTarefa (
     FOREIGN KEY (id_funcionario) REFERENCES Funcionarios(FuncionarioId)
 );
 
--- Tabela de Comentários nas Tarefas
-CREATE TABLE ComentariosTarefa (
-    id_comentario INT PRIMARY KEY auto_increment,
-    id_tarefa INT,
-    id_usuario INT,
-    comentario TEXT NOT NULL,
-    data_comentario DATETIME,
-    FOREIGN KEY (id_tarefa) REFERENCES Tarefas(id_tarefa),
-    FOREIGN KEY (id_usuario) REFERENCES Funcionarios(FuncionarioId)
-);
 
 -- Tabela de Ranking de Equipes
 CREATE TABLE RankingEquipes (
@@ -163,25 +157,3 @@ CREATE TABLE RelatoriosProblema (
     FOREIGN KEY (id_usuario) REFERENCES Funcionarios(FuncionarioId),
     FOREIGN KEY (id_tarefa) REFERENCES Tarefas(id_tarefa)
 );
-
--- Tabela de Chat
-
-
--- Tabela de Configurações
-CREATE TABLE Configuracoes (
-    id_configuracao INT PRIMARY KEY auto_increment,
-    id_empresa INT,
-    chave VARCHAR(50) NOT NULL,
-    valor TEXT,
-    data_atualizacao DATETIME,
-    FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa)
-);
-
--- Índices
-CREATE INDEX idx_administradores_email ON Administradores(Email);
-CREATE INDEX idx_funcionarios_email ON Funcionarios(Email);
-CREATE INDEX idx_tarefas_equipe ON Tarefas(id_equipe);
-CREATE INDEX idx_tarefas_status ON Tarefas(status);
-CREATE INDEX idx_ranking_periodo ON RankingEquipes(periodo);
-CREATE INDEX idx_mensagens_equipe ON MensagensChat(id_equipe);
->>>>>>> 84c1efa37aa2833043764843579cbc8d64b56f55

@@ -13,13 +13,6 @@ namespace Dev4Tech
         private int idTarefaExibida = 0; // ID da tarefa atualmente exibida
         private string caminhoArquivoEntrega = ""; // Caminho do arquivo para entrega
 
-        // Construtor padrão para evitar erros em chamadas sem parâmetros
-        public Tela_Tarefa()
-        {
-            InitializeComponent();
-            // Opcional: inicializar variáveis padrão ou mostrar mensagem
-        }
-
         // Construtor que recebe o ID da equipe para carregar dados específicos
         public Tela_Tarefa(int idEquipe)
         {
@@ -29,48 +22,9 @@ namespace Dev4Tech
 
             btnEnviar.Click += BtnEnviar_Click;
             lblArquivoEntregaTarefa.Click += LblArquivoEntregaTarefa_Click;
+            btnRelatarProblema.Click += btnRelatarProblema_Click;
 
-            // Adiciona evento para atualizar detalhes ao mudar seleção no ComboBox
-            cmbTarefas.SelectedIndexChanged += cmbTarefas_SelectedIndexChanged;
 
-            CarregarTarefasNoComboBox();
-        }
-
-        // Carrega todas as tarefas da equipe no ComboBox cmbTarefas
-        private void CarregarTarefasNoComboBox()
-        {
-            EntregaTarefa entrTarefa = new EntregaTarefa();
-            DataTable dtTarefas = entrTarefa.BuscarTodasTarefasPorEquipe(idEquipeAtual);
-
-            if (dtTarefas != null && dtTarefas.Rows.Count > 0)
-            {
-                cmbTarefas.DataSource = null; // limpa antes
-                cmbTarefas.DataSource = dtTarefas;
-                cmbTarefas.DisplayMember = "nomeTarefa"; // nome exato da coluna
-                cmbTarefas.ValueMember = "id_tarefa";
-                cmbTarefas.SelectedIndex = 0; // seleciona o primeiro item para mostrar texto
-            }
-            else
-            {
-                cmbTarefas.DataSource = null;
-                cmbTarefas.Items.Clear();
-                cmbTarefas.Text = "Nenhuma tarefa encontrada";
-                LimparDetalhesTarefa();
-            }
-        }
-
-        // Evento chamado quando o usuário seleciona uma tarefa diferente no ComboBox
-        private void cmbTarefas_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int idTarefa;
-            if (cmbTarefas.SelectedValue != null && int.TryParse(cmbTarefas.SelectedValue.ToString(), out idTarefa))
-            {
-                CarregarDetalhesTarefa(idTarefa);
-            }
-            else
-            {
-                LimparDetalhesTarefa();
-            }
         }
 
         // Carrega detalhes da tarefa selecionada e atualiza a interface
@@ -82,8 +36,20 @@ namespace Dev4Tech
             if (tarefa != null)
             {
                 idTarefaExibida = Convert.ToInt32(tarefa["id_tarefa"]);
+
+                // Nome da tarefa na label
+                lblNomeTarefa.Text = tarefa["nomeTarefa"].ToString();
+
+                // Categoria da equipe na label
+                lblCategoriaEquipe.Text = tarefa["nome_categoria"].ToString();
+
+                // Data de entrega formatada na label
+                DateTime dataEntrega = Convert.ToDateTime(tarefa["data_entrega"]);
+                lblDataEntrega.Text = dataEntrega.ToString("dd/MM/yyyy");
+
                 lblInstrucoes.Text = tarefa["instrucoes"].ToString();
 
+                // Resto do código para arquivo e habilitar botão
                 lblArquivoTarefa.Click -= LblArquivoTarefa_Click;
 
                 if (tarefa["nome_arquivo"] != DBNull.Value && !string.IsNullOrEmpty(tarefa["nome_arquivo"].ToString()))
@@ -109,6 +75,7 @@ namespace Dev4Tech
             }
         }
 
+
         // Limpa os detalhes da tarefa da tela
         private void LimparDetalhesTarefa()
         {
@@ -116,6 +83,7 @@ namespace Dev4Tech
             lblInstrucoes.Text = "";
             lblArquivoTarefa.Text = "";
             btnEnviar.Enabled = false;
+            lblCategoriaEquipe.Text = "";
             LimparCamposEntrega();
         }
 
@@ -275,24 +243,21 @@ namespace Dev4Tech
             this.Hide();
         }
 
-        private void btnAplicar_Click(object sender, EventArgs e)
+        private void lblRanking_Click(object sender, EventArgs e) { }
+        private void btnRelatarProblema_Click(object sender, EventArgs e)
         {
-            if (cmbTarefas.SelectedValue != null)
+            if (idTarefaExibida == 0 || idEquipeAtual == 0)
             {
-                int idTarefaSelecionada;
-                if (int.TryParse(cmbTarefas.SelectedValue.ToString(), out idTarefaSelecionada))
-                {
-                    CarregarDetalhesTarefa(idTarefaSelecionada);
-                }
+                MessageBox.Show("Selecione uma tarefa válida para relatar um problema.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
-            {
-                MessageBox.Show("Por favor, selecione uma tarefa na lista.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+
+            Relato_Problema relatoForm = new Relato_Problema(idTarefaExibida, idEquipeAtual);
+            relatoForm.Show();
+            this.Hide();
         }
 
-        private void lblRanking_Click(object sender, EventArgs e) { }
-        private void btnRelatarProblema_Click(object sender, EventArgs e) { }
+
         private void txtDescrição_TextChanged(object sender, EventArgs e) { }
         private void btnConfigurações_Click(object sender, EventArgs e) { }
         private void lblPlanejamento_Click(object sender, EventArgs e) { }

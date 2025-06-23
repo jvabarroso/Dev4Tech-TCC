@@ -94,9 +94,9 @@ namespace Dev4Tech
 
         private void Tarefa1_Enter(object sender, EventArgs e)
         {
-            Tela_Tarefa t_tarefa = new Tela_Tarefa();
-            t_tarefa.Show();
-            this.Hide();
+            //Tela_Tarefa t_tarefa = new Tela_Tarefa();
+            //t_tarefa.Show();
+            //this.Hide();
         }
 
         private void txtPesquisaTarefa_TextChanged(object sender, EventArgs e)

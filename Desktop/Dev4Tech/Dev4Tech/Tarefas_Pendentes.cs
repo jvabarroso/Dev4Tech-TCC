@@ -56,14 +56,14 @@ namespace Dev4Tech
                 {
                     int idTarefa = Convert.ToInt32(((Panel)s).Tag);
                     Tela_Tarefa telaTarefa = new Tela_Tarefa(idEquipe);
-                    telaTarefa.CarregarDetalhesTarefa(idTarefa); // Torne este método público em Tela_Tarefa
+                    telaTarefa.CarregarDetalhesTarefa(idTarefa); 
                     telaTarefa.Show();
                     this.Hide();
                 };
 
                 PictureBox pic = new PictureBox
                 {
-                    Image = Properties.Resources.icon_EquipLogo, // Use o ícone desejado
+                    Image = Properties.Resources.icon_EquipLogo,
                     SizeMode = PictureBoxSizeMode.StretchImage,
                     Width = 40,
                     Height = 40,

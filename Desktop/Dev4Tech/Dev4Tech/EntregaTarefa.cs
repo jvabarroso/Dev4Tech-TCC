@@ -107,7 +107,7 @@ namespace Dev4Tech
         {
             DataTable dt = new DataTable();
             // Seleciona todos os campos da tarefa para exibir os detalhes
-            string query = "SELECT * FROM Tarefas WHERE id_tarefa = @idTarefa";
+            string query = "SELECT t.*, c.nome_categoria FROM Tarefas t INNER JOIN Equipes e ON t.id_equipe = e.id_equipe INNER JOIN Categorias c ON e.id_categoria = c.id_categoria WHERE t.id_tarefa = @idTarefa";
             if (abrirConexao())
             {
                 try

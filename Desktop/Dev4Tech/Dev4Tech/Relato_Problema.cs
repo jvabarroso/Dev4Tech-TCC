@@ -1,29 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Dev4Tech
 {
     public partial class Relato_Problema : Form
     {
-        public Relato_Problema()
+        private int idTarefa;
+        private int idEquipe;
+
+        // Construtor que recebe os parâmetros necessários
+        public Relato_Problema(int idTarefa, int idEquipe)
         {
             InitializeComponent();
+            this.idTarefa = idTarefa;
+            this.idEquipe = idEquipe;
         }
 
         private void txtDescriçãoProblema_TextChanged(object sender, EventArgs e)
         {
+
         }
 
         private void btnEnviar_Click(object sender, EventArgs e)
         {
-            // Pega o texto da TextBox e remove espaços extras
             string descricao = txtDescriçãoProblema.Text.Trim();
 
             if (string.IsNullOrEmpty(descricao))
@@ -32,18 +31,12 @@ namespace Dev4Tech
                 return;
             }
 
-            // Cria o objeto e atribui a descrição
-            enviarProblema problem = new enviarProblema
-            {
-                descrição = descricao
-            };
-
+            EnvioProblema relato = new EnvioProblema();
             try
             {
-                // Chama o método para inserir no banco
-                problem.Inserir();
+                relato.InserirRelato(idTarefa, idEquipe, descricao);
                 MessageBox.Show("Problema enviado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtDescriçãoProblema.Clear(); // Limpa o campo após enviar
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -51,5 +44,4 @@ namespace Dev4Tech
             }
         }
     }
-
 }
