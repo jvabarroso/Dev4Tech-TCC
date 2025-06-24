@@ -81,9 +81,19 @@ namespace Dev4Tech
             this.Hide();
         }
         private void btnConfigurações_Click(object sender, EventArgs e)
-        { //Configuracoes config = new Configuracoes();
-          //config.Show();
-          //this.Hide(); 
+        {
+            var funcionario = Sessao.FuncionarioLogado;
+
+            if (funcionario != null)
+            {
+                Configuracoes config = new Configuracoes(funcionario);
+                config.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum funcionário logado.");
+            }
         }
         }
     }

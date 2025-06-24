@@ -270,7 +270,21 @@ namespace Dev4Tech
 
 
         private void txtDescrição_TextChanged(object sender, EventArgs e) { }
-        private void btnConfigurações_Click(object sender, EventArgs e) { }
+        private void btnConfigurações_Click(object sender, EventArgs e)
+        {
+            var funcionario = Sessao.FuncionarioLogado;
+
+            if (funcionario != null)
+            {
+                Configuracoes config = new Configuracoes(funcionario);
+                config.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum funcionário logado.");
+            }
+        }
         private void lblPlanejamento_Click(object sender, EventArgs e) { }
         private void btnEnviar_Click(object sender, EventArgs e) { }
     }

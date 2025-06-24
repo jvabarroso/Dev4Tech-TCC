@@ -106,6 +106,13 @@
     <Compile Include="AdicionarEquipes.Designer.cs">
       <DependentUpon>AdicionarEquipes.cs</DependentUpon>
     </Compile>
+    <Compile Include="AvaliacaoTarefa.cs" />
+    <Compile Include="AvaliaçãoTarefaAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AvaliaçãoTarefaAdmin.Designer.cs">
+      <DependentUpon>AvaliaçãoTarefaAdmin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Cadastro-empresa-admin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -217,6 +224,7 @@
     <Compile Include="Relato_Problema.Designer.cs">
       <DependentUpon>Relato_Problema.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sessao.cs" />
     <Compile Include="Tarefas_Atrasadas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -247,8 +255,17 @@
     <Compile Include="Tela_Tarefa.Designer.cs">
       <DependentUpon>Tela_Tarefa.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tela_TarefasAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tela_TarefasAdmin.Designer.cs">
+      <DependentUpon>Tela_TarefasAdmin.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AdicionarEquipes.resx">
       <DependentUpon>AdicionarEquipes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AvaliaçãoTarefaAdmin.resx">
+      <DependentUpon>AvaliaçãoTarefaAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Cadastro-empresa-admin.resx">
       <DependentUpon>Cadastro-empresa-admin.cs</DependentUpon>
@@ -322,6 +339,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tela_Tarefa.resx">
       <DependentUpon>Tela_Tarefa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tela_TarefasAdmin.resx">
+      <DependentUpon>Tela_TarefasAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -232,9 +232,18 @@ namespace Dev4Tech
 
         private void btnConfigurações_Click(object sender, EventArgs e)
         {
-            //Configuracoes config = new Configuracoes();
-            //config.Show();
-            //this.Hide();
+            var funcionario = Sessao.FuncionarioLogado;
+
+            if (funcionario != null)
+            {
+                Configuracoes config = new Configuracoes(funcionario);
+                config.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum funcionário logado.");
+            }
         }
 
         private void btnLogout_Click_1(object sender, EventArgs e)

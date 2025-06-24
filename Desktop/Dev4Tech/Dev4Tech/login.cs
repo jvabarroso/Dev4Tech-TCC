@@ -38,6 +38,9 @@ namespace Dev4Tech
 
                 if (funcionario != null)
                 {
+                    // esta parte faz a confirmação
+                    Sessao.FuncionarioLogado = funcionario;
+
                     Configuracoes config = new Configuracoes(funcionario);
                     config.Show();
                     this.Hide();

@@ -209,5 +209,21 @@ namespace Dev4Tech
         private void txtPesquisaEquipe_TextChanged(object sender, EventArgs e) { }
         private void filtroEquipes_SelectedIndexChanged(object sender, EventArgs e) { }
         private void panelEquipes_Paint(object sender, PaintEventArgs e) { }
+
+        private void btnConfig_Click(object sender, EventArgs e)
+        {
+            var funcionario = Sessao.FuncionarioLogado;
+
+            if (funcionario != null)
+            {
+                Configuracoes config = new Configuracoes(funcionario);
+                config.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum funcionário logado.");
+            }
+        }
     }
 }
