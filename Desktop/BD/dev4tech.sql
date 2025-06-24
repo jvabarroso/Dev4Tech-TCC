@@ -98,6 +98,9 @@ CREATE TABLE Tarefas (
     FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+ALTER TABLE Tarefas
+ADD COLUMN dificuldade VARCHAR(20) NOT NULL;
+
 CREATE TABLE EntregasTarefa (
     id_entrega INT AUTO_INCREMENT PRIMARY KEY,
     id_tarefa INT NOT NULL,
@@ -109,6 +112,15 @@ CREATE TABLE EntregasTarefa (
     FOREIGN KEY (id_tarefa) REFERENCES Tarefas(id_tarefa) ON DELETE CASCADE,
     FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE
 );
+
+CREATE TABLE AvaliacaoTarefa (
+    id_avaliacao INT AUTO_INCREMENT PRIMARY KEY,
+    id_tarefa INT NOT NULL,
+    aceita BOOLEAN NOT NULL,
+    atraso_justificado BOOLEAN NULL,
+    FOREIGN KEY (id_tarefa) REFERENCES Tarefas(id_tarefa) ON DELETE CASCADE
+);
+
 
 CREATE TABLE RelatoProblema (
 	idProblema INT PRIMARY KEY AUTO_INCREMENT,
