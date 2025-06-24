@@ -130,8 +130,6 @@ namespace Dev4Tech
 
         private void LimparCamposEntrega()
         {
-            caminhoArquivoEntrega = "";
-            // Se tiver controles para anexar arquivo ou descrição, limpe aqui
         }
 
         // Eventos para navegação (exemplo)
