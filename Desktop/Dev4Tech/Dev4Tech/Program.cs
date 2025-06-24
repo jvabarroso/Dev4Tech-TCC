@@ -16,7 +16,7 @@ namespace Dev4Tech
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Tarefas_Pendentes());
+            Application.Run(new PesquisaEquipes());
         }
     }
 }

@@ -84,7 +84,7 @@ namespace Dev4Tech
 
                 Label lblSub = new Label
                 {
-                    Text = "GitLab", // Ou outro campo se desejar
+                    Text = row["nome_equipe"].ToString(), // Nome da equipe
                     Font = new Font("Segoe UI", 10, FontStyle.Regular),
                     Left = 60,
                     Top = 30,
@@ -94,7 +94,7 @@ namespace Dev4Tech
 
                 Label lblCategoria = new Label
                 {
-                    Text = "Administração", // Ou outro campo se desejar
+                    Text = row["nome_categoria"].ToString(), // Categoria da equipe
                     Font = new Font("Segoe UI", 9, FontStyle.Regular),
                     Left = 60,
                     Top = 50,
@@ -166,8 +166,16 @@ namespace Dev4Tech
 
         private void lblRanking_Click(object sender, EventArgs e) { }
         private void btnPendentes_Click(object sender, EventArgs e) { }
-        private void btnEmAtraso_Click(object sender, EventArgs e) { }
-        private void btnCompletadas_Click(object sender, EventArgs e) { }
+        private void btnEmAtraso_Click(object sender, EventArgs e) {
+            Tarefas_Atrasadas ta = new Tarefas_Atrasadas();
+            ta.Show();
+            this.Hide();
+        }
+        private void btnCompletadas_Click(object sender, EventArgs e) {
+            Tarefas_Completadas tc = new Tarefas_Completadas();
+            tc.Show();
+            this.Hide();
+        }
         private void Tarefa1_Enter(object sender, EventArgs e) { }
         private void txtPesquisaTarefa_TextChanged(object sender, EventArgs e) { }
         private void btnEquipe_Click(object sender, EventArgs e) { }

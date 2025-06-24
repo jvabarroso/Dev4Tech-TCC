@@ -57,10 +57,22 @@ namespace Dev4Tech
         }
 
         // Retorna todas as tarefas pendentes da equipe (você pode filtrar por status se quiser)
+        // Tarefas pendentes: tarefas que não possuem entrega registrada
         public DataTable BuscarTarefasPendentesPorEquipe(int idEquipe)
         {
             DataTable dt = new DataTable();
-            string query = "SELECT * FROM Tarefas WHERE id_equipe = @idEquipe ORDER BY data_entrega DESC";
+            string query = @"
+        SELECT t.*, c.nome_categoria, e.nome_equipe 
+        FROM Tarefas t
+        INNER JOIN Equipes eq ON t.id_equipe = eq.id_equipe
+        INNER JOIN Categorias c ON eq.id_categoria = c.id_categoria
+        INNER JOIN Equipes e ON t.id_equipe = e.id_equipe
+        WHERE t.id_equipe = @idEquipe
+        AND NOT EXISTS (
+            SELECT 1 FROM EntregasTarefa et WHERE et.id_tarefa = t.id_tarefa AND et.id_equipe = t.id_equipe
+        )
+        ORDER BY t.data_entrega DESC";
+
             if (abrirConexao())
             {
                 try
@@ -78,11 +90,21 @@ namespace Dev4Tech
             return dt;
         }
 
-        // NOVO MÉTODO: Busca todas as tarefas para uma equipe (para preencher o ComboBox)
-        public DataTable BuscarTodasTarefasPorEquipe(int idEquipe)
+        // Tarefas entregues: tarefas que possuem entrega registrada
+        public DataTable BuscarTarefasCompletadasPorEquipe(int idEquipe)
         {
             DataTable dt = new DataTable();
-            string query = "SELECT id_tarefa, nomeTarefa FROM Tarefas WHERE id_equipe = @idEquipe ORDER BY data_entrega DESC";
+            string query = @"
+        SELECT t.*, c.nome_categoria, e.nome_equipe 
+        FROM Tarefas t
+        INNER JOIN Equipes eq ON t.id_equipe = eq.id_equipe
+        INNER JOIN Categorias c ON eq.id_categoria = c.id_categoria
+        INNER JOIN Equipes e ON t.id_equipe = e.id_equipe
+        WHERE t.id_equipe = @idEquipe
+        AND EXISTS (
+            SELECT 1 FROM EntregasTarefa et WHERE et.id_tarefa = t.id_tarefa AND et.id_equipe = t.id_equipe
+        )
+        ORDER BY t.data_entrega DESC";
 
             if (abrirConexao())
             {
@@ -100,6 +122,39 @@ namespace Dev4Tech
             }
             return dt;
         }
+
+        public DataTable BuscarTarefasAtrasadasPorEquipe(int idEquipe)
+        {
+            DataTable dt = new DataTable();
+            string query = @"
+        SELECT t.*, c.nome_categoria, e.nome_equipe 
+        FROM Tarefas t
+        INNER JOIN Equipes e ON t.id_equipe = e.id_equipe
+        INNER JOIN Categorias c ON e.id_categoria = c.id_categoria
+        WHERE t.id_equipe = @idEquipe
+        AND t.data_entrega < CURDATE()
+        AND NOT EXISTS (
+            SELECT 1 FROM EntregasTarefa et WHERE et.id_tarefa = t.id_tarefa AND et.id_equipe = t.id_equipe
+        )
+        ORDER BY t.data_entrega DESC";
+
+            if (abrirConexao())
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, conectar);
+                    cmd.Parameters.AddWithValue("@idEquipe", idEquipe);
+                    MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                    da.Fill(dt);
+                }
+                finally
+                {
+                    fecharConexao();
+                }
+            }
+            return dt;
+        }
+
 
 
         // NOVO MÉTODO: Busca uma tarefa específica por ID (para exibir detalhes)

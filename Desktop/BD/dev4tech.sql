@@ -45,8 +45,6 @@ CREATE TABLE Funcionarios (
     numero VARCHAR(255) NOT NULL
 );
 
-ALTER TABLE Funcionarios CHANGE COLUMN endereço endereco VARCHAR(255) NOT NULL;
-
 CREATE TABLE MensagensChat (
     id_mensagem INT PRIMARY KEY auto_increment,
     texto varchar(255) NOT NULL,
@@ -66,6 +64,16 @@ CREATE TABLE Equipes (
     id_categoria INT NOT NULL,
     FOREIGN KEY (id_categoria) REFERENCES Categorias(id_categoria) ON DELETE RESTRICT ON UPDATE CASCADE
 );
+ALTER TABLE Equipes ADD COLUMN data_criacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
+CREATE TABLE Equipes_Membros (
+    id_equipe INT NOT NULL,
+    FuncionarioId INT NOT NULL,
+    responsavel BOOLEAN DEFAULT FALSE,
+    PRIMARY KEY (id_equipe, FuncionarioId),
+    FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (FuncionarioId) REFERENCES Funcionarios(FuncionarioId) ON DELETE CASCADE ON UPDATE CASCADE
+);
 
 -- Adicionar coluna id_equipe na tabela de mensagens
 ALTER TABLE MensagensChat
@@ -77,18 +85,6 @@ CREATE TABLE UltimaAtividadeEquipe (
     id_equipe INT PRIMARY KEY,
     ultima_atividade DATETIME NOT NULL,
     FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE
-);
-
-ALTER TABLE Equipes ADD COLUMN data_criacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
-
-
-CREATE TABLE Equipes_Membros (
-    id_equipe INT NOT NULL,
-    FuncionarioId INT NOT NULL,
-    responsavel BOOLEAN DEFAULT FALSE,
-    PRIMARY KEY (id_equipe, FuncionarioId),
-    FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (FuncionarioId) REFERENCES Funcionarios(FuncionarioId) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE Tarefas (

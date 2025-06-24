@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Dev4Tech
@@ -15,6 +10,117 @@ namespace Dev4Tech
         public Tarefas_Atrasadas()
         {
             InitializeComponent();
+            CarregarTarefasAtrasadas(); // Carrega as tarefas atrasadas ao abrir a tela
+        }
+
+        private void CarregarTarefasAtrasadas()
+        {
+            int idEquipe = 1; // Ajuste para o id da equipe correta no seu contexto
+
+            panelTarefas.Controls.Clear();
+
+            EntregaTarefa entregaTarefa = new EntregaTarefa();
+            DataTable dt = entregaTarefa.BuscarTarefasAtrasadasPorEquipe(idEquipe);
+
+            int margemTopo = 20;
+            int margemEsquerda = 20;
+            int espacamentoVertical = 20;
+            int espacamentoHorizontal = 20;
+            int larguraPanel = 350;
+            int alturaPanel = 100;
+            int colunas = 2;
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                DataRow row = dt.Rows[i];
+
+                Panel tarefaPanel = new Panel
+                {
+                    Width = larguraPanel,
+                    Height = alturaPanel,
+                    BackColor = Color.White,
+                    BorderStyle = BorderStyle.FixedSingle,
+                    Left = margemEsquerda + (i % colunas) * (larguraPanel + espacamentoHorizontal),
+                    Top = margemTopo + (i / colunas) * (alturaPanel + espacamentoVertical),
+                    Cursor = Cursors.Hand,
+                    Tag = row["id_tarefa"]
+                };
+
+                tarefaPanel.Click += (s, e) =>
+                {
+                    int idTarefa = Convert.ToInt32(((Panel)s).Tag);
+                    Tela_Tarefa telaTarefa = new Tela_Tarefa(idEquipe);
+                    telaTarefa.CarregarDetalhesTarefa(idTarefa);
+                    telaTarefa.Show();
+                    this.Hide();
+                };
+
+                PictureBox pic = new PictureBox
+                {
+                    Image = Properties.Resources.icon_EquipLogo,
+                    SizeMode = PictureBoxSizeMode.StretchImage,
+                    Width = 40,
+                    Height = 40,
+                    Left = 10,
+                    Top = 10
+                };
+                tarefaPanel.Controls.Add(pic);
+
+                Label lblNome = new Label
+                {
+                    Text = row["nomeTarefa"].ToString(),
+                    Font = new Font("Segoe UI", 11, FontStyle.Bold),
+                    Left = 60,
+                    Top = 5,
+                    AutoSize = true
+                };
+                tarefaPanel.Controls.Add(lblNome);
+
+                Label lblSub = new Label
+                {
+                    Text = row["nome_equipe"].ToString(),
+                    Font = new Font("Segoe UI", 10, FontStyle.Regular),
+                    Left = 60,
+                    Top = 30,
+                    AutoSize = true
+                };
+                tarefaPanel.Controls.Add(lblSub);
+
+                Label lblCategoria = new Label
+                {
+                    Text = row["nome_categoria"].ToString(),
+                    Font = new Font("Segoe UI", 9, FontStyle.Regular),
+                    Left = 60,
+                    Top = 50,
+                    AutoSize = true
+                };
+                tarefaPanel.Controls.Add(lblCategoria);
+
+                Label lblConclusao = new Label
+                {
+                    Text = "Prazo expirado em " + Convert.ToDateTime(row["data_entrega"]).ToString("dd/MM/yy"),
+                    Font = new Font("Segoe UI", 9, FontStyle.Regular),
+                    Left = 60,
+                    Top = 70,
+                    AutoSize = true,
+                    ForeColor = Color.Red
+                };
+                tarefaPanel.Controls.Add(lblConclusao);
+
+                Label lblStatus = new Label
+                {
+                    Text = "Atrasado",
+                    Font = new Font("Segoe UI", 9, FontStyle.Bold),
+                    ForeColor = Color.White,
+                    BackColor = Color.Red,
+                    Left = larguraPanel - 90,
+                    Top = 10,
+                    AutoSize = true
+                };
+                tarefaPanel.Controls.Add(lblStatus);
+
+                panelTarefas.Controls.Add(tarefaPanel);
+            }
         }
 
         private void btnHome_Click(object sender, EventArgs e)
@@ -110,5 +216,3 @@ namespace Dev4Tech
         }
     }
 }
-
-
