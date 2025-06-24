@@ -145,7 +145,6 @@
     <Compile Include="Configuracoes.Designer.cs">
       <DependentUpon>Configuracoes.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConfiguraçõesBD.cs" />
     <Compile Include="AdicionarTarefa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -157,7 +156,6 @@
     <Compile Include="empresa.cs" />
     <Compile Include="EntregaTarefa.cs" />
     <Compile Include="EnvioProblema.cs" />
-    <Compile Include="Equipes_Cadastro.cs" />
     <Compile Include="Equipes_Estatisticas.cs">
       <SubType>Form</SubType>
     </Compile>

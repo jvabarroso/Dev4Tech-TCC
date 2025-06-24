@@ -113,6 +113,13 @@ CREATE TABLE EntregasTarefa (
     FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE
 );
 
+CREATE TABLE PontuacaoFuncionario (
+    id_pontuacao INT AUTO_INCREMENT PRIMARY KEY,
+    id_funcionario INT NOT NULL,
+    pontos INT NOT NULL DEFAULT 0,
+    FOREIGN KEY (id_funcionario) REFERENCES Funcionarios(FuncionarioId) ON DELETE CASCADE
+);
+
 CREATE TABLE AvaliacaoTarefa (
     id_avaliacao INT AUTO_INCREMENT PRIMARY KEY,
     id_tarefa INT NOT NULL,

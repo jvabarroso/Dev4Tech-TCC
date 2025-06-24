@@ -185,7 +185,44 @@ namespace Dev4Tech
             EntregaTarefa entrTarefa = new EntregaTarefa();
             try
             {
+                // Registra a entrega
                 entrTarefa.RegistrarEntrega(idTarefaExibida, idEquipeAtual, txtDescrição.Text, nomeArquivo, arquivoBytes);
+
+                // Busca a dificuldade da tarefa
+                string dificuldade = "";
+                using (var conn = new MySql.Data.MySqlClient.MySqlConnection("server=localhost;database=Dev4Tech;uid=root;pwd=;"))
+                {
+                    conn.Open();
+                    var cmd = new MySql.Data.MySqlClient.MySqlCommand("SELECT dificuldade FROM Tarefas WHERE id_tarefa = @idTarefa", conn);
+                    cmd.Parameters.AddWithValue("@idTarefa", idTarefaExibida);
+                    var result = cmd.ExecuteScalar();
+                    if (result != null)
+                        dificuldade = result.ToString();
+                }
+
+                // Define os pontos conforme a dificuldade
+                int pontos = 0;
+                switch (dificuldade.ToLower())
+                {
+                    case "fácil":
+                        pontos = 2;
+                        break;
+                    case "média":
+                        pontos = 4;
+                        break;
+                    case "difícil":
+                        pontos = 6;
+                        break;
+                }
+
+                // Adiciona os pontos ao funcionário logado
+                if (pontos > 0 && Sessao.FuncionarioLogado != null)
+                {
+                    pontuacaoFuncionario ptFunc = new pontuacaoFuncionario();
+                    int idFunc = int.Parse(Sessao.FuncionarioLogado.getFuncionarioId());
+                    ptFunc.AdicionarPontos(idFunc, pontos);
+                }
+
                 MessageBox.Show("Entrega registrada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LimparCamposEntrega();
             }

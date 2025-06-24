@@ -61,6 +61,12 @@ namespace Dev4Tech
             txtTelefone.Text = funcionario.getTelefone();
             txtEmail.Text = funcionario.getEmail();
             textBox1.Text = $"{funcionario.getEndereco()}, {funcionario.getNumero()}";
+
+            // Obter e mostrar a pontuação atual do funcionário
+            pontuacaoFuncionario ptFunc = new pontuacaoFuncionario();
+            int idFunc = int.Parse(funcionario.getFuncionarioId());
+            int pontos = ptFunc.ObterPontos(idFunc);
+            lblPontos.Text = $"{pontos}";
         }
 
         private void label8_Click(object sender, EventArgs e) { }
