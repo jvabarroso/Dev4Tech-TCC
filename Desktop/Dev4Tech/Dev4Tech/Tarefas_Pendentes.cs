@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Dev4Tech
@@ -20,13 +15,12 @@ namespace Dev4Tech
 
         private void CarregarTarefasPendentes()
         {
-            // Substitua pelo id da equipe logada/selecionada
-            int idEquipe = 1; // Exemplo fixo, troque pelo valor correto do seu sistema
+            int idEquipe = 1; // Ajuste conforme o contexto do seu sistema
 
             panelTarefas.Controls.Clear();
 
             EntregaTarefa entregaTarefa = new EntregaTarefa();
-            DataTable dt = entregaTarefa.BuscarTarefasPendentesPorEquipe(idEquipe);
+            DataTable dt = entregaTarefa.BuscarTarefasPendentesPorEquipeOrdenadasPorDificuldade(idEquipe);
 
             int margemTopo = 20;
             int margemEsquerda = 20;
@@ -40,23 +34,25 @@ namespace Dev4Tech
             {
                 DataRow row = dt.Rows[i];
 
+                string dificuldade = row["dificuldade"].ToString();
+
                 Panel tarefaPanel = new Panel
                 {
                     Width = larguraPanel,
                     Height = alturaPanel,
-                    BackColor = Color.White,
                     BorderStyle = BorderStyle.FixedSingle,
                     Left = margemEsquerda + (i % colunas) * (larguraPanel + espacamentoHorizontal),
                     Top = margemTopo + (i / colunas) * (alturaPanel + espacamentoVertical),
                     Cursor = Cursors.Hand,
-                    Tag = row["id_tarefa"]
+                    Tag = row["id_tarefa"],
+                    BackColor = Color.White // Fundo branco do painel
                 };
 
                 tarefaPanel.Click += (s, e) =>
                 {
                     int idTarefa = Convert.ToInt32(((Panel)s).Tag);
                     Tela_Tarefa telaTarefa = new Tela_Tarefa(idEquipe);
-                    telaTarefa.CarregarDetalhesTarefa(idTarefa); 
+                    telaTarefa.CarregarDetalhesTarefa(idTarefa);
                     telaTarefa.Show();
                     this.Hide();
                 };
@@ -84,7 +80,7 @@ namespace Dev4Tech
 
                 Label lblSub = new Label
                 {
-                    Text = row["nome_equipe"].ToString(), // Nome da equipe
+                    Text = row["nome_equipe"].ToString(),
                     Font = new Font("Segoe UI", 10, FontStyle.Regular),
                     Left = 60,
                     Top = 30,
@@ -94,7 +90,7 @@ namespace Dev4Tech
 
                 Label lblCategoria = new Label
                 {
-                    Text = row["nome_categoria"].ToString(), // Categoria da equipe
+                    Text = row["nome_categoria"].ToString(),
                     Font = new Font("Segoe UI", 9, FontStyle.Regular),
                     Left = 60,
                     Top = 50,
@@ -124,11 +120,41 @@ namespace Dev4Tech
                 };
                 tarefaPanel.Controls.Add(lblStatus);
 
+                Label lblDificuldade = new Label
+                {
+                    Text = "Dificuldade: " + dificuldade,
+                    Font = new Font("Segoe UI", 9, FontStyle.Italic),
+                    ForeColor = Color.Black,
+                    Left = larguraPanel - 90,
+                    Top = 30,
+                    AutoSize = true
+                };
+
+                // Define a cor de fundo da label conforme a dificuldade
+                switch (dificuldade.ToLower())
+                {
+                    case "difícil":
+                        lblDificuldade.BackColor = Color.LightCoral; // vermelho claro
+                        break;
+                    case "média":
+                    case "mediana":
+                        lblDificuldade.BackColor = Color.LightGoldenrodYellow; // amarelo claro
+                        break;
+                    case "fácil":
+                        lblDificuldade.BackColor = Color.LightGreen; // verde claro
+                        break;
+                    default:
+                        lblDificuldade.BackColor = Color.Transparent;
+                        break;
+                }
+
+                tarefaPanel.Controls.Add(lblDificuldade);
+
                 panelTarefas.Controls.Add(tarefaPanel);
             }
         }
 
-
+        // Eventos e métodos adicionais mantidos conforme seu código original
         private void btnRanking_Click(object sender, EventArgs e)
         {
             Ranking_Equipes rank_equipe = new Ranking_Equipes();
@@ -166,12 +192,14 @@ namespace Dev4Tech
 
         private void lblRanking_Click(object sender, EventArgs e) { }
         private void btnPendentes_Click(object sender, EventArgs e) { }
-        private void btnEmAtraso_Click(object sender, EventArgs e) {
+        private void btnEmAtraso_Click(object sender, EventArgs e)
+        {
             Tarefas_Atrasadas ta = new Tarefas_Atrasadas();
             ta.Show();
             this.Hide();
         }
-        private void btnCompletadas_Click(object sender, EventArgs e) {
+        private void btnCompletadas_Click(object sender, EventArgs e)
+        {
             Tarefas_Completadas tc = new Tarefas_Completadas();
             tc.Show();
             this.Hide();

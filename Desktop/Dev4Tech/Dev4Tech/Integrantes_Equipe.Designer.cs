@@ -50,8 +50,8 @@
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtProcurarMebros = new System.Windows.Forms.TextBox();
-            this.btnMostrarMembros = new System.Windows.Forms.Button();
+            this.txtPesquisarMembros = new System.Windows.Forms.TextBox();
+            this.btnPesquisar = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -63,7 +63,8 @@
             this.btnConfigurações = new System.Windows.Forms.PictureBox();
             this.btnHome = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelMembros = new System.Windows.Forms.Panel();
+            this.panelEquipes = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -81,6 +82,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnConfigurações)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnHome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panelEquipes.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblMembros
@@ -197,7 +199,7 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.pictureBox12);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Location = new System.Drawing.Point(583, 63);
+            this.groupBox2.Location = new System.Drawing.Point(9, 5);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
@@ -317,34 +319,34 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(640, 28);
+            this.label9.Location = new System.Drawing.Point(620, 15);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(321, 39);
             this.label9.TabIndex = 130;
             this.label9.Text = "Membros da Equipe";
             // 
-            // txtProcurarMebros
+            // txtPesquisarMembros
             // 
-            this.txtProcurarMebros.Location = new System.Drawing.Point(583, 203);
-            this.txtProcurarMebros.Margin = new System.Windows.Forms.Padding(4);
-            this.txtProcurarMebros.Multiline = true;
-            this.txtProcurarMebros.Name = "txtProcurarMebros";
-            this.txtProcurarMebros.Size = new System.Drawing.Size(853, 47);
-            this.txtProcurarMebros.TabIndex = 131;
-            this.txtProcurarMebros.TextChanged += new System.EventHandler(this.txtProcurarMebros_TextChanged);
+            this.txtPesquisarMembros.Location = new System.Drawing.Point(583, 203);
+            this.txtPesquisarMembros.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPesquisarMembros.Multiline = true;
+            this.txtPesquisarMembros.Name = "txtPesquisarMembros";
+            this.txtPesquisarMembros.Size = new System.Drawing.Size(853, 47);
+            this.txtPesquisarMembros.TabIndex = 131;
+            this.txtPesquisarMembros.TextChanged += new System.EventHandler(this.txtProcurarMebros_TextChanged);
             // 
-            // btnMostrarMembros
+            // btnPesquisar
             // 
-            this.btnMostrarMembros.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnMostrarMembros.BackgroundImage")));
-            this.btnMostrarMembros.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnMostrarMembros.Location = new System.Drawing.Point(1445, 203);
-            this.btnMostrarMembros.Margin = new System.Windows.Forms.Padding(4);
-            this.btnMostrarMembros.Name = "btnMostrarMembros";
-            this.btnMostrarMembros.Size = new System.Drawing.Size(49, 47);
-            this.btnMostrarMembros.TabIndex = 132;
-            this.btnMostrarMembros.UseVisualStyleBackColor = true;
-            this.btnMostrarMembros.Click += new System.EventHandler(this.btnMostrarMembros_Click);
+            this.btnPesquisar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPesquisar.BackgroundImage")));
+            this.btnPesquisar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPesquisar.Location = new System.Drawing.Point(1445, 203);
+            this.btnPesquisar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPesquisar.Name = "btnPesquisar";
+            this.btnPesquisar.Size = new System.Drawing.Size(49, 47);
+            this.btnPesquisar.TabIndex = 132;
+            this.btnPesquisar.UseVisualStyleBackColor = true;
+            this.btnPesquisar.Click += new System.EventHandler(this.btnMostrarMembros_Click);
             // 
             // label10
             // 
@@ -465,24 +467,33 @@
             this.pictureBox2.TabIndex = 121;
             this.pictureBox2.TabStop = false;
             // 
-            // panel1
+            // panelMembros
             // 
-            this.panel1.Location = new System.Drawing.Point(569, 281);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(941, 554);
-            this.panel1.TabIndex = 134;
+            this.panelMembros.Location = new System.Drawing.Point(569, 281);
+            this.panelMembros.Name = "panelMembros";
+            this.panelMembros.Size = new System.Drawing.Size(941, 554);
+            this.panelMembros.TabIndex = 134;
+            // 
+            // panelEquipes
+            // 
+            this.panelEquipes.AutoScroll = true;
+            this.panelEquipes.Controls.Add(this.groupBox2);
+            this.panelEquipes.Location = new System.Drawing.Point(574, 58);
+            this.panelEquipes.Name = "panelEquipes";
+            this.panelEquipes.Size = new System.Drawing.Size(935, 125);
+            this.panelEquipes.TabIndex = 135;
             // 
             // Integrantes_Equipe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1688, 1031);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelEquipes);
+            this.Controls.Add(this.panelMembros);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.btnMostrarMembros);
-            this.Controls.Add(this.txtProcurarMebros);
+            this.Controls.Add(this.btnPesquisar);
+            this.Controls.Add(this.txtPesquisarMembros);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.lblPlanejamento);
             this.Controls.Add(this.lblMembros);
             this.Controls.Add(this.lblRanking);
@@ -521,6 +532,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnConfigurações)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnHome)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.panelEquipes.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -558,10 +570,11 @@
         private System.Windows.Forms.PictureBox pictureBox12;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtProcurarMebros;
-        private System.Windows.Forms.Button btnMostrarMembros;
+        private System.Windows.Forms.TextBox txtPesquisarMembros;
+        private System.Windows.Forms.Button btnPesquisar;
         private System.Windows.Forms.Label label10;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelMembros;
+        private System.Windows.Forms.Panel panelEquipes;
     }
 }

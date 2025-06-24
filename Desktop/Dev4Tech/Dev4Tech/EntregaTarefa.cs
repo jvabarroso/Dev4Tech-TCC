@@ -155,6 +155,43 @@ namespace Dev4Tech
             return dt;
         }
 
+        public DataTable BuscarTarefasPendentesPorEquipeOrdenadasPorDificuldade(int idEquipe)
+        {
+            DataTable dt = new DataTable();
+            string query = @"
+                SELECT t.*, c.nome_categoria, e.nome_equipe
+                FROM Tarefas t
+                INNER JOIN Equipes e ON t.id_equipe = e.id_equipe
+                INNER JOIN Categorias c ON e.id_categoria = c.id_categoria
+                WHERE t.id_equipe = @idEquipe
+                AND NOT EXISTS (
+                    SELECT 1 FROM EntregasTarefa et WHERE et.id_tarefa = t.id_tarefa AND et.id_equipe = t.id_equipe
+                )
+                ORDER BY 
+                    CASE t.dificuldade
+                        WHEN 'Difícil' THEN 1
+                        WHEN 'Média' THEN 2
+                        WHEN 'Fácil' THEN 3
+                        ELSE 4
+                    END,
+                    t.data_entrega DESC";
+
+            if (abrirConexao())
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, conectar);
+                    cmd.Parameters.AddWithValue("@idEquipe", idEquipe);
+                    MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                    da.Fill(dt);
+                }
+                finally
+                {
+                    fecharConexao();
+                }
+            }
+            return dt;
+        }
 
 
         // NOVO MÉTODO: Busca uma tarefa específica por ID (para exibir detalhes)

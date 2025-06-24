@@ -8,6 +8,7 @@ namespace Dev4Tech
     {
         public string NomeTarefa { get; set; }
         public string Instrucoes { get; set; }
+        public string Dificuldade { get; set; } // Nova propriedade
         public int IdEquipe { get; set; }
         public DateTime DataEntrega { get; set; }
         public string NomeArquivo { get; set; }
@@ -15,8 +16,8 @@ namespace Dev4Tech
 
         public void Inserir()
         {
-            string query = "INSERT INTO Tarefas (nomeTarefa, instrucoes, id_equipe, data_entrega, nome_arquivo, arquivo_blob) " +
-                           "VALUES (@nome, @instr, @idEq, @data, @nomeArq, @arqBlob)";
+            string query = "INSERT INTO Tarefas (nomeTarefa, instrucoes, dificuldade, id_equipe, data_entrega, nome_arquivo, arquivo_blob) " +
+                           "VALUES (@nome, @instr, @dificuldade, @idEq, @data, @nomeArq, @arqBlob)";
 
             if (abrirConexao())
             {
@@ -25,10 +26,10 @@ namespace Dev4Tech
                     MySqlCommand cmd = new MySqlCommand(query, conectar);
                     cmd.Parameters.AddWithValue("@nome", NomeTarefa);
                     cmd.Parameters.AddWithValue("@instr", Instrucoes);
+                    cmd.Parameters.AddWithValue("@dificuldade", Dificuldade);
                     cmd.Parameters.AddWithValue("@idEq", IdEquipe);
                     cmd.Parameters.AddWithValue("@data", DataEntrega);
                     cmd.Parameters.AddWithValue("@nomeArq", NomeArquivo);
-                    // Se ArquivoBlob for nulo, passa DBNull.Value para evitar erro no banco
                     cmd.Parameters.AddWithValue("@arqBlob", (object)ArquivoBlob ?? DBNull.Value);
                     cmd.ExecuteNonQuery();
                 }

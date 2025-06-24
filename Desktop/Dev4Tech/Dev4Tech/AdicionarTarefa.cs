@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Windows.Forms;
@@ -8,6 +9,7 @@ namespace Dev4Tech
     public partial class AdicionarTarefa : Form
     {
         private string caminhoArquivoSelecionado = "";
+        private List<int> equipesSelecionadas = new List<int>(); // Lista interna para armazenar equipes selecionadas
 
         public AdicionarTarefa()
         {
@@ -19,6 +21,11 @@ namespace Dev4Tech
             // Configura eventos dos botões
             btnAnexarArquivos.Click += BtnAnexarArquivos_Click;
             btnAddTarefas.Click += BtnAddTarefas_Click;
+            btnAddEquipe.Click += BtnAddEquipe_Click;
+
+            // Inicializa comboBox de dificuldade
+            cmbDificuldade.Items.AddRange(new string[] { "Fácil", "Média", "Difícil" });
+            cmbDificuldade.SelectedIndex = 1; // Seleciona "Média" por padrão
         }
 
         // Busca equipes do banco e carrega no ComboBox
@@ -46,7 +53,29 @@ namespace Dev4Tech
             }
         }
 
-        // Evento para adicionar tarefa no banco
+        // Evento para adicionar equipe selecionada à lista interna
+        private void BtnAddEquipe_Click(object sender, EventArgs e)
+        {
+            if (cmbAddEquipe.SelectedIndex < 0)
+            {
+                MessageBox.Show("Selecione uma equipe para adicionar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int idEquipe = Convert.ToInt32(cmbAddEquipe.SelectedValue);
+
+            if (!equipesSelecionadas.Contains(idEquipe))
+            {
+                equipesSelecionadas.Add(idEquipe);
+                MessageBox.Show("Equipe selecionada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Essa equipe já foi selecionada.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        // Evento para adicionar tarefa no banco para todas as equipes selecionadas
         private void BtnAddTarefas_Click(object sender, EventArgs e)
         {
             // Validações básicas
@@ -60,9 +89,9 @@ namespace Dev4Tech
                 MessageBox.Show("Por favor, preencha o nome da tarefa.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (cmbAddEquipe.SelectedIndex < 0)
+            if (equipesSelecionadas.Count == 0)
             {
-                MessageBox.Show("Selecione uma equipe.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Adicione pelo menos uma equipe.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (dtpDataDeEntrega.Value.Date < DateTime.Today)
@@ -70,11 +99,16 @@ namespace Dev4Tech
                 MessageBox.Show("A data de entrega deve ser hoje ou uma data futura.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            if (cmbDificuldade.SelectedIndex < 0)
+            {
+                MessageBox.Show("Selecione a dificuldade da tarefa.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             // Dados coletados do formulário
             string nomeTarefa = txtNomeTarefa.Text.Trim();
             string instrucoes = txtInstruções.Text.Trim();
-            int idEquipe = Convert.ToInt32(cmbAddEquipe.SelectedValue);
+            string dificuldade = cmbDificuldade.SelectedItem.ToString();
             DateTime dataEntrega = dtpDataDeEntrega.Value.Date;
             byte[] arquivoBytes = null;
             string nomeArquivo = "";
@@ -94,27 +128,32 @@ namespace Dev4Tech
                 }
             }
 
-            // Cria objeto tarefa e insere no banco
-            AddTarefas tarefa = new AddTarefas
+            // Insere tarefa para cada equipe selecionada
+            foreach (int idEquipe in equipesSelecionadas)
             {
-                NomeTarefa = nomeTarefa,
-                Instrucoes = instrucoes,
-                IdEquipe = idEquipe,
-                DataEntrega = dataEntrega,
-                NomeArquivo = nomeArquivo,
-                ArquivoBlob = arquivoBytes
-            };
+                AddTarefas tarefa = new AddTarefas
+                {
+                    NomeTarefa = nomeTarefa,
+                    Instrucoes = instrucoes,
+                    Dificuldade = dificuldade,
+                    IdEquipe = idEquipe,
+                    DataEntrega = dataEntrega,
+                    NomeArquivo = nomeArquivo,
+                    ArquivoBlob = arquivoBytes
+                };
 
-            try
-            {
-                tarefa.Inserir();
-                MessageBox.Show("Tarefa adicionada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LimparFormulario();
+                try
+                {
+                    tarefa.Inserir();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erro ao adicionar tarefa para equipe ID {idEquipe}: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao adicionar tarefa: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
+            MessageBox.Show("Tarefas adicionadas com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            LimparFormulario();
         }
 
         // Limpa campos após inserção
@@ -122,7 +161,9 @@ namespace Dev4Tech
         {
             txtInstruções.Clear();
             txtNomeTarefa.Clear();
+            equipesSelecionadas.Clear();
             cmbAddEquipe.SelectedIndex = -1;
+            cmbDificuldade.SelectedIndex = 1;
             dtpDataDeEntrega.Value = DateTime.Today;
             caminhoArquivoSelecionado = "";
             lblArquivosSelecionado.Text = "Nenhum arquivo selecionado";
@@ -161,6 +202,7 @@ namespace Dev4Tech
             f1.Show();
             this.Hide();
         }
+
         private void btnAddTarefas_Click_1(object sender, EventArgs e)
         {
             // Pode deixar vazio ou implementar o que for necessário
@@ -171,5 +213,9 @@ namespace Dev4Tech
             // Pode deixar vazio ou implementar o que for necessário
         }
 
+        private void AdicionarTarefa_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

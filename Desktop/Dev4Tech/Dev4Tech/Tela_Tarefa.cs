@@ -49,6 +49,17 @@ namespace Dev4Tech
 
                 lblInstrucoes.Text = tarefa["instrucoes"].ToString();
 
+                // NOVO: Mostrar dificuldade
+                if (tarefa.Table.Columns.Contains("dificuldade") && tarefa["dificuldade"] != DBNull.Value)
+                {
+                    lblDificuldade.Text = "Dificuldade: " + tarefa["dificuldade"].ToString();
+                    lblDificuldade.Visible = true;
+                }
+                else
+                {
+                    lblDificuldade.Visible = false;
+                }
+
                 // Resto do código para arquivo e habilitar botão
                 lblArquivoTarefa.Click -= LblArquivoTarefa_Click;
 

@@ -34,11 +34,15 @@ namespace Dev4Tech
             {
                 DataRow row = dt.Rows[i];
 
+                string dificuldade = row.Table.Columns.Contains("dificuldade") && row["dificuldade"] != DBNull.Value
+                    ? row["dificuldade"].ToString()
+                    : "Desconhecida";
+
                 Panel tarefaPanel = new Panel
                 {
                     Width = larguraPanel,
                     Height = alturaPanel,
-                    BackColor = Color.White,
+                    BackColor = Color.White, // Fundo branco do painel
                     BorderStyle = BorderStyle.FixedSingle,
                     Left = margemEsquerda + (i % colunas) * (larguraPanel + espacamentoHorizontal),
                     Top = margemTopo + (i / colunas) * (alturaPanel + espacamentoVertical),
@@ -118,6 +122,36 @@ namespace Dev4Tech
                     AutoSize = true
                 };
                 tarefaPanel.Controls.Add(lblStatus);
+
+                Label lblDificuldade = new Label
+                {
+                    Text = "Dificuldade: " + dificuldade,
+                    Font = new Font("Segoe UI", 9, FontStyle.Italic),
+                    ForeColor = Color.Black,
+                    Left = larguraPanel - 90,
+                    Top = 30,
+                    AutoSize = true
+                };
+
+                // Define a cor de fundo da label conforme a dificuldade
+                switch (dificuldade.ToLower())
+                {
+                    case "difícil":
+                        lblDificuldade.BackColor = Color.LightCoral; // vermelho claro
+                        break;
+                    case "média":
+                    case "mediana":
+                        lblDificuldade.BackColor = Color.LightGoldenrodYellow; // amarelo claro
+                        break;
+                    case "fácil":
+                        lblDificuldade.BackColor = Color.LightGreen; // verde claro
+                        break;
+                    default:
+                        lblDificuldade.BackColor = Color.Transparent;
+                        break;
+                }
+
+                tarefaPanel.Controls.Add(lblDificuldade);
 
                 panelTarefas.Controls.Add(tarefaPanel);
             }
@@ -200,9 +234,6 @@ namespace Dev4Tech
 
         private void Tarefa1_Enter(object sender, EventArgs e)
         {
-            //Tela_Tarefa t_tarefa = new Tela_Tarefa();
-            //t_tarefa.Show();
-            //this.Hide();
         }
 
         private void txtPesquisaTarefa_TextChanged(object sender, EventArgs e)
