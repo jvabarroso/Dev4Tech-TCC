@@ -21,6 +21,9 @@ namespace Dev4Tech
             this.Load += AdicionarEquipes_Load;
             btnAddMembro.Click += btnAddMembro_Click;
             btnCriarEquipe.Click += btnCriarEquipe_Click;
+
+            // Adiciona o evento para quando o email for selecionado
+            cbmEmailMembro.SelectedIndexChanged += cbmEmailMembro_SelectedIndexChanged;
         }
 
         private void AdicionarEquipes_Load(object sender, EventArgs e)
@@ -66,62 +69,6 @@ namespace Dev4Tech
             }
         }
 
-        private void btnHome_Click(object sender, EventArgs e)
-        {
-            Home t_Home = new Home();
-            t_Home.Show();
-            this.Hide();
-        }
-
-        private void btnEquipes_Click(object sender, EventArgs e)
-        {
-            Equipes_Estatisticas t_Equipes = new Equipes_Estatisticas();
-            t_Equipes.Show();
-            this.Hide();
-        }
-
-        private void btnRanking_Click(object sender, EventArgs e)
-        {
-            Ranking_Equipes t_Ranking = new Ranking_Equipes();
-            t_Ranking.Show();
-            this.Hide();
-        }
-
-        private void btnLogout_Click(object sender, EventArgs e)
-        {
-            Form1 t_incial = new Form1();
-            t_incial.Show();
-            this.Hide();
-        }
-
-        private void btnTarefas_Click(object sender, EventArgs e)
-        {
-            Tarefas_Pendentes t_Tarefas = new Tarefas_Pendentes();
-            t_Tarefas.Show();
-            this.Hide();
-        }
-
-        private void btnChat_Click(object sender, EventArgs e)
-        {
-            Chat_geral_equipes t_Chat = new Chat_geral_equipes();
-            t_Chat.Show();
-            this.Hide();
-        }
-
-        private void btnIntegrantes_Click(object sender, EventArgs e)
-        {
-            Integrantes_Equipe t_Integrantes = new Integrantes_Equipe();
-            t_Integrantes.Show();
-            this.Hide();
-        }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            PesquisaEquipes pesquisaEquipes = new PesquisaEquipes();
-            pesquisaEquipes.Show();
-            this.Hide();
-        }
-
         private void txtNomeEquipe_TextChanged(object sender, EventArgs e)
         {
         }
@@ -130,16 +77,110 @@ namespace Dev4Tech
         {
         }
 
-        private void pbImgEquipe_Click(object sender, EventArgs e)
-        {
-        }
-
-        //private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        //{
-       // }
-
         private void cbmEmailMembro_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string emailSelecionado = cbmEmailMembro.Text.Trim();
+            CarregarDadosFuncionario(emailSelecionado);
+        }
+
+        private void CarregarDadosFuncionario(string email)
+        {
+            panelDadosFunc.Controls.Clear();
+
+            if (string.IsNullOrEmpty(email))
+                return;
+
+            empresaCadFuncionario func = BuscarFuncionarioPorEmail(email);
+            if (func == null)
+                return;
+
+            pontuacaoFuncionario ptFunc = new pontuacaoFuncionario();
+            int idFunc = int.Parse(func.getFuncionarioId());
+            int pontos = ptFunc.ObterPontos(idFunc);
+
+            // Criar painel para os dados do funcionário
+            Panel funcPanel = new Panel
+            {
+                Width = panelDadosFunc.Width - 20,
+                Height = 100,
+                BackColor = Color.White,
+                BorderStyle = BorderStyle.FixedSingle,
+                Left = 10,
+                Top = 10
+            };
+
+            // PictureBox com foto fixa
+            PictureBox picFuncionario = new PictureBox
+            {
+                Image = Properties.Resources.icon_perfil, // imagem fixa no Resources
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                Width = 80,
+                Height = 80,
+                Left = 10,
+                Top = 10,
+                BorderStyle = BorderStyle.FixedSingle
+            };
+            funcPanel.Controls.Add(picFuncionario);
+
+            // Label Nome
+            Label lblNome = new Label
+            {
+                Text = func.getNome(),
+                Font = new Font("Segoe UI", 12, FontStyle.Bold),
+                Left = picFuncionario.Right + 15,
+                Top = 15,
+                AutoSize = true
+            };
+            funcPanel.Controls.Add(lblNome);
+
+            // Label Cargo
+            Label lblCargo = new Label
+            {
+                Text = func.getCargo(),
+                Font = new Font("Segoe UI", 10, FontStyle.Regular),
+                Left = picFuncionario.Right + 15,
+                Top = lblNome.Bottom + 5,
+                AutoSize = true
+            };
+            funcPanel.Controls.Add(lblCargo);
+
+            // Label Pontuação
+            Label lblPontos = new Label
+            {
+                Text = $"Pontos: {pontos}",
+                Font = new Font("Segoe UI", 10, FontStyle.Regular),
+                Left = picFuncionario.Right + 15,
+                Top = lblCargo.Bottom + 5,
+                AutoSize = true
+            };
+            funcPanel.Controls.Add(lblPontos);
+
+            panelDadosFunc.Controls.Add(funcPanel);
+        }
+
+        private empresaCadFuncionario BuscarFuncionarioPorEmail(string email)
+        {
+            empresaCadFuncionario func = null;
+            string query = "SELECT * FROM Funcionarios WHERE Email = @Email LIMIT 1";
+
+            using (var conn = new MySql.Data.MySqlClient.MySqlConnection("server=localhost;database=Dev4Tech;uid=root;pwd=;"))
+            {
+                conn.Open();
+                var cmd = new MySql.Data.MySqlClient.MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@Email", email);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        func = new empresaCadFuncionario();
+                        func.setFuncionarioId(reader["FuncionarioId"].ToString());
+                        func.setNome(reader["Nome"].ToString());
+                        func.setCargo(reader["Cargo"].ToString());
+                    }
+                }
+            }
+            return func;
         }
 
         private void btnAddMembro_Click(object sender, EventArgs e)
@@ -207,6 +248,7 @@ namespace Dev4Tech
             cmbCategoriaEquipe.Text = "";
             cbmEmailMembro.Text = "";
             membrosSelecionados.Clear();
+            panelDadosFunc.Controls.Clear();
         }
 
         private void btnConfig_Click(object sender, EventArgs e)

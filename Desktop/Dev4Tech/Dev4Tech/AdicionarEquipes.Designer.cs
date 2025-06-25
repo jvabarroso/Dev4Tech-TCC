@@ -45,12 +45,13 @@
             this.cbmEmailMembro = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblPontuacaoFuncionario = new System.Windows.Forms.Label();
+            this.lblCargoFuncionario = new System.Windows.Forms.Label();
+            this.lblNomeFuncionario = new System.Windows.Forms.Label();
             this.pbPerfilIntegrante = new System.Windows.Forms.PictureBox();
             this.btnCriarEquipe = new System.Windows.Forms.Button();
             this.cmbCategoriaEquipe = new System.Windows.Forms.ComboBox();
+            this.panelDadosFunc = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.picPerfil)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEquipes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCalendar)).BeginInit();
@@ -61,6 +62,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPerfilIntegrante)).BeginInit();
+            this.panelDadosFunc.SuspendLayout();
             this.SuspendLayout();
             // 
             // picPerfil
@@ -253,11 +255,11 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.lblPontuacaoFuncionario);
+            this.groupBox1.Controls.Add(this.lblCargoFuncionario);
+            this.groupBox1.Controls.Add(this.lblNomeFuncionario);
             this.groupBox1.Controls.Add(this.pbPerfilIntegrante);
-            this.groupBox1.Location = new System.Drawing.Point(610, 190);
+            this.groupBox1.Location = new System.Drawing.Point(8, 3);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
@@ -265,41 +267,42 @@
             this.groupBox1.TabIndex = 109;
             this.groupBox1.TabStop = false;
             // 
-            // label8
+            // lblPontuacaoFuncionario
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(17, 243);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(85, 21);
-            this.label8.TabIndex = 112;
-            this.label8.Text = "Pontuação:";
+            this.lblPontuacaoFuncionario.AutoSize = true;
+            this.lblPontuacaoFuncionario.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPontuacaoFuncionario.Location = new System.Drawing.Point(17, 243);
+            this.lblPontuacaoFuncionario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPontuacaoFuncionario.Name = "lblPontuacaoFuncionario";
+            this.lblPontuacaoFuncionario.Size = new System.Drawing.Size(85, 21);
+            this.lblPontuacaoFuncionario.TabIndex = 112;
+            this.lblPontuacaoFuncionario.Text = "Pontuação:";
             // 
-            // label7
+            // lblCargoFuncionario
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(3, 201);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(199, 21);
-            this.label7.TabIndex = 111;
-            this.label7.Text = "Desenvolvedor de software";
+            this.lblCargoFuncionario.AutoSize = true;
+            this.lblCargoFuncionario.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCargoFuncionario.Location = new System.Drawing.Point(3, 201);
+            this.lblCargoFuncionario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCargoFuncionario.Name = "lblCargoFuncionario";
+            this.lblCargoFuncionario.Size = new System.Drawing.Size(199, 21);
+            this.lblCargoFuncionario.TabIndex = 111;
+            this.lblCargoFuncionario.Text = "Desenvolvedor de software";
             // 
-            // label6
+            // lblNomeFuncionario
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(79, 180);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(47, 21);
-            this.label6.TabIndex = 110;
-            this.label6.Text = "Jvitin";
+            this.lblNomeFuncionario.AutoSize = true;
+            this.lblNomeFuncionario.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNomeFuncionario.Location = new System.Drawing.Point(79, 180);
+            this.lblNomeFuncionario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNomeFuncionario.Name = "lblNomeFuncionario";
+            this.lblNomeFuncionario.Size = new System.Drawing.Size(47, 21);
+            this.lblNomeFuncionario.TabIndex = 110;
+            this.lblNomeFuncionario.Text = "Jvitin";
             // 
             // pbPerfilIntegrante
             // 
+            this.pbPerfilIntegrante.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
             this.pbPerfilIntegrante.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pbPerfilIntegrante.Location = new System.Drawing.Point(27, 27);
             this.pbPerfilIntegrante.Margin = new System.Windows.Forms.Padding(4);
@@ -335,14 +338,23 @@
             this.cmbCategoriaEquipe.Text = "Escolha a categoria da equipe";
             this.cmbCategoriaEquipe.SelectedIndexChanged += new System.EventHandler(this.cmbCategoriaEquipe_SelectedIndexChanged);
             // 
+            // panelDadosFunc
+            // 
+            this.panelDadosFunc.Controls.Add(this.groupBox1);
+            this.panelDadosFunc.Location = new System.Drawing.Point(602, 187);
+            this.panelDadosFunc.Name = "panelDadosFunc";
+            this.panelDadosFunc.Size = new System.Drawing.Size(593, 314);
+            this.panelDadosFunc.TabIndex = 119;
+            // 
             // AdicionarEquipes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.panelDadosFunc);
             this.Controls.Add(this.cmbCategoriaEquipe);
             this.Controls.Add(this.btnCriarEquipe);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cbmEmailMembro);
             this.Controls.Add(this.btnAddMembro);
@@ -373,6 +385,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPerfilIntegrante)).EndInit();
+            this.panelDadosFunc.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -397,12 +410,13 @@
         private System.Windows.Forms.ComboBox cbmEmailMembro;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblPontuacaoFuncionario;
+        private System.Windows.Forms.Label lblCargoFuncionario;
+        private System.Windows.Forms.Label lblNomeFuncionario;
         private System.Windows.Forms.PictureBox pbPerfilIntegrante;
         private System.Windows.Forms.Button btnCriarEquipe;
         private System.Windows.Forms.ComboBox cmbCategoriaEquipe;
+        private System.Windows.Forms.Panel panelDadosFunc;
         //private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

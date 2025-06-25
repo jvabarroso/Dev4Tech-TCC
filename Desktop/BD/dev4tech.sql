@@ -98,8 +98,8 @@ CREATE TABLE Tarefas (
     FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-ALTER TABLE Tarefas
-ADD COLUMN dificuldade VARCHAR(20) NOT NULL;
+ALTER TABLE tarefas
+ADD COLUMN dificuldade INT NOT NULL DEFAULT 1;
 
 CREATE TABLE EntregasTarefa (
     id_entrega INT AUTO_INCREMENT PRIMARY KEY,
@@ -137,41 +137,3 @@ CREATE TABLE RelatoProblema (
    FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE,
 	descricao TEXT NOT NULL
 );
-
--- Tabela de Atribuições de Tarefas
-CREATE TABLE AtribuicoesTarefa (
-    id_atribuicao INT PRIMARY KEY auto_increment,
-    id_tarefa INT,
-    id_funcionario INT,
-    data_atribuicao DATETIME,
-    status VARCHAR(20) DEFAULT 'pendente',
-    FOREIGN KEY (id_tarefa) REFERENCES Tarefas(id_tarefa),
-    FOREIGN KEY (id_funcionario) REFERENCES Funcionarios(FuncionarioId)
-);
-
-
--- Tabela de Ranking de Equipes
-CREATE TABLE RankingEquipes (
-    id_ranking INT PRIMARY KEY auto_increment,
-    id_equipe INT,
-    pontuacao INT DEFAULT 0,
-    data_atualizacao DATETIME,
-    periodo VARCHAR(20),
-    FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe)
-);
-
--- Tabela de Relatórios de Problemas
-CREATE TABLE RelatoriosProblema (
-    id_relatorio INT PRIMARY KEY auto_increment,
-    id_usuario INT,
-    id_tarefa INT,
-    titulo VARCHAR(100) NOT NULL,
-    descricao TEXT NOT NULL,
-    data_relatorio DATETIME,
-    status VARCHAR(20) DEFAULT 'aberto',
-    FOREIGN KEY (id_usuario) REFERENCES Funcionarios(FuncionarioId),
-    FOREIGN KEY (id_tarefa) REFERENCES Tarefas(id_tarefa)
-);
-
-ALTER TABLE tarefas
-ADD COLUMN dificuldade INT NOT NULL DEFAULT 1;

@@ -315,3 +315,5 @@ C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São
 C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_Tarefa.resources
 C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_TarefasAdmin.resources
 C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.GenerateResource.Cache
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AvaliaçãoTarefaAdmin.resources
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_TarefasAdmin.resources
