@@ -99,6 +99,7 @@
             // 
             // btnEntrarEquipes
             // 
+            this.btnEntrarEquipes.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEntrarEquipes.Location = new System.Drawing.Point(280, 192);
             this.btnEntrarEquipes.Name = "btnEntrarEquipes";
             this.btnEntrarEquipes.Size = new System.Drawing.Size(75, 23);
@@ -110,9 +111,10 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(6, 197);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 13);
+            this.label4.Size = new System.Drawing.Size(90, 13);
             this.label4.TabIndex = 7;
             this.label4.Text = "10 de maio 2025";
             // 
@@ -129,9 +131,10 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(98, 148);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(36, 13);
+            this.label3.Size = new System.Drawing.Size(38, 13);
             this.label3.TabIndex = 6;
             this.label3.Text = "Lorem";
             // 
@@ -162,14 +165,16 @@
             // label10
             // 
             this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(382, 133);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(36, 13);
+            this.label10.Size = new System.Drawing.Size(38, 13);
             this.label10.TabIndex = 9;
             this.label10.Text = "Lorem";
             // 
             // btnEntrarRanking
             // 
+            this.btnEntrarRanking.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEntrarRanking.Location = new System.Drawing.Point(705, 177);
             this.btnEntrarRanking.Name = "btnEntrarRanking";
             this.btnEntrarRanking.Size = new System.Drawing.Size(75, 23);
@@ -181,9 +186,10 @@
             // label9
             // 
             this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(6, 177);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(86, 13);
+            this.label9.Size = new System.Drawing.Size(90, 13);
             this.label9.TabIndex = 9;
             this.label9.Text = "10 de maio 2025";
             // 
@@ -224,6 +230,7 @@
             // 
             // btnEntrarTarefas
             // 
+            this.btnEntrarTarefas.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEntrarTarefas.Location = new System.Drawing.Point(280, 192);
             this.btnEntrarTarefas.Name = "btnEntrarTarefas";
             this.btnEntrarTarefas.Size = new System.Drawing.Size(75, 23);
@@ -235,9 +242,10 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(6, 197);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(86, 13);
+            this.label5.Size = new System.Drawing.Size(90, 13);
             this.label5.TabIndex = 7;
             this.label5.Text = "10 de maio 2025";
             // 
@@ -254,9 +262,10 @@
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(33, 139);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(36, 13);
+            this.label7.Size = new System.Drawing.Size(38, 13);
             this.label7.TabIndex = 6;
             this.label7.Text = "Lorem";
             // 
@@ -302,6 +311,7 @@
             this.btnCalendar.Size = new System.Drawing.Size(24, 23);
             this.btnCalendar.TabIndex = 14;
             this.btnCalendar.TabStop = false;
+            this.btnCalendar.Click += new System.EventHandler(this.btnCalendar_Click);
             // 
             // btnRanking
             // 

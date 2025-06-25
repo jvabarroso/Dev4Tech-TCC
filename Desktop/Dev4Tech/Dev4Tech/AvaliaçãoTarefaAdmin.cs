@@ -186,5 +186,56 @@ namespace Dev4Tech
             public bool? Aceita { get; set; }
             public bool? AtrasoJustificado { get; set; }
         }
+
+        private void btnConfig_Click(object sender, EventArgs e)
+        {
+            var funcionario = Sessao.FuncionarioLogado;
+
+            if (funcionario != null)
+            {
+                Configuracoes config = new Configuracoes(funcionario);
+                config.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum funcionário logado.");
+            }
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            Form1 t_incial = new Form1();
+            t_incial.Show();
+            this.Hide();
+        }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            Home home = new Home();
+            home.Show();
+            this.Hide();
+        }
+
+        private void btnEquipe_Click(object sender, EventArgs e)
+        {
+            PesquisaEquipes p_equipes = new PesquisaEquipes();
+            p_equipes.Show();
+            this.Hide();
+        }
+
+        private void btnCalendar_Click(object sender, EventArgs e)
+        {
+            Tarefas_Pendentes t_pendentes = new Tarefas_Pendentes();
+            t_pendentes.Show();
+            this.Hide();
+        }
+
+        private void btnRanking_Click(object sender, EventArgs e)
+        {
+            Equipes_Estatisticas E_esta = new Equipes_Estatisticas();
+            E_esta.Show();
+            this.Hide();
+        }
     }
 }

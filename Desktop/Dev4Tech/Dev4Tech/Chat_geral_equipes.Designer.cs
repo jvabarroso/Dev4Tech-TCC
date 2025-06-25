@@ -49,6 +49,7 @@
             this.btnEnviarMensagem = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanelMensagens = new System.Windows.Forms.FlowLayoutPanel();
             this.panelMensagens = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picPerfil)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEquipes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCalendar)).BeginInit();
@@ -69,10 +70,9 @@
             this.picPerfil.BackColor = System.Drawing.Color.Blue;
             this.picPerfil.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
             this.picPerfil.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picPerfil.Location = new System.Drawing.Point(16, 751);
-            this.picPerfil.Margin = new System.Windows.Forms.Padding(4);
+            this.picPerfil.Location = new System.Drawing.Point(12, 610);
             this.picPerfil.Name = "picPerfil";
-            this.picPerfil.Size = new System.Drawing.Size(32, 28);
+            this.picPerfil.Size = new System.Drawing.Size(24, 23);
             this.picPerfil.TabIndex = 36;
             this.picPerfil.TabStop = false;
             this.picPerfil.Click += new System.EventHandler(this.picPerfil_Click);
@@ -81,10 +81,9 @@
             // 
             this.btnEquipes.BackColor = System.Drawing.Color.Blue;
             this.btnEquipes.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_equip;
-            this.btnEquipes.Location = new System.Drawing.Point(16, 63);
-            this.btnEquipes.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEquipes.Location = new System.Drawing.Point(12, 51);
             this.btnEquipes.Name = "btnEquipes";
-            this.btnEquipes.Size = new System.Drawing.Size(32, 28);
+            this.btnEquipes.Size = new System.Drawing.Size(24, 23);
             this.btnEquipes.TabIndex = 35;
             this.btnEquipes.TabStop = false;
             this.btnEquipes.Click += new System.EventHandler(this.btnEquipes_Click);
@@ -94,22 +93,21 @@
             this.btnCalendar.BackColor = System.Drawing.Color.Blue;
             this.btnCalendar.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_calendar;
             this.btnCalendar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnCalendar.Location = new System.Drawing.Point(16, 111);
-            this.btnCalendar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCalendar.Location = new System.Drawing.Point(12, 90);
             this.btnCalendar.Name = "btnCalendar";
-            this.btnCalendar.Size = new System.Drawing.Size(32, 28);
+            this.btnCalendar.Size = new System.Drawing.Size(24, 23);
             this.btnCalendar.TabIndex = 34;
             this.btnCalendar.TabStop = false;
+            this.btnCalendar.Click += new System.EventHandler(this.btnCalendar_Click);
             // 
             // btnRanking
             // 
             this.btnRanking.BackColor = System.Drawing.Color.Blue;
             this.btnRanking.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_ranking;
             this.btnRanking.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnRanking.Location = new System.Drawing.Point(16, 162);
-            this.btnRanking.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRanking.Location = new System.Drawing.Point(12, 132);
             this.btnRanking.Name = "btnRanking";
-            this.btnRanking.Size = new System.Drawing.Size(32, 28);
+            this.btnRanking.Size = new System.Drawing.Size(24, 23);
             this.btnRanking.TabIndex = 33;
             this.btnRanking.TabStop = false;
             this.btnRanking.Click += new System.EventHandler(this.btnRanking_Click);
@@ -119,10 +117,9 @@
             this.btnLogout.BackColor = System.Drawing.Color.Blue;
             this.btnLogout.BackgroundImage = global::Dev4Tech.Properties.Resources.Nav_Icon_Item;
             this.btnLogout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnLogout.Location = new System.Drawing.Point(16, 698);
-            this.btnLogout.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLogout.Location = new System.Drawing.Point(12, 567);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(32, 28);
+            this.btnLogout.Size = new System.Drawing.Size(24, 23);
             this.btnLogout.TabIndex = 32;
             this.btnLogout.TabStop = false;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
@@ -132,10 +129,9 @@
             this.btnConfig.BackColor = System.Drawing.Color.Blue;
             this.btnConfig.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_config;
             this.btnConfig.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnConfig.Location = new System.Drawing.Point(16, 663);
-            this.btnConfig.Margin = new System.Windows.Forms.Padding(4);
+            this.btnConfig.Location = new System.Drawing.Point(12, 539);
             this.btnConfig.Name = "btnConfig";
-            this.btnConfig.Size = new System.Drawing.Size(32, 28);
+            this.btnConfig.Size = new System.Drawing.Size(24, 23);
             this.btnConfig.TabIndex = 31;
             this.btnConfig.TabStop = false;
             this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
@@ -145,10 +141,9 @@
             this.btnHome.BackColor = System.Drawing.Color.Blue;
             this.btnHome.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_Home;
             this.btnHome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnHome.Location = new System.Drawing.Point(16, 15);
-            this.btnHome.Margin = new System.Windows.Forms.Padding(4);
+            this.btnHome.Location = new System.Drawing.Point(12, 12);
             this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(32, 28);
+            this.btnHome.Size = new System.Drawing.Size(24, 23);
             this.btnHome.TabIndex = 30;
             this.btnHome.TabStop = false;
             this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
@@ -157,19 +152,18 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Blue;
             this.pictureBox1.Location = new System.Drawing.Point(0, -2);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(72, 847);
+            this.pictureBox1.Size = new System.Drawing.Size(54, 688);
             this.pictureBox1.TabIndex = 29;
             this.pictureBox1.TabStop = false;
             // 
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.pictureBox2.Location = new System.Drawing.Point(69, -2);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox2.Location = new System.Drawing.Point(52, -2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(408, 839);
+            this.pictureBox2.Size = new System.Drawing.Size(306, 682);
             this.pictureBox2.TabIndex = 37;
             this.pictureBox2.TabStop = false;
             // 
@@ -178,21 +172,21 @@
             this.groupBox1.Controls.Add(this.lblCategoriaEquipe);
             this.groupBox1.Controls.Add(this.pictureBox3);
             this.groupBox1.Controls.Add(this.lblNomeEquipe);
-            this.groupBox1.Location = new System.Drawing.Point(107, 90);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Location = new System.Drawing.Point(80, 73);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(248, 100);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(202, 81);
             this.groupBox1.TabIndex = 38;
             this.groupBox1.TabStop = false;
             // 
             // lblCategoriaEquipe
             // 
             this.lblCategoriaEquipe.AutoSize = true;
-            this.lblCategoriaEquipe.Location = new System.Drawing.Point(63, 54);
-            this.lblCategoriaEquipe.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCategoriaEquipe.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCategoriaEquipe.Location = new System.Drawing.Point(47, 44);
             this.lblCategoriaEquipe.Name = "lblCategoriaEquipe";
-            this.lblCategoriaEquipe.Size = new System.Drawing.Size(180, 17);
+            this.lblCategoriaEquipe.Size = new System.Drawing.Size(147, 13);
             this.lblCategoriaEquipe.TabIndex = 61;
             this.lblCategoriaEquipe.Text = "Desenvolvedor de software";
             // 
@@ -200,20 +194,20 @@
             // 
             this.pictureBox3.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(5, 21);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox3.Location = new System.Drawing.Point(4, 17);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(51, 50);
+            this.pictureBox3.Size = new System.Drawing.Size(38, 41);
             this.pictureBox3.TabIndex = 39;
             this.pictureBox3.TabStop = false;
             // 
             // lblNomeEquipe
             // 
             this.lblNomeEquipe.AutoSize = true;
-            this.lblNomeEquipe.Location = new System.Drawing.Point(63, 21);
-            this.lblNomeEquipe.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNomeEquipe.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNomeEquipe.Location = new System.Drawing.Point(47, 17);
             this.lblNomeEquipe.Name = "lblNomeEquipe";
-            this.lblNomeEquipe.Size = new System.Drawing.Size(71, 17);
+            this.lblNomeEquipe.Size = new System.Drawing.Size(53, 13);
             this.lblNomeEquipe.TabIndex = 60;
             this.lblNomeEquipe.Text = "EQUIPE 1";
             // 
@@ -221,20 +215,24 @@
             // 
             this.lblGeral.AutoSize = true;
             this.lblGeral.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lblGeral.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGeral.Location = new System.Drawing.Point(133, 210);
+            this.lblGeral.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGeral.Location = new System.Drawing.Point(100, 171);
+            this.lblGeral.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblGeral.Name = "lblGeral";
-            this.lblGeral.Size = new System.Drawing.Size(48, 17);
+            this.lblGeral.Size = new System.Drawing.Size(40, 17);
             this.lblGeral.TabIndex = 39;
             this.lblGeral.Text = "Geral";
+            this.lblGeral.Click += new System.EventHandler(this.lblGeral_Click_1);
             // 
             // lblTarefas
             // 
             this.lblTarefas.AutoSize = true;
             this.lblTarefas.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lblTarefas.Location = new System.Drawing.Point(133, 238);
+            this.lblTarefas.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTarefas.Location = new System.Drawing.Point(100, 193);
+            this.lblTarefas.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTarefas.Name = "lblTarefas";
-            this.lblTarefas.Size = new System.Drawing.Size(57, 17);
+            this.lblTarefas.Size = new System.Drawing.Size(43, 13);
             this.lblTarefas.TabIndex = 40;
             this.lblTarefas.Text = "Tarefas";
             this.lblTarefas.Click += new System.EventHandler(this.lblTarefas_Click);
@@ -243,9 +241,11 @@
             // 
             this.lblRanking.AutoSize = true;
             this.lblRanking.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lblRanking.Location = new System.Drawing.Point(133, 263);
+            this.lblRanking.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRanking.Location = new System.Drawing.Point(100, 214);
+            this.lblRanking.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblRanking.Name = "lblRanking";
-            this.lblRanking.Size = new System.Drawing.Size(60, 17);
+            this.lblRanking.Size = new System.Drawing.Size(50, 13);
             this.lblRanking.TabIndex = 41;
             this.lblRanking.Text = "Ranking";
             this.lblRanking.Click += new System.EventHandler(this.lblRanking_Click);
@@ -254,20 +254,23 @@
             // 
             this.lblMembros.AutoSize = true;
             this.lblMembros.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lblMembros.Location = new System.Drawing.Point(133, 290);
+            this.lblMembros.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMembros.Location = new System.Drawing.Point(100, 236);
+            this.lblMembros.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMembros.Name = "lblMembros";
-            this.lblMembros.Size = new System.Drawing.Size(66, 17);
+            this.lblMembros.Size = new System.Drawing.Size(55, 13);
             this.lblMembros.TabIndex = 42;
             this.lblMembros.Text = "Membros";
             this.lblMembros.Click += new System.EventHandler(this.lblMembros_Click);
             // 
             // txtDigitarMensagem
             // 
-            this.txtDigitarMensagem.Location = new System.Drawing.Point(657, 698);
-            this.txtDigitarMensagem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtDigitarMensagem.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDigitarMensagem.Location = new System.Drawing.Point(493, 567);
+            this.txtDigitarMensagem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtDigitarMensagem.Multiline = true;
             this.txtDigitarMensagem.Name = "txtDigitarMensagem";
-            this.txtDigitarMensagem.Size = new System.Drawing.Size(793, 47);
+            this.txtDigitarMensagem.Size = new System.Drawing.Size(596, 39);
             this.txtDigitarMensagem.TabIndex = 43;
             this.txtDigitarMensagem.Text = "Digite sua mensagem";
             this.txtDigitarMensagem.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -278,10 +281,10 @@
             // 
             this.btnEnviarMensagem.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_enviarMensagem;
             this.btnEnviarMensagem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnEnviarMensagem.Location = new System.Drawing.Point(1396, 702);
-            this.btnEnviarMensagem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnEnviarMensagem.Location = new System.Drawing.Point(1047, 570);
+            this.btnEnviarMensagem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnEnviarMensagem.Name = "btnEnviarMensagem";
-            this.btnEnviarMensagem.Size = new System.Drawing.Size(53, 43);
+            this.btnEnviarMensagem.Size = new System.Drawing.Size(40, 35);
             this.btnEnviarMensagem.TabIndex = 44;
             this.btnEnviarMensagem.TabStop = false;
             this.btnEnviarMensagem.Click += new System.EventHandler(this.btnEnviarMensagem_Click);
@@ -290,26 +293,38 @@
             // 
             this.flowLayoutPanelMensagens.AutoScroll = true;
             this.flowLayoutPanelMensagens.Controls.Add(this.panelMensagens);
-            this.flowLayoutPanelMensagens.Location = new System.Drawing.Point(484, 4);
-            this.flowLayoutPanelMensagens.Margin = new System.Windows.Forms.Padding(4);
+            this.flowLayoutPanelMensagens.Location = new System.Drawing.Point(363, 3);
             this.flowLayoutPanelMensagens.Name = "flowLayoutPanelMensagens";
-            this.flowLayoutPanelMensagens.Size = new System.Drawing.Size(1089, 820);
+            this.flowLayoutPanelMensagens.Size = new System.Drawing.Size(817, 666);
             this.flowLayoutPanelMensagens.TabIndex = 47;
             // 
             // panelMensagens
             // 
             this.panelMensagens.AutoScroll = true;
-            this.panelMensagens.Location = new System.Drawing.Point(4, 4);
-            this.panelMensagens.Margin = new System.Windows.Forms.Padding(4);
+            this.panelMensagens.Location = new System.Drawing.Point(3, 3);
             this.panelMensagens.Name = "panelMensagens";
-            this.panelMensagens.Size = new System.Drawing.Size(1085, 684);
+            this.panelMensagens.Size = new System.Drawing.Size(814, 556);
             this.panelMensagens.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(100, 257);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 13);
+            this.label1.TabIndex = 48;
+            this.label1.Text = "Planejamento";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // Chat_geral_equipes
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1685, 838);
+            this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnEnviarMensagem);
             this.Controls.Add(this.txtDigitarMensagem);
             this.Controls.Add(this.lblMembros);
@@ -327,7 +342,7 @@
             this.Controls.Add(this.btnHome);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.flowLayoutPanelMensagens);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Chat_geral_equipes";
             this.Text = "Chat_geral_equipes";
             this.Load += new System.EventHandler(this.Chat_geral_equipes_Load);
@@ -373,5 +388,6 @@
         private System.Windows.Forms.PictureBox btnEnviarMensagem;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelMensagens;
         private System.Windows.Forms.Panel panelMensagens;
+        private System.Windows.Forms.Label label1;
     }
 }

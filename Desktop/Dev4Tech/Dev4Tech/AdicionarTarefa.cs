@@ -193,7 +193,18 @@ namespace Dev4Tech
 
         private void btnConfig_Click(object sender, EventArgs e)
         {
-            // Configurações futuras
+            var funcionario = Sessao.FuncionarioLogado;
+
+            if (funcionario != null)
+            {
+                Configuracoes config = new Configuracoes(funcionario);
+                config.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum funcionário logado.");
+            }
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -216,6 +227,13 @@ namespace Dev4Tech
         private void AdicionarTarefa_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnCalendar_Click(object sender, EventArgs e)
+        {
+            Tarefas_Completadas t_completadas = new Tarefas_Completadas();
+            t_completadas.Show();
+            this.Hide();
         }
     }
 }

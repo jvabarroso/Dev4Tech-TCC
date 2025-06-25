@@ -86,8 +86,15 @@ namespace Dev4Tech
 
         private void btnEntrarRanking_Click(object sender, EventArgs e)
         {
-            Equipes_Estatisticas equip_e = new Equipes_Estatisticas();
-            equip_e.Show();
+            Ranking_Equipes rank_e = new Ranking_Equipes();
+            rank_e.Show();
+            this.Hide();
+        }
+
+        private void pictureBox9_Click(object sender, EventArgs e)
+        {
+            Tarefas_Completadas t_completadas = new Tarefas_Completadas();
+            t_completadas.Show();
             this.Hide();
         }
     }

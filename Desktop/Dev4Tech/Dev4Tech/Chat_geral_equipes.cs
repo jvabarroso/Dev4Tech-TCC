@@ -127,7 +127,9 @@ namespace Dev4Tech
 
         private void lblRanking_Click(object sender, EventArgs e)
         {
-            // Pode implementar ou deixar vazio
+            Ranking_Equipes rank_equipe = new Ranking_Equipes();
+            rank_equipe.Show();
+            this.Hide();
         }
 
         private void Chat_geral_equipes_Load(object sender, EventArgs e)
@@ -139,8 +141,8 @@ namespace Dev4Tech
 
         private void btnEquipes_Click(object sender, EventArgs e)
         {
-            Equipes_Estatisticas t_equipe = new Equipes_Estatisticas();
-            t_equipe.Show();
+            PesquisaEquipes P_equipe = new PesquisaEquipes();
+            P_equipe.Show();
             this.Hide();
         }
 
@@ -193,7 +195,18 @@ namespace Dev4Tech
 
         private void btnConfig_Click(object sender, EventArgs e)
         {
-            // Configurações futuras
+            var funcionario = Sessao.FuncionarioLogado;
+
+            if (funcionario != null)
+            {
+                Configuracoes config = new Configuracoes(funcionario);
+                config.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum funcionário logado.");
+            }
         }
 
         private void picPerfil_Click(object sender, EventArgs e)
@@ -209,6 +222,27 @@ namespace Dev4Tech
         private void txtDigitarMensagem_TextChanged(object sender, EventArgs e)
         {
             // Sem alterações
+        }
+
+        private void btnCalendar_Click(object sender, EventArgs e)
+        {
+            Tarefas_Pendentes t_pendente = new Tarefas_Pendentes();
+            t_pendente.Show();
+            this.Hide();
+        }
+
+        private void lblGeral_Click_1(object sender, EventArgs e)
+        {
+            Chat_geral_equipes t_chat = new Chat_geral_equipes();
+            t_chat.Show();
+            this.Hide();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            Planejamento p_plano = new Planejamento();
+            p_plano.Show();
+            this.Hide();
         }
     }
 }

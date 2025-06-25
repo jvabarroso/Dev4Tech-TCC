@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ranking_Equipes));
             this.lblMembros = new System.Windows.Forms.Label();
             this.lblRanking = new System.Windows.Forms.Label();
             this.lblTarefas = new System.Windows.Forms.Label();
@@ -56,7 +57,6 @@
             this.pictureBox17 = new System.Windows.Forms.PictureBox();
             this.pictureBox19 = new System.Windows.Forms.PictureBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.pictureBox20 = new System.Windows.Forms.PictureBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.pictureBox21 = new System.Windows.Forms.PictureBox();
@@ -70,7 +70,6 @@
             this.pictureBox25 = new System.Windows.Forms.PictureBox();
             this.pictureBox26 = new System.Windows.Forms.PictureBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.pictureBox27 = new System.Windows.Forms.PictureBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.pictureBox28 = new System.Windows.Forms.PictureBox();
@@ -83,7 +82,6 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.pictureBox33 = new System.Windows.Forms.PictureBox();
             this.label22 = new System.Windows.Forms.Label();
-            this.pictureBox34 = new System.Windows.Forms.PictureBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.pictureBox35 = new System.Windows.Forms.PictureBox();
@@ -96,7 +94,6 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.pictureBox40 = new System.Windows.Forms.PictureBox();
             this.label28 = new System.Windows.Forms.Label();
-            this.pictureBox41 = new System.Windows.Forms.PictureBox();
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.pictureBox42 = new System.Windows.Forms.PictureBox();
@@ -130,6 +127,10 @@
             this.pictureBox49 = new System.Windows.Forms.PictureBox();
             this.label39 = new System.Windows.Forms.Label();
             this.lblPlanejamento = new System.Windows.Forms.Label();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -143,7 +144,6 @@
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).BeginInit();
@@ -151,21 +151,18 @@
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox27)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox28)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox29)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox30)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox31)).BeginInit();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox33)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox34)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox35)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox36)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox37)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox38)).BeginInit();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox40)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox41)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox42)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox43)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox44)).BeginInit();
@@ -187,28 +184,34 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox47)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox48)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox49)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             this.SuspendLayout();
             // 
             // lblMembros
             // 
             this.lblMembros.AutoSize = true;
             this.lblMembros.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lblMembros.Location = new System.Drawing.Point(93, 238);
+            this.lblMembros.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMembros.Location = new System.Drawing.Point(107, 238);
             this.lblMembros.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMembros.Name = "lblMembros";
-            this.lblMembros.Size = new System.Drawing.Size(50, 13);
+            this.lblMembros.Size = new System.Drawing.Size(55, 13);
             this.lblMembros.TabIndex = 95;
             this.lblMembros.Text = "Membros";
+            this.lblMembros.Click += new System.EventHandler(this.lblMembros_Click);
             // 
             // lblRanking
             // 
             this.lblRanking.AutoSize = true;
             this.lblRanking.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lblRanking.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRanking.Location = new System.Drawing.Point(94, 217);
+            this.lblRanking.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRanking.Location = new System.Drawing.Point(108, 214);
             this.lblRanking.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblRanking.Name = "lblRanking";
-            this.lblRanking.Size = new System.Drawing.Size(54, 13);
+            this.lblRanking.Size = new System.Drawing.Size(58, 17);
             this.lblRanking.TabIndex = 94;
             this.lblRanking.Text = "Ranking";
             this.lblRanking.Click += new System.EventHandler(this.lblRanking_Click);
@@ -217,8 +220,8 @@
             // 
             this.lblTarefas.AutoSize = true;
             this.lblTarefas.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lblTarefas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTarefas.Location = new System.Drawing.Point(93, 195);
+            this.lblTarefas.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTarefas.Location = new System.Drawing.Point(107, 195);
             this.lblTarefas.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTarefas.Name = "lblTarefas";
             this.lblTarefas.Size = new System.Drawing.Size(43, 13);
@@ -230,11 +233,11 @@
             // 
             this.lblGeral.AutoSize = true;
             this.lblGeral.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lblGeral.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGeral.Location = new System.Drawing.Point(93, 173);
+            this.lblGeral.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGeral.Location = new System.Drawing.Point(107, 173);
             this.lblGeral.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblGeral.Name = "lblGeral";
-            this.lblGeral.Size = new System.Drawing.Size(32, 13);
+            this.lblGeral.Size = new System.Drawing.Size(34, 13);
             this.lblGeral.TabIndex = 92;
             this.lblGeral.Text = "Geral";
             this.lblGeral.Click += new System.EventHandler(this.lblGeral_Click);
@@ -244,20 +247,21 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.pictureBox3);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(72, 75);
+            this.groupBox1.Location = new System.Drawing.Point(90, 76);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(186, 81);
+            this.groupBox1.Size = new System.Drawing.Size(199, 81);
             this.groupBox1.TabIndex = 91;
             this.groupBox1.TabStop = false;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(47, 44);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(137, 13);
+            this.label4.Size = new System.Drawing.Size(147, 13);
             this.label4.TabIndex = 61;
             this.label4.Text = "Desenvolvedor de software";
             // 
@@ -275,19 +279,20 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(47, 17);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 13);
+            this.label3.Size = new System.Drawing.Size(53, 13);
             this.label3.TabIndex = 60;
             this.label3.Text = "EQUIPE 1";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.label1.Location = new System.Drawing.Point(509, 103);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(545, 105);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(121, 29);
+            this.label1.Size = new System.Drawing.Size(116, 32);
             this.label1.TabIndex = 98;
             this.label1.Text = "RANKING";
             // 
@@ -324,7 +329,7 @@
             // 
             this.pictureBox18.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_ranking_1;
             this.pictureBox18.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox18.Location = new System.Drawing.Point(46, 19);
+            this.pictureBox18.Location = new System.Drawing.Point(47, 19);
             this.pictureBox18.Name = "pictureBox18";
             this.pictureBox18.Size = new System.Drawing.Size(25, 25);
             this.pictureBox18.TabIndex = 108;
@@ -339,43 +344,45 @@
             this.btnEstatisticas.Size = new System.Drawing.Size(25, 25);
             this.btnEstatisticas.TabIndex = 107;
             this.btnEstatisticas.TabStop = false;
+            this.btnEstatisticas.Click += new System.EventHandler(this.btnEstatisticas_Click);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(584, 68);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(37, 16);
+            this.label9.Size = new System.Drawing.Size(42, 21);
             this.label9.TabIndex = 106;
             this.label9.Text = "98%";
             // 
             // pictureBox16
             // 
-            this.pictureBox16.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_pasta_ranking;
+            this.pictureBox16.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox16.BackgroundImage")));
             this.pictureBox16.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox16.Location = new System.Drawing.Point(563, 69);
+            this.pictureBox16.Location = new System.Drawing.Point(555, 63);
             this.pictureBox16.Name = "pictureBox16";
-            this.pictureBox16.Size = new System.Drawing.Size(15, 15);
+            this.pictureBox16.Size = new System.Drawing.Size(25, 25);
             this.pictureBox16.TabIndex = 105;
             this.pictureBox16.TabStop = false;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(525, 69);
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(519, 68);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(32, 16);
+            this.label8.Size = new System.Drawing.Size(37, 21);
             this.label8.TabIndex = 104;
             this.label8.Text = "100";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(464, 71);
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(456, 71);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(62, 13);
+            this.label7.Size = new System.Drawing.Size(65, 13);
             this.label7.TabIndex = 103;
             this.label7.Text = "Pontuação:";
             // 
@@ -392,9 +399,10 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(119, 43);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(137, 13);
+            this.label5.Size = new System.Drawing.Size(147, 13);
             this.label5.TabIndex = 64;
             this.label5.Text = "Desenvolvedor de software";
             // 
@@ -421,10 +429,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(6, 16);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 31);
+            this.label2.Size = new System.Drawing.Size(51, 40);
             this.label2.TabIndex = 0;
             this.label2.Text = "#1";
             // 
@@ -442,18 +450,19 @@
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(119, 16);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 13);
+            this.label6.Size = new System.Drawing.Size(53, 13);
             this.label6.TabIndex = 63;
             this.label6.Text = "EQUIPE 1";
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.pictureBox5);
             this.groupBox3.Controls.Add(this.pictureBox17);
             this.groupBox3.Controls.Add(this.pictureBox19);
             this.groupBox3.Controls.Add(this.label10);
-            this.groupBox3.Controls.Add(this.pictureBox20);
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.label12);
             this.groupBox3.Controls.Add(this.pictureBox21);
@@ -473,7 +482,7 @@
             // 
             this.pictureBox17.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_ranking_2;
             this.pictureBox17.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox17.Location = new System.Drawing.Point(46, 19);
+            this.pictureBox17.Location = new System.Drawing.Point(48, 19);
             this.pictureBox17.Name = "pictureBox17";
             this.pictureBox17.Size = new System.Drawing.Size(25, 25);
             this.pictureBox17.TabIndex = 108;
@@ -492,39 +501,30 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(584, 68);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(37, 16);
+            this.label10.Size = new System.Drawing.Size(42, 21);
             this.label10.TabIndex = 106;
             this.label10.Text = "95%";
-            // 
-            // pictureBox20
-            // 
-            this.pictureBox20.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_pasta_ranking;
-            this.pictureBox20.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox20.Location = new System.Drawing.Point(563, 69);
-            this.pictureBox20.Name = "pictureBox20";
-            this.pictureBox20.Size = new System.Drawing.Size(15, 15);
-            this.pictureBox20.TabIndex = 105;
-            this.pictureBox20.TabStop = false;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.Location = new System.Drawing.Point(525, 69);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(24, 16);
+            this.label11.Size = new System.Drawing.Size(28, 21);
             this.label11.TabIndex = 104;
             this.label11.Text = "98";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(464, 71);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(62, 13);
+            this.label12.Size = new System.Drawing.Size(65, 13);
             this.label12.TabIndex = 103;
             this.label12.Text = "Pontuação:";
             // 
@@ -541,9 +541,10 @@
             // label13
             // 
             this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.Location = new System.Drawing.Point(119, 43);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(137, 13);
+            this.label13.Size = new System.Drawing.Size(147, 13);
             this.label13.TabIndex = 64;
             this.label13.Text = "Desenvolvedor de software";
             // 
@@ -570,10 +571,10 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.Location = new System.Drawing.Point(6, 16);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(46, 31);
+            this.label14.Size = new System.Drawing.Size(51, 40);
             this.label14.TabIndex = 0;
             this.label14.Text = "#2";
             // 
@@ -591,18 +592,19 @@
             // label15
             // 
             this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.Location = new System.Drawing.Point(119, 16);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(56, 13);
+            this.label15.Size = new System.Drawing.Size(53, 13);
             this.label15.TabIndex = 63;
             this.label15.Text = "EQUIPE 1";
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.pictureBox7);
             this.groupBox4.Controls.Add(this.pictureBox25);
             this.groupBox4.Controls.Add(this.pictureBox26);
             this.groupBox4.Controls.Add(this.label16);
-            this.groupBox4.Controls.Add(this.pictureBox27);
             this.groupBox4.Controls.Add(this.label17);
             this.groupBox4.Controls.Add(this.label18);
             this.groupBox4.Controls.Add(this.pictureBox28);
@@ -622,7 +624,7 @@
             // 
             this.pictureBox25.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_ranking_3;
             this.pictureBox25.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox25.Location = new System.Drawing.Point(46, 19);
+            this.pictureBox25.Location = new System.Drawing.Point(48, 19);
             this.pictureBox25.Name = "pictureBox25";
             this.pictureBox25.Size = new System.Drawing.Size(25, 25);
             this.pictureBox25.TabIndex = 108;
@@ -641,39 +643,30 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.Location = new System.Drawing.Point(584, 68);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(37, 16);
+            this.label16.Size = new System.Drawing.Size(42, 21);
             this.label16.TabIndex = 106;
             this.label16.Text = "93%";
-            // 
-            // pictureBox27
-            // 
-            this.pictureBox27.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_pasta_ranking;
-            this.pictureBox27.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox27.Location = new System.Drawing.Point(563, 69);
-            this.pictureBox27.Name = "pictureBox27";
-            this.pictureBox27.Size = new System.Drawing.Size(15, 15);
-            this.pictureBox27.TabIndex = 105;
-            this.pictureBox27.TabStop = false;
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.Location = new System.Drawing.Point(525, 69);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(24, 16);
+            this.label17.Size = new System.Drawing.Size(28, 21);
             this.label17.TabIndex = 104;
             this.label17.Text = "85";
             // 
             // label18
             // 
             this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.Location = new System.Drawing.Point(464, 71);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(62, 13);
+            this.label18.Size = new System.Drawing.Size(65, 13);
             this.label18.TabIndex = 103;
             this.label18.Text = "Pontuação:";
             // 
@@ -690,9 +683,10 @@
             // label19
             // 
             this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.Location = new System.Drawing.Point(119, 43);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(137, 13);
+            this.label19.Size = new System.Drawing.Size(147, 13);
             this.label19.TabIndex = 64;
             this.label19.Text = "Desenvolvedor de software";
             // 
@@ -719,10 +713,10 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.Location = new System.Drawing.Point(6, 16);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(46, 31);
+            this.label20.Size = new System.Drawing.Size(51, 40);
             this.label20.TabIndex = 0;
             this.label20.Text = "#3";
             // 
@@ -740,17 +734,18 @@
             // label21
             // 
             this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.Location = new System.Drawing.Point(119, 16);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(56, 13);
+            this.label21.Size = new System.Drawing.Size(53, 13);
             this.label21.TabIndex = 63;
             this.label21.Text = "EQUIPE 1";
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.pictureBox8);
             this.groupBox5.Controls.Add(this.pictureBox33);
             this.groupBox5.Controls.Add(this.label22);
-            this.groupBox5.Controls.Add(this.pictureBox34);
             this.groupBox5.Controls.Add(this.label23);
             this.groupBox5.Controls.Add(this.label24);
             this.groupBox5.Controls.Add(this.pictureBox35);
@@ -779,39 +774,30 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.Location = new System.Drawing.Point(584, 68);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(37, 16);
+            this.label22.Size = new System.Drawing.Size(42, 21);
             this.label22.TabIndex = 106;
             this.label22.Text = "90%";
-            // 
-            // pictureBox34
-            // 
-            this.pictureBox34.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_pasta_ranking;
-            this.pictureBox34.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox34.Location = new System.Drawing.Point(563, 69);
-            this.pictureBox34.Name = "pictureBox34";
-            this.pictureBox34.Size = new System.Drawing.Size(15, 15);
-            this.pictureBox34.TabIndex = 105;
-            this.pictureBox34.TabStop = false;
             // 
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.Location = new System.Drawing.Point(525, 69);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(24, 16);
+            this.label23.Size = new System.Drawing.Size(28, 21);
             this.label23.TabIndex = 104;
             this.label23.Text = "84";
             // 
             // label24
             // 
             this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label24.Location = new System.Drawing.Point(464, 71);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(62, 13);
+            this.label24.Size = new System.Drawing.Size(65, 13);
             this.label24.TabIndex = 103;
             this.label24.Text = "Pontuação:";
             // 
@@ -828,9 +814,10 @@
             // label25
             // 
             this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.Location = new System.Drawing.Point(100, 43);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(137, 13);
+            this.label25.Size = new System.Drawing.Size(147, 13);
             this.label25.TabIndex = 64;
             this.label25.Text = "Desenvolvedor de software";
             // 
@@ -857,10 +844,10 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label26.Location = new System.Drawing.Point(6, 16);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(46, 31);
+            this.label26.Size = new System.Drawing.Size(51, 40);
             this.label26.TabIndex = 0;
             this.label26.Text = "#4";
             // 
@@ -878,17 +865,18 @@
             // label27
             // 
             this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label27.Location = new System.Drawing.Point(100, 16);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(56, 13);
+            this.label27.Size = new System.Drawing.Size(53, 13);
             this.label27.TabIndex = 63;
             this.label27.Text = "EQUIPE 1";
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.pictureBox10);
             this.groupBox6.Controls.Add(this.pictureBox40);
             this.groupBox6.Controls.Add(this.label28);
-            this.groupBox6.Controls.Add(this.pictureBox41);
             this.groupBox6.Controls.Add(this.label29);
             this.groupBox6.Controls.Add(this.label30);
             this.groupBox6.Controls.Add(this.pictureBox42);
@@ -917,39 +905,30 @@
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(584, 68);
+            this.label28.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(586, 68);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(37, 16);
+            this.label28.Size = new System.Drawing.Size(42, 21);
             this.label28.TabIndex = 106;
             this.label28.Text = "88%";
-            // 
-            // pictureBox41
-            // 
-            this.pictureBox41.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_pasta_ranking;
-            this.pictureBox41.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox41.Location = new System.Drawing.Point(563, 69);
-            this.pictureBox41.Name = "pictureBox41";
-            this.pictureBox41.Size = new System.Drawing.Size(15, 15);
-            this.pictureBox41.TabIndex = 105;
-            this.pictureBox41.TabStop = false;
             // 
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label29.Location = new System.Drawing.Point(525, 69);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(24, 16);
+            this.label29.Size = new System.Drawing.Size(28, 21);
             this.label29.TabIndex = 104;
             this.label29.Text = "79";
             // 
             // label30
             // 
             this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label30.Location = new System.Drawing.Point(464, 71);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(62, 13);
+            this.label30.Size = new System.Drawing.Size(65, 13);
             this.label30.TabIndex = 103;
             this.label30.Text = "Pontuação:";
             // 
@@ -966,9 +945,10 @@
             // label31
             // 
             this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label31.Location = new System.Drawing.Point(100, 45);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(137, 13);
+            this.label31.Size = new System.Drawing.Size(147, 13);
             this.label31.TabIndex = 64;
             this.label31.Text = "Desenvolvedor de software";
             // 
@@ -995,10 +975,10 @@
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label32.Location = new System.Drawing.Point(6, 16);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(46, 31);
+            this.label32.Size = new System.Drawing.Size(51, 40);
             this.label32.TabIndex = 0;
             this.label32.Text = "#5";
             // 
@@ -1016,26 +996,27 @@
             // label33
             // 
             this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label33.Location = new System.Drawing.Point(100, 18);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(56, 13);
+            this.label33.Size = new System.Drawing.Size(53, 13);
             this.label33.TabIndex = 63;
             this.label33.Text = "EQUIPE 1";
             // 
             // pictureBox4
             // 
-            this.pictureBox4.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_rank;
-            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox4.Location = new System.Drawing.Point(468, 98);
+            this.pictureBox4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.BackgroundImage")));
+            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBox4.Location = new System.Drawing.Point(471, 76);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(35, 35);
+            this.pictureBox4.Size = new System.Drawing.Size(64, 64);
             this.pictureBox4.TabIndex = 97;
             this.pictureBox4.TabStop = false;
             // 
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.pictureBox2.Location = new System.Drawing.Point(45, 0);
+            this.pictureBox2.Location = new System.Drawing.Point(57, 0);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(306, 688);
@@ -1047,7 +1028,7 @@
             this.pictureBox11.BackColor = System.Drawing.Color.Blue;
             this.pictureBox11.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
             this.pictureBox11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox11.Location = new System.Drawing.Point(5, 612);
+            this.pictureBox11.Location = new System.Drawing.Point(16, 613);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(24, 23);
             this.pictureBox11.TabIndex = 89;
@@ -1057,7 +1038,7 @@
             // 
             this.btnEquipes.BackColor = System.Drawing.Color.Blue;
             this.btnEquipes.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_equip;
-            this.btnEquipes.Location = new System.Drawing.Point(5, 53);
+            this.btnEquipes.Location = new System.Drawing.Point(16, 54);
             this.btnEquipes.Name = "btnEquipes";
             this.btnEquipes.Size = new System.Drawing.Size(24, 23);
             this.btnEquipes.TabIndex = 88;
@@ -1069,18 +1050,19 @@
             this.pictureBox9.BackColor = System.Drawing.Color.Blue;
             this.pictureBox9.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_calendar;
             this.pictureBox9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox9.Location = new System.Drawing.Point(5, 92);
+            this.pictureBox9.Location = new System.Drawing.Point(16, 93);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(24, 23);
             this.pictureBox9.TabIndex = 87;
             this.pictureBox9.TabStop = false;
+            this.pictureBox9.Click += new System.EventHandler(this.pictureBox9_Click);
             // 
             // btnRanking
             // 
             this.btnRanking.BackColor = System.Drawing.Color.Blue;
             this.btnRanking.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_ranking;
             this.btnRanking.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnRanking.Location = new System.Drawing.Point(5, 133);
+            this.btnRanking.Location = new System.Drawing.Point(16, 134);
             this.btnRanking.Name = "btnRanking";
             this.btnRanking.Size = new System.Drawing.Size(24, 23);
             this.btnRanking.TabIndex = 86;
@@ -1092,7 +1074,7 @@
             this.btnLogout.BackColor = System.Drawing.Color.Blue;
             this.btnLogout.BackgroundImage = global::Dev4Tech.Properties.Resources.Nav_Icon_Item;
             this.btnLogout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnLogout.Location = new System.Drawing.Point(5, 569);
+            this.btnLogout.Location = new System.Drawing.Point(16, 570);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(24, 23);
             this.btnLogout.TabIndex = 85;
@@ -1104,18 +1086,19 @@
             this.pictureBox6.BackColor = System.Drawing.Color.Blue;
             this.pictureBox6.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_config;
             this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox6.Location = new System.Drawing.Point(5, 540);
+            this.pictureBox6.Location = new System.Drawing.Point(16, 541);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(24, 23);
             this.pictureBox6.TabIndex = 84;
             this.pictureBox6.TabStop = false;
+            this.pictureBox6.Click += new System.EventHandler(this.pictureBox6_Click);
             // 
             // btnHome
             // 
             this.btnHome.BackColor = System.Drawing.Color.Blue;
             this.btnHome.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_Home;
             this.btnHome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnHome.Location = new System.Drawing.Point(5, 14);
+            this.btnHome.Location = new System.Drawing.Point(16, 15);
             this.btnHome.Name = "btnHome";
             this.btnHome.Size = new System.Drawing.Size(24, 23);
             this.btnHome.TabIndex = 83;
@@ -1125,7 +1108,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Blue;
-            this.pictureBox1.Location = new System.Drawing.Point(-7, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(2, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(54, 688);
             this.pictureBox1.TabIndex = 82;
@@ -1273,13 +1256,54 @@
             // 
             this.lblPlanejamento.AutoSize = true;
             this.lblPlanejamento.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lblPlanejamento.Location = new System.Drawing.Point(93, 257);
+            this.lblPlanejamento.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlanejamento.Location = new System.Drawing.Point(107, 257);
             this.lblPlanejamento.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPlanejamento.Name = "lblPlanejamento";
-            this.lblPlanejamento.Size = new System.Drawing.Size(71, 13);
+            this.lblPlanejamento.Size = new System.Drawing.Size(77, 13);
             this.lblPlanejamento.TabIndex = 130;
             this.lblPlanejamento.Text = "Planejamento";
             this.lblPlanejamento.Click += new System.EventHandler(this.lblPlanejamento_Click);
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox5.BackgroundImage")));
+            this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox5.Location = new System.Drawing.Point(555, 63);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox5.TabIndex = 109;
+            this.pictureBox5.TabStop = false;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox7.BackgroundImage")));
+            this.pictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox7.Location = new System.Drawing.Point(555, 63);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox7.TabIndex = 110;
+            this.pictureBox7.TabStop = false;
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox8.BackgroundImage")));
+            this.pictureBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox8.Location = new System.Drawing.Point(555, 63);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox8.TabIndex = 111;
+            this.pictureBox8.TabStop = false;
+            // 
+            // pictureBox10
+            // 
+            this.pictureBox10.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox10.BackgroundImage")));
+            this.pictureBox10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox10.Location = new System.Drawing.Point(557, 62);
+            this.pictureBox10.Name = "pictureBox10";
+            this.pictureBox10.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox10.TabIndex = 112;
+            this.pictureBox10.TabStop = false;
             // 
             // Ranking_Equipes
             // 
@@ -1328,7 +1352,6 @@
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).EndInit();
@@ -1337,7 +1360,6 @@
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox27)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox28)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox29)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox30)).EndInit();
@@ -1345,7 +1367,6 @@
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox33)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox34)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox35)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox36)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox37)).EndInit();
@@ -1353,7 +1374,6 @@
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox40)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox41)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox42)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox43)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox44)).EndInit();
@@ -1376,6 +1396,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox47)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox48)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox49)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1421,7 +1445,6 @@
         private System.Windows.Forms.PictureBox pictureBox17;
         private System.Windows.Forms.PictureBox pictureBox19;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.PictureBox pictureBox20;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.PictureBox pictureBox21;
@@ -1435,7 +1458,6 @@
         private System.Windows.Forms.PictureBox pictureBox25;
         private System.Windows.Forms.PictureBox pictureBox26;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.PictureBox pictureBox27;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.PictureBox pictureBox28;
@@ -1448,7 +1470,6 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.PictureBox pictureBox33;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.PictureBox pictureBox34;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.PictureBox pictureBox35;
@@ -1461,7 +1482,6 @@
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.PictureBox pictureBox40;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.PictureBox pictureBox41;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.PictureBox pictureBox42;
@@ -1485,5 +1505,9 @@
         private System.Windows.Forms.PictureBox pictureBox49;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label lblPlanejamento;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.PictureBox pictureBox10;
     }
 }

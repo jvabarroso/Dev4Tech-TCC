@@ -93,10 +93,11 @@
             // 
             this.lblMembros.AutoSize = true;
             this.lblMembros.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lblMembros.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMembros.Location = new System.Drawing.Point(100, 235);
             this.lblMembros.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMembros.Name = "lblMembros";
-            this.lblMembros.Size = new System.Drawing.Size(50, 13);
+            this.lblMembros.Size = new System.Drawing.Size(55, 13);
             this.lblMembros.TabIndex = 132;
             this.lblMembros.Text = "Membros";
             this.lblMembros.Click += new System.EventHandler(this.lblMembros_Click);
@@ -105,10 +106,11 @@
             // 
             this.lblRanking.AutoSize = true;
             this.lblRanking.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lblRanking.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRanking.Location = new System.Drawing.Point(100, 213);
             this.lblRanking.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblRanking.Name = "lblRanking";
-            this.lblRanking.Size = new System.Drawing.Size(47, 13);
+            this.lblRanking.Size = new System.Drawing.Size(50, 13);
             this.lblRanking.TabIndex = 131;
             this.lblRanking.Text = "Ranking";
             this.lblRanking.Click += new System.EventHandler(this.lblRanking_Click);
@@ -117,7 +119,7 @@
             // 
             this.lblTarefas.AutoSize = true;
             this.lblTarefas.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lblTarefas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTarefas.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTarefas.Location = new System.Drawing.Point(100, 192);
             this.lblTarefas.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTarefas.Name = "lblTarefas";
@@ -130,11 +132,11 @@
             // 
             this.lblGeral.AutoSize = true;
             this.lblGeral.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lblGeral.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGeral.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGeral.Location = new System.Drawing.Point(100, 170);
             this.lblGeral.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblGeral.Name = "lblGeral";
-            this.lblGeral.Size = new System.Drawing.Size(32, 13);
+            this.lblGeral.Size = new System.Drawing.Size(34, 13);
             this.lblGeral.TabIndex = 129;
             this.lblGeral.Text = "Geral";
             this.lblGeral.Click += new System.EventHandler(this.lblGeral_Click);
@@ -148,16 +150,17 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(186, 81);
+            this.groupBox1.Size = new System.Drawing.Size(198, 81);
             this.groupBox1.TabIndex = 128;
             this.groupBox1.TabStop = false;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(47, 44);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(137, 13);
+            this.label4.Size = new System.Drawing.Size(147, 13);
             this.label4.TabIndex = 61;
             this.label4.Text = "Desenvolvedor de software";
             // 
@@ -175,9 +178,10 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(47, 17);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 13);
+            this.label3.Size = new System.Drawing.Size(53, 13);
             this.label3.TabIndex = 60;
             this.label3.Text = "EQUIPE 1";
             // 
@@ -224,6 +228,7 @@
             this.btnCalendar.Size = new System.Drawing.Size(24, 23);
             this.btnCalendar.TabIndex = 124;
             this.btnCalendar.TabStop = false;
+            this.btnCalendar.Click += new System.EventHandler(this.btnCalendar_Click);
             // 
             // btnEstatisticas
             // 
@@ -286,11 +291,11 @@
             // 
             this.lblPlanejamento.AutoSize = true;
             this.lblPlanejamento.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lblPlanejamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlanejamento.Location = new System.Drawing.Point(100, 256);
+            this.lblPlanejamento.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlanejamento.Location = new System.Drawing.Point(99, 255);
             this.lblPlanejamento.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPlanejamento.Name = "lblPlanejamento";
-            this.lblPlanejamento.Size = new System.Drawing.Size(83, 13);
+            this.lblPlanejamento.Size = new System.Drawing.Size(93, 17);
             this.lblPlanejamento.TabIndex = 133;
             this.lblPlanejamento.Text = "Planejamento";
             this.lblPlanejamento.Click += new System.EventHandler(this.lblPlanejamento_Click);
@@ -298,33 +303,33 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(423, 159);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(423, 157);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(258, 42);
+            this.label2.Size = new System.Drawing.Size(262, 50);
             this.label2.TabIndex = 134;
             this.label2.Text = "Planejamento";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(427, 210);
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(431, 210);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(237, 16);
+            this.label5.Size = new System.Drawing.Size(230, 17);
             this.label5.TabIndex = 135;
             this.label5.Text = "Planejamento de tarefas para equipes";
             // 
             // btnCompletadas
             // 
             this.btnCompletadas.AutoSize = true;
-            this.btnCompletadas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnCompletadas.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCompletadas.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnCompletadas.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCompletadas.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnCompletadas.Location = new System.Drawing.Point(907, 278);
+            this.btnCompletadas.Location = new System.Drawing.Point(909, 278);
             this.btnCompletadas.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.btnCompletadas.Name = "btnCompletadas";
-            this.btnCompletadas.Size = new System.Drawing.Size(101, 25);
+            this.btnCompletadas.Size = new System.Drawing.Size(105, 30);
             this.btnCompletadas.TabIndex = 138;
             this.btnCompletadas.Text = "Entregues";
             this.btnCompletadas.Click += new System.EventHandler(this.btnCompletadas_Click);
@@ -334,12 +339,12 @@
             this.btnEmAtraso.AutoEllipsis = true;
             this.btnEmAtraso.AutoSize = true;
             this.btnEmAtraso.BackColor = System.Drawing.Color.Lavender;
-            this.btnEmAtraso.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEmAtraso.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEmAtraso.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnEmAtraso.Location = new System.Drawing.Point(668, 278);
+            this.btnEmAtraso.Location = new System.Drawing.Point(672, 278);
             this.btnEmAtraso.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.btnEmAtraso.Name = "btnEmAtraso";
-            this.btnEmAtraso.Size = new System.Drawing.Size(94, 25);
+            this.btnEmAtraso.Size = new System.Drawing.Size(96, 30);
             this.btnEmAtraso.TabIndex = 137;
             this.btnEmAtraso.Text = "Fazendo ";
             this.btnEmAtraso.Click += new System.EventHandler(this.btnEmAtraso_Click);
@@ -347,13 +352,13 @@
             // btnPendentes
             // 
             this.btnPendentes.AutoSize = true;
-            this.btnPendentes.BackColor = System.Drawing.Color.Orange;
-            this.btnPendentes.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPendentes.BackColor = System.Drawing.Color.Gold;
+            this.btnPendentes.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPendentes.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnPendentes.Location = new System.Drawing.Point(425, 278);
+            this.btnPendentes.Location = new System.Drawing.Point(429, 278);
             this.btnPendentes.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.btnPendentes.Name = "btnPendentes";
-            this.btnPendentes.Size = new System.Drawing.Size(106, 25);
+            this.btnPendentes.Size = new System.Drawing.Size(109, 30);
             this.btnPendentes.TabIndex = 136;
             this.btnPendentes.Text = "Pendentes";
             this.btnPendentes.Click += new System.EventHandler(this.btnPendentes_Click);
@@ -391,6 +396,7 @@
             this.pictureBox14.Size = new System.Drawing.Size(203, 80);
             this.pictureBox14.TabIndex = 142;
             this.pictureBox14.TabStop = false;
+            this.pictureBox14.Click += new System.EventHandler(this.pictureBox14_Click);
             // 
             // pictureBox15
             // 

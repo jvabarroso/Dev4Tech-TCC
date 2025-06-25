@@ -172,3 +172,6 @@ CREATE TABLE RelatoriosProblema (
     FOREIGN KEY (id_usuario) REFERENCES Funcionarios(FuncionarioId),
     FOREIGN KEY (id_tarefa) REFERENCES Tarefas(id_tarefa)
 );
+
+ALTER TABLE tarefas
+ADD COLUMN dificuldade INT NOT NULL DEFAULT 1;

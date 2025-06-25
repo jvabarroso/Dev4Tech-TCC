@@ -26,8 +26,8 @@ namespace Dev4Tech
 
         private void btnEquipes_Click(object sender, EventArgs e)
         {
-            Equipes_Estatisticas t_Equipes = new Equipes_Estatisticas();
-            t_Equipes.Show();
+            PesquisaEquipes P_equipe = new PesquisaEquipes();
+            P_equipe.Show();
             this.Hide();
         }
 
@@ -68,11 +68,62 @@ namespace Dev4Tech
 
         private void lblPlanejamento_Click(object sender, EventArgs e)
         {
-
+            Planejamento p_plano = new Planejamento();
+            p_plano.Show();
+            this.Hide();
         }
 
-        private void lblGeral_Click(object sender, EventArgs e) { }
-        private void lblRanking_Click(object sender, EventArgs e) { }
-        private void lblTarefas_Click(object sender, EventArgs e) { }
+        private void lblGeral_Click(object sender, EventArgs e) {
+            Chat_geral_equipes chatEquipe = new Chat_geral_equipes();
+            chatEquipe.Show();
+            this.Hide();
+        }
+        private void lblRanking_Click(object sender, EventArgs e) {
+            Ranking_Equipes rank_equipe = new Ranking_Equipes();
+            rank_equipe.Show();
+            this.Hide();
+        }
+        private void lblTarefas_Click(object sender, EventArgs e) {
+            Tarefas_Pendentes trf_pendente = new Tarefas_Pendentes();
+            trf_pendente.Show();
+            this.Hide();
+        }
+
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+            var funcionario = Sessao.FuncionarioLogado;
+
+            if (funcionario != null)
+            {
+                Configuracoes config = new Configuracoes(funcionario);
+                config.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum funcionário logado.");
+            }
+        }
+
+        private void pictureBox9_Click(object sender, EventArgs e)
+        {
+            Tarefas_Pendentes t_pendente = new Tarefas_Pendentes();
+            t_pendente.Show();
+            this.Hide();
+        }
+
+        private void lblMembros_Click(object sender, EventArgs e)
+        {
+            Integrantes_Equipe t_integrantes = new Integrantes_Equipe();
+            t_integrantes.Show();
+            this.Hide();
+        }
+
+        private void btnEstatisticas_Click(object sender, EventArgs e)
+        {
+            Equipes_Estatisticas e_nota = new Equipes_Estatisticas();
+            e_nota.Show();
+            this.Hide();
+        }
     }
 }

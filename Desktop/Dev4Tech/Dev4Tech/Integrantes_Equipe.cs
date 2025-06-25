@@ -192,7 +192,9 @@ namespace Dev4Tech
 
         private void lblPlanejamento_Click(object sender, EventArgs e)
         {
-
+            Planejamento p_plano = new Planejamento();
+            p_plano.Show();
+            this.Hide();
         }
 
         private void txtProcurarMebros_TextChanged(object sender, EventArgs e)
@@ -205,9 +207,23 @@ namespace Dev4Tech
 
         }
 
-        private void lblRanking_Click(object sender, EventArgs e) { }
-        private void lblTarefas_Click(object sender, EventArgs e) { }
-        private void lblGeral_Click(object sender, EventArgs e) { }
+        private void lblRanking_Click(object sender, EventArgs e) {
+
+            Ranking_Equipes rank_equipe = new Ranking_Equipes();
+            rank_equipe.Show();
+            this.Hide();
+        }
+        private void lblTarefas_Click(object sender, EventArgs e) {
+            Tarefas_Pendentes trf_pendente = new Tarefas_Pendentes();
+            trf_pendente.Show();
+            this.Hide();
+        }
+        private void lblGeral_Click(object sender, EventArgs e) {
+
+            Chat_geral_equipes chatEquipe = new Chat_geral_equipes();
+            chatEquipe.Show();
+            this.Hide();
+        }
 
         private void btnHome_Click_1(object sender, EventArgs e)
         {
@@ -218,8 +234,8 @@ namespace Dev4Tech
 
         private void btnEquipes_Click_1(object sender, EventArgs e)
         {
-            Equipes_Estatisticas equip_e = new Equipes_Estatisticas();
-            equip_e.Show();
+            PesquisaEquipes P_equipe = new PesquisaEquipes();
+            P_equipe.Show();
             this.Hide();
         }
 
@@ -250,6 +266,13 @@ namespace Dev4Tech
         {
             Form1 f1 = new Form1();
             f1.Show();
+            this.Hide();
+        }
+
+        private void btnCalendar_Click(object sender, EventArgs e)
+        {
+            Tarefas_Pendentes t_pendente = new Tarefas_Pendentes();
+            t_pendente.Show();
             this.Hide();
         }
     }

@@ -19,8 +19,8 @@ namespace Dev4Tech
 
         private void btnEquipes_Click(object sender, EventArgs e)
         {
-            Equipes_Estatisticas t_equipe = new Equipes_Estatisticas();
-            t_equipe.Show();
+            PesquisaEquipes P_equipe = new PesquisaEquipes();
+            P_equipe.Show();
             this.Hide();
         }
 
@@ -72,7 +72,11 @@ namespace Dev4Tech
             rank.Show();
             this.Hide();
         }
-        private void btnHome_Click(object sender, EventArgs e) { }
+        private void btnHome_Click(object sender, EventArgs e) {
+            Home h = new Home();
+            h.Show();
+            this.Hide();
+        }
         private void Home_Load(object sender, EventArgs e) { }
         private void groupBox2_Enter(object sender, EventArgs e) { }
         private void btnEntrarTarefas_Click(object sender, EventArgs e) {
@@ -95,5 +99,12 @@ namespace Dev4Tech
                 MessageBox.Show("Nenhum funcionário logado.");
             }
         }
+
+        private void btnCalendar_Click(object sender, EventArgs e)
+        {
+            Tarefas_Pendentes t_pendente = new Tarefas_Pendentes();
+            t_pendente.Show();
+            this.Hide();
         }
+    }
     }

@@ -190,7 +190,11 @@ namespace Dev4Tech
             this.Hide();
         }
 
-        private void lblRanking_Click(object sender, EventArgs e) { }
+        private void lblRanking_Click(object sender, EventArgs e) {
+            Ranking_Equipes rank_equipe = new Ranking_Equipes();
+            rank_equipe.Show();
+            this.Hide();
+        }
         private void btnPendentes_Click(object sender, EventArgs e) { }
         private void btnEmAtraso_Click(object sender, EventArgs e)
         {
@@ -206,9 +210,21 @@ namespace Dev4Tech
         }
         private void Tarefa1_Enter(object sender, EventArgs e) { }
         private void txtPesquisaTarefa_TextChanged(object sender, EventArgs e) { }
-        private void btnEquipe_Click(object sender, EventArgs e) { }
-        private void btnHome_Click(object sender, EventArgs e) { }
-        private void lblPlanejamento_Click(object sender, EventArgs e) { }
+        private void btnEquipe_Click(object sender, EventArgs e) {
+            PesquisaEquipes P_equipe = new PesquisaEquipes();
+            P_equipe.Show();
+            this.Hide();
+        }
+        private void btnHome_Click(object sender, EventArgs e) {
+            Home h = new Home();
+            h.Show();
+            this.Hide();
+        }
+        private void lblPlanejamento_Click(object sender, EventArgs e) {
+            Planejamento p_plano = new Planejamento();
+            p_plano.Show();
+            this.Hide();
+        }
 
         private void btnConfig_Click(object sender, EventArgs e)
         {
@@ -224,6 +240,13 @@ namespace Dev4Tech
             {
                 MessageBox.Show("Nenhum funcionário logado.");
             }
+        }
+
+        private void btnCalendar_Click(object sender, EventArgs e)
+        {
+            Tarefas_Pendentes t_pendente = new Tarefas_Pendentes();
+            t_pendente.Show();
+            this.Hide();
         }
     }
 }

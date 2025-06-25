@@ -66,7 +66,7 @@
             this.picPerfil.BackColor = System.Drawing.Color.Blue;
             this.picPerfil.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
             this.picPerfil.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picPerfil.Location = new System.Drawing.Point(13, 749);
+            this.picPerfil.Location = new System.Drawing.Point(23, 751);
             this.picPerfil.Margin = new System.Windows.Forms.Padding(4);
             this.picPerfil.Name = "picPerfil";
             this.picPerfil.Size = new System.Drawing.Size(32, 28);
@@ -77,7 +77,8 @@
             // 
             this.btnEquipes.BackColor = System.Drawing.Color.Blue;
             this.btnEquipes.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_equip;
-            this.btnEquipes.Location = new System.Drawing.Point(13, 61);
+            this.btnEquipes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnEquipes.Location = new System.Drawing.Point(23, 61);
             this.btnEquipes.Margin = new System.Windows.Forms.Padding(4);
             this.btnEquipes.Name = "btnEquipes";
             this.btnEquipes.Size = new System.Drawing.Size(32, 28);
@@ -90,19 +91,20 @@
             this.btnCalendar.BackColor = System.Drawing.Color.Blue;
             this.btnCalendar.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_calendar;
             this.btnCalendar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnCalendar.Location = new System.Drawing.Point(13, 109);
+            this.btnCalendar.Location = new System.Drawing.Point(23, 109);
             this.btnCalendar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCalendar.Name = "btnCalendar";
             this.btnCalendar.Size = new System.Drawing.Size(32, 28);
             this.btnCalendar.TabIndex = 41;
             this.btnCalendar.TabStop = false;
+            this.btnCalendar.Click += new System.EventHandler(this.btnCalendar_Click);
             // 
             // btnRanking
             // 
             this.btnRanking.BackColor = System.Drawing.Color.Blue;
             this.btnRanking.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_ranking;
             this.btnRanking.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnRanking.Location = new System.Drawing.Point(13, 160);
+            this.btnRanking.Location = new System.Drawing.Point(23, 160);
             this.btnRanking.Margin = new System.Windows.Forms.Padding(4);
             this.btnRanking.Name = "btnRanking";
             this.btnRanking.Size = new System.Drawing.Size(32, 28);
@@ -115,7 +117,7 @@
             this.btnLogout.BackColor = System.Drawing.Color.Blue;
             this.btnLogout.BackgroundImage = global::Dev4Tech.Properties.Resources.Nav_Icon_Item;
             this.btnLogout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnLogout.Location = new System.Drawing.Point(13, 696);
+            this.btnLogout.Location = new System.Drawing.Point(23, 698);
             this.btnLogout.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(32, 28);
@@ -128,7 +130,7 @@
             this.btnConfig.BackColor = System.Drawing.Color.Blue;
             this.btnConfig.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_config;
             this.btnConfig.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnConfig.Location = new System.Drawing.Point(13, 661);
+            this.btnConfig.Location = new System.Drawing.Point(23, 663);
             this.btnConfig.Margin = new System.Windows.Forms.Padding(4);
             this.btnConfig.Name = "btnConfig";
             this.btnConfig.Size = new System.Drawing.Size(32, 28);
@@ -141,7 +143,7 @@
             this.btnHome.BackColor = System.Drawing.Color.Blue;
             this.btnHome.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_Home;
             this.btnHome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnHome.Location = new System.Drawing.Point(13, 13);
+            this.btnHome.Location = new System.Drawing.Point(23, 13);
             this.btnHome.Margin = new System.Windows.Forms.Padding(4);
             this.btnHome.Name = "btnHome";
             this.btnHome.Size = new System.Drawing.Size(32, 28);
@@ -161,19 +163,20 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(267, 86);
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(270, 71);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(403, 55);
+            this.label4.Size = new System.Drawing.Size(335, 54);
             this.label4.TabIndex = 45;
             this.label4.Text = "Criar uma Tarefa";
             // 
             // lblArquivosSelecionado
             // 
             this.lblArquivosSelecionado.AutoSize = true;
+            this.lblArquivosSelecionado.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblArquivosSelecionado.Location = new System.Drawing.Point(276, 429);
             this.lblArquivosSelecionado.Name = "lblArquivosSelecionado";
-            this.lblArquivosSelecionado.Size = new System.Drawing.Size(148, 17);
+            this.lblArquivosSelecionado.Size = new System.Drawing.Size(126, 15);
             this.lblArquivosSelecionado.TabIndex = 46;
             this.lblArquivosSelecionado.TabStop = true;
             this.lblArquivosSelecionado.Text = "lblArquivoSelecionado";
@@ -181,35 +184,36 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(823, 185);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(201, 29);
+            this.label5.Size = new System.Drawing.Size(167, 30);
             this.label5.TabIndex = 47;
             this.label5.Text = "Data de Entrega";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(274, 555);
+            this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(274, 557);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(109, 29);
+            this.label8.Size = new System.Drawing.Size(86, 30);
             this.label8.TabIndex = 48;
             this.label8.Text = "Equipes";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(274, 279);
+            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(274, 278);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(133, 29);
+            this.label9.Size = new System.Drawing.Size(108, 30);
             this.label9.TabIndex = 49;
             this.label9.Text = "Instruções";
             // 
             // btnAnexarArquivos
             // 
+            this.btnAnexarArquivos.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAnexarArquivos.Location = new System.Drawing.Point(279, 460);
             this.btnAnexarArquivos.Name = "btnAnexarArquivos";
             this.btnAnexarArquivos.Size = new System.Drawing.Size(128, 56);
@@ -228,13 +232,15 @@
             // 
             // dtpDataDeEntrega
             // 
+            this.dtpDataDeEntrega.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpDataDeEntrega.Location = new System.Drawing.Point(828, 219);
             this.dtpDataDeEntrega.Name = "dtpDataDeEntrega";
-            this.dtpDataDeEntrega.Size = new System.Drawing.Size(200, 22);
+            this.dtpDataDeEntrega.Size = new System.Drawing.Size(265, 25);
             this.dtpDataDeEntrega.TabIndex = 52;
             // 
             // txtInstruções
             // 
+            this.txtInstruções.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtInstruções.Location = new System.Drawing.Point(277, 311);
             this.txtInstruções.Multiline = true;
             this.txtInstruções.Name = "txtInstruções";
@@ -243,6 +249,7 @@
             // 
             // btnAddTarefas
             // 
+            this.btnAddTarefas.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddTarefas.Location = new System.Drawing.Point(828, 388);
             this.btnAddTarefas.Name = "btnAddTarefas";
             this.btnAddTarefas.Size = new System.Drawing.Size(156, 58);
@@ -253,6 +260,7 @@
             // 
             // txtNomeTarefa
             // 
+            this.txtNomeTarefa.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNomeTarefa.Location = new System.Drawing.Point(277, 219);
             this.txtNomeTarefa.Multiline = true;
             this.txtNomeTarefa.Name = "txtNomeTarefa";
@@ -263,28 +271,29 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(272, 185);
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(274, 185);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(202, 29);
+            this.label1.Size = new System.Drawing.Size(169, 30);
             this.label1.TabIndex = 57;
             this.label1.Text = "Nome da Tarefa";
             // 
             // cmbDificuldade
             // 
+            this.cmbDificuldade.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbDificuldade.FormattingEnabled = true;
-            this.cmbDificuldade.Location = new System.Drawing.Point(828, 323);
+            this.cmbDificuldade.Location = new System.Drawing.Point(828, 321);
             this.cmbDificuldade.Name = "cmbDificuldade";
-            this.cmbDificuldade.Size = new System.Drawing.Size(121, 24);
+            this.cmbDificuldade.Size = new System.Drawing.Size(121, 25);
             this.cmbDificuldade.TabIndex = 59;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(823, 279);
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(823, 278);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(264, 29);
+            this.label2.Size = new System.Drawing.Size(219, 30);
             this.label2.TabIndex = 60;
             this.label2.Text = "Dificuldade da Tarefa";
             // 
@@ -293,7 +302,7 @@
             this.cmbAddEquipe.FormattingEnabled = true;
             this.cmbAddEquipe.Location = new System.Drawing.Point(279, 600);
             this.cmbAddEquipe.Name = "cmbAddEquipe";
-            this.cmbAddEquipe.Size = new System.Drawing.Size(121, 24);
+            this.cmbAddEquipe.Size = new System.Drawing.Size(121, 21);
             this.cmbAddEquipe.TabIndex = 53;
             // 
             // AdicionarTarefa

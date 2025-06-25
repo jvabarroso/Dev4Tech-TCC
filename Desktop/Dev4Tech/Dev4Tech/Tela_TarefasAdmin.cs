@@ -139,5 +139,111 @@ namespace Dev4Tech
             avAdmin.Show();
             this.Hide();
         }
+
+        private void btnConfigurações_Click(object sender, EventArgs e)
+        {
+            var funcionario = Sessao.FuncionarioLogado;
+
+            if (funcionario != null)
+            {
+                Configuracoes config = new Configuracoes(funcionario);
+                config.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum funcionário logado.");
+            }
+        }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            Home h = new Home();
+            h.Show();
+            this.Hide();
+        }
+
+        private void btnEquipes_Click(object sender, EventArgs e)
+        {
+            PesquisaEquipes P_equipe = new PesquisaEquipes();
+            P_equipe.Show();
+            this.Hide();
+        }
+
+        private void pictureBox9_Click(object sender, EventArgs e)
+        {
+            Tarefas_Pendentes t_pendente = new Tarefas_Pendentes();
+            t_pendente.Show();
+            this.Hide();
+        }
+
+        private void btnRanking_Click(object sender, EventArgs e)
+        {
+            Ranking_Equipes rank_equipe = new Ranking_Equipes();
+            rank_equipe.Show();
+            this.Hide();
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            Form1 t_incial = new Form1();
+            t_incial.Show();
+            this.Hide();
+        }
+
+        private void lblGeral_Click(object sender, EventArgs e)
+        {
+            Chat_geral_equipes t_chat = new Chat_geral_equipes();
+            t_chat.Show();
+            this.Hide();
+        }
+
+        private void lblTarefas_Click(object sender, EventArgs e)
+        {
+            Tarefas_Pendentes tp = new Tarefas_Pendentes();
+            tp.Show();
+            this.Hide();
+        }
+
+        private void lblRanking_Click(object sender, EventArgs e)
+        {
+            Ranking_Equipes rank_equipe = new Ranking_Equipes();
+            rank_equipe.Show();
+            this.Hide();
+        }
+
+        private void lblMembros_Click(object sender, EventArgs e)
+        {
+            Integrantes_Equipe int_equipe = new Integrantes_Equipe();
+            int_equipe.Show();
+            this.Hide();
+        }
+
+        private void lblPlanejamento_Click(object sender, EventArgs e)
+        {
+            Planejamento p_plano = new Planejamento();
+            p_plano.Show();
+            this.Hide();
+        }
+
+        private void lblDataEntrega_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblInstrucoes_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

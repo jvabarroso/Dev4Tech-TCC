@@ -204,8 +204,18 @@ namespace Dev4Tech
         }
 
         // Métodos e eventos que você já tinha (mantidos)
-        private void btnEquipe_Click(object sender, EventArgs e) { }
-        private void btnCalendar_Click(object sender, EventArgs e) { }
+        private void btnEquipe_Click(object sender, EventArgs e) {
+
+            PesquisaEquipes P_equipe = new PesquisaEquipes();
+            P_equipe.Show();
+            this.Hide();
+        }
+        private void btnCalendar_Click(object sender, EventArgs e)
+        {
+            Tarefas_Pendentes t_pendente = new Tarefas_Pendentes();
+            t_pendente.Show();
+            this.Hide();
+        }
         private void txtPesquisaEquipe_TextChanged(object sender, EventArgs e) { }
         private void filtroEquipes_SelectedIndexChanged(object sender, EventArgs e) { }
         private void panelEquipes_Paint(object sender, PaintEventArgs e) { }

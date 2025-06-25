@@ -134,9 +134,9 @@ namespace Dev4Tech
         {
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-        }
+        //private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        //{
+       // }
 
         private void cbmEmailMembro_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -207,6 +207,57 @@ namespace Dev4Tech
             cmbCategoriaEquipe.Text = "";
             cbmEmailMembro.Text = "";
             membrosSelecionados.Clear();
+        }
+
+        private void btnConfig_Click(object sender, EventArgs e)
+        {
+            var funcionario = Sessao.FuncionarioLogado;
+
+            if (funcionario != null)
+            {
+                Configuracoes config = new Configuracoes(funcionario);
+                config.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum funcionário logado.");
+            }
+        }
+
+        private void btnRanking_Click_1(object sender, EventArgs e)
+        {
+            Ranking_Equipes rank = new Ranking_Equipes();
+            rank.Show();
+            this.Hide();
+        }
+
+        private void btnCalendar_Click(object sender, EventArgs e)
+        {
+            Tarefas_Pendentes t_pendentes = new Tarefas_Pendentes();
+            t_pendentes.Show();
+            this.Hide();
+        }
+
+        private void btnEquipes_Click_1(object sender, EventArgs e)
+        {
+            PesquisaEquipes p_equipes = new PesquisaEquipes();
+            p_equipes.Show();
+            this.Hide();
+        }
+
+        private void btnHome_Click_1(object sender, EventArgs e)
+        {
+            Home home = new Home();
+            home.Show();
+            this.Hide();
+        }
+
+        private void btnLogout_Click_1(object sender, EventArgs e)
+        {
+            Form1 t_incial = new Form1();
+            t_incial.Show();
+            this.Hide();
         }
     }
 }

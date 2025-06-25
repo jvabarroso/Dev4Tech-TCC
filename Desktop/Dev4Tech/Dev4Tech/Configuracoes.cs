@@ -70,16 +70,34 @@ namespace Dev4Tech
         }
 
         private void label8_Click(object sender, EventArgs e) { }
-        private void label1_Click(object sender, EventArgs e) { }
+        private void label1_Click(object sender, EventArgs e) {
+            Home h = new Home();
+            h.Show();
+            this.Hide();
+        }
         private void label2_Click(object sender, EventArgs e) { }
         private void label3_Click(object sender, EventArgs e) { }
         private void label13_Click(object sender, EventArgs e) { }
         private void txtNome_TextChanged(object sender, EventArgs e) { }
-        private void btnConfigurações_Click(object sender, EventArgs e) { }
+        private void btnConfigurações_Click(object sender, EventArgs e) {
+
+            var funcionario = Sessao.FuncionarioLogado;
+
+            if (funcionario != null)
+            {
+                Configuracoes config = new Configuracoes(funcionario);
+                config.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum funcionário logado.");
+            }
+        }
         private void btnEquipes_Click(object sender, EventArgs e)
         {
-            Equipes_Estatisticas t_equipe = new Equipes_Estatisticas();
-            t_equipe.Show();
+            PesquisaEquipes p_equipe = new PesquisaEquipes();
+            p_equipe.Show();
             this.Hide();
         }
         private void btnHome_Click(object sender, EventArgs e) { Home t_Home = new Home(); t_Home.Show(); this.Hide(); }
@@ -92,5 +110,37 @@ namespace Dev4Tech
         private void txtCPF_MaskInputRejected(object sender, MaskInputRejectedEventArgs e) { }
         private void textBox1_TextChanged(object sender, EventArgs e) { }
         private void panelEquipes_Paint(object sender, PaintEventArgs e) { }
+
+        private void pictureBox9_Click(object sender, EventArgs e)
+        {
+            Tarefas_Pendentes t_pendente = new Tarefas_Pendentes();
+            t_pendente.Show();
+            this.Hide();
+        }
+
+        private void panelDados_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

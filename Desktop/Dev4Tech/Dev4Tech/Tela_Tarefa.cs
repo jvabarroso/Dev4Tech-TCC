@@ -251,8 +251,8 @@ namespace Dev4Tech
 
         private void btnEquipes_Click(object sender, EventArgs e)
         {
-            Equipes_Estatisticas t_equipe = new Equipes_Estatisticas();
-            t_equipe.Show();
+            PesquisaEquipes p_equipe = new PesquisaEquipes();
+            p_equipe.Show();
             this.Hide();
         }
 
@@ -324,5 +324,19 @@ namespace Dev4Tech
         }
         private void lblPlanejamento_Click(object sender, EventArgs e) { }
         private void btnEnviar_Click(object sender, EventArgs e) { }
+
+        private void pictureBox9_Click(object sender, EventArgs e)
+        {
+            Tarefas_Pendentes t_pendente = new Tarefas_Pendentes();
+            t_pendente.Show();
+            this.Hide();
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+            Tarefas_Pendentes t_pendente = new Tarefas_Pendentes();
+            t_pendente.Show();
+            this.Hide();
+        }
     }
 }

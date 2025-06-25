@@ -207,7 +207,9 @@ namespace Dev4Tech
 
         private void lblMembros_Click(object sender, EventArgs e)
         {
-            // Se precisar implementar
+            Integrantes_Equipe t_integrantes = new Integrantes_Equipe();
+            t_integrantes.Show();
+            this.Hide();
         }
 
         private void btnPendentes_Click(object sender, EventArgs e)
@@ -243,7 +245,9 @@ namespace Dev4Tech
 
         private void lblPlanejamento_Click(object sender, EventArgs e)
         {
-            // Se precisar implementar
+            Planejamento p_plano = new Planejamento();
+            p_plano.Show();
+            this.Hide();
         }
 
         private void panelTarefas_Paint(object sender, PaintEventArgs e)
@@ -265,6 +269,18 @@ namespace Dev4Tech
             {
                 MessageBox.Show("Nenhum funcionário logado.");
             }
+        }
+
+        private void btnCalendar_Click(object sender, EventArgs e)
+        {
+            Tarefas_Pendentes t_pendente = new Tarefas_Pendentes();
+            t_pendente.Show();
+            this.Hide();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
