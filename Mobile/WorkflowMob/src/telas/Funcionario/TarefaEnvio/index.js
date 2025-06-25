@@ -9,7 +9,8 @@ export default function TarefaEnvio({ navigation, route }) {
     const { theme } = useTheme();
     const styles = getStyles(theme);
 
-    const { tarefas } = route.params;
+    const tarefas = route.params?.usuario;
+
     const [descricaoExpandida, setDescricaoExpandida] = useState(false);
     const [modalVisivel, setModalVisivel] = useState(false);
     const [problema, setProblema] = useState('');
@@ -54,14 +55,17 @@ export default function TarefaEnvio({ navigation, route }) {
                 </View>
 
                 <View style={styles.areadetalhes}>
-                    <Image source={tarefas.imagem} style={styles.imagem} />
-                    <Text style={styles.titulotarefa}>{tarefas.titulo}</Text>
+                    <Image 
+                        source={item.imagem ? { uri: item.imagem } : require('../../../../assets/img/image.png')} 
+                        style={styles.imag} 
+                    />
+                    <Text style={styles.titulotarefa}>{tarefas.nomeTarefa}</Text>
 
                     {tarefaLocal.selproblema && (
                     <Ionicons name="warning-outline" size={24} color="red" style={{ marginTop: 5 }} />
                     )}
 
-                    <Text style={styles.datadeenvio}>Postado em {tarefas.datadeenvio}</Text>
+                    <Text style={styles.datadeenvio}>Postado em {tarefas.data_atribuicao}</Text>
                     
                     {tarefaLocal.selproblema && (
                         <View style={[styles.textoproblem, styles.problem]}>
@@ -72,13 +76,13 @@ export default function TarefaEnvio({ navigation, route }) {
                     <View style={styles.linha}>
                         <View style={styles.coluna}>
                             <Text style={styles.subtitulos}>PRAZO DE ENTREGA</Text>
-                            <Text style={styles.datas}>{tarefas.datadeentrega}</Text>
+                            <Text style={styles.datas}>{tarefas.data_entrega}</Text>
                         </View>
 
                         <View style={styles.colunaEquipe}>
                             <Text style={styles.subtitulos}>EQUIPE</Text>
                             <View style={styles.cargos}>
-                                <Text style={styles.textoCargo}>{tarefas.cargo}</Text>
+                                <Text style={styles.textoCargo}>{tarefas.nome_equipe}</Text>
                             </View>
                         </View>
                     </View>
@@ -87,11 +91,11 @@ export default function TarefaEnvio({ navigation, route }) {
                         <Text style={styles.titulodescricao}>DESCRIÇÃO DA TAREFA</Text>
                         <Text style={styles.descricao2}>
                             {descricaoExpandida 
-                                ? tarefas.descricao 
-                                : `${tarefas.descricao.slice(0, 100)}${tarefas.descricao.length > 100 ? '...' : ''}`
+                                ? tarefas.instrucoes 
+                                : `${tarefas.instrucoes.slice(0, 100)}${tarefas.instrucoes.length > 100 ? '...' : ''}`
                             }
                         </Text>
-                        {tarefas.descricao.length > 100 && (
+                        {tarefas.instrucoes.length > 100 && (
                             <TouchableOpacity onPress={alternarDescricao}>
                                 <Text style={styles.textodescr}>
                                     {descricaoExpandida ? 'Ver menos' : 'Ver mais'}

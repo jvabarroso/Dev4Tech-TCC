@@ -38,6 +38,7 @@ function Tabs({route}){
   const styles = getStyles(theme);
 
   const usuario = route.params?.usuario || null;
+  const equipe = route.params?.equipe || null;
 
   const navigation = useNavigation();
   return (
@@ -53,7 +54,7 @@ function Tabs({route}){
             size={24}
             color={theme.text}
             style={styles.header}
-            onPress={() => navigation.navigate('Configuracoes', { usuario })}
+            onPress={() => navigation.navigate('Configuracoes', { usuario, equipe})}
           />
         ),
         tabBarIcon: ({ focused, color, size }) => {
@@ -83,9 +84,9 @@ function Tabs({route}){
       })}
     >
       <Tab.Screen name="Home" component={Home} initialParams={{ usuario }}  />
-      <Tab.Screen name="Tarefas" component={Tarefas} />
-      <Tab.Screen name="Equipes" component={Equipes} />
-      <Tab.Screen name="Ranking" component={Ranking} />
+      <Tab.Screen name="Tarefas" component={Tarefas} initialParams={{ usuario }}  />
+      <Tab.Screen name="Equipes" component={Equipes} initialParams={{ usuario }}  />
+      <Tab.Screen name="Ranking" component={Ranking} initialParams={{ usuario }}  />
     </Tab.Navigator>
   );
 }
@@ -93,7 +94,9 @@ function Tabs({route}){
 function TabsAdm({route}){  
   const { theme } = useTheme();
   const styles = getStyles(theme);
+
   const usuario = route.params?.usuario || null;
+  const equipe = route.params?.equipe || null;
 
   const navigation = useNavigation();
   return (
@@ -109,7 +112,7 @@ function TabsAdm({route}){
             size={24}
             color={theme.text}
             style={styles.header}
-            onPress={() => navigation.navigate('Configuracoes', { usuario: json.usuario})}
+            onPress={() => navigation.navigate('Configuracoes', { usuario, equipe })}
           />
         ),
         tabBarIcon: ({ focused, color, size }) => {

@@ -17,9 +17,7 @@ export default function Login({navigation}){
         Alert.alert('Atenção', 'Preencha todos os campos.');
         return;
       }
-
       try {
-        
         const response = await api.post('dev4tec/login.php', {
           Email: email,
           Senha: senha

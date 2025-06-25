@@ -1,70 +1,137 @@
-import React, { useState } from 'react';
-import { Text, TextInput, View, TouchableOpacity, Image, ScrollView, useColorScheme} from 'react-native';
+import React, { useState, useEffect} from 'react';
+import { Text, TextInput, View, TouchableOpacity, Image, ScrollView, Alert} from 'react-native';
 import { getStyles } from './style';
 import { useTheme } from '../../styles/themecontext'
 import {Ionicons} from '@expo/vector-icons';
+
+import api from '../../../services/api';
 
 export default function Configuracoes({navigation, route}){
     const { theme, toggleTheme } = useTheme();
     const styles = getStyles(theme);
 
-    const usuario = route.params?.usuario || {
+    const routeUsuario = route.params?.usuario || {};
+
+    const initialUsuario = {  
       nome: 'Usuário não identificado',
       cargo: 'Cargo não definido',
       dataNascimento: "Data não definido",
       email:"Email não definido",
       telefone:'Telefone não definido',
       endereco:'Endereço não definido',
-      cpf:"CPF não definido"
+      cpf:"CPF não definido",
+      role: 'funcionario'
     };
     
+    const usuario = {
+      ...initialUsuario,
+      ...routeUsuario,
+      role: routeUsuario.role || 'funcionario' // Garante role
+    };
 
-    const [equipe, setEquipe] = useState([
-      {
-        id: '1',
-        titulo: 'Equipe 1',
-        cargo: 'Desenvolvimento de Software',
-        tarefaspostadas: 20,
-        quantdeproblemas:6,
-        tarefasatrasadas:1,
-        tarefasnaoentregues: 6,
-        imagem: require('../../../assets/img/image.png'),
-      },
-      {
-        id: '2',
-        titulo: 'Equipe 2',
-        cargo: 'Design',
-        tarefaspostadas: 10,
-        quantdeproblemas:2,
-        tarefasatrasadas:2,
-        tarefasnaoentregues: 2,
-        imagem: require('../../../assets/img/image.png'),
-      },
-            {
-        id: '3',
-        titulo: 'Equipe 1',
-        cargo: 'Desenvolvimento de Software',
-        tarefaspostadas: 20,
-        quantdeproblemas:6,
-        tarefasatrasadas:1,
-        tarefasnaoentregues: 6,
-        imagem: require('../../../assets/img/image.png'),
-      },
-            {
-        id: '4',
-        titulo: 'Equipe 1',
-        cargo: 'Desenvolvimento de Software',
-        tarefaspostadas: 20,
-        quantdeproblemas:6,
-        tarefasatrasadas:1,
-        tarefasnaoentregues: 6,
-        imagem: require('../../../assets/img/image.png'),
-      },
+    const [dados, setDados] = useState([]);
+    const [usuarioState, setUsuarioState] = useState(usuario);
+    const [dataNascimento, setDataNascimento] = useState(usuario.dataNascimento);
+    const [telefone, setTelefone] = useState(usuario.telefone);
+    const [endereco, setEndereco] = useState(usuario.endereco);
+
+   function limparCampos(){
+    setDataNascimento('');
+    setTelefone('');
+    setEndereco('');
+   }
+
+    //Máscara input
+    // Adicione estas funções utilitárias no topo do arquivo
+    function formatarDataParaBanco(data) {
+      if (!data) return '';
       
-    ]);
+      // Se já está no formato do banco, retorna direto
+      if (/^\d{4}-\d{2}-\d{2}$/.test(data)) return data;
+      
+      // Converte de DD/MM/AAAA para AAAA-MM-DD
+      const partes = data.split('/');
+      if (partes.length === 3) {
+        return `${partes[2]}-${partes[1]}-${partes[0]}`;
+      }
+      return data;
+    }
+
+    function formatarTelefone(telefone) {
+      if (!telefone) return '';
+      // Remove todos os caracteres não numéricos
+      return telefone.replace(/\D/g, '');
+    }
+
+    function formatarDataInput(text) {
+      let data = text.replace(/\D/g, '');
+      
+      if (data.length > 2) data = `${data.slice(0,2)}/${data.slice(2)}`;
+      if (data.length > 5) data = `${data.slice(0,5)}/${data.slice(5,9)}`;
+      
+      return data.slice(0,10);
+    }
+
+    function formatarTelefoneInput(text) {
+      let tel = text.replace(/\D/g, '');
+      
+      if (tel.length > 0) tel = `(${tel}`;
+      if (tel.length > 3) tel = `${tel.slice(0,3)}) ${tel.slice(3)}`;
+      if (tel.length > 10) tel = `${tel.slice(0,10)}-${tel.slice(10,15)}`;
+      
+      return tel.slice(0,15);
+    }
+
+
+//Post para o Banco:
+    async function editar() {            
+        if (!dataNascimento|| !telefone || !endereco) {
+        Alert.alert("Erro", "Preencha todos os campos obrigatórios!");
+         return;
+     }
+     try {
+        const dataFormatada = formatarDataParaBanco(dataNascimento);
+        const telefoneFormatado = formatarTelefone(telefone);
+
+        const obj = {
+          id: usuarioState.id,
+          role: usuarioState.role, // Usando o estado atualizado
+          DataNascimento: dataFormatada,
+          Telefone: telefoneFormatado, 
+          endereco: endereco,
+        };
+
+         console.log('Dados enviados para edição:', obj); // Log para debug
+
+          const res = await api.post('dev4tec/editardados.php', obj, {
+            headers: {
+              'Content-Type': 'application/json',
+            }
+          });
+
+                  
+         console.log('Resposta da API:', res.data); // Log para 
+         
+        if (res.data.success) {
+          setUsuarioState(prev => ({
+            ...prev,
+            dataNascimento: dataNascimento,
+            telefone: telefone,
+            endereco: endereco
+              }));
+            Alert.alert("Sucesso", "Dados atualizados com sucesso!");
+        } else {
+            Alert.alert("Erro", res.data.message || "Erro ao atualizar dados");
+        }
+    } catch (error) {
+        console.error("Erro completo:", error);
+        Alert.alert("Erro", "Não foi possível conectar ao servidor");
+    }
+}
+
+
 
     const [mostrardados, setMostrardados] = useState(false);
-    const [mostrarfuncionario, setMostrarfuncionario] = useState(false);
 
     return(
       <View style={styles.container}>
@@ -92,13 +159,13 @@ export default function Configuracoes({navigation, route}){
             <View style={styles.containerfuncionario}>
               <Image source={require('../../../assets/img/image.png')} style={styles.imagemfuncionario} />
               <View style={styles.textos}>
-                <Text style={styles.textofuncionario}>{usuario.nome}</Text>
-                <Text style={styles.textofuncionariocargo}>{usuario.cargo}</Text>
+                <Text style={styles.textofuncionario}>{usuarioState.nome}</Text>
+                <Text style={styles.textofuncionariocargo}>{usuarioState.cargo}</Text>
               </View>
             </View>
 
             <View style={styles.linha}>
-              <Text style={styles.titulo2}>Equipes</Text>
+              <Text style={styles.titulo2}>Dados</Text>
               <TouchableOpacity
                 style={styles.botaomodo} 
                 onPress={toggleTheme}
@@ -108,74 +175,58 @@ export default function Configuracoes({navigation, route}){
                 </Text>
               </TouchableOpacity>
             </View>
-
-            {mostrarfuncionario && equipe.map((item) => (
-              <View key={item.id} style={styles.containertarefas}>
-                <Image source={item.imagem} style={styles.imag} />
-                <View style={styles.textos}>
-                  <Text style={styles.textolistatitulo}>{item.titulo}</Text>
-                  <Text style={styles.textolistacargo}>{item.cargo}</Text>
-                </View>
-              </View>
-            ))}
-            <TouchableOpacity 
-              style={styles.inputfuncionario}
-              onPress={() => setMostrarfuncionario(!mostrarfuncionario)}
-            >
-              <Text style={styles.textobotao3}>{mostrarfuncionario ? 'Ocultar' : 'Ver Equipes'}</Text>
-            </TouchableOpacity>
-
             {mostrardados && (
               <View style={styles.areaInput}>
                 <Text style={styles.texto}>Nome</Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder={usuario.nome} //depois mudar, mensagem para mim mesmo dnv :D
-                  placeholderTextColor={theme.text}
-                />
+                <View style={styles.inputnaoeditavel}>
+                  <Text style={{ color: theme.text3 }}>{usuarioState.nome}</Text>
+                </View>
+
                 <Text style={styles.texto}>Data de nascimento</Text>
                 <TextInput
                   style={styles.input}
-                  placeholder={usuario.dataNascimento}
-                  placeholderTextColor={theme.text}
-                  secureTextEntry={true}
+                  value={dataNascimento}
+                  placeholder={usuarioState.dataNascimento}
+                  placeholderTextColor={theme.text2}
+                  onChangeText={(text) => setDataNascimento(formatarDataInput(text))}
+                  keyboardType="numeric"
+                  maxLength={10}
                 />
+                
                 <Text style={styles.texto}>CPF</Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder={usuario.cpf}
-                  placeholderTextColor={theme.text}
-                  secureTextEntry={true}
-                />
+                <View style={styles.inputnaoeditavel}>  
+                  <Text style={{ color: theme.text3 }}>{usuarioState.cpf}</Text>
+                </View>
+
                 <Text style={styles.texto}>Email</Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder={usuario.email}
-                  placeholderTextColor={theme.text}
-                  secureTextEntry={true}
-                />
+                 <View style={styles.inputnaoeditavel}>
+                  <Text style={{ color: theme.text3 }}>{usuarioState.email}</Text>
+                </View>
+
                 <Text style={styles.texto}>Telefone</Text>
                 <TextInput
                   style={styles.input}
-                  placeholder={usuario.telefone}
-                  placeholderTextColor={theme.text}
+                  value={telefone}
+                  placeholder={usuarioState.telefone}
+                  placeholderTextColor={theme.text2}
+                  onChangeText={(text) => setTelefone(formatarTelefoneInput(text))}
+                  keyboardType="phone-pad"
+                  maxLength={15}
                 />
+
                 <Text style={styles.texto}>Endereço</Text>
                 <TextInput
                   style={styles.input}
-                  placeholder={usuario.endereco}
-                  placeholderTextColor={theme.text}
-                  secureTextEntry={true}
+                  placeholder={usuarioState.endereco}
+                  placeholderTextColor={theme.text2}
+                  onChangeText={(text) => setEndereco(text)}
                 />
-                <Text style={styles.texto}>Cargo</Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder={usuario.cargo}
-                  placeholderTextColor={theme.text}
-                  secureTextEntry={true}
-                />
+
                 <TouchableOpacity 
                   style={styles.botaoeditar}
+                  onPress={() => {
+                    editar()
+                  }}
                 >    
                   <Text style={styles.textoeditar}>Editar dados</Text>                     
                 </TouchableOpacity>

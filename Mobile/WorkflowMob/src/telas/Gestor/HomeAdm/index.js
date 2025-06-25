@@ -4,9 +4,15 @@ import { Card, Title, Paragraph } from 'react-native-paper';
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
 
-export default function HomeAdm({navigation}){
+export default function HomeAdm({navigation, route}){
     const { theme } = useTheme();
     const styles = getStyles(theme);
+
+    const usuario = route.params?.usuario || {
+        nome: 'Usuário não identificado',
+        cargo: 'Cargo não definido',
+    };
+        console.log('Dados recebidos na Home:', route.params);
 
     return(
         <ScrollView style={styles.scroll}>
@@ -19,8 +25,8 @@ export default function HomeAdm({navigation}){
                     <View style={styles.verde}></View>
 
                     <View style={styles.textoperfil}>
-                        <Text style={styles.nome}>KenzoAdm</Text>
-                        <Text style={styles.profissao}>Gestor Mobile</Text>
+                        <Text style={styles.nome}>{usuario.nome}</Text>
+                        <Text style={styles.profissao}>{usuario.cargo}</Text>
                     </View>
                 </View>
 

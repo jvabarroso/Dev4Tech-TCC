@@ -8,6 +8,7 @@ export const lightTheme = {
   inputBackground: '#F0F0F0',
   inputBackground2: '#F2F2F2',
   inputBackground3: '#FFFFFF',
+  inputBackground4: '#C0C0C0',
   border: '#CCCCCC',
   primary: '#1C58F2',
 };
@@ -22,6 +23,7 @@ export const darkTheme = {
   inputBackground: '#1F1F1F',
   inputBackground2: '#353535',
   inputBackground3: '#1F1F1F',
+  inputBackground4: '#303030',
   border: '#444',
   primary: '#1C58F2',
 };

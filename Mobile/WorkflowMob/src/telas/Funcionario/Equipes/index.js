@@ -1,57 +1,79 @@
-import React, { useState } from 'react';
-import { Text, View, Image, TextInput, TouchableOpacity, ScrollView} from 'react-native';
+import React, { useState, useEffect } from 'react'; 
+import { Text, View, Image, TextInput, TouchableOpacity, ScrollView,  ActivityIndicator} from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
 
-export default function Equipes({ navigation }) {
+import api from '../../../../services/api';
+
+export default function Equipes({ route, navigation }) {
   const { theme } = useTheme();
   const styles = getStyles(theme);
   
-  const [equipe, setEquipe] = useState([
-    {
-      id: '1',
-      titulo: 'Equipe 1',
-      cargo: 'Desenvolvimento de Software',
-      tarefaspostadas: 20,
-      quantdeproblemas:6,
-      tarefasatrasadas:1,
-      tarefasnaoentregues: 6,
-      imagem: require('../../../../assets/img/image.png'),
-    },
-    {
-      id: '2',
-      titulo: 'Equipe 2',
-      cargo: 'Design',
-      tarefaspostadas: 10,
-      quantdeproblemas:2,
-      tarefasatrasadas:2,
-      tarefasnaoentregues: 2,
-      imagem: require('../../../../assets/img/image.png'),
-    },
-    {
-      id: '3',
-      titulo: 'Equipe 3',
-      cargo: 'Marketing Digital',
-      tarefaspostadas: 15,
-      quantdeproblemas: 3,
-      tarefasatrasadas: 1,
-      tarefasnaoentregues: 1,
-      imagem: require('../../../../assets/img/image.png'),
-    },
-  ]);
+  const usuario = route.params?.usuario;
 
+  const [dados, setDados] = useState([]);
   const [equipeSelecionada, setEquipeSelecionada] = useState(null)
-  const [equipetela, setEquipetela] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
 
-  const [equipefuncionario, setEquipefuncionario] = useState(false)
-  const [equipetarefas, setEquipetarefas] = useState(false)
-  const [equiperanking, setEquiperanking] = useState(false)
+  async function listarDados() {
+  if (!usuario?.id) {
+        console.log("ID do usuário não disponível");
+        return;
+  }
   
+  try {
+    setIsLoading(true);
+    setErrorMessage(null);
+    const res = await api.get(`dev4tec/equipe.php`, {
+      params: {
+        id_funcionario: usuario.id // Use o ID do usuário logado
+      }
+    });
 
-  const clique = (id) => {
-    setEquipeSelecionada(id === equipeSelecionada ? null : id);
+    if (res.data.success) {
+      setDados(res.data.result || []);
+    } else {
+      console.log("Erro na API:", res.data.message);
+      setDados([]);
+    }
+  }
+  catch (error) {
+    console.log("Erro ao listar equipes:", error);
+    setErrorMessage("Erro de conexão com o servidor");
+  }
+  finally {
+    setIsLoading(false);
+  }
+  }
+
+  useEffect(() => {
+    listarDados();
+  }, [usuario?.id]);
+
+  const toggleEquipe = (id) => {
+    setEquipeSelecionada(equipeSelecionada === id ? null : id);
   };
+
+  if (isLoading) {
+    return (
+      <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
+        <ActivityIndicator size="large" color={theme.primary} />
+      </View>
+    );
+  }
+
+  if (errorMessage) {
+    return (
+      <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
+        <Text style={{ color: 'red' }}>{errorMessage}</Text>
+        <TouchableOpacity onPress={listarDados}>
+          <Text>Tentar novamente</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -62,20 +84,26 @@ export default function Equipes({ navigation }) {
             placeholder="🔍 Pesquisa uma equipe"
             placeholderTextColor={"#ffffff"}
           />
-
-          {equipe.map(item => (
-          <View key={item.id}>
+        {dados.length === 0 ? (
+          <Text style={{ textAlign: 'center', marginTop: 20 }}>Nenhuma equipe encontrada</Text>
+        ) : (
+          dados.map(item => (
+          <View key={item.id_equipe}>
               <TouchableOpacity
                 style={styles.containertarefas}
-                onPress={() => clique(item.id)}
+                onPress={() => toggleEquipe(item.id_equipe)}
               >
-                <Image source={item.imagem} style={styles.imag} />
+                <Image 
+                  source={item.imagem ? { uri: item.imagem } : require('../../../../assets/img/image.png')} 
+                  style={styles.imag} 
+                />
+
                 <View style={styles.textos}>
-                  <Text style={styles.textolistatitulo}>{item.titulo}</Text>
-                  <Text style={styles.textolistacargo}>{item.cargo}</Text>
+                  <Text style={styles.textolistatitulo}>{item.nome_equipe}</Text>
+                  <Text style={styles.textolistacargo}>{item.nome_categoria}</Text>
                 </View>
               </TouchableOpacity>
-                {equipeSelecionada === item.id && (
+                {equipeSelecionada === item.id_equipe && (
                 <View style={styles.areacard}>
                   <TouchableOpacity onPress={() => navigation.navigate('EquipeFuncionario', { equipe: item })}>
 
@@ -126,6 +154,7 @@ export default function Equipes({ navigation }) {
                 </View>
               )}
             </View>
+            )
           ))}
       </ScrollView>
     </View>
