@@ -98,19 +98,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddEquipes.cs" />
-    <Compile Include="AddTarefas.cs" />
-    <Compile Include="AdicionarEquipes.cs">
+    <Compile Include="Adm\AddEquipes.cs" />
+    <Compile Include="Adm\AddTarefas.cs" />
+    <Compile Include="Adm\AdicionarEquipes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AdicionarEquipes.Designer.cs">
+    <Compile Include="Adm\AdicionarEquipes.Designer.cs">
       <DependentUpon>AdicionarEquipes.cs</DependentUpon>
     </Compile>
-    <Compile Include="AvaliacaoTarefa.cs" />
-    <Compile Include="AvaliaçãoTarefaAdmin.cs">
+    <Compile Include="Adm\AvaliacaoTarefa.cs" />
+    <Compile Include="Adm\AvaliaçãoTarefaAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AvaliaçãoTarefaAdmin.Designer.cs">
+    <Compile Include="Adm\AvaliaçãoTarefaAdmin.Designer.cs">
       <DependentUpon>AvaliaçãoTarefaAdmin.cs</DependentUpon>
     </Compile>
     <Compile Include="Cadastro-empresa-admin.cs">
@@ -145,10 +145,10 @@
     <Compile Include="Configuracoes.Designer.cs">
       <DependentUpon>Configuracoes.cs</DependentUpon>
     </Compile>
-    <Compile Include="AdicionarTarefa.cs">
+    <Compile Include="Adm\AdicionarTarefa.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AdicionarTarefa.Designer.cs">
+    <Compile Include="Adm\AdicionarTarefa.Designer.cs">
       <DependentUpon>AdicionarTarefa.cs</DependentUpon>
     </Compile>
     <Compile Include="empresaCadAdmin.cs" />
@@ -163,10 +163,10 @@
       <DependentUpon>Equipes_Estatisticas.cs</DependentUpon>
     </Compile>
     <Compile Include="FiltroEquipes.cs" />
-    <Compile Include="HomeAdm.cs">
+    <Compile Include="Adm\HomeAdm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HomeAdm.Designer.cs">
+    <Compile Include="Adm\HomeAdm.Designer.cs">
       <DependentUpon>HomeAdm.cs</DependentUpon>
     </Compile>
     <Compile Include="Integrantes_Equipe.cs">
@@ -253,16 +253,16 @@
     <Compile Include="Tela_Tarefa.Designer.cs">
       <DependentUpon>Tela_Tarefa.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tela_TarefasAdmin.cs">
+    <Compile Include="Adm\Tela_TarefasAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Tela_TarefasAdmin.Designer.cs">
+    <Compile Include="Adm\Tela_TarefasAdmin.Designer.cs">
       <DependentUpon>Tela_TarefasAdmin.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AdicionarEquipes.resx">
+    <EmbeddedResource Include="Adm\AdicionarEquipes.resx">
       <DependentUpon>AdicionarEquipes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AvaliaçãoTarefaAdmin.resx">
+    <EmbeddedResource Include="Adm\AvaliaçãoTarefaAdmin.resx">
       <DependentUpon>AvaliaçãoTarefaAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Cadastro-empresa-admin.resx">
@@ -280,13 +280,13 @@
     <EmbeddedResource Include="Configuracoes.resx">
       <DependentUpon>Configuracoes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdicionarTarefa.resx">
+    <EmbeddedResource Include="Adm\AdicionarTarefa.resx">
       <DependentUpon>AdicionarTarefa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Equipes_Estatisticas.resx">
       <DependentUpon>Equipes_Estatisticas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HomeAdm.resx">
+    <EmbeddedResource Include="Adm\HomeAdm.resx">
       <DependentUpon>HomeAdm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Integrantes_Equipe.resx">
@@ -338,7 +338,7 @@
     <EmbeddedResource Include="Tela_Tarefa.resx">
       <DependentUpon>Tela_Tarefa.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tela_TarefasAdmin.resx">
+    <EmbeddedResource Include="Adm\Tela_TarefasAdmin.resx">
       <DependentUpon>Tela_TarefasAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />

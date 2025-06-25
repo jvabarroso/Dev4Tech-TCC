@@ -186,7 +186,7 @@
             "Marketing",
             "Desenvolvimento de Software"});
             this.filtroEquipes.Location = new System.Drawing.Point(633, 168);
-            this.filtroEquipes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.filtroEquipes.Margin = new System.Windows.Forms.Padding(2);
             this.filtroEquipes.Name = "filtroEquipes";
             this.filtroEquipes.Size = new System.Drawing.Size(144, 21);
             this.filtroEquipes.TabIndex = 63;
@@ -196,7 +196,7 @@
             // 
             this.btnFiltrar.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFiltrar.Location = new System.Drawing.Point(780, 168);
-            this.btnFiltrar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnFiltrar.Margin = new System.Windows.Forms.Padding(2);
             this.btnFiltrar.Name = "btnFiltrar";
             this.btnFiltrar.Size = new System.Drawing.Size(56, 21);
             this.btnFiltrar.TabIndex = 64;
@@ -234,6 +234,7 @@
             this.Controls.Add(this.label1);
             this.Name = "PesquisaEquipes";
             this.Text = "Equipes";
+            this.Load += new System.EventHandler(this.PesquisaEquipes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEquipe)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCalendar)).EndInit();

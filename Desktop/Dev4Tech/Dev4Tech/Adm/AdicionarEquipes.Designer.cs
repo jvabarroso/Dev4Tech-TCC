@@ -228,7 +228,7 @@
             this.btnAddMembro.TabIndex = 106;
             this.btnAddMembro.Text = "+";
             this.btnAddMembro.UseVisualStyleBackColor = true;
-            this.btnAddMembro.Click += new System.EventHandler(this.btnAddMembro_Click);
+            //this.btnAddMembro.Click += new System.EventHandler(this.btnAddMembro_Click);
             // 
             // cbmEmailMembro
             // 
@@ -345,6 +345,7 @@
             this.panelDadosFunc.Name = "panelDadosFunc";
             this.panelDadosFunc.Size = new System.Drawing.Size(593, 314);
             this.panelDadosFunc.TabIndex = 119;
+            this.panelDadosFunc.Paint += new System.Windows.Forms.PaintEventHandler(this.panelDadosFunc_Paint);
             // 
             // AdicionarEquipes
             // 
@@ -374,6 +375,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AdicionarEquipes";
             this.Text = "AdicionarEquipes";
+            this.Load += new System.EventHandler(this.AdicionarEquipes_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.picPerfil)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEquipes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCalendar)).EndInit();

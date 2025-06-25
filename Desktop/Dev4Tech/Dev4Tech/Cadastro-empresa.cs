@@ -98,5 +98,10 @@ namespace Dev4Tech
         {
 
         }
+
+        private void Cadastro_empresa_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

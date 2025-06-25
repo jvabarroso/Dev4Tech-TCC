@@ -251,7 +251,7 @@
             // 
             this.txtTelefone.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTelefone.Location = new System.Drawing.Point(127, 516);
-            this.txtTelefone.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtTelefone.Margin = new System.Windows.Forms.Padding(2);
             this.txtTelefone.Mask = "(99) 00000-0000";
             this.txtTelefone.Name = "txtTelefone";
             this.txtTelefone.Size = new System.Drawing.Size(104, 29);
@@ -262,7 +262,7 @@
             // 
             this.txtCPF.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCPF.Location = new System.Drawing.Point(129, 576);
-            this.txtCPF.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCPF.Margin = new System.Windows.Forms.Padding(2);
             this.txtCPF.Mask = "000.000.000-00";
             this.txtCPF.Name = "txtCPF";
             this.txtCPF.Size = new System.Drawing.Size(102, 29);
@@ -287,7 +287,7 @@
             this.panelDados.Controls.Add(this.txtEmail);
             this.panelDados.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelDados.Location = new System.Drawing.Point(370, -3);
-            this.panelDados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelDados.Margin = new System.Windows.Forms.Padding(2);
             this.panelDados.Name = "panelDados";
             this.panelDados.Size = new System.Drawing.Size(895, 724);
             this.panelDados.TabIndex = 153;
@@ -318,7 +318,7 @@
             // 
             this.txtDataNascFunc.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDataNascFunc.Location = new System.Drawing.Point(128, 401);
-            this.txtDataNascFunc.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtDataNascFunc.Margin = new System.Windows.Forms.Padding(2);
             this.txtDataNascFunc.Mask = "00/00/0000";
             this.txtDataNascFunc.Name = "txtDataNascFunc";
             this.txtDataNascFunc.Size = new System.Drawing.Size(103, 29);
@@ -331,7 +331,7 @@
             this.panelEquipes.AutoScroll = true;
             this.panelEquipes.Controls.Add(this.groupBox2);
             this.panelEquipes.Location = new System.Drawing.Point(127, 146);
-            this.panelEquipes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelEquipes.Margin = new System.Windows.Forms.Padding(2);
             this.panelEquipes.Name = "panelEquipes";
             this.panelEquipes.Size = new System.Drawing.Size(582, 132);
             this.panelEquipes.TabIndex = 141;
@@ -348,9 +348,9 @@
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.pictureBox16);
             this.groupBox2.Location = new System.Drawing.Point(2, 2);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(277, 108);
             this.groupBox2.TabIndex = 154;
             this.groupBox2.TabStop = false;
@@ -580,6 +580,7 @@
             this.Controls.Add(this.panelDados);
             this.Name = "Configuracoes";
             this.Text = "Configuracoes";
+            this.Load += new System.EventHandler(this.Configuracoes_Load);
             this.panelDados.ResumeLayout(false);
             this.panelDados.PerformLayout();
             this.panelEquipes.ResumeLayout(false);

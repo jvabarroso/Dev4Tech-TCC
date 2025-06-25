@@ -106,7 +106,7 @@
             // 
             this.txtPesquisaTarefa.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPesquisaTarefa.Location = new System.Drawing.Point(449, 185);
-            this.txtPesquisaTarefa.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPesquisaTarefa.Margin = new System.Windows.Forms.Padding(2);
             this.txtPesquisaTarefa.Multiline = true;
             this.txtPesquisaTarefa.Name = "txtPesquisaTarefa";
             this.txtPesquisaTarefa.Size = new System.Drawing.Size(308, 31);
@@ -123,9 +123,9 @@
             this.groupBox4.Controls.Add(this.pictureBox13);
             this.groupBox4.Controls.Add(this.label21);
             this.groupBox4.Location = new System.Drawing.Point(311, 123);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox4.Size = new System.Drawing.Size(274, 109);
             this.groupBox4.TabIndex = 89;
             this.groupBox4.TabStop = false;
@@ -177,7 +177,7 @@
             this.pictureBox13.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
             this.pictureBox13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox13.Location = new System.Drawing.Point(4, 17);
-            this.pictureBox13.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox13.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox13.Name = "pictureBox13";
             this.pictureBox13.Size = new System.Drawing.Size(38, 41);
             this.pictureBox13.TabIndex = 39;
@@ -202,9 +202,9 @@
             this.groupBox2.Controls.Add(this.pictureBox12);
             this.groupBox2.Controls.Add(this.label16);
             this.groupBox2.Location = new System.Drawing.Point(311, 2);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(274, 109);
             this.groupBox2.TabIndex = 87;
             this.groupBox2.TabStop = false;
@@ -256,7 +256,7 @@
             this.pictureBox12.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
             this.pictureBox12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox12.Location = new System.Drawing.Point(4, 17);
-            this.pictureBox12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox12.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox12.Name = "pictureBox12";
             this.pictureBox12.Size = new System.Drawing.Size(38, 41);
             this.pictureBox12.TabIndex = 39;
@@ -281,9 +281,9 @@
             this.groupBox5.Controls.Add(this.pictureBox14);
             this.groupBox5.Controls.Add(this.label26);
             this.groupBox5.Location = new System.Drawing.Point(14, 123);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox5.Size = new System.Drawing.Size(274, 109);
             this.groupBox5.TabIndex = 88;
             this.groupBox5.TabStop = false;
@@ -335,7 +335,7 @@
             this.pictureBox14.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
             this.pictureBox14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox14.Location = new System.Drawing.Point(4, 17);
-            this.pictureBox14.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox14.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox14.Name = "pictureBox14";
             this.pictureBox14.Size = new System.Drawing.Size(38, 41);
             this.pictureBox14.TabIndex = 39;
@@ -360,9 +360,9 @@
             this.Tarefa1.Controls.Add(this.pictureBox4);
             this.Tarefa1.Controls.Add(this.label8);
             this.Tarefa1.Location = new System.Drawing.Point(14, 2);
-            this.Tarefa1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Tarefa1.Margin = new System.Windows.Forms.Padding(2);
             this.Tarefa1.Name = "Tarefa1";
-            this.Tarefa1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Tarefa1.Padding = new System.Windows.Forms.Padding(2);
             this.Tarefa1.Size = new System.Drawing.Size(274, 109);
             this.Tarefa1.TabIndex = 86;
             this.Tarefa1.TabStop = false;
@@ -416,7 +416,7 @@
             this.pictureBox4.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
             this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox4.Location = new System.Drawing.Point(4, 17);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(38, 41);
             this.pictureBox4.TabIndex = 39;
@@ -542,9 +542,9 @@
             this.groupBox1.Controls.Add(this.pictureBox3);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(79, 72);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(198, 81);
             this.groupBox1.TabIndex = 77;
             this.groupBox1.TabStop = false;
@@ -564,7 +564,7 @@
             this.pictureBox3.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox3.Location = new System.Drawing.Point(4, 17);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(38, 41);
             this.pictureBox3.TabIndex = 39;
@@ -584,7 +584,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.pictureBox2.Location = new System.Drawing.Point(52, -3);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(306, 688);
             this.pictureBox2.TabIndex = 76;
@@ -702,7 +702,7 @@
             this.panelTarefas.Controls.Add(this.groupBox5);
             this.panelTarefas.Controls.Add(this.Tarefa1);
             this.panelTarefas.Location = new System.Drawing.Point(436, 279);
-            this.panelTarefas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelTarefas.Margin = new System.Windows.Forms.Padding(2);
             this.panelTarefas.Name = "panelTarefas";
             this.panelTarefas.Size = new System.Drawing.Size(645, 288);
             this.panelTarefas.TabIndex = 131;
@@ -734,9 +734,10 @@
             this.Controls.Add(this.btnConfig);
             this.Controls.Add(this.btnHome);
             this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Tarefas_Completadas";
             this.Text = "Tarefas_Completadas";
+            this.Load += new System.EventHandler(this.Tarefas_Completadas_Load);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();

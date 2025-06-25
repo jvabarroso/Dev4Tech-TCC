@@ -54,6 +54,8 @@ namespace Dev4Tech
 
         private void PreencherCampos()
         {
+            lblNomeFunc.Text = funcionario.getNome();
+            lblCargo.Text = funcionario.getCargo(); 
             txtNome.Text = funcionario.getNome();
             lblCargo.Text = funcionario.getCargo();
             txtCPF.Text = funcionario.getCPF();
@@ -139,6 +141,11 @@ namespace Dev4Tech
         }
 
         private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Configuracoes_Load(object sender, EventArgs e)
         {
 
         }

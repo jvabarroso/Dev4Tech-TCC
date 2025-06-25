@@ -93,7 +93,7 @@ namespace Dev4Tech
 
         private void pictureBox9_Click(object sender, EventArgs e)
         {
-            Tarefas_Completadas t_completadas = new Tarefas_Completadas();
+            AvaliaçãoTarefaAdmin t_completadas = new AvaliaçãoTarefaAdmin();
             t_completadas.Show();
             this.Hide();
         }

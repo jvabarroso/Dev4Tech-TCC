@@ -248,5 +248,20 @@ namespace Dev4Tech
             t_pendente.Show();
             this.Hide();
         }
+
+        private void groupBox5_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelTarefas_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Tarefas_Pendentes_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

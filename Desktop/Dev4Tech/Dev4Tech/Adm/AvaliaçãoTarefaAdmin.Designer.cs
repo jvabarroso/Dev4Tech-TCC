@@ -338,6 +338,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "AvaliaçãoTarefaAdmin";
             this.Text = "AvaliaçãoTarefaAdmin";
+            this.Load += new System.EventHandler(this.AvaliaçãoTarefaAdmin_Load);
             ((System.ComponentModel.ISupportInitialize)(btnConfig)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

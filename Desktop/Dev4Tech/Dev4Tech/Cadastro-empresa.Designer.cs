@@ -321,6 +321,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Cadastro_empresa";
             this.Text = "Cadastro_empresa";
+            this.Load += new System.EventHandler(this.Cadastro_empresa_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

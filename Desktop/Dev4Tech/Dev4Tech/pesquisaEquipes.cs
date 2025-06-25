@@ -11,6 +11,7 @@ namespace Dev4Tech
         public PesquisaEquipes()
         {
             InitializeComponent();
+            panelEquipes.AutoScroll = true;
 
             filtroEquipes.Items.Add("Todos");
             filtroEquipes.Items.Add("Desenvolvedor de software");
@@ -234,6 +235,11 @@ namespace Dev4Tech
             {
                 MessageBox.Show("Nenhum funcionário logado.");
             }
+        }
+
+        private void PesquisaEquipes_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

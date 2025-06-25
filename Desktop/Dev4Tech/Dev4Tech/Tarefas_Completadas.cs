@@ -282,5 +282,10 @@ namespace Dev4Tech
         {
 
         }
+
+        private void Tarefas_Completadas_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

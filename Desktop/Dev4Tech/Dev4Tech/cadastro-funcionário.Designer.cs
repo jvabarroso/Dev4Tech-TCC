@@ -101,6 +101,7 @@
             this.txtCadFuncEmail.TabIndex = 71;
             this.txtCadFuncEmail.Text = "Digite seu email institucional";
             this.txtCadFuncEmail.Click += new System.EventHandler(this.txtCadFuncEmail_Click);
+            this.txtCadFuncEmail.TextChanged += new System.EventHandler(this.txtCadFuncEmail_TextChanged);
             // 
             // txtCadFuncSenha
             // 
@@ -111,6 +112,7 @@
             this.txtCadFuncSenha.TabIndex = 70;
             this.txtCadFuncSenha.Text = "Digite sua senha";
             this.txtCadFuncSenha.Click += new System.EventHandler(this.txtCadFuncSenha_Click);
+            this.txtCadFuncSenha.TextChanged += new System.EventHandler(this.txtCadFuncSenha_TextChanged);
             // 
             // txtCadFuncConfirmSenha
             // 
@@ -121,6 +123,7 @@
             this.txtCadFuncConfirmSenha.TabIndex = 69;
             this.txtCadFuncConfirmSenha.Text = "Confirme sua senha";
             this.txtCadFuncConfirmSenha.Click += new System.EventHandler(this.txtCadFuncConfirmSenha_Click);
+            this.txtCadFuncConfirmSenha.TextChanged += new System.EventHandler(this.txtCadFuncConfirmSenha_TextChanged);
             // 
             // txtCadFuncNome
             // 
@@ -131,6 +134,7 @@
             this.txtCadFuncNome.TabIndex = 68;
             this.txtCadFuncNome.Text = "Digite seu nome";
             this.txtCadFuncNome.Click += new System.EventHandler(this.txtCadFuncNome_Click);
+            this.txtCadFuncNome.TextChanged += new System.EventHandler(this.txtCadFuncNome_TextChanged);
             // 
             // label11
             // 
@@ -241,7 +245,7 @@
             this.pictureBox2.BackgroundImage = global::Dev4Tech.Properties.Resources._141;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox2.Location = new System.Drawing.Point(512, 53);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(442, 356);
             this.pictureBox2.TabIndex = 80;
@@ -328,6 +332,7 @@
             this.txtEndereço.Size = new System.Drawing.Size(188, 22);
             this.txtEndereço.TabIndex = 88;
             this.txtEndereço.Text = "Digite seu endereço";
+            this.txtEndereço.TextChanged += new System.EventHandler(this.txtEndereço_TextChanged);
             // 
             // label7
             // 
@@ -347,6 +352,7 @@
             this.txtEndereçoNum.Size = new System.Drawing.Size(56, 22);
             this.txtEndereçoNum.TabIndex = 89;
             this.txtEndereçoNum.Text = "Num";
+            this.txtEndereçoNum.TextChanged += new System.EventHandler(this.txtEndereçoNum_TextChanged);
             // 
             // cadastro_funcionário
             // 
@@ -383,6 +389,7 @@
             this.Controls.Add(this.label1);
             this.Name = "cadastro_funcionário";
             this.Text = "cadastro_funcionário";
+            this.Load += new System.EventHandler(this.cadastro_funcionário_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

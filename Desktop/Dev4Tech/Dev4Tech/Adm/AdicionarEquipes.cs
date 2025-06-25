@@ -17,12 +17,17 @@ namespace Dev4Tech
 
         public AdicionarEquipes()
         {
+            
             InitializeComponent();
+            panelDadosFunc.AutoScroll = true; // Habilita o scroll automático
+
+            panelDadosFunc.AutoScroll = true;
             this.Load += AdicionarEquipes_Load;
             btnAddMembro.Click += btnAddMembro_Click;
             btnCriarEquipe.Click += btnCriarEquipe_Click;
 
             // Adiciona o evento para quando o email for selecionado
+            cbmEmailMembro.SelectedIndexChanged += cbmEmailMembro_SelectedIndexChanged;
             cbmEmailMembro.SelectedIndexChanged += cbmEmailMembro_SelectedIndexChanged;
         }
 
@@ -80,7 +85,12 @@ namespace Dev4Tech
         private void cbmEmailMembro_SelectedIndexChanged(object sender, EventArgs e)
         {
             string emailSelecionado = cbmEmailMembro.Text.Trim();
-            CarregarDadosFuncionario(emailSelecionado);
+
+            if (!string.IsNullOrEmpty(emailSelecionado) && !funcionariosSelecionados.Contains(emailSelecionado))
+            {
+                funcionariosSelecionados.Add(emailSelecionado);
+                AtualizarListaFuncionarios();
+            }
         }
 
         private void CarregarDadosFuncionario(string email)
@@ -156,6 +166,93 @@ namespace Dev4Tech
             funcPanel.Controls.Add(lblPontos);
 
             panelDadosFunc.Controls.Add(funcPanel);
+        }
+        private List<string> funcionariosSelecionados = new List<string>();
+
+
+        private void cmbEmailMembro_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string emailSelecionado = cbmEmailMembro.Text.Trim();
+
+            if (!string.IsNullOrEmpty(emailSelecionado) && !funcionariosSelecionados.Contains(emailSelecionado))
+            {
+                funcionariosSelecionados.Add(emailSelecionado);
+                AtualizarListaFuncionarios();
+            }
+        }
+
+        private void AtualizarListaFuncionarios()
+        {
+            panelDadosFunc.Controls.Clear();
+
+            int posY = 10; // posição inicial vertical
+
+            foreach (string email in funcionariosSelecionados)
+            {
+                empresaCadFuncionario func = BuscarFuncionarioPorEmail(email);
+                if (func == null)
+                    continue;
+
+                pontuacaoFuncionario ptFunc = new pontuacaoFuncionario();
+                int idFunc = int.Parse(func.getFuncionarioId());
+                int pontos = ptFunc.ObterPontos(idFunc);
+
+                Panel funcPanel = new Panel
+                {
+                    Width = panelDadosFunc.Width - 20,
+                    Height = 100,
+                    BackColor = Color.White,
+                    BorderStyle = BorderStyle.FixedSingle,
+                    Left = 10,
+                    Top = posY
+                };
+
+                PictureBox picFuncionario = new PictureBox
+                {
+                    Image = Properties.Resources.icon_perfil,
+                    SizeMode = PictureBoxSizeMode.StretchImage,
+                    Width = 80,
+                    Height = 80,
+                    Left = 10,
+                    Top = 10,
+                    BorderStyle = BorderStyle.FixedSingle
+                };
+                funcPanel.Controls.Add(picFuncionario);
+
+                Label lblNome = new Label
+                {
+                    Text = func.getNome(),
+                    Font = new Font("Segoe UI", 12, FontStyle.Bold),
+                    Left = picFuncionario.Right + 15,
+                    Top = 15,
+                    AutoSize = true
+                };
+                funcPanel.Controls.Add(lblNome);
+
+                Label lblCargo = new Label
+                {
+                    Text = func.getCargo(),
+                    Font = new Font("Segoe UI", 10, FontStyle.Regular),
+                    Left = picFuncionario.Right + 15,
+                    Top = lblNome.Bottom + 5,
+                    AutoSize = true
+                };
+                funcPanel.Controls.Add(lblCargo);
+
+                Label lblPontos = new Label
+                {
+                    Text = $"Pontos: {pontos}",
+                    Font = new Font("Segoe UI", 10, FontStyle.Regular),
+                    Left = picFuncionario.Right + 15,
+                    Top = lblCargo.Bottom + 5,
+                    AutoSize = true
+                };
+                funcPanel.Controls.Add(lblPontos);
+
+                panelDadosFunc.Controls.Add(funcPanel);
+
+                posY += funcPanel.Height + 10; // Espaçamento entre painéis
+            }
         }
 
         private empresaCadFuncionario BuscarFuncionarioPorEmail(string email)
@@ -300,6 +397,16 @@ namespace Dev4Tech
             Form1 t_incial = new Form1();
             t_incial.Show();
             this.Hide();
+        }
+
+        private void panelDadosFunc_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void AdicionarEquipes_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
