@@ -97,7 +97,7 @@
             this.txtCadFuncEmail.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCadFuncEmail.Location = new System.Drawing.Point(127, 443);
             this.txtCadFuncEmail.Name = "txtCadFuncEmail";
-            this.txtCadFuncEmail.Size = new System.Drawing.Size(174, 22);
+            this.txtCadFuncEmail.Size = new System.Drawing.Size(214, 22);
             this.txtCadFuncEmail.TabIndex = 71;
             this.txtCadFuncEmail.Text = "Digite seu email institucional";
             this.txtCadFuncEmail.Click += new System.EventHandler(this.txtCadFuncEmail_Click);
@@ -108,7 +108,7 @@
             this.txtCadFuncSenha.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCadFuncSenha.Location = new System.Drawing.Point(127, 497);
             this.txtCadFuncSenha.Name = "txtCadFuncSenha";
-            this.txtCadFuncSenha.Size = new System.Drawing.Size(116, 22);
+            this.txtCadFuncSenha.Size = new System.Drawing.Size(119, 22);
             this.txtCadFuncSenha.TabIndex = 70;
             this.txtCadFuncSenha.Text = "Digite sua senha";
             this.txtCadFuncSenha.Click += new System.EventHandler(this.txtCadFuncSenha_Click);
@@ -119,7 +119,7 @@
             this.txtCadFuncConfirmSenha.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCadFuncConfirmSenha.Location = new System.Drawing.Point(127, 549);
             this.txtCadFuncConfirmSenha.Name = "txtCadFuncConfirmSenha";
-            this.txtCadFuncConfirmSenha.Size = new System.Drawing.Size(116, 22);
+            this.txtCadFuncConfirmSenha.Size = new System.Drawing.Size(119, 22);
             this.txtCadFuncConfirmSenha.TabIndex = 69;
             this.txtCadFuncConfirmSenha.Text = "Confirme sua senha";
             this.txtCadFuncConfirmSenha.Click += new System.EventHandler(this.txtCadFuncConfirmSenha_Click);
@@ -130,7 +130,7 @@
             this.txtCadFuncNome.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCadFuncNome.Location = new System.Drawing.Point(127, 176);
             this.txtCadFuncNome.Name = "txtCadFuncNome";
-            this.txtCadFuncNome.Size = new System.Drawing.Size(92, 22);
+            this.txtCadFuncNome.Size = new System.Drawing.Size(214, 22);
             this.txtCadFuncNome.TabIndex = 68;
             this.txtCadFuncNome.Text = "Digite seu nome";
             this.txtCadFuncNome.Click += new System.EventHandler(this.txtCadFuncNome_Click);
@@ -282,7 +282,7 @@
             this.txtCadFuncTelefone.Location = new System.Drawing.Point(126, 387);
             this.txtCadFuncTelefone.Mask = "(00) 00000-0000";
             this.txtCadFuncTelefone.Name = "txtCadFuncTelefone";
-            this.txtCadFuncTelefone.Size = new System.Drawing.Size(88, 22);
+            this.txtCadFuncTelefone.Size = new System.Drawing.Size(120, 22);
             this.txtCadFuncTelefone.TabIndex = 85;
             // 
             // txtCadFuncDataNasc
@@ -291,7 +291,7 @@
             this.txtCadFuncDataNasc.Location = new System.Drawing.Point(126, 339);
             this.txtCadFuncDataNasc.Mask = "00/00/0000";
             this.txtCadFuncDataNasc.Name = "txtCadFuncDataNasc";
-            this.txtCadFuncDataNasc.Size = new System.Drawing.Size(88, 22);
+            this.txtCadFuncDataNasc.Size = new System.Drawing.Size(120, 22);
             this.txtCadFuncDataNasc.TabIndex = 84;
             this.txtCadFuncDataNasc.ValidatingType = typeof(System.DateTime);
             // 
@@ -321,7 +321,7 @@
             this.txtCadFuncCPF.Location = new System.Drawing.Point(127, 284);
             this.txtCadFuncCPF.Mask = "000.000.000-00";
             this.txtCadFuncCPF.Name = "txtCadFuncCPF";
-            this.txtCadFuncCPF.Size = new System.Drawing.Size(87, 22);
+            this.txtCadFuncCPF.Size = new System.Drawing.Size(119, 22);
             this.txtCadFuncCPF.TabIndex = 86;
             // 
             // txtEndereço
@@ -329,7 +329,7 @@
             this.txtEndereço.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEndereço.Location = new System.Drawing.Point(343, 595);
             this.txtEndereço.Name = "txtEndereço";
-            this.txtEndereço.Size = new System.Drawing.Size(188, 22);
+            this.txtEndereço.Size = new System.Drawing.Size(184, 22);
             this.txtEndereço.TabIndex = 88;
             this.txtEndereço.Text = "Digite seu endereço";
             this.txtEndereço.TextChanged += new System.EventHandler(this.txtEndereço_TextChanged);

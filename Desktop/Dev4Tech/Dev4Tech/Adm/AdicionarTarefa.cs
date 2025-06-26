@@ -172,14 +172,32 @@ namespace Dev4Tech
         // Eventos mantidos
         private void btnHome_Click(object sender, EventArgs e)
         {
-            HomeAdm h = new HomeAdm();
-            h.Show();
-            this.Hide();
+            var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
+
+            if (funcionario != null)
+            {
+                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
+                Home t_equipe = new Home();
+                t_equipe.Show();
+                this.Hide();
+            }
+            else if (admin != null)
+            {
+                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
+                HomeAdm t_equipeAdmin = new HomeAdm();
+                t_equipeAdmin.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnEquipes_Click(object sender, EventArgs e)
         {
-            Equipes_Estatisticas equip_e = new Equipes_Estatisticas();
+            PesquisaEquipes equip_e = new PesquisaEquipes();
             equip_e.Show();
             this.Hide();
         }
@@ -221,6 +239,10 @@ namespace Dev4Tech
 
         private void txtNomeTarefa_TextChanged(object sender, EventArgs e)
         {
+
+            Form1 t_incial = new Form1();
+            t_incial.Show();
+            this.Hide();
             // Pode deixar vazio ou implementar o que for necessário
         }
 

@@ -19,7 +19,6 @@ namespace Dev4Tech
         private void CarregarTarefasEntregues()
         {
             panelAvaliacaoEquipes.Controls.Clear();
-
             List<int> equipesIds = BuscarIdsEquipes();
 
             int top = 10;
@@ -45,18 +44,10 @@ namespace Dev4Tech
                         Left = 10,
                         BorderStyle = BorderStyle.FixedSingle,
                         Tag = idTarefa,
-                        Cursor = Cursors.Hand
+                        Cursor = Cursors.Default // Mudado para Default para evitar confusão com clique
                     };
 
-                    // Evento para abrir Tela_TarefaAdmin ao clicar
-                    painelTarefa.Click += (s, e) =>
-                    {
-                        int tarefaId = Convert.ToInt32(((Panel)s).Tag);
-                        Tela_TarefasAdmin telaTarefaAdmin = new Tela_TarefasAdmin(tarefaId);
-                        telaTarefaAdmin.Show();
-                        this.Hide();
-                    };
-
+                    // Labels
                     Label lblNome = new Label
                     {
                         Text = "Tarefa: " + nomeTarefa,
@@ -87,6 +78,7 @@ namespace Dev4Tech
                     };
                     painelTarefa.Controls.Add(lblDificuldade);
 
+                    // RadioButtons para avaliação
                     RadioButton rbAceita = new RadioButton
                     {
                         Text = "Aceita",
@@ -95,7 +87,11 @@ namespace Dev4Tech
                         AutoSize = true,
                         Name = "rbAceita_" + idTarefa
                     };
-                    rbAceita.CheckedChanged += (s, e) => AtualizarAvaliacao(idTarefa, true);
+                    rbAceita.CheckedChanged += (s, e) =>
+                    {
+                        if (rbAceita.Checked)
+                            AtualizarAvaliacao(idTarefa, true);
+                    };
 
                     RadioButton rbNegada = new RadioButton
                     {
@@ -105,11 +101,16 @@ namespace Dev4Tech
                         AutoSize = true,
                         Name = "rbNegada_" + idTarefa
                     };
-                    rbNegada.CheckedChanged += (s, e) => AtualizarAvaliacao(idTarefa, false);
+                    rbNegada.CheckedChanged += (s, e) =>
+                    {
+                        if (rbNegada.Checked)
+                            AtualizarAvaliacao(idTarefa, false);
+                    };
 
                     painelTarefa.Controls.Add(rbAceita);
                     painelTarefa.Controls.Add(rbNegada);
 
+                    // Checkbox para atraso justificado, se atrasada
                     CheckBox cbJustificado = null;
                     if (atrasada)
                     {
@@ -121,12 +122,16 @@ namespace Dev4Tech
                             AutoSize = true,
                             Name = "cbJustificado_" + idTarefa
                         };
-                        cbJustificado.CheckedChanged += (s, e) => AtualizarJustificativa(idTarefa, cbJustificado.Checked);
+                        cbJustificado.CheckedChanged += (s, e) =>
+                        {
+                            AtualizarJustificativa(idTarefa, cbJustificado.Checked);
+                        };
                         painelTarefa.Controls.Add(cbJustificado);
                     }
 
                     panelAvaliacaoEquipes.Controls.Add(painelTarefa);
 
+                    // Inicializa estado da avaliação para essa tarefa
                     avaliacoes[idTarefa] = new AvaliacaoInfo
                     {
                         Aceita = null,
@@ -177,8 +182,8 @@ namespace Dev4Tech
 
         private List<int> BuscarIdsEquipes()
         {
-            // Implementar busca real no banco, aqui exemplo fixo:
-            return new List<int> { 1, 2, 3 };
+            // TODO: Implemente a busca real no banco de dados para as equipes
+            return new List<int> { 1, 2, 3 }; // Exemplo fixo
         }
 
         private class AvaliacaoInfo
@@ -187,9 +192,11 @@ namespace Dev4Tech
             public bool? AtrasoJustificado { get; set; }
         }
 
+        // Navegação e outros eventos (mantidos)
         private void btnConfig_Click(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
 
             if (funcionario != null)
             {
@@ -197,9 +204,15 @@ namespace Dev4Tech
                 config.Show();
                 this.Hide();
             }
+            else if (admin != null)
+            {
+                Configuracoes config = new Configuracoes(admin);
+                config.Show();
+                this.Hide();
+            }
             else
             {
-                MessageBox.Show("Nenhum funcionário logado.");
+                MessageBox.Show("Nenhum usuário logado.");
             }
         }
 
@@ -212,9 +225,27 @@ namespace Dev4Tech
 
         private void btnHome_Click(object sender, EventArgs e)
         {
-            Home home = new Home();
-            home.Show();
-            this.Hide();
+            var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
+
+            if (funcionario != null)
+            {
+                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
+                Home t_equipe = new Home();
+                t_equipe.Show();
+                this.Hide();
+            }
+            else if (admin != null)
+            {
+                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
+                HomeAdm t_equipeAdmin = new HomeAdm();
+                t_equipeAdmin.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnEquipe_Click(object sender, EventArgs e)
@@ -240,7 +271,42 @@ namespace Dev4Tech
 
         private void AvaliaçãoTarefaAdmin_Load(object sender, EventArgs e)
         {
+            // Se precisar carregar algo ao iniciar
+        }
 
+        private void lblGeral_Click(object sender, EventArgs e)
+        {
+            Chat_geral_equipes t_pendentes = new Chat_geral_equipes();
+            t_pendentes.Show();
+            this.Hide();
+        }
+
+        private void lblTarefas_Click(object sender, EventArgs e)
+        {
+            AvaliaçãoTarefaAdmin t_pendentes = new AvaliaçãoTarefaAdmin();
+            t_pendentes.Show();
+            this.Hide();
+        }
+
+        private void lblPlanejamento_Click(object sender, EventArgs e)
+        {
+            Planejamento t_pendentes = new Planejamento();
+            t_pendentes.Show();
+            this.Hide();
+        }
+
+        private void lblMembros_Click(object sender, EventArgs e)
+        {
+            Integrantes_Equipe t_pendentes = new Integrantes_Equipe();
+            t_pendentes.Show();
+            this.Hide();
+        }
+
+        private void lblRanking_Click(object sender, EventArgs e)
+        {
+            Ranking_Equipes t_pendentes = new Ranking_Equipes();
+            t_pendentes.Show();
+            this.Hide();
         }
     }
 }

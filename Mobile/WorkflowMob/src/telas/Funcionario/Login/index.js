@@ -26,6 +26,7 @@ export default function Login({navigation}){
         });
         
         const json = response.data;
+        console.log('Dados recebido:', json);
 
         if (json.success) {
           if (json.role === 'administrador') {

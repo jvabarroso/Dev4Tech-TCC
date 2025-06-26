@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, TouchableOpacity, Image, TextInput, ScrollView, ActivityIndicator } from 'react-native';
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
@@ -13,15 +13,13 @@ export default function Tarefas({ navigation, route }) {
   const [dados, setDados] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-  const [filtroAtivo, setFiltroAtivo] = useState('pendente'); // 'pendente', 'atrasada', 'concluido'
+  const [filtroAtivo, setFiltroAtivo] = useState('pendente');
   const [termoBusca, setTermoBusca] = useState('');
 
-
   async function listarDados() {
-    console.log("ID do usuário recebido:", usuario?.id);
-    if(!usuario?.id) {
-        console.log("ID do usuário não disponível");
-        return;
+    if (!usuario?.id) {
+      console.log("ID do usuário não disponível");
+      return;
     }
     
     try {
@@ -29,38 +27,48 @@ export default function Tarefas({ navigation, route }) {
       setErrorMessage(null);
       const res = await api.get(`dev4tec/tarefa.php`, {
         params: {
-          id_funcionario: usuario.id // Use o ID do usuário logado
+          id_funcionario: usuario.id
         }
       });
 
       if (res.data.success) {
-        // Adiciona propriedades de status para facilitar o filtro
-        const tarefasFormatadas = res.data.result.map(tarefa => ({
-          ...tarefa,
-          pendente: tarefa.status_tarefa === 'pendente',
-          atrasada: tarefa.status_tarefa === 'atrasada',
-          concluido: tarefa.status_tarefa === 'concluido'
-        }));
-        setDados(tarefasFormatadas);
+        // Calcular o status com base na data de entrega
+        const hoje = new Date();
+        const tarefasComStatus = res.data.result.map(tarefa => {
+          const dataEntrega = new Date(tarefa.data_entrega.split('/').reverse().join('-'));
+          
+          let status = 'pendente';
+          if (tarefa.entregue) {
+            status = 'concluido';
+          } else if (dataEntrega < hoje) {
+            status = 'atrasada';
+          }
+          
+          return {
+            ...tarefa,
+            status_tarefa: status,
+            pendente: status === 'pendente',
+            atrasada: status === 'atrasada',
+            concluido: status === 'concluido'
+          };
+        });
+        
+        setDados(tarefasComStatus);
       } else {
         console.log("Erro na API:", res.data.message);
         setDados([]);
       }
-    }
-    catch (error) {
+    } catch (error) {
       console.log("Erro ao listar tarefas:", error);
       setErrorMessage("Erro de conexão com o servidor");
-    }
-    finally {
+    } finally {
       setIsLoading(false);
     }
-    }
+  }
 
-    useEffect(() => {
-      listarDados();
-    }, [usuario?.id]);
-
-
+  useEffect(() => {
+    listarDados();
+  }, [usuario?.id]);
 
   const filtrarTarefas = () => {
     let tarefasFiltradas = dados;
@@ -77,10 +85,10 @@ export default function Tarefas({ navigation, route }) {
         tarefasFiltradas = tarefasFiltradas.filter(item => item.status_tarefa === 'concluido');
         break;
       default:
-        // Mostra todas se nenhum filtro estiver ativo
+        // Mostra todas
     }
     
-    // Aplica filtro de busca se houver termo
+    // Aplica filtro de busca
     if (termoBusca) {
       const termo = termoBusca.toLowerCase();
       tarefasFiltradas = tarefasFiltradas.filter(item => 
@@ -92,7 +100,7 @@ export default function Tarefas({ navigation, route }) {
     return tarefasFiltradas;
   };
 
- const renderTarefas = () => {
+  const renderTarefas = () => {
     const tarefasFiltradas = filtrarTarefas();
     
     if (tarefasFiltradas.length === 0) {
@@ -106,12 +114,12 @@ export default function Tarefas({ navigation, route }) {
     return tarefasFiltradas.map((item, index) => (
       <TouchableOpacity
         key={`${item.id_tarefa}-${index}`} 
-        onPress={() => navigation.navigate('TarefaEnvio', { tarefas: item })}
+        onPress={() => navigation.navigate('TarefaEnvio', { tarefa: item })}
         style={styles.containertarefas}
       >
         <View style={styles.linhaTarefa}>
           <Image 
-            source={item.imagem ? { uri: item.imagem } : require('../../../../assets/img/image.png')} 
+            source={require('../../../../assets/img/image.png')} 
             style={styles.imag} 
           />
           <View style={styles.textosTarefa}>
@@ -121,13 +129,14 @@ export default function Tarefas({ navigation, route }) {
         </View>
 
         <View style={styles.linhaInfo}>
-          <Text style={styles.textolistacargo}>{item.dificuldade}</Text>
+          <Text style={styles.textolistacargo}>
+            {item.dificuldade_icone} {/* Mostra os ícones de dificuldade */}
+          </Text>
           <Text style={styles.textolistadata}>{item.data_entrega}</Text>
         </View>
       </TouchableOpacity>
     ));
   };
-
 
   function limitarTexto(texto, limite) {
     return texto.length > limite ? texto.substring(0, limite) + '...' : texto;
@@ -155,40 +164,40 @@ export default function Tarefas({ navigation, route }) {
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
-          <View>
-            <Text style={styles.titulo}>Tarefas</Text>
+        <View>
+          <Text style={styles.titulo}>Tarefas</Text>
 
-            <View style={styles.areabotao}>
-              <TouchableOpacity
-                style={[styles.botao, { backgroundColor: filtroAtivo === 'pendente' ? '#1A5CFF' : theme.inputBackground }]}
-                onPress={() => setFiltroAtivo('pendente')}
-              >
-                <Text style={[styles.textobotao, { color: filtroAtivo === 'pendente' ? theme.text4 : theme.text }]}>Pendente</Text>
-              </TouchableOpacity>
+          <View style={styles.areabotao}>
+            <TouchableOpacity
+              style={[styles.botao, { backgroundColor: filtroAtivo === 'pendente' ? '#1A5CFF' : theme.inputBackground }]}
+              onPress={() => setFiltroAtivo('pendente')}
+            >
+              <Text style={[styles.textobotao, { color: filtroAtivo === 'pendente' ? theme.text4 : theme.text }]}>Pendente</Text>
+            </TouchableOpacity>
 
-              <TouchableOpacity
-                style={[styles.botao, { backgroundColor: filtroAtivo === 'atrasada' ? '#1A5CFF' : theme.inputBackground }]}
-                onPress={() => setFiltroAtivo('atrasada')}
-              >
-                <Text style={[styles.textobotao, { color: filtroAtivo === 'atrasada' ? theme.text4 : theme.text }]}>Atrasados</Text>
-              </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.botao, { backgroundColor: filtroAtivo === 'atrasada' ? '#1A5CFF' : theme.inputBackground }]}
+              onPress={() => setFiltroAtivo('atrasada')}
+            >
+              <Text style={[styles.textobotao, { color: filtroAtivo === 'atrasada' ? theme.text4 : theme.text }]}>Atrasados</Text>
+            </TouchableOpacity>
 
-              <TouchableOpacity
-                style={[styles.botao, { backgroundColor: filtroAtivo === 'concluido' ? '#1A5CFF' : theme.inputBackground }]}
-                onPress={() => setFiltroAtivo('concluido')}
-              >
-                <Text style={[styles.textobotao, { color: filtroAtivo === 'concluido' ? theme.text4 : theme.text }]}>Concluídos</Text>
-              </TouchableOpacity>
-            </View>
-
-            <TextInput
-              style={styles.navinput}
-              placeholder="🔍 Pesquisa uma tarefa"
-              placeholderTextColor="#ffffff"
-              value={termoBusca}
-              onChangeText={setTermoBusca}
-            />
+            <TouchableOpacity
+              style={[styles.botao, { backgroundColor: filtroAtivo === 'concluido' ? '#1A5CFF' : theme.inputBackground }]}
+              onPress={() => setFiltroAtivo('concluido')}
+            >
+              <Text style={[styles.textobotao, { color: filtroAtivo === 'concluido' ? theme.text4 : theme.text }]}>Concluídos</Text>
+            </TouchableOpacity>
           </View>
+
+          <TextInput
+            style={styles.navinput}
+            placeholder="🔍 Pesquisa uma tarefa"
+            placeholderTextColor="#ffffff"
+            value={termoBusca}
+            onChangeText={setTermoBusca}
+          />
+        </View>
         {renderTarefas()}
       </ScrollView>
     </View>

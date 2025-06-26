@@ -80,6 +80,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblPlanejamento = new System.Windows.Forms.Label();
             this.panelTarefas = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -708,11 +709,24 @@
             this.panelTarefas.TabIndex = 131;
             this.panelTarefas.Paint += new System.Windows.Forms.PaintEventHandler(this.panelTarefas_Paint);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label2.Location = new System.Drawing.Point(83, 31);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(72, 21);
+            this.label2.TabIndex = 133;
+            this.label2.Text = "<- Voltar";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
             // Tarefas_Completadas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.panelTarefas);
             this.Controls.Add(this.lblPlanejamento);
             this.Controls.Add(this.txtPesquisaTarefa);
@@ -822,5 +836,6 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label lblPlanejamento;
         private System.Windows.Forms.Panel panelTarefas;
+        private System.Windows.Forms.Label label2;
     }
 }

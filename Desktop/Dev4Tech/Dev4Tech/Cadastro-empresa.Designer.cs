@@ -182,7 +182,7 @@
             this.txtNomeEmpresa.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNomeEmpresa.Location = new System.Drawing.Point(127, 192);
             this.txtNomeEmpresa.Name = "txtNomeEmpresa";
-            this.txtNomeEmpresa.Size = new System.Drawing.Size(133, 22);
+            this.txtNomeEmpresa.Size = new System.Drawing.Size(260, 22);
             this.txtNomeEmpresa.TabIndex = 20;
             this.txtNomeEmpresa.Text = "Digite o nome da empresa";
             this.txtNomeEmpresa.Click += new System.EventHandler(this.txtNomeEmpresa_Click);
@@ -193,7 +193,7 @@
             this.txtComplementoEmpresa.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtComplementoEmpresa.Location = new System.Drawing.Point(127, 541);
             this.txtComplementoEmpresa.Name = "txtComplementoEmpresa";
-            this.txtComplementoEmpresa.Size = new System.Drawing.Size(196, 22);
+            this.txtComplementoEmpresa.Size = new System.Drawing.Size(260, 22);
             this.txtComplementoEmpresa.TabIndex = 22;
             this.txtComplementoEmpresa.Text = "Digite o complemento do endereço";
             this.txtComplementoEmpresa.Click += new System.EventHandler(this.txtComplementoEmpresa_Click);
@@ -213,7 +213,7 @@
             this.txtNumResidencia.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNumResidencia.Location = new System.Drawing.Point(127, 435);
             this.txtNumResidencia.Name = "txtNumResidencia";
-            this.txtNumResidencia.Size = new System.Drawing.Size(232, 22);
+            this.txtNumResidencia.Size = new System.Drawing.Size(260, 22);
             this.txtNumResidencia.TabIndex = 24;
             this.txtNumResidencia.Text = "Digite o número de residência da empresa";
             this.txtNumResidencia.Click += new System.EventHandler(this.txtNumResidencia_Click);
@@ -224,7 +224,7 @@
             this.txtLogradouroEmpresa.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLogradouroEmpresa.Location = new System.Drawing.Point(127, 383);
             this.txtLogradouroEmpresa.Name = "txtLogradouroEmpresa";
-            this.txtLogradouroEmpresa.Size = new System.Drawing.Size(176, 22);
+            this.txtLogradouroEmpresa.Size = new System.Drawing.Size(260, 22);
             this.txtLogradouroEmpresa.TabIndex = 25;
             this.txtLogradouroEmpresa.Text = "Digite o logradouro da empresa";
             this.txtLogradouroEmpresa.Click += new System.EventHandler(this.txtLogradouroEmpresa_Click);
@@ -235,7 +235,7 @@
             this.txtSetorEmpresa.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSetorEmpresa.Location = new System.Drawing.Point(127, 300);
             this.txtSetorEmpresa.Name = "txtSetorEmpresa";
-            this.txtSetorEmpresa.Size = new System.Drawing.Size(159, 22);
+            this.txtSetorEmpresa.Size = new System.Drawing.Size(260, 22);
             this.txtSetorEmpresa.TabIndex = 26;
             this.txtSetorEmpresa.Text = "Digite o setor da empresa";
             this.txtSetorEmpresa.Click += new System.EventHandler(this.txtSetorEmpresa_Click);

@@ -54,6 +54,7 @@
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox17 = new System.Windows.Forms.PictureBox();
             this.pictureBox19 = new System.Windows.Forms.PictureBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -67,6 +68,7 @@
             this.pictureBox24 = new System.Windows.Forms.PictureBox();
             this.label15 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox25 = new System.Windows.Forms.PictureBox();
             this.pictureBox26 = new System.Windows.Forms.PictureBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -80,6 +82,7 @@
             this.pictureBox31 = new System.Windows.Forms.PictureBox();
             this.label21 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox33 = new System.Windows.Forms.PictureBox();
             this.label22 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
@@ -92,6 +95,7 @@
             this.pictureBox38 = new System.Windows.Forms.PictureBox();
             this.label27 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.pictureBox40 = new System.Windows.Forms.PictureBox();
             this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
@@ -127,10 +131,7 @@
             this.pictureBox49 = new System.Windows.Forms.PictureBox();
             this.label39 = new System.Windows.Forms.Label();
             this.lblPlanejamento = new System.Windows.Forms.Label();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.pictureBox10 = new System.Windows.Forms.PictureBox();
+            this.label40 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -142,6 +143,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).BeginInit();
@@ -149,6 +151,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).BeginInit();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox28)).BeginInit();
@@ -156,12 +159,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox30)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox31)).BeginInit();
             this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox33)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox35)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox36)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox37)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox38)).BeginInit();
             this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox40)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox42)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox43)).BeginInit();
@@ -184,10 +189,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox47)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox48)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox49)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             this.SuspendLayout();
             // 
             // lblMembros
@@ -478,6 +479,16 @@
             this.groupBox3.TabIndex = 109;
             this.groupBox3.TabStop = false;
             // 
+            // pictureBox5
+            // 
+            this.pictureBox5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox5.BackgroundImage")));
+            this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox5.Location = new System.Drawing.Point(555, 63);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox5.TabIndex = 109;
+            this.pictureBox5.TabStop = false;
+            // 
             // pictureBox17
             // 
             this.pictureBox17.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_ranking_2;
@@ -620,6 +631,16 @@
             this.groupBox4.TabIndex = 109;
             this.groupBox4.TabStop = false;
             // 
+            // pictureBox7
+            // 
+            this.pictureBox7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox7.BackgroundImage")));
+            this.pictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox7.Location = new System.Drawing.Point(555, 63);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox7.TabIndex = 110;
+            this.pictureBox7.TabStop = false;
+            // 
             // pictureBox25
             // 
             this.pictureBox25.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_ranking_3;
@@ -761,6 +782,16 @@
             this.groupBox5.TabIndex = 109;
             this.groupBox5.TabStop = false;
             // 
+            // pictureBox8
+            // 
+            this.pictureBox8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox8.BackgroundImage")));
+            this.pictureBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox8.Location = new System.Drawing.Point(555, 63);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox8.TabIndex = 111;
+            this.pictureBox8.TabStop = false;
+            // 
             // pictureBox33
             // 
             this.pictureBox33.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_estatistica_ranking;
@@ -891,6 +922,16 @@
             this.groupBox6.Size = new System.Drawing.Size(685, 94);
             this.groupBox6.TabIndex = 109;
             this.groupBox6.TabStop = false;
+            // 
+            // pictureBox10
+            // 
+            this.pictureBox10.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox10.BackgroundImage")));
+            this.pictureBox10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox10.Location = new System.Drawing.Point(557, 62);
+            this.pictureBox10.Name = "pictureBox10";
+            this.pictureBox10.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox10.TabIndex = 112;
+            this.pictureBox10.TabStop = false;
             // 
             // pictureBox40
             // 
@@ -1265,51 +1306,24 @@
             this.lblPlanejamento.Text = "Planejamento";
             this.lblPlanejamento.Click += new System.EventHandler(this.lblPlanejamento_Click);
             // 
-            // pictureBox5
+            // label40
             // 
-            this.pictureBox5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox5.BackgroundImage")));
-            this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox5.Location = new System.Drawing.Point(555, 63);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(25, 25);
-            this.pictureBox5.TabIndex = 109;
-            this.pictureBox5.TabStop = false;
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox7.BackgroundImage")));
-            this.pictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox7.Location = new System.Drawing.Point(555, 63);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(25, 25);
-            this.pictureBox7.TabIndex = 110;
-            this.pictureBox7.TabStop = false;
-            // 
-            // pictureBox8
-            // 
-            this.pictureBox8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox8.BackgroundImage")));
-            this.pictureBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox8.Location = new System.Drawing.Point(555, 63);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(25, 25);
-            this.pictureBox8.TabIndex = 111;
-            this.pictureBox8.TabStop = false;
-            // 
-            // pictureBox10
-            // 
-            this.pictureBox10.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox10.BackgroundImage")));
-            this.pictureBox10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox10.Location = new System.Drawing.Point(557, 62);
-            this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(25, 25);
-            this.pictureBox10.TabIndex = 112;
-            this.pictureBox10.TabStop = false;
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label40.Location = new System.Drawing.Point(86, 34);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(72, 21);
+            this.label40.TabIndex = 133;
+            this.label40.Text = "<- Voltar";
+            this.label40.Click += new System.EventHandler(this.label40_Click);
             // 
             // Ranking_Equipes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 679);
+            this.Controls.Add(this.label40);
             this.Controls.Add(this.lblPlanejamento);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
@@ -1350,6 +1364,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).EndInit();
@@ -1358,6 +1373,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox28)).EndInit();
@@ -1366,6 +1382,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox31)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox33)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox35)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox36)).EndInit();
@@ -1373,6 +1390,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox38)).EndInit();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox40)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox42)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox43)).EndInit();
@@ -1396,10 +1414,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox47)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox48)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox49)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1509,5 +1523,6 @@
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.PictureBox pictureBox10;
+        private System.Windows.Forms.Label label40;
     }
 }

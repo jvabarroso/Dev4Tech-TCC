@@ -32,7 +32,10 @@ try {
         DataNascimento,
         Telefone,
         Email,
-        Senha
+        Senha,
+        data_cadAdmin,
+        endereco,
+        num
         FROM Administradores WHERE Email = :Email");
     
     $query2->bindValue(':Email', $Email);
@@ -73,9 +76,12 @@ if ($userfuncionario && $Senha === $userfuncionario['Senha']) {
             'nome' => $useradministrador['Nome'],
             'email' => $useradministrador['Email'],
             'cargo' => $useradministrador['Cargo'],
+            'data_cadAdmin' => $useradministrador['data_cadAdmin'],
             'telefone' => $useradministrador['Telefone'],
             'cpf' => $useradministrador['CPF'],
-            'dataNascimento' => $useradministrador['DataNascimento']
+            'dataNascimento' => $useradministrador['DataNascimento'],
+            'endereco' => $useradministrador['endereco'],
+            'num' => $useradministrador['num']
         ],                   
         'message' => 'Login realizado com sucesso!' 
     ];

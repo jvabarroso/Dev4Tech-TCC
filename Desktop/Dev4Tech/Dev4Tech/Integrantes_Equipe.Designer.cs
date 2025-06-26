@@ -65,6 +65,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panelMembros = new System.Windows.Forms.Panel();
             this.panelEquipes = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -143,9 +144,9 @@
             this.groupBox1.Controls.Add(this.pictureBox3);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(79, 74);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(197, 81);
             this.groupBox1.TabIndex = 123;
             this.groupBox1.TabStop = false;
@@ -165,7 +166,7 @@
             this.pictureBox3.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox3.Location = new System.Drawing.Point(4, 17);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(38, 41);
             this.pictureBox3.TabIndex = 39;
@@ -206,7 +207,7 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.pictureBox12);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Location = new System.Drawing.Point(7, 4);
+            this.groupBox2.Location = new System.Drawing.Point(3, 8);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(685, 94);
             this.groupBox2.TabIndex = 129;
@@ -298,7 +299,7 @@
             this.pictureBox12.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
             this.pictureBox12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox12.Location = new System.Drawing.Point(76, 16);
-            this.pictureBox12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox12.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox12.Name = "pictureBox12";
             this.pictureBox12.Size = new System.Drawing.Size(40, 40);
             this.pictureBox12.TabIndex = 62;
@@ -318,7 +319,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(453, 6);
+            this.label9.Location = new System.Drawing.Point(442, 10);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(307, 45);
             this.label9.TabIndex = 130;
@@ -326,7 +327,7 @@
             // 
             // txtPesquisarMembros
             // 
-            this.txtPesquisarMembros.Location = new System.Drawing.Point(437, 169);
+            this.txtPesquisarMembros.Location = new System.Drawing.Point(437, 185);
             this.txtPesquisarMembros.Multiline = true;
             this.txtPesquisarMembros.Name = "txtPesquisarMembros";
             this.txtPesquisarMembros.Size = new System.Drawing.Size(641, 39);
@@ -337,7 +338,7 @@
             // 
             this.btnPesquisar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPesquisar.BackgroundImage")));
             this.btnPesquisar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnPesquisar.Location = new System.Drawing.Point(1084, 170);
+            this.btnPesquisar.Location = new System.Drawing.Point(1084, 185);
             this.btnPesquisar.Name = "btnPesquisar";
             this.btnPesquisar.Size = new System.Drawing.Size(37, 38);
             this.btnPesquisar.TabIndex = 132;
@@ -349,7 +350,7 @@
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.SystemColors.ControlLight;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(446, 152);
+            this.label10.Location = new System.Drawing.Point(446, 165);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(101, 13);
@@ -360,7 +361,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.pictureBox1.Location = new System.Drawing.Point(52, -2);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(306, 688);
             this.pictureBox1.TabIndex = 122;
@@ -460,7 +461,7 @@
             // panelMembros
             // 
             this.panelMembros.Location = new System.Drawing.Point(427, 228);
-            this.panelMembros.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelMembros.Margin = new System.Windows.Forms.Padding(2);
             this.panelMembros.Name = "panelMembros";
             this.panelMembros.Size = new System.Drawing.Size(706, 450);
             this.panelMembros.TabIndex = 134;
@@ -469,17 +470,30 @@
             // 
             this.panelEquipes.AutoScroll = true;
             this.panelEquipes.Controls.Add(this.groupBox2);
-            this.panelEquipes.Location = new System.Drawing.Point(430, 47);
-            this.panelEquipes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelEquipes.Location = new System.Drawing.Point(432, 61);
+            this.panelEquipes.Margin = new System.Windows.Forms.Padding(2);
             this.panelEquipes.Name = "panelEquipes";
             this.panelEquipes.Size = new System.Drawing.Size(701, 102);
             this.panelEquipes.TabIndex = 135;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label1.Location = new System.Drawing.Point(75, 34);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 21);
+            this.label1.TabIndex = 136;
+            this.label1.Text = "<- Voltar";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // Integrantes_Equipe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1266, 838);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.panelEquipes);
             this.Controls.Add(this.panelMembros);
             this.Controls.Add(this.label10);
@@ -567,5 +581,6 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Panel panelMembros;
         private System.Windows.Forms.Panel panelEquipes;
+        private System.Windows.Forms.Label label1;
     }
 }

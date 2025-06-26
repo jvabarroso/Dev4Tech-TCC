@@ -64,6 +64,7 @@
             this.pictureBox20 = new System.Windows.Forms.PictureBox();
             this.pictureBox21 = new System.Windows.Forms.PictureBox();
             this.pictureBox22 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -478,11 +479,24 @@
             this.pictureBox22.TabIndex = 148;
             this.pictureBox22.TabStop = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label1.Location = new System.Drawing.Point(75, 29);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 21);
+            this.label1.TabIndex = 151;
+            this.label1.Text = "<- Voltar";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
             // Planejamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox20);
             this.Controls.Add(this.pictureBox21);
             this.Controls.Add(this.pictureBox22);
@@ -583,5 +597,6 @@
         private System.Windows.Forms.PictureBox pictureBox20;
         private System.Windows.Forms.PictureBox pictureBox21;
         private System.Windows.Forms.PictureBox pictureBox22;
+        private System.Windows.Forms.Label label1;
     }
 }

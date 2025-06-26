@@ -121,7 +121,7 @@
             this.txtSenha.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSenha.Location = new System.Drawing.Point(678, 349);
             this.txtSenha.Name = "txtSenha";
-            this.txtSenha.Size = new System.Drawing.Size(201, 25);
+            this.txtSenha.Size = new System.Drawing.Size(227, 25);
             this.txtSenha.TabIndex = 16;
             this.txtSenha.Text = "Digite sua senha";
             this.txtSenha.TextChanged += new System.EventHandler(this.txtSenha_TextChanged);
@@ -131,7 +131,7 @@
             this.txtEmail.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmail.Location = new System.Drawing.Point(678, 262);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(167, 25);
+            this.txtEmail.Size = new System.Drawing.Size(227, 25);
             this.txtEmail.TabIndex = 17;
             this.txtEmail.Text = "Entre com seu endereço de Email";
             this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);

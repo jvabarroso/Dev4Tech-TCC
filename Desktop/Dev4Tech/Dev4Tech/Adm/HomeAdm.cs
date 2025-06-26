@@ -19,7 +19,7 @@ namespace Dev4Tech
 
         private void btnEquipes_Click(object sender, EventArgs e)
         {
-            Equipes_Estatisticas t_equipe = new Equipes_Estatisticas();
+            PesquisaEquipes t_equipe = new PesquisaEquipes();
             t_equipe.Show();
             this.Hide();
         }
@@ -41,9 +41,27 @@ namespace Dev4Tech
 
         private void btnHome_Click(object sender, EventArgs e)
         {
-            HomeAdm t_Home = new HomeAdm();
-            t_Home.Show();
-            this.Hide();
+            var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
+
+            if (funcionario != null)
+            {
+                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
+                Home t_equipe = new Home();
+                t_equipe.Show();
+                this.Hide();
+            }
+            else if (admin != null)
+            {
+                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
+                HomeAdm t_equipeAdmin = new HomeAdm();
+                t_equipeAdmin.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
 

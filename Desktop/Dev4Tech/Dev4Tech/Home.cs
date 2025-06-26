@@ -19,16 +19,52 @@ namespace Dev4Tech
 
         private void btnEquipes_Click(object sender, EventArgs e)
         {
-            PesquisaEquipes P_equipe = new PesquisaEquipes();
-            P_equipe.Show();
-            this.Hide();
+            var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
+
+            if (funcionario != null)
+            {
+                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
+                PesquisaEquipes t_equipe = new PesquisaEquipes();
+                t_equipe.Show();
+                this.Hide();
+            }
+            else if (admin != null)
+            {
+                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
+                PesquisaEquipes t_equipeAdmin = new PesquisaEquipes();
+                t_equipeAdmin.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnRanking_Click(object sender, EventArgs e)
         {
-            Ranking_Equipes rank_equipe = new Ranking_Equipes();
-            rank_equipe.Show();
-            this.Hide();
+            var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
+
+            if (funcionario != null)
+            {
+                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
+                Ranking_Equipes t_equipe = new Ranking_Equipes();
+                t_equipe.Show();
+                this.Hide();
+            }
+            else if (admin != null)
+            {
+                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
+                Ranking_Equipes t_equipeAdmin = new Ranking_Equipes();
+                t_equipeAdmin.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -73,9 +109,27 @@ namespace Dev4Tech
             this.Hide();
         }
         private void btnHome_Click(object sender, EventArgs e) {
-            Home h = new Home();
-            h.Show();
-            this.Hide();
+            var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
+
+            if (funcionario != null)
+            {
+                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
+                Home t_equipe = new Home();
+                t_equipe.Show();
+                this.Hide();
+            }
+            else if (admin != null)
+            {
+                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
+                HomeAdm t_equipeAdmin = new HomeAdm();
+                t_equipeAdmin.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         private void Home_Load(object sender, EventArgs e) { }
         private void groupBox2_Enter(object sender, EventArgs e) { }
@@ -86,7 +140,9 @@ namespace Dev4Tech
         }
         private void btnConfigurações_Click(object sender, EventArgs e)
         {
+            // Alterado para suportar Funcionário ou Admin logado
             var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
 
             if (funcionario != null)
             {
@@ -94,17 +150,41 @@ namespace Dev4Tech
                 config.Show();
                 this.Hide();
             }
+            else if (admin != null)
+            {
+                Configuracoes config = new Configuracoes(admin);
+                config.Show();
+                this.Hide();
+            }
             else
             {
-                MessageBox.Show("Nenhum funcionário logado.");
+                MessageBox.Show("Nenhum usuário logado.");
             }
         }
 
         private void btnCalendar_Click(object sender, EventArgs e)
         {
-            Tarefas_Pendentes t_pendente = new Tarefas_Pendentes();
-            t_pendente.Show();
-            this.Hide();
+            var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
+
+            if (funcionario != null)
+            {
+                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
+                Tarefas_Pendentes t_equipe = new Tarefas_Pendentes();
+                t_equipe.Show();
+                this.Hide();
+            }
+            else if (admin != null)
+            {
+                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
+                AdicionarTarefa t_equipeAdmin = new AdicionarTarefa();
+                t_equipeAdmin.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
     }

@@ -87,6 +87,7 @@
             this.lblPlanejamento.Size = new System.Drawing.Size(77, 13);
             this.lblPlanejamento.TabIndex = 145;
             this.lblPlanejamento.Text = "Planejamento";
+            this.lblPlanejamento.Click += new System.EventHandler(this.lblPlanejamento_Click);
             // 
             // lblMembros
             // 
@@ -99,6 +100,7 @@
             this.lblMembros.Size = new System.Drawing.Size(55, 13);
             this.lblMembros.TabIndex = 144;
             this.lblMembros.Text = "Membros";
+            this.lblMembros.Click += new System.EventHandler(this.lblMembros_Click);
             // 
             // lblRanking
             // 
@@ -111,6 +113,7 @@
             this.lblRanking.Size = new System.Drawing.Size(50, 13);
             this.lblRanking.TabIndex = 143;
             this.lblRanking.Text = "Ranking";
+            this.lblRanking.Click += new System.EventHandler(this.lblRanking_Click);
             // 
             // lblTarefas
             // 
@@ -123,6 +126,7 @@
             this.lblTarefas.Size = new System.Drawing.Size(52, 17);
             this.lblTarefas.TabIndex = 142;
             this.lblTarefas.Text = "Tarefas";
+            this.lblTarefas.Click += new System.EventHandler(this.lblTarefas_Click);
             // 
             // lblGeral
             // 
@@ -135,6 +139,7 @@
             this.lblGeral.Size = new System.Drawing.Size(34, 13);
             this.lblGeral.TabIndex = 141;
             this.lblGeral.Text = "Geral";
+            this.lblGeral.Click += new System.EventHandler(this.lblGeral_Click);
             // 
             // groupBox1
             // 

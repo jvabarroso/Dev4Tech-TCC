@@ -373,7 +373,7 @@ namespace Dev4Tech
 
         private void btnCalendar_Click(object sender, EventArgs e)
         {
-            Tarefas_Pendentes t_pendentes = new Tarefas_Pendentes();
+            AvaliaçãoTarefaAdmin t_pendentes = new AvaliaçãoTarefaAdmin();
             t_pendentes.Show();
             this.Hide();
         }
@@ -387,9 +387,27 @@ namespace Dev4Tech
 
         private void btnHome_Click_1(object sender, EventArgs e)
         {
-            Home home = new Home();
-            home.Show();
-            this.Hide();
+            var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
+
+            if (funcionario != null)
+            {
+                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
+                Home t_equipe = new Home();
+                t_equipe.Show();
+                this.Hide();
+            }
+            else if (admin != null)
+            {
+                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
+                HomeAdm t_equipeAdmin = new HomeAdm();
+                t_equipeAdmin.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnLogout_Click_1(object sender, EventArgs e)
