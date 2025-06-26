@@ -143,6 +143,7 @@ namespace Dev4Tech
         private void btnConfigurações_Click(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
 
             if (funcionario != null)
             {
@@ -150,9 +151,15 @@ namespace Dev4Tech
                 config.Show();
                 this.Hide();
             }
+            else if (admin != null)
+            {
+                Configuracoes config = new Configuracoes(admin);
+                config.Show();
+                this.Hide();
+            }
             else
             {
-                MessageBox.Show("Nenhum funcionário logado.");
+                MessageBox.Show("Nenhum usuário logado.");
             }
         }
 
