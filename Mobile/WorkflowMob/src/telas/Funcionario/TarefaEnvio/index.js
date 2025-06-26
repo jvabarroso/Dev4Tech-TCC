@@ -9,13 +9,13 @@ export default function TarefaEnvio({ navigation, route }) {
     const { theme } = useTheme();
     const styles = getStyles(theme);
 
-    const tarefas = route.params?.usuario;
+   const tarefa = route.params?.tarefas || route.params?.usuario || {};
 
     const [descricaoExpandida, setDescricaoExpandida] = useState(false);
     const [modalVisivel, setModalVisivel] = useState(false);
     const [problema, setProblema] = useState('');
     const [problemasEnviados, setProblemasEnviados] = useState([]);
-    const [tarefaLocal, setTarefaLocal] = useState({ ...tarefas });
+    const [tarefaLocal, setTarefaLocal] = useState({ ...tarefa  });
 
 
     if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
@@ -30,7 +30,6 @@ export default function TarefaEnvio({ navigation, route }) {
     const enviarProblema = () => {
         if (problema.trim()) {
                 setProblemasEnviados([...problemasEnviados, problema]);
-
                 setProblema('');
                 setTarefaLocal({ ...tarefaLocal, selproblema: true }); //ajustado :D
         }
@@ -46,7 +45,7 @@ export default function TarefaEnvio({ navigation, route }) {
                 <View style={styles.nav}>
                     <TouchableOpacity 
                         style={styles.botaodevoltar}
-                        onPress={() => navigation.navigate('Home', { screen: 'Tarefas' })}
+                        onPress={() => navigation.goBack()}
                     >
                         <Ionicons name="arrow-back" size={24} color={theme.text} />
                     </TouchableOpacity>
@@ -56,16 +55,16 @@ export default function TarefaEnvio({ navigation, route }) {
 
                 <View style={styles.areadetalhes}>
                     <Image 
-                        source={item.imagem ? { uri: item.imagem } : require('../../../../assets/img/image.png')} 
+                        source={tarefa.imagem ? { uri: tarefa.imagem } : require('../../../../assets/img/image.png')} 
                         style={styles.imag} 
                     />
-                    <Text style={styles.titulotarefa}>{tarefas.nomeTarefa}</Text>
+                    <Text style={styles.titulotarefa}>{tarefa.nomeTarefa}</Text>
 
                     {tarefaLocal.selproblema && (
                     <Ionicons name="warning-outline" size={24} color="red" style={{ marginTop: 5 }} />
                     )}
 
-                    <Text style={styles.datadeenvio}>Postado em {tarefas.data_atribuicao}</Text>
+                    <Text style={styles.datadeenvio}>Postado em {tarefa.data_atribuicao}</Text>
                     
                     {tarefaLocal.selproblema && (
                         <View style={[styles.textoproblem, styles.problem]}>
@@ -76,13 +75,13 @@ export default function TarefaEnvio({ navigation, route }) {
                     <View style={styles.linha}>
                         <View style={styles.coluna}>
                             <Text style={styles.subtitulos}>PRAZO DE ENTREGA</Text>
-                            <Text style={styles.datas}>{tarefas.data_entrega}</Text>
+                            <Text style={styles.datas}>{tarefa.data_entrega}</Text>
                         </View>
 
                         <View style={styles.colunaEquipe}>
                             <Text style={styles.subtitulos}>EQUIPE</Text>
                             <View style={styles.cargos}>
-                                <Text style={styles.textoCargo}>{tarefas.nome_equipe}</Text>
+                                <Text style={styles.textoCargo}>{tarefa.nome_equipe}</Text>
                             </View>
                         </View>
                     </View>
@@ -91,11 +90,11 @@ export default function TarefaEnvio({ navigation, route }) {
                         <Text style={styles.titulodescricao}>DESCRIÇÃO DA TAREFA</Text>
                         <Text style={styles.descricao2}>
                             {descricaoExpandida 
-                                ? tarefas.instrucoes 
-                                : `${tarefas.instrucoes.slice(0, 100)}${tarefas.instrucoes.length > 100 ? '...' : ''}`
+                                ? tarefa.instrucoes 
+                                : `${tarefa.instrucoes.slice(0, 100)}${tarefa.instrucoes.length > 100 ? '...' : ''}`
                             }
                         </Text>
-                        {tarefas.instrucoes.length > 100 && (
+                        {tarefa.instrucoes.length > 100 && (
                             <TouchableOpacity onPress={alternarDescricao}>
                                 <Text style={styles.textodescr}>
                                     {descricaoExpandida ? 'Ver menos' : 'Ver mais'}

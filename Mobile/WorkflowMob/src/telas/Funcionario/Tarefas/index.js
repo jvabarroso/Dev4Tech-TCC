@@ -103,9 +103,9 @@ export default function Tarefas({ navigation, route }) {
       );
     }
 
-    return tarefasFiltradas.map((item) => (
+    return tarefasFiltradas.map((item, index) => (
       <TouchableOpacity
-        key={item.id_equipe}
+        key={`${item.id_tarefa}-${index}`} 
         onPress={() => navigation.navigate('TarefaEnvio', { tarefas: item })}
         style={styles.containertarefas}
       >
