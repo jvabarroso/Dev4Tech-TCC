@@ -26,10 +26,12 @@ CREATE TABLE Administradores (
     Telefone VARCHAR(20),
     Email VARCHAR(100) unique,
     Senha VARCHAR(255),
-    data_cadAdmin DATETIME
+    data_cadAdmin DATETIME,
+    endereco VARCHAR(255) NOT NULL,
+    num VARCHAR(255) NOT NULL
 );
 
-
+DROP TABLE administradores;
 -- Tabela de Funcionários
 CREATE TABLE Funcionarios (
     FuncionarioId INT PRIMARY KEY auto_increment,

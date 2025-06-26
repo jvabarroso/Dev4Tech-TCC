@@ -29,30 +29,51 @@ namespace Dev4Tech
             }
 
             LoginVerify lv = new LoginVerify();
-            bool loginValido = lv.ValidarLogin(email, senha);
+            bool loginValidoFuncionario = lv.ValidarLogin(email, senha);
 
-            if (loginValido)
+            if (loginValidoFuncionario)
             {
                 empresaCadFuncionario empresa = new empresaCadFuncionario();
                 var funcionario = empresa.ObterFuncionarioPorEmailSenha(email, senha);
 
                 if (funcionario != null)
                 {
-                    // esta parte faz a confirmação
                     Sessao.FuncionarioLogado = funcionario;
+                    Sessao.AdminLogado = null;
 
                     Configuracoes config = new Configuracoes(funcionario);
                     config.Show();
                     this.Hide();
+                    return;
                 }
                 else
                 {
                     MessageBox.Show("Erro ao carregar dados do funcionário.");
+                    return;
                 }
             }
             else
             {
-                MessageBox.Show("Email ou senha incorretos.");
+                // Tenta login como administrador
+                empresaCadAdmin admin = new empresaCadAdmin();
+                var adminLogado = admin.ObterAdminPorEmailSenha(email, senha);
+
+                if (adminLogado != null)
+                {
+                    Sessao.AdminLogado = adminLogado;
+                    Sessao.FuncionarioLogado = null;
+
+                    // Abre a tela de configurações passando o admin logado
+                    Configuracoes config = new Configuracoes(adminLogado);
+                    config.Show();
+                    this.Hide();
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("Email ou senha incorretos.");
+                    return;
+                }
             }
         }
 
@@ -67,3 +88,4 @@ namespace Dev4Tech
         private void txtSenha_TextChanged(object sender, EventArgs e) { }
     }
 }
+

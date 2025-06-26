@@ -207,7 +207,7 @@
     <Compile Include="Planejamento.Designer.cs">
       <DependentUpon>Planejamento.cs</DependentUpon>
     </Compile>
-    <Compile Include="pontuacaoFuncionario.cs" />
+    <Compile Include="pontuacaoUsuarios.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ranking_Equipes.cs">

@@ -218,7 +218,7 @@ namespace Dev4Tech
                 // Adiciona os pontos ao funcionário logado
                 if (pontos > 0 && Sessao.FuncionarioLogado != null)
                 {
-                    pontuacaoFuncionario ptFunc = new pontuacaoFuncionario();
+                    pontuacaoUsuarios ptFunc = new pontuacaoUsuarios();
                     int idFunc = int.Parse(Sessao.FuncionarioLogado.getFuncionarioId());
                     ptFunc.AdicionarPontos(idFunc, pontos);
                 }

@@ -44,6 +44,8 @@ namespace Dev4Tech
                     emAdmin.setEmail(txtCadAdmEmail.Text);
                     emAdmin.setSenha(txtCadAdmSenha.Text);
                     emAdmin.setData_cadAdmin(DateTime.Now);
+                    emAdmin.setEndereco(txtEndereco.Text);
+                    emAdmin.setNum(txtNumEndereco.Text);
                     emAdmin.inserir();
                 }
                 

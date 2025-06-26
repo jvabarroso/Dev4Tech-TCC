@@ -91,32 +91,31 @@ namespace Dev4Tech
 
         private void txtCadFuncNome_TextChanged(object sender, EventArgs e)
         {
-            txtCadFuncNome.Text = "";
+           
         }
 
         private void txtCadFuncEmail_TextChanged(object sender, EventArgs e)
         {
-            txtCadFuncEmail.Text = "";
         }
 
         private void txtCadFuncSenha_TextChanged(object sender, EventArgs e)
         {
-            txtCadFuncSenha.Text = "";
+        
         }
 
         private void txtCadFuncConfirmSenha_TextChanged(object sender, EventArgs e)
         {
-            txtCadFuncConfirmSenha.Text = "";
+            
         }
 
         private void txtEndereço_TextChanged(object sender, EventArgs e)
         {
-            txtEndereço.Text = "";
+           
         }
 
         private void txtEndereçoNum_TextChanged(object sender, EventArgs e)
         {
-            txtEndereçoNum.Text = "";
+            
         }
     }
 }

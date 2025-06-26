@@ -104,7 +104,7 @@ namespace Dev4Tech
             if (func == null)
                 return;
 
-            pontuacaoFuncionario ptFunc = new pontuacaoFuncionario();
+            pontuacaoUsuarios ptFunc = new pontuacaoUsuarios();
             int idFunc = int.Parse(func.getFuncionarioId());
             int pontos = ptFunc.ObterPontos(idFunc);
 
@@ -193,7 +193,7 @@ namespace Dev4Tech
                 if (func == null)
                     continue;
 
-                pontuacaoFuncionario ptFunc = new pontuacaoFuncionario();
+                pontuacaoUsuarios ptFunc = new pontuacaoUsuarios();
                 int idFunc = int.Parse(func.getFuncionarioId());
                 int pontos = ptFunc.ObterPontos(idFunc);
 
