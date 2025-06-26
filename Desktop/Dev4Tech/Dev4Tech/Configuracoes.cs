@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Drawing; // Adicionar se ainda não tiver para FontStyle.Bold
 
 namespace Dev4Tech
 {
@@ -13,7 +14,7 @@ namespace Dev4Tech
         {
             InitializeComponent();
             funcionario = func;
-            admin = null;
+            admin = null; // Garante que admin é nulo
             PreencherCamposFuncionario();
         }
 
@@ -22,15 +23,15 @@ namespace Dev4Tech
         {
             InitializeComponent();
             admin = adm;
-            funcionario = null;
+            funcionario = null; // Garante que funcionario é nulo
             PreencherCamposAdmin();
         }
 
+
         private void PreencherCamposFuncionario()
         {
-            lblNomeFunc.Text = funcionario.getNome();
-            lblCargo.Text = funcionario.getCargo();
-            txtNome.Text = funcionario.getNome();
+
+            txtNome.Text = funcionario.getNome(); // Onde o nome do funcionário será exibido
             lblCargo.Text = funcionario.getCargo();
             txtCPF.Text = funcionario.getCPF();
             txtDataNascFunc.Text = funcionario.getDataNascimento().ToString("dd/MM/yyyy");
@@ -38,7 +39,8 @@ namespace Dev4Tech
             txtEmail.Text = funcionario.getEmail();
             textBox1.Text = $"{funcionario.getEndereco()}, {funcionario.getNumero()}";
 
-            pontuacaoUsuarios ptFunc = new pontuacaoUsuarios();
+            // Obter e mostrar a pontuação atual do funcionário
+            pontuacaoUsuarios ptFunc = new pontuacaoUsuarios(); // Certifique-se que o namespace está correto para pontuacaoUsuarios
             int idFunc = int.Parse(funcionario.getFuncionarioId());
             int pontos = ptFunc.ObterPontos(idFunc);
             lblPontos.Text = $"{pontos}";
@@ -46,11 +48,12 @@ namespace Dev4Tech
 
         private void PreencherCamposAdmin()
         {
-            lblNomeFunc.Text = admin.getNome();
-            lblCargo.Text = admin.getCargo();
-            lblNomeFunc.Text = admin.getNome();
-            lblCargo.Text = admin.getCargo();
-            txtNome.Text = admin.getNome();
+            // Notei que você tinha lblNomeFunc e txtNome repetidos.
+            // Ajuste conforme o controle real no seu designer.
+            // Mantendo apenas txtNome para o nome principal.
+            // Para o cargo, o lblCargo é o correto.
+
+            txtNome.Text = admin.getNome(); // Onde o nome do administrador será exibido
             lblCargo.Text = admin.getCargo();
             txtCPF.Text = admin.getCPF();
             txtDataNascFunc.Text = admin.getDataNascimento().ToString("dd/MM/yyyy");
@@ -58,63 +61,53 @@ namespace Dev4Tech
             txtEmail.Text = admin.getEmail();
             textBox1.Text = $"{admin.getEndereco()}, {admin.getNum()}";
 
-            // Para administrador, se quiser mostrar pontos, pode implementar similarmente
-            lblPontos.Text = "Administrador";
+            // Para administrador, pode exibir um texto diferente ou 0 pontos
+            lblPontos.Text = "Administrador"; // Ou "0" ou "N/A"
         }
 
         // Os demais métodos e eventos permanecem os mesmos, sem alterações
         private void label8_Click(object sender, EventArgs e) { }
-        private void label1_Click(object sender, EventArgs e) {
-            var funcionario = Sessao.FuncionarioLogado;
-            var admin = Sessao.AdminLogado;
-
-            if (funcionario != null)
-            {
-                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
-                Home t_equipe = new Home();
-                t_equipe.Show();
-                this.Hide();
-            }
-            else if (admin != null)
-            {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
-                HomeAdm t_equipeAdmin = new HomeAdm();
-                t_equipeAdmin.Show();
-                this.Hide();
-            }
-            else
-            {
-                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+        private void label1_Click(object sender, EventArgs e)
+        {
+            // Exemplo de como navegar para a Home
+            Home h = new Home();
+            h.Show();
+            this.Hide();
         }
         private void label2_Click(object sender, EventArgs e) { }
         private void label3_Click(object sender, EventArgs e) { }
         private void label13_Click(object sender, EventArgs e) { }
         private void txtNome_TextChanged(object sender, EventArgs e) { }
-        private void btnConfigurações_Click(object sender, EventArgs e) { }
-        private void btnEquipes_Click(object sender, EventArgs e)
+
+        // Corrigido para verificar FuncionarioLogado e AdminLogado
+        private void btnConfigurações_Click(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;
 
             if (funcionario != null)
             {
-                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
-                PesquisaEquipes t_equipe = new PesquisaEquipes();
-                t_equipe.Show();
+                Configuracoes config = new Configuracoes(funcionario);
+                config.Show();
                 this.Hide();
             }
             else if (admin != null)
             {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
-                PesquisaEquipes t_equipeAdmin = new PesquisaEquipes();
-                t_equipeAdmin.Show();
+                Configuracoes config = new Configuracoes(admin);
+                config.Show();
                 this.Hide();
             }
             else
             {
-                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Nenhum usuário logado.");
             }
+        }
+
+        private void btnEquipes_Click(object sender, EventArgs e)
+        {
+            PesquisaEquipes p_equipe = new PesquisaEquipes();
+            p_equipe.Show();
+            this.Hide();
         }
         private void btnHome_Click(object sender, EventArgs e)
         {
@@ -123,9 +116,12 @@ namespace Dev4Tech
 
             if (funcionario != null)
             {
-                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
-                Home t_equipe = new Home();
-                t_equipe.Show();
+                // Limpa a sessão antes de voltar para a tela inicial
+                Sessao.FuncionarioLogado = null;
+                Sessao.AdminLogado = null;
+
+                Form1 t_incial = new Form1();
+                t_incial.Show();
                 this.Hide();
             }
             else if (admin != null)
@@ -139,31 +135,23 @@ namespace Dev4Tech
             {
                 MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        }
-        private void btnLogout_Click(object sender, EventArgs e) { Form1 t_incial = new Form1(); t_incial.Show(); this.Hide(); }
-        private void btnRanking_Click(object sender, EventArgs e) {
-            var funcionario = Sessao.FuncionarioLogado;
-            var admin = Sessao.AdminLogado;
+    }
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            // Limpa a sessão antes de voltar para a tela inicial
+            Sessao.FuncionarioLogado = null;
+            Sessao.AdminLogado = null;
 
-            if (funcionario != null)
-            {
-                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
-                Ranking_Equipes t_equipe = new Ranking_Equipes();
-                t_equipe.Show();
-                this.Hide();
-            }
-            else if (admin != null)
-            {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
-                Ranking_Equipes t_equipeAdmin = new Ranking_Equipes();
-                t_equipeAdmin.Show();
-                this.Hide();
-            }
-            else
-            {
-                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-         }
+            Form1 t_incial = new Form1();
+            t_incial.Show();
+            this.Hide();
+        }
+        private void btnRanking_Click(object sender, EventArgs e)
+        {
+            Ranking_Equipes rank_equipe = new Ranking_Equipes();
+            rank_equipe.Show();
+            this.Hide();
+        }
         private void picPerfilMembro_Click(object sender, EventArgs e) { }
         private void txtEmail_TextChanged(object sender, EventArgs e) { }
         private void txtDataNascFunc_MaskInputRejected(object sender, MaskInputRejectedEventArgs e) { }
@@ -172,35 +160,12 @@ namespace Dev4Tech
         private void textBox1_TextChanged(object sender, EventArgs e) { }
         private void panelEquipes_Paint(object sender, PaintEventArgs e) { }
 
-        private void Configuracoes_Load(object sender, EventArgs e)
-        {
-
-        }
-
+        private void Configuracoes_Load(object sender, EventArgs e) { } // Mantido se associado no Designer
         private void pictureBox9_Click(object sender, EventArgs e)
         {
-            var funcionario = Sessao.FuncionarioLogado;
-            var admin = Sessao.AdminLogado;
-
-            if (funcionario != null)
-            {
-                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
-                Tarefas_Pendentes t_equipe = new Tarefas_Pendentes();
-                t_equipe.Show();
-                this.Hide();
-            }
-            else if (admin != null)
-            {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
-                AdicionarTarefa t_equipeAdmin = new AdicionarTarefa();
-                t_equipeAdmin.Show();
-                this.Hide();
-            }
-            else
-            {
-                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            Tarefas_Pendentes t_pendente = new Tarefas_Pendentes();
+            t_pendente.Show();
+            this.Hide();
         }
-
     }
 }

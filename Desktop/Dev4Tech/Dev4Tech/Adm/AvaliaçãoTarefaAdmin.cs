@@ -218,6 +218,10 @@ namespace Dev4Tech
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
+            // Limpa a sessão antes de voltar para a tela inicial
+            Sessao.FuncionarioLogado = null;
+            Sessao.AdminLogado = null;
+
             Form1 t_incial = new Form1();
             t_incial.Show();
             this.Hide();
@@ -230,9 +234,12 @@ namespace Dev4Tech
 
             if (funcionario != null)
             {
-                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
-                Home t_equipe = new Home();
-                t_equipe.Show();
+                // Limpa a sessão antes de voltar para a tela inicial
+                Sessao.FuncionarioLogado = null;
+                Sessao.AdminLogado = null;
+
+                Form1 t_incial = new Form1();
+                t_incial.Show();
                 this.Hide();
             }
             else if (admin != null)
@@ -246,7 +253,7 @@ namespace Dev4Tech
             {
                 MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        }
+    }
 
         private void btnEquipe_Click(object sender, EventArgs e)
         {

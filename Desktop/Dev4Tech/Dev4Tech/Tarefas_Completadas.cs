@@ -233,6 +233,10 @@ namespace Dev4Tech
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
+            // Limpa a sessão antes de voltar para a tela inicial
+            Sessao.FuncionarioLogado = null;
+            Sessao.AdminLogado = null;
+
             Form1 t_incial = new Form1();
             t_incial.Show();
             this.Hide();

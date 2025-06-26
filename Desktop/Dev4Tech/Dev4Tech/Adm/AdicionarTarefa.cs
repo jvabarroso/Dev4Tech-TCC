@@ -227,8 +227,12 @@ namespace Dev4Tech
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            Form1 f1 = new Form1();
-            f1.Show();
+            // Limpa a sessão antes de voltar para a tela inicial
+            Sessao.FuncionarioLogado = null;
+            Sessao.AdminLogado = null;
+
+            Form1 t_incial = new Form1();
+            t_incial.Show();
             this.Hide();
         }
 
@@ -240,9 +244,6 @@ namespace Dev4Tech
         private void txtNomeTarefa_TextChanged(object sender, EventArgs e)
         {
 
-            Form1 t_incial = new Form1();
-            t_incial.Show();
-            this.Hide();
             // Pode deixar vazio ou implementar o que for necessário
         }
 

@@ -31,7 +31,6 @@ CREATE TABLE Administradores (
     num VARCHAR(255) NOT NULL
 );
 
-DROP TABLE administradores;
 -- Tabela de Funcionários
 CREATE TABLE Funcionarios (
     FuncionarioId INT PRIMARY KEY auto_increment,
@@ -97,11 +96,10 @@ CREATE TABLE Tarefas (
     data_entrega DATE NOT NULL,
     nome_arquivo VARCHAR(255),
     arquivo_blob LONGBLOB,
-    FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE ON UPDATE CASCADE,
+    dificuldade VARCHAR(20) NOT NULL
 );
 
-ALTER TABLE tarefas
-ADD COLUMN dificuldade INT NOT NULL DEFAULT 1;
 
 CREATE TABLE EntregasTarefa (
     id_entrega INT AUTO_INCREMENT PRIMARY KEY,
