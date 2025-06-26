@@ -97,7 +97,6 @@
             this.label7.Size = new System.Drawing.Size(67, 15);
             this.label7.TabIndex = 103;
             this.label7.Text = "Pontuação:";
-            //this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // lblPontos
             // 
@@ -115,7 +114,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label1.Location = new System.Drawing.Point(78, 38);
+            this.label1.Location = new System.Drawing.Point(77, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 21);
             this.label1.TabIndex = 115;
@@ -291,7 +290,6 @@
             this.panelDados.Name = "panelDados";
             this.panelDados.Size = new System.Drawing.Size(895, 724);
             this.panelDados.TabIndex = 153;
-            //this.panelDados.Paint += new System.Windows.Forms.PaintEventHandler(this.panelDados_Paint);
             // 
             // textBox1
             // 
@@ -404,7 +402,6 @@
             this.label3.Size = new System.Drawing.Size(162, 17);
             this.label3.TabIndex = 60;
             this.label3.Text = "Última atividade: há 3 dias";
-            //this.label3.Click += new System.EventHandler(this.label3_Click_1);
             // 
             // label5
             // 
@@ -415,7 +412,6 @@
             this.label5.Size = new System.Drawing.Size(48, 17);
             this.label5.TabIndex = 59;
             this.label5.Text = "Design";
-            //this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label6
             // 
@@ -426,7 +422,6 @@
             this.label6.Size = new System.Drawing.Size(62, 17);
             this.label6.TabIndex = 58;
             this.label6.Text = "EQUIPE 2";
-            //this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // pictureBox16
             // 
@@ -496,7 +491,7 @@
             this.pictureBox9.Size = new System.Drawing.Size(24, 23);
             this.pictureBox9.TabIndex = 111;
             this.pictureBox9.TabStop = false;
-            //this.pictureBox9.Click += new System.EventHandler(this.pictureBox9_Click);
+            this.pictureBox9.Click += new System.EventHandler(this.pictureBox9_Click);
             // 
             // btnRanking
             // 
@@ -580,7 +575,7 @@
             this.Controls.Add(this.panelDados);
             this.Name = "Configuracoes";
             this.Text = "Configuracoes";
-            //this.Load += new System.EventHandler(this.Configuracoes_Load);
+            this.Load += new System.EventHandler(this.Configuracoes_Load);
             this.panelDados.ResumeLayout(false);
             this.panelDados.PerformLayout();
             this.panelEquipes.ResumeLayout(false);

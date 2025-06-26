@@ -172,7 +172,7 @@ namespace Dev4Tech
         // Eventos mantidos
         private void btnHome_Click(object sender, EventArgs e)
         {
-            Home h = new Home();
+            HomeAdm h = new HomeAdm();
             h.Show();
             this.Hide();
         }
@@ -231,7 +231,7 @@ namespace Dev4Tech
 
         private void btnCalendar_Click(object sender, EventArgs e)
         {
-            Tarefas_Completadas t_completadas = new Tarefas_Completadas();
+            AvaliaçãoTarefaAdmin  t_completadas = new AvaliaçãoTarefaAdmin();
             t_completadas.Show();
             this.Hide();
         }

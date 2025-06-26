@@ -373,3 +373,6 @@ C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São
 C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Workflow-Gui\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe.config
 C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Workflow-Gui\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.exe
 C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Workflow-Gui\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.pdb
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AvaliaçãoTarefaAdmin.resources
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AdicionarTarefa.resources
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_TarefasAdmin.resources

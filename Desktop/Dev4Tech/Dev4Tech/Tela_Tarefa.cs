@@ -19,12 +19,19 @@ namespace Dev4Tech
             InitializeComponent();
             idEquipeAtual = idEquipe;
             txtNomeEquipe.Text = BuscarNomeEquipe(idEquipeAtual);
-
-            btnEnviar.Click += BtnEnviar_Click;
             lblArquivoEntregaTarefa.Click += LblArquivoEntregaTarefa_Click;
             btnRelatarProblema.Click += btnRelatarProblema_Click;
 
-
+            // ATENÇÃO: Verifique se o evento Click do seu botão "btnEnviar" no Designer
+            // está apontando para o método "BtnEnviar_Click" (com B maiúsculo)
+            // ou para "btnEnviar_Click" (com b minúsculo).
+            // Apenas UM DELES deve existir no código e ser associado ao botão.
+            // Pelo seu código, parece que a versão com "B" maiúsculo estava sendo usada antes.
+            // Se o Designer estiver associado a "btnEnviar_Click", remova a duplicação
+            // e use apenas o método que está preenchido no Designer.
+            // Para garantir, estou deixando a lógica completa no "BtnEnviar_Click" (com B maiúsculo).
+            // Se o botão está associado a "btnEnviar_Click" (b minúsculo), renomeie este método
+            // para "btnEnviar_Click" e remova o outro.
         }
 
         // Carrega detalhes da tarefa selecionada e atualiza a interface
@@ -150,8 +157,8 @@ namespace Dev4Tech
             }
         }
 
-        // Evento para enviar a entrega da tarefa
-        private void BtnEnviar_Click(object sender, EventArgs e)
+        // Evento para enviar a entrega da tarefa (APENAS ESTE DEVE EXISTIR E CONTER A LÓGICA)
+        private void btnEnviar_Click(object sender, EventArgs e) // Certifique-se que o botão no Designer está linkado a este método.
         {
             if (idTarefaExibida == 0)
             {
@@ -193,7 +200,8 @@ namespace Dev4Tech
                 using (var conn = new MySql.Data.MySqlClient.MySqlConnection("server=localhost;database=Dev4Tech;uid=root;pwd=;"))
                 {
                     conn.Open();
-                    var cmd = new MySql.Data.MySqlClient.MySqlCommand("SELECT dificuldade FROM Tarefas WHERE id_tarefa = @idTarefa", conn);
+                    // Usando "t." para evitar ambiguidade se houver outra tabela com coluna "dificuldade"
+                    var cmd = new MySql.Data.MySqlClient.MySqlCommand("SELECT t.dificuldade FROM Tarefas t WHERE t.id_tarefa = @idTarefa", conn);
                     cmd.Parameters.AddWithValue("@idTarefa", idTarefaExibida);
                     var result = cmd.ExecuteScalar();
                     if (result != null)
@@ -207,7 +215,7 @@ namespace Dev4Tech
                     case "fácil":
                         pontos = 2;
                         break;
-                    case "média":
+                    case "média": // "Mediana" foi padronizado para "Média" na classe AddTarefas
                         pontos = 4;
                         break;
                     case "difícil":
@@ -231,6 +239,7 @@ namespace Dev4Tech
                 MessageBox.Show("Erro ao registrar a entrega: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         // Limpa campos após entrega
         private void LimparCamposEntrega()
@@ -309,7 +318,9 @@ namespace Dev4Tech
         private void txtDescrição_TextChanged(object sender, EventArgs e) { }
         private void btnConfigurações_Click(object sender, EventArgs e)
         {
+            // Alterado para suportar Funcionário ou Admin logado
             var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
 
             if (funcionario != null)
             {
@@ -317,13 +328,18 @@ namespace Dev4Tech
                 config.Show();
                 this.Hide();
             }
+            else if (admin != null)
+            {
+                Configuracoes config = new Configuracoes(admin);
+                config.Show();
+                this.Hide();
+            }
             else
             {
-                MessageBox.Show("Nenhum funcionário logado.");
+                MessageBox.Show("Nenhum usuário logado.");
             }
         }
         private void lblPlanejamento_Click(object sender, EventArgs e) { }
-        private void btnEnviar_Click(object sender, EventArgs e) { }
 
         private void pictureBox9_Click(object sender, EventArgs e)
         {

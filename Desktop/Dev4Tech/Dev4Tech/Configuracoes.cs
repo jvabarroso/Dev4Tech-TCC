@@ -46,6 +46,8 @@ namespace Dev4Tech
         {
             lblNomeFunc.Text = admin.getNome();
             lblCargo.Text = admin.getCargo();
+            lblNomeFunc.Text = admin.getNome();
+            lblCargo.Text = admin.getCargo();
             txtNome.Text = admin.getNome();
             lblCargo.Text = admin.getCargo();
             txtCPF.Text = admin.getCPF();
@@ -60,7 +62,9 @@ namespace Dev4Tech
 
         // Os demais métodos e eventos permanecem os mesmos, sem alterações
         private void label8_Click(object sender, EventArgs e) { }
-        private void label1_Click(object sender, EventArgs e) { }
+        private void label1_Click(object sender, EventArgs e) {
+
+        }
         private void label2_Click(object sender, EventArgs e) { }
         private void label3_Click(object sender, EventArgs e) { }
         private void label13_Click(object sender, EventArgs e) { }
@@ -82,5 +86,15 @@ namespace Dev4Tech
         private void txtCPF_MaskInputRejected(object sender, MaskInputRejectedEventArgs e) { }
         private void textBox1_TextChanged(object sender, EventArgs e) { }
         private void panelEquipes_Paint(object sender, PaintEventArgs e) { }
+
+        private void Configuracoes_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox9_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

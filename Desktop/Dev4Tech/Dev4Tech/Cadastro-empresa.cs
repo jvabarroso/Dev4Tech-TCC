@@ -41,7 +41,7 @@ namespace Dev4Tech
                 em.inserir();
                 
                 MessageBox.Show("Cadastro realizado com sucesso!");
-                Login t_login = new Login();
+                Cadastro_empresa_admin t_login = new Cadastro_empresa_admin();
                 t_login.Show();
                 this.Hide();
             }

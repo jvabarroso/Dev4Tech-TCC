@@ -62,7 +62,7 @@ namespace Dev4Tech
         {
             DataTable dt = new DataTable();
             string query = @"
-        SELECT t.*, c.nome_categoria, e.nome_equipe 
+        SELECT t.*, c.nome_categoria, e.nome_equipe
         FROM Tarefas t
         INNER JOIN Equipes eq ON t.id_equipe = eq.id_equipe
         INNER JOIN Categorias c ON eq.id_categoria = c.id_categoria
@@ -95,7 +95,7 @@ namespace Dev4Tech
         {
             DataTable dt = new DataTable();
             string query = @"
-        SELECT t.*, c.nome_categoria, e.nome_equipe 
+        SELECT t.*, c.nome_categoria, e.nome_equipe
         FROM Tarefas t
         INNER JOIN Equipes eq ON t.id_equipe = eq.id_equipe
         INNER JOIN Categorias c ON eq.id_categoria = c.id_categoria
@@ -127,7 +127,7 @@ namespace Dev4Tech
         {
             DataTable dt = new DataTable();
             string query = @"
-        SELECT t.*, c.nome_categoria, e.nome_equipe 
+        SELECT t.*, c.nome_categoria, e.nome_equipe
         FROM Tarefas t
         INNER JOIN Equipes e ON t.id_equipe = e.id_equipe
         INNER JOIN Categorias c ON e.id_categoria = c.id_categoria
@@ -154,7 +154,6 @@ namespace Dev4Tech
             }
             return dt;
         }
-
         public DataTable BuscarTarefasPendentesPorEquipeOrdenadasPorDificuldade(int idEquipe)
         {
             DataTable dt = new DataTable();
@@ -167,7 +166,7 @@ namespace Dev4Tech
                 AND NOT EXISTS (
                     SELECT 1 FROM EntregasTarefa et WHERE et.id_tarefa = t.id_tarefa AND et.id_equipe = t.id_equipe
                 )
-                ORDER BY 
+                ORDER BY
                     CASE t.dificuldade
                         WHEN 'Difícil' THEN 1
                         WHEN 'Média' THEN 2
@@ -193,7 +192,6 @@ namespace Dev4Tech
             return dt;
         }
 
-
         // NOVO MÉTODO: Busca uma tarefa específica por ID (para exibir detalhes)
         public DataRow BuscarTarefaPorId(int idTarefa)
         {
@@ -217,4 +215,4 @@ namespace Dev4Tech
             return dt.Rows.Count > 0 ? dt.Rows[0] : null;
         }
     }
-    }
+}
