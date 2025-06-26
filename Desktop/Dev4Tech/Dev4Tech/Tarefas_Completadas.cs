@@ -428,15 +428,15 @@ namespace Dev4Tech
             if (funcionario != null)
             {
                 // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
-                Tarefas_Pendentes t_equipe = new Tarefas_Pendentes();
-                t_equipe.Show();
+                Planejamento pl = new Planejamento();
+                pl.Show();
                 this.Hide();
             }
             else if (admin != null)
             {
                 // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
-                AdicionarTarefa t_equipeAdmin = new AdicionarTarefa();
-                t_equipeAdmin.Show();
+                Equipes_Estatisticas t_equipeEstat = new Equipes_Estatisticas();
+                t_equipeEstat.Show();
                 this.Hide();
             }
             else
