@@ -166,7 +166,7 @@
             this.label4.Font = new System.Drawing.Font("Segoe UI", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(270, 71);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(335, 54);
+            this.label4.Size = new System.Drawing.Size(417, 67);
             this.label4.TabIndex = 45;
             this.label4.Text = "Criar uma Tarefa";
             // 
@@ -176,7 +176,7 @@
             this.lblArquivosSelecionado.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblArquivosSelecionado.Location = new System.Drawing.Point(276, 429);
             this.lblArquivosSelecionado.Name = "lblArquivosSelecionado";
-            this.lblArquivosSelecionado.Size = new System.Drawing.Size(126, 15);
+            this.lblArquivosSelecionado.Size = new System.Drawing.Size(160, 20);
             this.lblArquivosSelecionado.TabIndex = 46;
             this.lblArquivosSelecionado.TabStop = true;
             this.lblArquivosSelecionado.Text = "lblArquivoSelecionado";
@@ -187,7 +187,7 @@
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(823, 185);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(167, 30);
+            this.label5.Size = new System.Drawing.Size(212, 37);
             this.label5.TabIndex = 47;
             this.label5.Text = "Data de Entrega";
             // 
@@ -197,7 +197,7 @@
             this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(274, 557);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(86, 30);
+            this.label8.Size = new System.Drawing.Size(110, 37);
             this.label8.TabIndex = 48;
             this.label8.Text = "Equipes";
             // 
@@ -207,7 +207,7 @@
             this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(274, 278);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(108, 30);
+            this.label9.Size = new System.Drawing.Size(139, 37);
             this.label9.TabIndex = 49;
             this.label9.Text = "Instruções";
             // 
@@ -235,7 +235,7 @@
             this.dtpDataDeEntrega.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpDataDeEntrega.Location = new System.Drawing.Point(828, 219);
             this.dtpDataDeEntrega.Name = "dtpDataDeEntrega";
-            this.dtpDataDeEntrega.Size = new System.Drawing.Size(265, 25);
+            this.dtpDataDeEntrega.Size = new System.Drawing.Size(265, 29);
             this.dtpDataDeEntrega.TabIndex = 52;
             // 
             // txtInstruções
@@ -246,6 +246,7 @@
             this.txtInstruções.Name = "txtInstruções";
             this.txtInstruções.Size = new System.Drawing.Size(461, 74);
             this.txtInstruções.TabIndex = 54;
+            this.txtInstruções.Text = "Entregar arquivo WORD";
             // 
             // btnAddTarefas
             // 
@@ -266,6 +267,7 @@
             this.txtNomeTarefa.Name = "txtNomeTarefa";
             this.txtNomeTarefa.Size = new System.Drawing.Size(186, 47);
             this.txtNomeTarefa.TabIndex = 56;
+            this.txtNomeTarefa.Text = "Site de vendas";
             this.txtNomeTarefa.TextChanged += new System.EventHandler(this.txtNomeTarefa_TextChanged);
             // 
             // label1
@@ -274,7 +276,7 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(274, 185);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(169, 30);
+            this.label1.Size = new System.Drawing.Size(213, 37);
             this.label1.TabIndex = 57;
             this.label1.Text = "Nome da Tarefa";
             // 
@@ -284,8 +286,9 @@
             this.cmbDificuldade.FormattingEnabled = true;
             this.cmbDificuldade.Location = new System.Drawing.Point(828, 321);
             this.cmbDificuldade.Name = "cmbDificuldade";
-            this.cmbDificuldade.Size = new System.Drawing.Size(121, 25);
+            this.cmbDificuldade.Size = new System.Drawing.Size(121, 29);
             this.cmbDificuldade.TabIndex = 59;
+            this.cmbDificuldade.Text = "Mediana";
             // 
             // label2
             // 
@@ -293,7 +296,7 @@
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(823, 278);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(219, 30);
+            this.label2.Size = new System.Drawing.Size(279, 37);
             this.label2.TabIndex = 60;
             this.label2.Text = "Dificuldade da Tarefa";
             // 
@@ -302,8 +305,9 @@
             this.cmbAddEquipe.FormattingEnabled = true;
             this.cmbAddEquipe.Location = new System.Drawing.Point(279, 600);
             this.cmbAddEquipe.Name = "cmbAddEquipe";
-            this.cmbAddEquipe.Size = new System.Drawing.Size(121, 21);
+            this.cmbAddEquipe.Size = new System.Drawing.Size(121, 24);
             this.cmbAddEquipe.TabIndex = 53;
+            this.cmbAddEquipe.Text = "Dev";
             // 
             // AdicionarTarefa
             // 
