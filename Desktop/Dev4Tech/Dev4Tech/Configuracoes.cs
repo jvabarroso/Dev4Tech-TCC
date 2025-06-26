@@ -30,7 +30,8 @@ namespace Dev4Tech
 
         private void PreencherCamposFuncionario()
         {
-
+            lblNomeFunc.Text = funcionario.getNome();
+            lblCargo.Text = funcionario.getNome();
             txtNome.Text = funcionario.getNome(); // Onde o nome do funcionário será exibido
             lblCargo.Text = funcionario.getCargo();
             txtCPF.Text = funcionario.getCPF();
@@ -48,11 +49,9 @@ namespace Dev4Tech
 
         private void PreencherCamposAdmin()
         {
-            // Notei que você tinha lblNomeFunc e txtNome repetidos.
-            // Ajuste conforme o controle real no seu designer.
-            // Mantendo apenas txtNome para o nome principal.
-            // Para o cargo, o lblCargo é o correto.
-
+           
+            lblNomeFunc.Text = admin.getNome();
+            lblCargo.Text = admin.getNome();
             txtNome.Text = admin.getNome(); // Onde o nome do administrador será exibido
             lblCargo.Text = admin.getCargo();
             txtCPF.Text = admin.getCPF();

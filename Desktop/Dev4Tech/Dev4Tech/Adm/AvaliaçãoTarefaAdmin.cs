@@ -264,7 +264,7 @@ namespace Dev4Tech
 
         private void btnCalendar_Click(object sender, EventArgs e)
         {
-            AvaliaçãoTarefaAdmin t_pendentes = new AvaliaçãoTarefaAdmin();
+            Planejamento t_pendentes = new Planejamento();
             t_pendentes.Show();
             this.Hide();
         }

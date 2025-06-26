@@ -197,7 +197,7 @@ namespace Dev4Tech
 
         private void pictureBox9_Click(object sender, EventArgs e)
         {
-            Tarefas_Pendentes t_pendente = new Tarefas_Pendentes();
+            Planejamento t_pendente = new Planejamento();
             t_pendente.Show();
             this.Hide();
         }

@@ -406,7 +406,7 @@ namespace Dev4Tech
             if (funcionario != null)
             {
                 // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
-                Tarefas_Pendentes t_equipe = new Tarefas_Pendentes();
+                Planejamento t_equipe = new Planejamento();
                 t_equipe.Show();
                 this.Hide();
             }
