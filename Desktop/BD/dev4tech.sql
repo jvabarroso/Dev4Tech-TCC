@@ -1,3 +1,4 @@
+
 -- Criação do banco de dados
 CREATE DATABASE Dev4Tech;
 USE Dev4Tech;

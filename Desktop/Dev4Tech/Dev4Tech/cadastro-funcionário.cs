@@ -52,7 +52,7 @@ namespace Dev4Tech
                 emCadFunc.inserir();
 
                 MessageBox.Show("Sua conta foi cadastrada com sucesso");
-                Home t_Home = new Home();
+                Login t_Home = new Login();
                 t_Home.Show();
                 this.Hide();
             }
