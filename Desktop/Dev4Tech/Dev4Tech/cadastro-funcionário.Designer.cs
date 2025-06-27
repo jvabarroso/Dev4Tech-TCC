@@ -314,7 +314,7 @@
             this.txtCadFuncDataNasc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtCadFuncDataNasc.Mask = "00/00/0000";
             this.txtCadFuncDataNasc.Name = "txtCadFuncDataNasc";
-            this.txtCadFuncDataNasc.Size = new System.Drawing.Size(159, 26);
+            this.txtCadFuncDataNasc.Size = new System.Drawing.Size(86, 26);
             this.txtCadFuncDataNasc.TabIndex = 84;
             this.txtCadFuncDataNasc.Text = "11082000";
             this.txtCadFuncDataNasc.ValidatingType = typeof(System.DateTime);

@@ -36,12 +36,21 @@ namespace Dev4Tech
                 emCadFunc.setEmail(txtCadFuncEmail.Text);
                 emCadFunc.setTelefone(txtCadFuncTelefone.Text);
                 emCadFunc.setSenha(txtCadFuncSenha.Text);
-                emCadFunc.setDataNascimento(DateTime.Today);
+
+                // Conversão da data de nascimento da TextBox para DateTime
+                DateTime dataNascimento;
+                if (!DateTime.TryParse(txtCadFuncDataNasc.Text, out dataNascimento))
+                {
+                    MessageBox.Show("Data de nascimento inválida. Por favor, insira uma data válida.");
+                    return;
+                }
+                emCadFunc.setDataNascimento(dataNascimento);
+
                 emCadFunc.setData_cadFunc(DateTime.Now);
                 emCadFunc.setEndereco(txtEndereço.Text);
                 emCadFunc.setNumero(txtEndereçoNum.Text);
                 emCadFunc.inserir();
-                
+
                 MessageBox.Show("Sua conta foi cadastrada com sucesso");
                 Home t_Home = new Home();
                 t_Home.Show();
@@ -82,40 +91,42 @@ namespace Dev4Tech
 
         private void cbBoxCargo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Pode deixar vazio ou implementar lógica adicional
         }
 
         private void cadastro_funcionário_Load(object sender, EventArgs e)
         {
-
+            // Pode deixar vazio ou implementar lógica adicional
         }
 
         private void txtCadFuncNome_TextChanged(object sender, EventArgs e)
         {
-           
+            // Pode deixar vazio ou implementar lógica adicional
         }
 
         private void txtCadFuncEmail_TextChanged(object sender, EventArgs e)
         {
+            // Pode deixar vazio ou implementar lógica adicional
         }
 
         private void txtCadFuncSenha_TextChanged(object sender, EventArgs e)
         {
-        
+            // Pode deixar vazio ou implementar lógica adicional
         }
 
         private void txtCadFuncConfirmSenha_TextChanged(object sender, EventArgs e)
         {
-            
+            // Pode deixar vazio ou implementar lógica adicional
         }
 
         private void txtEndereço_TextChanged(object sender, EventArgs e)
         {
-           
+            // Pode deixar vazio ou implementar lógica adicional
         }
 
         private void txtEndereçoNum_TextChanged(object sender, EventArgs e)
         {
-            
+            // Pode deixar vazio ou implementar lógica adicional
         }
     }
 }

@@ -33,22 +33,30 @@ namespace Dev4Tech
                 if (txtCadAdmSenha.Text != txtCadAdmConfirmSenha.Text)
                 {
                     MessageBox.Show("Erro! As duas senhas estão diferentes");
+                    return;
                 }
-                else
+
+                emAdmin.setNome(txtCadAdmNome.Text);
+                emAdmin.setCargo(cbBoxCargoAdm.Text);
+                emAdmin.setCPF(txtCadAdmCPF.Text);
+
+                // Conversão da data de nascimento da TextBox para DateTime
+                DateTime dataNascimento;
+                if (!DateTime.TryParse(txtCadAdmDataNasc.Text, out dataNascimento))
                 {
-                    emAdmin.setNome(txtCadAdmNome.Text);
-                    emAdmin.setCargo(cbBoxCargoAdm.Text);
-                    emAdmin.setCPF(txtCadAdmCPF.Text);
-                    emAdmin.setDataNascimento(DateTime.Today);
-                    emAdmin.setTelefone(txtCadAdmTelefone.Text);
-                    emAdmin.setEmail(txtCadAdmEmail.Text);
-                    emAdmin.setSenha(txtCadAdmSenha.Text);
-                    emAdmin.setData_cadAdmin(DateTime.Now);
-                    emAdmin.setEndereco(txtEndereco.Text);
-                    emAdmin.setNum(txtNumEndereco.Text);
-                    emAdmin.inserir();
+                    MessageBox.Show("Data de nascimento inválida. Por favor, insira uma data válida.");
+                    return;
                 }
-                
+                emAdmin.setDataNascimento(dataNascimento);
+
+                emAdmin.setTelefone(txtCadAdmTelefone.Text);
+                emAdmin.setEmail(txtCadAdmEmail.Text);
+                emAdmin.setSenha(txtCadAdmSenha.Text);
+                emAdmin.setData_cadAdmin(DateTime.Now);
+                emAdmin.setEndereco(txtEndereco.Text);
+                emAdmin.setNum(txtNumEndereco.Text);
+                emAdmin.inserir();
+
                 MessageBox.Show("Cadastro de administrador realizado com sucesso!");
                 Login t_login = new Login();
                 t_login.Show();
@@ -94,7 +102,6 @@ namespace Dev4Tech
 
         private void txtCadAdmDataNasc_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
-
         }
     }
 }
