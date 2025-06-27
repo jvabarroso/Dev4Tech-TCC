@@ -77,13 +77,6 @@ namespace Dev4Tech
             }
         }
 
-        private void btnVoltar_Click(object sender, EventArgs e)
-        {
-            Form1 t_incial = new Form1();
-            t_incial.Show();
-            this.Hide();
-        }
-
         private void txtEmail_TextChanged(object sender, EventArgs e) { }
         private void txtSenha_TextChanged(object sender, EventArgs e) { }
     }

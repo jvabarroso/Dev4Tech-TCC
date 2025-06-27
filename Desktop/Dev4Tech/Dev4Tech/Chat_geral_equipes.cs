@@ -197,9 +197,8 @@ namespace Dev4Tech
 
             if (funcionario != null)
             {
-                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
-                Home t_equipe = new Home();
-                t_equipe.Show();
+                Home h = new Home();
+                h.Show();
                 this.Hide();
             }
             else if (admin != null)

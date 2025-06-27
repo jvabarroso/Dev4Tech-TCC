@@ -119,9 +119,8 @@ namespace Dev4Tech
 
             if (funcionario != null)
             {
-                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
-                Home t_equipe = new Home();
-                t_equipe.Show();
+                Home h = new Home();
+                h.Show();
                 this.Hide();
             }
             else if (admin != null)
@@ -154,6 +153,7 @@ namespace Dev4Tech
         private void btnConfig_Click(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
 
             if (funcionario != null)
             {
@@ -161,9 +161,15 @@ namespace Dev4Tech
                 config.Show();
                 this.Hide();
             }
+            else if (admin != null)
+            {
+                Configuracoes config = new Configuracoes(admin);
+                config.Show();
+                this.Hide();
+            }
             else
             {
-                MessageBox.Show("Nenhum funcionário logado.");
+                MessageBox.Show("Nenhum usuário logado.");
             }
         }
 

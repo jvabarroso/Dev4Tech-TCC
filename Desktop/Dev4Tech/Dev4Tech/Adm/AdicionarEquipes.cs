@@ -392,12 +392,8 @@ namespace Dev4Tech
 
             if (funcionario != null)
             {
-                // Limpa a sessão antes de voltar para a tela inicial
-                Sessao.FuncionarioLogado = null;
-                Sessao.AdminLogado = null;
-
-                Form1 t_incial = new Form1();
-                t_incial.Show();
+                Home h = new Home();
+                h.Show();
                 this.Hide();
             }
             else if (admin != null)
