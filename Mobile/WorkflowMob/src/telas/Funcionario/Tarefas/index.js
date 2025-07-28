@@ -26,16 +26,16 @@ export default function Tarefas({ navigation, route }) {
       setIsLoading(true);
       setErrorMessage(null);
       const res = await api.get(`dev4tec/tarefa.php`, {
-        params: {
-          id_funcionario: usuario.id
-        }
+        params: { id_funcionario: usuario.id }
       });
+    console.log('Resposta bruta:', res);
+    console.log('Dados:', JSON.stringify(res.data, null, 2)); // Formata melhor o JSON
 
       if (res.data.success) {
         // Calcular o status com base na data de entrega
         const hoje = new Date();
         const tarefasComStatus = res.data.result.map(tarefa => {
-          const dataEntrega = new Date(tarefa.data_entrega.split('/').reverse().join('-'));
+          //const dataEntrega = new Date(tarefa.data_entrega.split('/').reverse().join('-'));
           
           let status = 'pendente';
           if (tarefa.entregue) {
@@ -58,10 +58,12 @@ export default function Tarefas({ navigation, route }) {
         console.log("Erro na API:", res.data.message);
         setDados([]);
       }
-    } catch (error) {
+    }
+    catch (error) {
       console.log("Erro ao listar tarefas:", error);
       setErrorMessage("Erro de conexão com o servidor");
-    } finally {
+    }
+    finally {
       setIsLoading(false);
     }
   }
@@ -130,7 +132,7 @@ export default function Tarefas({ navigation, route }) {
 
         <View style={styles.linhaInfo}>
           <Text style={styles.textolistacargo}>
-            {item.dificuldade_icone} {/* Mostra os ícones de dificuldade */}
+            {item.dificuldade} {/* Mostra os ícones de dificuldade */}
           </Text>
           <Text style={styles.textolistadata}>{item.data_entrega}</Text>
         </View>

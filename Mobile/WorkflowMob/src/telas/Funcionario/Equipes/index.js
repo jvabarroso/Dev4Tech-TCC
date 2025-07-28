@@ -11,7 +11,6 @@ export default function Equipes({ route, navigation }) {
   const styles = getStyles(theme);
   
   const usuario = route.params?.usuario;
-
   const [dados, setDados] = useState([]);
   const [equipeSelecionada, setEquipeSelecionada] = useState(null)
   const [isLoading, setIsLoading] = useState(true);
