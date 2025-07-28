@@ -23,23 +23,22 @@ try {
             t.id_tarefa,
             t.nomeTarefa,
             t.instrucoes,
-            DATE_FORMAT(t.data_entrega, '%Y-%m-%d') as data_entrega,
-            t.dificuldade,
-            e.nome_equipe,
+            DATE_FORMAT(t.data_entrega, '%Y-%m-%d') AS data_entrega,
             EXISTS (
-                SELECT * FROM EntregasTarefa et
+                SELECT 1 
+                FROM EntregasTarefa et
                 JOIN Equipes_Membros em_sub ON et.id_equipe = em_sub.id_equipe
                 WHERE et.id_tarefa = t.id_tarefa
                 AND em_sub.FuncionarioId = :id_funcionario_exist
-            ) as entregue
+            ) AS entregue
         FROM Tarefas t
         JOIN Equipes e ON t.id_equipe = e.id_equipe
         JOIN Equipes_Membros em ON t.id_equipe = em.id_equipe
-        WHERE em.FuncionarioId = 1
-      ORDER BY t.data_entrega ASC");
+        WHERE em.FuncionarioId = :id_funcionario
+        ORDER BY t.data_entrega ASC");
     
     error_log("Consulta preparada com sucesso");
-
+    
     $query->bindValue(':id_funcionario', $id_funcionario, PDO::PARAM_INT);
     $query->bindValue(':id_funcionario_exist', $id_funcionario, PDO::PARAM_INT);
     $query->execute();
@@ -49,29 +48,7 @@ try {
 
     error_log("Tarefas retornadas: " . print_r($tarefas, true));
 
-    foreach ($tarefas as &$tarefa) {
-        $tarefa['data_entrega'] = date('Y-m-d', strtotime($tarefa['data_entrega']));
-        
-        $tarefa['entregue'] = (bool) $tarefa['entregue'];
 
-        switch (strtolower($tarefa['dificuldade'])) {
-            case 'fácil': 
-                $tarefa['dificuldade_texto'] = 'Fácil'; 
-                $tarefa['dificuldade_icone'] = '⭐'; 
-                break;
-            case 'média': 
-                $tarefa['dificuldade_texto'] = 'Média'; 
-                $tarefa['dificuldade_icone'] = '⭐⭐'; 
-                break;
-            case 'difícil': 
-                $tarefa['dificuldade_texto'] = 'Difícil'; 
-                $tarefa['dificuldade_icone'] = '⭐⭐⭐'; 
-                break;
-            default: 
-                $tarefa['dificuldade_texto'] = $tarefa['dificuldade']; 
-                $tarefa['dificuldade_icone'] = '⭐';
-        }
-    }
     echo json_encode([
         'success' => true,
         'result' => $tarefas

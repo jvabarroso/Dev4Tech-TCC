@@ -28,22 +28,27 @@ export default function Tarefas({ navigation, route }) {
       const res = await api.get(`dev4tec/tarefa.php`, {
         params: { id_funcionario: usuario.id }
       });
-    console.log('Resposta bruta:', res);
-    console.log('Dados:', JSON.stringify(res.data, null, 2)); // Formata melhor o JSON
+
+      console.log('Resposta bruta:', res);
+      console.log('Dados:', JSON.stringify(res.data, null, 2)); 
 
       if (res.data.success) {
         // Calcular o status com base na data de entrega
         const hoje = new Date();
         const tarefasComStatus = res.data.result.map(tarefa => {
-          //const dataEntrega = new Date(tarefa.data_entrega.split('/').reverse().join('-'));
+          const dataEntrega = new Date(tarefa.data_entrega.split('/').reverse().join('-'));
           
           let status = 'pendente';
+
           if (tarefa.entregue) {
             status = 'concluido';
-          } else if (dataEntrega < hoje) {
-            status = 'atrasada';
-          }
-          
+          } else {
+              const dataEntrega = new Date(tarefa.data_entrega);
+              if (dataEntrega < hoje) {
+                status = 'atrasada';
+              }
+           }
+
           return {
             ...tarefa,
             status_tarefa: status,
@@ -71,6 +76,7 @@ export default function Tarefas({ navigation, route }) {
   useEffect(() => {
     listarDados();
   }, [usuario?.id]);
+
 
   const filtrarTarefas = () => {
     let tarefasFiltradas = dados;
