@@ -38,7 +38,6 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.pictureBox18 = new System.Windows.Forms.PictureBox();
             this.btnEstatisticas = new System.Windows.Forms.PictureBox();
@@ -132,6 +131,7 @@
             this.label39 = new System.Windows.Forms.Label();
             this.lblPlanejamento = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
+            this.panelRankingEquipes = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -189,6 +189,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox47)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox48)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox49)).BeginInit();
+            this.panelRankingEquipes.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblMembros
@@ -225,7 +226,7 @@
             this.lblTarefas.Location = new System.Drawing.Point(107, 195);
             this.lblTarefas.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTarefas.Name = "lblTarefas";
-            this.lblTarefas.Size = new System.Drawing.Size(43, 13);
+            this.lblTarefas.Size = new System.Drawing.Size(42, 13);
             this.lblTarefas.TabIndex = 93;
             this.lblTarefas.Text = "Tarefas";
             this.lblTarefas.Click += new System.EventHandler(this.lblTarefas_Click);
@@ -291,19 +292,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(545, 105);
+            this.label1.Location = new System.Drawing.Point(182, 105);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(116, 32);
             this.label1.TabIndex = 98;
             this.label1.Text = "RANKING";
-            // 
-            // listView1
-            // 
-            this.listView1.Location = new System.Drawing.Point(350, 0);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(919, 966);
-            this.listView1.TabIndex = 96;
-            this.listView1.UseCompatibleStateImageBehavior = false;
             // 
             // groupBox2
             // 
@@ -320,7 +313,7 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.pictureBox12);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Location = new System.Drawing.Point(468, 157);
+            this.groupBox2.Location = new System.Drawing.Point(105, 157);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(685, 94);
             this.groupBox2.TabIndex = 99;
@@ -473,7 +466,7 @@
             this.groupBox3.Controls.Add(this.label14);
             this.groupBox3.Controls.Add(this.pictureBox24);
             this.groupBox3.Controls.Add(this.label15);
-            this.groupBox3.Location = new System.Drawing.Point(468, 257);
+            this.groupBox3.Location = new System.Drawing.Point(105, 257);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(685, 94);
             this.groupBox3.TabIndex = 109;
@@ -625,7 +618,7 @@
             this.groupBox4.Controls.Add(this.label20);
             this.groupBox4.Controls.Add(this.pictureBox31);
             this.groupBox4.Controls.Add(this.label21);
-            this.groupBox4.Location = new System.Drawing.Point(468, 357);
+            this.groupBox4.Location = new System.Drawing.Point(105, 357);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(685, 94);
             this.groupBox4.TabIndex = 109;
@@ -776,7 +769,7 @@
             this.groupBox5.Controls.Add(this.label26);
             this.groupBox5.Controls.Add(this.pictureBox38);
             this.groupBox5.Controls.Add(this.label27);
-            this.groupBox5.Location = new System.Drawing.Point(468, 457);
+            this.groupBox5.Location = new System.Drawing.Point(105, 457);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(685, 94);
             this.groupBox5.TabIndex = 109;
@@ -917,7 +910,7 @@
             this.groupBox6.Controls.Add(this.label32);
             this.groupBox6.Controls.Add(this.pictureBox45);
             this.groupBox6.Controls.Add(this.label33);
-            this.groupBox6.Location = new System.Drawing.Point(468, 557);
+            this.groupBox6.Location = new System.Drawing.Point(105, 557);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(685, 94);
             this.groupBox6.TabIndex = 109;
@@ -1048,7 +1041,7 @@
             // 
             this.pictureBox4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.BackgroundImage")));
             this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox4.Location = new System.Drawing.Point(471, 76);
+            this.pictureBox4.Location = new System.Drawing.Point(108, 76);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(64, 64);
             this.pictureBox4.TabIndex = 97;
@@ -1318,22 +1311,29 @@
             this.label40.Text = "<- Voltar";
             this.label40.Click += new System.EventHandler(this.label40_Click);
             // 
+            // panelRankingEquipes
+            // 
+            this.panelRankingEquipes.Controls.Add(this.groupBox6);
+            this.panelRankingEquipes.Controls.Add(this.groupBox5);
+            this.panelRankingEquipes.Controls.Add(this.groupBox4);
+            this.panelRankingEquipes.Controls.Add(this.groupBox3);
+            this.panelRankingEquipes.Controls.Add(this.groupBox2);
+            this.panelRankingEquipes.Controls.Add(this.label1);
+            this.panelRankingEquipes.Controls.Add(this.pictureBox4);
+            this.panelRankingEquipes.Location = new System.Drawing.Point(363, 0);
+            this.panelRankingEquipes.Name = "panelRankingEquipes";
+            this.panelRankingEquipes.Size = new System.Drawing.Size(900, 687);
+            this.panelRankingEquipes.TabIndex = 134;
+            // 
             // Ranking_Equipes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 679);
+            this.Controls.Add(this.panelRankingEquipes);
             this.Controls.Add(this.label40);
             this.Controls.Add(this.lblPlanejamento);
             this.Controls.Add(this.groupBox7);
-            this.Controls.Add(this.groupBox6);
-            this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.listView1);
             this.Controls.Add(this.lblMembros);
             this.Controls.Add(this.lblRanking);
             this.Controls.Add(this.lblTarefas);
@@ -1414,6 +1414,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox47)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox48)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox49)).EndInit();
+            this.panelRankingEquipes.ResumeLayout(false);
+            this.panelRankingEquipes.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1440,7 +1442,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label2;
@@ -1524,5 +1525,6 @@
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.PictureBox pictureBox10;
         private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Panel panelRankingEquipes;
     }
 }
