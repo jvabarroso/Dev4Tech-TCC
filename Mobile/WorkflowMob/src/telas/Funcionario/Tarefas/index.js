@@ -34,20 +34,19 @@ export default function Tarefas({ navigation, route }) {
 
       if (res.data.success) {
         // Calcular o status com base na data de entrega
-        const hoje = new Date();
         const tarefasComStatus = res.data.result.map(tarefa => {
-          const dataEntrega = new Date(tarefa.data_entrega.split('/').reverse().join('-'));
-          
-          let status = 'pendente';
+          const entregue = Boolean(+tarefa.entregue);
+          const dataEntrega = new Date(tarefa.data_entrega);
+          const hoje = new Date();
 
-          if (tarefa.entregue) {
+          let status = 'pendente';
+          if (entregue) {
             status = 'concluido';
+          } else if (dataEntrega < hoje) {
+            status = 'atrasada';
           } else {
-              const dataEntrega = new Date(tarefa.data_entrega);
-              if (dataEntrega < hoje) {
-                status = 'atrasada';
-              }
-           }
+            status = 'pendente';
+          }
 
           return {
             ...tarefa,
