@@ -11,8 +11,7 @@ namespace Dev4Tech
 
             if (abrirConexao())
             {
-                try
-                {
+                try {
                     MySqlCommand cmd = new MySqlCommand(query, conectar);
                     cmd.Parameters.AddWithValue("@idTarefa", idTarefa);
                     cmd.Parameters.AddWithValue("@idEquipe", idEquipe);
