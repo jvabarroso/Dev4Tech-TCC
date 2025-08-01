@@ -11,11 +11,11 @@ export default function Equipes({ route, navigation }) {
   const styles = getStyles(theme);
   
   const usuario = route.params?.usuario;
-
   const [dados, setDados] = useState([]);
   const [equipeSelecionada, setEquipeSelecionada] = useState(null)
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [termoBusca, setTermoBusca] = useState('');
 
   async function listarDados() {
   if (!usuario?.id) {
@@ -75,6 +75,21 @@ export default function Equipes({ route, navigation }) {
     );
   }
 
+  const filtrarEquipes = () => {
+    let tarefasFiltradas = dados;
+    
+    // Aplica filtro de busca
+    if (termoBusca) {
+      const termo = termoBusca.toLowerCase();
+      tarefasFiltradas = tarefasFiltradas.filter(item => 
+        item.nome_equipe.toLowerCase().includes(termo) || 
+        item.nome_categoria.toLowerCase().includes(termo)
+      );
+    }
+    
+    return tarefasFiltradas;
+  };
+
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
@@ -82,12 +97,14 @@ export default function Equipes({ route, navigation }) {
           <TextInput
             style={styles.navinput}
             placeholder="🔍 Pesquisa uma equipe"
-            placeholderTextColor={"#ffffff"}
+            placeholderTextColor="#ffffff"
+            value={termoBusca}
+            onChangeText={setTermoBusca}
           />
         {dados.length === 0 ? (
           <Text style={{ textAlign: 'center', marginTop: 20 }}>Nenhuma equipe encontrada</Text>
         ) : (
-          dados.map(item => (
+          filtrarEquipes().map(item => (
           <View key={item.id_equipe}>
               <TouchableOpacity
                 style={styles.containertarefas}

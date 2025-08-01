@@ -23,6 +23,7 @@ export const getStyles = (theme) => StyleSheet.create({
     width: '100%',
     padding: 10,
     fontSize: 17,
+    color: '#fff',
     backgroundColor: '#1A5CFF',
     borderRadius: 10,
     borderBottomWidth: 0.1,

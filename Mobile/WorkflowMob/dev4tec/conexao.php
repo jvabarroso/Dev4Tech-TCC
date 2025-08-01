@@ -21,7 +21,11 @@ $host = 'localhost';
 $banco = 'Dev4Tech';
 
 try {
-	$pdo = new PDO("mysql:dbname=$banco; host=$host", "$usuario", "$senha");
+	$pdo = new PDO("mysql:host=$host;dbname=$banco;charset=utf8mb4", $usuario, $senha, [
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4"
+    ]);
+
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	
 } catch (Exception $e) {

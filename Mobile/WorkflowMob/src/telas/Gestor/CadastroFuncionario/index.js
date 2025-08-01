@@ -10,28 +10,12 @@ export default function CadastroFuncionario({navigation}){
     const { theme } = useTheme();
     const styles = getStyles(theme);
     
-    const [equipe, setEquipe] = useState([
-        {
-          id: '1',
-          titulo: 'Equipe 1',
-          cargo: 'Desenvolvimento de Software',
-          tarefaspostadas: 20,
-          quantdeproblemas:6,
-          tarefasatrasadas:1,
-          tarefasnaoentregues: 6,
-          imagem: require('../../../../assets/img/image.png'),
-        },
-        {
-          id: '2',
-          titulo: 'Equipe 2',
-          cargo: 'Design',
-          tarefaspostadas: 10,
-          quantdeproblemas:2,
-          tarefasatrasadas:2,
-          tarefasnaoentregues: 2,
-          imagem: require('../../../../assets/img/image.png'),
-        }
-      ]);
+    const [nome, setNome] = useState('');
+    const [email, setEmail] = useState('');
+    const [dataNascimento, setDataNascimento] = useState('');
+    const [categoria, setCategoria] = useState('');
+    const [telefone, setTelefone] = useState('');
+    const [endereco, setEndereco] = useState('');
 
     const [equipes, setequipes] = useState(true);
     const [equipeselecionada, setEquipeselecionada] = useState(null);
@@ -47,6 +31,48 @@ export default function CadastroFuncionario({navigation}){
             setequipes(valorAtual => !valorAtual); 
         };
 
+    //Máscara input
+    // Adicione estas funções utilitárias no topo do arquivo
+    function formatarDataParaBanco(data) {
+      if (!data) return '';
+      
+      // Se já está no formato do banco, retorna direto
+      if (/^\d{4}-\d{2}-\d{2}$/.test(data)) return data;
+      
+      // Converte de DD/MM/AAAA para AAAA-MM-DD
+      const partes = data.split('/');
+      if (partes.length === 3) {
+        return `${partes[2]}-${partes[1]}-${partes[0]}`;
+      }
+      return data;
+    }
+
+    function formatarTelefone(telefone) {
+      if (!telefone) return '';
+      // Remove todos os caracteres não numéricos
+      return telefone.replace(/\D/g, '');
+    }
+
+    function formatarDataInput(text) {
+      let data = text.replace(/\D/g, '');
+      
+      if (data.length > 2) data = `${data.slice(0,2)}/${data.slice(2)}`;
+      if (data.length > 5) data = `${data.slice(0,5)}/${data.slice(5,9)}`;
+      
+      return data.slice(0,10);
+    }
+
+    function formatarTelefoneInput(text) {
+      let tel = text.replace(/\D/g, '');
+      
+      if (tel.length > 0) tel = `(${tel}`;
+      if (tel.length > 3) tel = `${tel.slice(0,3)}) ${tel.slice(3)}`;
+      if (tel.length > 10) tel = `${tel.slice(0,10)}-${tel.slice(10,15)}`;
+      
+      return tel.slice(0,15);
+    }
+
+
     return(
    <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.scrollContent}>
@@ -55,42 +81,46 @@ export default function CadastroFuncionario({navigation}){
                         <Text style={styles.texto}>Nome do funcionário</Text>
                         <TextInput
                             style={styles.input}
+                            value={nome}
                             placeholder="Gabriel Kenzo" //depois mudar, mensagem para mim mesmo dnv :D
                             placeholderTextColor={theme.text}
                         />
                         <Text style={styles.texto}>Data de nascimento</Text>
                         <TextInput
                             style={styles.input}
+                            value={dataNascimento}
                             placeholder="xx/xx/xxxx"
                             placeholderTextColor={theme.text}
-                            secureTextEntry={true}
+                            onChangeText={(text) => setDataNascimento(formatarDataInput(text))}
                         />
                         <Text style={styles.texto}>Email</Text>
                         <TextInput
                             style={styles.input}
+                            value={email}
                             placeholder="joaovitinhocraft@gmail.com"
                             placeholderTextColor={theme.text}
-                            secureTextEntry={true}
                         />
                         <Text style={styles.texto}>Telefone</Text>
                         <TextInput
                             style={styles.input}
+                            value={telefone}
                             placeholder="1399899989"
                             placeholderTextColor={theme.text}
+                            onChangeText={(text) => setTelefone(formatarTelefoneInput(text))}
                         />
                         <Text style={styles.texto}>Endereço</Text>
                         <TextInput
                             style={styles.input}
+                            value={endereco}
                             placeholder="Rua João da Fonseca, Jardim Mato Grosso, Cananeia senha"
                             placeholderTextColor={theme.text}
-                            secureTextEntry={true}
                         />
                         <Text style={styles.texto}>Categoria do funcionário</Text>
                         <TextInput
                             style={styles.input}
-                            placeholder="Analista de Marketing"
+                            value={categoria}
+                            placeholder="Analista"
                             placeholderTextColor={theme.text}
-                            secureTextEntry={true}
                         />
                         <Text style={styles.texto}>Adicionar a uma equipe</Text>
                         <TouchableOpacity

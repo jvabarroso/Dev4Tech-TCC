@@ -9,7 +9,7 @@ if (empty($id_funcionario)) {
     echo json_encode([
         'success' => false,
         'message' => 'ID do funcionário não fornecido',
-        'received_data' => $_GET // Para depuração
+        'received_data' => $_GET 
     ]);
     exit();
 }

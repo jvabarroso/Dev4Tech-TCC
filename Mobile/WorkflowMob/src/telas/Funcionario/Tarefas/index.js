@@ -26,24 +26,28 @@ export default function Tarefas({ navigation, route }) {
       setIsLoading(true);
       setErrorMessage(null);
       const res = await api.get(`dev4tec/tarefa.php`, {
-        params: {
-          id_funcionario: usuario.id
-        }
+        params: { id_funcionario: usuario.id }
       });
+
+      console.log('Resposta bruta:', res);
+      console.log('Dados:', JSON.stringify(res.data, null, 2)); 
 
       if (res.data.success) {
         // Calcular o status com base na data de entrega
-        const hoje = new Date();
         const tarefasComStatus = res.data.result.map(tarefa => {
-          const dataEntrega = new Date(tarefa.data_entrega.split('/').reverse().join('-'));
-          
+          const entregue = Boolean(+tarefa.entregue);
+          const dataEntrega = new Date(tarefa.data_entrega);
+          const hoje = new Date();
+
           let status = 'pendente';
-          if (tarefa.entregue) {
+          if (entregue) {
             status = 'concluido';
           } else if (dataEntrega < hoje) {
             status = 'atrasada';
+          } else {
+            status = 'pendente';
           }
-          
+
           return {
             ...tarefa,
             status_tarefa: status,
@@ -58,10 +62,12 @@ export default function Tarefas({ navigation, route }) {
         console.log("Erro na API:", res.data.message);
         setDados([]);
       }
-    } catch (error) {
+    }
+    catch (error) {
       console.log("Erro ao listar tarefas:", error);
       setErrorMessage("Erro de conexão com o servidor");
-    } finally {
+    }
+    finally {
       setIsLoading(false);
     }
   }
@@ -69,6 +75,7 @@ export default function Tarefas({ navigation, route }) {
   useEffect(() => {
     listarDados();
   }, [usuario?.id]);
+
 
   const filtrarTarefas = () => {
     let tarefasFiltradas = dados;
@@ -130,7 +137,7 @@ export default function Tarefas({ navigation, route }) {
 
         <View style={styles.linhaInfo}>
           <Text style={styles.textolistacargo}>
-            {item.dificuldade_icone} {/* Mostra os ícones de dificuldade */}
+            {item.dificuldade} {/* Mostra os ícones de dificuldade */}
           </Text>
           <Text style={styles.textolistadata}>{item.data_entrega}</Text>
         </View>
