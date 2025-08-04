@@ -11,11 +11,24 @@ export default function CadastroFuncionario({navigation}){
     const styles = getStyles(theme);
     
     const [nome, setNome] = useState('');
+    const [senha, setSenha] = useState('');
     const [email, setEmail] = useState('');
     const [dataNascimento, setDataNascimento] = useState('');
-    const [categoria, setCategoria] = useState('');
+    const [cargo, setCargo] = useState('');
     const [telefone, setTelefone] = useState('');
     const [endereco, setEndereco] = useState('');
+    const [numero, setNumero] = useState('');
+
+    const campos = {
+        nome,
+        senha,
+        email,
+        dataNascimento,
+        cargo,
+        telefone,
+        endereco,
+        numero
+    };
 
     const [equipes, setequipes] = useState(true);
     const [equipeselecionada, setEquipeselecionada] = useState(null);
@@ -30,6 +43,54 @@ export default function CadastroFuncionario({navigation}){
             setEquipeselecionada(equipeSelecionada.titulo);
             setequipes(valorAtual => !valorAtual); 
         };
+
+    async function cadastrar() {      
+        const camposVazios = Object.entries(campos).filter(([_, valor]) => !valor.trim());      
+        if (camposVazios.length > 0) {
+            Alert.alert("Erro", "Preencha todos os campos obrigatórios!");
+            return;
+        }
+        try {
+            const obj = {
+                
+                Nome : nome, 
+                Cargo :cargo, 
+                DataNascimento : dataNascimento, 
+                Telefone : telefone, 
+                Email : email, 
+                Senha : senha, 
+                endereco : endereco, 
+                numero : numero    
+            }
+
+            const res = await api.post('dev4tec/cadastrofunc.php', obj);
+
+            if (res.data.sucesso === false) {
+            showMessage({
+                message: "Erro ao Salvar",
+                description: res.data.mensagem,
+                type: "warning",
+                duration: 3000,                    
+            });  
+            limparCampos();            
+            return;
+            }
+
+            setSucess(true);
+                showMessage({
+                message: "Salvo com Sucesso",
+                description: "Registro Salvo",
+                type: "success",
+                duration: 800,             
+            });          
+                
+            } 
+        catch (error) {
+            Alert.alert("Ops", "Alguma coisa deu errado, tente novamente.");
+            setSucess(false);
+        }
+        
+    }   
 
     //Máscara input
     // Adicione estas funções utilitárias no topo do arquivo
@@ -84,12 +145,21 @@ export default function CadastroFuncionario({navigation}){
                             value={nome}
                             placeholder="Gabriel Kenzo" //depois mudar, mensagem para mim mesmo dnv :D
                             placeholderTextColor={theme.text}
+                            onChangeText={(text) => setNome(text)}
                         />
-                        <Text style={styles.texto}>Data de nascimento</Text>
+                        <Text style={styles.texto}>Senha</Text>
+                        <TextInput
+                            style={styles.input}
+                            value={senha}
+                            placeholder="1234"
+                            placeholderTextColor={theme.text}
+                            onChangeText={(text) => setSenha(text)}
+                        />
+                        <Text style={styles.texto}>Data de Nascimento</Text>
                         <TextInput
                             style={styles.input}
                             value={dataNascimento}
-                            placeholder="xx/xx/xxxx"
+                            placeholder="25/25/2525"
                             placeholderTextColor={theme.text}
                             onChangeText={(text) => setDataNascimento(formatarDataInput(text))}
                         />
@@ -99,28 +169,44 @@ export default function CadastroFuncionario({navigation}){
                             value={email}
                             placeholder="joaovitinhocraft@gmail.com"
                             placeholderTextColor={theme.text}
+                            onChangeText={(text) => setEmail(text)}
                         />
                         <Text style={styles.texto}>Telefone</Text>
                         <TextInput
                             style={styles.input}
                             value={telefone}
-                            placeholder="1399899989"
+                            placeholder="(13) 99899989"
                             placeholderTextColor={theme.text}
                             onChangeText={(text) => setTelefone(formatarTelefoneInput(text))}
                         />
-                        <Text style={styles.texto}>Endereço</Text>
-                        <TextInput
-                            style={styles.input}
-                            value={endereco}
-                            placeholder="Rua João da Fonseca, Jardim Mato Grosso, Cananeia senha"
-                            placeholderTextColor={theme.text}
-                        />
+                        <View style={styles.linha}>
+                            <Text style={styles.textoe}>Endereço</Text> 
+                            <Text style={styles.texton}>Numero</Text>
+                        </View>  
+                        <View style={styles.linha}>
+                            <TextInput
+                                style={styles.inputendereco}
+                                value={endereco}
+                                placeholder="Rua João da Fonseca, Jardim Mato Grosso, Cananeia senha"
+                                placeholderTextColor={theme.text}
+                                onChangeText={(text) => setEndereco(text)}
+                            />   
+                            <TextInput
+                                style={styles.inputnum}
+                                value={numero}
+                                placeholder="123"
+                                placeholderTextColor={theme.text}
+                                onChangeText={(text) => setNumero(text)}
+                            />   
+                        </View>
+
                         <Text style={styles.texto}>Categoria do funcionário</Text>
                         <TextInput
                             style={styles.input}
-                            value={categoria}
+                            value={cargo}
                             placeholder="Analista"
                             placeholderTextColor={theme.text}
+                            onChangeText={(text) => setCargo(text)}
                         />
                         <Text style={styles.texto}>Adicionar a uma equipe</Text>
                         <TouchableOpacity

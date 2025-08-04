@@ -1,119 +1,39 @@
 <?php 
-include_once('conexao.php');
-
-function limparTelefone($telefone) {
-    return preg_replace('/[^0-9]/', '', $telefone);
-}
+require_once("conexao.php");
 
 // Recebe os dados JSON
-$input = file_get_contents('php://input');
-$postjson = json_decode($input, true);
+$tabela = 'Funcionarios';
+
+$postjson = json_decode(file_get_contents('php://input'), true);
 
 
-// Verifica se o JSON foi decodificado corretamente
-if ($postjson === null) {
-    echo json_encode(['success' => false, 'message' => 'Dados inválidos']);
-    exit();
-}
+$Nome = @$postjson['Nome'];
+$Cargo = @$postjson['Cargo'];
+$DataNascimento = @$postjson['DataNascimento'];
+$Telefone = $postjson['Telefone'];
+$Email = $postjson['Email'];
+$Senha = $postjson['Senha'];
+$endereco = $postjson['endereco'];
+$numero = $postjson['numero'];
 
-if (!isset($postjson['role']) || empty($postjson['role'])) {
-    echo json_encode(['success' => false, 'message' => 'Tipo de usuário não especificado']);
-    exit();
-}
-
-if (empty($postjson['Nome']) || empty($postjson['Email']) || empty($postjson['DataNascimento']) ||empty($postjson['DataNascimento']) || empty($postjson['Telefone']) || empty($postjson['endereco'])) {
-    echo json_encode(['success' => false, 'message' => 'Preencha todos os campos obrigatórios']);
-    exit();
-}
-
-try {
-    if($postjson['role'] === 'funcionario'){
-    $telefoneLimpo = limparTelefone($postjson['Telefone']);
-    $query = $pdo->prepare("UPDATE Funcionarios SET
-        DataNascimento = :DataNascimento,
-        Telefone = :Telefone,
-        endereco = :endereco
-        WHERE FuncionarioId = :id"); 
-
-        $query->bindValue(":DataNascimento", $postjson['DataNascimento']);
-        $query->bindValue(":Telefone", $telefoneLimpo);
-        $query->bindValue(":endereco", $postjson['endereco']);
-        $query->bindValue(":id", $postjson['id']);
-        $query->execute();
-    
-        if ($query->rowCount() > 0) {
-            // Busca os dados atualizados
-            $query2 = $pdo->prepare("SELECT * FROM Funcionarios WHERE FuncionarioId = :id");
-            $query2->bindValue(":id", $postjson['id']);
-            $query2->execute();
-            $user = $query2->fetch(PDO::FETCH_ASSOC);
-            
-            echo json_encode([
-                'success' => true,
-                'usuario' => [
-                    'id' => $user['FuncionarioId'],
-                    'nome' => $user['Nome'],
-                    'email' => $user['Email'],
-                    'cargo' => $user['Cargo'],
-                    'telefone' => $user['Telefone'],
-                    'cpf' => $user['CPF'],
-                    'dataNascimento' => $user['DataNascimento'],
-                    'endereco' => $user['endereco'],
-                    'role' => 'funcionario'
-                ]
-            ]);
-        } else {
-            echo json_encode(['success' => false, 'message' => 'Nenhum dado foi alterado']);
-        }
-    }
-    else if ($postjson['role'] === 'administrador'){
-        $telefoneLimpo = limparTelefone($postjson['Telefone']);
-        $query = $pdo->prepare("UPDATE Administradores SET
-            DataNascimento = :DataNascimento,
-            Telefone = :Telefone,
-            endereco = :endereco
-            WHERE AdminId = :id");
-        
-        $query->bindValue(":DataNascimento", $postjson['DataNascimento']);
-        $query->bindValue(":Telefone", $telefoneLimpo);
-        $query->bindValue(":endereco", $postjson['endereco']);
-        $query->bindValue(":id", $postjson['id']);
-        $query->execute();
+$res = $pdo->prepare("INSERT INTO $tabela SET Nome = :Nome, Cargo = :Cargo, 
+DataNascimento = :DataNascimento, Telefone = :Telefone, Email = :Email, 
+Senha = :Senha, data_cadFunc  = NOW(), endereco = :endereco, numero = :numero");	
 
 
-        if ($query->rowCount() > 0) {
-            // Busca os dados atualizados
-            $query2 = $pdo->prepare("SELECT * FROM Administradores WHERE AdminId = :id");
-            $query2->bindValue(":id", $postjson['id']);
-            $query2->execute();
-            $user = $query2->fetch(PDO::FETCH_ASSOC);
-            
-            echo json_encode([
-                'success' => true,
-                'usuario' => [
-                    'id' => $user['AdminId'],
-                    'nome' => $user['Nome'],
-                    'email' => $user['Email'],
-                    'cargo' => $user['Cargo'],
-                    'telefone' => $user['Telefone'],
-                    'cpf' => $user['CPF'],
-                    'dataNascimento' => $user['DataNascimento'],
-                    'endereco' => $user['endereco'],
-                    'role' => 'administrador'
-                ]
-            ]);
-        } else {
-            echo json_encode(['success' => false, 'message' => 'Nenhum registro foi atualizado']);
-        }
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Tipo de usuário não reconhecido']);
-    }
-} catch (PDOException $e) {
-    error_log("Erro no banco de dados: " . $e->getMessage());
-    echo json_encode([
-        'success' => false,
-        'message' => 'Erro no banco de dados: '
-    ]);
-}
+$res->bindValue(":Nome", "$Nome");
+$res->bindValue(":Cargo", "$Cargo");
+$res->bindValue(":DataNascimento", "$DataNascimento");
+$res->bindValue(":Telefone", "$Telefone");
+$res->bindValue(":Email", "$Email");
+$res->bindValue(":Senha", "$Senha");
+$res->bindValue(":endereco", "$endereco");
+$res->bindValue(":numero", "$numero");
+
+$res->execute();
+
+$result = json_encode(array('mensagem'=>'Salvo com sucesso!', 'sucesso'=>true));
+
+echo $result;
 
 ?>
