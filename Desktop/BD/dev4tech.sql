@@ -1,8 +1,5 @@
-
--- Criação do banco de dados
 CREATE DATABASE Dev4Tech;
 USE Dev4Tech;
-
 -- Tabela de Empresas
 CREATE TABLE Empresas (
     id_empresa INT PRIMARY KEY auto_increment,
@@ -14,9 +11,9 @@ CREATE TABLE Empresas (
     numResidencia VARCHAR(200),
     bairro varchar(255),
     complemento varchar(255),
-    data_cadEm DATETIME
+    data_cadEm DATETIME,
+    setorEmpresarial VARCHAR(255)
 );
-
 -- Tabela de Administradores
 CREATE TABLE Administradores (
     AdminId INT PRIMARY KEY auto_increment,
@@ -29,7 +26,9 @@ CREATE TABLE Administradores (
     Senha VARCHAR(255),
     data_cadAdmin DATETIME,
     endereco VARCHAR(255) NOT NULL,
-    num VARCHAR(255) NOT NULL
+    num VARCHAR(255) NOT NULL,
+    id_empresa INT,
+    FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa) ON DELETE CASCADE
 );
 
 -- Tabela de Funcionários
@@ -44,13 +43,19 @@ CREATE TABLE Funcionarios (
     Senha VARCHAR(255),
     data_cadFunc DATETIME,
     endereco VARCHAR(255) NOT NULL,
-    numero VARCHAR(255) NOT NULL
+    numero VARCHAR(255) NOT NULL,
+    id_empresa INT,
+    FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa) ON DELETE CASCADE,
+    AdminId INT,
+    FOREIGN KEY (AdminId) REFERENCES Administradores(AdminId) ON DELETE CASCADE
 );
 
 CREATE TABLE MensagensChat (
     id_mensagem INT PRIMARY KEY auto_increment,
     texto varchar(255) NOT NULL,
-    data_envio DATETIME
+    data_envio DATETIME,
+    id_equipe INT,
+    FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE 
 );
 
 -- Tabela Categorias
@@ -76,11 +81,6 @@ CREATE TABLE Equipes_Membros (
     FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (FuncionarioId) REFERENCES Funcionarios(FuncionarioId) ON DELETE CASCADE ON UPDATE CASCADE
 );
-
--- Adicionar coluna id_equipe na tabela de mensagens
-ALTER TABLE MensagensChat
-ADD COLUMN id_equipe INT NOT NULL,
-ADD FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE;
 
 -- Criar tabela para armazenar última atividade
 CREATE TABLE UltimaAtividadeEquipe (

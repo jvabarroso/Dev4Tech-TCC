@@ -1,4 +1,5 @@
-﻿using System;
+﻿// Classe empresaCadAdmin.cs
+using System;
 using System.Data;
 using MySql.Data.MySqlClient;
 
@@ -8,6 +9,7 @@ namespace Dev4Tech
     {
         private string AdminId, Email, Senha, Telefone, CPF, Cargo, Nome, endereco, num;
         private DateTime data_cadAdmin, DataNascimento;
+        private int id_empresa;  // novo campo
 
         public void setNum(string num) { this.num = num; }
         public void setEndereco(string endereco) { this.endereco = endereco; }
@@ -20,6 +22,7 @@ namespace Dev4Tech
         public void setTelefone(string telefone) { this.Telefone = telefone; }
         public void setEmail(string email) { this.Email = email; }
         public void setSenha(string senha) { this.Senha = senha; }
+        public void setIdEmpresa(int idEmpresa) { this.id_empresa = idEmpresa; }
 
         public string getEndereco() { return this.endereco; }
         public string getNum() { return this.num; }
@@ -32,14 +35,15 @@ namespace Dev4Tech
         public string getTelefone() { return this.Telefone; }
         public string getEmail() { return this.Email; }
         public string getSenha() { return this.Senha; }
+        public int getIdEmpresa() { return this.id_empresa; }
 
-        // Método para obter administrador por email e senha (login)
+        // Método para obter administrador por email e senha (login), agora com id_empresa
         public empresaCadAdmin ObterAdminPorEmailSenha(string email, string senha)
         {
             empresaCadAdmin admin = null;
 
-            string query = "SELECT AdminId, Nome, Cargo, CPF, DataNascimento, Telefone, Email, endereco, num, data_cadAdmin, Senha " +
-                           "FROM Administradores WHERE Email = @Email AND Senha = @Senha LIMIT 1";
+            string query = @"SELECT AdminId, Nome, Cargo, CPF, DataNascimento, Telefone, Email, endereco, num, data_cadAdmin, Senha, id_empresa 
+                             FROM Administradores WHERE Email = @Email AND Senha = @Senha LIMIT 1";
 
             if (this.abrirConexao())
             {
@@ -66,6 +70,7 @@ namespace Dev4Tech
                             admin.setNum(reader["num"].ToString());
                             admin.setData_cadAdmin(Convert.ToDateTime(reader["data_cadAdmin"]));
                             admin.setSenha(reader["Senha"].ToString());
+                            admin.setIdEmpresa(Convert.ToInt32(reader["id_empresa"]));
                         }
                     }
                 }
@@ -78,11 +83,11 @@ namespace Dev4Tech
             return admin;
         }
 
-        // Método inserir para mandar os dados no banco de dados
+        // Método inserir com id_empresa
         public void inserir()
         {
-            string query = "INSERT INTO Administradores(AdminId,Nome, Cargo, CPF, DataNascimento, Telefone, Email, Senha, data_cadAdmin, endereco, num) " +
-                           "VALUES('" + getAdminId() + "','" + getNome() + "','" + getCargo() + "','" + getCPF() + "','" + getDataNascimento().ToString("yyyy-MM-dd HH:mm:ss") + "','" + getTelefone() + "','" + getEmail() + "','" + getSenha() + "','" + getData_cadAdmin().ToString("yyyy-MM-dd HH:mm:ss") + "','" + getEndereco() + "','" + getNum() + "')";
+            string query = @"INSERT INTO Administradores (AdminId, Nome, Cargo, CPF, DataNascimento, Telefone, Email, Senha, data_cadAdmin, endereco, num, id_empresa) 
+                             VALUES('" + getAdminId() + "','" + getNome() + "','" + getCargo() + "','" + getCPF() + "','" + getDataNascimento().ToString("yyyy-MM-dd HH:mm:ss") + "','" + getTelefone() + "','" + getEmail() + "','" + getSenha() + "','" + getData_cadAdmin().ToString("yyyy-MM-dd HH:mm:ss") + "','" + getEndereco() + "','" + getNum() + "'," + getIdEmpresa() + ")";
 
             if (this.abrirConexao())
             {
