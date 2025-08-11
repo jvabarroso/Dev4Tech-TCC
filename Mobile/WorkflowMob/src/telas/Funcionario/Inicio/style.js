@@ -20,6 +20,14 @@ export const getStyles = (theme) => StyleSheet.create({
     marginBottom: '135%',
     marginRight: '60%',
   },
+  logofoto: {
+    width:'15%',
+    height:'15%',
+  },
+  linha:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
   areaTitulo: {
     position: 'absolute',
     alignItems: 'center',

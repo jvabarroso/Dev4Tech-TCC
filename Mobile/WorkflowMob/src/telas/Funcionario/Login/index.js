@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {Text, TextInput, View, TouchableOpacity, Alert} from 'react-native';
+import { showMessage } from "react-native-flash-message";
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
 
@@ -14,7 +15,14 @@ export default function Login({navigation}){
 
     const verificacao = async () => {
       if (!email.trim() || !senha.trim()) {
-        Alert.alert('Atenção', 'Preencha todos os campos.');
+        showMessage({
+          message: 'Atenção Preencha todos os campos.',
+          description: 'Preencha as credenciais',
+          floating: true,
+          statusBarHeight: 70,
+          type: "warning",
+          duration: 2000,             
+        });
         return;
       }
       try {
@@ -35,13 +43,24 @@ export default function Login({navigation}){
             navigation.navigate('Home', { usuario: json.usuario});
           }
         } else {
-          Alert.alert('Erro', json.message || 'Credenciais inválidas');
+            showMessage({
+                message: "Erro",
+                description: json.message || 'Credenciais inválidas',
+                floating: true,
+                statusBarHeight: 70,
+                type: "danger",
+                duration: 2000,             
+            });
         }
       } catch (error) {
-        Alert.alert(
-          'Erro', 
-          error.response?.data?.message || 'Não foi possível conectar ao servidor'
-        );
+          showMessage({
+            message: "Erro",
+            description: error.response?.data?.message || 'Não foi possível conectar ao servidor',
+            floating: true,
+            statusBarHeight: 70,
+            type: "danger",
+            duration: 2000,             
+          });
       }
     };
 

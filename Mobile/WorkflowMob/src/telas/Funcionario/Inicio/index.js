@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity} from 'react-native';
+import { Text, View, TouchableOpacity,Image} from 'react-native';
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
 
@@ -9,7 +9,13 @@ export default function Inicio({navigation}){
 
     return(
         <View style={styles.container}>
-            <Text style={styles.logo}>WORKFLOW</Text>
+            <View style={styles.linha}>
+                <Text style={styles.logo}>WORKFLOW</Text> 
+                <Image 
+                    style={styles.logofoto}
+                    source={require('../../../../assets/img/logo.png')} >
+                </Image>
+            </View>
 
             <View style={styles.areaTitulo}>
               <Text style={styles.titulo}>Bem vindo ao WORKFLOW </Text>

@@ -145,7 +145,7 @@ function TabsAdm({route}){
       })}
     >
       <Tab.Screen name="HomeAdm" component={HomeAdm} initialParams={{ usuario }}/>
-      <Tab.Screen name="CadastroFuncionario" component={CadastroFuncionario} />
+      <Tab.Screen name="CadastroFuncionario" component={CadastroFuncionario} initialParams={{ usuario }} />
       <Tab.Screen name="CadastroTarefas" component={CadastroTarefas} />
       <Tab.Screen name="CadastroEquipes" component={CadastroEquipes} />
       <Tab.Screen name="RankingAdm" component={RankingAdm} />
