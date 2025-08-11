@@ -246,7 +246,7 @@
             this.pictureBox2.BackgroundImage = global::Dev4Tech.Properties.Resources._141;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox2.Location = new System.Drawing.Point(580, 53);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(442, 356);
             this.pictureBox2.TabIndex = 80;
@@ -281,7 +281,7 @@
             // 
             this.txtCadFuncTelefone.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCadFuncTelefone.Location = new System.Drawing.Point(126, 387);
-            this.txtCadFuncTelefone.Mask = "(00) 00000-0000";
+            this.txtCadFuncTelefone.Mask = "+00 (99) 00000-0000";
             this.txtCadFuncTelefone.Name = "txtCadFuncTelefone";
             this.txtCadFuncTelefone.Size = new System.Drawing.Size(120, 22);
             this.txtCadFuncTelefone.TabIndex = 85;

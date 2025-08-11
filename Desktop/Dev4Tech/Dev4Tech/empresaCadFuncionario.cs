@@ -1,5 +1,4 @@
-﻿// Classe empresaCadFuncionario.cs
-using System;
+﻿using System;
 using System.Data;
 using MySql.Data.MySqlClient;
 
@@ -7,10 +6,8 @@ namespace Dev4Tech
 {
     public class empresaCadFuncionario : conexao
     {
-        private string FuncionarioId, Email, Senha, Telefone, CPF, Cargo, Nome, endereco, numero;
+        private string FuncionarioId, Email, Senha, Telefone, CPF, Cargo, Nome, endereco, numero, id_empresa, AdminId;
         private DateTime data_cadFunc, DataNascimento;
-        private int id_empresa; // novo campo
-        private int AdminId;    // novo campo
 
         public void setData_cadFunc(DateTime data_cadFunc) { this.data_cadFunc = data_cadFunc; }
         public void setNumero(string numero) { this.numero = numero; }
@@ -23,8 +20,8 @@ namespace Dev4Tech
         public void setTelefone(string telefone) { this.Telefone = telefone; }
         public void setEmail(string email) { this.Email = email; }
         public void setSenha(string senha) { this.Senha = senha; }
-        public void setIdEmpresa(int idEmpresa) { this.id_empresa = idEmpresa; }
-        public void setAdminId(int adminId) { this.AdminId = adminId; }
+        public void setIdEmpresa(string id_Empresa) { this.id_empresa = id_Empresa; }
+        public void setAdminId(string AdminId) { this.AdminId = AdminId; }
 
         public string getEndereco() { return this.endereco; }
         public string getNumero() { return this.numero; }
@@ -37,10 +34,9 @@ namespace Dev4Tech
         public string getEmail() { return this.Email; }
         public string getSenha() { return this.Senha; }
         public DateTime getData_cadFunc() { return this.data_cadFunc; }
-        public int getIdEmpresa() { return this.id_empresa; }
-        public int getAdminId() { return this.AdminId; }
+        public string getIdEmpresa() { return this.id_empresa; }
+        public string getAdminId() { return this.AdminId; }
 
-        // Obter funcionário por email e senha, agora com id_empresa e AdminId
         public empresaCadFuncionario ObterFuncionarioPorEmailSenha(string email, string senha)
         {
             empresaCadFuncionario func = null;
@@ -48,20 +44,21 @@ namespace Dev4Tech
             string query = @"SELECT FuncionarioId, Nome, Cargo, CPF, DataNascimento, Telefone, Email, endereco, numero, data_cadFunc, Senha, id_empresa, AdminId 
                              FROM Funcionarios WHERE Email = @Email AND Senha = @Senha LIMIT 1";
 
-            if (this.abrirConexao())
+            if (!this.abrirConexao())
+                throw new Exception("Falha ao abrir conexão com o banco de dados.");
+
+            try
             {
-                try
+                using (MySqlCommand cmd = new MySqlCommand(query, conectar))
                 {
-                    MySqlCommand cmd = new MySqlCommand(query, conectar);
-                    cmd.Parameters.AddWithValue("@Email", email);
-                    cmd.Parameters.AddWithValue("@Senha", senha);
+                    cmd.Parameters.AddWithValue("@Email", email?.Trim() ?? "");
+                    cmd.Parameters.AddWithValue("@Senha", senha); // Se usar hash, ajuste aqui
 
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
                         {
                             func = new empresaCadFuncionario();
-
                             func.setFuncionarioId(reader["FuncionarioId"].ToString());
                             func.setNome(reader["Nome"].ToString());
                             func.setCargo(reader["Cargo"].ToString());
@@ -73,73 +70,52 @@ namespace Dev4Tech
                             func.setNumero(reader["numero"].ToString());
                             func.setData_cadFunc(Convert.ToDateTime(reader["data_cadFunc"]));
                             func.setSenha(reader["Senha"].ToString());
-                            func.setIdEmpresa(Convert.ToInt32(reader["id_empresa"]));
-                            func.setAdminId(Convert.ToInt32(reader["AdminId"]));
+                            func.setIdEmpresa(reader["id_empresa"].ToString());
+                            func.setAdminId(reader["AdminId"].ToString());
                         }
                     }
                 }
-                finally
-                {
-                    this.fecharConexao();
-                }
             }
-
+            finally
+            {
+                this.fecharConexao();
+            }
             return func;
         }
 
-        // Inserção com campos novos id_empresa e AdminId
         public void inserir()
         {
-            string query = @"INSERT INTO Funcionarios(FuncionarioId, Nome, Cargo, CPF, DataNascimento, Telefone, Email, Senha, data_cadFunc, endereco, numero, id_empresa, AdminId) 
-                             VALUES('" + getFuncionarioId() + "','" + getNome() + "','" + getCargo() + "','" + getCPF() + "','" + getDataNascimento().ToString("yyyy-MM-dd HH:mm:ss") + "','" + getTelefone() + "','" + getEmail() + "','" + getSenha() + "','" + getData_cadFunc().ToString("yyyy-MM-dd HH:mm:ss") + "','" + getEndereco() + "','" + getNumero() + "'," + getIdEmpresa() + "," + getAdminId() + ")";
+            string query = @"INSERT INTO Funcionarios
+                (Nome, Cargo, CPF, DataNascimento, Telefone, Email, Senha, data_cadFunc, endereco, numero, id_empresa, AdminId) 
+                VALUES (@Nome, @Cargo, @CPF, @DataNascimento, @Telefone, @Email, @Senha, @DataCadFunc, @Endereco, @Numero, @IdEmpresa, @AdminId)";
 
-            if (this.abrirConexao())
-            {
-                MySqlCommand cmd = new MySqlCommand(query, conectar);
-                cmd.ExecuteNonQuery();
-                this.fecharConexao();
-            }
-        }
+            if (!this.abrirConexao())
+                throw new Exception("Falha ao abrir conexão com o banco de dados.");
 
-        // Exclusão de funcionário (mantida igual)
-        public void excluir()
-        {
-            string query = "DELETE FROM Funcionarios WHERE FuncionarioId = @id";
-            if (this.abrirConexao())
+            try
             {
-                try
+                using (MySqlCommand cmd = new MySqlCommand(query, conectar))
                 {
-                    MySqlCommand cmd = new MySqlCommand(query, conectar);
-                    cmd.Parameters.AddWithValue("@id", getFuncionarioId());
+                    cmd.Parameters.AddWithValue("@Nome", getNome()?.Trim());
+                    cmd.Parameters.AddWithValue("@Cargo", getCargo()?.Trim());
+                    cmd.Parameters.AddWithValue("@CPF", getCPF()?.Trim());
+                    cmd.Parameters.AddWithValue("@DataNascimento", getDataNascimento());
+                    cmd.Parameters.AddWithValue("@Telefone", getTelefone()?.Trim());
+                    cmd.Parameters.AddWithValue("@Email", getEmail()?.Trim());
+                    cmd.Parameters.AddWithValue("@Senha", getSenha());
+                    cmd.Parameters.AddWithValue("@DataCadFunc", getData_cadFunc());
+                    cmd.Parameters.AddWithValue("@Endereco", getEndereco()?.Trim());
+                    cmd.Parameters.AddWithValue("@Numero", getNumero()?.Trim());
+                    cmd.Parameters.AddWithValue("@IdEmpresa", getIdEmpresa());
+                    cmd.Parameters.AddWithValue("@AdminId", getAdminId());
+
                     cmd.ExecuteNonQuery();
                 }
-                finally
-                {
-                    this.fecharConexao();
-                }
             }
-        }
-
-        // Consulta geral (mantida igual)
-        public DataTable Consultar()
-        {
-            DataTable dt = new DataTable();
-            string mSQL = "SELECT * FROM Funcionarios";
-
-            if (this.abrirConexao())
+            finally
             {
-                try
-                {
-                    MySqlCommand cmd = new MySqlCommand(mSQL, conectar);
-                    MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-                    da.Fill(dt);
-                }
-                finally
-                {
-                    this.fecharConexao();
-                }
+                this.fecharConexao();
             }
-            return dt;
         }
     }
 }

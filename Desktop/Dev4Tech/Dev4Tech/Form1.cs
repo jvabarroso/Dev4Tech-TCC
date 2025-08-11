@@ -31,24 +31,23 @@ namespace Dev4Tech
             this.Hide();
         }
 
-        private void btnCadastroFuncionario_Click(object sender, EventArgs e)
-        {
-            cadastro_funcionário cad_funcionario = new cadastro_funcionário();
-            cad_funcionario.Show();
-            this.Hide();
-        }
-
         private void btnCadastroEmpresaAdmin_Click(object sender, EventArgs e)
         {
-            Cadastro_empresa_admin cad_empresa_admin = new Cadastro_empresa_admin();
-            cad_empresa_admin.Show();
+            empresa em = new empresa();
+            int idEmpresaGerada = em.inserirEObterId();
+            Cadastro_empresa_admin cadastroAdmin = new Cadastro_empresa_admin(idEmpresaGerada.ToString());
+            cadastroAdmin.Show();
             this.Hide();
         }
 
         private void btnCadastro_Click(object sender, EventArgs e)
         {
-            cadastro_funcionário cadFunc = new cadastro_funcionário();
-            cadFunc.Show();
+            string idAdminLogado = "";   // Pega este id do admin logado
+            string idEmpresaAdmin = "";  // Pega o id da empresa relacionada ao admin
+
+            // Ao abrir a tela de cadastro de funcionário passe os ids
+            cadastro_funcionário cadastroFunc = new cadastro_funcionário(idAdminLogado, idEmpresaAdmin);
+            cadastroFunc.Show();
             this.Hide();
         }
     }

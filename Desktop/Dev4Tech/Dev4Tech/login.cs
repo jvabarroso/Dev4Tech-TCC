@@ -12,9 +12,15 @@ namespace Dev4Tech
 
         private void lblCadastrar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            cadastro_funcionário cad_funcionario = new cadastro_funcionário();
-            cad_funcionario.Show();
-            this.Hide();
+            // Supondo que "adminLogado" é o objeto que você tem após login
+            Sessao.AdminLogado.getAdminId();
+            Sessao.AdminLogado.getIdEmpresa();
+
+            cadastro_funcionário cadastroFunc = new cadastro_funcionário(
+    Sessao.AdminLogado.getAdminId(),
+    Sessao.AdminLogado.getIdEmpresa());
+            cadastroFunc.Show();
+
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

@@ -1,5 +1,4 @@
-﻿// Classe empresa.cs
-using System;
+﻿using System;
 using System.Data;
 using MySql.Data.MySqlClient;
 
@@ -32,9 +31,10 @@ namespace Dev4Tech
         public string getEmail() { return this.email; }
         public string getTelefone() { return this.telefone; }
 
-        // Método inserir para a tabela Empresas (id_empresa é auto_increment, não inserido manualmente)
-        public void inserir()
+        public int inserirEObterId()
         {
+            int idGerado = 0;
+
             string query = @"
                 INSERT INTO Empresas (nome_empresa, cnpj, logradouro, numResidencia, bairro, complemento, data_cadEm, email, telefone, setorEmpresarial) 
                 VALUES (@nome, @cnpj, @logradouro, @numResidencia, @bairro, @complemento, @dataCadastro, @email, @telefone, @setorEmpresarial)";
@@ -43,66 +43,34 @@ namespace Dev4Tech
             {
                 try
                 {
-                    MySqlCommand cmd = new MySqlCommand(query, conectar);
-                    cmd.Parameters.AddWithValue("@nome", getNomeEmpresa());
-                    cmd.Parameters.AddWithValue("@cnpj", getCNPJ());
-                    cmd.Parameters.AddWithValue("@logradouro", getLogradouro());
-                    cmd.Parameters.AddWithValue("@numResidencia", getNumResidencia());
-                    cmd.Parameters.AddWithValue("@bairro", getBairro());
-                    cmd.Parameters.AddWithValue("@complemento", getComplemento());
-                    cmd.Parameters.AddWithValue("@dataCadastro", getData_cadEm().ToString("yyyy-MM-dd HH:mm:ss"));
-                    cmd.Parameters.AddWithValue("@email", getEmail());
-                    cmd.Parameters.AddWithValue("@telefone", getTelefone());
-                    cmd.Parameters.AddWithValue("@setorEmpresarial", getSetorEmpresarial());
+                    using (MySqlCommand cmd = new MySqlCommand(query, conectar))
+                    {
+                        cmd.Parameters.AddWithValue("@nome", getNomeEmpresa());
+                        cmd.Parameters.AddWithValue("@cnpj", getCNPJ());
+                        cmd.Parameters.AddWithValue("@logradouro", getLogradouro());
+                        cmd.Parameters.AddWithValue("@numResidencia", getNumResidencia());
+                        cmd.Parameters.AddWithValue("@bairro", getBairro());
+                        cmd.Parameters.AddWithValue("@complemento", getComplemento());
+                        cmd.Parameters.AddWithValue("@dataCadastro", getData_cadEm().ToString("yyyy-MM-dd HH:mm:ss"));
+                        cmd.Parameters.AddWithValue("@email", getEmail());
+                        cmd.Parameters.AddWithValue("@telefone", getTelefone());
+                        cmd.Parameters.AddWithValue("@setorEmpresarial", getSetorEmpresarial());
 
-                    cmd.ExecuteNonQuery();
+                        cmd.ExecuteNonQuery();
+
+                        // Captura o ID gerado e faz cast seguro para int
+                        long lastId = cmd.LastInsertedId;
+                        if (lastId > int.MaxValue || lastId < int.MinValue)
+                            throw new OverflowException("ID gerado está fora do intervalo do tipo int.");
+                        idGerado = (int)lastId;
+                    }
                 }
                 finally
                 {
                     this.fecharConexao();
                 }
             }
-        }
-
-        // Excluir empresa pelo nome (exemplo - adaptar chave primaria se precisar)
-        public void excluir()
-        {
-            string query = "DELETE FROM Empresas WHERE nome_empresa = @nome";
-            if (this.abrirConexao())
-            {
-                try
-                {
-                    MySqlCommand cmd = new MySqlCommand(query, conectar);
-                    cmd.Parameters.AddWithValue("@nome", getNomeEmpresa());
-                    cmd.ExecuteNonQuery();
-                }
-                finally
-                {
-                    this.fecharConexao();
-                }
-            }
-        }
-
-        // Consultar todas as empresas
-        public DataTable Consultar()
-        {
-            DataTable dt = new DataTable();
-            string query = "SELECT * FROM Empresas";
-
-            if (this.abrirConexao())
-            {
-                try
-                {
-                    MySqlCommand cmd = new MySqlCommand(query, conectar);
-                    MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-                    da.Fill(dt);
-                }
-                finally
-                {
-                    this.fecharConexao();
-                }
-            }
-            return dt;
+            return idGerado;
         }
     }
 }

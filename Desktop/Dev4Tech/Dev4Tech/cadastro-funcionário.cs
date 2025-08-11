@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Dev4Tech
@@ -14,9 +7,15 @@ namespace Dev4Tech
     {
         empresaCadFuncionario emCadFunc = new empresaCadFuncionario();
 
-        public cadastro_funcionário()
+        private readonly string idAdminLogado;
+        private readonly string idEmpresaAdmin;
+
+        public cadastro_funcionário(string adminId, string empresaId)
         {
             InitializeComponent();
+
+            this.idAdminLogado = adminId;
+            this.idEmpresaAdmin = empresaId;
         }
 
         private void lblLogin_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -30,6 +29,12 @@ namespace Dev4Tech
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(idAdminLogado) || string.IsNullOrWhiteSpace(idEmpresaAdmin))
+                {
+                    MessageBox.Show("Erro: IDs de administrador ou empresa não definidos. Por favor, confirme se está logado corretamente.");
+                    return;
+                }
+
                 emCadFunc.setNome(txtCadFuncNome.Text);
                 emCadFunc.setCargo(cbBoxCargoFunc.Text);
                 emCadFunc.setCPF(txtCadFuncCPF.Text);
@@ -37,7 +42,6 @@ namespace Dev4Tech
                 emCadFunc.setTelefone(txtCadFuncTelefone.Text);
                 emCadFunc.setSenha(txtCadFuncSenha.Text);
 
-                // Conversão da data de nascimento da TextBox para DateTime
                 DateTime dataNascimento;
                 if (!DateTime.TryParse(txtCadFuncDataNasc.Text, out dataNascimento))
                 {
@@ -49,16 +53,25 @@ namespace Dev4Tech
                 emCadFunc.setData_cadFunc(DateTime.Now);
                 emCadFunc.setEndereco(txtEndereço.Text);
                 emCadFunc.setNumero(txtEndereçoNum.Text);
+
+                emCadFunc.setIdEmpresa(idEmpresaAdmin);
+                emCadFunc.setAdminId(idAdminLogado);
+
                 emCadFunc.inserir();
 
-                MessageBox.Show("Sua conta foi cadastrada com sucesso");
+                MessageBox.Show("Funcionário cadastrado com sucesso!");
+
+                // Opcional: limpar senha confirm para evitar confusão
+                txtCadFuncSenha.Text = "";
+                txtCadFuncConfirmSenha.Text = "";
+
                 Login t_Home = new Login();
                 t_Home.Show();
                 this.Hide();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro: " + ex.Message);
+                MessageBox.Show("Erro ao cadastrar funcionário: " + ex.Message);
             }
         }
 

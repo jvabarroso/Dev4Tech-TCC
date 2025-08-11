@@ -50,20 +50,11 @@ CREATE TABLE Funcionarios (
     FOREIGN KEY (AdminId) REFERENCES Administradores(AdminId) ON DELETE CASCADE
 );
 
-CREATE TABLE MensagensChat (
-    id_mensagem INT PRIMARY KEY auto_increment,
-    texto varchar(255) NOT NULL,
-    data_envio DATETIME,
-    id_equipe INT,
-    FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE 
-);
-
 -- Tabela Categorias
 CREATE TABLE Categorias (
     id_categoria INT AUTO_INCREMENT PRIMARY KEY,
     nome_categoria VARCHAR(255) NOT NULL UNIQUE
 );
-
 -- Tabela Equipes
 CREATE TABLE Equipes (
     id_equipe INT AUTO_INCREMENT PRIMARY KEY,
@@ -81,6 +72,16 @@ CREATE TABLE Equipes_Membros (
     FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (FuncionarioId) REFERENCES Funcionarios(FuncionarioId) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+CREATE TABLE MensagensChat (
+    id_mensagem INT PRIMARY KEY auto_increment,
+    texto varchar(255) NOT NULL,
+    data_envio DATETIME,
+    id_equipe INT,
+    FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE 
+);
+
+
 
 -- Criar tabela para armazenar última atividade
 CREATE TABLE UltimaAtividadeEquipe (
@@ -113,6 +114,8 @@ CREATE TABLE EntregasTarefa (
     FOREIGN KEY (id_tarefa) REFERENCES Tarefas(id_tarefa) ON DELETE CASCADE,
     FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE
 );
+
+select id_empresa from empresas;
 
 CREATE TABLE PontuacaoFuncionario (
     id_pontuacao INT AUTO_INCREMENT PRIMARY KEY,

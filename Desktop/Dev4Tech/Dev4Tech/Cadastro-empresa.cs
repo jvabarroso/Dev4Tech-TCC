@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Dev4Tech
@@ -38,16 +31,28 @@ namespace Dev4Tech
                 em.setBairro(txtBairroEmpresa.Text);
                 em.setComplemento(txtComplementoEmpresa.Text);
                 em.setData_cadEm(DateTime.Now);
-                em.inserir();
-                
-                MessageBox.Show("Cadastro realizado com sucesso!");
-                Cadastro_empresa_admin t_login = new Cadastro_empresa_admin();
-                t_login.Show();
-                this.Hide();
+                em.setEmail(txtEmailEmpresa.Text);
+                em.setTelefone(txtTelefoneEmpresa.Text);
+
+                // Usar o método que insere e retorna o ID gerado
+                int idEmpresaGerada = em.inserirEObterId();
+
+                if (idEmpresaGerada > 0)
+                {
+                    MessageBox.Show("Empresa cadastrada com sucesso!");
+                    // Passar o ID da empresa para o cadastro do administrador
+                    Cadastro_empresa_admin cadastroAdmin = new Cadastro_empresa_admin(idEmpresaGerada.ToString());
+                    cadastroAdmin.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao cadastrar empresa!");
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro: {ex.Message}");
+                MessageBox.Show("Erro: " + ex.Message);
             }
         }
 

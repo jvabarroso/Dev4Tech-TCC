@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Dev4Tech
@@ -13,17 +6,13 @@ namespace Dev4Tech
     public partial class Cadastro_empresa_admin : Form
     {
         empresaCadAdmin emAdmin = new empresaCadAdmin();
+        private readonly string idEmpresa;
 
-        public Cadastro_empresa_admin()
+        // Construtor que recebe o idEmpresa para vincular no cadastro
+        public Cadastro_empresa_admin(string idEmpresa)
         {
             InitializeComponent();
-        }
-
-        private void lblLoginAdm_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Login t_login = new Login();
-            t_login.Show();
-            this.Hide();
+            this.idEmpresa = idEmpresa;
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
@@ -40,7 +29,6 @@ namespace Dev4Tech
                 emAdmin.setCargo(cbBoxCargoAdm.Text);
                 emAdmin.setCPF(txtCadAdmCPF.Text);
 
-                // Conversão da data de nascimento da TextBox para DateTime
                 DateTime dataNascimento;
                 if (!DateTime.TryParse(txtCadAdmDataNasc.Text, out dataNascimento))
                 {
@@ -55,6 +43,10 @@ namespace Dev4Tech
                 emAdmin.setData_cadAdmin(DateTime.Now);
                 emAdmin.setEndereco(txtEndereco.Text);
                 emAdmin.setNum(txtNumEndereco.Text);
+
+                // ASSOCIA o idEmpresa recebido ao cadastro (essencial para a FK)
+                emAdmin.setIdEmpresa(idEmpresa);
+
                 emAdmin.inserir();
 
                 MessageBox.Show("Cadastro de administrador realizado com sucesso!");
@@ -102,6 +94,13 @@ namespace Dev4Tech
 
         private void txtCadAdmDataNasc_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
+        }
+
+        private void lblLoginAdm_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Login t_login = new Login();
+            t_login.Show();
+            this.Hide();
         }
     }
 }

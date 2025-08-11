@@ -51,6 +51,10 @@
             this.btnCadastrar = new System.Windows.Forms.Button();
             this.btnVoltar = new System.Windows.Forms.Button();
             this.txtCNPJEmpresa = new System.Windows.Forms.MaskedTextBox();
+            this.txtEmailEmpresa = new System.Windows.Forms.TextBox();
+            this.txtTelefoneEmpresa = new System.Windows.Forms.MaskedTextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -254,7 +258,7 @@
             // 
             this.pictureBox1.BackgroundImage = global::Dev4Tech.Properties.Resources.Group_33__1_;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(454, 34);
+            this.pictureBox1.Location = new System.Drawing.Point(618, 31);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(550, 550);
             this.pictureBox1.TabIndex = 29;
@@ -292,11 +296,48 @@
             this.txtCNPJEmpresa.TabIndex = 55;
             this.txtCNPJEmpresa.Text = "98765432109876";
             // 
+            // txtEmailEmpresa
+            // 
+            this.txtEmailEmpresa.Location = new System.Drawing.Point(440, 194);
+            this.txtEmailEmpresa.Name = "txtEmailEmpresa";
+            this.txtEmailEmpresa.Size = new System.Drawing.Size(100, 20);
+            this.txtEmailEmpresa.TabIndex = 56;
+            // 
+            // txtTelefoneEmpresa
+            // 
+            this.txtTelefoneEmpresa.Location = new System.Drawing.Point(440, 302);
+            this.txtTelefoneEmpresa.Mask = "+00 (99) 00000-0000";
+            this.txtTelefoneEmpresa.Name = "txtTelefoneEmpresa";
+            this.txtTelefoneEmpresa.Size = new System.Drawing.Size(100, 20);
+            this.txtTelefoneEmpresa.TabIndex = 57;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(437, 178);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(90, 13);
+            this.label13.TabIndex = 58;
+            this.label13.Text = "Email institucional";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(437, 286);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(105, 13);
+            this.label14.TabIndex = 59;
+            this.label14.Text = "Telefone empresarial";
+            // 
             // Cadastro_empresa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.txtTelefoneEmpresa);
+            this.Controls.Add(this.txtEmailEmpresa);
             this.Controls.Add(this.txtCNPJEmpresa);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.btnCadastrar);
@@ -353,5 +394,9 @@
         private System.Windows.Forms.Button btnCadastrar;
         private System.Windows.Forms.Button btnVoltar;
         private System.Windows.Forms.MaskedTextBox txtCNPJEmpresa;
+        private System.Windows.Forms.TextBox txtEmailEmpresa;
+        private System.Windows.Forms.MaskedTextBox txtTelefoneEmpresa;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
     }
 }

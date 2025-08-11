@@ -280,7 +280,7 @@
             // 
             this.txtCadAdmTelefone.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCadAdmTelefone.Location = new System.Drawing.Point(150, 391);
-            this.txtCadAdmTelefone.Mask = "(00) 00000-0000";
+            this.txtCadAdmTelefone.Mask = "+00 (99) 00000-0000";
             this.txtCadAdmTelefone.Name = "txtCadAdmTelefone";
             this.txtCadAdmTelefone.Size = new System.Drawing.Size(88, 22);
             this.txtCadAdmTelefone.TabIndex = 57;
