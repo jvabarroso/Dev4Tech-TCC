@@ -77,7 +77,7 @@ export const getStyles = (theme) => StyleSheet.create({
     borderWidth: 1,
     borderBottomColor: '#D6D3D1',
     backgroundColor: theme.inputBackground,
-    paddingVertical:8,    
+    paddingVertical:1,    
     paddingHorizontal:5,
     marginBottom: 10,
     marginTop: 15,
@@ -127,6 +127,7 @@ export const getStyles = (theme) => StyleSheet.create({
   linha:{
     flexDirection: 'row',
     justifyContent: 'space-around',
+    gap:40
   },
   botaocriar: {
     width: 200,

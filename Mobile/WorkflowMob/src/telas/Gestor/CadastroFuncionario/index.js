@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
-import { Text, View, TouchableOpacity, Image, ScrollView, TextInput} from 'react-native';
+import { Text, View, TouchableOpacity, Image, ScrollView, TextInput, Alert,} from 'react-native';
+import { showMessage } from "react-native-flash-message";
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
-
-
 import { Ionicons } from '@expo/vector-icons';
 
-export default function CadastroFuncionario({navigation}){
+import api from '../../../../services/api';
+
+
+
+export default function CadastroFuncionario({navigation, route}){
     const { theme } = useTheme();
     const styles = getStyles(theme);
-    
+
+    const usuario = route.params?.usuario;
+    const [sucess, setSucess] = useState(false); 
+
     const [nome, setNome] = useState('');
     const [senha, setSenha] = useState('');
     const [email, setEmail] = useState('');
@@ -30,45 +36,55 @@ export default function CadastroFuncionario({navigation}){
         numero
     };
 
-    const [equipes, setequipes] = useState(true);
-    const [equipeselecionada, setEquipeselecionada] = useState(null);
+    //const [equipes, setequipes] = useState(true);
+    //const [equipeselecionada, setEquipeselecionada] = useState(null);
 
-    const cliqueinformacao = () => 
-        {
-            setequipes(valorAtual => !valorAtual); 
-        };
-    
-    const confirmodeequipe = (equipeSelecionada) => 
-        {   
-            setEquipeselecionada(equipeSelecionada.titulo);
-            setequipes(valorAtual => !valorAtual); 
-        };
+    function limparCampos(){
+        setNome('');
+        setSenha('');
+        setEmail('');
+        setDataNascimento('');
+        setCargo('');
+        setTelefone('');
+        setEndereco('');
+        setNumero('');
+    }
+
 
     async function cadastrar() {      
         const camposVazios = Object.entries(campos).filter(([_, valor]) => !valor.trim());      
         if (camposVazios.length > 0) {
-            Alert.alert("Erro", "Preencha todos os campos obrigatórios!");
+            showMessage({
+                message: "Erro Preencha todos os campos obrigatórios!",
+                description: "Preencha todas as informações",
+                floating: true,
+                statusBarHeight: 70,
+                type: "danger",
+                duration: 2000,             
+            });    
             return;
         }
         try {
-            const obj = {
-                
+            const res = await api.post('dev4tec/cadastrofunc.php', {
                 Nome : nome, 
                 Cargo :cargo, 
-                DataNascimento : dataNascimento, 
+                DataNascimento : formatarDataParaBanco(dataNascimento), 
                 Telefone : telefone, 
                 Email : email, 
                 Senha : senha, 
                 endereco : endereco, 
-                numero : numero    
-            }
-
-            const res = await api.post('dev4tec/cadastrofunc.php', obj);
+                numero : numero,
+                id_empresa: usuario.id_empresa,
+                id_administradores: usuario.id // Use o ID do usuário logado
+            });
 
             if (res.data.sucesso === false) {
+
             showMessage({
-                message: "Erro ao Salvar",
+                message: "Erro ao Cadastrar",
                 description: res.data.mensagem,
+                floating: true,
+                statusBarHeight: 70,
                 type: "warning",
                 duration: 3000,                    
             });  
@@ -78,16 +94,32 @@ export default function CadastroFuncionario({navigation}){
 
             setSucess(true);
                 showMessage({
-                message: "Salvo com Sucesso",
-                description: "Registro Salvo",
+                message: "Cadastrado com Sucesso",
+                description: "Registro Cadastrado",
+                floating: true,
+                statusBarHeight: 70,
                 type: "success",
-                duration: 800,             
-            });          
-                
+                duration: 2000,             
+            });         
+
             } 
         catch (error) {
-            Alert.alert("Ops", "Alguma coisa deu errado, tente novamente.");
+            console.log("ERRO NO CADASTRO:", error.message);
+            if (error.response) {
+                console.log("RESPOSTA DO SERVIDOR:", error.response.data);
+            }
+            if (error.request) {
+                console.log("SEM RESPOSTA, REQUEST:", error.request);
+            }
             setSucess(false);
+            showMessage({
+                message: "Ops Alguma coisa deu errado, tente novamente.",
+                description: res.data.mensagem,
+                floating: true,
+                statusBarHeight: 70,
+                type: "warning",
+                duration: 3000,                    
+            });  
         }
         
     }   
@@ -208,29 +240,11 @@ export default function CadastroFuncionario({navigation}){
                             placeholderTextColor={theme.text}
                             onChangeText={(text) => setCargo(text)}
                         />
-                        <Text style={styles.texto}>Adicionar a uma equipe</Text>
-                        <TouchableOpacity
-                            style={[styles.input, styles.linha]}
-                            onPress={cliqueinformacao}
-                        >
-                            <Text style={styles.textobotao}>{equipeselecionada || "Selecione uma equipe"}</Text> 
-                            <Ionicons name="caret-down-outline" size={18} color="black" />
-                        </TouchableOpacity>
                     </View>
-                {!equipes && equipe.map(item => (
-                    <TouchableOpacity
-                        key={item.id}
-                        style={styles.containerequipes}
-                        onPress={() => confirmodeequipe(item)}
-                    >
-                    <Image source={item.imagem} style={styles.imag} />
-                    <View style={styles.textos}>
-                        <Text style={styles.textolistatitulo}>{item.titulo}</Text>
-                        <Text style={styles.textolistacargo}>{item.cargo}</Text>
-                    </View>
-                    </TouchableOpacity>
-                ))}
-                <TouchableOpacity style={styles.botaocriar}>
+                <TouchableOpacity 
+                    style={styles.botaocriar}
+                    onPress={cadastrar} 
+                >
                     <Text style={styles.textocriar}>Criar</Text>
                 </TouchableOpacity>
             </ScrollView>
