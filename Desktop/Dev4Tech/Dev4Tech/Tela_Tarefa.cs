@@ -146,7 +146,7 @@ namespace Dev4Tech
             }
         }
 
-        // Evento para enviar a entrega da tarefa (APENAS ESTE DEVE EXISTIR E CONTER A LÓGICA)
+
         private void btnEnviar_Click(object sender, EventArgs e) // Certifique-se que o botão no Designer está linkado a este método.
         {
             if (idTarefaExibida == 0)
@@ -182,7 +182,17 @@ namespace Dev4Tech
             try
             {
                 // Registra a entrega
-                entrTarefa.RegistrarEntrega(idTarefaExibida, idEquipeAtual, txtDescrição.Text, nomeArquivo, arquivoBytes);
+                int idFuncionarioAtual = Sessao.FuncionarioLogado != null ? int.Parse(Sessao.FuncionarioLogado.getFuncionarioId()) : 0;
+
+                // Verifique se idFuncionarioAtual é válido
+                if (idFuncionarioAtual == 0)
+                {
+                    MessageBox.Show("Funcionário não está logado corretamente.");
+                    return;
+                }
+
+                // Chamada correta para registrar entrega
+                entrTarefa.RegistrarEntrega(idTarefaExibida, idEquipeAtual, idFuncionarioAtual, txtDescrição.Text, nomeArquivo, arquivoBytes);
 
                 // Busca a dificuldade da tarefa
                 string dificuldade = "";
@@ -365,7 +375,7 @@ namespace Dev4Tech
             this.Hide();
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
-        { }
+        private void pictureBox2_Click(object sender, EventArgs e){ }
+
         }
 }

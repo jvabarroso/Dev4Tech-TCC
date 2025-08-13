@@ -599,7 +599,6 @@
             this.txtPesquisarTarefa.Size = new System.Drawing.Size(409, 37);
             this.txtPesquisarTarefa.TabIndex = 67;
             this.txtPesquisarTarefa.Text = "Pesquisar uma tarefa";
-            this.txtPesquisarTarefa.TextChanged += new System.EventHandler(this.txtPesquisaTarefa_TextChanged);
             // 
             // pictureBox2
             // 

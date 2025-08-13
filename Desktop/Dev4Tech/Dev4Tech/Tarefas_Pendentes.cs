@@ -12,10 +12,18 @@ namespace Dev4Tech
     {
         private List<int> equipesFuncionario;
         private Dictionary<int, string> equipesNomeMap;
+        private int idFuncionarioLogado; // ID do funcionário logado para filtro individual
+        private EntregaTarefa entregaTarefa; // Instância da classe para manipular entregas
 
         public Tarefas_Pendentes()
         {
             InitializeComponent();
+
+            entregaTarefa = new EntregaTarefa();
+
+            idFuncionarioLogado = Sessao.FuncionarioLogado != null 
+                ? int.Parse(Sessao.FuncionarioLogado.getFuncionarioId()) 
+                : 0;
 
             // Carregar as equipes do funcionário logado
             CarregarEquipes();
@@ -27,6 +35,7 @@ namespace Dev4Tech
             // Carregar tarefas iniciais (todas equipes)
             AtualizarTarefas();
         }
+
         // Atualiza a lista de tarefas exibidas segundo filtros ativos (equipe/pesquisa)
         private void AtualizarTarefas()
         {
@@ -46,21 +55,46 @@ namespace Dev4Tech
                         equipesFiltrar.Add(kvp.Key);
             }
 
-            DataTable tarefas;
+            DataTable tarefas = new DataTable();
 
             if (string.IsNullOrEmpty(filtroNome))
             {
-                tarefas = BuscarTarefasPorEquipes(equipesFiltrar);
+                tarefas = new DataTable();
+                if (equipesFiltrar != null)
+                {
+                    foreach (var idEquipe in equipesFiltrar)
+                    {
+                        DataTable dtEquipe = entregaTarefa.BuscarTarefasPendentesPorEquipeFuncionario(idEquipe, idFuncionarioLogado);
+                        tarefas.Merge(dtEquipe);
+                    }
+                }
             }
             else
             {
-                tarefas = BuscarTarefasPorNomeEFiltroEquipes(filtroNome, equipesFiltrar);
+                // Busca tarefas pendentes para as equipes filtradas e filtra pelo nome
+                DataTable tarefasPendentes = new DataTable();
+                if (equipesFiltrar != null)
+                {
+                    foreach (var idEquipe in equipesFiltrar)
+                    {
+                        DataTable dtEquipe = entregaTarefa.BuscarTarefasPendentesPorEquipeFuncionario(idEquipe, idFuncionarioLogado);
+                        tarefasPendentes.Merge(dtEquipe);
+                    }
+                }
+
+                var rowsFiltrados = tarefasPendentes.AsEnumerable()
+                    .Where(r => r.Field<string>("nomeTarefa").IndexOf(filtroNome, StringComparison.OrdinalIgnoreCase) >= 0);
+
+                if (rowsFiltrados.Any())
+                    tarefas = rowsFiltrados.CopyToDataTable();
+                else
+                    tarefas = tarefasPendentes.Clone(); // vazio porém com as colunas
             }
 
             MostrarTarefas(tarefas);
         }
 
-        // Pesquisa tarefas por nome e filtra pelas equipes selecionadas
+        // Pesquisa tarefas por nome e filtra pelas equipes selecionadas (não mais usado para atualização principal)
         private DataTable BuscarTarefasPorNomeEFiltroEquipes(string filtroNome, List<int> idsEquipes)
         {
             DataTable dt = new DataTable();
@@ -156,7 +190,7 @@ namespace Dev4Tech
 
         private void CarregarEquipes()
         {
-            int idFunc = int.Parse(Sessao.FuncionarioLogado.getFuncionarioId());
+            int idFunc = idFuncionarioLogado;
             equipesFuncionario = ObterEquipesDoFuncionario(idFunc);
 
             equipesNomeMap = new Dictionary<int, string>();
@@ -192,7 +226,15 @@ namespace Dev4Tech
         {
             if (cmbEquipes.SelectedItem.ToString() == "Todas")
             {
-                var dtTarefas = BuscarTarefasPorEquipes(equipesFuncionario);
+                DataTable dtTarefas = new DataTable();
+                if (equipesFuncionario != null)
+                {
+                    foreach (var idEquipe in equipesFuncionario)
+                    {
+                        DataTable dt = entregaTarefa.BuscarTarefasPendentesPorEquipeFuncionario(idEquipe, idFuncionarioLogado);
+                        dtTarefas.Merge(dt);
+                    }
+                }
                 MostrarTarefas(dtTarefas);
             }
             else
@@ -200,7 +242,7 @@ namespace Dev4Tech
                 var equipeSelecionada = equipesNomeMap.FirstOrDefault(x => x.Value == cmbEquipes.SelectedItem.ToString());
                 if (equipeSelecionada.Key != 0)
                 {
-                    var dtTarefas = BuscarTarefasPorEquipes(new List<int> { equipeSelecionada.Key });
+                    var dtTarefas = entregaTarefa.BuscarTarefasPendentesPorEquipeFuncionario(equipeSelecionada.Key, idFuncionarioLogado);
                     MostrarTarefas(dtTarefas);
                 }
             }
@@ -215,62 +257,37 @@ namespace Dev4Tech
 
             if (string.IsNullOrEmpty(filtro))
             {
-                tarefasFiltradas = BuscarTarefasPendentesTodas();
+                DataTable dtTarefas = new DataTable();
+                if (equipesFuncionario != null)
+                {
+                    foreach (var idEquipe in equipesFuncionario)
+                    {
+                        DataTable dt = entregaTarefa.BuscarTarefasPendentesPorEquipeFuncionario(idEquipe, idFuncionarioLogado);
+                        dtTarefas.Merge(dt);
+                    }
+                }
+                tarefasFiltradas = dtTarefas;
             }
             else
             {
-                tarefasFiltradas = BuscarTarefasPorNome(filtro);
+                DataTable dtTarefas = new DataTable();
+                if (equipesFuncionario != null)
+                {
+                    foreach (var idEquipe in equipesFuncionario)
+                    {
+                        DataTable dt = entregaTarefa.BuscarTarefasPendentesPorEquipeFuncionario(idEquipe, idFuncionarioLogado);
+                        dtTarefas.Merge(dt);
+                    }
+                }
+                var rowsFiltrados = dtTarefas.AsEnumerable()
+                    .Where(r => r.Field<string>("nomeTarefa").IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0);
+                if (rowsFiltrados.Any())
+                    tarefasFiltradas = rowsFiltrados.CopyToDataTable();
+                else
+                    tarefasFiltradas = dtTarefas.Clone();
             }
 
             AtualizarListaTarefas(tarefasFiltradas);
-        }
-
-        private DataTable BuscarTarefasPendentesTodas()
-        {
-            DataTable dt = new DataTable();
-
-            string query = @"
-                SELECT t.*, e.nome_equipe, c.nome_categoria
-                FROM Tarefas t
-                INNER JOIN Equipes e ON t.id_equipe = e.id_equipe
-                INNER JOIN Categorias c ON e.id_categoria = c.id_categoria
-                ORDER BY t.data_entrega DESC";
-
-            using (var conn = new MySqlConnection("server=localhost;database=Dev4Tech;uid=root;pwd="))
-            {
-                conn.Open();
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-                    da.Fill(dt);
-                }
-            }
-            return dt;
-        }
-
-        private DataTable BuscarTarefasPorNome(string filtroNome)
-        {
-            DataTable dt = new DataTable();
-
-            string query = @"
-                SELECT t.*, e.nome_equipe, c.nome_categoria
-                FROM Tarefas t
-                INNER JOIN Equipes e ON t.id_equipe = e.id_equipe
-                INNER JOIN Categorias c ON e.id_categoria = c.id_categoria
-                WHERE t.nomeTarefa LIKE @filtro
-                ORDER BY t.data_entrega DESC";
-
-            using (var conn = new MySqlConnection("server=localhost;database=Dev4Tech;uid=root;pwd="))
-            {
-                conn.Open();
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@filtro", "%" + filtroNome + "%");
-                    MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-                    da.Fill(dt);
-                }
-            }
-            return dt;
         }
 
         private void AtualizarListaTarefas(DataTable tarefas)
@@ -365,14 +382,25 @@ namespace Dev4Tech
 
                 Label lblStatus = new Label
                 {
-                    Text = "Pendente",
                     Font = new Font("Segoe UI", 9, FontStyle.Bold),
-                    ForeColor = Color.Black,
-                    BackColor = Color.Yellow,
                     Left = larguraPanel - 90,
                     Top = 10,
                     AutoSize = true
                 };
+
+                bool entregou = entregaTarefa.FuncionarioEntregou(Convert.ToInt32(row["id_tarefa"]), idFuncionarioLogado);
+                if (entregou)
+                {
+                    lblStatus.Text = "Entregue";
+                    lblStatus.ForeColor = Color.White;
+                    lblStatus.BackColor = Color.Green;
+                }
+                else
+                {
+                    lblStatus.Text = "Pendente";
+                    lblStatus.ForeColor = Color.Black;
+                    lblStatus.BackColor = Color.Yellow;
+                }
                 tarefaPanel.Controls.Add(lblStatus);
 
                 Label lblDificuldade = new Label
@@ -547,7 +575,6 @@ namespace Dev4Tech
             this.Hide();
         }
         private void Tarefa1_Enter(object sender, EventArgs e) { }
-        private void txtPesquisaTarefa_TextChanged(object sender, EventArgs e) { }
         private void btnEquipe_Click(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;
@@ -680,4 +707,3 @@ namespace Dev4Tech
         }
     }
 }
-
