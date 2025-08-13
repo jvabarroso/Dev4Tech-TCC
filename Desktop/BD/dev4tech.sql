@@ -114,8 +114,9 @@ CREATE TABLE EntregasTarefa (
     FOREIGN KEY (id_tarefa) REFERENCES Tarefas(id_tarefa) ON DELETE CASCADE,
     FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE
 );
-
-select id_empresa from empresas;
+ALTER TABLE EntregasTarefa
+ADD COLUMN FuncionarioId INT NOT NULL,
+ADD FOREIGN KEY (FuncionarioId) REFERENCES Funcionarios(FuncionarioId) ON DELETE CASCADE;
 
 CREATE TABLE PontuacaoFuncionario (
     id_pontuacao INT AUTO_INCREMENT PRIMARY KEY,
