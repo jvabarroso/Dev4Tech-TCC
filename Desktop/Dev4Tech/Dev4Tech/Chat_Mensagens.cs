@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Classe Chat_Mensagens corrigida com métodos setIdFuncionario e getIdFuncionario
+
+using System;
 using System.Data;
 using MySql.Data.MySqlClient;
 
@@ -9,7 +11,8 @@ namespace Dev4Tech
         private string idMensagem;
         private string texto;
         private DateTime dataEnvio;
-        private int idEquipe;  // Novo campo para identificar a equipe
+        private int idEquipe;
+        private int idFuncionario;  // Campo para identificar remetente da mensagem
 
         // Setters
         public void setIdMensagem(string idMensagem) { this.idMensagem = idMensagem; }
@@ -17,30 +20,33 @@ namespace Dev4Tech
         public void setDataEnvio(DateTime dataEnvio) { this.dataEnvio = dataEnvio; }
         public void setIdEquipe(int idEquipe) { this.idEquipe = idEquipe; }
 
+        public void setIdFuncionario(int idFuncionario) { this.idFuncionario = idFuncionario; }
+
         // Getters
         public string getIdMensagem() { return this.idMensagem; }
         public string getTexto() { return this.texto; }
         public DateTime getDataEnvio() { return this.dataEnvio; }
         public int getIdEquipe() { return this.idEquipe; }
+        public int getIdFuncionario() { return this.idFuncionario; }
 
-        // Inserir mensagem no banco com idEquipe
+        // Inserir mensagem no banco com idEquipe e idFuncionario
         public void inserir()
         {
-            string query = "INSERT INTO MensagensChat (texto, data_envio, id_equipe) " +
-                           "VALUES (@texto, @data_envio, @id_equipe)";
-
+            string query = "INSERT INTO MensagensChat (texto, data_envio, id_equipe, FuncionarioId) " +
+                           "VALUES (@texto, @data_envio, @id_equipe, @funcionarioId)";
             if (this.abrirConexao())
             {
                 MySqlCommand cmd = new MySqlCommand(query, conectar);
                 cmd.Parameters.AddWithValue("@texto", getTexto());
                 cmd.Parameters.AddWithValue("@data_envio", getDataEnvio().ToString("yyyy-MM-dd HH:mm:ss"));
                 cmd.Parameters.AddWithValue("@id_equipe", getIdEquipe());
+                cmd.Parameters.AddWithValue("@funcionarioId", getIdFuncionario());
                 cmd.ExecuteNonQuery();
                 this.fecharConexao();
             }
         }
 
-        // Excluir mensagem por id (sem alterações)
+        // Excluir mensagem por id
         public void excluir()
         {
             string query = "DELETE FROM MensagensChat WHERE id_mensagem = @id_mensagem";
@@ -53,7 +59,7 @@ namespace Dev4Tech
             }
         }
 
-        // Consultar mensagens por equipe
+        // Consultar mensagens por equipe, incluindo FuncionarioId
         public DataTable ConsultarPorEquipe(int idEquipe)
         {
             DataTable dt = new DataTable();
@@ -77,7 +83,6 @@ namespace Dev4Tech
                 VALUES (@id_equipe, NOW())
                 ON DUPLICATE KEY UPDATE ultima_atividade = NOW()
             ";
-
             if (this.abrirConexao())
             {
                 MySqlCommand cmd = new MySqlCommand(query, conectar);

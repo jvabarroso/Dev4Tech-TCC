@@ -161,7 +161,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.pictureBox2.Location = new System.Drawing.Point(52, -2);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(306, 682);
             this.pictureBox2.TabIndex = 37;
@@ -173,9 +173,9 @@
             this.groupBox1.Controls.Add(this.pictureBox3);
             this.groupBox1.Controls.Add(this.lblNomeEquipe);
             this.groupBox1.Location = new System.Drawing.Point(80, 73);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(202, 81);
             this.groupBox1.TabIndex = 38;
             this.groupBox1.TabStop = false;
@@ -195,7 +195,7 @@
             this.pictureBox3.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox3.Location = new System.Drawing.Point(4, 17);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(38, 41);
             this.pictureBox3.TabIndex = 39;
@@ -232,7 +232,7 @@
             this.lblTarefas.Location = new System.Drawing.Point(100, 193);
             this.lblTarefas.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTarefas.Name = "lblTarefas";
-            this.lblTarefas.Size = new System.Drawing.Size(43, 13);
+            this.lblTarefas.Size = new System.Drawing.Size(42, 13);
             this.lblTarefas.TabIndex = 40;
             this.lblTarefas.Text = "Tarefas";
             this.lblTarefas.Click += new System.EventHandler(this.lblTarefas_Click);
@@ -267,7 +267,7 @@
             // 
             this.txtDigitarMensagem.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDigitarMensagem.Location = new System.Drawing.Point(493, 567);
-            this.txtDigitarMensagem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtDigitarMensagem.Margin = new System.Windows.Forms.Padding(2);
             this.txtDigitarMensagem.Multiline = true;
             this.txtDigitarMensagem.Name = "txtDigitarMensagem";
             this.txtDigitarMensagem.Size = new System.Drawing.Size(596, 39);
@@ -282,7 +282,7 @@
             this.btnEnviarMensagem.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_enviarMensagem;
             this.btnEnviarMensagem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnEnviarMensagem.Location = new System.Drawing.Point(1047, 570);
-            this.btnEnviarMensagem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEnviarMensagem.Margin = new System.Windows.Forms.Padding(2);
             this.btnEnviarMensagem.Name = "btnEnviarMensagem";
             this.btnEnviarMensagem.Size = new System.Drawing.Size(40, 35);
             this.btnEnviarMensagem.TabIndex = 44;
@@ -342,9 +342,8 @@
             this.Controls.Add(this.btnHome);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.flowLayoutPanelMensagens);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Chat_geral_equipes";
-            this.Text = "Chat_geral_equipes";
             this.Load += new System.EventHandler(this.Chat_geral_equipes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picPerfil)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEquipes)).EndInit();
