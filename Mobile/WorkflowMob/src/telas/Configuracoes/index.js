@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import { Text, TextInput, View, TouchableOpacity, Image, ScrollView, Alert} from 'react-native';
+import { Text, TextInput, View, TouchableOpacity, Image, ScrollView, Alert, ActivityIndicator, Modal} from 'react-native';
 import { getStyles } from './style';
 import { useTheme } from '../../styles/themecontext'
 import {Ionicons} from '@expo/vector-icons';
@@ -34,53 +34,15 @@ export default function Configuracoes({navigation, route}){
     const [dataNascimento, setDataNascimento] = useState(usuario.dataNascimento);
     const [telefone, setTelefone] = useState(usuario.telefone);
     const [endereco, setEndereco] = useState(usuario.endereco);
+    const [imagens, setImagens] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [modalVisivel, setModalVisivel] = useState(false);
 
    function limparCampos(){
     setDataNascimento('');
     setTelefone('');
     setEndereco('');
    }
-
-    //Máscara input
-    // Adicione estas funções utilitárias no topo do arquivo
-    function formatarDataParaBanco(data) {
-      if (!data) return '';
-      
-      // Se já está no formato do banco, retorna direto
-      if (/^\d{4}-\d{2}-\d{2}$/.test(data)) return data;
-      
-      // Converte de DD/MM/AAAA para AAAA-MM-DD
-      const partes = data.split('/');
-      if (partes.length === 3) {
-        return `${partes[2]}-${partes[1]}-${partes[0]}`;
-      }
-      return data;
-    }
-
-    function formatarTelefone(telefone) {
-      if (!telefone) return '';
-      // Remove todos os caracteres não numéricos
-      return telefone.replace(/\D/g, '');
-    }
-
-    function formatarDataInput(text) {
-      let data = text.replace(/\D/g, '');
-      
-      if (data.length > 2) data = `${data.slice(0,2)}/${data.slice(2)}`;
-      if (data.length > 5) data = `${data.slice(0,5)}/${data.slice(5,9)}`;
-      
-      return data.slice(0,10);
-    }
-
-    function formatarTelefoneInput(text) {
-      let tel = text.replace(/\D/g, '');
-      
-      if (tel.length > 0) tel = `(${tel}`;
-      if (tel.length > 3) tel = `${tel.slice(0,3)}) ${tel.slice(3)}`;
-      if (tel.length > 10) tel = `${tel.slice(0,10)}-${tel.slice(10,15)}`;
-      
-      return tel.slice(0,15);
-    }
 
 
 //Post para o Banco:
@@ -129,6 +91,83 @@ export default function Configuracoes({navigation, route}){
     }
 }
 
+//Mostra a foto do Usuario:
+  useEffect(() => {
+    async function carregarImagens() {
+      try {
+        const response = await fetch(
+          `http://10.239.0.124/dev4tec/imagem_usuario.php?id=${usuarioState.id}`
+        );
+        const data = await response.json();
+
+        if (Array.isArray(data) && data.length > 0) {
+          setUsuarioState(prev => ({ ...prev, imagem: data[0] })); // pega só a primeira foto
+        }
+      setImagens(data);
+      } catch (error) {
+        console.error('Erro ao buscar imagens:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    if (usuarioState?.id) {
+      carregarImagens();
+    } else {
+      setLoading(false);
+  }
+  }, [usuarioState.id]);
+
+  if (loading) {
+    return (
+      <View style={styles.loading}>
+        <ActivityIndicator size="large" color="#4a90e2" />
+        <Text style={styles.loadingText}>Carregando imagens...</Text>
+      </View>
+    );
+  }
+
+
+    //Máscara input
+    // Adicione estas funções utilitárias no topo do arquivo
+    function formatarDataParaBanco(data) {
+      if (!data) return '';
+      
+      // Se já está no formato do banco, retorna direto
+      if (/^\d{4}-\d{2}-\d{2}$/.test(data)) return data;
+      
+      // Converte de DD/MM/AAAA para AAAA-MM-DD
+      const partes = data.split('/');
+      if (partes.length === 3) {
+        return `${partes[2]}-${partes[1]}-${partes[0]}`;
+      }
+      return data;
+    }
+
+    function formatarTelefone(telefone) {
+      if (!telefone) return '';
+      // Remove todos os caracteres não numéricos
+      return telefone.replace(/\D/g, '');
+    }
+
+    function formatarDataInput(text) {
+      let data = text.replace(/\D/g, '');
+      
+      if (data.length > 2) data = `${data.slice(0,2)}/${data.slice(2)}`;
+      if (data.length > 5) data = `${data.slice(0,5)}/${data.slice(5,9)}`;
+      
+      return data.slice(0,10);
+    }
+
+    function formatarTelefoneInput(text) {
+      let tel = text.replace(/\D/g, '');
+      
+      if (tel.length > 0) tel = `(${tel}`;
+      if (tel.length > 3) tel = `${tel.slice(0,3)}) ${tel.slice(3)}`;
+      if (tel.length > 10) tel = `${tel.slice(0,10)}-${tel.slice(10,15)}`;
+      
+      return tel.slice(0,15);
+    }
+
 
 
     const [mostrardados, setMostrardados] = useState(false);
@@ -157,7 +196,12 @@ export default function Configuracoes({navigation, route}){
             </View>
 
             <View style={styles.containerfuncionario}>
-              <Image source={require('../../../assets/img/image.png')} style={styles.imagemfuncionario} />
+              <TouchableOpacity onPress={() => setModalVisivel(true)}>
+                <Image 
+                  source={usuarioState.imagem ? { uri: usuarioState.imagem } :require('../../../assets/img/image.png')} 
+                  style={styles.imagemfuncionario} />
+              </TouchableOpacity>
+
               <View style={styles.textos}>
                 <Text style={styles.textofuncionario}>{usuarioState.nome}</Text>
                 <Text style={styles.textofuncionariocargo}>{usuarioState.cargo}</Text>
@@ -245,8 +289,26 @@ export default function Configuracoes({navigation, route}){
             >    
               <Text style={styles.textoeditar}>Sair da conta</Text>                     
             </TouchableOpacity>
-
         </ScrollView>
+        <Modal
+          animationType="slide"
+          transparent={false}
+          visible={modalVisivel}
+          onRequestClose={() => setModalVisivel(false)}
+        >   
+          <View style={styles.modalContainer}>
+            <View style={styles.modalContent}>
+              <View style={styles.nav2}>
+                <TouchableOpacity 
+                  style={styles.botaodevoltar}
+                  onPress={() => setModalVisivel(false)}
+                >
+                <Ionicons name="arrow-back" size={28} color="black" />
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </Modal>
       </View>
     )
 }

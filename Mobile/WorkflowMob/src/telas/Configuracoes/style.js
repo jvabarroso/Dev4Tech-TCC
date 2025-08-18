@@ -238,4 +238,25 @@ export const getStyles = (theme) => StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
   },  
+  modalContainer: {
+    flex: 1,
+    backgroundColor: theme.background
+  },
+   modalContent: {
+      flex: 1,
+      padding: 20,     
+  },
+  nav2: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingVertical: 20,
+    marginBottom: 10,
+  },
+  botaodevoltar: {
+    width: 40,
+    height: 40,
+    justifyContent: 'center',
+    zIndex: 1, 
+  },
 });

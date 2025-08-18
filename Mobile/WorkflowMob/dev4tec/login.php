@@ -19,7 +19,8 @@ try {
         endereco,
         numero,
         id_empresa,
-        AdminId
+        AdminId,
+        foto_perfil
         FROM Funcionarios WHERE Email = :Email");
     
     $query->bindValue(':Email', $Email);
@@ -38,7 +39,8 @@ try {
         data_cadAdmin,
         endereco,
         num,
-        id_empresa
+        id_empresa,
+        foto_perfil
         FROM Administradores WHERE Email = :Email");
     
     $query2->bindValue(':Email', $Email);
@@ -68,7 +70,8 @@ if ($userfuncionario && $Senha === $userfuncionario['Senha']) {
             'endereco' => $userfuncionario['endereco'],
             'numero' => $userfuncionario['numero'],
             'id_empresa' => $userfuncionario['id_empresa'],
-            'AdminId' => $userfuncionario['AdminId']
+            'AdminId' => $userfuncionario['AdminId'],
+            'foto_perfil' => $userfuncionario['foto_perfil']
         ],
         'message' => 'Login realizado com sucesso!'
     ];
@@ -87,7 +90,8 @@ if ($userfuncionario && $Senha === $userfuncionario['Senha']) {
             'dataNascimento' => $useradministrador['DataNascimento'],
             'endereco' => $useradministrador['endereco'],
             'num' => $useradministrador['num'],
-            'id_empresa' => $useradministrador['id_empresa']
+            'id_empresa' => $useradministrador['id_empresa'],
+            'foto_perfil' => $useradministrador['foto_perfil']
         ],                   
         'message' => 'Login realizado com sucesso!' 
     ];
