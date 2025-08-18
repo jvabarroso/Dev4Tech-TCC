@@ -120,7 +120,7 @@
             this.lblTarefas.Location = new System.Drawing.Point(100, 194);
             this.lblTarefas.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTarefas.Name = "lblTarefas";
-            this.lblTarefas.Size = new System.Drawing.Size(43, 13);
+            this.lblTarefas.Size = new System.Drawing.Size(42, 13);
             this.lblTarefas.TabIndex = 125;
             this.lblTarefas.Text = "Tarefas";
             this.lblTarefas.Click += new System.EventHandler(this.lblTarefas_Click);
@@ -327,7 +327,7 @@
             // 
             // txtPesquisarMembros
             // 
-            this.txtPesquisarMembros.Location = new System.Drawing.Point(437, 185);
+            this.txtPesquisarMembros.Location = new System.Drawing.Point(438, 346);
             this.txtPesquisarMembros.Multiline = true;
             this.txtPesquisarMembros.Name = "txtPesquisarMembros";
             this.txtPesquisarMembros.Size = new System.Drawing.Size(641, 39);
@@ -338,7 +338,7 @@
             // 
             this.btnPesquisar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPesquisar.BackgroundImage")));
             this.btnPesquisar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnPesquisar.Location = new System.Drawing.Point(1084, 185);
+            this.btnPesquisar.Location = new System.Drawing.Point(1085, 346);
             this.btnPesquisar.Name = "btnPesquisar";
             this.btnPesquisar.Size = new System.Drawing.Size(37, 38);
             this.btnPesquisar.TabIndex = 132;
@@ -350,7 +350,7 @@
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.SystemColors.ControlLight;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(446, 165);
+            this.label10.Location = new System.Drawing.Point(447, 326);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(101, 13);
@@ -460,7 +460,7 @@
             // 
             // panelMembros
             // 
-            this.panelMembros.Location = new System.Drawing.Point(427, 228);
+            this.panelMembros.Location = new System.Drawing.Point(427, 390);
             this.panelMembros.Margin = new System.Windows.Forms.Padding(2);
             this.panelMembros.Name = "panelMembros";
             this.panelMembros.Size = new System.Drawing.Size(706, 450);
@@ -473,7 +473,7 @@
             this.panelEquipes.Location = new System.Drawing.Point(432, 61);
             this.panelEquipes.Margin = new System.Windows.Forms.Padding(2);
             this.panelEquipes.Name = "panelEquipes";
-            this.panelEquipes.Size = new System.Drawing.Size(701, 102);
+            this.panelEquipes.Size = new System.Drawing.Size(701, 249);
             this.panelEquipes.TabIndex = 135;
             // 
             // label1

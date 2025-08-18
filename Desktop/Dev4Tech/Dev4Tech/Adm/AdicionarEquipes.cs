@@ -4,8 +4,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Dev4Tech
@@ -14,21 +12,20 @@ namespace Dev4Tech
     {
         AddEquipes equipe = new AddEquipes();
         private List<string> membrosSelecionados = new List<string>();
+        private List<string> funcionariosSelecionados = new List<string>();
 
         public AdicionarEquipes()
         {
-            
             InitializeComponent();
             panelDadosFunc.AutoScroll = true; // Habilita o scroll automático
-
-            panelDadosFunc.AutoScroll = true;
             this.Load += AdicionarEquipes_Load;
             btnAddMembro.Click += btnAddMembro_Click;
             btnCriarEquipe.Click += btnCriarEquipe_Click;
-
             // Adiciona o evento para quando o email for selecionado
             cbmEmailMembro.SelectedIndexChanged += cbmEmailMembro_SelectedIndexChanged;
-            cbmEmailMembro.SelectedIndexChanged += cbmEmailMembro_SelectedIndexChanged;
+            // Inclui os eventos para evitar erros
+            cmbCategoriaEquipe.SelectedIndexChanged += cmbCategoriaEquipe_SelectedIndexChanged;
+            txtNomeEquipe.TextChanged += txtNomeEquipe_TextChanged;
         }
 
         private void AdicionarEquipes_Load(object sender, EventArgs e)
@@ -44,7 +41,6 @@ namespace Dev4Tech
             {
                 DataTable dtCategorias = equipe.ConsultarCategorias();
                 cmbCategoriaEquipe.Items.Clear();
-
                 foreach (DataRow row in dtCategorias.Rows)
                 {
                     cmbCategoriaEquipe.Items.Add(row["nome_categoria"].ToString());
@@ -62,7 +58,6 @@ namespace Dev4Tech
             {
                 DataTable dtEmails = equipe.ConsultarEmailsFuncionarios();
                 cbmEmailMembro.Items.Clear();
-
                 foreach (DataRow row in dtEmails.Rows)
                 {
                     cbmEmailMembro.Items.Add(row["email"].ToString());
@@ -74,106 +69,20 @@ namespace Dev4Tech
             }
         }
 
+        // Métodos adicionados para evitar erros de eventos não definidos
         private void txtNomeEquipe_TextChanged(object sender, EventArgs e)
         {
+            // Pode deixar vazio ou implementar se desejar
         }
 
         private void cmbCategoriaEquipe_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Pode deixar vazio ou implementar se desejar
         }
 
         private void cbmEmailMembro_SelectedIndexChanged(object sender, EventArgs e)
         {
             string emailSelecionado = cbmEmailMembro.Text.Trim();
-
-            if (!string.IsNullOrEmpty(emailSelecionado) && !funcionariosSelecionados.Contains(emailSelecionado))
-            {
-                funcionariosSelecionados.Add(emailSelecionado);
-                AtualizarListaFuncionarios();
-            }
-        }
-
-        private void CarregarDadosFuncionario(string email)
-        {
-            panelDadosFunc.Controls.Clear();
-
-            if (string.IsNullOrEmpty(email))
-                return;
-
-            empresaCadFuncionario func = BuscarFuncionarioPorEmail(email);
-            if (func == null)
-                return;
-
-            pontuacaoUsuarios ptFunc = new pontuacaoUsuarios();
-            int idFunc = int.Parse(func.getFuncionarioId());
-            int pontos = ptFunc.ObterPontos(idFunc);
-
-            // Criar painel para os dados do funcionário
-            Panel funcPanel = new Panel
-            {
-                Width = panelDadosFunc.Width - 20,
-                Height = 100,
-                BackColor = Color.White,
-                BorderStyle = BorderStyle.FixedSingle,
-                Left = 10,
-                Top = 10
-            };
-
-            // PictureBox com foto fixa
-            PictureBox picFuncionario = new PictureBox
-            {
-                Image = Properties.Resources.icon_perfil, // imagem fixa no Resources
-                SizeMode = PictureBoxSizeMode.StretchImage,
-                Width = 80,
-                Height = 80,
-                Left = 10,
-                Top = 10,
-                BorderStyle = BorderStyle.FixedSingle
-            };
-            funcPanel.Controls.Add(picFuncionario);
-
-            // Label Nome
-            Label lblNome = new Label
-            {
-                Text = func.getNome(),
-                Font = new Font("Segoe UI", 12, FontStyle.Bold),
-                Left = picFuncionario.Right + 15,
-                Top = 15,
-                AutoSize = true
-            };
-            funcPanel.Controls.Add(lblNome);
-
-            // Label Cargo
-            Label lblCargo = new Label
-            {
-                Text = func.getCargo(),
-                Font = new Font("Segoe UI", 10, FontStyle.Regular),
-                Left = picFuncionario.Right + 15,
-                Top = lblNome.Bottom + 5,
-                AutoSize = true
-            };
-            funcPanel.Controls.Add(lblCargo);
-
-            // Label Pontuação
-            Label lblPontos = new Label
-            {
-                Text = $"Pontos: {pontos}",
-                Font = new Font("Segoe UI", 10, FontStyle.Regular),
-                Left = picFuncionario.Right + 15,
-                Top = lblCargo.Bottom + 5,
-                AutoSize = true
-            };
-            funcPanel.Controls.Add(lblPontos);
-
-            panelDadosFunc.Controls.Add(funcPanel);
-        }
-        private List<string> funcionariosSelecionados = new List<string>();
-
-
-        private void cmbEmailMembro_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string emailSelecionado = cbmEmailMembro.Text.Trim();
-
             if (!string.IsNullOrEmpty(emailSelecionado) && !funcionariosSelecionados.Contains(emailSelecionado))
             {
                 funcionariosSelecionados.Add(emailSelecionado);
@@ -184,9 +93,7 @@ namespace Dev4Tech
         private void AtualizarListaFuncionarios()
         {
             panelDadosFunc.Controls.Clear();
-
             int posY = 10; // posição inicial vertical
-
             foreach (string email in funcionariosSelecionados)
             {
                 empresaCadFuncionario func = BuscarFuncionarioPorEmail(email);
@@ -209,7 +116,6 @@ namespace Dev4Tech
 
                 PictureBox picFuncionario = new PictureBox
                 {
-                    Image = Properties.Resources.icon_perfil,
                     SizeMode = PictureBoxSizeMode.StretchImage,
                     Width = 80,
                     Height = 80,
@@ -217,6 +123,20 @@ namespace Dev4Tech
                     Top = 10,
                     BorderStyle = BorderStyle.FixedSingle
                 };
+
+                byte[] fotoBytes = func.getFotoPerfilBytes();
+                if (fotoBytes != null && fotoBytes.Length > 0)
+                {
+                    using (var ms = new System.IO.MemoryStream(fotoBytes))
+                    {
+                        picFuncionario.Image = Image.FromStream(ms);
+                    }
+                }
+                else
+                {
+                    picFuncionario.Image = Properties.Resources.icon_perfil; // imagem padrão
+                }
+
                 funcPanel.Controls.Add(picFuncionario);
 
                 Label lblNome = new Label
@@ -250,30 +170,36 @@ namespace Dev4Tech
                 funcPanel.Controls.Add(lblPontos);
 
                 panelDadosFunc.Controls.Add(funcPanel);
-
                 posY += funcPanel.Height + 10; // Espaçamento entre painéis
             }
         }
 
         private empresaCadFuncionario BuscarFuncionarioPorEmail(string email)
         {
-            empresaCadFuncionario func = null;
+            empresaCadFuncionario func = new empresaCadFuncionario();
             string query = "SELECT * FROM Funcionarios WHERE Email = @Email LIMIT 1";
-
             using (var conn = new MySql.Data.MySqlClient.MySqlConnection("server=localhost;database=Dev4Tech;uid=root;pwd=;"))
             {
                 conn.Open();
                 var cmd = new MySql.Data.MySqlClient.MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@Email", email);
-
                 using (var reader = cmd.ExecuteReader())
                 {
                     if (reader.Read())
                     {
-                        func = new empresaCadFuncionario();
                         func.setFuncionarioId(reader["FuncionarioId"].ToString());
                         func.setNome(reader["Nome"].ToString());
                         func.setCargo(reader["Cargo"].ToString());
+
+                        if (!reader.IsDBNull(reader.GetOrdinal("foto_perfil")))
+                        {
+                            byte[] fotoBytes = (byte[])reader["foto_perfil"];
+                            func.setFotoPerfilBytes(fotoBytes);
+                        }
+                    }
+                    else
+                    {
+                        func = null;
                     }
                 }
             }
@@ -283,7 +209,6 @@ namespace Dev4Tech
         private void btnAddMembro_Click(object sender, EventArgs e)
         {
             string emailSelecionado = cbmEmailMembro.Text.Trim();
-
             if (!string.IsNullOrEmpty(emailSelecionado) && !membrosSelecionados.Contains(emailSelecionado))
             {
                 membrosSelecionados.Add(emailSelecionado);
@@ -301,35 +226,28 @@ namespace Dev4Tech
             {
                 string nomeEquipe = txtNomeEquipe.Text.Trim();
                 string categoria = cmbCategoriaEquipe.Text.Trim();
-
                 if (string.IsNullOrEmpty(nomeEquipe))
                 {
                     MessageBox.Show("Informe o nome da equipe.");
                     return;
                 }
-
                 if (string.IsNullOrEmpty(categoria))
                 {
                     MessageBox.Show("Informe a categoria da equipe.");
                     return;
                 }
-
                 if (membrosSelecionados.Count == 0)
                 {
                     MessageBox.Show("Adicione pelo menos um membro (email) para a equipe.");
                     return;
                 }
-
                 equipe.setNomeEquipe(nomeEquipe);
                 equipe.setCategoria(categoria);
-
                 int idEquipe = equipe.InserirEquipeRetornandoId();
-
                 foreach (string email in membrosSelecionados)
                 {
                     equipe.InserirMembroEquipe(idEquipe, email);
                 }
-
                 MessageBox.Show("Equipe cadastrada com sucesso!");
                 LimparFormulario();
             }
@@ -345,13 +263,13 @@ namespace Dev4Tech
             cmbCategoriaEquipe.Text = "";
             cbmEmailMembro.Text = "";
             membrosSelecionados.Clear();
+            funcionariosSelecionados.Clear();
             panelDadosFunc.Controls.Clear();
         }
 
         private void btnConfig_Click(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;
-
             if (funcionario != null)
             {
                 Configuracoes config = new Configuracoes(funcionario);
@@ -389,7 +307,6 @@ namespace Dev4Tech
         {
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;
-
             if (funcionario != null)
             {
                 Home h = new Home();
@@ -398,7 +315,6 @@ namespace Dev4Tech
             }
             else if (admin != null)
             {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
                 HomeAdm t_equipeAdmin = new HomeAdm();
                 t_equipeAdmin.Show();
                 this.Hide();
@@ -418,7 +334,6 @@ namespace Dev4Tech
 
         private void panelDadosFunc_Paint(object sender, PaintEventArgs e)
         {
-
         }
 
         private void AdicionarEquipes_Load_1(object sender, EventArgs e)

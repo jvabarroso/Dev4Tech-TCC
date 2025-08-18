@@ -9,6 +9,17 @@ namespace Dev4Tech
         private string FuncionarioId, Email, Senha, Telefone, CPF, Cargo, Nome, endereco, numero, id_empresa, AdminId;
         private DateTime data_cadFunc, DataNascimento;
 
+        private byte[] fotoPerfilBytes;
+
+        public void setFotoPerfilBytes(byte[] bytes)
+        {
+            fotoPerfilBytes = bytes;
+        }
+        public byte[] getFotoPerfilBytes()
+        {
+            return fotoPerfilBytes;
+        }
+
         public void setData_cadFunc(DateTime data_cadFunc) { this.data_cadFunc = data_cadFunc; }
         public void setNumero(string numero) { this.numero = numero; }
         public void setEndereco(string endereco) { this.endereco = endereco; }

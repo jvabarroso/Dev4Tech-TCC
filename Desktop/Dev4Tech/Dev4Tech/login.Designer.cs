@@ -108,7 +108,7 @@
             // 
             this.lblCadastrar.AutoSize = true;
             this.lblCadastrar.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCadastrar.Location = new System.Drawing.Point(675, 179);
+            this.lblCadastrar.Location = new System.Drawing.Point(1066, 35);
             this.lblCadastrar.Name = "lblCadastrar";
             this.lblCadastrar.Size = new System.Drawing.Size(82, 13);
             this.lblCadastrar.TabIndex = 15;

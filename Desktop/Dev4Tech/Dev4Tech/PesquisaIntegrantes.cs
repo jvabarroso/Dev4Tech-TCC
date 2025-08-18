@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using MySql.Data.MySqlClient;
-
 namespace Dev4Tech
 {
     class PesquisaIntegrantes : conexao
@@ -33,12 +32,11 @@ namespace Dev4Tech
             }
             return dt;
         }
-
         public DataTable BuscarMembrosDaEquipe(int idEquipe, string filtroNome = "")
         {
             DataTable dt = new DataTable();
             string query = @"
-                SELECT f.FuncionarioId, f.Nome, f.Email, f.Telefone
+                SELECT f.FuncionarioId, f.Nome, f.Email, f.Telefone, f.foto_perfil
                 FROM Equipes_Membros em
                 INNER JOIN Funcionarios f ON em.FuncionarioId = f.FuncionarioId
                 WHERE em.id_equipe = @idEquipe";

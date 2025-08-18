@@ -110,37 +110,33 @@ namespace Dev4Tech
             mensagensCount = 0;
 
             FiltroEquipes filtro = new FiltroEquipes();
-            DataTable dt = filtro.ObterEquipesComMembrosComFotos(filtroCategoria); // Modificado para incluir fotos
+            DataTable dt = filtro.ObterEquipesComMembrosComFotos(filtroCategoria); // Método que traz fotos e ids
 
             var equipes = dt.AsEnumerable()
-    .GroupBy(row => new
-    {
-        id_equipe = row.Field<int>("id_equipe"),
-        nome_equipe = row.Field<string>("nome_equipe"),
-        categoria = row.Field<string>("nome_categoria"),
-        // Ajuste aqui:
-        ultima_atividade = row.IsNull("ultima_atividade") ? (DateTime?)null : row.Field<DateTime>("ultima_atividade")
-    });
+                            .GroupBy(row => new
+                            {
+                                id_equipe = row.Field<int>("id_equipe"),
+                                nome_equipe = row.Field<string>("nome_equipe"),
+                                categoria = row.Field<string>("nome_categoria"),
+                                ultima_atividade = row.IsNull("ultima_atividade") ? (DateTime?)null : row.Field<DateTime>("ultima_atividade")
+                            });
 
             foreach (var equipe in equipes)
             {
-                // Calcule os dias desde a ultima atividade:
-                int diasDesdeUltimaAtividade;
+                int diasDesdeUltimaAtividade = -1;
                 if (equipe.Key.ultima_atividade.HasValue)
                     diasDesdeUltimaAtividade = (DateTime.Now - equipe.Key.ultima_atividade.Value).Days;
-                else
-                    diasDesdeUltimaAtividade = -1;
 
-                // Crie a lista de membros para essa equipe (adaptar conforme seu código)...
-
-                // Exemplo:
                 var membros = dt.AsEnumerable()
-                                .Where(r => r.Field<int>("id_equipe") == equipe.Key.id_equipe)
-                                .Select(r => new MembroEquipe
-                                {
-                                    Nome = r.Field<string>("nome_funcionario"),
-                                    FotoPerfil = r.Field<byte[]>("foto_perfil")
-                                }).ToList();
+                .Where(r => r.Field<int>("id_equipe") == equipe.Key.id_equipe)
+                .Select(r => new MembroEquipe
+                {
+                    IdFuncionario = r.Field<int>("FuncionarioId"),
+                    Nome = r.Field<string>("nome_funcionario"),
+                    FotoPerfil = r.Field<byte[]>("foto_perfil")
+                })
+                .ToList();
+
 
                 AdicionarPainelEquipe(
                     equipe.Key.nome_equipe,
@@ -245,7 +241,7 @@ namespace Dev4Tech
                     Top = fotoTop,
                     BorderStyle = BorderStyle.FixedSingle,
                     Cursor = Cursors.Hand,
-                    Tag = membro.Nome
+                    Tag = membro.IdFuncionario  // Para identificar qual funcionário representa
                 };
 
                 if (membro.FotoPerfil != null && membro.FotoPerfil.Length > 0)
@@ -274,30 +270,28 @@ namespace Dev4Tech
             mensagensCount++;
         }
 
-        // Definição da classe para armazenar Dados do membro com foto
         public class MembroEquipe
         {
+            public int IdFuncionario { get; set; }
             public string Nome { get; set; }
             public byte[] FotoPerfil { get; set; }
         }
 
+
         // Métodos e eventos que você já tinha (mantidos)
         private void btnEquipe_Click(object sender, EventArgs e)
         {
-
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;
 
             if (funcionario != null)
             {
-                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
                 PesquisaEquipes t_equipe = new PesquisaEquipes();
                 t_equipe.Show();
                 this.Hide();
             }
             else if (admin != null)
             {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
                 PesquisaEquipes t_equipeAdmin = new PesquisaEquipes();
                 t_equipeAdmin.Show();
                 this.Hide();
@@ -314,14 +308,12 @@ namespace Dev4Tech
 
             if (funcionario != null)
             {
-                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
                 Tarefas_Pendentes t_equipe = new Tarefas_Pendentes();
                 t_equipe.Show();
                 this.Hide();
             }
             else if (admin != null)
             {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
                 AdicionarTarefa t_equipeAdmin = new AdicionarTarefa();
                 t_equipeAdmin.Show();
                 this.Hide();
@@ -337,7 +329,6 @@ namespace Dev4Tech
 
         private void btnConfig_Click(object sender, EventArgs e)
         {
-            // Alterado para suportar Funcionário ou Admin logado
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;
 
