@@ -110,30 +110,49 @@ namespace Dev4Tech
             mensagensCount = 0;
 
             FiltroEquipes filtro = new FiltroEquipes();
-            DataTable dt = filtro.ObterEquipesComMembros(filtroCategoria);
+            DataTable dt = filtro.ObterEquipesComMembrosComFotos(filtroCategoria); // Modificado para incluir fotos
 
             var equipes = dt.AsEnumerable()
-                            .GroupBy(row => new
-                            {
-                                id_equipe = row.Field<int>("id_equipe"),
-                                nome_equipe = row.Field<string>("nome_equipe"),
-                                categoria = row.Field<string>("nome_categoria"),
-                                dias_desde_ultima_atividade = row.IsNull("dias_desde_ultima_atividade") ? -1 : Convert.ToInt32(row["dias_desde_ultima_atividade"])
-                            });
+    .GroupBy(row => new
+    {
+        id_equipe = row.Field<int>("id_equipe"),
+        nome_equipe = row.Field<string>("nome_equipe"),
+        categoria = row.Field<string>("nome_categoria"),
+        // Ajuste aqui:
+        ultima_atividade = row.IsNull("ultima_atividade") ? (DateTime?)null : row.Field<DateTime>("ultima_atividade")
+    });
 
             foreach (var equipe in equipes)
             {
+                // Calcule os dias desde a ultima atividade:
+                int diasDesdeUltimaAtividade;
+                if (equipe.Key.ultima_atividade.HasValue)
+                    diasDesdeUltimaAtividade = (DateTime.Now - equipe.Key.ultima_atividade.Value).Days;
+                else
+                    diasDesdeUltimaAtividade = -1;
+
+                // Crie a lista de membros para essa equipe (adaptar conforme seu código)...
+
+                // Exemplo:
+                var membros = dt.AsEnumerable()
+                                .Where(r => r.Field<int>("id_equipe") == equipe.Key.id_equipe)
+                                .Select(r => new MembroEquipe
+                                {
+                                    Nome = r.Field<string>("nome_funcionario"),
+                                    FotoPerfil = r.Field<byte[]>("foto_perfil")
+                                }).ToList();
+
                 AdicionarPainelEquipe(
                     equipe.Key.nome_equipe,
                     equipe.Key.categoria,
-                    equipe.Select(r => r.Field<string>("nome_funcionario")).ToList(),
+                    membros,
                     equipe.Key.id_equipe,
-                    equipe.Key.dias_desde_ultima_atividade
+                    diasDesdeUltimaAtividade
                 );
             }
         }
 
-        private void AdicionarPainelEquipe(string nomeEquipe, string categoria, System.Collections.Generic.List<string> membros, int idEquipe, int diasDesdeUltimaAtividade)
+        private void AdicionarPainelEquipe(string nomeEquipe, string categoria, System.Collections.Generic.List<MembroEquipe> membros, int idEquipe, int diasDesdeUltimaAtividade)
         {
             int x = margemEsquerda;
             int y = margemTopo + (alturaMensagem + espacamentoVertical) * mensagensCount;
@@ -219,7 +238,6 @@ namespace Dev4Tech
             {
                 PictureBox picMembro = new PictureBox
                 {
-                    Image = Properties.Resources.icon_perfil,
                     SizeMode = PictureBoxSizeMode.StretchImage,
                     Width = 32,
                     Height = 32,
@@ -227,12 +245,25 @@ namespace Dev4Tech
                     Top = fotoTop,
                     BorderStyle = BorderStyle.FixedSingle,
                     Cursor = Cursors.Hand,
-                    Tag = membro
+                    Tag = membro.Nome
                 };
+
+                if (membro.FotoPerfil != null && membro.FotoPerfil.Length > 0)
+                {
+                    using (var ms = new System.IO.MemoryStream(membro.FotoPerfil))
+                    {
+                        picMembro.Image = Image.FromStream(ms);
+                    }
+                }
+                else
+                {
+                    picMembro.Image = Properties.Resources.icon_perfil; // Sua imagem padrão
+                }
+
                 picMembro.MouseHover += (s, e) =>
                 {
                     ToolTip tt = new ToolTip();
-                    tt.SetToolTip(picMembro, membro);
+                    tt.SetToolTip(picMembro, membro.Nome);
                 };
 
                 equipePanel.Controls.Add(picMembro);
@@ -243,8 +274,16 @@ namespace Dev4Tech
             mensagensCount++;
         }
 
+        // Definição da classe para armazenar Dados do membro com foto
+        public class MembroEquipe
+        {
+            public string Nome { get; set; }
+            public byte[] FotoPerfil { get; set; }
+        }
+
         // Métodos e eventos que você já tinha (mantidos)
-        private void btnEquipe_Click(object sender, EventArgs e) {
+        private void btnEquipe_Click(object sender, EventArgs e)
+        {
 
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;

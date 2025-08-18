@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Drawing; // Adicionar se ainda não tiver para FontStyle.Bold
+using System.Drawing; // Adicionado para FontStyle.Bold e manipulação de imagens
+using MySql.Data.MySqlClient;
 
 namespace Dev4Tech
 {
@@ -16,6 +17,9 @@ namespace Dev4Tech
             funcionario = func;
             admin = null; // Garante que admin é nulo
             PreencherCamposFuncionario();
+
+            this.Load += Perfil_Load; // Adiciona evento Load para carregar foto
+            IconFuncionario.SizeMode = PictureBoxSizeMode.StretchImage; // Define modo stretch no PictureBox
         }
 
         // Construtor para administrador
@@ -25,6 +29,9 @@ namespace Dev4Tech
             admin = adm;
             funcionario = null; // Garante que funcionario é nulo
             PreencherCamposAdmin();
+
+            this.Load += Perfil_Load; // Adiciona evento Load para carregar foto
+            IconFuncionario.SizeMode = PictureBoxSizeMode.StretchImage; // Define modo stretch no PictureBox
         }
 
 
@@ -49,7 +56,6 @@ namespace Dev4Tech
 
         private void PreencherCamposAdmin()
         {
-           
             lblNomeFunc.Text = admin.getNome();
             lblCargo.Text = admin.getNome();
             txtNome.Text = admin.getNome(); // Onde o nome do administrador será exibido
@@ -81,18 +87,18 @@ namespace Dev4Tech
         // Corrigido para verificar FuncionarioLogado e AdminLogado
         private void btnConfigurações_Click(object sender, EventArgs e)
         {
-            var funcionario = Sessao.FuncionarioLogado;
-            var admin = Sessao.AdminLogado;
+            var funcionarioSessao = Sessao.FuncionarioLogado;
+            var adminSessao = Sessao.AdminLogado;
 
-            if (funcionario != null)
+            if (funcionarioSessao != null)
             {
-                Configuracoes config = new Configuracoes(funcionario);
+                Configuracoes config = new Configuracoes(funcionarioSessao);
                 config.Show();
                 this.Hide();
             }
-            else if (admin != null)
+            else if (adminSessao != null)
             {
-                Configuracoes config = new Configuracoes(admin);
+                Configuracoes config = new Configuracoes(adminSessao);
                 config.Show();
                 this.Hide();
             }
@@ -110,16 +116,16 @@ namespace Dev4Tech
         }
         private void btnHome_Click(object sender, EventArgs e)
         {
-            var funcionario = Sessao.FuncionarioLogado;
-            var admin = Sessao.AdminLogado;
+            var funcionarioSessao = Sessao.FuncionarioLogado;
+            var adminSessao = Sessao.AdminLogado;
 
-            if (funcionario != null)
+            if (funcionarioSessao != null)
             {
                 Home h = new Home();
                 h.Show();
                 this.Hide();
             }
-            else if (admin != null)
+            else if (adminSessao != null)
             {
                 // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
                 HomeAdm t_equipeAdmin = new HomeAdm();
@@ -162,5 +168,119 @@ namespace Dev4Tech
             t_pendente.Show();
             this.Hide();
         }
+
+        private void AtualizarFotoNoBanco(byte[] fotoBytes)
+        {
+            // Adaptar para salvar na tabela correta conforme usuário atual (func/admin)
+            if (funcionario != null)
+            {
+                int idFuncionario = int.Parse(funcionario.getFuncionarioId());
+                using (var conn = new MySqlConnection("server=localhost;database=Dev4Tech;uid=root;pwd="))
+                {
+                    conn.Open();
+                    string query = "UPDATE Funcionarios SET foto_perfil = @foto WHERE FuncionarioId = @id";
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@foto", fotoBytes);
+                        cmd.Parameters.AddWithValue("@id", idFuncionario);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            else if (admin != null)
+            {
+                int idAdmin = int.Parse(admin.getAdminId());
+                using (var conn = new MySqlConnection("server=localhost;database=Dev4Tech;uid=root;pwd="))
+                {
+                    conn.Open();
+                    string query = "UPDATE Administradores SET foto_perfil = @foto WHERE AdminId = @id";
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@foto", fotoBytes);
+                        cmd.Parameters.AddWithValue("@id", idAdmin);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
+
+        private void btnTrocarFotoPerfil_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Title = "Selecione a nova foto do perfil";
+            ofd.Filter = "Imagens|*.jpg;*.jpeg;*.png;*.bmp";
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                string caminhoImagem = ofd.FileName;
+                IconFuncionario.SizeMode = PictureBoxSizeMode.StretchImage; // Garante que seja Stretch
+                IconFuncionario.Image = new Bitmap(caminhoImagem);
+
+                byte[] fotoBytes = System.IO.File.ReadAllBytes(caminhoImagem);
+
+                // Salvar no banco a nova foto
+                AtualizarFotoNoBanco(fotoBytes);
+
+                MessageBox.Show("Foto de perfil atualizada!");
+            }
+        }
+
+        private void Perfil_Load(object sender, EventArgs e)
+        {
+            if (funcionario != null)
+            {
+                int idFuncionario = int.Parse(funcionario.getFuncionarioId());
+                CarregarFotoDoBanco(idFuncionario, true);
+            }
+            else if (admin != null)
+            {
+                int idAdmin = int.Parse(admin.getAdminId());
+                CarregarFotoDoBanco(idAdmin, false);
+            }
+            else
+            {
+                IconFuncionario.SizeMode = PictureBoxSizeMode.StretchImage;
+                IconFuncionario.Image = Properties.Resources.icon_perfil;
+            }
+        }
+
+        private void CarregarFotoDoBanco(int id, bool isFuncionario)
+        {
+            using (var conn = new MySqlConnection("server=localhost;database=Dev4Tech;uid=root;pwd="))
+            {
+                conn.Open();
+                string query = isFuncionario
+                    ? "SELECT foto_perfil FROM Funcionarios WHERE FuncionarioId = @id"
+                    : "SELECT foto_perfil FROM Administradores WHERE AdminId = @id";
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    using (var rdr = cmd.ExecuteReader())
+                    {
+                        IconFuncionario.SizeMode = PictureBoxSizeMode.StretchImage;
+                        if (rdr.Read())
+                        {
+                            if (!rdr.IsDBNull(0))
+                            {
+                                byte[] fotoBytes = (byte[])rdr["foto_perfil"];
+                                using (var ms = new System.IO.MemoryStream(fotoBytes))
+                                {
+                                    IconFuncionario.Image = Image.FromStream(ms);
+                                }
+                            }
+                            else
+                            {
+                                IconFuncionario.Image = Properties.Resources.icon_perfil; // imagem padrão
+                            }
+                        }
+                        else
+                        {
+                            IconFuncionario.Image = Properties.Resources.icon_perfil;
+                        }
+                    }
+                }
+            }
+        }
+
     }
 }

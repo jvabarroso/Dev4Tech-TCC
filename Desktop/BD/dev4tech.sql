@@ -50,6 +50,10 @@ CREATE TABLE Funcionarios (
     FOREIGN KEY (AdminId) REFERENCES Administradores(AdminId) ON DELETE CASCADE
 );
 
+ALTER TABLE Funcionarios ADD COLUMN foto_perfil LONGBLOB;
+ALTER TABLE Administradores ADD COLUMN foto_perfil LONGBLOB;
+
+
 -- Tabela Categorias
 CREATE TABLE Categorias (
     id_categoria INT AUTO_INCREMENT PRIMARY KEY,
