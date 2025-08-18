@@ -85,6 +85,8 @@ CREATE TABLE MensagensChat (
     FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE 
 );
 
+ALTER TABLE MensagensChat ADD COLUMN FuncionarioId INT;
+ALTER TABLE MensagensChat ADD FOREIGN KEY (FuncionarioId) REFERENCES Funcionarios(FuncionarioId);
 
 
 -- Criar tabela para armazenar última atividade
