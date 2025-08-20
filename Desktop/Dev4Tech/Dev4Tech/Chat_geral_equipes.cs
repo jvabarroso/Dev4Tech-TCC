@@ -17,7 +17,6 @@ namespace Dev4Tech
         private int larguraMaxMensagem = 350;
         private int alturaMensagem = 60;
 
-
         public Chat_geral_equipes()
         {
             InitializeComponent();
@@ -45,18 +44,22 @@ namespace Dev4Tech
             DataTable dt = messageChat.ConsultarPorEquipe(idEquipe);
             mensagensCount = 0;
 
-            int? idFuncionarioLogado = Sessao.FuncionarioLogado != null ? Sessao.FuncionarioLogado.FuncionarioId : null;
+            string idFuncionarioLogado = null;
+            if (Sessao.FuncionarioLogado != null)
+            {
+                idFuncionarioLogado = Sessao.FuncionarioLogado.getFuncionarioId();
+            }
 
             foreach (DataRow row in dt.Rows)
             {
-                int? idRemetente = row.Table.Columns.Contains("FuncionarioId") && row["FuncionarioId"] != DBNull.Value
-                    ? Convert.ToInt32(row["FuncionarioId"])
-                    : (int?)null;
+                string idRemetente = row.Table.Columns.Contains("FuncionarioId") && row["FuncionarioId"] != DBNull.Value
+                    ? row["FuncionarioId"].ToString()
+                    : null;
 
                 string texto = row["texto"].ToString();
                 DateTime dataEnvio = Convert.ToDateTime(row["data_envio"]);
 
-                bool minhaMensagem = idFuncionarioLogado.HasValue && idRemetente == idFuncionarioLogado.Value;
+                bool minhaMensagem = (idFuncionarioLogado != null && idRemetente == idFuncionarioLogado);
 
                 AdicionarMensagem(texto, dataEnvio, minhaMensagem);
             }
@@ -136,18 +139,18 @@ namespace Dev4Tech
                 messageChat.setTexto(txtDigitarMensagem.Text);
                 messageChat.setDataEnvio(DateTime.Now);
                 messageChat.setIdEquipe(idEquipe);
+
                 if (Sessao.FuncionarioLogado != null)
                 {
-                    messageChat.setIdFuncionario(Sessao.FuncionarioLogado.FuncionarioId);
+                    messageChat.setIdFuncionario(Convert.ToInt32(Sessao.FuncionarioLogado.getFuncionarioId()));
                 }
+
                 messageChat.inserir();
                 messageChat.AtualizarUltimaAtividade(idEquipe);
                 CarregarMensagens();
                 txtDigitarMensagem.Clear();
             }
         }
-
-        // Métodos de evento exigidos pelo Designer
 
         private void lblRanking_Click(object sender, EventArgs e)
         {
@@ -211,7 +214,6 @@ namespace Dev4Tech
         {
             Sessao.FuncionarioLogado = null;
             Sessao.AdminLogado = null;
-
             Form1 t_incial = new Form1();
             t_incial.Show();
             this.Hide();
