@@ -44,8 +44,8 @@ try {
         $caminhoCompleto = $diretorio . $foto;
 
         if (file_exists($caminhoCompleto)) {
-            $urlCompleta = "http://192.168.1.70/imagem/" . $foto;
-            echo json_encode([$urlCompleta], JSON_UNESCAPED_UNICODE);
+            $urlCompleta = "http://10.239.0.125/dev4tec/img/" . $foto;
+            echo json_encode(['success' => true, 'imagem' => $urlCompleta], JSON_UNESCAPED_UNICODE);
         } else {
             echo json_encode([]);
         }
@@ -54,3 +54,4 @@ try {
 } catch (Exception $e) {
     echo json_encode(['error' => $e->getMessage()]);
 }
+

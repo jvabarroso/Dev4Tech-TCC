@@ -55,7 +55,12 @@ try {
     exit();
 }
 
+$diretorioImg = 'http://10.239.0.125/dev4tec/img/';
 if ($userfuncionario && $Senha === $userfuncionario['Senha']) {
+    $fotoUrl = $userfuncionario['foto_perfil'] 
+               ? $diretorioImg . $userfuncionario['foto_perfil'] 
+               : null;
+
     $result = [
         'success' => true,
         'role' => 'funcionario', 
@@ -71,11 +76,14 @@ if ($userfuncionario && $Senha === $userfuncionario['Senha']) {
             'numero' => $userfuncionario['numero'],
             'id_empresa' => $userfuncionario['id_empresa'],
             'AdminId' => $userfuncionario['AdminId'],
-            'foto_perfil' => $userfuncionario['foto_perfil']
+            'foto_perfil' => $fotoUrl
         ],
         'message' => 'Login realizado com sucesso!'
     ];
 } else if ($useradministrador && $Senha === $useradministrador['Senha']) {
+    $fotoUrl = $useradministrador['foto_perfil'] 
+               ? $diretorioImg . $useradministrador['foto_perfil'] 
+               : null;
     $result = [
         'success' => true,
         'role' => 'administrador', 
@@ -91,7 +99,7 @@ if ($userfuncionario && $Senha === $userfuncionario['Senha']) {
             'endereco' => $useradministrador['endereco'],
             'num' => $useradministrador['num'],
             'id_empresa' => $useradministrador['id_empresa'],
-            'foto_perfil' => $useradministrador['foto_perfil']
+            'foto_perfil' => $fotoUrl
         ],                   
         'message' => 'Login realizado com sucesso!' 
     ];

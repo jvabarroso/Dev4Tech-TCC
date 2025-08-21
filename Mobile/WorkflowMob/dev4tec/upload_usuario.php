@@ -1,11 +1,8 @@
 <?php
 include_once('conexao.php');
 
-$input = file_get_contents('php://input');
-$postjson = json_decode($input, true);
-
-$role = $postjson['role'] ?? null; 
-$id = $postjson['id'] ?? null;
+$role =  $_POST['role'] ?? null; 
+$id =  $_POST['id'] ?? null;
 
 if (!$role || !$id) {
     echo json_encode([
@@ -15,7 +12,7 @@ if (!$role || !$id) {
 }
   
 try {
-    if($_FILES['photo']){
+    if(isset($_FILES['photo'])){
         $photo_name = $_FILES["photo"]["name"];
         $photo_tmp_name = $_FILES["photo"]["tmp_name"];
 
@@ -27,10 +24,10 @@ try {
         $upload_path = __DIR__ . "/img/" . $random_name;
 
         if(move_uploaded_file($photo_tmp_name, $upload_path)) {  
-            if ($postjson['role'] === 'funcionario'){
+            if ($role === 'funcionario'){
                 $stmt = $pdo->prepare("UPDATE Funcionarios SET foto_perfil = :foto WHERE FuncionarioId = :id");
             }
-            else if ($postjson['role'] === 'administrador'){
+            else if ($role === 'administrador'){
                 $stmt = $pdo->prepare("UPDATE Administradores SET foto_perfil = :foto WHERE AdminId = :id");
             }       
             else{
@@ -39,16 +36,19 @@ try {
             } 
             $stmt->bindValue(':foto', $random_name);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-            $stmt->execute();
-            echo json_encode(['success' => true, 'file' => $random_name]);
-
-            else {
+            
+            if ($stmt->execute()) {
+                echo json_encode(['success' => true, 'file' => $random_name]);
+            } else {
                 echo json_encode(['success' => false, 'message' => 'Erro ao atualizar no banco']);
             }
         } else {
-        echo json_encode(['success' => false, 'message' => 'Nenhuma imagem enviada']);
+            echo json_encode(['success' => false, 'message' => 'Erro ao mover arquivo']);
+        }
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Nenhuma imagem recebida']);
     }
-    }
-  }
-
+} catch (Exception $e) {
+    echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+}
 ?>

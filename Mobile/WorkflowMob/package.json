@@ -20,6 +20,7 @@
     "axios": "^1.9.0",
     "expo": "~52.0.40",
     "expo-app-loading": "^2.1.1",
+    "expo-image-picker": "^16.1.4",
     "expo-status-bar": "~2.0.1",
     "node": "^20.19.4",
     "react": "18.3.1",

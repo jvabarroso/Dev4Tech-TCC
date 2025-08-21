@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Text, View, TouchableOpacity, Image, ScrollView} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Text, View, TouchableOpacity, Image, ScrollView, ActivityIndicator} from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
@@ -19,31 +19,33 @@ export default function Home({navigation, route}){
   const [imagens, setImagens] = useState([]);
   const [loading, setLoading] = useState(true);
 
+
 //Mostra a foto do Usuario:
   useEffect(() => {
+    if (!usuario.id || !usuario.role) return;
+
     async function carregarImagens() {
       try {
-        const response = await fetch(
-          `http://10.239.0.124/dev4tec/imagem_usuario.php?id=${usuarioState.id}`
+        const response = await fetch(`http://10.239.0.125/dev4tec/imagem_usuario.php`,{
+            method:'POST',
+            headers:{'Content-Type': 'application/json'},
+            body: JSON.stringify({id: usuario.id, role: usuario.role})
+          }
         );
         const data = await response.json();
 
-        if (Array.isArray(data) && data.length > 0) {
-          setUsuarioState(prev => ({ ...prev, imagem: data[0] })); // pega só a primeira foto
+        if (data.success) {
+          setUsuarioState(prev => ({ ...prev, imagem: data.imagem }));
         }
-      setImagens(data);
       } catch (error) {
         console.error('Erro ao buscar imagens:', error);
       } finally {
         setLoading(false);
       }
     }
-    if (usuarioState?.id) {
+
       carregarImagens();
-    } else {
-      setLoading(false);
-  }
-  }, [usuarioState.id]);
+  }, []);
 
   if (loading) {
     return (
@@ -53,20 +55,21 @@ export default function Home({navigation, route}){
       </View>
     );
   }
-
+  console.log('Imagem do usuário:', data.imagem);
 
     return(
         <ScrollView style={styles.scroll}>
             <View style={styles.container}>
                 <View style={styles.areaperfil}>
-                    <Image 
-                        source={usuarioState.imagem ? { uri: usuarioState.imagem } :require('../../../assets/img/image.png')} 
-                        style={styles.imagemfuncionario}/>
+                <Image 
+                  source={{ uri: usuario.foto_perfil }}
+                  style={{ width: 150, height: 150 }}
+                />
                     <View style={styles.verde}></View>
 
                     <View style={styles.textoperfil}>
-                        <Text style={styles.nome}>{usuario.nome}</Text>
-                        <Text style={styles.profissao}>{usuario.cargo}</Text>
+                        <Text style={styles.nome}>{usuarioState.nome}</Text>
+                        <Text style={styles.profissao}>{usuarioState.cargo}</Text>
                     </View>
                 </View>
 

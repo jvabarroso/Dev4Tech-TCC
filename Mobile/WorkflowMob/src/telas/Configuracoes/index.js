@@ -5,6 +5,8 @@ import { useTheme } from '../../styles/themecontext'
 import {Ionicons} from '@expo/vector-icons';
 
 import api from '../../../services/api';
+import * as ImagePicker from "expo-image-picker";
+import { showMessage } from "react-native-flash-message";
 
 export default function Configuracoes({navigation, route}){
     const { theme, toggleTheme } = useTheme();
@@ -37,12 +39,187 @@ export default function Configuracoes({navigation, route}){
     const [imagens, setImagens] = useState([]);
     const [loading, setLoading] = useState(true);
     const [modalVisivel, setModalVisivel] = useState(false);
+    const [mostrardados, setMostrardados] = useState(false);
+    const [image, setImage] = useState(null);
 
    function limparCampos(){
     setDataNascimento('');
     setTelefone('');
     setEndereco('');
    }
+    //Máscara input
+    // Adicione estas funções utilitárias no topo do arquivo
+    function formatarDataParaBanco(data) {
+      if (!data) return '';
+      
+      // Se já está no formato do banco, retorna direto
+      if (/^\d{4}-\d{2}-\d{2}$/.test(data)) return data;
+      
+      // Converte de DD/MM/AAAA para AAAA-MM-DD
+      const partes = data.split('/');
+      if (partes.length === 3) {
+        return `${partes[2]}-${partes[1]}-${partes[0]}`;
+      }
+      return data;
+    }
+
+    function formatarTelefone(telefone) {
+      if (!telefone) return '';
+      // Remove todos os caracteres não numéricos
+      return telefone.replace(/\D/g, '');
+    }
+
+    function formatarDataInput(text) {
+      let data = text.replace(/\D/g, '');
+      
+      if (data.length > 2) data = `${data.slice(0,2)}/${data.slice(2)}`;
+      if (data.length > 5) data = `${data.slice(0,5)}/${data.slice(5,9)}`;
+      
+      return data.slice(0,10);
+    }
+
+    function formatarTelefoneInput(text) {
+      let tel = text.replace(/\D/g, '');
+      mostrardados
+      if (tel.length > 0) tel = `(${tel}`;
+      if (tel.length > 3) tel = `${tel.slice(0,3)}) ${tel.slice(3)}`;
+      if (tel.length > 10) tel = `${tel.slice(0,10)}-${tel.slice(10,15)}`;
+      
+      return tel.slice(0,15);
+    }
+
+//Update Imagem
+  async function pickImageFromGallery() {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
+
+      if (!result.canceled) {
+        console.log(result); // Verificar o retorno completo
+        setImage(result.assets[0].uri); // Acesse o URI corretamente
+      }
+    }
+
+    async function takePhoto() {
+      let result = await ImagePicker.launchCameraAsync({
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
+
+      if (!result.canceled) {
+        console.log(result); // Verificar o retorno completo
+        setImage(result.assets[0].uri); // Acesse o URI corretamente
+      }
+    }
+
+  async function uploadImage() {
+      if (!image) {
+        showMessage({
+          message: 'Nenhuma imagem selecionada.',
+          description: 'Por favor, selecione ou tire uma foto primeiro.',
+          floating: true,
+          statusBarHeight: 70,
+          type: "danger",
+          duration: 2000,             
+        });
+        return;
+      }
+
+      let filename = image.split('/').pop();
+      let match = /\.(\w+)$/.exec(filename);
+      let type = match ? `image/${match[1]}` : `image`;
+
+      let formData = new FormData();
+      formData.append('photo', { uri: image, name: filename, type });
+      formData.append("role", usuarioState.role);
+      formData.append("id", usuarioState.id);
+
+      try {
+        const response = await fetch("http://10.239.0.125/dev4tec/upload_usuario.php", {
+          method: 'POST',
+          body: formData,
+        });
+           
+        const text = await response.text();
+        console.log("RESPOSTA DO PHP:", text);
+
+        let resJson;
+        try {
+          resJson = JSON.parse(text);
+        } catch (e) {
+          console.error("Erro ao converter JSON:", e);
+        }
+
+        if (response.ok && resJson.success) {        
+          showMessage({
+            message: 'Sucesso.',
+            description: 'Imagem enviada com sucesso!',
+            floating: true,
+            statusBarHeight: 70,
+            type: "success",
+            duration: 2000,             
+          });
+        } else {
+            showMessage({
+              message: 'Erro.',
+              description: resJson.message || "Falha ao enviar imagem.",
+              floating: true,
+              statusBarHeight: 70,
+              type: "warning",
+              duration: 2000,             
+            });
+        }
+      } catch (error) {
+          console.error(error);
+          showMessage({
+            message: 'Erro.',
+            description: "Ocorreu um erro ao tentar enviar a imagem.",
+            floating: true,
+            statusBarHeight: 70,
+            type: "warning",
+            duration: 2000,             
+          });
+      }
+    }
+    console.log('Dados recebidos nas Configuraçõpes:', route.params);
+//Mostra a foto do Usuario:
+  useEffect(() => {
+    async function carregarImagens() {
+      try {
+        const response = await fetch(
+          `http://10.239.0.125/dev4tec/imagem_usuario.php`,{
+            method:'POST',
+            headers:{'Content-Type': 'application/json'},
+            body: JSON.stringify({id: usuarioState.id, role: usuarioState.role})
+          }
+        );
+        const data = await response.json();
+
+        if (data.success) {
+          setUsuarioState(prev => ({ ...prev, imagem: data.imagem })); // pega só a primeira foto
+        }
+      } catch (error) {
+        console.error('Erro ao buscar imagens:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+      carregarImagens();
+  }, [usuarioState.id]);
+
+  if (loading) {
+    return (
+      <View style={styles.loading}>
+        <ActivityIndicator size="large" color="#4a90e2" />
+        <Text style={styles.loadingText}>Carregando imagens...</Text>
+      </View>
+    );
+  }
 
 
 //Post para o Banco:
@@ -90,87 +267,6 @@ export default function Configuracoes({navigation, route}){
         Alert.alert("Erro", "Não foi possível conectar ao servidor");
     }
 }
-
-//Mostra a foto do Usuario:
-  useEffect(() => {
-    async function carregarImagens() {
-      try {
-        const response = await fetch(
-          `http://10.239.0.124/dev4tec/imagem_usuario.php?id=${usuarioState.id}`
-        );
-        const data = await response.json();
-
-        if (Array.isArray(data) && data.length > 0) {
-          setUsuarioState(prev => ({ ...prev, imagem: data[0] })); // pega só a primeira foto
-        }
-      setImagens(data);
-      } catch (error) {
-        console.error('Erro ao buscar imagens:', error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    if (usuarioState?.id) {
-      carregarImagens();
-    } else {
-      setLoading(false);
-  }
-  }, [usuarioState.id]);
-
-  if (loading) {
-    return (
-      <View style={styles.loading}>
-        <ActivityIndicator size="large" color="#4a90e2" />
-        <Text style={styles.loadingText}>Carregando imagens...</Text>
-      </View>
-    );
-  }
-
-
-    //Máscara input
-    // Adicione estas funções utilitárias no topo do arquivo
-    function formatarDataParaBanco(data) {
-      if (!data) return '';
-      
-      // Se já está no formato do banco, retorna direto
-      if (/^\d{4}-\d{2}-\d{2}$/.test(data)) return data;
-      
-      // Converte de DD/MM/AAAA para AAAA-MM-DD
-      const partes = data.split('/');
-      if (partes.length === 3) {
-        return `${partes[2]}-${partes[1]}-${partes[0]}`;
-      }
-      return data;
-    }
-
-    function formatarTelefone(telefone) {
-      if (!telefone) return '';
-      // Remove todos os caracteres não numéricos
-      return telefone.replace(/\D/g, '');
-    }
-
-    function formatarDataInput(text) {
-      let data = text.replace(/\D/g, '');
-      
-      if (data.length > 2) data = `${data.slice(0,2)}/${data.slice(2)}`;
-      if (data.length > 5) data = `${data.slice(0,5)}/${data.slice(5,9)}`;
-      
-      return data.slice(0,10);
-    }
-
-    function formatarTelefoneInput(text) {
-      let tel = text.replace(/\D/g, '');
-      
-      if (tel.length > 0) tel = `(${tel}`;
-      if (tel.length > 3) tel = `${tel.slice(0,3)}) ${tel.slice(3)}`;
-      if (tel.length > 10) tel = `${tel.slice(0,10)}-${tel.slice(10,15)}`;
-      
-      return tel.slice(0,15);
-    }
-
-
-
-    const [mostrardados, setMostrardados] = useState(false);
 
     return(
       <View style={styles.container}>
@@ -303,10 +399,35 @@ export default function Configuracoes({navigation, route}){
                   style={styles.botaodevoltar}
                   onPress={() => setModalVisivel(false)}
                 >
-                <Ionicons name="arrow-back" size={28} color="black" />
+                <Ionicons name="close-outline" size={36} color="black" />
                 </TouchableOpacity>
               </View>
+
+              <TouchableOpacity 
+                style={styles.button} 
+                onPress={pickImageFromGallery}
+              >
+                <Ionicons name="image" size={20} color="white" />
+                <Text style={styles.buttonText}>Escolher da Galeria</Text>
+              </TouchableOpacity>
+        
+              <TouchableOpacity 
+                style={styles.button} 
+                onPress={takePhoto}
+              >
+                <Ionicons name="camera" size={20} color="white" />
+                <Text style={styles.buttonText}>Tirar Foto</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity 
+                style={styles.button} 
+                onPress={uploadImage}
+              >
+                <Ionicons name="cloud-upload" size={20} color="white" />
+                <Text style={styles.buttonText}>Enviar Imagem</Text>
+              </TouchableOpacity>
             </View>
+
           </View>
         </Modal>
       </View>
