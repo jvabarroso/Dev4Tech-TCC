@@ -67,15 +67,26 @@ namespace Dev4Tech
 
         private void AdicionarMensagem(string texto, DateTime dataEnvio, bool minhaMensagem)
         {
-            int y = margemTopo + (alturaMensagem + espacamentoVertical) * mensagensCount;
+            Label lblMensagem = new Label
+            {
+                Text = texto,
+                Font = new Font("Segoe UI", 10, FontStyle.Regular),
+                AutoSize = true,
+                Width = larguraMaxMensagem - 60,
+                Top = 10,
+                Left = minhaMensagem ? 10 : 50,
+                TextAlign = ContentAlignment.TopLeft,
+                ForeColor = Color.Black,
+                AutoEllipsis = false
+            };
 
             Panel mensagemPanel = new Panel
             {
                 BackColor = minhaMensagem ? Color.LightGreen : Color.White,
                 BorderStyle = BorderStyle.FixedSingle,
                 Width = larguraMaxMensagem,
-                Height = alturaMensagem,
-                Top = y,
+                Height = lblMensagem.Height + 40,  // Ajusta para texto + espaço para hora e bordas
+                Top = margemTopo + (alturaMensagem + espacamentoVertical) * mensagensCount,
                 Left = minhaMensagem ? panelMensagens.Width - larguraMaxMensagem - 20 : 20,
                 Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right
             };
@@ -86,23 +97,9 @@ namespace Dev4Tech
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 Width = 32,
                 Height = 32,
-                Top = (alturaMensagem - 32) / 2,
+                Top = (mensagemPanel.Height - 32) / 2,
                 Left = minhaMensagem ? mensagemPanel.Width - 42 : 10,
                 BorderStyle = BorderStyle.FixedSingle
-            };
-
-            Label lblMensagem = new Label
-            {
-                Text = texto,
-                Font = new Font("Segoe UI", 10, FontStyle.Regular),
-                AutoSize = false,
-                Width = larguraMaxMensagem - 60,
-                Height = alturaMensagem - 20,
-                Top = 10,
-                Left = minhaMensagem ? 10 : 50,
-                TextAlign = ContentAlignment.MiddleLeft,
-                MaximumSize = new Size(larguraMaxMensagem - 60, 0),
-                AutoEllipsis = true
             };
 
             Label lblHora = new Label
@@ -125,6 +122,7 @@ namespace Dev4Tech
             panelMensagens.VerticalScroll.Value = Math.Max(0, panelMensagens.VerticalScroll.Maximum);
             panelMensagens.PerformLayout();
         }
+
 
         private void LimparMensagens()
         {

@@ -1,5 +1,4 @@
-﻿// Classe Chat_Mensagens corrigida com métodos setIdFuncionario e getIdFuncionario
-
+﻿// Chat_Mensagens.cs
 using System;
 using System.Data;
 using MySql.Data.MySqlClient;
@@ -12,14 +11,13 @@ namespace Dev4Tech
         private string texto;
         private DateTime dataEnvio;
         private int idEquipe;
-        private int idFuncionario;  // Campo para identificar remetente da mensagem
+        private int idFuncionario;
 
         // Setters
         public void setIdMensagem(string idMensagem) { this.idMensagem = idMensagem; }
         public void setTexto(string texto) { this.texto = texto; }
         public void setDataEnvio(DateTime dataEnvio) { this.dataEnvio = dataEnvio; }
         public void setIdEquipe(int idEquipe) { this.idEquipe = idEquipe; }
-
         public void setIdFuncionario(int idFuncionario) { this.idFuncionario = idFuncionario; }
 
         // Getters

@@ -67,6 +67,8 @@ CREATE TABLE Equipes (
     FOREIGN KEY (id_categoria) REFERENCES Categorias(id_categoria) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 ALTER TABLE Equipes ADD COLUMN data_criacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
+alter table equipes add column AdminId int;
+alter table equipes add foreign key (AdminId) references administradores(AdminId);
 
 CREATE TABLE Equipes_Membros (
     id_equipe INT NOT NULL,
@@ -87,6 +89,9 @@ CREATE TABLE MensagensChat (
 
 ALTER TABLE MensagensChat ADD COLUMN FuncionarioId INT;
 ALTER TABLE MensagensChat ADD FOREIGN KEY (FuncionarioId) REFERENCES Funcionarios(FuncionarioId);
+
+alter table mensagenschat add column AdminId int;
+alter table mensagenschat add foreign key (AdminId) references administradores(AdminId);
 
 
 -- Criar tabela para armazenar última atividade

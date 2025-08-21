@@ -1,8 +1,8 @@
-﻿// Classe AddEquipes.cs com método ObterIdFuncionarioPorEmail atualizado para incluir foto do funcionário, se necessário
-
+﻿// AddEquipes.cs
 using System;
 using System.Data;
 using MySql.Data.MySqlClient;
+
 namespace Dev4Tech
 {
     class AddEquipes : conexao
@@ -10,6 +10,8 @@ namespace Dev4Tech
         private string nomeEquipe;
         private string categoria;
         private string emailFuncionario;
+        private string adminId; // Campo para armazenar AdminId como string
+
         // Setters
         public void setNomeEquipe(string nomeEquipe)
         {
@@ -23,6 +25,11 @@ namespace Dev4Tech
         {
             this.emailFuncionario = emailFuncionario;
         }
+        public void setAdminId(string adminId)
+        {
+            this.adminId = adminId;
+        }
+
         // Getters
         public string getNomeEquipe()
         {
@@ -36,6 +43,11 @@ namespace Dev4Tech
         {
             return this.emailFuncionario;
         }
+        public string getAdminId()
+        {
+            return this.adminId;
+        }
+
         private int ObterOuInserirCategoria(string nomeCategoria)
         {
             int idCategoria = 0;
@@ -67,6 +79,7 @@ namespace Dev4Tech
             }
             return idCategoria;
         }
+
         private int ObterIdFuncionarioPorEmail(string email)
         {
             int idFuncionario = 0;
@@ -94,6 +107,7 @@ namespace Dev4Tech
             }
             return idFuncionario;
         }
+
         public DataTable ConsultarCategorias()
         {
             DataTable dt = new DataTable();
@@ -113,6 +127,7 @@ namespace Dev4Tech
             }
             return dt;
         }
+
         public DataTable ConsultarEmailsFuncionarios()
         {
             DataTable dt = new DataTable();
@@ -132,13 +147,14 @@ namespace Dev4Tech
             }
             return dt;
         }
+
         public int InserirEquipeRetornandoId()
         {
             if (string.IsNullOrEmpty(getNomeEquipe()) || string.IsNullOrEmpty(getCategoria()))
                 throw new Exception("Preencha todos os campos antes de salvar.");
             int idCategoria = ObterOuInserirCategoria(getCategoria());
             int idEquipe = 0;
-            string query = "INSERT INTO Equipes (nome_equipe, id_categoria) VALUES (@nomeEquipe, @idCategoria); SELECT LAST_INSERT_ID();";
+            string query = "INSERT INTO Equipes (nome_equipe, id_categoria, AdminId) VALUES (@nomeEquipe, @idCategoria, @adminId); SELECT LAST_INSERT_ID();";
             if (this.abrirConexao())
             {
                 try
@@ -146,6 +162,7 @@ namespace Dev4Tech
                     MySqlCommand cmd = new MySqlCommand(query, conectar);
                     cmd.Parameters.AddWithValue("@nomeEquipe", getNomeEquipe());
                     cmd.Parameters.AddWithValue("@idCategoria", idCategoria);
+                    cmd.Parameters.AddWithValue("@adminId", getAdminId());
                     idEquipe = Convert.ToInt32(cmd.ExecuteScalar());
                 }
                 finally
@@ -155,6 +172,7 @@ namespace Dev4Tech
             }
             return idEquipe;
         }
+
         public void InserirMembroEquipe(int idEquipe, string emailFuncionario)
         {
             int idFuncionario = ObterIdFuncionarioPorEmail(emailFuncionario);
