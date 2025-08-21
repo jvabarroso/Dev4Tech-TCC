@@ -22,14 +22,13 @@ export default function Configuracoes({navigation, route}){
       telefone:'Telefone não definido',
       endereco:'Endereço não definido',
       cpf:"CPF não definido",
-      role: 'funcionario'
     };
     
-    const usuario = {
-      ...initialUsuario,
-      ...routeUsuario,
-      role: routeUsuario.role || 'funcionario' // Garante role
-    };
+  const usuario = {
+    ...initialUsuario,
+    ...routeUsuario,
+    role: routeUsuario.role
+  };
 
     const [dados, setDados] = useState([]);
     const [usuarioState, setUsuarioState] = useState(usuario);
@@ -194,13 +193,18 @@ export default function Configuracoes({navigation, route}){
           `http://10.239.0.125/dev4tec/imagem_usuario.php`,{
             method:'POST',
             headers:{'Content-Type': 'application/json'},
-            body: JSON.stringify({id: usuarioState.id, role: usuarioState.role})
+            body: JSON.stringify({ id: usuarioState.id, role: usuarioState.role })
           }
         );
         const data = await response.json();
 
         if (data.success) {
-          setUsuarioState(prev => ({ ...prev, imagem: data.imagem })); // pega só a primeira foto
+          setUsuarioState(prev => ({
+            ...prev,
+            dataNascimento,
+            telefone,
+            endereco,
+          }));
         }
       } catch (error) {
         console.error('Erro ao buscar imagens:', error);
