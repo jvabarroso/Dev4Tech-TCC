@@ -55,15 +55,18 @@ export default function Home({navigation, route}){
       </View>
     );
   }
-  console.log('Imagem do usuário:', data.imagem);
+  console.log('Imagem do usuário:', usuarioState.imagem);
 
     return(
         <ScrollView style={styles.scroll}>
             <View style={styles.container}>
                 <View style={styles.areaperfil}>
                 <Image 
-                  source={{ uri: usuario.foto_perfil }}
-                  style={{ width: 150, height: 150 }}
+                  source={ 
+                    usuarioState.imagem  
+                    ? {uri: usuarioState.imagem}
+                     : require('../../../../assets/img/fotoexemplo.png')}
+                  style={styles.foto}
                 />
                     <View style={styles.verde}></View>
 

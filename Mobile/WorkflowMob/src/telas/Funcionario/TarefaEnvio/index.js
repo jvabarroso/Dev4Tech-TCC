@@ -90,9 +90,10 @@ export default function TarefaEnvio({ navigation, route }) {
                         <Text style={styles.titulodescricao}>DESCRIÇÃO DA TAREFA</Text>
                         <Text style={styles.descricao2}>
                             {descricaoExpandida 
-                                ? tarefa.instrucoes 
-                                : `${tarefa.instrucoes.slice(0, 100)}${tarefa.instrucoes.length > 100 ? '...' : ''}`
-                            }
+                                ? (tarefa.instrucoes || "Sem instruções disponíveis")
+                                : tarefa.instrucoes
+                                    ? `${tarefa.instrucoes.slice(0, 100)}${tarefa.instrucoes.length > 100 ? '...' : ''}`
+                                    : "Sem instruções disponíveis"}
                         </Text>
                         {tarefa.instrucoes.length > 100 && (
                             <TouchableOpacity onPress={alternarDescricao}>

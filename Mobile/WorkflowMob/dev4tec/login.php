@@ -8,42 +8,26 @@ $Senha = $postjson['Senha'] ?? '';
 
 try {
     $query = $pdo->prepare("SELECT 
-        FuncionarioId AS id,
-        Nome,
-        Cargo,
-        CPF,
-        DataNascimento,
-        Telefone,
-        Email,
-        Senha,
-        endereco,
-        numero,
-        id_empresa,
-        AdminId,
-        foto_perfil
-        FROM Funcionarios WHERE Email = :Email");
+        f.*, 
+        f.FuncionarioId AS id, 
+        'funcionario' AS role 
+    FROM Funcionarios f 
+    WHERE f.Email = :email AND f.Senha = :senha");
     
-    $query->bindValue(':Email', $Email);
+    $query->bindValue(':email', $Email);
+    $query->bindValue(':senha', $Senha);
     $query->execute();
     $userfuncionario = $query->fetch(PDO::FETCH_ASSOC);
 
-    $query2 = $pdo->prepare("SELECT     
-        AdminId AS id,
-        Nome,
-        Cargo,
-        CPF,
-        DataNascimento,
-        Telefone,
-        Email,
-        Senha,
-        data_cadAdmin,
-        endereco,
-        num,
-        id_empresa,
-        foto_perfil
-        FROM Administradores WHERE Email = :Email");
+    $query2 = $pdo->prepare("SELECT 
+        a.*, 
+        a.AdminId AS id, 
+        'administrador' AS role 
+    FROM Administradores a 
+    WHERE a.Email = :email AND a.Senha = :senha");
     
-    $query2->bindValue(':Email', $Email);
+    $query2->bindValue(':email', $Email);
+    $query2->bindValue(':senha', $Senha);
     $query2->execute();
     $useradministrador = $query2->fetch(PDO::FETCH_ASSOC);
 
@@ -56,14 +40,14 @@ try {
 }
 
 $diretorioImg = 'http://10.239.0.125/dev4tec/img/';
-if ($userfuncionario && $Senha === $userfuncionario['Senha']) {
+if ($userfuncionario) {
     $fotoUrl = $userfuncionario['foto_perfil'] 
                ? $diretorioImg . $userfuncionario['foto_perfil'] 
                : null;
 
     $result = [
         'success' => true,
-        'role' => 'funcionario', 
+        'role' => 'funcionario',
         'usuario' => [
             'id' => $userfuncionario['id'],
             'nome' => $userfuncionario['Nome'],
@@ -76,11 +60,12 @@ if ($userfuncionario && $Senha === $userfuncionario['Senha']) {
             'numero' => $userfuncionario['numero'],
             'id_empresa' => $userfuncionario['id_empresa'],
             'AdminId' => $userfuncionario['AdminId'],
-            'foto_perfil' => $fotoUrl
+            'foto_perfil' => $fotoUrl,
+            'role' => 'funcionario'
         ],
         'message' => 'Login realizado com sucesso!'
     ];
-} else if ($useradministrador && $Senha === $useradministrador['Senha']) {
+} else if ($useradministrador) {
     $fotoUrl = $useradministrador['foto_perfil'] 
                ? $diretorioImg . $useradministrador['foto_perfil'] 
                : null;
@@ -99,7 +84,8 @@ if ($userfuncionario && $Senha === $userfuncionario['Senha']) {
             'endereco' => $useradministrador['endereco'],
             'num' => $useradministrador['num'],
             'id_empresa' => $useradministrador['id_empresa'],
-            'foto_perfil' => $fotoUrl
+            'foto_perfil' => $fotoUrl,
+            'role' => 'administrador', 
         ],                   
         'message' => 'Login realizado com sucesso!' 
     ];
