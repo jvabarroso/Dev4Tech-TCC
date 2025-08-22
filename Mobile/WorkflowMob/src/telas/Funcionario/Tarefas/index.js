@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, TouchableOpacity, Image, TextInput, ScrollView, ActivityIndicator } from 'react-native';
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
+import { useFocusEffect } from '@react-navigation/native';
 
 import api from '../../../../services/api';
 
@@ -11,10 +12,22 @@ export default function Tarefas({ navigation, route }) {
 
   const usuario = route.params?.usuario;
   const [dados, setDados] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
   const [filtroAtivo, setFiltroAtivo] = useState('pendente');
   const [termoBusca, setTermoBusca] = useState('');
+  const [usuarioState, setusuarioState] = useState(usuario);
+
+  useFocusEffect(
+  React.useCallback(() => {
+    listarDados();
+  }, [])
+);
+
+  useEffect(() => {
+  if (route.params?.usuario) {
+    setusuarioState(route.params.usuario);
+  }
+}, [route.params?.usuario]);
 
   async function listarDados() {
     if (!usuario?.id) {
@@ -23,7 +36,6 @@ export default function Tarefas({ navigation, route }) {
     }
     
     try {
-      setIsLoading(true);
       setErrorMessage(null);
       const res = await api.get(`dev4tec/tarefa.php`, {
         params: { id_funcionario: usuario.id }
@@ -67,14 +79,11 @@ export default function Tarefas({ navigation, route }) {
       console.log("Erro ao listar tarefas:", error);
       setErrorMessage("Erro de conexão com o servidor");
     }
-    finally {
-      setIsLoading(false);
-    }
   }
 
   useEffect(() => {
     listarDados();
-  }, [usuario?.id]);
+  }, [usuarioState?.id]);
 
 
   const filtrarTarefas = () => {
@@ -149,13 +158,6 @@ export default function Tarefas({ navigation, route }) {
     return texto.length > limite ? texto.substring(0, limite) + '...' : texto;
   }
 
-  if (isLoading) {
-    return (
-      <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
-        <ActivityIndicator size="large" color={theme.primary} />
-      </View>
-    );
-  }
 
   if (errorMessage) {
     return (
