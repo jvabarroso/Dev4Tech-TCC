@@ -44,62 +44,165 @@ namespace Dev4Tech
             DataTable dt = messageChat.ConsultarPorEquipe(idEquipe);
             mensagensCount = 0;
 
-            string idFuncionarioLogado = null;
+            string idUsuarioLogado = null;
+            bool usuarioEhAdmin = false;
             if (Sessao.FuncionarioLogado != null)
             {
-                idFuncionarioLogado = Sessao.FuncionarioLogado.getFuncionarioId();
+                idUsuarioLogado = Sessao.FuncionarioLogado.getFuncionarioId();
+                usuarioEhAdmin = false;
+            }
+            else if (Sessao.AdminLogado != null)
+            {
+                idUsuarioLogado = Sessao.AdminLogado.getAdminId();
+                usuarioEhAdmin = true;
             }
 
             foreach (DataRow row in dt.Rows)
             {
-                string idRemetente = row.Table.Columns.Contains("FuncionarioId") && row["FuncionarioId"] != DBNull.Value
-                    ? row["FuncionarioId"].ToString()
-                    : null;
+                string idFuncionario = row["FuncionarioId"] == DBNull.Value ? null : row["FuncionarioId"].ToString();
+                string idAdmin = row["AdminId"] == DBNull.Value ? null : row["AdminId"].ToString();
+
+                bool minhaMensagem = false;
+                if (!string.IsNullOrEmpty(idUsuarioLogado))
+                {
+                    if (usuarioEhAdmin)
+                    {
+                        minhaMensagem = idAdmin == idUsuarioLogado;
+                    }
+                    else
+                    {
+                        minhaMensagem = idFuncionario == idUsuarioLogado;
+                    }
+                }
 
                 string texto = row["texto"].ToString();
                 DateTime dataEnvio = Convert.ToDateTime(row["data_envio"]);
+                bool mensagemAdministrador = !string.IsNullOrEmpty(idAdmin);
 
-                bool minhaMensagem = (idFuncionarioLogado != null && idRemetente == idFuncionarioLogado);
+                Image foto = null;
+                if (mensagemAdministrador)
+                {
+                    // Carregar foto do admin pelo ID
+                    foto = CarregarFotoAdmin(int.Parse(idAdmin));
+                }
+                else if (!string.IsNullOrEmpty(idFuncionario))
+                {
+                    // Carregar foto do funcionário pelo ID
+                    foto = CarregarFotoFuncionario(int.Parse(idFuncionario));
+                }
+                if (foto == null)
+                {
+                    foto = Properties.Resources.icon_perfil; // Imagem padrão
+                }
 
-                AdicionarMensagem(texto, dataEnvio, minhaMensagem);
+                AdicionarMensagem(texto, dataEnvio, minhaMensagem, mensagemAdministrador, foto);
             }
         }
 
-        private void AdicionarMensagem(string texto, DateTime dataEnvio, bool minhaMensagem)
+        // Função para carregar a foto do funcionário do banco (retorna Image ou null)
+        private Image CarregarFotoFuncionario(int idFuncionario)
         {
-            Label lblMensagem = new Label
+            Image foto = null;
+            string query = "SELECT foto_perfil FROM Funcionarios WHERE FuncionarioId = @idFuncionario LIMIT 1";
+            using (var conn = new MySql.Data.MySqlClient.MySqlConnection("server=localhost;database=Dev4Tech;uid=root;pwd=;"))
             {
-                Text = texto,
-                Font = new Font("Segoe UI", 10, FontStyle.Regular),
-                AutoSize = true,
-                Width = larguraMaxMensagem - 60,
-                Top = 10,
-                Left = minhaMensagem ? 10 : 50,
-                TextAlign = ContentAlignment.TopLeft,
-                ForeColor = Color.Black,
-                AutoEllipsis = false
-            };
+                conn.Open();
+                var cmd = new MySql.Data.MySqlClient.MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@idFuncionario", idFuncionario);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read() && !reader.IsDBNull(reader.GetOrdinal("foto_perfil")))
+                    {
+                        byte[] fotoBytes = (byte[])reader["foto_perfil"];
+                        using (var ms = new System.IO.MemoryStream(fotoBytes))
+                        {
+                            foto = Image.FromStream(ms);
+                        }
+                    }
+                }
+            }
+            return foto;
+        }
+
+        // Função para carregar a foto do administrador do banco (retorna Image ou null)
+        private Image CarregarFotoAdmin(int idAdmin)
+        {
+            Image foto = null;
+            string query = "SELECT foto_perfil FROM administradores WHERE AdminId = @idAdmin LIMIT 1";
+            using (var conn = new MySql.Data.MySqlClient.MySqlConnection("server=localhost;database=Dev4Tech;uid=root;pwd=;"))
+            {
+                conn.Open();
+                var cmd = new MySql.Data.MySqlClient.MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@idAdmin", idAdmin);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read() && !reader.IsDBNull(reader.GetOrdinal("foto_perfil")))
+                    {
+                        byte[] fotoBytes = (byte[])reader["foto_perfil"];
+                        using (var ms = new System.IO.MemoryStream(fotoBytes))
+                        {
+                            foto = Image.FromStream(ms);
+                        }
+                    }
+                }
+            }
+            return foto;
+        }
+
+        // Método AdicionarMensagem ajustado para receber a foto como parâmetro
+        private void AdicionarMensagem(string texto, DateTime dataEnvio, bool minhaMensagem, bool mensagemAdministrador, Image fotoPerfil)
+        {
+            int y = margemTopo + (alturaMensagem + espacamentoVertical) * mensagensCount;
+
+            Color fundoMensagem;
+
+            if (minhaMensagem)
+            {
+                fundoMensagem = Color.LightGreen;
+            }
+            else if (mensagemAdministrador)
+            {
+                fundoMensagem = Color.LightBlue;
+            }
+            else
+            {
+                fundoMensagem = Color.White;
+            }
 
             Panel mensagemPanel = new Panel
             {
-                BackColor = minhaMensagem ? Color.LightGreen : Color.White,
+                BackColor = fundoMensagem,
                 BorderStyle = BorderStyle.FixedSingle,
                 Width = larguraMaxMensagem,
-                Height = lblMensagem.Height + 40,  // Ajusta para texto + espaço para hora e bordas
-                Top = margemTopo + (alturaMensagem + espacamentoVertical) * mensagensCount,
+                Height = alturaMensagem,
+                Top = y,
                 Left = minhaMensagem ? panelMensagens.Width - larguraMaxMensagem - 20 : 20,
                 Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right
             };
 
             PictureBox avatar = new PictureBox
             {
-                Image = minhaMensagem ? Properties.Resources.icon_perfil : Properties.Resources.icon_EquipLogo,
+                Image = fotoPerfil,
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 Width = 32,
                 Height = 32,
-                Top = (mensagemPanel.Height - 32) / 2,
+                Top = (alturaMensagem - 32) / 2,
                 Left = minhaMensagem ? mensagemPanel.Width - 42 : 10,
                 BorderStyle = BorderStyle.FixedSingle
+            };
+
+            Label lblMensagem = new Label
+            {
+                Text = texto,
+                Font = new Font("Segoe UI", 10, FontStyle.Regular),
+                AutoSize = false,
+                Width = larguraMaxMensagem - 60,
+                Height = alturaMensagem - 20,
+                Top = 10,
+                Left = minhaMensagem ? 10 : 50,
+                TextAlign = ContentAlignment.MiddleLeft,
+                ForeColor = Color.Black,
+                AutoEllipsis = true
             };
 
             Label lblHora = new Label
@@ -124,6 +227,87 @@ namespace Dev4Tech
         }
 
 
+        private void AdicionarMensagem(string texto, DateTime dataEnvio, bool minhaMensagem, bool mensagemAdministrador)
+        {
+            int y = margemTopo + (alturaMensagem + espacamentoVertical) * mensagensCount;
+
+            Color fundoMensagem;
+
+            if (minhaMensagem)
+            {
+                // Mensagem do próprio usuário (funcionário ou admin)
+                fundoMensagem = Color.LightGreen;
+            }
+            else if (mensagemAdministrador)
+            {
+                // Mensagem de administrador, mas não do usuário logado — tom azul claro
+                fundoMensagem = Color.LightBlue;
+            }
+            else
+            {
+                // Mensagem de funcionário que não é o usuário logado — branco
+                fundoMensagem = Color.White;
+            }
+
+            Panel mensagemPanel = new Panel
+            {
+                BackColor = fundoMensagem,
+                BorderStyle = BorderStyle.FixedSingle,
+                Width = larguraMaxMensagem,
+                Height = alturaMensagem,
+                Top = y,
+                Left = minhaMensagem ? panelMensagens.Width - larguraMaxMensagem - 20 : 20,
+                Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right
+            };
+
+            PictureBox avatar = new PictureBox
+            {
+                Image = minhaMensagem ? Properties.Resources.icon_perfil : Properties.Resources.icon_EquipLogo,
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                Width = 32,
+                Height = 32,
+                Top = (alturaMensagem - 32) / 2,
+                Left = minhaMensagem ? mensagemPanel.Width - 42 : 10,
+                BorderStyle = BorderStyle.FixedSingle
+            };
+
+            Label lblMensagem = new Label
+            {
+                Text = texto,
+                Font = new Font("Segoe UI", 10, FontStyle.Regular),
+                AutoSize = false,
+                Width = larguraMaxMensagem - 60,
+                Height = alturaMensagem - 20,
+                Top = 10,
+                Left = minhaMensagem ? 10 : 50,
+                TextAlign = ContentAlignment.MiddleLeft,
+                ForeColor = Color.Black,
+                AutoEllipsis = true
+            };
+
+            Label lblHora = new Label
+            {
+                Text = dataEnvio.ToString("HH:mm"),
+                Font = new Font("Segoe UI", 7, FontStyle.Italic),
+                AutoSize = true,
+                Top = mensagemPanel.Height - 18,
+                Left = minhaMensagem ? 10 : 50,
+                ForeColor = Color.Gray
+            };
+
+            mensagemPanel.Controls.Add(lblMensagem);
+            mensagemPanel.Controls.Add(avatar);
+            mensagemPanel.Controls.Add(lblHora);
+
+            panelMensagens.Controls.Add(mensagemPanel);
+            mensagensCount++;
+
+            panelMensagens.VerticalScroll.Value = Math.Max(0, panelMensagens.VerticalScroll.Maximum);
+            panelMensagens.PerformLayout();
+        }
+
+
+
         private void LimparMensagens()
         {
             panelMensagens.Controls.Clear();
@@ -141,6 +325,17 @@ namespace Dev4Tech
                 if (Sessao.FuncionarioLogado != null)
                 {
                     messageChat.setIdFuncionario(Convert.ToInt32(Sessao.FuncionarioLogado.getFuncionarioId()));
+                    messageChat.setIdAdmin(null);
+                }
+                else if (Sessao.AdminLogado != null)
+                {
+                    messageChat.setIdAdmin(Convert.ToInt32(Sessao.AdminLogado.getAdminId()));
+                    messageChat.setIdFuncionario(null);
+                }
+                else
+                {
+                    MessageBox.Show("Nenhum usuário logado para enviar mensagem");
+                    return;
                 }
 
                 messageChat.inserir();
@@ -149,6 +344,8 @@ namespace Dev4Tech
                 txtDigitarMensagem.Clear();
             }
         }
+
+
 
         private void lblRanking_Click(object sender, EventArgs e)
         {

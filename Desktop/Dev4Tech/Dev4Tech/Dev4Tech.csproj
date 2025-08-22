@@ -156,6 +156,7 @@
     <Compile Include="empresa.cs" />
     <Compile Include="EntregaTarefa.cs" />
     <Compile Include="EnvioProblema.cs" />
+    <Compile Include="EquipesRanking.cs" />
     <Compile Include="Equipes_Estatisticas.cs">
       <SubType>Form</SubType>
     </Compile>
