@@ -11,53 +11,47 @@ namespace Dev4Tech
         private string texto;
         private DateTime dataEnvio;
         private int idEquipe;
-        private int idFuncionario;
+        private int? idFuncionario; // Nullable pois pode ser null
+        private int? idAdmin;       // Nullable pois pode ser null
 
-        // Setters
         public void setIdMensagem(string idMensagem) { this.idMensagem = idMensagem; }
         public void setTexto(string texto) { this.texto = texto; }
         public void setDataEnvio(DateTime dataEnvio) { this.dataEnvio = dataEnvio; }
         public void setIdEquipe(int idEquipe) { this.idEquipe = idEquipe; }
-        public void setIdFuncionario(int idFuncionario) { this.idFuncionario = idFuncionario; }
+        public void setIdFuncionario(int? idFuncionario) { this.idFuncionario = idFuncionario; }
+        public void setIdAdmin(int? idAdmin) { this.idAdmin = idAdmin; }
 
-        // Getters
         public string getIdMensagem() { return this.idMensagem; }
         public string getTexto() { return this.texto; }
         public DateTime getDataEnvio() { return this.dataEnvio; }
         public int getIdEquipe() { return this.idEquipe; }
-        public int getIdFuncionario() { return this.idFuncionario; }
+        public int? getIdFuncionario() { return this.idFuncionario; }
+        public int? getIdAdmin() { return this.idAdmin; }
 
-        // Inserir mensagem no banco com idEquipe e idFuncionario
         public void inserir()
         {
-            string query = "INSERT INTO MensagensChat (texto, data_envio, id_equipe, FuncionarioId) " +
-                           "VALUES (@texto, @data_envio, @id_equipe, @funcionarioId)";
+            string query = "INSERT INTO MensagensChat (texto, data_envio, id_equipe, FuncionarioId, AdminId) " +
+                           "VALUES (@texto, @data_envio, @id_equipe, @funcionarioId, @adminId)";
             if (this.abrirConexao())
             {
                 MySqlCommand cmd = new MySqlCommand(query, conectar);
                 cmd.Parameters.AddWithValue("@texto", getTexto());
                 cmd.Parameters.AddWithValue("@data_envio", getDataEnvio().ToString("yyyy-MM-dd HH:mm:ss"));
                 cmd.Parameters.AddWithValue("@id_equipe", getIdEquipe());
-                cmd.Parameters.AddWithValue("@funcionarioId", getIdFuncionario());
+                if (getIdFuncionario().HasValue)
+                    cmd.Parameters.AddWithValue("@funcionarioId", getIdFuncionario());
+                else
+                    cmd.Parameters.AddWithValue("@funcionarioId", DBNull.Value);
+                if (getIdAdmin().HasValue)
+                    cmd.Parameters.AddWithValue("@adminId", getIdAdmin());
+                else
+                    cmd.Parameters.AddWithValue("@adminId", DBNull.Value);
                 cmd.ExecuteNonQuery();
                 this.fecharConexao();
             }
         }
 
-        // Excluir mensagem por id
-        public void excluir()
-        {
-            string query = "DELETE FROM MensagensChat WHERE id_mensagem = @id_mensagem";
-            if (this.abrirConexao())
-            {
-                MySqlCommand cmd = new MySqlCommand(query, conectar);
-                cmd.Parameters.AddWithValue("@id_mensagem", getIdMensagem());
-                cmd.ExecuteNonQuery();
-                this.fecharConexao();
-            }
-        }
-
-        // Consultar mensagens por equipe, incluindo FuncionarioId
+        // Ajuste na consulta para buscar também AdminId
         public DataTable ConsultarPorEquipe(int idEquipe)
         {
             DataTable dt = new DataTable();
