@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'; 
 import { Text, View, Image, TextInput, TouchableOpacity, ScrollView,  ActivityIndicator} from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
+import { useFocusEffect } from '@react-navigation/native';
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
 
@@ -16,6 +17,20 @@ export default function Equipes({ route, navigation }) {
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
   const [termoBusca, setTermoBusca] = useState('');
+  const [usuarioState, setusuarioState] = useState(usuario);
+
+  useFocusEffect(
+  React.useCallback(() => {
+    listarDados();
+  }, [])
+  );
+
+  useEffect(() => {
+  if (route.params?.usuario) {
+    setusuarioState(route.params.usuario);
+  }
+  }, [route.params?.usuario]);
+
 
   async function listarDados() {
   if (!usuario?.id) {
@@ -50,7 +65,7 @@ export default function Equipes({ route, navigation }) {
 
   useEffect(() => {
     listarDados();
-  }, [usuario?.id]);
+  }, [usuarioState?.id]);
 
   const toggleEquipe = (id) => {
     setEquipeSelecionada(equipeSelecionada === id ? null : id);
@@ -122,7 +137,8 @@ export default function Equipes({ route, navigation }) {
               </TouchableOpacity>
                 {equipeSelecionada === item.id_equipe && (
                 <View style={styles.areacard}>
-                  <TouchableOpacity onPress={() => navigation.navigate('EquipeFuncionario', { equipe: item })}>
+                  <TouchableOpacity 
+                    onPress={() => navigation.navigate('EquipeFuncionario', { usuario: usuarioState })}>
 
                     <Card style={styles.cardtarequi}>
                       <Card.Cover source={require('../../../../assets/img/equipes.png')} style={styles.imagemcard} />
@@ -137,7 +153,8 @@ export default function Equipes({ route, navigation }) {
                     </Card>
                   </TouchableOpacity>
 
-                  <TouchableOpacity onPress={() => navigation.navigate('EquipeTarefas', { equipe: item })}>
+                  <TouchableOpacity 
+                    onPress={() => navigation.navigate('EquipeTarefas', { usuario: usuarioState })}>
 
                     <Card style={styles.cardtarequi}>
                       <Card.Cover source={require('../../../../assets/img/tarefas.png')} style={styles.imagemcard} />
@@ -153,7 +170,8 @@ export default function Equipes({ route, navigation }) {
 
                   </TouchableOpacity>
 
-                  <TouchableOpacity onPress={() => navigation.navigate('EquipeRanking', { equipe: item })}>
+                  <TouchableOpacity 
+                    onPress={() => navigation.navigate('EquipeRanking', { usuario: usuarioState })}>
 
                     <Card style={styles.cardtarequi}>
                       <Card.Cover source={require('../../../../assets/img/ranking.png')} style={styles.imagemcard} />

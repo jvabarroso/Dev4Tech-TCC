@@ -18,6 +18,7 @@ export default function Home({navigation, route}){
   const [usuarioState, setUsuarioState] = useState(usuario);
   const [imagens, setImagens] = useState([]);
   const [loading, setLoading] = useState(true);
+  
 
 
 //Mostra a foto do Usuario:
