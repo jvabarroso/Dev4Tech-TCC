@@ -1,27 +1,72 @@
-import React, { useState } from 'react';
-import { Text, View, TouchableOpacity, Image, ScrollView} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Text, View, TouchableOpacity, Image, ScrollView, ActivityIndicator} from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
 
 export default function HomeAdm({navigation, route}){
-    const { theme } = useTheme();
-    const styles = getStyles(theme);
+  const { theme } = useTheme();
+  const styles = getStyles(theme);
 
-    const usuario = route.params?.usuario || {
-        nome: 'Usuário não identificado',
-        cargo: 'Cargo não definido',
-    };
-        console.log('Dados recebidos na Home:', route.params);
+  const usuario = route.params?.usuario || {
+    nome: 'Usuário não identificado',
+    cargo: 'Cargo não definido',
+  };
+  console.log('Dados recebidos na Home:', route.params);
+
+  const [usuarioState, setUsuarioState] = useState(usuario);
+  const [imagens, setImagens] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+
+//Mostra a foto do Usuario:
+  useEffect(() => {
+    if (!usuario.id || !usuario.role) return;
+
+    async function carregarImagens() {
+      try {
+        const response = await fetch(`http://10.239.0.125/dev4tec/imagem_usuario.php`,{
+            method:'POST',
+            headers:{'Content-Type': 'application/json'},
+            body: JSON.stringify({id: usuario.id, role: usuario.role})
+          }
+        );
+        const data = await response.json();
+
+        if (data.success) {
+          setUsuarioState(prev => ({ ...prev, imagem: data.imagem }));
+        }
+      } catch (error) {
+        console.error('Erro ao buscar imagens:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+      carregarImagens();
+  }, []);
+
+  if (loading) {
+    return (
+      <View style={styles.loading}>
+        <ActivityIndicator size="large" color="#4a90e2" />
+        <Text style={styles.loadingText}>Carregando imagens...</Text>
+      </View>
+    );
+  }
+  console.log('Imagem do usuário:', usuarioState.imagem);
 
     return(
         <ScrollView style={styles.scroll}>
             <View style={styles.container}>
                 <View style={styles.areaperfil}>
-                    <Image 
-                    style={styles.foto}
-                    source={require('../../../../assets/img/fotoexemplo.png')} >
-                    </Image>
+                <Image 
+                  source={ 
+                    usuarioState.imagem  
+                    ? {uri: usuarioState.imagem}
+                     : require('../../../../assets/img/fotoexemplo.png')}
+                  style={styles.foto}
+                />
                     <View style={styles.verde}></View>
 
                     <View style={styles.textoperfil}>
