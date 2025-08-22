@@ -201,6 +201,7 @@ export default function Configuracoes({navigation, route}){
         if (data.success) {
           setUsuarioState(prev => ({
             ...prev,
+            imagem: data.imagem,
             dataNascimento,
             telefone,
             endereco,

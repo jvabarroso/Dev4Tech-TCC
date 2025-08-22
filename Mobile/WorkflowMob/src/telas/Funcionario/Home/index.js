@@ -62,8 +62,11 @@ export default function Home({navigation, route}){
             <View style={styles.container}>
                 <View style={styles.areaperfil}>
                 <Image 
-                  source={{ uri: usuarioState.imagem }}
-                  style={{ width: 150, height: 150 }}
+                  source={ 
+                    usuarioState.imagem  
+                    ? {uri: usuarioState.imagem}
+                     : require('../../../../assets/img/fotoexemplo.png')}
+                  style={styles.foto}
                 />
                     <View style={styles.verde}></View>
 
