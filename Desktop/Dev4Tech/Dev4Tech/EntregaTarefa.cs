@@ -33,6 +33,38 @@ namespace Dev4Tech
             return dt.Rows.Count > 0 ? dt.Rows[0] : null;
         }
 
+        // Busca uma tarefa específica por ID (nome do método corrigido)
+        public DataRow BuscarTarefaPorId(int idTarefa)
+        {
+            DataTable dt = new DataTable();
+            string query = @"
+                SELECT t.*, c.nome_categoria, e.nome_equipe
+                FROM Tarefas t
+                INNER JOIN Equipes e ON t.id_equipe = e.id_equipe
+                INNER JOIN Categorias c ON e.id_categoria = c.id_categoria
+                WHERE t.id_tarefa = @idTarefa";
+
+            if (abrirConexao())
+            {
+                try
+                {
+                    using (MySqlCommand cmd = new MySqlCommand(query, conectar))
+                    {
+                        cmd.Parameters.AddWithValue("@idTarefa", idTarefa);
+                        using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
+                        {
+                            da.Fill(dt);
+                        }
+                    }
+                }
+                finally
+                {
+                    fecharConexao();
+                }
+            }
+            return dt.Rows.Count > 0 ? dt.Rows[0] : null;
+        }
+
         // Registra a entrega da tarefa feita por um funcionário específico na tabela EntregasTarefa
         public void RegistrarEntrega(int idTarefa, int idEquipe, int idFuncionario, string descricao, string nomeArquivo, byte[] arquivoBlob)
         {
@@ -284,17 +316,21 @@ namespace Dev4Tech
             return dt;
         }
 
-
-        // Busca uma tarefa específica por ID
-        public DataRow BuscarTarefaPorId(int idTarefa)
+        // Busca tarefas da equipe, incluindo status finalizada
+        public DataTable BuscarTarefasPorEquipeComStatus(int idEquipe)
         {
             DataTable dt = new DataTable();
             string query = @"
-                SELECT t.*, c.nome_categoria, e.nome_equipe
+                SELECT t.*,
+                       (SELECT COUNT(*) FROM Equipes_Membros WHERE id_equipe = t.id_equipe) AS total_membros,
+                       (SELECT COUNT(DISTINCT FuncionarioId) FROM EntregasTarefa WHERE id_tarefa = t.id_tarefa AND id_equipe = t.id_equipe) AS total_entregas,
+                       CASE WHEN 
+                           (SELECT COUNT(*) FROM Equipes_Membros WHERE id_equipe = t.id_equipe) = 
+                           (SELECT COUNT(DISTINCT FuncionarioId) FROM EntregasTarefa WHERE id_tarefa = t.id_tarefa AND id_equipe = t.id_equipe)
+                       THEN 1 ELSE 0 END AS tarefa_finalizada
                 FROM Tarefas t
-                INNER JOIN Equipes e ON t.id_equipe = e.id_equipe
-                INNER JOIN Categorias c ON e.id_categoria = c.id_categoria
-                WHERE t.id_tarefa = @idTarefa";
+                WHERE t.id_equipe = @idEquipe
+                ORDER BY t.data_entrega DESC";
 
             if (abrirConexao())
             {
@@ -302,7 +338,7 @@ namespace Dev4Tech
                 {
                     using (MySqlCommand cmd = new MySqlCommand(query, conectar))
                     {
-                        cmd.Parameters.AddWithValue("@idTarefa", idTarefa);
+                        cmd.Parameters.AddWithValue("@idEquipe", idEquipe);
                         using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
                         {
                             da.Fill(dt);
@@ -314,7 +350,36 @@ namespace Dev4Tech
                     fecharConexao();
                 }
             }
-            return dt.Rows.Count > 0 ? dt.Rows[0] : null;
+            return dt;
+        }
+
+        // Remove entrega permitindo desfazer entrega para o funcionário
+        public void RemoverEntrega(int idTarefa, int idFuncionario)
+        {
+            string query = @"
+                DELETE FROM EntregasTarefa
+                WHERE id_tarefa = @idTarefa AND FuncionarioId = @idFuncionario";
+
+            if (abrirConexao())
+            {
+                try
+                {
+                    using (MySqlCommand cmd = new MySqlCommand(query, conectar))
+                    {
+                        cmd.Parameters.AddWithValue("@idTarefa", idTarefa);
+                        cmd.Parameters.AddWithValue("@idFuncionario", idFuncionario);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                finally
+                {
+                    fecharConexao();
+                }
+            }
+            else
+            {
+                throw new Exception("Erro ao conectar ao banco.");
+            }
         }
     }
 }

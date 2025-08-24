@@ -33,19 +33,14 @@ namespace Dev4Tech
             {
                 idTarefaExibida = Convert.ToInt32(tarefa["id_tarefa"]);
 
-                // Nome da tarefa na label
                 lblNomeTarefa.Text = tarefa["nomeTarefa"].ToString();
-
-                // Categoria da equipe na label
                 lblCategoriaEquipe.Text = tarefa["nome_categoria"].ToString();
 
-                // Data de entrega formatada na label
                 DateTime dataEntrega = Convert.ToDateTime(tarefa["data_entrega"]);
                 lblDataEntrega.Text = dataEntrega.ToString("dd/MM/yyyy");
 
                 lblInstrucoes.Text = tarefa["instrucoes"].ToString();
 
-                // NOVO: Mostrar dificuldade
                 if (tarefa.Table.Columns.Contains("dificuldade") && tarefa["dificuldade"] != DBNull.Value)
                 {
                     lblDificuldade.Text = "Dificuldade: " + tarefa["dificuldade"].ToString();
@@ -56,9 +51,7 @@ namespace Dev4Tech
                     lblDificuldade.Visible = false;
                 }
 
-                // Resto do código para arquivo e habilitar botão
                 lblArquivoTarefa.Click -= LblArquivoTarefa_Click;
-
                 if (tarefa["nome_arquivo"] != DBNull.Value && !string.IsNullOrEmpty(tarefa["nome_arquivo"].ToString()))
                 {
                     lblArquivoTarefa.Text = "Arquivo: " + tarefa["nome_arquivo"].ToString();
@@ -75,6 +68,8 @@ namespace Dev4Tech
 
                 btnEnviar.Enabled = true;
                 LimparCamposEntrega();
+
+                AtualizarEstadoEntrega();
             }
             else
             {
@@ -147,7 +142,7 @@ namespace Dev4Tech
         }
 
 
-        private void btnEnviar_Click(object sender, EventArgs e) // Certifique-se que o botão no Designer está linkado a este método.
+        private void btnEnviar_Click(object sender, EventArgs e)
         {
             if (idTarefaExibida == 0)
             {
@@ -158,6 +153,22 @@ namespace Dev4Tech
             if (string.IsNullOrWhiteSpace(txtDescrição.Text))
             {
                 MessageBox.Show("Por favor, descreva sua entrega.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int idFuncionarioAtual = Sessao.FuncionarioLogado != null ? int.Parse(Sessao.FuncionarioLogado.getFuncionarioId()) : 0;
+
+            if (idFuncionarioAtual == 0)
+            {
+                MessageBox.Show("Funcionário não está logado corretamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            EntregaTarefa entrTarefa = new EntregaTarefa();
+
+            if (entrTarefa.FuncionarioEntregou(idTarefaExibida, idFuncionarioAtual))
+            {
+                MessageBox.Show("Você já entregou essa tarefa e não pode entregar novamente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -178,60 +189,14 @@ namespace Dev4Tech
                 }
             }
 
-            EntregaTarefa entrTarefa = new EntregaTarefa();
             try
             {
-                // Registra a entrega
-                int idFuncionarioAtual = Sessao.FuncionarioLogado != null ? int.Parse(Sessao.FuncionarioLogado.getFuncionarioId()) : 0;
-
-                // Verifique se idFuncionarioAtual é válido
-                if (idFuncionarioAtual == 0)
-                {
-                    MessageBox.Show("Funcionário não está logado corretamente.");
-                    return;
-                }
-
-                // Chamada correta para registrar entrega
                 entrTarefa.RegistrarEntrega(idTarefaExibida, idEquipeAtual, idFuncionarioAtual, txtDescrição.Text, nomeArquivo, arquivoBytes);
-
-                // Busca a dificuldade da tarefa
-                string dificuldade = "";
-                using (var conn = new MySql.Data.MySqlClient.MySqlConnection("server=localhost;database=Dev4Tech;uid=root;pwd=;"))
-                {
-                    conn.Open();
-                    // Usando "t." para evitar ambiguidade se houver outra tabela com coluna "dificuldade"
-                    var cmd = new MySql.Data.MySqlClient.MySqlCommand("SELECT t.dificuldade FROM Tarefas t WHERE t.id_tarefa = @idTarefa", conn);
-                    cmd.Parameters.AddWithValue("@idTarefa", idTarefaExibida);
-                    var result = cmd.ExecuteScalar();
-                    if (result != null)
-                        dificuldade = result.ToString();
-                }
-
-                // Define os pontos conforme a dificuldade
-                int pontos = 0;
-                switch (dificuldade.ToLower())
-                {
-                    case "fácil":
-                        pontos = 2;
-                        break;
-                    case "média": // "Mediana" foi padronizado para "Média" na classe AddTarefas
-                        pontos = 4;
-                        break;
-                    case "difícil":
-                        pontos = 6;
-                        break;
-                }
-
-                // Adiciona os pontos ao funcionário logado
-                if (pontos > 0 && Sessao.FuncionarioLogado != null)
-                {
-                    pontuacaoUsuarios ptFunc = new pontuacaoUsuarios();
-                    int idFunc = int.Parse(Sessao.FuncionarioLogado.getFuncionarioId());
-                    ptFunc.AdicionarPontos(idFunc, pontos);
-                }
 
                 MessageBox.Show("Entrega registrada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LimparCamposEntrega();
+
+                AtualizarEstadoEntrega();
             }
             catch (Exception ex)
             {
@@ -375,7 +340,61 @@ namespace Dev4Tech
             this.Hide();
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e){ }
+        private void pictureBox2_Click(object sender, EventArgs e) { }
 
+        private void btnDesfazerEntrega_Click(object sender, EventArgs e)
+        {
+            if (idTarefaExibida == 0)
+            {
+                MessageBox.Show("Nenhuma tarefa selecionada.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int idFuncionarioAtual = int.Parse(Sessao.FuncionarioLogado.getFuncionarioId());
+            EntregaTarefa entrTarefa = new EntregaTarefa();
+
+            try
+            {
+                entrTarefa.RemoverEntrega(idTarefaExibida, idFuncionarioAtual);
+                MessageBox.Show("Entrega desfeita. Agora você pode entregar novamente.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                AtualizarEstadoEntrega();
+                CarregarDetalhesTarefa(idTarefaExibida);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao desfazer entrega: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
+
+        private void AtualizarEstadoEntrega()
+        {
+            if (idTarefaExibida == 0 || Sessao.FuncionarioLogado == null)
+            {
+                btnDesfazerEntrega.Visible = false;
+                btnEnviar.Enabled = false;
+                lblStatusFinalizado.Visible = false;
+                return;
+            }
+
+            int idFuncionarioAtual = int.Parse(Sessao.FuncionarioLogado.getFuncionarioId());
+            EntregaTarefa entrTarefa = new EntregaTarefa();
+
+            bool jaEntregou = entrTarefa.FuncionarioEntregou(idTarefaExibida, idFuncionarioAtual);
+            bool todosEntregaram = entrTarefa.TodosEntregaram(idTarefaExibida, idEquipeAtual);
+
+            btnDesfazerEntrega.Visible = jaEntregou;
+            btnEnviar.Enabled = !jaEntregou;
+
+            lblStatusFinalizado.Visible = todosEntregaram;
+            if (todosEntregaram)
+            {
+                btnDesfazerEntrega.Enabled = false;
+                btnEnviar.Enabled = false;
+            }
+        }
+
+    }
 }
+
