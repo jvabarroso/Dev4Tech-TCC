@@ -6,7 +6,7 @@ import {Ionicons} from '@expo/vector-icons';
 
 import api from '../../../services/api';
 import * as ImagePicker from "expo-image-picker";
-import { showMessage } from "react-native-flash-message";
+import FlashMessage, { showMessage } from "react-native-flash-message";
 
 export default function Configuracoes({navigation, route}){
     const { theme, toggleTheme } = useTheme();
@@ -138,7 +138,7 @@ export default function Configuracoes({navigation, route}){
       formData.append("id", usuarioState.id);
 
       try {
-        const response = await fetch("http://10.239.0.125/dev4tec/upload_usuario.php", {
+        const response = await fetch("http://26.205.151.98/dev4tec/upload_usuario.php", {
           method: 'POST',
           body: formData,
         });
@@ -190,7 +190,7 @@ export default function Configuracoes({navigation, route}){
     async function carregarImagens() {
       try {
         const response = await fetch(
-          `http://10.239.0.125/dev4tec/imagem_usuario.php`,{
+          `http://26.205.151.98/dev4tec/imagem_usuario.php`,{
             method:'POST',
             headers:{'Content-Type': 'application/json'},
             body: JSON.stringify({ id: usuarioState.id, role: usuarioState.role })
@@ -287,8 +287,7 @@ export default function Configuracoes({navigation, route}){
                 style={styles.botaodevoltar}
                 onPress={()=> navigation.goBack()}
               >
-                <Ionicons name="chevron-back-outline" size={18} color="black" style={styles.botaodevoltar}/>
-                <Text style={styles.voltar}>Voltar</Text>
+                <Ionicons name="chevron-back-outline" size={20} color={theme.text} style={styles.botaodevoltar}/>
               </TouchableOpacity>
 
               <Text style={styles.pontuacao}>
@@ -310,18 +309,27 @@ export default function Configuracoes({navigation, route}){
             </View>
 
             <View style={styles.linha}>
-              <Text style={styles.titulo2}>Dados</Text>
+              <TouchableOpacity 
+                style={styles.inputfuncionario}
+                onPress={() => setMostrardados(!mostrardados)}
+              >
+                <Text style={styles.textobotao3}>{mostrardados ? 'Fechar Dados pessoais ' : 'Ver Dados pessoais'}</Text>
+              </TouchableOpacity>              
               <TouchableOpacity
                 style={styles.botaomodo} 
                 onPress={toggleTheme}
               >
-                <Text style={styles.textomodo}>
+                <Text style={styles.textobotao3}>
                   { theme.mode === 'dark' ? 'Modo Claro' : 'Modo Escuro' }
                 </Text>
               </TouchableOpacity>
             </View>
+
             {mostrardados && (
               <View style={styles.areaInput}>
+
+                <Text style={styles.titulo2}>Dados:</Text>
+
                 <Text style={styles.texto}>Nome</Text>
                 <View style={styles.inputnaoeditavel}>
                   <Text style={{ color: theme.text3 }}>{usuarioState.nome}</Text>
@@ -377,12 +385,7 @@ export default function Configuracoes({navigation, route}){
                 </TouchableOpacity>
               </View>
             )}
-            <TouchableOpacity 
-              style={styles.inputfuncionario}
-              onPress={() => setMostrardados(!mostrardados)}
-            >
-              <Text style={styles.textobotao3}>{mostrardados ? 'Ocultar' : 'Ver Dados pessoais'}</Text>
-            </TouchableOpacity>
+
 
             <TouchableOpacity 
               style={styles.botaosair}
@@ -393,7 +396,7 @@ export default function Configuracoes({navigation, route}){
         </ScrollView>
         <Modal
           animationType="slide"
-          transparent={false}
+          transparent={true}
           visible={modalVisivel}
           onRequestClose={() => setModalVisivel(false)}
         >   
@@ -404,35 +407,42 @@ export default function Configuracoes({navigation, route}){
                   style={styles.botaodevoltar}
                   onPress={() => setModalVisivel(false)}
                 >
-                <Ionicons name="close-outline" size={36} color="black" />
+                <Ionicons name="close-outline" size={36} color={theme.text} />
                 </TouchableOpacity>
               </View>
+              <View style={styles.areafotototal}>
+                <View style={styles.areatitulofoto}>
+                  <Text style={styles.textfoto}>Selecione uma foto</Text>
+                </View>
+                <View style={styles.areafoto}>
 
-              <TouchableOpacity 
-                style={styles.button} 
-                onPress={pickImageFromGallery}
-              >
-                <Ionicons name="image" size={20} color="white" />
-                <Text style={styles.buttonText}>Escolher da Galeria</Text>
-              </TouchableOpacity>
-        
-              <TouchableOpacity 
-                style={styles.button} 
-                onPress={takePhoto}
-              >
-                <Ionicons name="camera" size={20} color="white" />
-                <Text style={styles.buttonText}>Tirar Foto</Text>
-              </TouchableOpacity>
+                  <TouchableOpacity 
+                    style={styles.buttonEnviar} 
+                    onPress={uploadImage}
+                  >
+                    <Ionicons name="cloud-upload" size={20} color="white"/>
+                    <Text style={styles.buttonText}>Enviar Imagem</Text>
+                  </TouchableOpacity>
 
-              <TouchableOpacity 
-                style={styles.button} 
-                onPress={uploadImage}
-              >
-                <Ionicons name="cloud-upload" size={20} color="white" />
-                <Text style={styles.buttonText}>Enviar Imagem</Text>
-              </TouchableOpacity>
+                  <View style={styles.areafoto2}>
+                    <TouchableOpacity 
+                      style={styles.button} 
+                      onPress={pickImageFromGallery}
+                    >
+                      <Text style={styles.buttonText2}>Escolher da Galeria</Text>
+                    </TouchableOpacity>
+              
+                    <TouchableOpacity 
+                      style={styles.button} 
+                      onPress={takePhoto}
+                    >   
+                      <Text style={styles.buttonText2}>Tirar Foto</Text>
+                    </TouchableOpacity>   
+                  </View>
+                </View>
+              </View>
             </View>
-
+           <FlashMessage position="top" />
           </View>
         </Modal>
       </View>

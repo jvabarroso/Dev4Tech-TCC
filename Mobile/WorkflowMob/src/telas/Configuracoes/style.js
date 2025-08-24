@@ -24,7 +24,6 @@ export const getStyles = (theme) => StyleSheet.create({
     color:"#0C21C1",
     fontWeight: '300',
     flexDirection: 'row',
-    marginTop:3
   },
   logo:{
     fontSize: 18,
@@ -43,11 +42,11 @@ export const getStyles = (theme) => StyleSheet.create({
     marginLeft:20,
   },
   titulo2: {
-    fontSize: 15,
+    fontSize: 22,
     fontFamily: fonts.text,
     color: theme.text,
     fontWeight: 'bold',
-    padding:15,
+    marginBottom: 20,
   },
   navinput: {
     width: '100%',
@@ -153,7 +152,7 @@ export const getStyles = (theme) => StyleSheet.create({
     width: '100%',
     alignItems: 'flex-start',
     marginLeft:20,
-    paddingVertical:10,
+    paddingVertical:5,
   },
   texto: {
     fontSize: 18,
@@ -212,46 +211,47 @@ export const getStyles = (theme) => StyleSheet.create({
     fontWeight: 'bold',
   },
   inputfuncionario: {
-    width:"35%",
+    backgroundColor: theme.inputBackground,
     marginBottom: 10,
     marginTop: 15,
-    alignSelf:"flex-start",
-    paddingHorizontal:10,
+    borderRadius: 10,
+    paddingHorizontal:5,
+    justifyContent: 'center',  
+    alignItems: 'center',
   },
   textobotao3: {
     fontSize: 13,
     fontFamily: fonts.text,
     fontWeight: 'bold',
-    color: '#D6D3D1',
-    alignSelf:"flex-start",
-    width: 150,
-  },
-  textomodo: {
     color: theme.text,
-    fontSize: 15,
-    fontFamily: fonts.text,
+    textAlign: 'center',  
   },
   botaomodo: {
-    backgroundColor: theme.background,
-    paddingHorizontal: 30,
+    backgroundColor: theme.inputBackground,
+    paddingHorizontal: 20,
     borderRadius: 10,
     alignItems: 'center',
     alignSelf: 'center',
   },  
   modalContainer: {
     flex: 1,
-    backgroundColor: theme.background
+    backgroundColor: 'rgba(0,0,0,0.5)', // fundo escuro transparente
+    justifyContent: 'center',
+    alignItems: 'center'
   },
-   modalContent: {
-      flex: 1,
-      padding: 20,     
+  modalContent: {
+    width: 300,
+    backgroundColor: theme.background,
+    borderRadius: 20,
+    alignItems: 'center',
+    elevation: 5 
   },
   nav2: {
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingVertical: 20,
-    marginBottom: 10,
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',   
+    width: '100%',       
+    padding: 15,
   },
   botaodevoltar: {
     width: 40,
@@ -259,4 +259,58 @@ export const getStyles = (theme) => StyleSheet.create({
     justifyContent: 'center',
     zIndex: 1, 
   },
+  textfoto: {
+    color: theme.text,
+    fontSize: 18,
+    fontWeight: 'bold',
+    fontFamily: fonts.text,
+  },
+  areafotototal:{
+    padding:5,
+  },
+  areatitulofoto:{
+    alignItems: 'flex-start',
+    padding:10,
+    paddingVertical:12,
+  },
+  buttonEnviar:{
+    padding:15,
+    width:150,
+    height:150,
+    backgroundColor: theme.primary,
+    borderRadius:"25%",
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  areafoto:{
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    width: '100%',
+    marginTop: 10,
+    paddingHorizontal: 6,
+    marginBottom:28
+  },  
+  button:{
+    backgroundColor: theme.inputBackground,
+    padding:5,
+    marginBottom:25,
+    borderRadius:5,
+    width:"100%"
+  },
+  areafoto2:{
+    marginTop:20,
+    padding:5,
+    alignItems: 'column', 
+    gap: 3,
+  },
+  buttonText:{
+    color: "#ffffff",
+    fontSize: 13,
+    fontFamily: fonts.text,
+  },
+  buttonText2:{
+    color: theme.text,
+    fontSize: 12,
+    fontFamily: fonts.text,
+  }
 });
