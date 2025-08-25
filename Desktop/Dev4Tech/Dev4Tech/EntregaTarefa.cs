@@ -381,5 +381,37 @@ namespace Dev4Tech
                 throw new Exception("Erro ao conectar ao banco.");
             }
         }
+
+        public DataTable BuscarEntregasPorTarefa(int idTarefa)
+        {
+            DataTable dt = new DataTable();
+            string query = @"
+        SELECT DISTINCT FuncionarioId
+        FROM EntregasTarefa
+        WHERE id_tarefa = @idTarefa";
+
+            if (abrirConexao())
+            {
+                try
+                {
+                    using (MySqlCommand cmd = new MySqlCommand(query, conectar))
+                    {
+                        cmd.Parameters.AddWithValue("@idTarefa", idTarefa);
+                        using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
+                        {
+                            da.Fill(dt);
+                        }
+                    }
+                }
+                finally
+                {
+                    fecharConexao();
+                }
+            }
+
+            return dt;
+        }
+
+
     }
 }

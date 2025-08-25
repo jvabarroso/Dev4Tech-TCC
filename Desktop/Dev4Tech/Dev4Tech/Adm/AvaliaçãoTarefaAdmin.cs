@@ -160,25 +160,75 @@ namespace Dev4Tech
         }
 
         private void btnSalvarAvaliacoes_Click(object sender, EventArgs e)
+{
+    AvaliacaoTarefa av_admin = new AvaliacaoTarefa();
+
+    foreach (var item in avaliacoes)
+    {
+        int idTarefa = item.Key;
+        AvaliacaoInfo info = item.Value;
+
+        if (info.Aceita == null)
         {
-            AvaliacaoTarefa av_admin = new AvaliacaoTarefa();
+            MessageBox.Show($"Por favor, avalie a tarefa ID {idTarefa}.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return;
+        }
 
-            foreach (var item in avaliacoes)
+        av_admin.SalvarAvaliacao(idTarefa, info.Aceita.Value, info.AtrasoJustificado);
+
+        if (info.Aceita.Value)
+        {
+            bool computarPontos = info.AtrasoJustificado.HasValue ? info.AtrasoJustificado.Value : true;
+            if (computarPontos)
             {
-                int idTarefa = item.Key;
-                AvaliacaoInfo info = item.Value;
+                AvancarPontuacaoFuncionarios(idTarefa);
+            }
+        }
+    }
 
-                if (info.Aceita == null)
-                {
-                    MessageBox.Show($"Por favor, avalie a tarefa ID {idTarefa}.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+    MessageBox.Show("Avaliações salvas com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+}
 
-                av_admin.SalvarAvaliacao(idTarefa, info.Aceita.Value, info.AtrasoJustificado);
+        private void AvancarPontuacaoFuncionarios(int idTarefa)
+        {
+            AvaliacaoTarefa avaliacaoTarefa = new AvaliacaoTarefa();
+
+            DataTable entregas = avaliacaoTarefa.BuscarEntregasPorTarefa(idTarefa);
+            if (entregas == null || entregas.Rows.Count == 0)
+                return;
+
+            DataRow tarefa = avaliacaoTarefa.BuscarTarefaPorId(idTarefa);
+            if (tarefa == null)
+                return;
+
+            string dificuldade = (tarefa["dificuldade"] != null) ? tarefa["dificuldade"].ToString().ToLower() : "";
+
+            int pontos;
+
+            switch (dificuldade)
+            {
+                case "difícil":
+                    pontos = 30;
+                    break;
+                case "média":
+                case "mediana":
+                    pontos = 20;
+                    break;
+                case "fácil":
+                    pontos = 10;
+                    break;
+                default:
+                    pontos = 5;
+                    break;
             }
 
-            MessageBox.Show("Avaliações salvas com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            foreach (DataRow entrega in entregas.Rows)
+            {
+                int idFuncionario = Convert.ToInt32(entrega["FuncionarioId"]);
+                avaliacaoTarefa.AtualizarPontuacaoFuncionario(idFuncionario, pontos);
+            }
         }
+
 
         private List<int> BuscarIdsEquipes()
         {
