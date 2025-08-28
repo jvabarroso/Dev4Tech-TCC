@@ -9,7 +9,7 @@ export default function TarefaEnvio({ navigation, route }) {
     const { theme } = useTheme();
     const styles = getStyles(theme);
 
-   const tarefa = route.params?.tarefas || route.params?.usuario || {};
+    const tarefa = route.params?.tarefa || {}; 
 
     const [descricaoExpandida, setDescricaoExpandida] = useState(false);
     const [modalVisivel, setModalVisivel] = useState(false);
@@ -111,9 +111,6 @@ export default function TarefaEnvio({ navigation, route }) {
                             onPress={() => setModalVisivel(true)}
                         >
                             <Text style={styles.textoadd}>Anexar um arquivo</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.botaomostrar}>
-                            <Text style={styles.textoadd}>Adicionar uma mensagem</Text>
                         </TouchableOpacity>
                         
                         {!tarefaLocal.selproblema && (

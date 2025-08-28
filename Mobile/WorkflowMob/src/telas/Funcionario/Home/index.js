@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, TouchableOpacity, Image, ScrollView, ActivityIndicator} from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
+import { useFocusEffect } from '@react-navigation/native';
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
 
@@ -18,7 +19,6 @@ export default function Home({navigation, route}){
   const [usuarioState, setUsuarioState] = useState(usuario);
   const [imagens, setImagens] = useState([]);
   const [loading, setLoading] = useState(true);
-  
 
 
 //Mostra a foto do Usuario:
@@ -27,7 +27,7 @@ export default function Home({navigation, route}){
 
     async function carregarImagens() {
       try {
-        const response = await fetch(`http://26.205.151.98/dev4tec/imagem_usuario.php`,{
+        const response = await fetch(`http://10.239.0.125/dev4tec/imagem_usuario.php`,{
             method:'POST',
             headers:{'Content-Type': 'application/json'},
             body: JSON.stringify({id: usuario.id, role: usuario.role})
@@ -48,14 +48,6 @@ export default function Home({navigation, route}){
       carregarImagens();
   }, []);
 
-  if (loading) {
-    return (
-      <View style={styles.loading}>
-        <ActivityIndicator size="large" color="#4a90e2" />
-        <Text style={styles.loadingText}>Carregando imagens...</Text>
-      </View>
-    );
-  }
   console.log('Imagem do usuário:', usuarioState.imagem);
 
     return(
