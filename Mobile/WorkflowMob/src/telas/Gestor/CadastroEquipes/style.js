@@ -163,4 +163,55 @@ export const getStyles = (theme) => StyleSheet.create({
     fontFamily: fonts.text,
     fontWeight: 'bold',
   },
+
+
+
+  areafotototal:{
+    padding:5,
+  },
+  areatitulofoto:{
+    alignItems: 'flex-start',
+    padding:10,
+    paddingVertical:12,
+  },
+  buttonEnviar:{
+    padding:15,
+    width:150,
+    height:150,
+    backgroundColor: theme.primary,
+    borderRadius:"25%",
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  areafoto:{
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    width: '100%',
+    marginTop: 10,
+    paddingHorizontal: 6,
+    marginBottom:28
+  },  
+  button:{
+    backgroundColor: theme.inputBackground,
+    padding:5,
+    marginBottom:25,
+    borderRadius:5,
+    width:"100%"
+  },
+  areafoto2:{
+    marginTop:20,
+    padding:5,
+    alignItems: 'column', 
+    gap: 3,
+  },
+  buttonText:{
+    color: "#ffffff",
+    fontSize: 13,
+    fontFamily: fonts.text,
+  },
+  buttonText2:{
+    color: theme.text,
+    fontSize: 12,
+    fontFamily: fonts.text,
+  }
 })
