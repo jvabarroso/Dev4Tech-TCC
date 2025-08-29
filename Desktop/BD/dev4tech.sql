@@ -11,7 +11,7 @@ CREATE TABLE Empresas (
     numResidencia VARCHAR(200),
     bairro varchar(255),
     complemento varchar(255),
-    data_cadEm DATETIME,
+    data_cadEm DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     setorEmpresarial VARCHAR(255)
 );
 -- Tabela de Administradores
@@ -24,7 +24,7 @@ CREATE TABLE Administradores (
     Telefone VARCHAR(20),
     Email VARCHAR(100) unique,
     Senha VARCHAR(255),
-    data_cadAdmin DATETIME,
+    data_cadAdmin DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     endereco VARCHAR(255) NOT NULL,
     num VARCHAR(255) NOT NULL,
     id_empresa INT,
@@ -59,6 +59,10 @@ CREATE TABLE Categorias (
     id_categoria INT AUTO_INCREMENT PRIMARY KEY,
     nome_categoria VARCHAR(255) NOT NULL UNIQUE
 );
+
+ALTER TABLE Categorias ADD COLUMN id_empresa int;
+ALTER TABLE Categorias ADD FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa);
+
 -- Tabela Equipes
 CREATE TABLE Equipes (
     id_equipe INT AUTO_INCREMENT PRIMARY KEY,
@@ -66,9 +70,16 @@ CREATE TABLE Equipes (
     id_categoria INT NOT NULL,
     FOREIGN KEY (id_categoria) REFERENCES Categorias(id_categoria) ON DELETE RESTRICT ON UPDATE CASCADE
 );
+
+ALTER TABLE Equipes ADD COLUMN foto_equipe LONGBLOB;
+
 ALTER TABLE Equipes ADD COLUMN data_criacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
 alter table equipes add column AdminId int;
 alter table equipes add foreign key (AdminId) references administradores(AdminId);
+
+ALTER TABLE Equipes ADD COLUMN id_empresa int;
+ALTER TABLE Equipes ADD FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa);
 
 CREATE TABLE Equipes_Membros (
     id_equipe INT NOT NULL,
@@ -93,6 +104,9 @@ ALTER TABLE MensagensChat ADD FOREIGN KEY (FuncionarioId) REFERENCES Funcionario
 alter table mensagenschat add column AdminId int;
 alter table mensagenschat add foreign key (AdminId) references administradores(AdminId);
 
+ALTER TABLE MensagensChat ADD COLUMN id_empresa int;
+ALTER TABLE MensagensChat ADD FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa);
+
 
 -- Criar tabela para armazenar última atividade
 CREATE TABLE UltimaAtividadeEquipe (
@@ -112,6 +126,11 @@ CREATE TABLE Tarefas (
     FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE ON UPDATE CASCADE,
     dificuldade VARCHAR(20) NOT NULL
 );
+
+ALTER TABLE Tarefas ADD COLUMN data_criacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE Tarefas ADD COLUMN id_empresa int;
+ALTER TABLE Tarefas ADD FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa);
 
 
 CREATE TABLE EntregasTarefa (
@@ -153,3 +172,6 @@ CREATE TABLE RelatoProblema (
    FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE,
 	descricao TEXT NOT NULL
 );
+
+ALTER TABLE RelatoProblema ADD COLUMN id_empresa int;
+ALTER TABLE RelatoProblema ADD FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa);
