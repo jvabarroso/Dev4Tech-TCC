@@ -8,6 +8,7 @@ namespace Dev4Tech
         public Login()
         {
             InitializeComponent();
+
         }
 
         private void lblCadastrar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -47,8 +48,8 @@ namespace Dev4Tech
                     Sessao.FuncionarioLogado = funcionario;
                     Sessao.AdminLogado = null;
 
-                    Configuracoes config = new Configuracoes(funcionario);
-                    config.Show();
+                    Home hm = new Home();
+                    hm.Show();
                     this.Hide();
                     return;
                 }
@@ -70,8 +71,8 @@ namespace Dev4Tech
                     Sessao.FuncionarioLogado = null;
 
                     // Abre a tela de configurações passando o admin logado
-                    Configuracoes config = new Configuracoes(adminLogado);
-                    config.Show();
+                    HomeAdm hmAdm = new HomeAdm();
+                    hmAdm.Show();
                     this.Hide();
                     return;
                 }
@@ -83,8 +84,52 @@ namespace Dev4Tech
             }
         }
 
-        private void txtEmail_TextChanged(object sender, EventArgs e) { }
+        //Texto dinâmico na txtEmail
+        private void txtEmail_Enter(object sender, EventArgs e)
+        {
+            if(txtEmail.Text == "Entre com seu endereço de Email")
+            {
+                txtEmail.Text = "";
+                txtEmail.ForeColor = System.Drawing.Color.Black;
+            }
+        }
+        private void txtEmail_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                txtEmail.Text = "Entre com seu endereço de Email";
+                txtEmail.ForeColor = System.Drawing.Color.Black;
+            }
+        }
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        //Texto dinâmico na txtSenha
         private void txtSenha_TextChanged(object sender, EventArgs e) { }
+
+        private void txtSenha_Enter(object sender, EventArgs e)
+        {
+            if (txtSenha.Text == "Digite sua senha")
+            {
+                txtSenha.Text = "";
+            }
+        }
+
+        private void txtSenha_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtSenha.Text))
+            {
+                txtSenha.Text = "Digite sua senha";
+            }
+        }
+
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+            Form1 f1 = new Form1();
+            f1.Show();
+            this.Hide();
+        }
     }
 }
 

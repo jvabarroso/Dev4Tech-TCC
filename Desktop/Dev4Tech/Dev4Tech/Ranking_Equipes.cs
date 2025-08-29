@@ -249,6 +249,25 @@ namespace Dev4Tech
 
         private void lblMembros_Click(object sender, EventArgs e)
         {
+            var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
+
+            if (funcionario != null)
+            {
+                Integrantes_Equipe IE = new Integrantes_Equipe();
+                IE.Show();
+                this.Hide();
+            }
+            else if (admin != null)
+            {
+                Integrantes_Equipe IE = new Integrantes_Equipe();
+                IE.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         private void btnEstatisticas_Click(object sender, EventArgs e)
         {

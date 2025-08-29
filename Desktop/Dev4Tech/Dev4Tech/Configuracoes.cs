@@ -74,10 +74,23 @@ namespace Dev4Tech
         private void label8_Click(object sender, EventArgs e) { }
         private void label1_Click(object sender, EventArgs e)
         {
-            // Exemplo de como navegar para a Home
-            Home h = new Home();
-            h.Show();
-            this.Hide();
+            var funcionarioSessao = Sessao.FuncionarioLogado;
+            var adminSessao = Sessao.AdminLogado;
+
+            if (funcionarioSessao != null)
+            {
+                Home hm = new Home();
+            }
+            else if (adminSessao != null)
+            {
+                HomeAdm hmAdm = new HomeAdm();
+                hmAdm.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum usuário logado.");
+            }
         }
         private void label2_Click(object sender, EventArgs e) { }
         private void label3_Click(object sender, EventArgs e) { }

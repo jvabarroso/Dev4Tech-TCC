@@ -253,7 +253,7 @@ namespace Dev4Tech
                 }
                 else
                 {
-                    picMembro.Image = Properties.Resources.icon_perfil; // Sua imagem padrão
+                    picMembro.Image = Properties.Resources.icon_perfil;
                 }
 
                 picMembro.MouseHover += (s, e) =>

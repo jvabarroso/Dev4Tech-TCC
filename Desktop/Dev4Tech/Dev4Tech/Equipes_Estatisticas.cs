@@ -154,16 +154,48 @@ namespace Dev4Tech
 
         private void pictureBox9_Click(object sender, EventArgs e)
         {
-            Tarefas_Pendentes t_pendente = new Tarefas_Pendentes();
-            t_pendente.Show();
-            this.Hide();
+            var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
+
+            if (funcionario != null)
+            {
+                Tarefas_Pendentes tp = new Tarefas_Pendentes();
+                tp.Show();
+                this.Hide();
+            }
+            else if (admin != null)
+            {
+                AvaliaçãoTarefaAdmin av = new AvaliaçãoTarefaAdmin();
+                av.Show();
+                this.Hide();                
+            }
+            else
+            {
+                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void lblGeral_Click(object sender, EventArgs e)
         {
-            Chat_geral_equipes chatEquipe = new Chat_geral_equipes();
-            chatEquipe.Show();
-            this.Hide();
+            var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
+
+            if (funcionario != null)
+            {
+                Chat_geral_equipes chatEquipe = new Chat_geral_equipes();
+                chatEquipe.Show();
+                this.Hide();
+            }
+            else if (admin != null)
+            {
+                Chat_geral_equipes chatEquipe = new Chat_geral_equipes();
+                chatEquipe.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void lblTarefas_Click(object sender, EventArgs e)

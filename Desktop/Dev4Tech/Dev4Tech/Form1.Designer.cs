@@ -127,7 +127,7 @@
             // 
             this.pictureBox1.BackgroundImage = global::Dev4Tech.Properties.Resources.Group_33;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(341, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(355, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(692, 626);
             this.pictureBox1.TabIndex = 8;

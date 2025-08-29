@@ -191,6 +191,8 @@
             this.txtNomeEmpresa.Text = "WORKFLOW";
             this.txtNomeEmpresa.Click += new System.EventHandler(this.txtNomeEmpresa_Click);
             this.txtNomeEmpresa.TextChanged += new System.EventHandler(this.txtNomeEmpresa_TextChanged);
+            this.txtNomeEmpresa.Enter += new System.EventHandler(this.txtNomeEmpresa_Enter);
+            this.txtNomeEmpresa.Leave += new System.EventHandler(this.txtNomeEmpresa_Leave);
             // 
             // txtComplementoEmpresa
             // 

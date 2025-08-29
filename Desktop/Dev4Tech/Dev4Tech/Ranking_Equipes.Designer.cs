@@ -130,7 +130,6 @@
             this.pictureBox49 = new System.Windows.Forms.PictureBox();
             this.label39 = new System.Windows.Forms.Label();
             this.lblPlanejamento = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
             this.panelRankingEquipes = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -1299,18 +1298,6 @@
             this.lblPlanejamento.Text = "Planejamento";
             this.lblPlanejamento.Click += new System.EventHandler(this.lblPlanejamento_Click);
             // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label40.Location = new System.Drawing.Point(86, 34);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(72, 21);
-            this.label40.TabIndex = 133;
-            this.label40.Text = "<- Voltar";
-            this.label40.Click += new System.EventHandler(this.label40_Click);
-            // 
             // panelRankingEquipes
             // 
             this.panelRankingEquipes.Controls.Add(this.groupBox6);
@@ -1331,7 +1318,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 679);
             this.Controls.Add(this.panelRankingEquipes);
-            this.Controls.Add(this.label40);
             this.Controls.Add(this.lblPlanejamento);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.lblMembros);
@@ -1524,7 +1510,6 @@
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.PictureBox pictureBox10;
-        private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Panel panelRankingEquipes;
     }
 }

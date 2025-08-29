@@ -108,5 +108,15 @@ namespace Dev4Tech
         {
 
         }
+
+        private void txtNomeEmpresa_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNomeEmpresa_Leave(object sender, EventArgs e)
+        {
+
+        }
     }
 }
