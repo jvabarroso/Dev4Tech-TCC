@@ -1,16 +1,56 @@
 import React, { useState } from 'react';
-import { Text, View, TouchableOpacity, Image, ScrollView, TextInput} from 'react-native';
+import { Text, View, TouchableOpacity, ScrollView, TextInput, FlatList} from 'react-native';
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
-
 import { Ionicons } from '@expo/vector-icons';
+import api from '../../../services/api';
 
-export default function CadastroEquipes({navigation}){
+export default function CadastroEquipes({ route, navigation}){
     const { theme } = useTheme();
     const styles = getStyles(theme);
 
-    const [image, setImage] = useState(null);
+    const usuario = route.params?.usuario;
 
+    const [image, setImage] = useState(null);
+    const [nome_equipe, setNome_equipe] = useState('');
+    const [categoriaEquipe, setCategoriaEquipe] = useState('');
+    const [categoriaSelecionada, setCategoriaSelecionada] = useState(null);
+    const [mostrarLista, setMostrarLista] = useState(false);
+
+    const campos = {
+        nome_equipe,
+        categoriaEquipe
+    };
+
+    const [dados, setDados] = useState([]); 
+    const [sucess, setSucess] = useState(false);
+
+//Buscar Categorias
+    async function listarDados() {
+        try {
+            const res = await api.get(`dev4tec/categoria.php`, {
+            params: {id_empresa: usuario.id_empresa }
+            });
+
+            if (res.data.success) {
+            setDados(res.data.result || []);
+            } else {
+            console.log("Erro na API:", res.data.message);
+            setDados([]);
+            }
+        }
+        catch (error) {
+            console.log("Erro ao listar categorias", error);
+        }
+        }
+
+
+    useEffect(() => {
+        listarDados();
+    }, [usuario?.id_empresa]);
+
+
+//Escolha de Imagem
     async function pickImageFromGallery() {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -38,9 +78,149 @@ export default function CadastroEquipes({navigation}){
         }
         }
 
-    
-    const [nome_equipe, setNome_equipe] = useState('');
-    const [categoriaEquipe, setCategoriaEquipe] = useState('');
+
+//Upload da Imagem   
+    async function uploadImage() {
+        if (!image) {
+            showMessage({
+            message: 'Nenhuma imagem selecionada.',
+            description: 'Por favor, selecione ou tire uma foto primeiro.',
+            floating: true,
+            statusBarHeight: 70,
+            type: "danger",
+            duration: 2000,             
+            });
+            return false;
+        }
+
+        let filename = image.split('/').pop();
+        let match = /\.(\w+)$/.exec(filename);
+        let type = match ? `image/${match[1]}` : `image`;
+
+        let formData = new FormData();
+        formData.append('photo', { uri: image, name: filename, type });
+
+        try {
+            const response = await fetch("http://10.239.0.125/dev4tec/upload_equipe.php", {
+                method: 'POST',
+                body: formData,
+            });
+            
+            const text = await response.text();
+            let resJson;
+            
+            try {
+                resJson = JSON.parse(text);
+            } catch (e) {
+                console.error("Erro ao converter JSON:", e);
+            }
+
+            if (response.ok && resJson.success) {        
+                showMessage({
+                    message: 'Sucesso.',
+                    description: 'Imagem enviada com sucesso!',
+                    floating: true,
+                    statusBarHeight: 70,
+                    type: "success",
+                    duration: 2000,             
+            });
+            return true;
+            
+            } else {
+                showMessage({
+                message: 'Erro.',
+                description: resJson.message || "Falha ao enviar imagem.",
+                floating: true,
+                statusBarHeight: 70,
+                type: "warning",
+                duration: 2000,             
+                });
+                return false;
+            }
+        } catch (error) {
+            console.error(error);
+            showMessage({
+                message: 'Erro.',
+                description: "Ocorreu um erro ao tentar enviar a imagem.",
+                floating: true,
+                statusBarHeight: 70,
+                type: "warning",
+                duration: 2000,             
+            });
+            return false;
+        }
+    }
+
+//Cadastro da Equipe
+    async function cadastrar() {   
+
+        const uploadOk = await uploadImage();
+        if (!uploadOk) return; // <-- Só continua se o upload for bem-sucedido
+
+        const camposVazios = Object.entries(campos).filter(([_, valor]) => !valor.trim());    
+        if (camposVazios.length > 0) {
+            showMessage({
+                message: "Erro Preencha todos os campos obrigatórios!",
+                description: "Preencha todas as informações",
+                floating: true,
+                statusBarHeight: 70,
+                type: "danger",
+                duration: 2000,             
+            });    
+            return;
+        }
+        try {
+            const res = await api.post('dev4tec/cadastroequipe.php', {
+            nome_equipe,
+            id_categoria: categoriaSelecionada,
+            id_empresa: usuario.id_empresa
+            });
+
+            if (res.data.sucesso === false) {
+
+            showMessage({
+                message: "Erro ao Cadastrar",
+                description: res.data.mensagem,
+                floating: true,
+                statusBarHeight: 70,
+                type: "warning",
+                duration: 3000,                    
+            });  
+            limparCampos();            
+            return;
+            }
+
+            setSucess(true);
+                showMessage({
+                message: "Cadastrado com Sucesso",
+                description: "Registro Cadastrado",
+                floating: true,
+                statusBarHeight: 70,
+                type: "success",
+                duration: 2000,             
+            });         
+
+            } 
+        catch (error) {
+            console.log("ERRO NO CADASTRO:", error.message);
+            showMessage({
+                message: "Ops Alguma coisa deu errado, tente novamente.",
+                description: res.data.mensagem,
+                floating: true,
+                statusBarHeight: 70,
+                type: "warning",
+                duration: 3000,                    
+            });
+            setSucess(false);  
+        }
+        
+    }   
+
+    function limparCampos(){
+        setNome_equipe('');
+        setCategoriaEquipe('');
+    }
+
 
     return(
         <View style={styles.container}>
@@ -83,17 +263,36 @@ export default function CadastroEquipes({navigation}){
                         placeholderTextColor={theme.text}
                     />
                     <Text style={styles.texto}>Categoria da equipe</Text>
-                    <TextInput
+                    <TouchableOpacity
                         style={styles.input}
-                        placeholder="Digite a categoria da equipe"
-                        value={categoriaEquipe}
-                        onChangeText={setCategoriaEquipe} 
-                        placeholderTextColor={theme.text}
-                        secureTextEntry={true}
-                    />
-
+                        onPress={() => setMostrarLista(!mostrarLista)}
+                    >
+                        <Text>
+                             {categoriaEquipe ? categoriaEquipe : "Escolha a categoria da equipe"}
+                        </Text>
+                    </TouchableOpacity>
+                    {mostrarLista && (
+                        <FlatList
+                            data={dados}
+                            keyExtractor={(item) => item.id_categoria.toString()}
+                            renderItem={({ item }) => (
+                                <TouchableOpacity
+                                    style={styles.containercategorias}
+                                    onPress={() => {
+                                        setCategoriaSelecionada(item.id_categoria);
+                                            (item.nome_categoria);
+                                    }}
+                                >
+                                <Text style={styles.textolistatitulo}>
+                                    {item.nome_categoria}
+                                </Text>
+                                </TouchableOpacity>
+                            )}
+                        />
+                    )}
                     <TouchableOpacity 
                         style={styles.botaocriar}
+                        onPress={cadastrar}
                     >
                         <Text style={styles.textocriar}>Criar</Text>
                     </TouchableOpacity>

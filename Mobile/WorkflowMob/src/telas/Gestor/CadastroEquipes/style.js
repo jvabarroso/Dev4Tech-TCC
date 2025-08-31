@@ -213,5 +213,24 @@ export const getStyles = (theme) => StyleSheet.create({
     color: theme.text,
     fontSize: 12,
     fontFamily: fonts.text,
-  }
+  },
+
+
+
+
+  containercategorias: {
+    backgroundColor: theme.inputBackground,
+    borderRadius: 10,
+    padding: 10,
+    marginBottom: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },    
+  
+  textolistatitulo: {
+    color: theme.text,
+    fontSize: 18,
+    fontWeight: 'bold',
+    fontFamily: fonts.text,
+  },
 })
