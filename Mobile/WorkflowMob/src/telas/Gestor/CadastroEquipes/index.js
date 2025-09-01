@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, TouchableOpacity, ScrollView, TextInput, FlatList} from 'react-native';
+import { Text, View, TouchableOpacity, ScrollView, TextInput, Image} from 'react-native';
+import { Dropdown } from 'react-native-element-dropdown';
+import { showMessage } from "react-native-flash-message";
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
 import { Ionicons } from '@expo/vector-icons';
+
+import * as ImagePicker from "expo-image-picker";
 import api from '../../../../services/api';
+import fonts from "../../../styles/fonts";
 
 export default function CadastroEquipes({ route, navigation}){
     const { theme } = useTheme();
@@ -15,7 +20,6 @@ export default function CadastroEquipes({ route, navigation}){
     const [nome_equipe, setNome_equipe] = useState('');
     const [categoriaEquipe, setCategoriaEquipe] = useState('');
     const [categoriaSelecionada, setCategoriaSelecionada] = useState(null);
-    const [mostrarLista, setMostrarLista] = useState(false);
 
     const campos = {
         nome_equipe,
@@ -101,7 +105,7 @@ export default function CadastroEquipes({ route, navigation}){
         formData.append('photo', { uri: image, name: filename, type });
 
         try {
-            const response = await fetch("http://10.239.0.125/dev4tec/upload_equipe.php", {
+            const response = await fetch("http://10.239.0.126/dev4tec/upload_equipe.php", {
                 method: 'POST',
                 body: formData,
             });
@@ -124,7 +128,7 @@ export default function CadastroEquipes({ route, navigation}){
                     type: "success",
                     duration: 2000,             
             });
-            return true;
+            return resJson.file;
             
             } else {
                 showMessage({
@@ -153,9 +157,8 @@ export default function CadastroEquipes({ route, navigation}){
 
 //Cadastro da Equipe
     async function cadastrar() {   
-
-        const uploadOk = await uploadImage();
-        if (!uploadOk) return; // <-- Só continua se o upload for bem-sucedido
+        const foto_equipe = await uploadImage();
+        if (!foto_equipe) return;
 
         const camposVazios = Object.entries(campos).filter(([_, valor]) => !valor.trim());    
         if (camposVazios.length > 0) {
@@ -171,9 +174,11 @@ export default function CadastroEquipes({ route, navigation}){
         }
         try {
             const res = await api.post('dev4tec/cadastroequipe.php', {
-            nome_equipe,
-            id_categoria: categoriaSelecionada,
-            id_empresa: usuario.id_empresa
+                nome_equipe,
+                id_categoria: categoriaSelecionada,
+                id_empresa: usuario.id_empresa,
+                foto_equipe,
+                AdminId: usuario.id
             });
 
             if (res.data.sucesso === false) {
@@ -228,14 +233,10 @@ export default function CadastroEquipes({ route, navigation}){
                 <Text style={styles.titulo}>Criar uma equipe</Text>
                 <View style={styles.areafotototal}> 
                     <View style={styles.areafoto}>
-
-                    <TouchableOpacity 
-                        style={styles.buttonEnviar} 
-                    >
-                        <Ionicons name="cloud-upload" size={20} color="white"/>
-                        <Text style={styles.buttonText}>Enviar Imagem</Text>
-                    </TouchableOpacity>
-
+                    <Image 
+                        source={image ? { uri: image } :require('../../../../assets/img/image.png')} 
+                        style={styles.imagemPreview} />
+                                   
                     <View style={styles.areafoto2}>
                         <TouchableOpacity 
                         style={styles.button} 
@@ -263,33 +264,34 @@ export default function CadastroEquipes({ route, navigation}){
                         placeholderTextColor={theme.text}
                     />
                     <Text style={styles.texto}>Categoria da equipe</Text>
-                    <TouchableOpacity
-                        style={styles.input}
-                        onPress={() => setMostrarLista(!mostrarLista)}
-                    >
-                        <Text>
-                             {categoriaEquipe ? categoriaEquipe : "Escolha a categoria da equipe"}
-                        </Text>
-                    </TouchableOpacity>
-                    {mostrarLista && (
-                        <FlatList
-                            data={dados}
-                            keyExtractor={(item) => item.id_categoria.toString()}
-                            renderItem={({ item }) => (
-                                <TouchableOpacity
-                                    style={styles.containercategorias}
-                                    onPress={() => {
-                                        setCategoriaSelecionada(item.id_categoria);
-                                        setCategoriaEquipe(item.nome_categoria);
-                                    }}
-                                >
-                                <Text style={styles.textolistatitulo}>
-                                    {item.nome_categoria}
-                                </Text>
-                                </TouchableOpacity>
-                            )}
-                        />
-                    )}
+                    <Dropdown
+                        style={styles.dropdown}
+                        data={dados}
+                        labelField="nome_categoria" 
+                        valueField="id_categoria"
+                        placeholder={categoriaEquipe || "Escolha a categoria da equipe"}
+                        placeholderStyle={{ color: theme.text3, fontSize: 14 }}
+                        selectedTextStyle={{ color: theme.text, fontSize: 14 }}
+                        value={categoriaSelecionada}
+                        onChange={item => {
+                            setCategoriaSelecionada(item.id_categoria);
+                            setCategoriaEquipe(item.nome_categoria);
+                        }}
+                        containerStyle={{
+                            backgroundColor: theme.inputBackground,
+                        }}
+                        itemTextStyle={{
+                            color: theme.text,
+                            fontSize: 14,
+                            fontFamily: fonts.text,
+                        }}
+                        selectedStyle={{
+                            color: theme.text,
+                            fontSize: 14,
+                            fontFamily: fonts.text,
+                        }}
+                        activeColor={theme.inputBackground} 
+                    />
                     <TouchableOpacity 
                         style={styles.botaocriar}
                         onPress={cadastrar}
