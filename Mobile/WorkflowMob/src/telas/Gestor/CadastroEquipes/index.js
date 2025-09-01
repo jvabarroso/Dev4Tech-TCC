@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, TouchableOpacity, ScrollView, TextInput, FlatList} from 'react-native';
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
 import { Ionicons } from '@expo/vector-icons';
-import api from '../../../services/api';
+import api from '../../../../services/api';
 
 export default function CadastroEquipes({ route, navigation}){
     const { theme } = useTheme();
@@ -226,7 +226,7 @@ export default function CadastroEquipes({ route, navigation}){
         <View style={styles.container}>
             <ScrollView contentContainerStyle={styles.scrollContent}>
                 <Text style={styles.titulo}>Criar uma equipe</Text>
-                <View style={styles.areafotototal}>
+                <View style={styles.areafotototal}> 
                     <View style={styles.areafoto}>
 
                     <TouchableOpacity 

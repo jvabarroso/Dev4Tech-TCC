@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, Image, TextInput, TouchableOpacity, ScrollView,  ActivityIndicator} from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
 import { useFocusEffect } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons';
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
 
@@ -14,7 +15,6 @@ export default function Equipes({ route, navigation }) {
   const usuario = route.params?.usuario;
   const [dados, setDados] = useState([]);
   const [equipeSelecionada, setEquipeSelecionada] = useState(null)
-  const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
   const [termoBusca, setTermoBusca] = useState('');
   const [usuarioState, setusuarioState] = useState(usuario);
@@ -39,12 +39,10 @@ export default function Equipes({ route, navigation }) {
   }
   
   try {
-    setIsLoading(true);
     setErrorMessage(null);
-    console.log("ID do administrador enviado:", usuario.id);
-    const res = await api.get(`dev4tec/equipe.php`, {
+    const res = await api.get(`dev4tec/equipeadm.php`, {
       params: {
-        id_funcionario: usuario.id // Use o ID do usuário logado
+        id_administrador: usuario.id // Use o ID do usuário logado
       }
     });
 
@@ -59,9 +57,6 @@ export default function Equipes({ route, navigation }) {
     console.log("Erro ao listar equipes:", error);
     setErrorMessage("Erro de conexão com o servidor");
   }
-  finally {
-    setIsLoading(false);
-  }
   }
 
   useEffect(() => {
@@ -72,13 +67,6 @@ export default function Equipes({ route, navigation }) {
     setEquipeSelecionada(equipeSelecionada === id ? null : id);
   };
 
-  if (isLoading) {
-    return (
-      <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
-        <ActivityIndicator size="large" color={theme.primary} />
-      </View>
-    );
-  }
 
   if (errorMessage) {
     return (
@@ -130,11 +118,18 @@ export default function Equipes({ route, navigation }) {
                   source={item.imagem ? { uri: item.imagem } : require('../../../../assets/img/image.png')} 
                   style={styles.imag} 
                 />
-
-                <View style={styles.textos}>
-                  <Text style={styles.textolistatitulo}>{item.nome_equipe}</Text>
-                  <Text style={styles.textolistacargo}>{item.nome_categoria}</Text>
+                <View style={styles.areatextobotao}>
+                    <View style={styles.textos}>
+                    <Text style={styles.textolistatitulo}>{item.nome_equipe}</Text>
+                    <Text style={styles.textolistacargo}>{item.nome_categoria}</Text>
+                    </View>
+                    <TouchableOpacity
+                        style={styles.botaoeditar}
+                    >
+                        <Ionicons name="create-outline" size={35} color="black"/>
+                    </TouchableOpacity>                    
                 </View>
+
               </TouchableOpacity>
                 {equipeSelecionada === item.id_equipe && (
                 <View style={styles.areacard}>
@@ -145,7 +140,6 @@ export default function Equipes({ route, navigation }) {
                       <Card.Cover source={require('../../../../assets/img/equipes.png')} style={styles.imagemcard} />
                       <Card.Content style={styles.cardinferior}>
                         <Title style={styles.titulocard}>Funcionarios</Title>
-                        <Paragraph style={styles.paragraph}>The point of using Lorem Ipsum is that....</Paragraph>
                         <View style={styles.linhainfer}>
                           <Text style={styles.data}>16/07/20</Text>
                           <Text style={styles.Entre}>Entre aqui</Text>
@@ -161,7 +155,6 @@ export default function Equipes({ route, navigation }) {
                       <Card.Cover source={require('../../../../assets/img/tarefas.png')} style={styles.imagemcard} />
                       <Card.Content style={styles.cardinferior}>
                         <Title style={styles.titulocard}>Tarefas</Title>
-                        <Paragraph style={styles.paragraph}>The point of using Lorem Ipsum is that....</Paragraph>
                         <View style={styles.linhainfer}>
                           <Text style={styles.data}>16/07/20</Text>
                           <Text style={styles.Entre}>Entre aqui</Text>
@@ -178,7 +171,6 @@ export default function Equipes({ route, navigation }) {
                       <Card.Cover source={require('../../../../assets/img/ranking.png')} style={styles.imagemcard} />
                       <Card.Content style={styles.cardinferior}>
                         <Title style={styles.titulocard}>Ranking</Title>
-                        <Paragraph style={styles.paragraph}>The point of using Lorem Ipsum is that....</Paragraph>
                         <View style={styles.linhainfer}>
                           <Text style={styles.data}>16/07/20</Text>
                           <Text style={styles.Entre}>Entre aqui</Text>

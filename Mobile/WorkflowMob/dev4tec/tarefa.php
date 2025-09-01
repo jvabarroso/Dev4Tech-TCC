@@ -23,7 +23,6 @@ try {
             t.id_tarefa,
             t.nomeTarefa,
             t.instrucoes,
-            e.nome_equipe,
             DATE_FORMAT(t.data_entrega, '%Y-%m-%d') AS data_entrega,
             EXISTS (
                 SELECT 1 

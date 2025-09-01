@@ -26,6 +26,7 @@ import CadastroFuncionario from '../../src/telas/Gestor/CadastroFuncionario';
 import CadastroTarefas from '../../src/telas/Gestor/CadastroTarefas';
 import RankingAdm from '../../src/telas/Gestor/RankingAdm';
 import RankingEstastistico from '../../src/telas/Gestor/RakingEstastistico';
+import EquipesAdm from '../../src/telas/Gestor/EquipesAdm';
 
 import fonts from "../styles/fonts";
 import {Ionicons} from '@expo/vector-icons';
@@ -124,9 +125,11 @@ function TabsAdm({route}){
           } else if (route.name === 'CadastroTarefas') {
             iconName = 'list';
           } else if (route.name === 'CadastroEquipes') {
-            iconName = 'people';
+            iconName = 'person-add-outline';
+          } else if (route.name === 'EquipesAdm') {
+            iconName = 'people-sharp';
           } else if (route.name === 'RankingAdm') {
-            iconName = 'person';
+            iconName = 'trophy';
           }
 
           const iconColor = focused
@@ -146,9 +149,10 @@ function TabsAdm({route}){
     >
       <Tab.Screen name="HomeAdm" component={HomeAdm} initialParams={{ usuario }}/>
       <Tab.Screen name="CadastroFuncionario" component={CadastroFuncionario} initialParams={{ usuario }} />
-      <Tab.Screen name="CadastroTarefas" component={CadastroTarefas} />
-      <Tab.Screen name="CadastroEquipes" component={CadastroEquipes} />
-      <Tab.Screen name="RankingAdm" component={RankingAdm} />
+      <Tab.Screen name="CadastroTarefas" component={CadastroTarefas} initialParams={{ usuario }}/>
+      <Tab.Screen name="CadastroEquipes" component={CadastroEquipes} initialParams={{ usuario }}/>
+      <Tab.Screen name="EquipesAdm" component={EquipesAdm} initialParams={{ usuario }}/>
+      <Tab.Screen name="RankingAdm" component={RankingAdm} initialParams={{ usuario }}/>
     </Tab.Navigator>
   );
 }
