@@ -163,9 +163,6 @@ export const getStyles = (theme) => StyleSheet.create({
     fontFamily: fonts.text,
     fontWeight: 'bold',
   },
-
-
-
   areafotototal:{
     padding:5,
   },
@@ -173,15 +170,6 @@ export const getStyles = (theme) => StyleSheet.create({
     alignItems: 'flex-start',
     padding:10,
     paddingVertical:12,
-  },
-  buttonEnviar:{
-    padding:15,
-    width:150,
-    height:150,
-    backgroundColor: theme.primary,
-    borderRadius:"25%",
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   areafoto:{
     flexDirection: 'row',
@@ -204,20 +192,20 @@ export const getStyles = (theme) => StyleSheet.create({
     alignItems: 'column', 
     gap: 3,
   },
-  buttonText:{
-    color: "#ffffff",
-    fontSize: 13,
-    fontFamily: fonts.text,
+  imagemPreview: {
+    padding:15,
+    width:150,
+    height:150,
+    borderRadius:30,
+    backgroundColor: theme.primary,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   buttonText2:{
     color: theme.text,
     fontSize: 12,
     fontFamily: fonts.text,
   },
-
-
-
-
   containercategorias: {
     backgroundColor: theme.inputBackground,
     borderRadius: 10,
@@ -226,11 +214,22 @@ export const getStyles = (theme) => StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },    
-  
   textolistatitulo: {
     color: theme.text,
     fontSize: 18,
     fontWeight: 'bold',
     fontFamily: fonts.text,
   },
+  dropdown: {
+    width:290,
+    borderRadius: 6,
+    borderWidth: 1,
+    borderBottomWidth: 1.5,
+    borderColor: theme.border,
+    backgroundColor: theme.inputBackground,
+    paddingVertical:8,    
+    paddingHorizontal:20,
+    marginBottom: 10,
+    marginTop: 15,
+  },  
 })

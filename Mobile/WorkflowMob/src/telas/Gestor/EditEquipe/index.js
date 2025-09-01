@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, TouchableOpacity, Image, ScrollView, TextInput, FlatList } from 'react-native';
+import { Text, View, TouchableOpacity, Image, ScrollView, TextInput } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
-import fonts from "../../../styles/fonts";
 import { Ionicons } from '@expo/vector-icons';
 import api from '../../../../services/api';
-
+import fonts from "../../../styles/fonts";
 export default function TarefaEnvio({ navigation, route }) {
     const { theme } = useTheme();
     const styles = getStyles(theme);

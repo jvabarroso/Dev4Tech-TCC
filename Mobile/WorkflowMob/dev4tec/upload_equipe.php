@@ -13,10 +13,14 @@ try {
         // Caminho de upload (na pasta img/)
         $upload_path = __DIR__ . "/img/" . $random_name;
 
+        // Tenta mover o arquivo
+        if (move_uploaded_file($photo_tmp_name, $upload_path)) {
+            echo json_encode(['success' => true, 'message' => 'Upload realizado com sucesso!', 'file' => $random_name]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Erro ao mover arquivo']);
+        }
     } else {
-        $random_name = null;
-        $upload_path = null;
-        $photo_tmp_name = null;
+        echo json_encode(['success' => false, 'message' => 'Nenhum arquivo enviado']);
     }
 } catch (Exception $e) {
     echo json_encode(['success' => false, 'message' => $e->getMessage()]);
