@@ -133,8 +133,7 @@ export default function Equipes({ route, navigation }) {
               </TouchableOpacity>
                 {equipeSelecionada === item.id_equipe && (
                 <View style={styles.areacard}>
-                  <TouchableOpacity 
-                    onPress={() => navigation.navigate('EquipeFuncionario', { usuario: usuarioState })}>
+                  <TouchableOpacity>
 
                     <Card style={styles.cardtarequi}>
                       <Card.Cover source={require('../../../../assets/img/equipes.png')} style={styles.imagemcard} />
@@ -148,8 +147,7 @@ export default function Equipes({ route, navigation }) {
                     </Card>
                   </TouchableOpacity>
 
-                  <TouchableOpacity 
-                    onPress={() => navigation.navigate('EquipeTarefas', { usuario: usuarioState })}>
+                  <TouchableOpacity>
 
                     <Card style={styles.cardtarequi}>
                       <Card.Cover source={require('../../../../assets/img/tarefas.png')} style={styles.imagemcard} />
@@ -164,8 +162,7 @@ export default function Equipes({ route, navigation }) {
 
                   </TouchableOpacity>
 
-                  <TouchableOpacity 
-                    onPress={() => navigation.navigate('EquipeRanking', { usuario: usuarioState })}>
+                  <TouchableOpacity>
 
                     <Card style={styles.cardtarequi}>
                       <Card.Cover source={require('../../../../assets/img/ranking.png')} style={styles.imagemcard} />
