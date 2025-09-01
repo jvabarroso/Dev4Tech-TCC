@@ -535,3 +535,7 @@ C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Deb
 C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_Tarefa.resources
 C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_TarefasAdmin.resources
 C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.GenerateResource.Cache
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.AssemblyReference.cache
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.exe.config
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.CoreCompileInputs.cache
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.Up2Date

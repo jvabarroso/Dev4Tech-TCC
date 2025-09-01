@@ -2,6 +2,8 @@
 using System.Windows.Forms;
 using System.Drawing; // Adicionado para FontStyle.Bold e manipulação de imagens
 using MySql.Data.MySqlClient;
+using System.Linq;
+using System.Drawing.Imaging; // Adicionado para usar o método FirstOrDefault
 
 namespace Dev4Tech
 {
@@ -226,12 +228,12 @@ namespace Dev4Tech
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 string caminhoImagem = ofd.FileName;
-                IconFuncionario.SizeMode = PictureBoxSizeMode.StretchImage; // Garante que seja Stretch
+                IconFuncionario.SizeMode = PictureBoxSizeMode.StretchImage;
                 IconFuncionario.Image = new Bitmap(caminhoImagem);
 
-                byte[] fotoBytes = System.IO.File.ReadAllBytes(caminhoImagem);
+                // Redimensiona e comprime antes de salvar
+                byte[] fotoBytes = RedimensionarEComprimirImagem(caminhoImagem, 256, 256, 70L);
 
-                // Salvar no banco a nova foto
                 AtualizarFotoNoBanco(fotoBytes);
 
                 MessageBox.Show("Foto de perfil atualizada!");
@@ -290,6 +292,29 @@ namespace Dev4Tech
                         {
                             IconFuncionario.Image = Properties.Resources.icon_perfil;
                         }
+                    }
+                }
+            }
+        }
+
+        private byte[] RedimensionarEComprimirImagem(string caminhoImagem, int largura, int altura, long qualidade = 70L)
+        {
+            using (var imagemOriginal = Image.FromFile(caminhoImagem))
+            {
+                using (var imagemRedimensionada = new Bitmap(largura, altura))
+                {
+                    using (var g = Graphics.FromImage(imagemRedimensionada))
+                    {
+                        g.DrawImage(imagemOriginal, 0, 0, largura, altura);
+                    }
+                    var codec = ImageCodecInfo.GetImageEncoders().FirstOrDefault(c => c.FormatID == System.Drawing.Imaging.ImageFormat.Jpeg.Guid);
+                    var parametros = new System.Drawing.Imaging.EncoderParameters(1);
+                    parametros.Param[0] = new System.Drawing.Imaging.EncoderParameter(System.Drawing.Imaging.Encoder.Quality, qualidade);
+
+                    using (var ms = new System.IO.MemoryStream())
+                    {
+                        imagemRedimensionada.Save(ms, codec, parametros);
+                        return ms.ToArray();
                     }
                 }
             }

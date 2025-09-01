@@ -141,5 +141,98 @@ namespace Dev4Tech
         {
             // Pode deixar vazio ou implementar lógica adicional
         }
+
+        private void txtCadFuncNome_Enter(object sender, EventArgs e)
+        {
+            if (txtCadFuncNome.Text == "Digite o Nome do Funcionário")
+            {
+                txtCadFuncNome.Text = "";
+            }
+        }
+
+        private void txtCadFuncNome_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtCadFuncNome.Text))
+            {
+                txtCadFuncNome.Text = "Digite o Nome do Funcionário";
+            }
+        }
+
+        private void txtCadFuncEmail_Enter(object sender, EventArgs e)
+        {
+            if (txtCadFuncEmail.Text == "Digite o Email do Funcionário")
+            {
+                txtCadFuncEmail.Text = "";
+            }
+        }
+
+        private void txtCadFuncEmail_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtCadFuncEmail.Text))
+            {
+                txtCadFuncEmail.Text = "Digite o Email do Funcionário";
+            }
+        }
+
+        private void txtCadFuncSenha_Enter(object sender, EventArgs e)
+        {
+            if (txtCadFuncSenha.Text == "Digite a Senha")
+            {
+                txtCadFuncSenha.Text = "";
+                txtCadFuncSenha.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void txtCadFuncSenha_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtCadFuncSenha.Text))
+            {
+                txtCadFuncSenha.UseSystemPasswordChar = false;
+                txtCadFuncSenha.Text = "Digite a Senha";
+            }
+        }
+
+        private void txtCadFuncConfirmSenha_Enter(object sender, EventArgs e)
+        {
+            if (txtCadFuncConfirmSenha.Text == "Confirme a Senha")
+            {
+                txtCadFuncConfirmSenha.Text = "";
+                txtCadFuncConfirmSenha.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void txtCadFuncConfirmSenha_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtCadFuncConfirmSenha.Text))
+            {
+                txtCadFuncConfirmSenha.UseSystemPasswordChar = false;
+                txtCadFuncConfirmSenha.Text = "Confirme a Senha";
+            }
+        }
+
+        private void txtEndereçoNum_Enter(object sender, EventArgs e)
+        {
+            if (txtEndereçoNum.Text == "Nº")
+            {
+                txtEndereçoNum.Text = "";
+            }
+        }
+
+        private void txtEndereçoNum_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtEndereçoNum.Text))
+            {
+                txtEndereçoNum.Text = "Nº";
+            }
+        }
+
+        private bool senhaVisivel = false;
+        private void btnMostrarSenha_Click(object sender, EventArgs e)
+        {
+            senhaVisivel = !senhaVisivel;
+            txtCadFuncSenha.UseSystemPasswordChar = !senhaVisivel;
+            txtCadFuncConfirmSenha.UseSystemPasswordChar = !senhaVisivel;
+            btnMostrarSenha.Text = senhaVisivel ? "Ocultar Senha" : "Mostrar Senha";
+        }
     }
 }

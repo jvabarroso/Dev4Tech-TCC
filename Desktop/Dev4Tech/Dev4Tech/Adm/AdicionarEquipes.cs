@@ -246,13 +246,13 @@ namespace Dev4Tech
                     equipe.InserirMembroEquipe(idEquipe, email);
                 }
 
-                MessageBox.Show("Equipe cadastrada com sucesso!");
-                LimparFormulario();
+                MessageBox.Show("Equipe cadastrada com sucesso!");              
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao cadastrar equipe: " + ex.Message);
             }
+            LimparFormulario();
         }
 
         private void LimparFormulario()

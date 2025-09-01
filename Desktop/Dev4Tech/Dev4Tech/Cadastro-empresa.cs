@@ -58,32 +58,26 @@ namespace Dev4Tech
 
         private void txtNomeEmpresa_Click(object sender, EventArgs e)
         {
-            txtNomeEmpresa.Text = "";
         }
 
         private void txtSetorEmpresa_Click(object sender, EventArgs e)
         {
-            txtSetorEmpresa.Text = "";
         }
 
         private void txtLogradouroEmpresa_Click(object sender, EventArgs e)
         {
-            txtLogradouroEmpresa.Text = "";
         }
 
         private void txtNumResidencia_Click(object sender, EventArgs e)
         {
-            txtNumResidencia.Text = "";
         }
 
         private void txtBairroEmpresa_Click(object sender, EventArgs e)
         {
-            txtBairroEmpresa.Text = "";
         }
 
         private void txtComplementoEmpresa_Click(object sender, EventArgs e)
         {
-            txtComplementoEmpresa.Text = "";
         }
 
         private void txtNomeEmpresa_TextChanged(object sender, EventArgs e)
@@ -109,14 +103,140 @@ namespace Dev4Tech
 
         }
 
+        //Texto dinâmico no txtNomeEmpresa
         private void txtNomeEmpresa_Enter(object sender, EventArgs e)
         {
-
+            if(txtNomeEmpresa.Text == "Digite o nome da sua instituição")
+            {
+                txtNomeEmpresa.Text = "";
+            }
         }
 
         private void txtNomeEmpresa_Leave(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtNomeEmpresa.Text))
+            {
+                txtNomeEmpresa.Text = "Digite o nome da sua instituição";
+                txtNomeEmpresa.ForeColor = System.Drawing.Color.Gray;
+            }
+        }
 
+        private void txtCNPJEmpresa_Enter(object sender, EventArgs e)
+        {
+        }
+
+        private void txtCNPJEmpresa_Leave(object sender, EventArgs e)
+        {
+        }
+
+        private void txtSetorEmpresa_Enter(object sender, EventArgs e)
+        {
+            if (txtSetorEmpresa.Text == "Digite o setor da sua instituição")
+            {
+                txtSetorEmpresa.Text = "";
+            }
+        }
+
+        private void txtSetorEmpresa_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtSetorEmpresa.Text))
+            {
+                txtSetorEmpresa.Text = "Digite o setor da sua instituição";
+                txtSetorEmpresa.ForeColor = System.Drawing.Color.Gray;
+            }
+        }
+
+        private void txtLogradouroEmpresa_Enter(object sender, EventArgs e)
+        {
+            if (txtLogradouroEmpresa.Text == "Digite o logradouro da sua instituição")
+            {
+                txtLogradouroEmpresa.Text = "";
+            }
+        }
+
+        private void txtLogradouroEmpresa_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtLogradouroEmpresa.Text))
+            {
+                txtLogradouroEmpresa.Text = "Digite o logradouro da sua instituição";
+                txtLogradouroEmpresa.ForeColor = System.Drawing.Color.Gray;
+            }
+        }
+
+        private void txtNumResidencia_Enter(object sender, EventArgs e)
+        {
+            if (txtNumResidencia.Text == "Nº")
+            {
+                txtNumResidencia.Text = "";
+            }
+        }
+
+        private void txtNumResidencia_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtNumResidencia.Text))
+            {
+                txtNumResidencia.Text = "Nº";
+                txtNumResidencia.ForeColor = System.Drawing.Color.Gray;
+            }
+        }
+
+        private void txtBairroEmpresa_Enter(object sender, EventArgs e)
+        {
+            if (txtBairroEmpresa.Text == "Digite o bairro da sua instituição")
+            {
+                txtBairroEmpresa.Text = "";
+            }
+        }
+
+        private void txtBairroEmpresa_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtBairroEmpresa.Text))
+            {
+                txtBairroEmpresa.Text = "Digite o bairro da sua instituição";
+                txtBairroEmpresa.ForeColor = System.Drawing.Color.Gray;
+            }   
+        }
+
+        private void txtComplementoEmpresa_Enter(object sender, EventArgs e)
+        {
+            if (txtComplementoEmpresa.Text == "Digite o complemento da sua instituição")
+            {
+                txtComplementoEmpresa.Text = "";
+            }
+        }
+
+        private void txtComplementoEmpresa_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtComplementoEmpresa.Text))
+            {
+                txtComplementoEmpresa.Text = "Digite o complemento da sua instituição";
+                txtComplementoEmpresa.ForeColor = System.Drawing.Color.Gray;
+            }
+        }
+
+        private void txtEmailEmpresa_Enter(object sender, EventArgs e)
+        {
+            if (txtEmailEmpresa.Text == "Digite o email da sua instituição")
+            {
+                txtEmailEmpresa.Text = "";
+            }
+        }
+
+        private void txtEmailEmpresa_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtEmailEmpresa.Text))
+            {
+                txtEmailEmpresa.Text = "Digite o email da sua instituição";
+                txtEmailEmpresa.ForeColor = System.Drawing.Color.Gray;
+            }
+        }
+
+        private void txtTelefoneEmpresa_Enter(object sender, EventArgs e)
+        {
+        }
+
+        private void txtTelefoneEmpresa_Leave(object sender, EventArgs e)
+        {
         }
     }
 }

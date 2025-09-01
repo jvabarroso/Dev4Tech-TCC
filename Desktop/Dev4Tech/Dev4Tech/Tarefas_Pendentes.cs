@@ -255,7 +255,8 @@ namespace Dev4Tech
 
             DataTable tarefasFiltradas;
 
-            if (string.IsNullOrEmpty(filtro))
+            // Exibe todas as tarefas se o campo estiver vazio ou com o texto padrão
+            if (string.IsNullOrEmpty(filtro) || filtro.Equals("pesquisar uma tarefa", StringComparison.OrdinalIgnoreCase))
             {
                 DataTable dtTarefas = new DataTable();
                 if (equipesFuncionario != null)

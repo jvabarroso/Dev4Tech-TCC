@@ -19,7 +19,11 @@ namespace Dev4Tech
             InitializeComponent();
             idEquipeAtual = idEquipe;
             txtNomeEquipe.Text = BuscarNomeEquipe(idEquipeAtual);
+
             lblArquivoEntregaTarefa.Click += LblArquivoEntregaTarefa_Click;
+
+            // Remover registro anterior antes de adicionar
+            btnRelatarProblema.Click -= btnRelatarProblema_Click;
             btnRelatarProblema.Click += btnRelatarProblema_Click;
         }
 
