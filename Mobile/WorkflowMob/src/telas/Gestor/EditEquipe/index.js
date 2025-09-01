@@ -12,15 +12,35 @@ export default function TarefaEnvio({ navigation, route }) {
 
     const equipe = route.params?.equipe || {}; 
 
-    const [image, setImage] = useState(null);
     const [nome_equipe, setNomeEquipe] = useState();
     const [categoriaEquipe, setCategoriaEquipe] = useState('');
     const [categoriaSelecionada, setCategoriaSelecionada] = useState(null);
+
     const [funcionarioEquipe, setFuncionarioEquipe] = useState('');
     const [funcionarioSelecionada, setFuncionarioSelecionada] = useState(null);
+
     const [dados, setDados] = useState([]);
     const [dadosFuncionario, setDadosFuncionario] = useState([]);
-    
+
+    const [funcionariosEquipeArray, setFuncionariosEquipeArray] = useState([]); 
+
+    const [image, setImage] = useState(null);
+
+    function adicionarFuncionario() {
+        if (funcionarioSelecionada) {
+            // Evita adicionar duplicados
+            const jaExiste = funcionariosEquipeArray.some(
+                f => f.FuncionarioId === funcionarioSelecionada
+            );
+
+            if (!jaExiste) {
+                setFuncionariosEquipeArray(prev => [
+                    ...prev, 
+                    { FuncionarioId: funcionarioSelecionada, nome: funcionarioEquipe }
+                ]);
+            }
+        }
+    }
 
     async function listarFuncionarios() {
         try {
@@ -75,6 +95,89 @@ export default function TarefaEnvio({ navigation, route }) {
     }, [equipe?.id_empresa]);
 
 
+    //Mostra a imagem da equipe:
+    useEffect(() => {
+        async function carregarImagens() {
+        try {
+            const response = await fetch(
+            `http://10.239.0.126/dev4tec/imagem_equipe.php`,{
+                method:'POST',
+                headers:{'Content-Type': 'application/json'},
+                body: JSON.stringify({ id: equipe.id_equipe })
+            }
+            );
+            const data = await response.json();
+
+            if (data.success) {
+            prev => ({
+                ...prev,
+                imagem: data.imagem,
+            });
+            }
+        } catch (error) {
+            console.error('Erro ao buscar imagens:', error);
+        } finally {
+            setLoading(false);
+        }
+        }
+
+        carregarImagens();
+    }, [equipe.id_equipe]);
+
+    if (loading) {
+        return (
+        <View style={styles.loading}>
+            <ActivityIndicator size="large" color="#4a90e2" />
+            <Text style={styles.loadingText}>Carregando imagens...</Text>
+        </View>
+        );
+    }
+
+    //Post para o Banco:
+    async function editar() {            
+        if (!nome_equipe|| !categoriaSelecionada) {
+        Alert.alert("Erro", "Preencha todos os campos obrigatórios!");
+         return;
+     }
+     try {
+
+        const obj = {
+          id: equipe.id_equipe,
+          nome_equipe: nome_equipe,
+          id_categoria: categoriaSelecionada,
+          foto_equipe: image,
+          funcionarios: funcionariosEquipeArray
+        };
+
+         console.log('Dados enviados para edição:', obj); // Log para debug
+
+          const res = await api.post('dev4tec/editarequipe.php', obj, {
+            headers: {
+              'Content-Type': 'application/json',
+            }
+          });
+
+                  
+         console.log('Resposta da API:', res.data); // Log para 
+         
+        if (res.data.success) {
+            prev => ({
+                ...prev,
+                nome_equipe: nome_equipe,
+                id_categoria: categoriaSelecionada,
+                nome_categoria: categoriaEquipe,
+                imagem: image || equipe.imagem,
+            });
+            Alert.alert("Sucesso", "Dados atualizados com sucesso!");
+        } else {
+            Alert.alert("Erro", res.data.message || "Erro ao atualizar dados");
+        }
+    } catch (error) {
+        console.error("Erro completo:", error);
+        Alert.alert("Erro", "Não foi possível conectar ao servidor");
+    }
+}
+
 
     return (
         <View style={styles.container}>
@@ -97,7 +200,7 @@ export default function TarefaEnvio({ navigation, route }) {
                 <View style={styles.containerequipes}>
                     <View style={styles.imagem}>
                         <Image 
-                        source={equipe.foto_equipe ? { uri: equipe.foto_equipe } :require('../../../../assets/img/image.png')} 
+                        source={equipe.imagem ? { uri: equipe.imagem } :require('../../../../assets/img/image.png')} 
                         style={styles.imagemequipe} />
                     </View>
 
@@ -115,9 +218,9 @@ export default function TarefaEnvio({ navigation, route }) {
                         value={nome_equipe}
                         placeholder={equipe.nome_equipe}
                         placeholderTextColor={theme.text3}
-                        onChangeText={(text) => setNomeEquipe()}
-                        keyboardType="numeric"
-                        maxLength={10}
+                        onChangeText={(text) => setNomeEquipe(text)}
+                        keyboardType="default"
+                        maxLength={50}
                     />
 
                     <Text style={styles.texto}>Categoria</Text>
@@ -181,13 +284,17 @@ export default function TarefaEnvio({ navigation, route }) {
                             activeColor={theme.inputBackground} 
                     
                         />
-                        <TouchableOpacity style={styles.botaoadd}>
+                        <TouchableOpacity 
+                            style={styles.botaoadd}
+                            onPress={adicionarFuncionario}
+                        >
                             <Ionicons name="add" size={24} color="#FFFFFF" /> 
                         </TouchableOpacity>  
                     </View>
 
                     <TouchableOpacity 
                         style={styles.botaoeditar}
+                        onPress={editar}
                     >
                         <Text style={styles.textoeditar}>Editar Dados</Text>
                     </TouchableOpacity>
