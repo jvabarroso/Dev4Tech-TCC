@@ -65,8 +65,8 @@ namespace Dev4Tech
                 txtCadFuncSenha.Text = "";
                 txtCadFuncConfirmSenha.Text = "";
 
-                Login t_Home = new Login();
-                t_Home.Show();
+                HomeAdm homeAdm = new HomeAdm();
+                homeAdm.Show();
                 this.Hide();
             }
             catch (Exception ex)

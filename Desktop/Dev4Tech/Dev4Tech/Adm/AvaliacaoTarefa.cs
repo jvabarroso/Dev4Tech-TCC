@@ -156,5 +156,34 @@ namespace Dev4Tech
             return null;
         }
 
+        public DataTable BuscarTarefasPorEquipe(int idEquipe)
+        {
+            DataTable dt = new DataTable();
+            string query = @"
+            SELECT t.id_tarefa, t.nomeTarefa, t.dificuldade, e.nome_equipe, t.data_entrega
+            FROM Tarefas t
+            INNER JOIN Equipes e ON t.id_equipe = e.id_equipe
+            INNER JOIN Entregas en ON en.id_tarefa = t.id_tarefa
+            LEFT JOIN Avaliacoes av ON av.id_tarefa = t.id_tarefa
+            WHERE t.id_equipe = @idEquipe AND av.id_tarefa IS NULL";
+
+            if (abrirConexao())
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, conectar);
+                    cmd.Parameters.AddWithValue("@idEquipe", idEquipe);
+                    MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                    da.Fill(dt);
+                }
+                finally
+                {
+                    fecharConexao();
+                }
+            }
+
+            return dt;
+        }
+
     }
 }

@@ -539,3 +539,7 @@ C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech
 C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.exe.config
 C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.CoreCompileInputs.cache
 C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.Up2Date
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.AssemblyReference.cache
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.exe.config
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.CoreCompileInputs.cache
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.Up2Date

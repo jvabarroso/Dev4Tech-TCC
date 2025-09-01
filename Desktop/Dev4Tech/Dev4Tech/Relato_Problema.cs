@@ -31,10 +31,12 @@ namespace Dev4Tech
                 return;
             }
 
+            int idEmpresa = BuscarIdEmpresaPorTarefa(idTarefa);
+
             EnvioProblema relato = new EnvioProblema();
             try
             {
-                relato.InserirRelato(idTarefa, idEquipe, descricao);
+                relato.InserirRelato(idTarefa, idEquipe, idEmpresa, descricao);
                 MessageBox.Show("Problema enviado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }
@@ -47,7 +49,6 @@ namespace Dev4Tech
             Tt.CarregarDetalhesTarefa(idTarefa);
             Tt.Show();
             this.Hide();
-
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
@@ -57,5 +58,31 @@ namespace Dev4Tech
             Tt.Show();
             this.Hide();
         }
+
+        private int BuscarIdEmpresaPorTarefa(int idTarefa)
+        {
+            int idEmpresa = 0;
+            string query = @"SELECT a.id_empresa
+                             FROM Administradores a
+                             INNER JOIN Equipes e ON a.AdminId = e.AdminId
+                             INNER JOIN Tarefas t ON t.id_equipe = e.id_equipe
+                             WHERE t.id_tarefa = @idTarefa
+                             LIMIT 1";
+            using (var conn = new MySql.Data.MySqlClient.MySqlConnection("server=localhost;database=Dev4Tech;uid=root;pwd=;"))
+            {
+                conn.Open();
+                var cmd = new MySql.Data.MySqlClient.MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@idTarefa", idTarefa);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        idEmpresa = Convert.ToInt32(reader["id_empresa"]);
+                    }
+                }
+            }
+            return idEmpresa;
+        }
+
     }
 }

@@ -12,6 +12,7 @@ namespace Dev4Tech
         AddEquipes equipe = new AddEquipes();
         private List<string> membrosSelecionados = new List<string>();
         private List<string> funcionariosSelecionados = new List<string>();
+        private byte[] fotoEquipeBytes;
 
         public AdicionarEquipes()
         {
@@ -23,6 +24,7 @@ namespace Dev4Tech
             cbmEmailMembro.SelectedIndexChanged += cbmEmailMembro_SelectedIndexChanged;
             cmbCategoriaEquipe.SelectedIndexChanged += cmbCategoriaEquipe_SelectedIndexChanged;
             txtNomeEquipe.TextChanged += txtNomeEquipe_TextChanged;
+            btnFtEquipe.Click += btnFtEquipe_Click;
         }
 
         private void AdicionarEquipes_Load(object sender, EventArgs e)
@@ -239,6 +241,17 @@ namespace Dev4Tech
                 }
                 equipe.setAdminId(adminId);
 
+                // Defina a foto da equipe
+                equipe.setFotoEquipe(fotoEquipeBytes);
+
+                // Defina o id da empresa
+                string idEmpresa = "0";
+                if (Sessao.AdminLogado != null)
+                {
+                    idEmpresa = Sessao.AdminLogado.getIdEmpresa() ?? "0";
+                }
+                equipe.setIdEmpresa(idEmpresa);
+
                 int idEquipe = equipe.InserirEquipeRetornandoId();
 
                 foreach (string email in membrosSelecionados)
@@ -246,7 +259,7 @@ namespace Dev4Tech
                     equipe.InserirMembroEquipe(idEquipe, email);
                 }
 
-                MessageBox.Show("Equipe cadastrada com sucesso!");              
+                MessageBox.Show("Equipe cadastrada com sucesso!");
             }
             catch (Exception ex)
             {
@@ -330,6 +343,46 @@ namespace Dev4Tech
         }
         private void AdicionarEquipes_Load_1(object sender, EventArgs e)
         {
+        }
+
+        private void btnFtEquipe_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "Imagens|*.jpg;*.jpeg;*.png;*.bmp";
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    Image img = Image.FromFile(ofd.FileName);
+                    picBoxFtEquipe.Image = img;
+
+                    // Compactar para JPEG com qualidade 60%
+                    using (var ms = new System.IO.MemoryStream())
+                    {
+                        var encoder = GetEncoder(System.Drawing.Imaging.ImageFormat.Jpeg);
+                        var encoderParams = new System.Drawing.Imaging.EncoderParameters(1);
+                        encoderParams.Param[0] = new System.Drawing.Imaging.EncoderParameter(System.Drawing.Imaging.Encoder.Quality, 60L);
+                        img.Save(ms, encoder, encoderParams);
+                        fotoEquipeBytes = ms.ToArray();
+                    }
+                }
+            }
+        }
+
+        // Método auxiliar para obter o encoder JPEG
+        private static System.Drawing.Imaging.ImageCodecInfo GetEncoder(System.Drawing.Imaging.ImageFormat format)
+        {
+            var codecs = System.Drawing.Imaging.ImageCodecInfo.GetImageDecoders();
+            foreach (var codec in codecs)
+            {
+                if (codec.FormatID == format.Guid)
+                    return codec;
+            }
+            return null;
+        }
+
+        private void btnSalvarImg_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -13,11 +13,12 @@ namespace Dev4Tech
         public DateTime DataEntrega { get; set; }
         public string NomeArquivo { get; set; }
         public byte[] ArquivoBlob { get; set; }
+        public int IdEmpresa { get; set; }
 
         public void Inserir()
         {
-            string query = "INSERT INTO Tarefas (nomeTarefa, instrucoes, dificuldade, id_equipe, data_entrega, nome_arquivo, arquivo_blob) " +
-                           "VALUES (@nome, @instr, @dificuldade, @idEq, @data, @nomeArq, @arqBlob)";
+            string query = "INSERT INTO Tarefas (nomeTarefa, instrucoes, dificuldade, id_equipe, data_entrega, nome_arquivo, arquivo_blob, id_empresa) " +
+                           "VALUES (@nome, @instr, @dificuldade, @idEq, @data, @nomeArq, @arqBlob, @idEmpresa)";
 
             if (abrirConexao())
             {
@@ -31,6 +32,7 @@ namespace Dev4Tech
                     cmd.Parameters.AddWithValue("@data", DataEntrega);
                     cmd.Parameters.AddWithValue("@nomeArq", NomeArquivo);
                     cmd.Parameters.AddWithValue("@arqBlob", (object)ArquivoBlob ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@idEmpresa", IdEmpresa);
                     cmd.ExecuteNonQuery();
                 }
                 finally

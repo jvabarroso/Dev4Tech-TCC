@@ -141,9 +141,9 @@ namespace Dev4Tech
                     NomeArquivo = nomeArquivo,
                     ArquivoBlob = arquivoBytes
                 };
-
                 try
                 {
+                    tarefa.IdEmpresa = Convert.ToInt32(Sessao.AdminLogado.getIdEmpresa()); // ou o valor correto da empresa
                     tarefa.Inserir();
                 }
                 catch (Exception ex)

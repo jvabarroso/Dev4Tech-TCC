@@ -187,6 +187,7 @@ namespace Dev4Tech
     }
 
     MessageBox.Show("Avaliações salvas com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            CarregarTarefasEntregues();
 }
 
         private void AvancarPontuacaoFuncionarios(int idTarefa)
@@ -232,8 +233,27 @@ namespace Dev4Tech
 
         private List<int> BuscarIdsEquipes()
         {
-            // TODO: Implemente a busca real no banco de dados para as equipes
-            return new List<int> { 1, 2, 3 }; // Exemplo fixo
+            var ids = new List<int>();
+            if (Sessao.AdminLogado == null)
+                return ids;
+
+            int adminId = int.Parse(Sessao.AdminLogado.getAdminId());
+            string query = "SELECT id_equipe FROM Equipes WHERE AdminId = @adminId";
+
+            using (var conn = new MySql.Data.MySqlClient.MySqlConnection("server=localhost;database=Dev4Tech;uid=root;pwd=;"))
+            {
+                conn.Open();
+                var cmd = new MySql.Data.MySqlClient.MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@adminId", adminId);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        ids.Add(Convert.ToInt32(reader["id_equipe"]));
+                    }
+                }
+            }
+            return ids;
         }
 
         private class AvaliacaoInfo
@@ -324,7 +344,7 @@ namespace Dev4Tech
 
         private void AvaliaçãoTarefaAdmin_Load(object sender, EventArgs e)
         {
-            // Se precisar carregar algo ao iniciar
+            CarregarTarefasEntregues(); // Recarrega as tarefas ao voltar para a tela
         }
 
         private void lblGeral_Click(object sender, EventArgs e)

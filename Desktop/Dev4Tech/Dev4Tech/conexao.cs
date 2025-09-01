@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,7 +38,8 @@ namespace Dev4Tech
             //try catch é  um tratamento de erros para códigos
             try
             {
-                conectar.Open();
+                if (conectar.State != ConnectionState.Open)
+                    conectar.Open();
                 return true;
             }
             catch (MySqlException ex) // Catch - caso o try não execute, o catch entra em ação

@@ -11,6 +11,8 @@ namespace Dev4Tech
         private string categoria;
         private string emailFuncionario;
         private string adminId; // Campo para armazenar AdminId como string
+        private byte[] fotoEquipe; // Adicionando o campo fotoEquipe
+        private string idEmpresa;
 
         // Setters
         public void setNomeEquipe(string nomeEquipe)
@@ -28,6 +30,14 @@ namespace Dev4Tech
         public void setAdminId(string adminId)
         {
             this.adminId = adminId;
+        }
+        public void setFotoEquipe(byte[] foto)
+        {
+            this.fotoEquipe = foto;
+        }
+        public void setIdEmpresa(string idEmpresa)
+        {
+            this.idEmpresa = idEmpresa;
         }
 
         // Getters
@@ -47,18 +57,27 @@ namespace Dev4Tech
         {
             return this.adminId;
         }
+        public byte[] getFotoEquipe()
+        {
+            return this.fotoEquipe;
+        }
+        public string getIdEmpresa()
+        {
+            return this.idEmpresa;
+        }
 
         private int ObterOuInserirCategoria(string nomeCategoria)
         {
             int idCategoria = 0;
-            string selectQuery = "SELECT id_categoria FROM Categorias WHERE nome_categoria = @nome";
-            string insertQuery = "INSERT INTO Categorias (nome_categoria) VALUES (@nome)";
+            string selectQuery = "SELECT id_categoria FROM Categorias WHERE nome_categoria = @nome AND id_empresa = @idEmpresa";
+            string insertQuery = "INSERT INTO Categorias (nome_categoria, id_empresa) VALUES (@nome, @idEmpresa)";
             if (this.abrirConexao())
             {
                 try
                 {
                     MySqlCommand cmdSelect = new MySqlCommand(selectQuery, conectar);
                     cmdSelect.Parameters.AddWithValue("@nome", nomeCategoria);
+                    cmdSelect.Parameters.AddWithValue("@idEmpresa", getIdEmpresa());
                     object result = cmdSelect.ExecuteScalar();
                     if (result != null)
                     {
@@ -68,6 +87,7 @@ namespace Dev4Tech
                     {
                         MySqlCommand cmdInsert = new MySqlCommand(insertQuery, conectar);
                         cmdInsert.Parameters.AddWithValue("@nome", nomeCategoria);
+                        cmdInsert.Parameters.AddWithValue("@idEmpresa", getIdEmpresa());
                         cmdInsert.ExecuteNonQuery();
                         idCategoria = (int)cmdInsert.LastInsertedId;
                     }
@@ -154,7 +174,7 @@ namespace Dev4Tech
                 throw new Exception("Preencha todos os campos antes de salvar.");
             int idCategoria = ObterOuInserirCategoria(getCategoria());
             int idEquipe = 0;
-            string query = "INSERT INTO Equipes (nome_equipe, id_categoria, AdminId) VALUES (@nomeEquipe, @idCategoria, @adminId); SELECT LAST_INSERT_ID();";
+            string query = "INSERT INTO Equipes (nome_equipe, id_categoria, AdminId, foto_equipe, id_empresa) VALUES (@nomeEquipe, @idCategoria, @adminId, @fotoEquipe, @idEmpresa); SELECT LAST_INSERT_ID();";
             if (this.abrirConexao())
             {
                 try
@@ -163,6 +183,8 @@ namespace Dev4Tech
                     cmd.Parameters.AddWithValue("@nomeEquipe", getNomeEquipe());
                     cmd.Parameters.AddWithValue("@idCategoria", idCategoria);
                     cmd.Parameters.AddWithValue("@adminId", getAdminId());
+                    cmd.Parameters.AddWithValue("@fotoEquipe", (object)fotoEquipe ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@idEmpresa", getIdEmpresa());
                     idEquipe = Convert.ToInt32(cmd.ExecuteScalar());
                 }
                 finally
