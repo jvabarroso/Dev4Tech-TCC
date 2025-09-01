@@ -280,7 +280,7 @@ export default function CadastroEquipes({ route, navigation}){
                                     style={styles.containercategorias}
                                     onPress={() => {
                                         setCategoriaSelecionada(item.id_categoria);
-                                            (item.nome_categoria);
+                                        setCategoriaEquipe(item.nome_categoria);
                                     }}
                                 >
                                 <Text style={styles.textolistatitulo}>

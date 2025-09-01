@@ -27,6 +27,7 @@ import CadastroTarefas from '../../src/telas/Gestor/CadastroTarefas';
 import RankingAdm from '../../src/telas/Gestor/RankingAdm';
 import RankingEstastistico from '../../src/telas/Gestor/RakingEstastistico';
 import EquipesAdm from '../../src/telas/Gestor/EquipesAdm';
+import EditEquipe from '../../src/telas/Gestor/EditEquipe';
 
 import fonts from "../styles/fonts";
 import {Ionicons} from '@expo/vector-icons';
@@ -214,7 +215,12 @@ export default function App() {
           name="RankingEstastistico"
           component={RankingEstastistico} 
           options={{ headerShown: false }}
-        />        
+        />     
+        <Stack.Screen
+          name="EditEquipe"
+          component={EditEquipe} 
+          options={{ headerShown: false }}
+        />           
     
       </Stack.Navigator>
     </NavigationContainer>
