@@ -127,7 +127,7 @@ export default function Equipes({ route, navigation }) {
                         style={styles.botaoeditar}
                         onPress={() => navigation.navigate('EditEquipe', { equipe: { ...item, id_empresa: item.id_empresa || usuario.id_empresa } })}
                     >
-                        <Ionicons name="create-outline" size={35} color="black"/>
+                        <Ionicons name="create-outline" size={35} color={theme.text}/>
                     </TouchableOpacity>                    
                 </View>
 

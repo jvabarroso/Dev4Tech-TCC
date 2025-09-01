@@ -3,6 +3,7 @@ import { Text, View, TouchableOpacity, Image, ScrollView, TextInput, FlatList } 
 import { Dropdown } from 'react-native-element-dropdown';
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
+import fonts from "../../../styles/fonts";
 import { Ionicons } from '@expo/vector-icons';
 import api from '../../../../services/api';
 
@@ -95,11 +96,11 @@ export default function TarefaEnvio({ navigation, route }) {
                 </View>
 
                 <View style={styles.containerequipes}>
-                    <TouchableOpacity style={styles.imagem}>
+                    <View style={styles.imagem}>
                         <Image 
                         source={equipe.foto_equipe ? { uri: equipe.foto_equipe } :require('../../../../assets/img/image.png')} 
                         style={styles.imagemequipe} />
-                    </TouchableOpacity>
+                    </View>
 
                     <View style={styles.textos}>
                         <Text style={styles.textoequipe}>{equipe.nome_equipe}</Text>
@@ -114,6 +115,7 @@ export default function TarefaEnvio({ navigation, route }) {
                         style={styles.input}
                         value={nome_equipe}
                         placeholder={equipe.nome_equipe}
+                        placeholderTextColor={theme.text3}
                         onChangeText={(text) => setNomeEquipe()}
                         keyboardType="numeric"
                         maxLength={10}
@@ -126,11 +128,27 @@ export default function TarefaEnvio({ navigation, route }) {
                         labelField="nome_categoria" 
                         valueField="id_categoria"
                         placeholder={categoriaEquipe || "Escolha a categoria da equipe"}
+                        placeholderStyle={{ color: theme.text3, fontSize: 14 }}
+                        selectedTextStyle={{ color: theme.text, fontSize: 14 }}
                         value={categoriaSelecionada}
                         onChange={item => {
                             setCategoriaSelecionada(item.id_categoria);
                             setCategoriaEquipe(item.nome_categoria);
                         }}
+                        containerStyle={{
+                            backgroundColor: theme.inputBackground3,
+                        }}
+                        itemTextStyle={{
+                            color: theme.text,
+                            fontSize: 14,
+                            fontFamily: fonts.text,
+                        }}
+                        selectedStyle={{
+                            color: theme.text,
+                            fontSize: 14,
+                            fontFamily: fonts.text,
+                        }}
+                        activeColor={theme.inputBackground} 
                     />
 
                     <Text style={styles.texto}>Adicionar membros à equipe</Text>
@@ -141,11 +159,28 @@ export default function TarefaEnvio({ navigation, route }) {
                             labelField="nome" 
                             valueField="FuncionarioId"
                             placeholder={funcionarioEquipe || "membros da equipe"}
+                            placeholderStyle={{ color: theme.text3, fontSize: 14 }}
+                            selectedTextStyle={{ color: theme.text, fontSize: 14 }}
                             value={funcionarioSelecionada}
                             onChange={item => {
                                 setFuncionarioSelecionada(item.FuncionarioId);
-                                setFuncionarioEquipe(item.Nome);
+                                setFuncionarioEquipe(item.nome);
                             }}
+                            containerStyle={{
+                                backgroundColor: theme.inputBackground3,
+                            }}
+                            itemTextStyle={{
+                                color: theme.text,
+                                fontSize: 14,
+                                fontFamily: fonts.text,
+                            }}
+                            selectedStyle={{
+                                color: theme.text,
+                                fontSize: 14,
+                                fontFamily: fonts.text,
+                            }}
+                            activeColor={theme.inputBackground} 
+                    
                         />
                         <TouchableOpacity style={styles.botaoadd}>
                             <Ionicons name="add" size={24} color="#FFFFFF" /> 

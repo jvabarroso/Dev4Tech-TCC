@@ -138,7 +138,7 @@ export default function Configuracoes({navigation, route}){
       formData.append("id", usuarioState.id);
 
       try {
-        const response = await fetch("http://10.239.0.125/dev4tec/upload_usuario.php", {
+        const response = await fetch("http://10.239.0.126/dev4tec/upload_usuario.php", {
           method: 'POST',
           body: formData,
         });
@@ -190,7 +190,7 @@ export default function Configuracoes({navigation, route}){
     async function carregarImagens() {
       try {
         const response = await fetch(
-          `http://10.239.0.125/dev4tec/imagem_usuario.php`,{
+          `http://10.239.0.126/dev4tec/imagem_usuario.php`,{
             method:'POST',
             headers:{'Content-Type': 'application/json'},
             body: JSON.stringify({ id: usuarioState.id, role: usuarioState.role })
