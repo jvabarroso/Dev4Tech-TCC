@@ -39,7 +39,9 @@ try {
         } else {
             echo json_encode(['success' => false, 'message' => 'Imagem não encontrada']);
         }
-    } 
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Equipe sem imagem']);
+    }
 
 } catch (Exception $e) {
     echo json_encode(['error' => $e->getMessage()]);
