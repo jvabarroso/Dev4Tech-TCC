@@ -116,22 +116,11 @@ export default function TarefaEnvio({ navigation, route }) {
             }
         } catch (error) {
             console.error('Erro ao buscar imagens:', error);
-        } finally {
-            setLoading(false);
-        }
+        } 
         }
 
         carregarImagens();
     }, [equipe.id_equipe]);
-
-    if (loading) {
-        return (
-        <View style={styles.loading}>
-            <ActivityIndicator size="large" color="#4a90e2" />
-            <Text style={styles.loadingText}>Carregando imagens...</Text>
-        </View>
-        );
-    }
 
     //Post para o Banco:
     async function editar() {            

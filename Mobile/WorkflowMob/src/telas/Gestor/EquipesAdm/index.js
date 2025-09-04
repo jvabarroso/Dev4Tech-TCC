@@ -14,6 +14,7 @@ export default function Equipes({ route, navigation }) {
   
   const usuario = route.params?.usuario;
   const [dados, setDados] = useState([]);
+  const [imagensEquipes, setImagensEquipes] = useState({});
   const [equipeSelecionada, setEquipeSelecionada] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null);
   const [termoBusca, setTermoBusca] = useState('');
@@ -94,6 +95,36 @@ export default function Equipes({ route, navigation }) {
     return tarefasFiltradas;
   };
 
+  //Mostra a imagem da equipe:
+
+async function carregarImagemEquipe(id_equipe) {
+  try {
+    const response = await fetch(
+      `http://10.239.0.126/dev4tec/imagem_equipe.php`,{
+      method:'POST',
+      headers:{'Content-Type': 'application/json'},
+      body: JSON.stringify({ id: id_equipe })
+    });
+    const data = await response.json();
+    if (data.success) {
+      setImagensEquipes(prev => ({
+        ...prev,
+        [id_equipe]: data.imagem, // Corrija para usar o id_equipe como chave!
+      }));
+    }
+  } catch (error) {
+    console.error('Erro ao buscar imagens:', error);
+  } 
+}
+  
+  useEffect(() => {
+    if (dados.length > 0) {
+      dados.forEach(item => {
+        carregarImagemEquipe(item.id_equipe);
+      });
+    }
+  }, [dados]);
+
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
@@ -115,7 +146,7 @@ export default function Equipes({ route, navigation }) {
                 onPress={() => toggleEquipe(item.id_equipe)}
               >
                 <Image 
-                  source={item.foto_equipe ? { uri: item.foto_equipe } : require('../../../../assets/img/image.png')} 
+                  source={imagensEquipes[item.id_equipe] ? { uri: imagensEquipes[item.id_equipe] } : require('../../../../assets/img/image.png')} 
                   style={styles.imag} 
                 />
                 <View style={styles.areatextobotao}>
