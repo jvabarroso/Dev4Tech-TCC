@@ -79,144 +79,134 @@ namespace Dev4Tech
                 DateTime dataEnvio = Convert.ToDateTime(row["data_envio"]);
                 bool mensagemAdministrador = !string.IsNullOrEmpty(idAdmin);
 
+                // Carregar nome e foto
+                string nomeUsuario = mensagemAdministrador
+                    ? row["nome_admin"]?.ToString() ?? "Administrador"
+                    : row["nome_funcionario"]?.ToString() ?? "Funcionário";
+
+                byte[] fotoBytes = mensagemAdministrador
+                    ? (row["foto_admin"] != DBNull.Value ? (byte[])row["foto_admin"] : null)
+                    : (row["foto_funcionario"] != DBNull.Value ? (byte[])row["foto_funcionario"] : null);
+
                 Image foto = null;
-                if (mensagemAdministrador)
+                if (fotoBytes != null)
                 {
-                    // Carregar foto do admin pelo ID
-                    foto = CarregarFotoAdmin(int.Parse(idAdmin));
-                }
-                else if (!string.IsNullOrEmpty(idFuncionario))
-                {
-                    // Carregar foto do funcionário pelo ID
-                    foto = CarregarFotoFuncionario(int.Parse(idFuncionario));
+                    using (var ms = new System.IO.MemoryStream(fotoBytes))
+                    {
+                        foto = Image.FromStream(ms);
+                    }
                 }
                 if (foto == null)
                 {
                     foto = Properties.Resources.icon_perfil; // Imagem padrão
                 }
 
-                AdicionarMensagem(texto, dataEnvio, minhaMensagem, mensagemAdministrador, foto);
+                AdicionarMensagem(texto, dataEnvio, minhaMensagem, mensagemAdministrador, foto, nomeUsuario);
             }
-        }
-
-        // Função para carregar a foto do funcionário do banco (retorna Image ou null)
-        private Image CarregarFotoFuncionario(int idFuncionario)
-        {
-            Image foto = null;
-            string query = "SELECT foto_perfil FROM Funcionarios WHERE FuncionarioId = @idFuncionario LIMIT 1";
-            using (var conn = new MySql.Data.MySqlClient.MySqlConnection("server=localhost;database=Dev4Tech;uid=root;pwd=;"))
-            {
-                conn.Open();
-                var cmd = new MySql.Data.MySqlClient.MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@idFuncionario", idFuncionario);
-                using (var reader = cmd.ExecuteReader())
-                {
-                    if (reader.Read() && !reader.IsDBNull(reader.GetOrdinal("foto_perfil")))
-                    {
-                        byte[] fotoBytes = (byte[])reader["foto_perfil"];
-                        using (var ms = new System.IO.MemoryStream(fotoBytes))
-                        {
-                            foto = Image.FromStream(ms);
-                        }
-                    }
-                }
-            }
-            return foto;
-        }
-
-        // Função para carregar a foto do administrador do banco (retorna Image ou null)
-        private Image CarregarFotoAdmin(int idAdmin)
-        {
-            Image foto = null;
-            string query = "SELECT foto_perfil FROM administradores WHERE AdminId = @idAdmin LIMIT 1";
-            using (var conn = new MySql.Data.MySqlClient.MySqlConnection("server=localhost;database=Dev4Tech;uid=root;pwd=;"))
-            {
-                conn.Open();
-                var cmd = new MySql.Data.MySqlClient.MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@idAdmin", idAdmin);
-                using (var reader = cmd.ExecuteReader())
-                {
-                    if (reader.Read() && !reader.IsDBNull(reader.GetOrdinal("foto_perfil")))
-                    {
-                        byte[] fotoBytes = (byte[])reader["foto_perfil"];
-                        using (var ms = new System.IO.MemoryStream(fotoBytes))
-                        {
-                            foto = Image.FromStream(ms);
-                        }
-                    }
-                }
-            }
-            return foto;
         }
 
         // Método AdicionarMensagem ajustado para receber a foto como parâmetro
-        private void AdicionarMensagem(string texto, DateTime dataEnvio, bool minhaMensagem, bool mensagemAdministrador, Image fotoPerfil)
+        private void AdicionarMensagem(string texto, DateTime dataEnvio, bool minhaMensagem, bool mensagemAdministrador, Image fotoPerfil, string nomeUsuario)
         {
             int y = margemTopo + (alturaMensagem + espacamentoVertical) * mensagensCount;
 
-            Color fundoMensagem;
+            Color fundoMensagem = minhaMensagem ? Color.FromArgb(220, 255, 220)
+                : mensagemAdministrador ? Color.FromArgb(220, 235, 255)
+                : Color.White;
 
-            if (minhaMensagem)
-            {
-                fundoMensagem = Color.LightGreen;
-            }
-            else if (mensagemAdministrador)
-            {
-                fundoMensagem = Color.LightBlue;
-            }
-            else
-            {
-                fundoMensagem = Color.White;
-            }
+            Color bordaMensagem = minhaMensagem ? Color.FromArgb(120, 200, 120)
+                : mensagemAdministrador ? Color.FromArgb(120, 170, 220)
+                : Color.LightGray;
 
             Panel mensagemPanel = new Panel
             {
                 BackColor = fundoMensagem,
-                BorderStyle = BorderStyle.FixedSingle,
+                BorderStyle = BorderStyle.None,
                 Width = larguraMaxMensagem,
-                Height = alturaMensagem,
+                Height = alturaMensagem + 20, // espaço extra para nome
                 Top = y,
                 Left = minhaMensagem ? panelMensagens.Width - larguraMaxMensagem - 20 : 20,
                 Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right
+            };
+
+            mensagemPanel.Paint += (s, e) =>
+            {
+                var rect = new Rectangle(0, 0, mensagemPanel.Width - 1, mensagemPanel.Height - 1);
+                using (var pen = new Pen(bordaMensagem, 2))
+                using (var brush = new SolidBrush(mensagemPanel.BackColor))
+                {
+                    e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                    e.Graphics.FillRectangle(brush, rect);
+                    e.Graphics.DrawRectangle(pen, rect);
+                }
             };
 
             PictureBox avatar = new PictureBox
             {
                 Image = fotoPerfil,
                 SizeMode = PictureBoxSizeMode.StretchImage,
-                Width = 32,
-                Height = 32,
-                Top = (alturaMensagem - 32) / 2,
-                Left = minhaMensagem ? mensagemPanel.Width - 42 : 10,
-                BorderStyle = BorderStyle.FixedSingle
+                Width = 36,
+                Height = 36,
+                Top = mensagemPanel.Height - 58,
+                Left = minhaMensagem ? mensagemPanel.Width - 46 : 8,
+                BorderStyle = BorderStyle.None,
+                BackColor = Color.Transparent
             };
+            avatar.Paint += (s, e) =>
+            {
+                System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
+                gp.AddEllipse(0, 0, avatar.Width - 1, avatar.Height - 1);
+                avatar.Region = new Region(gp);
+            };
+
+            // Nome do usuário abaixo do avatar
+            Label lblNome = new Label
+            {
+                Text = nomeUsuario,
+                Font = new Font("Segoe UI", 8, FontStyle.Bold),
+                AutoSize = true,
+                ForeColor = Color.DimGray,
+                BackColor = Color.Transparent,
+                TextAlign = ContentAlignment.TopCenter,
+                Left = avatar.Left - 2,
+                Top = avatar.Top + avatar.Height + 2
+            };
+
+            int larguraMensagem = larguraMaxMensagem - 70;
+            int mensagemLeft = minhaMensagem ? 12 : 54;
+            int mensagemWidth = minhaMensagem ? larguraMensagem - 40 : larguraMensagem;
 
             Label lblMensagem = new Label
             {
                 Text = texto,
                 Font = new Font("Segoe UI", 10, FontStyle.Regular),
                 AutoSize = false,
-                Width = larguraMaxMensagem - 60,
-                Height = alturaMensagem - 20,
-                Top = 10,
-                Left = minhaMensagem ? 10 : 50,
-                TextAlign = ContentAlignment.MiddleLeft,
-                ForeColor = Color.Black,
-                AutoEllipsis = true
+                Width = mensagemWidth,
+                Height = alturaMensagem - 28,
+                Top = 8,
+                Left = mensagemLeft,
+                TextAlign = ContentAlignment.TopLeft,
+                ForeColor = Color.FromArgb(40, 40, 40),
+                Padding = new Padding(6, 4, 6, 4),
+                BackColor = Color.Transparent
             };
 
             Label lblHora = new Label
             {
                 Text = dataEnvio.ToString("HH:mm"),
-                Font = new Font("Segoe UI", 7, FontStyle.Italic),
+                Font = new Font("Segoe UI", 8, FontStyle.Italic),
                 AutoSize = true,
-                Top = mensagemPanel.Height - 18,
-                Left = minhaMensagem ? 10 : 50,
-                ForeColor = Color.Gray
+                ForeColor = Color.Gray,
+                BackColor = Color.Transparent
             };
+            lblHora.Top = mensagemPanel.Height - lblHora.PreferredHeight - 6;
+            lblHora.Left = minhaMensagem
+                ? mensagemPanel.Width - lblHora.PreferredWidth - 52 // Ajuste para não ficar atrás do avatar
+                : 54;
 
             mensagemPanel.Controls.Add(lblMensagem);
             mensagemPanel.Controls.Add(avatar);
+            mensagemPanel.Controls.Add(lblNome);
             mensagemPanel.Controls.Add(lblHora);
 
             panelMensagens.Controls.Add(mensagemPanel);
@@ -225,89 +215,6 @@ namespace Dev4Tech
             panelMensagens.VerticalScroll.Value = Math.Max(0, panelMensagens.VerticalScroll.Maximum);
             panelMensagens.PerformLayout();
         }
-
-
-        private void AdicionarMensagem(string texto, DateTime dataEnvio, bool minhaMensagem, bool mensagemAdministrador)
-        {
-            int y = margemTopo + (alturaMensagem + espacamentoVertical) * mensagensCount;
-
-            Color fundoMensagem;
-
-            if (minhaMensagem)
-            {
-                // Mensagem do próprio usuário (funcionário ou admin)
-                fundoMensagem = Color.LightGreen;
-            }
-            else if (mensagemAdministrador)
-            {
-                // Mensagem de administrador, mas não do usuário logado — tom azul claro
-                fundoMensagem = Color.LightBlue;
-            }
-            else
-            {
-                // Mensagem de funcionário que não é o usuário logado — branco
-                fundoMensagem = Color.White;
-            }
-
-            Panel mensagemPanel = new Panel
-            {
-                BackColor = fundoMensagem,
-                BorderStyle = BorderStyle.FixedSingle,
-                Width = larguraMaxMensagem,
-                Height = alturaMensagem,
-                Top = y,
-                Left = minhaMensagem ? panelMensagens.Width - larguraMaxMensagem - 20 : 20,
-                Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right
-            };
-
-            PictureBox avatar = new PictureBox
-            {
-                Image = minhaMensagem ? Properties.Resources.icon_perfil : Properties.Resources.icon_EquipLogo,
-                SizeMode = PictureBoxSizeMode.StretchImage,
-                Width = 32,
-                Height = 32,
-                Top = (alturaMensagem - 32) / 2,
-                Left = minhaMensagem ? mensagemPanel.Width - 42 : 10,
-                BorderStyle = BorderStyle.FixedSingle
-            };
-
-            Label lblMensagem = new Label
-            {
-                Text = texto,
-                Font = new Font("Segoe UI", 10, FontStyle.Regular),
-                AutoSize = false,
-                Width = larguraMaxMensagem - 60,
-                Height = alturaMensagem - 20,
-                Top = 10,
-                Left = minhaMensagem ? 10 : 50,
-                TextAlign = ContentAlignment.MiddleLeft,
-                ForeColor = Color.Black,
-                AutoEllipsis = true
-            };
-
-            Label lblHora = new Label
-            {
-                Text = dataEnvio.ToString("HH:mm"),
-                Font = new Font("Segoe UI", 7, FontStyle.Italic),
-                AutoSize = true,
-                Top = mensagemPanel.Height - 18,
-                Left = minhaMensagem ? 10 : 50,
-                ForeColor = Color.Gray
-            };
-
-            mensagemPanel.Controls.Add(lblMensagem);
-            mensagemPanel.Controls.Add(avatar);
-            mensagemPanel.Controls.Add(lblHora);
-
-            panelMensagens.Controls.Add(mensagemPanel);
-            mensagensCount++;
-
-            panelMensagens.VerticalScroll.Value = Math.Max(0, panelMensagens.VerticalScroll.Maximum);
-            panelMensagens.PerformLayout();
-        }
-
-
-
         private void LimparMensagens()
         {
             panelMensagens.Controls.Clear();

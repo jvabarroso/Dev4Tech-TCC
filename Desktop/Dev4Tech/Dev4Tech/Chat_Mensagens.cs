@@ -55,14 +55,32 @@ namespace Dev4Tech
         public DataTable ConsultarPorEquipe(int idEquipe)
         {
             DataTable dt = new DataTable();
-            if (this.abrirConexao())
+            string query = @"
+                SELECT m.*, 
+                       f.nome AS nome_funcionario, f.foto_perfil AS foto_funcionario,
+                       a.nome AS nome_admin, a.foto_perfil AS foto_admin
+                FROM MensagensChat m
+                LEFT JOIN Funcionarios f ON m.FuncionarioId = f.FuncionarioId
+                LEFT JOIN Administradores a ON m.AdminId = a.AdminId
+                WHERE m.id_equipe = @idEquipe
+                ORDER BY m.data_envio ASC";
+            if (abrirConexao())
             {
-                string mSQL = "SELECT * FROM MensagensChat WHERE id_equipe = @id_equipe ORDER BY data_envio";
-                MySqlCommand cmd = new MySqlCommand(mSQL, conectar);
-                cmd.Parameters.AddWithValue("@id_equipe", idEquipe);
-                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-                da.Fill(dt);
-                this.fecharConexao();
+                try
+                {
+                    using (var cmd = new MySql.Data.MySqlClient.MySqlCommand(query, conectar))
+                    {
+                        cmd.Parameters.AddWithValue("@idEquipe", idEquipe);
+                        using (var da = new MySql.Data.MySqlClient.MySqlDataAdapter(cmd))
+                        {
+                            da.Fill(dt);
+                        }
+                    }
+                }
+                finally
+                {
+                    fecharConexao();
+                }
             }
             return dt;
         }
