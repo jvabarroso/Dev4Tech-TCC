@@ -24,7 +24,7 @@ export default function TarefaEnvio({ navigation, route }) {
 
     const [funcionariosEquipeArray, setFuncionariosEquipeArray] = useState([]); 
 
-    const [image, setImage] = useState(null);
+    const [imagemEquipe, setImagemEquipe] = useState(null);
 
     function adicionarFuncionario() {
         if (funcionarioSelecionada) {
@@ -109,10 +109,10 @@ export default function TarefaEnvio({ navigation, route }) {
             const data = await response.json();
 
             if (data.success) {
-            prev => ({
-                ...prev,
-                imagem: data.imagem,
-            });
+                setImagemEquipe(prev => ({
+                    ...prev,
+                    [equipe.id_equipe]: data.imagem, // Corrija para usar o id_equipe como chave
+                }));
             }
         } catch (error) {
             console.error('Erro ao buscar imagens:', error);
@@ -134,7 +134,7 @@ export default function TarefaEnvio({ navigation, route }) {
           id: equipe.id_equipe,
           nome_equipe: nome_equipe,
           id_categoria: categoriaSelecionada,
-          foto_equipe: image,
+          foto_equipe: imagemEquipe,
           funcionarios: funcionariosEquipeArray
         };
 
@@ -155,7 +155,7 @@ export default function TarefaEnvio({ navigation, route }) {
                 nome_equipe: nome_equipe,
                 id_categoria: categoriaSelecionada,
                 nome_categoria: categoriaEquipe,
-                imagem: image || equipe.imagem,
+                imagem: imagemEquipe || equipe.imagem,
             });
             Alert.alert("Sucesso", "Dados atualizados com sucesso!");
         } else {
@@ -189,7 +189,7 @@ export default function TarefaEnvio({ navigation, route }) {
                 <View style={styles.containerequipes}>
                     <View style={styles.imagem}>
                         <Image 
-                        source={equipe.imagem ? { uri: equipe.imagem } :require('../../../../assets/img/image.png')} 
+                        source={imagemEquipe && imagemEquipe[equipe.id_equipe] ? { uri: imagemEquipe[equipe.id_equipe] } :require('../../../../assets/img/image.png')} 
                         style={styles.imagemequipe} />
                     </View>
 
