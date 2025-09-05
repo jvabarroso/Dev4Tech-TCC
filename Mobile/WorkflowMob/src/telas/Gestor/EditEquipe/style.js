@@ -165,5 +165,95 @@ export const getStyles = (theme) => StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginLeft: 10
+    },
+    imagemPreview: {
+        padding:15,
+        width:150,
+        height:150,
+        borderRadius:30,
+        backgroundColor: theme.primary,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
+    modalContainer: {
+        flex: 1,
+        backgroundColor: 'rgba(0,0,0,0.5)', // fundo escuro transparente
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    modalContent: {
+        width: 300,
+        backgroundColor: theme.background,
+        borderRadius: 20,
+        alignItems: 'center',
+        elevation: 5 
+    },
+    nav2: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',   
+        width: '100%',       
+        padding: 15,
+    },
+    botaodevoltar: {
+        width: 40,
+        height: 40,
+        justifyContent: 'center',
+        zIndex: 1, 
+    },
+    textfoto: {
+        color: theme.text,
+        fontSize: 18,
+        fontWeight: 'bold',
+        fontFamily: fonts.text,
+    },
+    areafotototal:{
+        padding:5,
+    },
+    areatitulofoto:{
+        alignItems: 'flex-start',
+        padding:10,
+        paddingVertical:12,
+    },
+    buttonEnviar:{
+        padding:15,
+        width:150,
+        height:150,
+        backgroundColor: theme.primary,
+        borderRadius:"25%",
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    areafoto:{
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        width: '100%',
+        marginTop: 10,
+        paddingHorizontal: 6,
+        marginBottom:28
+    },  
+    button:{
+        backgroundColor: theme.inputBackground,
+        padding:5,
+        marginBottom:25,
+        borderRadius:5,
+        width:"100%"
+    },
+    areafoto2:{
+        marginTop:20,
+        padding:5,
+        alignItems: 'column', 
+        gap: 3,
+    },
+    buttonText:{
+        color: "#ffffff",
+        fontSize: 13,
+        fontFamily: fonts.text,
+    },
+    buttonText2:{
+        color: theme.text,
+        fontSize: 12,
+        fontFamily: fonts.text,
     }
 });

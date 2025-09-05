@@ -8,7 +8,7 @@ import { useTheme } from '../../../styles/themecontext'
 
 import api from '../../../../services/api';
 
-export default function Equipes({ route, navigation }) {
+export default function EquipesAdm({ route, navigation }) {
   const { theme } = useTheme();
   const styles = getStyles(theme);
   

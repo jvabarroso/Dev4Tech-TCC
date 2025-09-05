@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, TouchableOpacity, Image, ScrollView, TextInput } from 'react-native';
+import { Text, View, TouchableOpacity, Image, ScrollView, TextInput, Modal } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
+import FlashMessage, { showMessage } from "react-native-flash-message";
+import * as ImagePicker from "expo-image-picker";
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
 import { Ionicons } from '@expo/vector-icons';
+
 import api from '../../../../services/api';
 import fonts from "../../../styles/fonts";
-export default function TarefaEnvio({ navigation, route }) {
+
+export default function EditEquipe({ navigation, route }) {
     const { theme } = useTheme();
     const styles = getStyles(theme);
 
@@ -15,6 +19,7 @@ export default function TarefaEnvio({ navigation, route }) {
     const [nome_equipe, setNomeEquipe] = useState();
     const [categoriaEquipe, setCategoriaEquipe] = useState('');
     const [categoriaSelecionada, setCategoriaSelecionada] = useState(null);
+    const [modalVisivel, setModalVisivel] = useState(false);
 
     const [funcionarioEquipe, setFuncionarioEquipe] = useState('');
     const [funcionarioSelecionada, setFuncionarioSelecionada] = useState(null);
@@ -24,8 +29,10 @@ export default function TarefaEnvio({ navigation, route }) {
 
     const [funcionariosEquipeArray, setFuncionariosEquipeArray] = useState([]); 
 
+    const [image, setImage] = useState(null);
     const [imagemEquipe, setImagemEquipe] = useState(null);
 
+    //Adicionar funcionario na equipe
     function adicionarFuncionario() {
         if (funcionarioSelecionada) {
             // Evita adicionar duplicados
@@ -41,7 +48,7 @@ export default function TarefaEnvio({ navigation, route }) {
             }
         }
     }
-
+    //Lista os funcionarios
     async function listarFuncionarios() {
         try {
             const res = await api.get(`dev4tec/adicionarfuncionarios.php`, {
@@ -69,6 +76,7 @@ export default function TarefaEnvio({ navigation, route }) {
     }, [equipe?.id_empresa]);
 
 
+    //Lista as categorias
     async function listarDados() {
         console.log("ID da empresa enviado:", equipe.id_empresa);
         try {
@@ -94,6 +102,173 @@ export default function TarefaEnvio({ navigation, route }) {
         listarDados();
     }, [equipe?.id_empresa]);
 
+    //Imagem da galeria
+    async function pickImageFromGallery() {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+        });
+
+        if (!result.canceled) {
+            console.log(result); // Verificar o retorno completo
+            setImage(result.assets[0].uri); // Acesse o URI corretamente
+        }
+        }
+
+        async function takePhoto() {
+        let result = await ImagePicker.launchCameraAsync({
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+        });
+
+        if (!result.canceled) {
+            console.log(result); // Verificar o retorno completo
+            setImage(result.assets[0].uri); // Acesse o URI corretamente
+        }
+        }
+
+    //Tirar foto
+    async function uploadImage() {
+        if (!image) {
+            showMessage({
+            message: 'Nenhuma imagem selecionada.',
+            description: 'Por favor, selecione ou tire uma foto primeiro.',
+            floating: true,
+            statusBarHeight: 70,
+            type: "danger",
+            duration: 2000,             
+            });
+            return false;
+        }
+
+        let filename = image.split('/').pop();
+        let match = /\.(\w+)$/.exec(filename);
+        let type = match ? `image/${match[1]}` : `image`;
+
+        let formData = new FormData();
+        formData.append('photo', { uri: image, name: filename, type });
+
+        try {
+            const response = await fetch("http://10.239.0.126/dev4tec/upload_equipe2.php", {
+                method: 'POST',
+                body: formData,
+            });
+            
+            const resJson = await response.json();
+                        
+            if (resJson.success) {
+                showMessage({
+                    message: 'Sucesso.',
+                    description: 'Imagem enviada com sucesso!',
+                    floating: true,
+                    statusBarHeight: 70,
+                    type: "success",
+                    duration: 2000,             
+                });
+                // devolve a URL (se o PHP retornar url) ou o nome do arquivo
+                return resJson.url ?? resJson.file ?? resJson;
+                } else {
+                showMessage({
+                    message: 'Erro.',
+                    description: resJson.message || 'Falha ao enviar imagem.',
+                    type: "warning",
+                });
+                return false;
+                }
+        } catch (error) {
+            console.error(error);
+            showMessage({
+                message: 'Erro.',
+                description: "Ocorreu um erro ao tentar enviar a imagem.",
+                floating: true,
+                statusBarHeight: 70,
+                type: "warning",
+                duration: 2000,             
+            });
+            return false;
+        }
+    }
+
+    //Post para o Banco:
+    async function editar() {  
+        let foto_equipe = null;
+        if (image) {
+            const uploadResult = await uploadImage();
+            if (!uploadResult) return; 
+            foto_equipe = uploadResult; 
+        } else {
+            // manter foto atual (tente pegar equipe.foto_equipe ou equipe.imagem)
+            foto_equipe = equipe.foto_equipe ?? equipe.imagem ?? null;
+        }
+        if (!nome_equipe|| !categoriaSelecionada) {
+            showMessage({
+                message: 'Erro.',
+                description: 'Preencha todos os campos obrigatórios!',
+                floating: true,
+                statusBarHeight: 70,
+                type: "warning",
+                duration: 2000,             
+            });
+         return;
+     }
+     try {
+        const obj = {
+          id: equipe.id_equipe,
+          nome_equipe: nome_equipe,
+          id_categoria: categoriaSelecionada,
+          foto_equipe: foto_equipe,
+          funcionarios: funcionariosEquipeArray
+        };
+
+         console.log('Dados enviados para edição:', obj); // Log para debug
+
+          const res = await api.post('dev4tec/editarequipe.php', obj, {
+            headers: {
+              'Content-Type': 'application/json',
+            }
+          });
+
+         console.log('Resposta da API:', res.data); // Log para 
+         
+        if (res.data.success) {
+            showMessage({
+                message: 'Sucesso.',
+                description: 'Dados atualizados com sucesso!',
+                floating: true,
+                statusBarHeight: 70,
+                type: "success",
+                duration: 2000,             
+            });
+
+            setImagemEquipe(prev => ({
+            ...prev,
+            [equipe.id_equipe]: foto_equipe
+            }));
+        } else {
+            showMessage({
+                message: 'Erro.',
+                description: res.data.message || "Erro ao atualizar dados",
+                floating: true,
+                statusBarHeight: 70,
+                type: "warning",
+                duration: 2000,             
+            });
+        }
+    } catch (error) {
+        console.error("Erro completo:", error);
+            showMessage({
+                message: 'Erro.',
+                description: "Não foi possível conectar ao servidor",
+                floating: true,
+                statusBarHeight: 70,
+                type: "danger",
+                duration: 2000,             
+            });
+    }
+}
 
     //Mostra a imagem da equipe:
     useEffect(() => {
@@ -122,52 +297,6 @@ export default function TarefaEnvio({ navigation, route }) {
         carregarImagens();
     }, [equipe.id_equipe]);
 
-    //Post para o Banco:
-    async function editar() {            
-        if (!nome_equipe|| !categoriaSelecionada) {
-        Alert.alert("Erro", "Preencha todos os campos obrigatórios!");
-         return;
-     }
-     try {
-
-        const obj = {
-          id: equipe.id_equipe,
-          nome_equipe: nome_equipe,
-          id_categoria: categoriaSelecionada,
-          foto_equipe: imagemEquipe,
-          funcionarios: funcionariosEquipeArray
-        };
-
-         console.log('Dados enviados para edição:', obj); // Log para debug
-
-          const res = await api.post('dev4tec/editarequipe.php', obj, {
-            headers: {
-              'Content-Type': 'application/json',
-            }
-          });
-
-                  
-         console.log('Resposta da API:', res.data); // Log para 
-         
-        if (res.data.success) {
-            prev => ({
-                ...prev,
-                nome_equipe: nome_equipe,
-                id_categoria: categoriaSelecionada,
-                nome_categoria: categoriaEquipe,
-                imagem: imagemEquipe || equipe.imagem,
-            });
-            Alert.alert("Sucesso", "Dados atualizados com sucesso!");
-        } else {
-            Alert.alert("Erro", res.data.message || "Erro ao atualizar dados");
-        }
-    } catch (error) {
-        console.error("Erro completo:", error);
-        Alert.alert("Erro", "Não foi possível conectar ao servidor");
-    }
-}
-
-
     return (
         <View style={styles.container}>
             <ScrollView 
@@ -188,9 +317,11 @@ export default function TarefaEnvio({ navigation, route }) {
 
                 <View style={styles.containerequipes}>
                     <View style={styles.imagem}>
-                        <Image 
-                        source={imagemEquipe && imagemEquipe[equipe.id_equipe] ? { uri: imagemEquipe[equipe.id_equipe] } :require('../../../../assets/img/image.png')} 
-                        style={styles.imagemequipe} />
+                        <TouchableOpacity onPress={() => setModalVisivel(true)}>
+                            <Image 
+                            source={imagemEquipe && imagemEquipe[equipe.id_equipe] ? { uri: imagemEquipe[equipe.id_equipe] } :require('../../../../assets/img/image.png')} 
+                            style={styles.imagemequipe} />
+                        </TouchableOpacity>
                     </View>
 
                     <View style={styles.textos}>
@@ -289,6 +420,53 @@ export default function TarefaEnvio({ navigation, route }) {
                     </TouchableOpacity>
                 </View>
             </ScrollView> 
+            <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisivel}
+            onRequestClose={() => setModalVisivel(false)}
+            >   
+                <View style={styles.modalContainer}>
+                    <View style={styles.modalContent}>
+                    <View style={styles.nav2}>
+                        <TouchableOpacity 
+                        style={styles.botaodevoltar}
+                        onPress={() => setModalVisivel(false)}
+                        >
+                        <Ionicons name="close-outline" size={36} color={theme.text} />
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.areafotototal}>
+                        <View style={styles.areatitulofoto}>
+                        <Text style={styles.textfoto}>Selecione uma foto</Text>
+                        </View>
+                        <View style={styles.areafoto}>
+
+                        <Image 
+                            source={image ? { uri: image } :require('../../../../assets/img/image.png')} 
+                            style={styles.imagemPreview} />
+
+                        <View style={styles.areafoto2}>
+                            <TouchableOpacity 
+                            style={styles.button} 
+                            onPress={pickImageFromGallery}
+                            >
+                            <Text style={styles.buttonText2}>Escolher da Galeria</Text>
+                            </TouchableOpacity>
+                    
+                            <TouchableOpacity 
+                            style={styles.button} 
+                            onPress={takePhoto}
+                            >   
+                            <Text style={styles.buttonText2}>Tirar Foto</Text>
+                            </TouchableOpacity>   
+                        </View>
+                        </View>
+                    </View>
+                    </View>
+                    <FlashMessage position="top" />
+                </View>
+            </Modal>
         </View>
     );
 }

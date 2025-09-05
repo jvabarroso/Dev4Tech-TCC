@@ -7,64 +7,96 @@ $input = file_get_contents('php://input');
 $postjson = json_decode($input, true);
 
 
-
 if ($postjson === null) {
     echo json_encode(['success' => false, 'message' => 'Dados inválidos']);
     exit();
 }
 
-if (empty($postjson['nome_equipe']) || empty($postjson['id_categoria'])) {
-    echo json_encode(['success' => false, 'message' => 'Preencha todos os campos obrigatórios']);
-    exit();
+$id = $postjson['id'] ?? null;
+$nome_equipe = $postjson['nome_equipe'] ?? null;
+$id_categoria = $postjson['id_categoria'] ?? null;
+$foto_equipe = $postjson['foto_equipe'] ?? null; // pode ser URL ou nome de arquivo
+$funcionarios = $postjson['funcionarios'] ?? [];
+
+if (empty($id) || empty($nome_equipe) || empty($id_categoria)) {
+    echo json_encode(['success' => false, 'message' => 'Preencha todos os campos obrigatórios: id, nome_equipe, id_categoria']);
+    exit;
 }
 
 try {
-    $query = $pdo->prepare("UPDATE equipes SET
-        nome_equipe = :nome_equipe,
-        id_categoria = :id_categoria,
-        foto_equipe = :foto_equipe
-        WHERE id_equipe = :id"); 
+    // Inicia transação
+    $pdo->beginTransaction();
 
-        $query->bindValue(":nome_equipe", $postjson['nome_equipe']);
-        $query->bindValue(":id_categoria", $postjson['id_categoria']);
-        $query->bindValue(":foto_equipe", $postjson['foto_equipe']);
-        $query->bindValue(":id", $postjson['id']);
-        $query->execute();
+    // Atualiza dados da equipe
+    $sqlUpdate = "UPDATE equipes SET
+                    nome_equipe = :nome_equipe,
+                    id_categoria = :id_categoria,
+                    foto_equipe = :foto_equipe
+                  WHERE id_equipe = :id_equipe";
+    $stmt = $pdo->prepare($sqlUpdate);
+    $stmt->bindValue(':nome_equipe', $nome_equipe);
+    $stmt->bindValue(':id_categoria', $id_categoria);
+    $stmt->bindValue(':foto_equipe', $foto_equipe);
+    $stmt->bindValue(':id_equipe', $id);
+    $stmt->execute();
 
-        foreach ($postjson['funcionarios'] as $f) {
-            $id = $f['FuncionarioId'];
-            $res = $pdo->prepare("INSERT INTO $tabela SET id_equipe = :id_equipe, FuncionarioId  = :id");
-            $res->bindValue(":id_equipe", $postjson['id']);
-            $res->bindValue(":id", $id);
-            $res->execute();
-        }
+    // Substitui membros da equipe:
+    // Estratégia: remover todos os membros existentes dessa equipe e inserir os recebidos.
+    // Alternativa: checar diffs para não deletar, mas aqui fica simples e robusto.
+    $deleteStmt = $pdo->prepare("DELETE FROM equipes_membros WHERE id_equipe = :id_equipe");
+    $deleteStmt->bindValue(':id_equipe', $id);
+    $deleteStmt->execute();
 
-        if ($query->rowCount() > 0) {
-            // Busca os dados atualizados
-            $query2 = $pdo->prepare("SELECT * FROM equipes WHERE id_equipe = :id");
-            $query2->bindValue(":id", $postjson['id']);
-            $query2->execute();
-            $equipe = $query2->fetch(PDO::FETCH_ASSOC);
-            
-            echo json_encode([
-                'success' => true,
-                'usuario' => [
-                    'id' => $equipe['id_equipe'],
-                    'nome_equipe' => $equipe['nome_equipe'],
-                    'id_categoria' => $equipe['id_categoria'],
-                    'foto_equipe' => $equipe['foto_equipe']
-                ]
-            ]);
-        } else {
-            echo json_encode(['success' => false, 'message' => 'Nenhum dado foi alterado']);
+    if (!empty($funcionarios) && is_array($funcionarios)) {
+        $insertStmt = $pdo->prepare("INSERT INTO equipes_membros (id_equipe, FuncionarioId) VALUES (:id_equipe, :fid)");
+        foreach ($funcionarios as $f) {
+            // suporte a objetos/arrays com chave FuncionarioId
+            $fid = null;
+            if (is_array($f) && isset($f['FuncionarioId'])) {
+                $fid = $f['FuncionarioId'];
+            } elseif (is_object($f) && isset($f->FuncionarioId)) {
+                $fid = $f->FuncionarioId;
+            } elseif (is_numeric($f)) {
+                // caso o cliente envie só um array de ids
+                $fid = $f;
+            }
+            if (empty($fid)) continue;
+            $insertStmt->bindValue(':id_equipe', $id);
+            $insertStmt->bindValue(':fid', $fid);
+            $insertStmt->execute();
         }
     }
-    catch (PDOException $e) {
-    error_log("Erro no banco de dados: " . $e->getMessage());
-    echo json_encode([
-        'success' => false,
-        'message' => 'Erro no banco de dados: '
-    ]);
-}
 
+    // Confirma transação
+    $pdo->commit();
+
+    // Busca dados atualizados para retornar (incluindo foto_equipe)
+    $q = $pdo->prepare("SELECT id_equipe, nome_equipe, id_categoria, foto_equipe FROM equipes WHERE id_equipe = :id");
+    $q->bindValue(':id', $id);
+    $q->execute();
+    $equipe = $q->fetch(PDO::FETCH_ASSOC);
+
+    echo json_encode([
+        'success' => true,
+        'message' => 'Equipe atualizada com sucesso',
+        'equipe' => $equipe
+    ]);
+    exit;
+
+} catch (PDOException $e) {
+    // desfaz transação em caso de erro
+    if ($pdo->inTransaction()) {
+        $pdo->rollBack();
+    }
+    error_log("Erro editarequipe.php: " . $e->getMessage());
+    echo json_encode(['success' => false, 'message' => 'Erro no banco de dados', 'detail' => $e->getMessage()]);
+    exit;
+} catch (Exception $e) {
+    if ($pdo->inTransaction()) {
+        $pdo->rollBack();
+    }
+    error_log("Erro editarequipe.php (geral): " . $e->getMessage());
+    echo json_encode(['success' => false, 'message' => 'Erro interno', 'detail' => $e->getMessage()]);
+    exit;
+}
 ?>
