@@ -46,6 +46,7 @@ namespace Dev4Tech
 
             string idUsuarioLogado = null;
             bool usuarioEhAdmin = false;
+
             if (Sessao.FuncionarioLogado != null)
             {
                 idUsuarioLogado = Sessao.FuncionarioLogado.getFuncionarioId();
@@ -66,20 +67,15 @@ namespace Dev4Tech
                 if (!string.IsNullOrEmpty(idUsuarioLogado))
                 {
                     if (usuarioEhAdmin)
-                    {
                         minhaMensagem = idAdmin == idUsuarioLogado;
-                    }
                     else
-                    {
                         minhaMensagem = idFuncionario == idUsuarioLogado;
-                    }
                 }
 
                 string texto = row["texto"].ToString();
                 DateTime dataEnvio = Convert.ToDateTime(row["data_envio"]);
                 bool mensagemAdministrador = !string.IsNullOrEmpty(idAdmin);
 
-                // Carregar nome e foto
                 string nomeUsuario = mensagemAdministrador
                     ? row["nome_admin"]?.ToString() ?? "Administrador"
                     : row["nome_funcionario"]?.ToString() ?? "Funcionário";
@@ -101,32 +97,75 @@ namespace Dev4Tech
                     foto = Properties.Resources.icon_perfil; // Imagem padrão
                 }
 
-                AdicionarMensagem(texto, dataEnvio, minhaMensagem, mensagemAdministrador, foto, nomeUsuario);
+                int idMensagem = Convert.ToInt32(row["id_mensagem"]);
+                int idUsuarioLogadoInt = 0;
+                int.TryParse(idUsuarioLogado, out idUsuarioLogadoInt);
+
+                string statusMensagem = row["status"]?.ToString() ?? "enviada";
+
+                AdicionarMensagem(texto, dataEnvio, minhaMensagem, mensagemAdministrador, foto, nomeUsuario,
+                    idMensagem, idUsuarioLogadoInt, idEquipe, statusMensagem);
             }
         }
 
-        // Método AdicionarMensagem ajustado para receber a foto como parâmetro
-        private void AdicionarMensagem(string texto, DateTime dataEnvio, bool minhaMensagem, bool mensagemAdministrador, Image fotoPerfil, string nomeUsuario)
+        // Versão completa com parâmetros para marcação da visualização
+        private void AdicionarMensagem(string texto, DateTime dataEnvio, bool minhaMensagem, bool mensagemAdministrador,
+    Image fotoPerfil, string nomeUsuario, int idMensagem, int idUsuarioLogado, int idEquipe, string statusMensagem)
         {
             int y = margemTopo + (alturaMensagem + espacamentoVertical) * mensagensCount;
 
-            Color fundoMensagem = minhaMensagem ? Color.FromArgb(220, 255, 220)
-                : mensagemAdministrador ? Color.FromArgb(220, 235, 255)
-                : Color.White;
-
-            Color bordaMensagem = minhaMensagem ? Color.FromArgb(120, 200, 120)
-                : mensagemAdministrador ? Color.FromArgb(120, 170, 220)
-                : Color.LightGray;
+            Color fundoMensagem;
+            Color bordaMensagem;
+            if (minhaMensagem)
+            {
+                fundoMensagem = Color.FromArgb(220, 255, 220);
+                bordaMensagem = Color.FromArgb(120, 200, 120);
+            }
+            else if (mensagemAdministrador)
+            {
+                fundoMensagem = Color.FromArgb(220, 235, 255);
+                bordaMensagem = Color.FromArgb(120, 170, 220);
+            }
+            else
+            {
+                fundoMensagem = Color.White;
+                bordaMensagem = Color.LightGray;
+            }
 
             Panel mensagemPanel = new Panel
             {
                 BackColor = fundoMensagem,
                 BorderStyle = BorderStyle.None,
-                Width = larguraMaxMensagem,
-                Height = alturaMensagem + 20, // espaço extra para nome
+                Width = larguraMaxMensagem - 30, // para deixar espaço p/ indicador
+                Height = alturaMensagem + 20,
                 Top = y,
-                Left = minhaMensagem ? panelMensagens.Width - larguraMaxMensagem - 20 : 20,
+                Left = minhaMensagem ? panelMensagens.Width - larguraMaxMensagem + 25 : 45,
                 Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right
+            };
+
+            Color statusColor;
+            if (statusMensagem == "enviada")
+                statusColor = Color.Gray;
+            else if (statusMensagem == "entregue")
+                statusColor = Color.Green;
+            else if (statusMensagem == "lida")
+                statusColor = Color.Blue;
+            else
+                statusColor = Color.Gray;
+
+            Panel statusIndicator = new Panel
+            {
+                Width = 20,
+                Height = 20,
+                Top = y + (alturaMensagem / 2) - 10,
+                Left = minhaMensagem ? panelMensagens.Width - larguraMaxMensagem : 15,
+                BackColor = statusColor
+            };
+            statusIndicator.Paint += (s, e) =>
+            {
+                System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
+                gp.AddEllipse(0, 0, statusIndicator.Width - 1, statusIndicator.Height - 1);
+                statusIndicator.Region = new System.Drawing.Region(gp);
             };
 
             mensagemPanel.Paint += (s, e) =>
@@ -154,12 +193,11 @@ namespace Dev4Tech
             };
             avatar.Paint += (s, e) =>
             {
-                System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
+                var gp = new System.Drawing.Drawing2D.GraphicsPath();
                 gp.AddEllipse(0, 0, avatar.Width - 1, avatar.Height - 1);
-                avatar.Region = new Region(gp);
+                avatar.Region = new System.Drawing.Region(gp);
             };
 
-            // Nome do usuário abaixo do avatar
             Label lblNome = new Label
             {
                 Text = nomeUsuario,
@@ -172,7 +210,7 @@ namespace Dev4Tech
                 Top = avatar.Top + avatar.Height + 2
             };
 
-            int larguraMensagem = larguraMaxMensagem - 70;
+            int larguraMensagem = mensagemPanel.Width - 70;
             int mensagemLeft = minhaMensagem ? 12 : 54;
             int mensagemWidth = minhaMensagem ? larguraMensagem - 40 : larguraMensagem;
 
@@ -199,9 +237,10 @@ namespace Dev4Tech
                 ForeColor = Color.Gray,
                 BackColor = Color.Transparent
             };
+
             lblHora.Top = mensagemPanel.Height - lblHora.PreferredHeight - 6;
             lblHora.Left = minhaMensagem
-                ? mensagemPanel.Width - lblHora.PreferredWidth - 52 // Ajuste para não ficar atrás do avatar
+                ? mensagemPanel.Width - lblHora.PreferredWidth - 52
                 : 54;
 
             mensagemPanel.Controls.Add(lblMensagem);
@@ -209,12 +248,27 @@ namespace Dev4Tech
             mensagemPanel.Controls.Add(lblNome);
             mensagemPanel.Controls.Add(lblHora);
 
+            panelMensagens.Controls.Add(statusIndicator);
             panelMensagens.Controls.Add(mensagemPanel);
-            mensagensCount++;
 
+            if (idMensagem > 0 && idUsuarioLogado > 0 && idEquipe > 0)
+            {
+                string tipoUsuario = null;
+                if (Sessao.FuncionarioLogado != null)
+                    tipoUsuario = "funcionario";
+                else if (Sessao.AdminLogado != null)
+                    tipoUsuario = "admin";
+
+                if (!string.IsNullOrEmpty(tipoUsuario))
+                    messageChat.MarcarMensagemVisualizada(idMensagem, idUsuarioLogado, tipoUsuario, idEquipe);
+            }
+
+            mensagensCount++;
             panelMensagens.VerticalScroll.Value = Math.Max(0, panelMensagens.VerticalScroll.Maximum);
             panelMensagens.PerformLayout();
         }
+
+
         private void LimparMensagens()
         {
             panelMensagens.Controls.Clear();

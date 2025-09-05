@@ -1,5 +1,4 @@
-﻿// Chat_Mensagens.cs
-using System;
+﻿using System;
 using System.Data;
 using MySql.Data.MySqlClient;
 
@@ -13,6 +12,7 @@ namespace Dev4Tech
         private int idEquipe;
         private int? idFuncionario; // Nullable pois pode ser null
         private int? idAdmin;       // Nullable pois pode ser null
+        private int idEmpresa;
 
         public void setIdMensagem(string idMensagem) { this.idMensagem = idMensagem; }
         public void setTexto(string texto) { this.texto = texto; }
@@ -20,18 +20,20 @@ namespace Dev4Tech
         public void setIdEquipe(int idEquipe) { this.idEquipe = idEquipe; }
         public void setIdFuncionario(int? idFuncionario) { this.idFuncionario = idFuncionario; }
         public void setIdAdmin(int? idAdmin) { this.idAdmin = idAdmin; }
-
+        public void setIdEmpresa(int idEmpresa) { this.idEmpresa = idEmpresa; }
         public string getIdMensagem() { return this.idMensagem; }
         public string getTexto() { return this.texto; }
         public DateTime getDataEnvio() { return this.dataEnvio; }
         public int getIdEquipe() { return this.idEquipe; }
         public int? getIdFuncionario() { return this.idFuncionario; }
         public int? getIdAdmin() { return this.idAdmin; }
+        public int getIdEmpresa() { return this.idEmpresa; }
 
         public void inserir()
         {
-            string query = "INSERT INTO MensagensChat (texto, data_envio, id_equipe, FuncionarioId, AdminId) " +
-                           "VALUES (@texto, @data_envio, @id_equipe, @funcionarioId, @adminId)";
+            this.idEmpresa = BuscarIdEmpresaPorEquipe(getIdEquipe());
+            string query = "INSERT INTO MensagensChat (texto, data_envio, id_equipe, FuncionarioId, AdminId, id_empresa) " +
+                           "VALUES (@texto, @data_envio, @id_equipe, @funcionarioId, @adminId, @id_empresa)";
             if (this.abrirConexao())
             {
                 MySqlCommand cmd = new MySqlCommand(query, conectar);
@@ -46,12 +48,15 @@ namespace Dev4Tech
                     cmd.Parameters.AddWithValue("@adminId", getIdAdmin());
                 else
                     cmd.Parameters.AddWithValue("@adminId", DBNull.Value);
+                if (getIdEmpresa() > 0)
+                    cmd.Parameters.AddWithValue("@id_empresa", getIdEmpresa());
+                else
+                    throw new Exception("id_empresa não pode ser nulo ou zero ao inserir mensagem!");
                 cmd.ExecuteNonQuery();
                 this.fecharConexao();
             }
         }
 
-        // Ajuste na consulta para buscar também AdminId
         public DataTable ConsultarPorEquipe(int idEquipe)
         {
             DataTable dt = new DataTable();
@@ -68,14 +73,10 @@ namespace Dev4Tech
             {
                 try
                 {
-                    using (var cmd = new MySql.Data.MySqlClient.MySqlCommand(query, conectar))
-                    {
-                        cmd.Parameters.AddWithValue("@idEquipe", idEquipe);
-                        using (var da = new MySql.Data.MySqlClient.MySqlDataAdapter(cmd))
-                        {
-                            da.Fill(dt);
-                        }
-                    }
+                    var cmd = new MySqlCommand(query, conectar);
+                    cmd.Parameters.AddWithValue("@idEquipe", idEquipe);
+                    var da = new MySqlDataAdapter(cmd);
+                    da.Fill(dt);
                 }
                 finally
                 {
@@ -85,7 +86,6 @@ namespace Dev4Tech
             return dt;
         }
 
-        // Atualizar última atividade da equipe
         public void AtualizarUltimaAtividade(int idEquipe)
         {
             string query = @"
@@ -93,12 +93,155 @@ namespace Dev4Tech
                 VALUES (@id_equipe, NOW())
                 ON DUPLICATE KEY UPDATE ultima_atividade = NOW()
             ";
-            if (this.abrirConexao())
+            if (abrirConexao())
             {
                 MySqlCommand cmd = new MySqlCommand(query, conectar);
                 cmd.Parameters.AddWithValue("@id_equipe", idEquipe);
                 cmd.ExecuteNonQuery();
-                this.fecharConexao();
+                fecharConexao();
+            }
+        }
+
+        private int BuscarIdEmpresaPorEquipe(int idEquipe)
+        {
+            int idEmpresa = 0;
+            string query = @"
+                SELECT a.id_empresa
+                FROM Equipes e
+                INNER JOIN Administradores a ON e.AdminId = a.AdminId
+                WHERE e.id_equipe = @id_equipe
+                LIMIT 1";
+            if (abrirConexao())
+            {
+                try
+                {
+                    var cmd = new MySqlCommand(query, conectar);
+                    cmd.Parameters.AddWithValue("@id_equipe", idEquipe);
+                    var result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                        idEmpresa = Convert.ToInt32(result);
+                }
+                finally
+                {
+                    fecharConexao();
+                }
+            }
+            return idEmpresa;
+        }
+
+        public void MarcarMensagemVisualizada(int idMensagem, int idUsuario, string tipoUsuario, int idEquipe)
+        {
+            if (!VisualizacaoExistente(idMensagem, idUsuario, tipoUsuario))
+            {
+                InserirVisualizacao(idMensagem, idUsuario, tipoUsuario);
+            }
+            int totalUsuarios = BuscarTotalUsuariosEquipe(idEquipe);
+            int visualizacoes = ContarVisualizacoes(idMensagem);
+            string novoStatus = "enviada";
+            if (visualizacoes > 0 && visualizacoes < totalUsuarios)
+                novoStatus = "entregue";
+            else if (visualizacoes >= totalUsuarios)
+                novoStatus = "lida";
+            AtualizarStatusMensagem(idMensagem, novoStatus);
+        }
+
+        private bool VisualizacaoExistente(int idMensagem, int idUsuario, string tipoUsuario)
+        {
+            bool exists = false;
+            string query = "SELECT 1 FROM MensagensChat_Visualizacao WHERE id_mensagem = @idMensagem AND id_usuario = @idUsuario AND tipo_usuario = @tipoUsuario LIMIT 1";
+            if (abrirConexao())
+            {
+                try
+                {
+                    var cmd = new MySqlCommand(query, conectar);
+                    cmd.Parameters.AddWithValue("@idMensagem", idMensagem);
+                    cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+                    cmd.Parameters.AddWithValue("@tipoUsuario", tipoUsuario);
+                    var result = cmd.ExecuteScalar();
+                    exists = result != null;
+                }
+                finally { fecharConexao(); }
+            }
+            return exists;
+        }
+        private void InserirVisualizacao(int idMensagem, int idUsuario, string tipoUsuario)
+        {
+            string query = @"INSERT INTO MensagensChat_Visualizacao (id_mensagem, id_usuario, tipo_usuario, data_visualizacao) 
+                     VALUES (@idMensagem, @idUsuario, @tipoUsuario, NOW())";
+            if (abrirConexao())
+            {
+                try
+                {
+                    var cmd = new MySqlCommand(query, conectar);
+                    cmd.Parameters.AddWithValue("@idMensagem", idMensagem);
+                    cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+                    cmd.Parameters.AddWithValue("@tipoUsuario", tipoUsuario); // 'funcionario' ou 'admin'
+                    cmd.ExecuteNonQuery();
+                }
+                finally { fecharConexao(); }
+            }
+        }
+
+        private int BuscarTotalUsuariosEquipe(int idEquipe)
+        {
+            int total = 0;
+            string query = @"
+        SELECT COUNT(*) FROM (
+            SELECT FuncionarioId AS id FROM Equipes_Membros WHERE id_equipe = @idEquipe
+            UNION
+            SELECT AdminId AS id FROM Equipes WHERE id_equipe = @idEquipe AND AdminId IS NOT NULL
+        ) AS totalUsuarios";
+            if (abrirConexao())
+            {
+                try
+                {
+                    using (var cmd = new MySqlCommand(query, conectar))
+                    {
+                        cmd.Parameters.AddWithValue("@idEquipe", idEquipe);
+                        var result = cmd.ExecuteScalar();
+                        if (result != null && result != DBNull.Value)
+                            total = Convert.ToInt32(result);
+                    }
+                }
+                finally { fecharConexao(); }
+            }
+            return total;
+        }
+
+
+
+
+        private int ContarVisualizacoes(int idMensagem)
+        {
+            int total = 0;
+            string query = "SELECT COUNT(*) FROM MensagensChat_Visualizacao WHERE id_mensagem = @idMensagem";
+            if (abrirConexao())
+            {
+                try
+                {
+                    var cmd = new MySqlCommand(query, conectar);
+                    cmd.Parameters.AddWithValue("@idMensagem", idMensagem);
+                    var result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                        total = Convert.ToInt32(result);
+                }
+                finally { fecharConexao(); }
+            }
+            return total;
+        }
+        private void AtualizarStatusMensagem(int idMensagem, string status)
+        {
+            string query = "UPDATE MensagensChat SET status = @status WHERE id_mensagem = @idMensagem";
+            if (abrirConexao())
+            {
+                try
+                {
+                    var cmd = new MySqlCommand(query, conectar);
+                    cmd.Parameters.AddWithValue("@status", status);
+                    cmd.Parameters.AddWithValue("@idMensagem", idMensagem);
+                    cmd.ExecuteNonQuery();
+                }
+                finally { fecharConexao(); }
             }
         }
     }

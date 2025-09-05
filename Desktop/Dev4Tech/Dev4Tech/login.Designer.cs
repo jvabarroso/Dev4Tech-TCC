@@ -41,6 +41,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnVoltar = new System.Windows.Forms.Button();
+            this.btnMostrarSenha = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -183,11 +184,22 @@
             this.btnVoltar.UseVisualStyleBackColor = true;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
+            // btnMostrarSenha
+            // 
+            this.btnMostrarSenha.Location = new System.Drawing.Point(921, 351);
+            this.btnMostrarSenha.Name = "btnMostrarSenha";
+            this.btnMostrarSenha.Size = new System.Drawing.Size(75, 23);
+            this.btnMostrarSenha.TabIndex = 23;
+            this.btnMostrarSenha.Text = "Ocultar";
+            this.btnMostrarSenha.UseVisualStyleBackColor = true;
+            this.btnMostrarSenha.Click += new System.EventHandler(this.btnMostrarSenha_Click);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.btnMostrarSenha);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label6);
@@ -224,5 +236,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnVoltar;
+        private System.Windows.Forms.Button btnMostrarSenha;
     }
 }

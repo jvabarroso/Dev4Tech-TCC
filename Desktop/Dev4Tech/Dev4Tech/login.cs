@@ -130,6 +130,14 @@ namespace Dev4Tech
             f1.Show();
             this.Hide();
         }
+
+        private bool senhaVisivel = false;
+        private void btnMostrarSenha_Click(object sender, EventArgs e)
+        {
+            senhaVisivel = !senhaVisivel;
+            txtSenha.UseSystemPasswordChar = !senhaVisivel;
+            btnMostrarSenha.Text = senhaVisivel ? "Ocultar" : "Mostrar";
+        }
     }
 }
 
