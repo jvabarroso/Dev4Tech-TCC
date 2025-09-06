@@ -7,7 +7,9 @@ export const getStyles = (theme) => StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.background,
-    paddingHorizontal: 20,
+  },
+  scrollContent: {
+    padding: 16,
   },
   titulo: {
     fontSize: 30,
