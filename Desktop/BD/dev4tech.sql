@@ -90,22 +90,29 @@ CREATE TABLE Equipes_Membros (
     FOREIGN KEY (FuncionarioId) REFERENCES Funcionarios(FuncionarioId) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE MensagensChat (
-    id_mensagem INT PRIMARY KEY auto_increment,
-    texto varchar(255) NOT NULL,
+CREATE TABLE IF NOT EXISTS MensagensChat (
+    id_mensagem INT PRIMARY KEY AUTO_INCREMENT,
+    texto VARCHAR(255) NOT NULL,
     data_envio DATETIME,
     id_equipe INT,
-    FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE 
+    FuncionarioId INT,
+    AdminId INT,
+    id_empresa INT,
+    status ENUM('enviada', 'entregue', 'lida') DEFAULT 'enviada',
+    FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE,
+    FOREIGN KEY (FuncionarioId) REFERENCES Funcionarios(FuncionarioId),
+    FOREIGN KEY (AdminId) REFERENCES Administradores(AdminId),
+    FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa)
 );
 
-ALTER TABLE MensagensChat ADD COLUMN FuncionarioId INT;
-ALTER TABLE MensagensChat ADD FOREIGN KEY (FuncionarioId) REFERENCES Funcionarios(FuncionarioId);
-
-alter table mensagenschat add column AdminId int;
-alter table mensagenschat add foreign key (AdminId) references administradores(AdminId);
-
-ALTER TABLE MensagensChat ADD COLUMN id_empresa int;
-ALTER TABLE MensagensChat ADD FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa);
+CREATE TABLE IF NOT EXISTS MensagensChat_Visualizacao (
+    id_status INT PRIMARY KEY AUTO_INCREMENT,
+    id_mensagem INT NOT NULL,
+    id_usuario INT NOT NULL,
+    tipo_usuario ENUM('funcionario', 'admin') NOT NULL,
+    data_visualizacao DATETIME NOT NULL,
+    FOREIGN KEY (id_mensagem) REFERENCES MensagensChat(id_mensagem) ON DELETE CASCADE
+);
 
 
 -- Criar tabela para armazenar última atividade

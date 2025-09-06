@@ -349,7 +349,7 @@ namespace Dev4Tech
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
-                ofd.Filter = "Imagens|*.jpg;*.jpeg;*.png;*.bmp";
+                ofd.Filter = "Imagens|*.jpg;*.jpeg;*.png;*.webp";
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
                     Image img = Image.FromFile(ofd.FileName);

@@ -103,14 +103,19 @@ namespace Dev4Tech
 
                 string statusMensagem = row["status"]?.ToString() ?? "enviada";
 
+                int? remetenteFuncionarioId = row["FuncionarioId"] == DBNull.Value ? (int?)null : Convert.ToInt32(row["FuncionarioId"]);
+                int? remetenteAdminId = row["AdminId"] == DBNull.Value ? (int?)null : Convert.ToInt32(row["AdminId"]);
+
                 AdicionarMensagem(texto, dataEnvio, minhaMensagem, mensagemAdministrador, foto, nomeUsuario,
-                    idMensagem, idUsuarioLogadoInt, idEquipe, statusMensagem);
+                    idMensagem, idUsuarioLogadoInt, idEquipe, statusMensagem,
+                    remetenteFuncionarioId, remetenteAdminId);
             }
         }
 
         // Versão completa com parâmetros para marcação da visualização
         private void AdicionarMensagem(string texto, DateTime dataEnvio, bool minhaMensagem, bool mensagemAdministrador,
-    Image fotoPerfil, string nomeUsuario, int idMensagem, int idUsuarioLogado, int idEquipe, string statusMensagem)
+    Image fotoPerfil, string nomeUsuario, int idMensagem, int idUsuarioLogado, int idEquipe, string statusMensagem,
+    int? remetenteFuncionarioId, int? remetenteAdminId)
         {
             int y = margemTopo + (alturaMensagem + espacamentoVertical) * mensagensCount;
 
@@ -136,7 +141,7 @@ namespace Dev4Tech
             {
                 BackColor = fundoMensagem,
                 BorderStyle = BorderStyle.None,
-                Width = larguraMaxMensagem - 30, // para deixar espaço p/ indicador
+                Width = larguraMaxMensagem - 30,
                 Height = alturaMensagem + 20,
                 Top = y,
                 Left = minhaMensagem ? panelMensagens.Width - larguraMaxMensagem + 25 : 45,
@@ -251,7 +256,18 @@ namespace Dev4Tech
             panelMensagens.Controls.Add(statusIndicator);
             panelMensagens.Controls.Add(mensagemPanel);
 
-            if (idMensagem > 0 && idUsuarioLogado > 0 && idEquipe > 0)
+            // Só marca visualização se o usuário logado for diferente do remetente da mensagem
+            bool isRemetente = false;
+            if (Sessao.FuncionarioLogado != null)
+            {
+                isRemetente = (mensagemAdministrador == false && remetenteFuncionarioId.HasValue && remetenteFuncionarioId.Value == idUsuarioLogado);
+            }
+            else if (Sessao.AdminLogado != null)
+            {
+                isRemetente = (mensagemAdministrador == true && remetenteAdminId.HasValue && remetenteAdminId.Value == idUsuarioLogado);
+            }
+
+            if (!isRemetente && idMensagem > 0 && idUsuarioLogado > 0 && idEquipe > 0)
             {
                 string tipoUsuario = null;
                 if (Sessao.FuncionarioLogado != null)
@@ -267,6 +283,7 @@ namespace Dev4Tech
             panelMensagens.VerticalScroll.Value = Math.Max(0, panelMensagens.VerticalScroll.Maximum);
             panelMensagens.PerformLayout();
         }
+
 
 
         private void LimparMensagens()
