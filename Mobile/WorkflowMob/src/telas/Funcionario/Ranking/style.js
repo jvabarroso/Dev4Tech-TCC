@@ -17,7 +17,6 @@ export const getStyles = (theme) => StyleSheet.create({
     fontWeight: 'bold',
     fontFamily: fonts.text,
     marginTop: '5%',
-    marginBottom: "8%",
   },
   navinput: {
     width: '100%',
@@ -67,5 +66,24 @@ export const getStyles = (theme) => StyleSheet.create({
     color: theme.text,
     fontFamily: fonts.text,
     marginRight: 10,
+  },
+  areabotao: {
+    padding: 10,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignContent:"space-around"
+  },
+  botao: {
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    marginHorizontal: 6,
+    borderRadius: 15,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  textobotao: {
+    fontSize: 13,
+    fontFamily: fonts.text,
   },
 });

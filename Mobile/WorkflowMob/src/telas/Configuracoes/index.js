@@ -36,7 +36,6 @@ export default function Configuracoes({navigation, route}){
     const [telefone, setTelefone] = useState(usuario.telefone);
     const [endereco, setEndereco] = useState(usuario.endereco);
     const [imagens, setImagens] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [modalVisivel, setModalVisivel] = useState(false);
     const [mostrardados, setMostrardados] = useState(false);
     const [image, setImage] = useState(null);
@@ -87,7 +86,7 @@ export default function Configuracoes({navigation, route}){
       return tel.slice(0,15);
     }
 
-//Update Imagem
+  //Imagem da galeria
   async function pickImageFromGallery() {
       let result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -101,7 +100,7 @@ export default function Configuracoes({navigation, route}){
         setImage(result.assets[0].uri); // Acesse o URI corretamente
       }
     }
-
+    //Imagem da câmera
     async function takePhoto() {
       let result = await ImagePicker.launchCameraAsync({
         allowsEditing: true,
@@ -114,7 +113,7 @@ export default function Configuracoes({navigation, route}){
         setImage(result.assets[0].uri); // Acesse o URI corretamente
       }
     }
-
+  //Envia a imagem para o php que salva no banco
   async function uploadImage() {
       if (!image) {
         showMessage({
@@ -185,7 +184,7 @@ export default function Configuracoes({navigation, route}){
       }
     }
     console.log('Dados recebidos nas Configuraçõpes:', route.params);
-//Mostra a foto do Usuario:
+  //Mostra a foto do Usuario:
   useEffect(() => {
     async function carregarImagens() {
       try {
@@ -209,22 +208,12 @@ export default function Configuracoes({navigation, route}){
         }
       } catch (error) {
         console.error('Erro ao buscar imagens:', error);
-      } finally {
-        setLoading(false);
-      }
+      } 
     }
 
       carregarImagens();
   }, [usuarioState.id]);
 
-  if (loading) {
-    return (
-      <View style={styles.loading}>
-        <ActivityIndicator size="large" color="#4a90e2" />
-        <Text style={styles.loadingText}>Carregando imagens...</Text>
-      </View>
-    );
-  }
 
 
 //Post para o Banco:
@@ -271,7 +260,29 @@ export default function Configuracoes({navigation, route}){
         console.error("Erro completo:", error);
         Alert.alert("Erro", "Não foi possível conectar ao servidor");
     }
-}
+    }
+//Buscar Categorias
+  async function listarpontos() {
+    try {
+      const res = await api.get(`dev4tec/pontuacao.php`, {
+      params: {id_funcionario: usuario.id }
+      });
+
+      if (res.data.success) {
+        setDados(res.data.result || []);
+      } else {
+        console.log("Erro na API:", res.data.message);
+        setDados([]);
+      }
+     }
+    catch (error) {
+      console.log("Erro ao listar categorias", error);
+    }
+  }
+
+  useEffect(() => {
+    listarpontos();
+  }, [usuario?.id]);
 
     return(
       <View style={styles.container}>
@@ -291,7 +302,7 @@ export default function Configuracoes({navigation, route}){
               </TouchableOpacity>
 
               <Text style={styles.pontuacao}>
-                Pontuação:<Text style={styles.pontuacaotext}>100</Text>
+                Pontuação:<Text style={styles.pontuacaotext}> {dados?.pontos ?? 0}</Text>
               </Text>
             </View>
 
