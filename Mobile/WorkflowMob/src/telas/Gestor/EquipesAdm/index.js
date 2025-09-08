@@ -33,6 +33,7 @@ export default function EquipesAdm({ route, navigation }) {
   }, [route.params?.usuario]);
 
 
+  //Lista Equipes
   async function listarDados() {
   if (!usuario?.id) {
         console.log("ID do usuário não disponível");
@@ -95,35 +96,6 @@ export default function EquipesAdm({ route, navigation }) {
     return tarefasFiltradas;
   };
 
-  //Mostra a imagem da equipe:
-
-async function carregarImagemEquipe(id_equipe) {
-  try {
-    const response = await fetch(
-      `http://10.239.0.124/dev4tec/imagem_equipe.php`,{
-      method:'POST',
-      headers:{'Content-Type': 'application/json'},
-      body: JSON.stringify({ id: id_equipe })
-    });
-    const data = await response.json();
-    if (data.success) {
-      setImagensEquipes(prev => ({
-        ...prev,
-        [id_equipe]: data.imagem, // Corrija para usar o id_equipe como chave!
-      }));
-    }
-  } catch (error) {
-    console.error('Erro ao buscar imagens:', error);
-  } 
-}
-  
-  useEffect(() => {
-    if (dados.length > 0) {
-      dados.forEach(item => {
-        carregarImagemEquipe(item.id_equipe);
-      });
-    }
-  }, [dados]);
 
   return (
     <View style={styles.container}>
@@ -146,7 +118,7 @@ async function carregarImagemEquipe(id_equipe) {
                 onPress={() => toggleEquipe(item.id_equipe)}
               >
                 <Image 
-                  source={imagensEquipes[item.id_equipe] ? { uri: imagensEquipes[item.id_equipe] } : require('../../../../assets/img/image.png')} 
+                  source={item.foto_equipe? { uri: item.foto_equipe } : require('../../../../assets/img/image.png')} 
                   style={styles.imag} 
                 />
                 <View style={styles.areatextobotao}>

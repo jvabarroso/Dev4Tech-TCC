@@ -90,6 +90,7 @@ export const getStyles = (theme) => StyleSheet.create({
     width: 90,
     height: 90,
     marginLeft: 10,
+    borderRadius:12,
   },
   textos: {
     marginLeft: 15,

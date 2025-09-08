@@ -24,9 +24,9 @@ if (empty($id) || empty($nome_equipe) || empty($id_categoria)) {
 }
 
 try {
+
     // Inicia transação
     $pdo->beginTransaction();
-
     // Atualiza dados da equipe
     $sqlUpdate = "UPDATE equipes SET
                     nome_equipe = :nome_equipe,
@@ -37,15 +37,8 @@ try {
     $stmt->bindValue(':nome_equipe', $nome_equipe);
     $stmt->bindValue(':id_categoria', $id_categoria);
     $stmt->bindValue(':foto_equipe', $foto_equipe);
-    $stmt->bindValue(':id_equipe', $id);
+    $stmt->bindValue(':id_equipe', $id);    
     $stmt->execute();
-
-    // Substitui membros da equipe:
-    // Estratégia: remover todos os membros existentes dessa equipe e inserir os recebidos.
-    // Alternativa: checar diffs para não deletar, mas aqui fica simples e robusto.
-    $deleteStmt = $pdo->prepare("DELETE FROM equipes_membros WHERE id_equipe = :id_equipe");
-    $deleteStmt->bindValue(':id_equipe', $id);
-    $deleteStmt->execute();
 
     if (!empty($funcionarios) && is_array($funcionarios)) {
         $insertStmt = $pdo->prepare("INSERT INTO equipes_membros (id_equipe, FuncionarioId) VALUES (:id_equipe, :fid)");
