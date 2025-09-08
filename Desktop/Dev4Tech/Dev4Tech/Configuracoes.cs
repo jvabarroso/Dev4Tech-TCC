@@ -307,9 +307,9 @@ namespace Dev4Tech
                     {
                         g.DrawImage(imagemOriginal, 0, 0, largura, altura);
                     }
-                    var codec = ImageCodecInfo.GetImageEncoders().FirstOrDefault(c => c.FormatID == System.Drawing.Imaging.ImageFormat.Jpeg.Guid);
-                    var parametros = new System.Drawing.Imaging.EncoderParameters(1);
-                    parametros.Param[0] = new System.Drawing.Imaging.EncoderParameter(System.Drawing.Imaging.Encoder.Quality, qualidade);
+                    var codec = ImageCodecInfo.GetImageEncoders().FirstOrDefault(c => c.FormatID == ImageFormat.Jpeg.Guid);
+                    var parametros = new EncoderParameters(1);
+                    parametros.Param[0] = new EncoderParameter(Encoder.Quality, qualidade);
 
                     using (var ms = new System.IO.MemoryStream())
                     {

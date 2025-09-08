@@ -3,116 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|c:\\users\\jvaba\\onedrive\\\u00E1rea de trabalho\\dev4tech-tcc\\desktop\\dev4tech\\dev4tech\\chat_geral_equipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\chat_geral_equipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|c:\\users\\jvaba\\onedrive\\\u00E1rea de trabalho\\dev4tech-tcc\\desktop\\dev4tech\\dev4tech\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\chat_mensagens.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\chat_mensagens.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\chat_geral_equipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\chat_geral_equipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\adm\\adicionarequipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\adm\\adicionarequipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\cadastro-funcion\u00E1rio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\cadastro-funcion\u00E1rio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\cadastro-funcion\u00E1rio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\cadastro-funcion\u00E1rio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\integrantes_equipe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\integrantes_equipe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\adm\\addequipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\adm\\addequipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\envioproblema.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\envioproblema.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\relato_problema.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\relato_problema.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\relato_problema.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\relato_problema.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\adm\\avalia\u00E7\u00E3otarefaadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\adm\\avalia\u00E7\u00E3otarefaadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\adm\\avaliacaotarefa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\adm\\avaliacaotarefa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\conexao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\conexao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\adm\\avalia\u00E7\u00E3otarefaadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\adm\\avalia\u00E7\u00E3otarefaadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\adm\\adicionartarefa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\adm\\adicionartarefa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\adm\\addtarefas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\adm\\addtarefas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\adm\\adicionartarefa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\adm\\adicionartarefa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\adm\\adicionarequipes.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\adm\\adicionarequipes.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\adm\\adicionarequipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\adm\\adicionarequipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\tela_tarefa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\tela_tarefa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\tela_tarefa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\tela_tarefa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\configuracoes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\configuracoes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\configuracoes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\configuracoes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\configuracoes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\configuracoes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\tarefas_pendentes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\tarefas_pendentes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -122,344 +22,47 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Chat_geral_equipes.cs",
-              "DocumentMoniker": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Chat_geral_equipes.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\Chat_geral_equipes.cs",
-              "ToolTip": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Chat_geral_equipes.cs*",
-              "RelativeToolTip": "Dev4Tech\\Chat_geral_equipes.cs*",
-              "ViewState": "AgIAAFwAAAAAAAAAAAAcwG4AAAA+AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-04T12:42:54.253Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Chat_Mensagens.cs",
-              "DocumentMoniker": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Chat_Mensagens.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\Chat_Mensagens.cs",
-              "ToolTip": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Chat_Mensagens.cs",
-              "RelativeToolTip": "Dev4Tech\\Chat_Mensagens.cs",
-              "ViewState": "AgIAAEEAAAAAAAAAAAArwE4AAAAUAAAAAAAAAA==",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Program.cs",
+              "RelativeDocumentMoniker": "Dev4Tech\\Program.cs",
+              "ToolTip": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Program.cs",
+              "RelativeToolTip": "Dev4Tech\\Program.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwBIAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-04T12:42:05.776Z",
+              "WhenOpened": "2025-09-06T02:15:24.959Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Program.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\Program.cs",
-              "ToolTip": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Program.cs",
-              "RelativeToolTip": "Dev4Tech\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-06T02:15:24.959Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Login.cs",
-              "DocumentMoniker": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\login.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\login.cs",
-              "ToolTip": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\login.cs",
-              "RelativeToolTip": "Dev4Tech\\login.cs",
-              "ViewState": "AgIAAHMAAAAAAAAAAAAEwIkAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-05T13:34:45.697Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Login.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\login.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\login.cs",
-              "ToolTip": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\login.cs [Design]",
-              "RelativeToolTip": "Dev4Tech\\login.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-05T13:34:07.087Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Integrantes_Equipe.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Integrantes_Equipe.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\Integrantes_Equipe.cs",
-              "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Integrantes_Equipe.cs [Design]",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Integrantes_Equipe.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-05T13:34:05.738Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Chat_geral_equipes.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Chat_geral_equipes.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\Chat_geral_equipes.cs",
-              "ToolTip": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Chat_geral_equipes.cs [Design]*",
-              "RelativeToolTip": "Dev4Tech\\Chat_geral_equipes.cs [Design]*",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-04T12:42:47.662Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AdicionarEquipes.cs",
-              "DocumentMoniker": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Adm\\AdicionarEquipes.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\Adm\\AdicionarEquipes.cs",
-              "ToolTip": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Adm\\AdicionarEquipes.cs",
-              "RelativeToolTip": "Dev4Tech\\Adm\\AdicionarEquipes.cs",
-              "ViewState": "AgIAAFkBAAAAAAAAAAAawF8BAAA/AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-31T14:29:58.29Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "AddEquipes.cs",
-              "DocumentMoniker": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Adm\\AddEquipes.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\Adm\\AddEquipes.cs",
-              "ToolTip": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Adm\\AddEquipes.cs",
-              "RelativeToolTip": "Dev4Tech\\Adm\\AddEquipes.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEIAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T16:18:22.04Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Relato_Problema.cs",
-              "DocumentMoniker": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Relato_Problema.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\Relato_Problema.cs",
-              "ToolTip": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Relato_Problema.cs",
-              "RelativeToolTip": "Dev4Tech\\Relato_Problema.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAwwFUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T17:32:40.308Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "EnvioProblema.cs",
-              "DocumentMoniker": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\EnvioProblema.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\EnvioProblema.cs",
-              "ToolTip": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\EnvioProblema.cs",
-              "RelativeToolTip": "Dev4Tech\\EnvioProblema.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T17:32:34.309Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Avalia\u00E7\u00E3oTarefaAdmin.cs",
-              "DocumentMoniker": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Adm\\Avalia\u00E7\u00E3oTarefaAdmin.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\Adm\\Avalia\u00E7\u00E3oTarefaAdmin.cs",
-              "ToolTip": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Adm\\Avalia\u00E7\u00E3oTarefaAdmin.cs",
-              "RelativeToolTip": "Dev4Tech\\Adm\\Avalia\u00E7\u00E3oTarefaAdmin.cs",
-              "ViewState": "AgIAAJ8AAAAAAAAAAAAEwL0AAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T17:17:50.672Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "AvaliacaoTarefa.cs",
-              "DocumentMoniker": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Adm\\AvaliacaoTarefa.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\Adm\\AvaliacaoTarefa.cs",
-              "ToolTip": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Adm\\AvaliacaoTarefa.cs",
-              "RelativeToolTip": "Dev4Tech\\Adm\\AvaliacaoTarefa.cs",
-              "ViewState": "AgIAAJIAAAAAAAAAAAAcwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T17:04:34.061Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Relato_Problema.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Relato_Problema.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\Relato_Problema.cs",
-              "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Relato_Problema.cs [Design]",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Relato_Problema.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T17:32:38.69Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "conexao.cs",
-              "DocumentMoniker": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\conexao.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\conexao.cs",
-              "ToolTip": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\conexao.cs",
-              "RelativeToolTip": "Dev4Tech\\conexao.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAA5wCkAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T17:23:46.415Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "Avalia\u00E7\u00E3oTarefaAdmin.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Adm\\Avalia\u00E7\u00E3oTarefaAdmin.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\Adm\\Avalia\u00E7\u00E3oTarefaAdmin.cs",
-              "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Adm\\Avalia\u00E7\u00E3oTarefaAdmin.cs [Design]",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Adm\\Avalia\u00E7\u00E3oTarefaAdmin.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T17:17:49.209Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "AdicionarTarefa.cs",
-              "DocumentMoniker": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Adm\\AdicionarTarefa.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\Adm\\AdicionarTarefa.cs",
-              "ToolTip": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Adm\\AdicionarTarefa.cs",
-              "RelativeToolTip": "Dev4Tech\\Adm\\AdicionarTarefa.cs",
-              "ViewState": "AgIAAL0AAAAAAAAAAAAAwI0AAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T17:04:39.074Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "AddTarefas.cs",
-              "DocumentMoniker": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Adm\\AddTarefas.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\Adm\\AddTarefas.cs",
-              "ToolTip": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Adm\\AddTarefas.cs",
-              "RelativeToolTip": "Dev4Tech\\Adm\\AddTarefas.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA8AAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T17:04:53.984Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "AdicionarTarefa.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Adm\\AdicionarTarefa.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\Adm\\AdicionarTarefa.cs",
-              "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Adm\\AdicionarTarefa.cs [Design]",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Adm\\AdicionarTarefa.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T17:04:38.071Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "AdicionarEquipes.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Adm\\AdicionarEquipes.Designer.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\Adm\\AdicionarEquipes.Designer.cs",
-              "ToolTip": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Adm\\AdicionarEquipes.Designer.cs",
-              "RelativeToolTip": "Dev4Tech\\Adm\\AdicionarEquipes.Designer.cs",
-              "ViewState": "AgIAACQBAAAAAAAAAAAcwDgBAABEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T16:55:55.722Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Cadastro-funcion\u00E1rio.cs",
-              "DocumentMoniker": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\cadastro-funcion\u00E1rio.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\cadastro-funcion\u00E1rio.cs",
-              "ToolTip": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\cadastro-funcion\u00E1rio.cs",
-              "RelativeToolTip": "Dev4Tech\\cadastro-funcion\u00E1rio.cs",
-              "ViewState": "AgIAANMAAAAAAAAAAAAEwOsAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T16:14:08.58Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Cadastro-funcion\u00E1rio.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\cadastro-funcion\u00E1rio.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\cadastro-funcion\u00E1rio.cs",
-              "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\cadastro-funcion\u00E1rio.cs [Design]",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\cadastro-funcion\u00E1rio.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T16:14:07.002Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "Tela_Tarefa.cs",
-              "DocumentMoniker": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Tela_Tarefa.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\Tela_Tarefa.cs",
-              "ToolTip": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Tela_Tarefa.cs",
-              "RelativeToolTip": "Dev4Tech\\Tela_Tarefa.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA6AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-31T14:56:56.97Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "Tela_Tarefa.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Tela_Tarefa.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\Tela_Tarefa.cs",
-              "ToolTip": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Tela_Tarefa.cs [Design]",
-              "RelativeToolTip": "Dev4Tech\\Tela_Tarefa.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-31T14:56:53.6Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
               "Title": "Configuracoes.cs",
               "DocumentMoniker": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Configuracoes.cs",
               "RelativeDocumentMoniker": "Dev4Tech\\Configuracoes.cs",
               "ToolTip": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Configuracoes.cs",
               "RelativeToolTip": "Dev4Tech\\Configuracoes.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAYwA4AAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAACsBAAAAAAAAAAA9wEEBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-31T14:32:24.403Z"
+              "WhenOpened": "2025-08-31T14:32:24.403Z",
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 0,
               "Title": "Configuracoes.cs [Design]",
               "DocumentMoniker": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Configuracoes.cs",
               "RelativeDocumentMoniker": "Dev4Tech\\Configuracoes.cs",
               "ToolTip": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Configuracoes.cs [Design]",
               "RelativeToolTip": "Dev4Tech\\Configuracoes.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-31T14:32:22.458Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "AdicionarEquipes.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Adm\\AdicionarEquipes.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\Adm\\AdicionarEquipes.cs",
-              "ToolTip": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Adm\\AdicionarEquipes.cs [Design]",
-              "RelativeToolTip": "Dev4Tech\\Adm\\AdicionarEquipes.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-31T14:28:26.181Z",
+              "WhenOpened": "2025-08-31T14:32:22.458Z",
               "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "Tarefas_Pendentes.cs",
-              "DocumentMoniker": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Tarefas_Pendentes.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\Tarefas_Pendentes.cs",
-              "ToolTip": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Tarefas_Pendentes.cs",
-              "RelativeToolTip": "Dev4Tech\\Tarefas_Pendentes.cs",
-              "ViewState": "AgIAAPAAAAAAAAAAAAAYwPsAAABPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-31T14:17:21.118Z"
             }
           ]
         }
