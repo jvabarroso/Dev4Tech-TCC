@@ -1,5 +1,6 @@
 import React, { useState, useEffect  } from 'react';
 import { Text, View, Image, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import { Dropdown } from 'react-native-element-dropdown';
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
@@ -18,6 +19,13 @@ export default function Ranking({route, navigation}){
   const [dados, setDados] = useState([]);
   const [categoria, setCategoria] = useState([]);
   const [categoriaSelecionada, setCategoriaSelecionada] = useState(null);
+
+  // Atualiza usuário ao voltar para a tela
+  useFocusEffect(
+    React.useCallback(() => {
+      listarDados();
+    }, [])
+  );
 
   //Lista Equipes em ordem de pontuação
   async function listarDados() {

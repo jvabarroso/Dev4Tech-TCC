@@ -100,7 +100,7 @@ export default function EquipesAdm({ route, navigation }) {
 async function carregarImagemEquipe(id_equipe) {
   try {
     const response = await fetch(
-      `http://10.239.0.126/dev4tec/imagem_equipe.php`,{
+      `http://10.239.0.124/dev4tec/imagem_equipe.php`,{
       method:'POST',
       headers:{'Content-Type': 'application/json'},
       body: JSON.stringify({ id: id_equipe })

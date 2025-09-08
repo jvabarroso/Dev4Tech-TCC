@@ -152,7 +152,7 @@ export default function EditEquipe({ navigation, route }) {
         formData.append('photo', { uri: image, name: filename, type });
 
         try {
-            const response = await fetch("http://10.239.0.126/dev4tec/upload_equipe2.php", {
+            const response = await fetch("http://10.239.0.124/dev4tec/upload_equipe2.php", {
                 method: 'POST',
                 body: formData,
             });
@@ -275,7 +275,7 @@ export default function EditEquipe({ navigation, route }) {
         async function carregarImagens() {
         try {
             const response = await fetch(
-            `http://10.239.0.126/dev4tec/imagem_equipe.php`,{
+            `http://10.239.0.124/dev4tec/imagem_equipe.php`,{
                 method:'POST',
                 headers:{'Content-Type': 'application/json'},
                 body: JSON.stringify({ id: equipe.id_equipe })
