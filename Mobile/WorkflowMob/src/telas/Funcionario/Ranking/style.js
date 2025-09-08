@@ -44,6 +44,7 @@ export const getStyles = (theme) => StyleSheet.create({
     width: 45,
     height: 45,
     marginLeft: 10,
+    borderRadius:12,
   },
   textos: {
     marginLeft: 15,
@@ -80,7 +81,9 @@ export const getStyles = (theme) => StyleSheet.create({
     marginHorizontal: 6,
     borderRadius: 15,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    width: 150,
+    height: 40,
   },
   textobotao: {
     fontSize: 13,

@@ -32,6 +32,16 @@ export default function EditEquipe({ navigation, route }) {
     const [image, setImage] = useState(null);
     const [imagemEquipe, setImagemEquipe] = useState(null);
 
+    //Mostra os dados atuais da equipe
+    useEffect(() => {
+        if (equipe?.foto_equipe) {
+            setImage(equipe.foto_equipe);
+        }
+        setNomeEquipe(equipe.nome_equipe || '');
+        setCategoriaSelecionada(equipe.id_categoria || '');
+        setCategoriaEquipe(equipe.nome_categoria || '');
+    }, [equipe]);
+
     //Adicionar funcionario na equipe
     function adicionarFuncionario() {
         if (funcionarioSelecionada) {
@@ -152,7 +162,7 @@ export default function EditEquipe({ navigation, route }) {
         formData.append('photo', { uri: image, name: filename, type });
 
         try {
-            const response = await fetch("http://10.239.0.126/dev4tec/upload_equipe2.php", {
+            const response = await fetch("http://10.239.0.124/dev4tec/upload_equipe2.php", {
                 method: 'POST',
                 body: formData,
             });
@@ -269,34 +279,6 @@ export default function EditEquipe({ navigation, route }) {
             });
     }
 }
-
-    //Mostra a imagem da equipe:
-    useEffect(() => {
-        async function carregarImagens() {
-        try {
-            const response = await fetch(
-            `http://10.239.0.126/dev4tec/imagem_equipe.php`,{
-                method:'POST',
-                headers:{'Content-Type': 'application/json'},
-                body: JSON.stringify({ id: equipe.id_equipe })
-            }
-            );
-            const data = await response.json();
-
-            if (data.success) {
-                setImagemEquipe(prev => ({
-                    ...prev,
-                    [equipe.id_equipe]: data.imagem, // Corrija para usar o id_equipe como chave
-                }));
-            }
-        } catch (error) {
-            console.error('Erro ao buscar imagens:', error);
-        } 
-        }
-
-        carregarImagens();
-    }, [equipe.id_equipe]);
-
     return (
         <View style={styles.container}>
             <ScrollView 
@@ -319,8 +301,8 @@ export default function EditEquipe({ navigation, route }) {
                     <View style={styles.imagem}>
                         <TouchableOpacity onPress={() => setModalVisivel(true)}>
                             <Image 
-                            source={imagemEquipe && imagemEquipe[equipe.id_equipe] ? { uri: imagemEquipe[equipe.id_equipe] } :require('../../../../assets/img/image.png')} 
-                            style={styles.imagemequipe} />
+                                source={image ? { uri: image } :require('../../../../assets/img/image.png')} 
+                                style={styles.imagemequipe} />
                         </TouchableOpacity>
                     </View>
 

@@ -24,8 +24,8 @@ try {
         e.foto_equipe,
         COALESCE(SUM(pf.pontos), 0) AS pontuacao_total
     FROM Equipes e
-    JOIN Equipes_Membros em ON e.id_equipe = em.id_equipe
-    JOIN Funcionarios f ON em.FuncionarioId = f.FuncionarioId
+    LEFT JOIN Equipes_Membros em ON e.id_equipe = em.id_equipe
+    LEFT JOIN Funcionarios f ON em.FuncionarioId = f.FuncionarioId
     LEFT JOIN PontuacaoFuncionario pf ON f.FuncionarioId = pf.id_funcionario
     JOIN Categorias c ON e.id_categoria = c.id_categoria
     WHERE e.id_empresa = :id_empresa

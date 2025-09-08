@@ -25,7 +25,7 @@ export default function HomeAdm({navigation, route}){
 
     async function carregarImagens() {
       try {
-        const response = await fetch(`http://10.239.0.126/dev4tec/imagem_usuario.php`,{
+        const response = await fetch(`http://10.239.0.124/dev4tec/imagem_usuario.php`,{
             method:'POST',
             headers:{'Content-Type': 'application/json'},
             body: JSON.stringify({id: usuario.id, role: usuario.role})

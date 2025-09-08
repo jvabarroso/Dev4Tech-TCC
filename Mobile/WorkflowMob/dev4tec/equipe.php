@@ -22,6 +22,7 @@ try {
         e.nome_equipe, 
         e.id_categoria, 
         e.data_criacao,
+        e.foto_equipe,
         c.nome_categoria
     FROM Equipes e
     JOIN Equipes_Membros em ON e.id_equipe = em.id_equipe

@@ -1,6 +1,7 @@
 import React, { useState, useEffect  } from 'react';
 import { Text, View, Image, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 import { getStyles } from './style';
+import { useFocusEffect } from '@react-navigation/native';
 import { useTheme } from '../../../styles/themecontext'
 import api from '../../../../services/api';
 
@@ -12,6 +13,13 @@ export default function RankingAdm({route, navigation}){
 
   const [termoBusca, setTermoBusca] = useState('');
   const [dados, setDados] = useState([]);
+
+  // Atualiza usuário ao voltar para a tela
+  useFocusEffect(
+    React.useCallback(() => {
+      listarDados();
+    }, [])
+  );
 
   //Lista Equipes em ordem de pontuação
   async function listarDados() {

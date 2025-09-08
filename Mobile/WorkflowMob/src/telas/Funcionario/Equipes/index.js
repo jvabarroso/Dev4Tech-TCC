@@ -127,7 +127,7 @@ export default function Equipes({ route, navigation }) {
                 onPress={() => toggleEquipe(item.id_equipe)}
               >
                 <Image 
-                  source={item.imagem ? { uri: item.imagem } : require('../../../../assets/img/image.png')} 
+                  source={item.foto_equipe ? { uri: item.foto_equipe } : require('../../../../assets/img/image.png')} 
                   style={styles.imag} 
                 />
 
