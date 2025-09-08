@@ -1,22 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
-using System.IO;
-
 
 namespace Dev4Tech
 {
     public partial class Planejamento : Form
     {
         private planejamentoSQL dbPlanejamento = new planejamentoSQL();
+
         public Planejamento()
         {
             InitializeComponent();
@@ -24,24 +21,23 @@ namespace Dev4Tech
 
         private void btnPendentes_Click(object sender, EventArgs e)
         {
-
+            // Implementar filtro pendentes
         }
 
         private void btnEmAtraso_Click(object sender, EventArgs e)
         {
-
+            // Implementar filtro atrasados
         }
 
         private void btnCompletadas_Click(object sender, EventArgs e)
         {
-
+            // Implementar filtro completadas
         }
 
         private void btnHome_Click(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;
-
             if (funcionario != null)
             {
                 Home h = new Home();
@@ -50,7 +46,6 @@ namespace Dev4Tech
             }
             else if (admin != null)
             {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
                 HomeAdm t_equipeAdmin = new HomeAdm();
                 t_equipeAdmin.Show();
                 this.Hide();
@@ -65,19 +60,10 @@ namespace Dev4Tech
         {
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;
-
-            if (funcionario != null)
+            if (funcionario != null || admin != null)
             {
-                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
                 PesquisaEquipes t_equipe = new PesquisaEquipes();
                 t_equipe.Show();
-                this.Hide();
-            }
-            else if (admin != null)
-            {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
-                PesquisaEquipes t_equipeAdmin = new PesquisaEquipes();
-                t_equipeAdmin.Show();
                 this.Hide();
             }
             else
@@ -88,22 +74,12 @@ namespace Dev4Tech
 
         private void btnEstatisticas_Click(object sender, EventArgs e)
         {
-
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;
-
-            if (funcionario != null)
+            if (funcionario != null || admin != null)
             {
-                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
                 Ranking_Equipes t_equipe = new Ranking_Equipes();
                 t_equipe.Show();
-                this.Hide();
-            }
-            else if (admin != null)
-            {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
-                Ranking_Equipes t_equipeAdmin = new Ranking_Equipes();
-                t_equipeAdmin.Show();
                 this.Hide();
             }
             else
@@ -115,7 +91,6 @@ namespace Dev4Tech
         private void btnConfigurações_Click(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;
-
             if (funcionario != null)
             {
                 Configuracoes config = new Configuracoes(funcionario);
@@ -130,10 +105,8 @@ namespace Dev4Tech
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            // Limpa a sessão antes de voltar para a tela inicial
             Sessao.FuncionarioLogado = null;
             Sessao.AdminLogado = null;
-
             Form1 t_incial = new Form1();
             t_incial.Show();
             this.Hide();
@@ -141,26 +114,17 @@ namespace Dev4Tech
 
         private void picPerfilMembro_Click(object sender, EventArgs e)
         {
-
+            // Implementar se necessário
         }
 
         private void lblPlanejamento_Click(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;
-
-            if (funcionario != null)
+            if (funcionario != null || admin != null)
             {
-                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
-                Planejamento t_equipe = new Planejamento();
-                t_equipe.Show();
-                this.Hide();
-            }
-            else if (admin != null)
-            {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
-                Planejamento t_equipeAdmin = new Planejamento();
-                t_equipeAdmin.Show();
+                Planejamento t_planejamento = new Planejamento();
+                t_planejamento.Show();
                 this.Hide();
             }
             else
@@ -173,19 +137,10 @@ namespace Dev4Tech
         {
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;
-
-            if (funcionario != null)
+            if (funcionario != null || admin != null)
             {
-                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
-                Chat_geral_equipes t_equipe = new Chat_geral_equipes();
-                t_equipe.Show();
-                this.Hide();
-            }
-            else if (admin != null)
-            {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
-                Chat_geral_equipes t_equipeAdmin = new Chat_geral_equipes();
-                t_equipeAdmin.Show();
+                Chat_geral_equipes t_chat = new Chat_geral_equipes();
+                t_chat.Show();
                 this.Hide();
             }
             else
@@ -198,19 +153,16 @@ namespace Dev4Tech
         {
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;
-
             if (funcionario != null)
             {
-                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
-                Tarefas_Pendentes t_equipe = new Tarefas_Pendentes();
-                t_equipe.Show();
+                Tarefas_Pendentes t_tarefas = new Tarefas_Pendentes();
+                t_tarefas.Show();
                 this.Hide();
             }
             else if (admin != null)
             {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
-                AvaliaçãoTarefaAdmin t_equipeAdmin = new AvaliaçãoTarefaAdmin();
-                t_equipeAdmin.Show();
+                AvaliaçãoTarefaAdmin t_admin = new AvaliaçãoTarefaAdmin();
+                t_admin.Show();
                 this.Hide();
             }
             else
@@ -223,19 +175,10 @@ namespace Dev4Tech
         {
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;
-
-            if (funcionario != null)
+            if (funcionario != null || admin != null)
             {
-                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
-                Ranking_Equipes t_equipe = new Ranking_Equipes();
-                t_equipe.Show();
-                this.Hide();
-            }
-            else if (admin != null)
-            {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
-                Ranking_Equipes t_equipeAdmin = new Ranking_Equipes();
-                t_equipeAdmin.Show();
+                Ranking_Equipes t_ranking = new Ranking_Equipes();
+                t_ranking.Show();
                 this.Hide();
             }
             else
@@ -248,19 +191,16 @@ namespace Dev4Tech
         {
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;
-
             if (funcionario != null)
             {
-                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
-                Integrantes_Equipe t_equipe = new Integrantes_Equipe();
-                t_equipe.Show();
+                Integrantes_Equipe t_integrantes = new Integrantes_Equipe();
+                t_integrantes.Show();
                 this.Hide();
             }
             else if (admin != null)
             {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
-                AdicionarEquipes t_equipeAdmin = new AdicionarEquipes();
-                t_equipeAdmin.Show();
+                AdicionarEquipes t_adicionar = new AdicionarEquipes();
+                t_adicionar.Show();
                 this.Hide();
             }
             else
@@ -273,19 +213,16 @@ namespace Dev4Tech
         {
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;
-
             if (funcionario != null)
             {
-                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
-                Tarefas_Pendentes t_equipe = new Tarefas_Pendentes();
-                t_equipe.Show();
+                Tarefas_Pendentes t_tarefas = new Tarefas_Pendentes();
+                t_tarefas.Show();
                 this.Hide();
             }
             else if (admin != null)
             {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
-                AdicionarTarefa t_equipeAdmin = new AdicionarTarefa();
-                t_equipeAdmin.Show();
+                AdicionarTarefa t_adicionar = new AdicionarTarefa();
+                t_adicionar.Show();
                 this.Hide();
             }
             else
@@ -300,22 +237,20 @@ namespace Dev4Tech
             p_pendente.Show();
             this.Hide();
         }
-       
+
         public void divisaoPDF(string caminhoArquivoEntrada, string pastaSaida)
         {
             PdfDocument documento = PdfReader.Open(caminhoArquivoEntrada, PdfDocumentOpenMode.Import);
             int totalPaginas = documento.PageCount;
 
-            for (int i = 0; i<totalPaginas; i++)
+            if (!Directory.Exists(pastaSaida))
+                Directory.CreateDirectory(pastaSaida);
+
+            for (int i = 0; i < totalPaginas; i++)
             {
-                //Novo documento PDF para cada página
                 PdfDocument novoDocumento = new PdfDocument();
                 novoDocumento.Version = documento.Version;
-
-                //copia a página atual para o novo documento
                 novoDocumento.AddPage(documento.Pages[i]);
-
-                //salva o novo documento
                 string caminhoNovoArquivo = Path.Combine(pastaSaida, $"pagina_{i + 1}.pdf");
                 novoDocumento.Save(caminhoNovoArquivo);
             }
@@ -323,16 +258,33 @@ namespace Dev4Tech
 
         private void flpPDFs_Paint(object sender, PaintEventArgs e)
         {
+            // Se desejar, pode customizar o paint do flowlayoutpanel
         }
 
         private void CarregarPdfDaTarefa(int idTarefa)
         {
             try
             {
-                // Obter lista dos arquivos PDFs das páginas divididas
-                List<string> arquivosPdf = dbPlanejamento.ObterArquivosPdfParaExibicao(idTarefa);
+                string pastaArquivos = @"C:\Dev4Tech\ArquivosTarefas";
 
-                if (arquivosPdf.Count == 0)
+                // Obter nome do arquivo PDF salvo no banco para a tarefa
+                string nomeArquivo = dbPlanejamento.ObterNomeArquivoTarefa(idTarefa);
+
+                if (string.IsNullOrEmpty(nomeArquivo))
+                {
+                    MessageBox.Show("Nenhum arquivo PDF encontrado para essa tarefa.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                string caminhoPdf = Path.Combine(pastaArquivos, nomeArquivo);
+
+                string pastaPaginas = dbPlanejamento.CriarPastaTemporaria();
+
+                divisaoPDF(caminhoPdf, pastaPaginas);
+
+                List<string> arquivosPdf = Directory.GetFiles(pastaPaginas, "*.pdf").ToList();
+
+                if (!arquivosPdf.Any())
                 {
                     MessageBox.Show("Nenhum arquivo PDF encontrado para essa tarefa.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
@@ -375,13 +327,14 @@ namespace Dev4Tech
 
                 PictureBox picThumbnail = new PictureBox
                 {
-                    Image = Properties.Resources.icon_documento_blue, // Ícone PDF da sua resources (adicione uma imagem)
+                    Image = Properties.Resources.icon_documento_blue,
                     SizeMode = PictureBoxSizeMode.Zoom,
                     Dock = DockStyle.Fill
                 };
 
                 painelCartao.Controls.Add(picThumbnail);
                 painelCartao.Controls.Add(btnAbrirPdf);
+
                 flpPDFs.Controls.Add(painelCartao);
             }
         }
@@ -391,11 +344,10 @@ namespace Dev4Tech
             webBrowserPdf.Navigate(caminhoPdf);
         }
 
-        // Evento exemplo que carrega a tarefa e PDFs ao selecionar uma tarefa na lista (você cria este evento conforme UI)
+        // Exemplo de evento para carregar a tarefa ao selecionar na UI - você deve conectar conforme sua interface
         private void OnTarefaSelecionada(int idTarefaSelecionada)
         {
             CarregarPdfDaTarefa(idTarefaSelecionada);
         }
-
     }
 }
