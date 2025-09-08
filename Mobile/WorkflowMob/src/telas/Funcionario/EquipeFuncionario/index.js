@@ -1,89 +1,50 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, Image, TextInput, TouchableOpacity, ScrollView} from 'react-native';
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
 import { Ionicons } from '@expo/vector-icons';
 
+import api from '../../../../services/api';
+
 export default function EquipeFuncionario({ navigation, route }) {
   const { theme } = useTheme();
   const styles = getStyles(theme);
       
-  const { equipe } = route.params;
+  const equipe = route.params?.equipe || {}; 
+  console.log("Equipe:", equipe);
+
+  const [dados, setDados] = useState([]);
+  const BASE_URL = 'http://10.239.0.124/dev4tec/img/'
   
-  const [funcionario, setFuncionario] = useState([
-    {
-        id: '1',
-        nome: 'Gabriel Kenzo Takeuchi',
-        datadenascimento: "16/05/1980",
-        email: 'kenzo@empresa.com',
-        telefone: 13982176670,
-        endereco: "Rua João da Fonseca, 123 - Jardim Mato Grosso, Cananeia/SP",
-        cargo: "Desenvolvedor Web Sênior",
-        equipe: null,
-        senha: '1234',
-        imagem: require('../../../../assets/img/fotoexemplo.png'),
-    },
-    {
-        id: '2',
-        nome: 'Leonardo Silva',
-        datadenascimento: "22/11/1992",
-        email: 'leonardo.silva@empresa.com',
-        telefone: 11987654321,
-        endereco: "Av. Paulista, 1000 - São Paulo/SP",
-        cargo: "Designer UX/UI",
-        equipe: null,
-        senha: 'abcd123',
-        imagem: require('../../../../assets/img/fotoexemplo.png'),
-    },
-    {
-        id: '3',
-        nome: 'Ana Carolina Oliveira',
-        datadenascimento: "05/03/1985",
-        email: 'ana.oliveira@empresa.com',
-        telefone: 21999887766,
-        endereco: "Rua das Flores, 45 - Rio de Janeiro/RJ",
-        cargo: "Gerente de Projetos",
-        equipe: null,
-        senha: 'ana2023',
-        imagem: require('../../../../assets/img/fotoexemplo.png'),
-    },
-    {
-        id: '4',
-        nome: 'Carlos Eduardo Santos',
-        datadenascimento: "30/07/1990",
-        email: 'carlos.santos@empresa.com',
-        telefone: 31988776655,
-        endereco: "Av. Afonso Pena, 2000 - Belo Horizonte/MG",
-        cargo: "Analista de Dados",
-        equipe: null,
-        senha: 'carlos123',
-        imagem: require('../../../../assets/img/fotoexemplo.png'),
-    },
-    {
-        id: '5',
-        nome: 'Mariana Costa',
-        datadenascimento: "14/09/1988",
-        email: 'mariana.costa@empresa.com',
-        telefone: 41977665544,
-        endereco: "Rua XV de Novembro, 500 - Curitiba/PR",
-        cargo: "Product Owner",
-        equipe: null,
-        senha: 'mari@2023',
-        imagem: require('../../../../assets/img/fotoexemplo.png'),
-    },
-    {
-        id: '6',
-        nome: 'Rafael Pereira',
-        datadenascimento: "03/12/1995",
-        email: 'rafael.pereira@empresa.com',
-        telefone: 51966554433,
-        endereco: "Av. Borges de Medeiros, 300 - Porto Alegre/RS",
-        cargo: "Desenvolvedor Mobile",
-        equipe: null,
-        senha: 'rafa1234',
-        imagem: require('../../../../assets/img/fotoexemplo.png'),
+  //Lista os funcionarios
+  async function listarFuncionarios() {
+    try {
+      const res = await api.get(`dev4tec/funcionario.php`, {
+        params: {
+          id_equipe: equipe.id_equipe
+        }
+    });
+            
+    if (res.data.success) {
+      setDados(res.data.result || []);
+      console.log("Dados dos funcionários:", res.data.result);
+      console.log("Foto do primeiro funcionário:", res.data.result[0]?.foto_perfil);
+    } else {
+        console.log("Erro na API:", res.data.message);
+        setDados([]);
+      }
     }
-  ]);
+    catch (error) {
+      console.log("Erro ao listar categorias", error);
+    }
+  }
+
+
+  useEffect(() => {
+    listarFuncionarios();
+  }, [equipe?.id_equipe]);
+
+
 
   return ( 
     <View style={styles.container}>
@@ -101,10 +62,13 @@ export default function EquipeFuncionario({ navigation, route }) {
         </View>
 
         <View style={styles.containertarefas}>
-          <Image source={equipe.imagem} style={styles.imag} />
+          <Image 
+            source={equipe.foto_equipe ? { uri: equipe.foto_equipe } : require('../../../../assets/img/image.png')} 
+            style={styles.imag} 
+          />
           <View style={styles.textos}>
-            <Text style={styles.textolistatitulo}>{equipe.titulo}</Text>
-            <Text style={styles.textolistacargo}>{equipe.cargo}</Text>
+            <Text style={styles.textolistatitulo}>{equipe.nome_equipe}</Text>
+            <Text style={styles.textolistacargo}>{equipe.nome_categoria}</Text>
           </View>
         </View>
 
@@ -115,12 +79,12 @@ export default function EquipeFuncionario({ navigation, route }) {
             placeholderTextColor="#ffffff"
           />
 
-        {funcionario.map(item => (
-          <View 
-            key={item.id}  
-            style={styles.containertarefas}
-          >
-            <Image source={item.imagem} style={styles.imag} />
+        {dados.map(item => (
+          <View key={item.FuncionarioId} style={styles.containertarefas}>
+            <Image 
+              source={item.foto_perfil ? { uri: `${BASE_URL}${item.foto_perfil}?t=${new Date().getTime()}` } : require('../../../../assets/img/image.png')} 
+              style={styles.imag} 
+            />
             <View style={styles.textos}>
               <Text style={styles.textolistatitulo}>{item.nome}</Text>
               <Text style={styles.textolistacargo}>{item.cargo}</Text>

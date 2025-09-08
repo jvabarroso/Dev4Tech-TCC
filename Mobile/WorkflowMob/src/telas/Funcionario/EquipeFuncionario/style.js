@@ -50,6 +50,7 @@ export const getStyles = (theme) => StyleSheet.create({
     width: 45,
     height: 45,
     marginLeft: 10,
+    borderRadius: 12,
   },
   textos: {
     marginLeft: 15,

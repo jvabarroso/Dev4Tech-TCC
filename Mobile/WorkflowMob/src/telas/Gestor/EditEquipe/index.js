@@ -61,7 +61,7 @@ export default function EditEquipe({ navigation, route }) {
     //Lista os funcionarios
     async function listarFuncionarios() {
         try {
-            const res = await api.get(`dev4tec/adicionarfuncionarios.php`, {
+            const res = await api.get(`dev4tec/funcionariosadm.php`, {
             params: {
                 id_empresa: equipe.id_empresa,
                 id_equipe: equipe.id_equipe
