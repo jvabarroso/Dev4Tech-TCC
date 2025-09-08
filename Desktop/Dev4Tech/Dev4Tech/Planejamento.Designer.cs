@@ -64,6 +64,8 @@
             this.pictureBox20 = new System.Windows.Forms.PictureBox();
             this.pictureBox21 = new System.Windows.Forms.PictureBox();
             this.pictureBox22 = new System.Windows.Forms.PictureBox();
+            this.flpPDFs = new System.Windows.Forms.FlowLayoutPanel();
+            this.webBrowserPdf = new System.Windows.Forms.WebBrowser();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -478,11 +480,31 @@
             this.pictureBox22.TabIndex = 148;
             this.pictureBox22.TabStop = false;
             // 
+            // flpPDFs
+            // 
+            this.flpPDFs.AutoScroll = true;
+            this.flpPDFs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.flpPDFs.Location = new System.Drawing.Point(714, 30);
+            this.flpPDFs.Name = "flpPDFs";
+            this.flpPDFs.Size = new System.Drawing.Size(455, 218);
+            this.flpPDFs.TabIndex = 151;
+            this.flpPDFs.Paint += new System.Windows.Forms.PaintEventHandler(this.flpPDFs_Paint);
+            // 
+            // webBrowserPdf
+            // 
+            this.webBrowserPdf.Location = new System.Drawing.Point(893, 267);
+            this.webBrowserPdf.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowserPdf.Name = "webBrowserPdf";
+            this.webBrowserPdf.Size = new System.Drawing.Size(250, 215);
+            this.webBrowserPdf.TabIndex = 152;
+            // 
             // Planejamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.webBrowserPdf);
+            this.Controls.Add(this.flpPDFs);
             this.Controls.Add(this.pictureBox20);
             this.Controls.Add(this.pictureBox21);
             this.Controls.Add(this.pictureBox22);
@@ -583,5 +605,7 @@
         private System.Windows.Forms.PictureBox pictureBox20;
         private System.Windows.Forms.PictureBox pictureBox21;
         private System.Windows.Forms.PictureBox pictureBox22;
+        private System.Windows.Forms.FlowLayoutPanel flpPDFs;
+        private System.Windows.Forms.WebBrowser webBrowserPdf;
     }
 }

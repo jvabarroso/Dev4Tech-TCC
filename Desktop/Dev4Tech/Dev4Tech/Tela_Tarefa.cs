@@ -101,19 +101,27 @@ namespace Dev4Tech
             EntregaTarefa entrTarefa = new EntregaTarefa();
             DataRow tarefa = entrTarefa.BuscarTarefaPorId(idTarefaExibida);
 
-            if (tarefa != null && tarefa["arquivo_blob"] != DBNull.Value)
+            if (tarefa != null && tarefa["nome_arquivo"] != DBNull.Value)
             {
                 try
                 {
-                    byte[] arquivo = (byte[])tarefa["arquivo_blob"];
-                    string tempPath = Path.Combine(Path.GetTempPath(), tarefa["nome_arquivo"].ToString());
-                    File.WriteAllBytes(tempPath, arquivo);
-                    System.Diagnostics.Process.Start(tempPath);
+                    string nomeArquivo = tarefa["nome_arquivo"].ToString();
+                    string pastaArquivos = @"C:\Dev4Tech\ArquivosTarefas";
+                    string caminhoArquivo = Path.Combine(pastaArquivos, nomeArquivo);
+
+                    if (File.Exists(caminhoArquivo))
+                        System.Diagnostics.Process.Start(caminhoArquivo);
+                    else
+                        MessageBox.Show("Arquivo não encontrado no servidor.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Erro ao abrir o arquivo: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+            else
+            {
+                MessageBox.Show("Nenhum arquivo anexado à tarefa.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -139,11 +147,45 @@ namespace Dev4Tech
             ofd.Filter = "Todos os arquivos (*.*)|*.*";
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                caminhoArquivoEntrega = ofd.FileName;
-                lblArquivoEntregaTarefa.Text = Path.GetFileName(caminhoArquivoEntrega);
-                lblArquivoEntregaTarefa.ForeColor = Color.Blue;
+                string pastaArquivos = @"C:\Dev4Tech\ArquivosEntregas";  // pasta onde vai salvar o arquivo
+                if (!Directory.Exists(pastaArquivos))
+                    Directory.CreateDirectory(pastaArquivos);
+
+                // Caminho do arquivo selecionado pelo usuário
+                string arquivoSelecionado = ofd.FileName;
+
+                // Gerar nome único para o arquivo para evitar sobrescrever
+                string extensao = Path.GetExtension(arquivoSelecionado);
+                string nomeArquivoUnico = Guid.NewGuid().ToString() + extensao;
+
+                string caminhoDestino = Path.Combine(pastaArquivos, nomeArquivoUnico);
+
+                try
+                {
+                    File.Copy(arquivoSelecionado, caminhoDestino, true);
+                    caminhoArquivoEntrega = caminhoDestino;  // atualizar para caminho do arquivo copiado
+                    lblArquivoEntregaTarefa.Text = Path.GetFileName(caminhoArquivoEntrega);
+                    lblArquivoEntregaTarefa.ForeColor = Color.Blue;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao copiar arquivo para pasta: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
+
+
+
+        private void AbrirArquivoEntrega(string nomeArquivo)
+            {
+                string pastaArquivos = @"C:\Dev4Tech\ArquivosTarefas";
+                string caminhoArquivo = Path.Combine(pastaArquivos, nomeArquivo);
+                if (File.Exists(caminhoArquivo))
+                    System.Diagnostics.Process.Start(caminhoArquivo);
+                else
+                    MessageBox.Show("Arquivo não encontrado no servidor.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
 
 
         private void btnEnviar_Click(object sender, EventArgs e)
@@ -153,53 +195,52 @@ namespace Dev4Tech
                 MessageBox.Show("Não há tarefa para ser entregue.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             if (string.IsNullOrWhiteSpace(txtDescrição.Text))
             {
                 MessageBox.Show("Por favor, descreva sua entrega.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             int idFuncionarioAtual = Sessao.FuncionarioLogado != null ? int.Parse(Sessao.FuncionarioLogado.getFuncionarioId()) : 0;
-
             if (idFuncionarioAtual == 0)
             {
                 MessageBox.Show("Funcionário não está logado corretamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
             EntregaTarefa entrTarefa = new EntregaTarefa();
-
             if (entrTarefa.FuncionarioEntregou(idTarefaExibida, idFuncionarioAtual))
             {
                 MessageBox.Show("Você já entregou essa tarefa e não pode entregar novamente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            byte[] arquivoBytes = null;
-            string nomeArquivo = null;
+            string pastaArquivos = @"C:\Dev4Tech\ArquivosEntregas";
+            if (!Directory.Exists(pastaArquivos))
+                Directory.CreateDirectory(pastaArquivos);
 
+            string nomeArquivo = null;
             if (!string.IsNullOrEmpty(caminhoArquivoEntrega))
             {
                 try
                 {
-                    arquivoBytes = File.ReadAllBytes(caminhoArquivoEntrega);
-                    nomeArquivo = Path.GetFileName(caminhoArquivoEntrega);
+                    string extensao = Path.GetExtension(caminhoArquivoEntrega);
+                    nomeArquivo = Guid.NewGuid().ToString() + extensao;
+                    string caminhoCompleto = Path.Combine(pastaArquivos, nomeArquivo);
+                    File.Copy(caminhoArquivoEntrega, caminhoCompleto, true);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Erro ao ler o arquivo de entrega: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Erro ao salvar arquivo de entrega: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
 
             try
             {
-                entrTarefa.RegistrarEntrega(idTarefaExibida, idEquipeAtual, idFuncionarioAtual, txtDescrição.Text, nomeArquivo, arquivoBytes);
+                // Registrar entrega, gravando nomeArquivo no banco, arquivoBlob = null
+                entrTarefa.RegistrarEntrega(idTarefaExibida, idEquipeAtual, idFuncionarioAtual, txtDescrição.Text, nomeArquivo, null);
 
                 MessageBox.Show("Entrega registrada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LimparCamposEntrega();
-
                 AtualizarEstadoEntrega();
             }
             catch (Exception ex)
@@ -207,6 +248,7 @@ namespace Dev4Tech
                 MessageBox.Show("Erro ao registrar a entrega: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
 
         // Limpa campos após entrega

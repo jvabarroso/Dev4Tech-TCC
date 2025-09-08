@@ -110,20 +110,26 @@ namespace Dev4Tech
             string instrucoes = txtInstruções.Text.Trim();
             string dificuldade = cmbDificuldade.SelectedItem.ToString();
             DateTime dataEntrega = dtpDataDeEntrega.Value.Date;
-            byte[] arquivoBytes = null;
+
+            string pastaArquivos = @"C:\Dev4Tech\ArquivosTarefas";
+            if (!Directory.Exists(pastaArquivos))
+                Directory.CreateDirectory(pastaArquivos);
+
             string nomeArquivo = "";
 
-            // Lê arquivo se selecionado
+            // Salvar arquivo PDF na pasta e pegar nome único
             if (!string.IsNullOrEmpty(caminhoArquivoSelecionado))
             {
                 try
                 {
-                    arquivoBytes = File.ReadAllBytes(caminhoArquivoSelecionado);
-                    nomeArquivo = Path.GetFileName(caminhoArquivoSelecionado);
+                    string extensao = Path.GetExtension(caminhoArquivoSelecionado);
+                    nomeArquivo = Guid.NewGuid().ToString() + extensao;
+                    string caminhoCompleto = Path.Combine(pastaArquivos, nomeArquivo);
+                    File.Copy(caminhoArquivoSelecionado, caminhoCompleto, overwrite: true);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Erro ao ler o arquivo: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Erro ao salvar arquivo: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
@@ -139,11 +145,11 @@ namespace Dev4Tech
                     IdEquipe = idEquipe,
                     DataEntrega = dataEntrega,
                     NomeArquivo = nomeArquivo,
-                    ArquivoBlob = arquivoBytes
+                    ArquivoBlob = null // não salva blob, arquivo fica na pasta
                 };
                 try
                 {
-                    tarefa.IdEmpresa = Convert.ToInt32(Sessao.AdminLogado.getIdEmpresa()); // ou o valor correto da empresa
+                    tarefa.IdEmpresa = Convert.ToInt32(Sessao.AdminLogado.getIdEmpresa());
                     tarefa.Inserir();
                 }
                 catch (Exception ex)
@@ -151,10 +157,10 @@ namespace Dev4Tech
                     MessageBox.Show($"Erro ao adicionar tarefa para equipe ID {idEquipe}: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
             MessageBox.Show("Tarefas adicionadas com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             LimparFormulario();
         }
+
 
         // Limpa campos após inserção
         private void LimparFormulario()

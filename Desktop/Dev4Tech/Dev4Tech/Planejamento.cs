@@ -7,11 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PdfSharp.Pdf;
+using PdfSharp.Pdf.IO;
+using System.IO;
+
 
 namespace Dev4Tech
 {
     public partial class Planejamento : Form
     {
+        private planejamentoSQL dbPlanejamento = new planejamentoSQL();
         public Planejamento()
         {
             InitializeComponent();
@@ -295,30 +300,102 @@ namespace Dev4Tech
             p_pendente.Show();
             this.Hide();
         }
-
-        private void label1_Click(object sender, EventArgs e)
+       
+        public void divisaoPDF(string caminhoArquivoEntrada, string pastaSaida)
         {
-            var funcionario = Sessao.FuncionarioLogado;
-            var admin = Sessao.AdminLogado;
+            PdfDocument documento = PdfReader.Open(caminhoArquivoEntrada, PdfDocumentOpenMode.Import);
+            int totalPaginas = documento.PageCount;
 
-            if (funcionario != null)
+            for (int i = 0; i<totalPaginas; i++)
             {
-                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
-                Tarefas_Pendentes t_equipe = new Tarefas_Pendentes();
-                t_equipe.Show();
-                this.Hide();
-            }
-            else if (admin != null)
-            {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
-                HomeAdm t_equipeAdmin = new HomeAdm();
-                t_equipeAdmin.Show();
-                this.Hide();
-            }
-            else
-            {
-                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //Novo documento PDF para cada página
+                PdfDocument novoDocumento = new PdfDocument();
+                novoDocumento.Version = documento.Version;
+
+                //copia a página atual para o novo documento
+                novoDocumento.AddPage(documento.Pages[i]);
+
+                //salva o novo documento
+                string caminhoNovoArquivo = Path.Combine(pastaSaida, $"pagina_{i + 1}.pdf");
+                novoDocumento.Save(caminhoNovoArquivo);
             }
         }
+
+        private void flpPDFs_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void CarregarPdfDaTarefa(int idTarefa)
+        {
+            try
+            {
+                // Obter lista dos arquivos PDFs das páginas divididas
+                List<string> arquivosPdf = dbPlanejamento.ObterArquivosPdfParaExibicao(idTarefa);
+
+                if (arquivosPdf.Count == 0)
+                {
+                    MessageBox.Show("Nenhum arquivo PDF encontrado para essa tarefa.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                ExibirPdfsNoFlowLayout(arquivosPdf);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar PDFs: " + ex.Message);
+            }
+        }
+
+        private void ExibirPdfsNoFlowLayout(List<string> caminhosArquivosPdf)
+        {
+            flpPDFs.Controls.Clear();
+
+            foreach (string caminhoPdf in caminhosArquivosPdf)
+            {
+                Panel painelCartao = new Panel
+                {
+                    Width = 150,
+                    Height = 200,
+                    BorderStyle = BorderStyle.FixedSingle,
+                    Margin = new Padding(10),
+                    Tag = caminhoPdf
+                };
+
+                Button btnAbrirPdf = new Button
+                {
+                    Text = Path.GetFileName(caminhoPdf),
+                    Dock = DockStyle.Bottom,
+                    Height = 30
+                };
+                btnAbrirPdf.Click += (s, e) =>
+                {
+                    string arquivoSelecionado = ((Button)s).Parent.Tag.ToString();
+                    ExibirPdfNoVisualizador(arquivoSelecionado);
+                };
+
+                PictureBox picThumbnail = new PictureBox
+                {
+                    Image = Properties.Resources.icon_documento_blue, // Ícone PDF da sua resources (adicione uma imagem)
+                    SizeMode = PictureBoxSizeMode.Zoom,
+                    Dock = DockStyle.Fill
+                };
+
+                painelCartao.Controls.Add(picThumbnail);
+                painelCartao.Controls.Add(btnAbrirPdf);
+                flpPDFs.Controls.Add(painelCartao);
+            }
+        }
+
+        private void ExibirPdfNoVisualizador(string caminhoPdf)
+        {
+            webBrowserPdf.Navigate(caminhoPdf);
+        }
+
+        // Evento exemplo que carrega a tarefa e PDFs ao selecionar uma tarefa na lista (você cria este evento conforme UI)
+        private void OnTarefaSelecionada(int idTarefaSelecionada)
+        {
+            CarregarPdfDaTarefa(idTarefaSelecionada);
+        }
+
     }
 }
