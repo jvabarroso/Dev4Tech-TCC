@@ -17,7 +17,155 @@ namespace Dev4Tech
         public Planejamento()
         {
             InitializeComponent();
+            this.Load += Planejamento_Load;
         }
+        private void Planejamento_Load(object sender, EventArgs e)
+        {
+            CarregarTarefasPendentesDoFuncionario();
+            var tarefas = BuscarTarefasDoFuncionario();
+            PopularKanban(tarefas);
+        }
+
+
+        public class TarefaModelo
+        {
+            public int IdTarefa { get; set; }
+            public string Titulo { get; set; }
+            public DateTime DataEntrega { get; set; }
+            public string Status { get; set; }  // "Pendente", "Fazendo", "Concluída"
+            public List<Image> Avatares { get; set; }
+        }
+
+        // Cria cada card visual conforme design
+        private Panel CriarCardTarefa(string titulo, DateTime dataEntrega, List<Image> avatares)
+        {
+            Panel card = new Panel
+            {
+                Width = flpP.Width - 25,
+                Height = 90,
+                BorderStyle = BorderStyle.FixedSingle,
+                Margin = new Padding(5),
+                Padding = new Padding(8),
+                BackColor = Color.White
+            };
+
+            FlowLayoutPanel membrosPanel = new FlowLayoutPanel
+            {
+                FlowDirection = FlowDirection.LeftToRight,
+                Height = 24,
+                Width = card.Width - 16,
+                Location = new Point(0, 0),
+                WrapContents = false,
+                AutoScroll = false,
+            };
+
+            foreach (var avatar in avatares)
+            {
+                PictureBox pic = new PictureBox
+                {
+                    Image = avatar,
+                    Width = 24,
+                    Height = 24,
+                    SizeMode = PictureBoxSizeMode.Zoom,
+                    Margin = new Padding(2),
+                    Cursor = Cursors.Hand
+                };
+                membrosPanel.Controls.Add(pic);
+            }
+
+            Label lblTitulo = new Label
+            {
+                Text = titulo,
+                Location = new Point(0, 30),
+                Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                AutoSize = false,
+                Width = card.Width - 16,
+                Height = 30,
+                ForeColor = Color.Black
+            };
+
+            Label lblData = new Label
+            {
+                Text = "Até " + dataEntrega.ToString("dd/MM"),
+                Location = new Point(0, 65),
+                Font = new Font("Segoe UI", 8, FontStyle.Regular),
+                ForeColor = Color.Gray,
+                AutoSize = true
+            };
+
+            card.Controls.Add(membrosPanel);
+            card.Controls.Add(lblTitulo);
+            card.Controls.Add(lblData);
+
+            return card;
+        }
+
+        // Popular os FlowLayoutPanels das colunas do Kanban com os cards
+        private void PopularKanban(List<TarefaModelo> tarefas)
+        {
+            flpP.Controls.Clear();
+            flpF.Controls.Clear();
+            flpC.Controls.Clear();
+
+            foreach (var tarefa in tarefas)
+            {
+                Panel card = CriarCardTarefa(tarefa.Titulo, tarefa.DataEntrega, tarefa.Avatares);
+                switch (tarefa.Status)
+                {
+                    case "Pendente":
+                        flpP.Controls.Add(card);
+                        break;
+                    case "Fazendo":
+                        flpF.Controls.Add(card);
+                        break;
+                    case "Concluida":
+                        flpC.Controls.Add(card);
+                        break;
+                }
+            }
+        }
+
+        // Exemplo simplificado para buscar tarefas do banco - substitua pela sua lógica real
+        private List<TarefaModelo> BuscarTarefasDoFuncionario()
+        {
+            // Aqui, use dbPlanejamento para buscar tarefas pendentes, fazer map dos status, carregar imagens etc.
+            // Exemplo estático só para demonstração:
+
+            return new List<TarefaModelo>()
+            {
+                new TarefaModelo
+                {
+                    IdTarefa = 1,
+                    Titulo = "Documentação da empresa",
+                    DataEntrega = DateTime.Parse("2025-09-08"),
+                    Status = "Pendente",
+                    Avatares = new List<Image> { Properties.Resources.icon_perfil, Properties.Resources.icon_perfil }
+                },
+                new TarefaModelo
+                {
+                    IdTarefa = 2,
+                    Titulo = "Documentação da empresa",
+                    DataEntrega = DateTime.Parse("2025-09-08"),
+                    Status = "Fazendo",
+                    Avatares = new List<Image> { Properties.Resources.icon_perfil, Properties.Resources.icon_perfil }
+                },
+                new TarefaModelo
+                {
+                    IdTarefa = 3,
+                    Titulo = "Documentação da empresa",
+                    DataEntrega = DateTime.Parse("2025-09-08"),
+                    Status = "Concluida",
+                    Avatares = new List<Image> { Properties.Resources.icon_perfil, Properties.Resources.icon_perfil }
+                }
+            };
+        }
+
+
+
+
+
+
+
 
         private void btnPendentes_Click(object sender, EventArgs e)
         {
@@ -298,6 +446,123 @@ namespace Dev4Tech
             }
         }
 
+        private void CarregarTarefasPendentesDoFuncionario()
+        {
+            try
+            {
+                var funcionario = Sessao.FuncionarioLogado;
+                if (funcionario == null)
+                {
+                    MessageBox.Show("Funcionário não está logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int idFuncionario = int.Parse(funcionario.getFuncionarioId());
+
+                // Obtem os ids das equipes do funcionário
+                var idsEquipes = dbPlanejamento.ObterIdsEquipesFuncionario(idFuncionario);
+                if (idsEquipes.Count == 0)
+                {
+                    MessageBox.Show("Funcionário não pertence a nenhuma equipe.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                // Obtem as tarefas pendentes das equipes que possuem arquivo
+                var tarefas = dbPlanejamento.ObterTarefasPendentesPorEquipesComArquivo(idsEquipes);
+
+                flpPDFs.Controls.Clear();
+
+                string pastaArquivos = @"C:\Dev4Tech\ArquivosTarefas";
+
+                foreach (var tarefa in tarefas)
+                {
+                    string caminhoPdf = Path.Combine(pastaArquivos, tarefa.NomeArquivo);
+                    if (!File.Exists(caminhoPdf))
+                        continue;
+
+                    string pastaTemporaria = dbPlanejamento.CriarPastaTemporaria();
+
+                    dbPlanejamento.DividirPdfEmPaginas(caminhoPdf, pastaTemporaria);
+
+                    var paginasPdf = Directory.GetFiles(pastaTemporaria, "*.pdf").ToList();
+
+                    foreach (var pagina in paginasPdf)
+                    {
+                        Panel painelPagina = new Panel
+                        {
+                            Width = 150,
+                            Height = 200,
+                            BorderStyle = BorderStyle.FixedSingle,
+                            Margin = new Padding(10),
+                            Tag = pagina
+                        };
+
+                        Button btnAbrirPdf = new Button
+                        {
+                            Text = Path.GetFileName(pagina),
+                            Dock = DockStyle.Bottom,
+                            Height = 30
+                        };
+
+                        btnAbrirPdf.Click += (s, e) =>
+                        {
+                            string arquivo = ((Button)s).Parent.Tag.ToString();
+                            AbrirPdfExternamente(arquivo);
+                        };
+
+
+                        PictureBox picThumbnail = new PictureBox
+                        {
+                            Image = Properties.Resources.icon_documento_blue,
+                            SizeMode = PictureBoxSizeMode.Zoom,
+                            Dock = DockStyle.Fill
+                        };
+
+                        painelPagina.Controls.Add(picThumbnail);
+                        painelPagina.Controls.Add(btnAbrirPdf);
+                        flpPDFs.Controls.Add(painelPagina);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar as tarefas pendentes: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void AbrirPdfExternamente(string caminhoPdf)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
+                {
+                    FileName = caminhoPdf,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao abrir PDF externo: " + ex.Message);
+            }
+        }
+
+        private void ExibirPdfNoVisualizador(string caminhoPdf)
+        {
+            try
+            {
+                webBrowserPdf.Navigate("about:blank");
+                webBrowserPdf.DocumentCompleted += (s, e) =>
+                {
+                    if (webBrowserPdf.Url.ToString() == "about:blank")
+                        webBrowserPdf.Navigate(caminhoPdf);
+                };
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao exibir PDF: " + ex.Message);
+            }
+        }
+
         private void ExibirPdfsNoFlowLayout(List<string> caminhosArquivosPdf)
         {
             flpPDFs.Controls.Clear();
@@ -339,15 +604,30 @@ namespace Dev4Tech
             }
         }
 
-        private void ExibirPdfNoVisualizador(string caminhoPdf)
-        {
-            webBrowserPdf.Navigate(caminhoPdf);
-        }
-
         // Exemplo de evento para carregar a tarefa ao selecionar na UI - você deve conectar conforme sua interface
         private void OnTarefaSelecionada(int idTarefaSelecionada)
         {
             CarregarPdfDaTarefa(idTarefaSelecionada);
+        }
+
+        private void panelKBS_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void flpP_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void flpF_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void flpC_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

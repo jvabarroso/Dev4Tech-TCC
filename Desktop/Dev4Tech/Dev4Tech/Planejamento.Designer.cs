@@ -66,6 +66,10 @@
             this.pictureBox22 = new System.Windows.Forms.PictureBox();
             this.flpPDFs = new System.Windows.Forms.FlowLayoutPanel();
             this.webBrowserPdf = new System.Windows.Forms.WebBrowser();
+            this.panelKBS = new System.Windows.Forms.Panel();
+            this.flpC = new System.Windows.Forms.FlowLayoutPanel();
+            this.flpP = new System.Windows.Forms.FlowLayoutPanel();
+            this.flpF = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -89,6 +93,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).BeginInit();
+            this.panelKBS.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblMembros
@@ -328,7 +333,7 @@
             this.btnCompletadas.BackColor = System.Drawing.Color.LimeGreen;
             this.btnCompletadas.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCompletadas.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnCompletadas.Location = new System.Drawing.Point(909, 278);
+            this.btnCompletadas.Location = new System.Drawing.Point(486, 10);
             this.btnCompletadas.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.btnCompletadas.Name = "btnCompletadas";
             this.btnCompletadas.Size = new System.Drawing.Size(105, 30);
@@ -343,7 +348,7 @@
             this.btnEmAtraso.BackColor = System.Drawing.Color.Lavender;
             this.btnEmAtraso.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEmAtraso.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnEmAtraso.Location = new System.Drawing.Point(672, 278);
+            this.btnEmAtraso.Location = new System.Drawing.Point(249, 10);
             this.btnEmAtraso.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.btnEmAtraso.Name = "btnEmAtraso";
             this.btnEmAtraso.Size = new System.Drawing.Size(96, 30);
@@ -357,7 +362,7 @@
             this.btnPendentes.BackColor = System.Drawing.Color.Gold;
             this.btnPendentes.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPendentes.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnPendentes.Location = new System.Drawing.Point(429, 278);
+            this.btnPendentes.Location = new System.Drawing.Point(6, 10);
             this.btnPendentes.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.btnPendentes.Name = "btnPendentes";
             this.btnPendentes.Size = new System.Drawing.Size(109, 30);
@@ -393,7 +398,7 @@
             // 
             this.pictureBox14.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox14.BackgroundImage")));
             this.pictureBox14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox14.Location = new System.Drawing.Point(439, 328);
+            this.pictureBox14.Location = new System.Drawing.Point(16, 60);
             this.pictureBox14.Name = "pictureBox14";
             this.pictureBox14.Size = new System.Drawing.Size(203, 80);
             this.pictureBox14.TabIndex = 142;
@@ -404,7 +409,7 @@
             // 
             this.pictureBox15.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox15.BackgroundImage")));
             this.pictureBox15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox15.Location = new System.Drawing.Point(439, 424);
+            this.pictureBox15.Location = new System.Drawing.Point(16, 156);
             this.pictureBox15.Name = "pictureBox15";
             this.pictureBox15.Size = new System.Drawing.Size(203, 80);
             this.pictureBox15.TabIndex = 143;
@@ -414,7 +419,7 @@
             // 
             this.pictureBox16.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox16.BackgroundImage")));
             this.pictureBox16.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox16.Location = new System.Drawing.Point(439, 520);
+            this.pictureBox16.Location = new System.Drawing.Point(16, 252);
             this.pictureBox16.Name = "pictureBox16";
             this.pictureBox16.Size = new System.Drawing.Size(203, 80);
             this.pictureBox16.TabIndex = 144;
@@ -424,7 +429,7 @@
             // 
             this.pictureBox17.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox17.BackgroundImage")));
             this.pictureBox17.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox17.Location = new System.Drawing.Point(677, 524);
+            this.pictureBox17.Location = new System.Drawing.Point(254, 256);
             this.pictureBox17.Name = "pictureBox17";
             this.pictureBox17.Size = new System.Drawing.Size(203, 80);
             this.pictureBox17.TabIndex = 147;
@@ -434,7 +439,7 @@
             // 
             this.pictureBox18.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox18.BackgroundImage")));
             this.pictureBox18.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox18.Location = new System.Drawing.Point(677, 428);
+            this.pictureBox18.Location = new System.Drawing.Point(254, 160);
             this.pictureBox18.Name = "pictureBox18";
             this.pictureBox18.Size = new System.Drawing.Size(203, 80);
             this.pictureBox18.TabIndex = 146;
@@ -444,7 +449,7 @@
             // 
             this.pictureBox19.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox19.BackgroundImage")));
             this.pictureBox19.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox19.Location = new System.Drawing.Point(677, 332);
+            this.pictureBox19.Location = new System.Drawing.Point(254, 64);
             this.pictureBox19.Name = "pictureBox19";
             this.pictureBox19.Size = new System.Drawing.Size(203, 80);
             this.pictureBox19.TabIndex = 145;
@@ -454,7 +459,7 @@
             // 
             this.pictureBox20.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox20.BackgroundImage")));
             this.pictureBox20.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox20.Location = new System.Drawing.Point(923, 524);
+            this.pictureBox20.Location = new System.Drawing.Point(500, 256);
             this.pictureBox20.Name = "pictureBox20";
             this.pictureBox20.Size = new System.Drawing.Size(203, 80);
             this.pictureBox20.TabIndex = 150;
@@ -464,7 +469,7 @@
             // 
             this.pictureBox21.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox21.BackgroundImage")));
             this.pictureBox21.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox21.Location = new System.Drawing.Point(923, 428);
+            this.pictureBox21.Location = new System.Drawing.Point(500, 160);
             this.pictureBox21.Name = "pictureBox21";
             this.pictureBox21.Size = new System.Drawing.Size(203, 80);
             this.pictureBox21.TabIndex = 149;
@@ -474,7 +479,7 @@
             // 
             this.pictureBox22.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox22.BackgroundImage")));
             this.pictureBox22.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox22.Location = new System.Drawing.Point(923, 332);
+            this.pictureBox22.Location = new System.Drawing.Point(500, 64);
             this.pictureBox22.Name = "pictureBox22";
             this.pictureBox22.Size = new System.Drawing.Size(203, 80);
             this.pictureBox22.TabIndex = 148;
@@ -492,31 +497,73 @@
             // 
             // webBrowserPdf
             // 
-            this.webBrowserPdf.Location = new System.Drawing.Point(893, 267);
+            this.webBrowserPdf.Location = new System.Drawing.Point(432, 134);
             this.webBrowserPdf.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowserPdf.Name = "webBrowserPdf";
-            this.webBrowserPdf.Size = new System.Drawing.Size(250, 215);
+            this.webBrowserPdf.Size = new System.Drawing.Size(76, 20);
             this.webBrowserPdf.TabIndex = 152;
+            // 
+            // panelKBS
+            // 
+            this.panelKBS.Controls.Add(this.flpF);
+            this.panelKBS.Controls.Add(this.flpC);
+            this.panelKBS.Controls.Add(this.flpP);
+            this.panelKBS.Controls.Add(this.pictureBox20);
+            this.panelKBS.Controls.Add(this.pictureBox21);
+            this.panelKBS.Controls.Add(this.pictureBox22);
+            this.panelKBS.Controls.Add(this.pictureBox17);
+            this.panelKBS.Controls.Add(this.pictureBox18);
+            this.panelKBS.Controls.Add(this.pictureBox19);
+            this.panelKBS.Controls.Add(this.pictureBox16);
+            this.panelKBS.Controls.Add(this.pictureBox15);
+            this.panelKBS.Controls.Add(this.pictureBox14);
+            this.panelKBS.Controls.Add(this.btnCompletadas);
+            this.panelKBS.Controls.Add(this.btnEmAtraso);
+            this.panelKBS.Controls.Add(this.btnPendentes);
+            this.panelKBS.Location = new System.Drawing.Point(423, 268);
+            this.panelKBS.Name = "panelKBS";
+            this.panelKBS.Size = new System.Drawing.Size(719, 362);
+            this.panelKBS.TabIndex = 153;
+            this.panelKBS.Paint += new System.Windows.Forms.PaintEventHandler(this.panelKBS_Paint);
+            // 
+            // flpC
+            // 
+            this.flpC.AutoScroll = true;
+            this.flpC.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.flpC.Location = new System.Drawing.Point(479, 43);
+            this.flpC.Name = "flpC";
+            this.flpC.Size = new System.Drawing.Size(241, 362);
+            this.flpC.TabIndex = 153;
+            this.flpC.Paint += new System.Windows.Forms.PaintEventHandler(this.flpC_Paint);
+            // 
+            // flpP
+            // 
+            this.flpP.AutoScroll = true;
+            this.flpP.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.flpP.Location = new System.Drawing.Point(0, 43);
+            this.flpP.Name = "flpP";
+            this.flpP.Size = new System.Drawing.Size(241, 362);
+            this.flpP.TabIndex = 152;
+            this.flpP.Paint += new System.Windows.Forms.PaintEventHandler(this.flpP_Paint);
+            // 
+            // flpF
+            // 
+            this.flpF.AutoScroll = true;
+            this.flpF.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.flpF.Location = new System.Drawing.Point(238, 43);
+            this.flpF.Name = "flpF";
+            this.flpF.Size = new System.Drawing.Size(241, 362);
+            this.flpF.TabIndex = 154;
+            this.flpF.Paint += new System.Windows.Forms.PaintEventHandler(this.flpF_Paint);
             // 
             // Planejamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.panelKBS);
             this.Controls.Add(this.webBrowserPdf);
             this.Controls.Add(this.flpPDFs);
-            this.Controls.Add(this.pictureBox20);
-            this.Controls.Add(this.pictureBox21);
-            this.Controls.Add(this.pictureBox22);
-            this.Controls.Add(this.pictureBox17);
-            this.Controls.Add(this.pictureBox18);
-            this.Controls.Add(this.pictureBox19);
-            this.Controls.Add(this.pictureBox16);
-            this.Controls.Add(this.pictureBox15);
-            this.Controls.Add(this.pictureBox14);
-            this.Controls.Add(this.btnCompletadas);
-            this.Controls.Add(this.btnEmAtraso);
-            this.Controls.Add(this.btnPendentes);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblPlanejamento);
@@ -563,6 +610,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
+            this.panelKBS.ResumeLayout(false);
+            this.panelKBS.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -607,5 +656,9 @@
         private System.Windows.Forms.PictureBox pictureBox22;
         private System.Windows.Forms.FlowLayoutPanel flpPDFs;
         private System.Windows.Forms.WebBrowser webBrowserPdf;
+        private System.Windows.Forms.Panel panelKBS;
+        private System.Windows.Forms.FlowLayoutPanel flpC;
+        private System.Windows.Forms.FlowLayoutPanel flpP;
+        private System.Windows.Forms.FlowLayoutPanel flpF;
     }
 }
