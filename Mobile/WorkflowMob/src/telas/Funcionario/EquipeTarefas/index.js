@@ -1,130 +1,179 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, Image, TextInput, TouchableOpacity, ScrollView} from 'react-native';
 import { getStyles } from './style';
+import { useFocusEffect } from '@react-navigation/native';
 import { useTheme } from '../../../styles/themecontext'
 import { Ionicons } from '@expo/vector-icons';
+
+import api from '../../../../services/api';
+
 
 export default function EquipeTarefas({ navigation, route }) {
   const { theme } = useTheme();
   const styles = getStyles(theme);
 
-  const { equipe } = route.params;
+  const equipe = route.params?.equipe || {}; 
+  const usuario = route.params?.usuario;
   
-  const [tarefas, setTarefas] = useState([
-    {
-      id: '1',
-      titulo: 'Tarefa 1',
-      descricao: 'lorem ipsum kwkkwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww',
-      cargo: 'Desenvolvimento de Software',
-      datadeentrega: '16/02/2025',
-      datadeenvio: '07/02/2025',
-      selproblema: false,
-      pendente: true,
-      atrasado: false,
-      completado: false,
-      imagem: require('../../../../assets/img/fotoexemplo.png'),
-    },
-    {
-      id: '2',
-      titulo: 'Tarefa 2',
-      descricao: 'lorem ipsum kwkkww',
-      cargo: 'Documentação',
-      datadeentrega: '20/02/2025',
-      datadeenvio: '07/02/2025',
-      selproblema: true,
-      pendente: false,
-      atrasado: true,
-      completado: false,
-      imagem: require('../../../../assets/img/image.png'),
-    },
-    {
-      id: '3',
-      titulo: 'Tarefa 3',
-      descricao: 'lorem ipsum kwkkww',
-      cargo: 'Design',
-      datadeentrega: '20/02/2025',
-      datadeenvio: '07/02/2025',
-      selproblema: false,
-      pendente: false,
-      atrasado: false,
-      completado: true,
-      imagem: require('../../../../assets/img/image.png'),
-    },
-    {
-      id: '4',
-      titulo: 'Tarefa 4',
-      descricao: 'lorem ipsum kwkkww',
-      cargo: 'Back-end',
-      datadeentrega: '20/02/2025',
-      datadeenvio: '07/02/2025',
-      selproblema: false,
-      pendente: false,
-      atrasado: false,
-      completado: true,
-      imagem: require('../../../../assets/img/image.png'),
-    },
-  ]);
+  const [dados, setDados] = useState([]);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [filtroAtivo, setFiltroAtivo] = useState('pendente');
+  const [termoBusca, setTermoBusca] = useState('');
+  const [usuarioState, setusuarioState] = useState(usuario);
+
+  
+  useFocusEffect(
+  React.useCallback(() => {
+    listarDados();
+  }, [])
+);
+
+  useEffect(() => {
+  if (route.params?.usuario) {
+    setusuarioState(route.params.usuario);
+  }
+}, [route.params?.usuario]);
+
+  //Lista Tarefas
+  async function listarDados() {
+    if (!equipe?.id_equipe) {
+      console.log("ID da Equipe não disponível");
+      return;
+    }
     
-    const [tarefaspendentes, setTarefaspendentes] = useState(true);
-    const [tarefasatrasadas, setTarefasatrasadas] = useState(false);
-    const [tarefascompletados, setTarefascompletados] = useState(false);
+    try {
+      setErrorMessage(null);
+      const res = await api.get(`dev4tec/tarefaadm.php`, {
+        params: { id_equipe: equipe.id_equipe }
+      });
 
-    const botaopendente = () => {
-      const tarefa = tarefas.find(
-          (item) => item.pendente === true
-        );
-        if (tarefa) {
-          setTarefaspendentes(true); 
-          setTarefasatrasadas(false); 
-          setTarefascompletados(false); 
-        } 
+      console.log('Resposta bruta:', res);
+      console.log('Dados:', JSON.stringify(res.data, null, 2)); 
+
+      if (res.data.success) {
+        // Calcular o status com base na data de entrega
+        const tarefasComStatus = res.data.result.map(tarefa => {
+          const entregue = Boolean(+tarefa.entregue);
+          const dataEntrega = new Date(tarefa.data_entrega);
+          const hoje = new Date();
+
+          let status = 'pendente';
+          if (entregue) {
+            status = 'concluido';
+          } else if (dataEntrega < hoje) {
+            status = 'atrasada';
+          } else {
+            status = 'pendente';
+          }
+
+          return {
+            ...tarefa,
+            status_tarefa: status,
+            pendente: status === 'pendente',
+            atrasada: status === 'atrasada',
+            concluido: status === 'concluido'
+          };
+        });
+        
+        setDados(tarefasComStatus);
+      } else {
+        console.log("Erro na API:", res.data.message);
+        setDados([]);
+      }
+    }
+    catch (error) {
+      console.log("Erro ao listar tarefas:", error);
+      setErrorMessage("Erro de conexão com o servidor");
+    }
+  }
+
+  useEffect(() => {
+    listarDados();
+  }, [usuarioState?.id]);
+
+
+  const filtrarTarefas = () => {
+    let tarefasFiltradas = dados;
+    
+    // Aplica filtro por status
+    switch(filtroAtivo) {
+      case 'pendente':
+        tarefasFiltradas = tarefasFiltradas.filter(item => item.status_tarefa === 'pendente');
+        break;
+      case 'atrasada':
+        tarefasFiltradas = tarefasFiltradas.filter(item => item.status_tarefa === 'atrasada');
+        break;
+      case 'concluido':
+        tarefasFiltradas = tarefasFiltradas.filter(item => item.status_tarefa === 'concluido');
+        break;
+      default:
+        // Mostra todas
+    }
+    
+    // Aplica filtro de busca
+    if (termoBusca) {
+      const termo = termoBusca.toLowerCase();
+      tarefasFiltradas = tarefasFiltradas.filter(item => 
+        item.nomeTarefa.toLowerCase().includes(termo) || 
+        item.instrucoes.toLowerCase().includes(termo)
+      );
+    }
+    
+    return tarefasFiltradas;
+  };
+
+  const renderTarefas = () => {
+    const tarefasFiltradas = filtrarTarefas();
+    
+    if (tarefasFiltradas.length === 0) {
+      return (
+        <Text style={[styles.texto, { textAlign: 'center', marginTop: 20 }]}>
+          Nenhuma tarefa {filtroAtivo} encontrada
+        </Text>
+      );
     }
 
-    const botaoatrasado = () => {
-      const tarefa = tarefas.find(
-          (item) => item.atrasado === true
-        );
-        if (tarefa) {
-          setTarefaspendentes(false); 
-          setTarefasatrasadas(true); 
-          setTarefascompletados(false); 
-        } 
-    }
-
-    const botaocompletado = () => {
-      const tarefa = tarefas.find(
-          (item) => item.completado === true
-        );
-        if (tarefa) {
-          setTarefaspendentes(false); 
-          setTarefasatrasadas(false); 
-          setTarefascompletados(true);  
-        } 
-    }
-  const renderTarefas = (filtro) =>
-    tarefas.filter(filtro).map((item) => (
+    return tarefasFiltradas.map((item, index) => (
       <TouchableOpacity
-        key={item.id}
-        onPress={() => navigation.navigate('TarefaEnvio', { tarefas: item })}
+        key={`${item.id_tarefa}-${index}`} 
+        onPress={() => navigation.navigate('TarefaEnvio', { tarefa: item })}
         style={styles.containertarefas}
       >
         <View style={styles.linhaTarefa}>
-          <Image source={item.imagem} style={styles.imag} />
+          <Image 
+            source={require('../../../../assets/img/image.png')} 
+            style={styles.imag} 
+          />
           <View style={styles.textosTarefa}>
-            <Text style={styles.textolistatitulo}>{item.titulo}</Text>
-            <Text style={styles.textolista}>{limitarTexto(item.descricao, 23)}</Text>
+            <Text style={styles.textolistatitulo}>{item.nomeTarefa}</Text>
+            <Text style={styles.textolista}>{limitarTexto(item.instrucoes, 23)}</Text>
           </View>
         </View>
 
         <View style={styles.linhaInfo}>
-          <Text style={styles.textolistacargo}>{item.cargo}</Text>
-          <Text style={styles.textolistadata}>{item.datadeentrega}</Text>
+          <Text style={styles.textolistacargo}>
+            {item.dificuldade} {/* Mostra os ícones de dificuldade */}
+          </Text>
+          <Text style={styles.textolistadata}>{item.data_entrega}</Text>
         </View>
       </TouchableOpacity>
-  ));
-  
+    ));
+  };
+
   function limitarTexto(texto, limite) {
     return texto.length > limite ? texto.substring(0, limite) + '...' : texto;
+  }
+
+
+  if (errorMessage) {
+    return (
+      <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
+        <Text style={{ color: 'red' }}>{errorMessage}</Text>
+        <TouchableOpacity onPress={listarDados}>
+          <Text style={{ color: theme.primary }}>Tentar novamente</Text>
+        </TouchableOpacity>
+      </View>
+    );
   }
 
   return (
@@ -143,10 +192,13 @@ export default function EquipeTarefas({ navigation, route }) {
         </View>
 
         <View style={styles.containertarefas2}>
-          <Image source={equipe.imagem} style={styles.imag} />
+          <Image 
+            source={equipe.foto_equipe ? { uri: equipe.foto_equipe } : require('../../../../assets/img/image.png')} 
+            style={styles.imag} 
+          />
           <View style={styles.textos}>
-            <Text style={styles.textolistatitulo}>{equipe.titulo}</Text>
-            <Text style={styles.textolistacargo}>{equipe.cargo}</Text>
+            <Text style={styles.textolistatitulo}>{equipe.nome_equipe}</Text>
+            <Text style={styles.textolistacargo}>{equipe.nome_categoria}</Text>
           </View>
         </View>
 
@@ -154,24 +206,24 @@ export default function EquipeTarefas({ navigation, route }) {
 
         <View style={styles.areabotao}>
           <TouchableOpacity
-            style={[styles.botao, { backgroundColor: tarefaspendentes ? '#1A5CFF' : theme.inputBackground }]}
-            onPress={botaopendente}
+            style={[styles.botao, { backgroundColor: filtroAtivo === 'pendente' ? '#1A5CFF' : theme.inputBackground }]}
+            onPress={() => setFiltroAtivo('pendente')}
           >
-            <Text style={[styles.textobotao, { color: tarefaspendentes ? theme.text4 : theme.text }]}>Pendente</Text>
+            <Text style={[styles.textobotao, { color: filtroAtivo === 'pendente' ? theme.text4 : theme.text }]}>Pendente</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={[styles.botao, { backgroundColor: tarefasatrasadas ? '#1A5CFF' : theme.inputBackground }]}
-            onPress={botaoatrasado}
+            style={[styles.botao, { backgroundColor: filtroAtivo === 'atrasada' ? '#1A5CFF' : theme.inputBackground }]}
+            onPress={() => setFiltroAtivo('atrasada')}
           >
-            <Text style={[styles.textobotao, { color: tarefasatrasadas ? theme.text4 : theme.text }]}>Atrasados</Text>
+            <Text style={[styles.textobotao, { color: filtroAtivo === 'atrasada' ? theme.text4 : theme.text }]}>Atrasados</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={[styles.botao, { backgroundColor: tarefascompletados ? '#1A5CFF' : theme.inputBackground }]}
-            onPress={botaocompletado}
+            style={[styles.botao, { backgroundColor: filtroAtivo === 'concluido' ? '#1A5CFF' : theme.inputBackground }]}
+            onPress={() => setFiltroAtivo('concluido')}
           >
-            <Text style={[styles.textobotao, { color: tarefascompletados ? theme.text4 : theme.text }]}>Completados</Text>
+            <Text style={[styles.textobotao, { color: filtroAtivo === 'concluido' ? theme.text4 : theme.text }]}>Completados</Text>
           </TouchableOpacity>
         </View>
 
@@ -180,11 +232,7 @@ export default function EquipeTarefas({ navigation, route }) {
           placeholder="🔍 Pesquisa uma tarefa"
           placeholderTextColor="#ffffff"
         />
-
-        {tarefaspendentes && renderTarefas(item => item.pendente)}
-        {tarefasatrasadas && renderTarefas(item => item.atrasado)}
-        {tarefascompletados && renderTarefas(item => item.completado)}
-
+        {renderTarefas()}
       </ScrollView>
     </View>
   );

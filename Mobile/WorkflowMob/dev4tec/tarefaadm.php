@@ -2,21 +2,21 @@
 include_once('conexao.php');
 
 // Obter o ID do funcionário
-$id_funcionario = $_GET['id_funcionario'] ?? null;
-error_log("ID do funcionário recebido: " . var_export($id_funcionario, true));
+$id_equipe = $_GET['id_equipe'] ?? null;
+error_log("ID da equipe recebido: " . var_export($id_equipe, true));
 
-if (empty($id_funcionario)) {
-    error_log("Erro: ID do funcionário não fornecido");
+if (empty($id_equipe)) {
+    error_log("Erro: ID da equipe não fornecido");
     echo json_encode([
         'success' => false,
-        'message' => 'ID do funcionário não fornecido',
+        'message' => 'ID da equipe não fornecido',
         'received_data' => $_GET
     ]);
     exit();
 }
 
 try {
-    error_log("Buscando tarefas para o funcionário ID: " . $id_funcionario);
+    error_log("Buscando tarefas para o funcionário ID: " . $id_equipe);
     
     // Consulta corrigida usando JOIN com Equipes_Membros
     $query = $pdo->prepare("SELECT 
@@ -27,20 +27,16 @@ try {
             EXISTS (
                 SELECT *
                 FROM EntregasTarefa et
-                JOIN Equipes_Membros em_sub ON et.id_equipe = em_sub.id_equipe
                 WHERE et.id_tarefa = t.id_tarefa
-                AND em_sub.FuncionarioId = :id_funcionario_exist
+                    AND et.id_equipe = t.id_equipe
             ) AS entregue
         FROM Tarefas t
-        JOIN Equipes e ON t.id_equipe = e.id_equipe
-        JOIN Equipes_Membros em ON t.id_equipe = em.id_equipe
-        WHERE em.FuncionarioId = :id_funcionario
+        WHERE t.id_equipe= :id_equipe
         ORDER BY t.data_entrega ASC");
     
     error_log("Consulta preparada com sucesso");
     
-    $query->bindValue(':id_funcionario', $id_funcionario, PDO::PARAM_INT);
-    $query->bindValue(':id_funcionario_exist', $id_funcionario, PDO::PARAM_INT);
+    $query->bindValue(':id_equipe', $id_equipe, PDO::PARAM_INT);
     $query->execute();
     error_log("Consulta executada com sucesso");
     
