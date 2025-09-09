@@ -7,6 +7,7 @@ import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
 import { Ionicons } from '@expo/vector-icons';
 
+import url from '../../../../services/url';
 import api from '../../../../services/api';
 import fonts from "../../../styles/fonts";
 
@@ -162,7 +163,7 @@ export default function EditEquipe({ navigation, route }) {
         formData.append('photo', { uri: image, name: filename, type });
 
         try {
-            const response = await fetch("http://10.239.0.124/dev4tec/upload_equipe2.php", {
+            const response = await fetch(`${url}/dev4tec/upload_equipe2.php`, {
                 method: 'POST',
                 body: formData,
             });

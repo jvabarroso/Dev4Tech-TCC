@@ -4,6 +4,8 @@ import { Card, Title, Paragraph } from 'react-native-paper';
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
 
+import url from '../../../../services/url';
+
 export default function HomeAdm({navigation, route}){
   const { theme } = useTheme();
   const styles = getStyles(theme);
@@ -25,7 +27,7 @@ export default function HomeAdm({navigation, route}){
 
     async function carregarImagens() {
       try {
-        const response = await fetch(`http://10.239.0.124/dev4tec/imagem_usuario.php`,{
+        const response = await fetch(`${url}/dev4tec/imagem_usuario.php`,{
             method:'POST',
             headers:{'Content-Type': 'application/json'},
             body: JSON.stringify({id: usuario.id, role: usuario.role})

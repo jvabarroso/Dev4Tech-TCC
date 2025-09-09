@@ -5,6 +5,7 @@ import { useTheme } from '../../../styles/themecontext'
 import { Ionicons } from '@expo/vector-icons';
 
 import api from '../../../../services/api';
+import url from '../../../../services/url';
 
 export default function EquipeFuncionario({ navigation, route }) {
   const { theme } = useTheme();
@@ -14,7 +15,7 @@ export default function EquipeFuncionario({ navigation, route }) {
   console.log("Equipe:", equipe);
 
   const [dados, setDados] = useState([]);
-  const BASE_URL = 'http://10.239.0.124/dev4tec/img/'
+  const BASE_URL = `${url}/dev4tec/img/`
   
   //Lista os funcionarios
   async function listarFuncionarios() {

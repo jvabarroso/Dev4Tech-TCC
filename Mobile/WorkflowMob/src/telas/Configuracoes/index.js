@@ -8,6 +8,8 @@ import api from '../../../services/api';
 import * as ImagePicker from "expo-image-picker";
 import FlashMessage, { showMessage } from "react-native-flash-message";
 
+import url from '../../../services/url';
+
 export default function Configuracoes({navigation, route}){
     const { theme, toggleTheme } = useTheme();
     const styles = getStyles(theme);
@@ -137,7 +139,7 @@ export default function Configuracoes({navigation, route}){
       formData.append("id", usuarioState.id);
 
       try {
-        const response = await fetch("http://10.239.0.124/dev4tec/upload_usuario.php", {
+        const response = await fetch(`${url}/dev4tec/upload_usuario.php`, {
           method: 'POST',
           body: formData,
         });
@@ -189,7 +191,7 @@ export default function Configuracoes({navigation, route}){
     async function carregarImagens() {
       try {
         const response = await fetch(
-          `http://10.239.0.124/dev4tec/imagem_usuario.php`,{
+          `${url}/dev4tec/imagem_usuario.php`,{
             method:'POST',
             headers:{'Content-Type': 'application/json'},
             body: JSON.stringify({ id: usuarioState.id, role: usuarioState.role })

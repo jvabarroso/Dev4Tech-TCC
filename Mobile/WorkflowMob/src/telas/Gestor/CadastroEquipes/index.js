@@ -5,8 +5,9 @@ import { showMessage } from "react-native-flash-message";
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
 import { Ionicons } from '@expo/vector-icons';
-
 import * as ImagePicker from "expo-image-picker";
+
+import url from '../../../../services/url';
 import api from '../../../../services/api';
 import fonts from "../../../styles/fonts";
 
@@ -105,7 +106,7 @@ export default function CadastroEquipes({ route, navigation}){
         formData.append('photo', { uri: image, name: filename, type });
 
         try {
-            const response = await fetch("http://10.239.0.124/dev4tec/upload_equipe.php", {
+            const response = await fetch(`${url}/dev4tec/upload_equipe.php`, {
                 method: 'POST',
                 body: formData,
             });
