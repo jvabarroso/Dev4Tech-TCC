@@ -25,22 +25,18 @@ try {
             t.instrucoes,
             DATE_FORMAT(t.data_entrega, '%Y-%m-%d') AS data_entrega,
             EXISTS (
-                SELECT 1 
+                SELECT *
                 FROM EntregasTarefa et
-                JOIN Equipes_Membros em_sub ON et.id_equipe = em_sub.id_equipe
                 WHERE et.id_tarefa = t.id_tarefa
-                AND em_sub.FuncionarioId = :id_funcionario_exist
+                    AND et.id_equipe = t.id_equipe
             ) AS entregue
         FROM Tarefas t
-        JOIN Equipes e ON t.id_equipe = e.id_equipe
-        JOIN Equipes_Membros em ON t.id_equipe = em.id_equipe
-        WHERE t.id_equipe= :id_funcionario
+        WHERE t.id_equipe= :id_equipe
         ORDER BY t.data_entrega ASC");
     
     error_log("Consulta preparada com sucesso");
     
     $query->bindValue(':id_equipe', $id_equipe, PDO::PARAM_INT);
-    $query->bindValue(':id_funcionario_exist', $id_funcionario, PDO::PARAM_INT);
     $query->execute();
     error_log("Consulta executada com sucesso");
     

@@ -4,80 +4,58 @@ import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
 import { Ionicons } from '@expo/vector-icons';
 
+import api from '../../../../services/api';
+
 export default function EquipeRanking({ navigation, route}) {
   const { theme } = useTheme();
   const styles = getStyles(theme);
 
-  const { equipe } = route.params;
+  const equipe = route.params?.equipe || {}; 
+  const usuario = route.params?.usuario;
+  const BASE_URL = `${url}/dev4tec/img/`
   
-  const [funcionario, setFuncionario] = useState([
-    {
-        id: '1',
-        nome: 'Gabriel Kenzo Takeuchi',
-        datadenascimento: "16/05/1980",
-        email: 'kenzo@empresa.com',
-        telefone: 13982176670,
-        endereco: "Rua João da Fonseca, 123 - Jardim Mato Grosso, Cananeia/SP",
-        cargo: "Desenvolvedor Web Sênior",
-        equipe: null,
-        tarefaspostadas: 30,
-        tarefasatrasadas:9,
-        tarefasnaoentregues: 10,
-        senha: '1234',
-        imagem: require('../../../../assets/img/fotoexemplo.png'),
-    },
-    {
-        id: '2',
-        nome: 'Leonardo Silva',
-        datadenascimento: "22/11/1992",
-        email: 'leonardo.silva@empresa.com',
-        telefone: 11987654321,
-        endereco: "Av. Paulista, 1000 - São Paulo/SP",
-        cargo: "Designer UX/UI",
-        equipe: null,
-        tarefaspostadas: 30,
-        tarefasatrasadas:9,
-        tarefasnaoentregues: 10,
-        senha: 'abcd123',
-        imagem: require('../../../../assets/img/fotoexemplo.png'),
-    },
-    {
-        id: '3',
-        nome: 'Ana Carolina Oliveira',
-        datadenascimento: "05/03/1985",
-        email: 'ana.oliveira@empresa.com',
-        telefone: 21999887766,
-        endereco: "Rua das Flores, 45 - Rio de Janeiro/RJ",
-        cargo: "Gerente de Projetos",
-        equipe: null,
-        tarefaspostadas: 10,
-        tarefasatrasadas:2,
-        tarefasnaoentregues: 2,
-        senha: 'ana2023',
-        imagem: require('../../../../assets/img/fotoexemplo.png'),
-    },
-    {
-        id: '4',
-        nome: 'Carlos Eduardo Santos',
-        datadenascimento: "30/07/1990",
-        email: 'carlos.santos@empresa.com',
-        telefone: 31988776655,
-        endereco: "Av. Afonso Pena, 2000 - Belo Horizonte/MG",
-        cargo: "Analista de Dados",
-        equipe: null,
-        tarefaspostadas: 10,
-        tarefasatrasadas:2,
-        tarefasnaoentregues: 2,
-        senha: 'carlos123',
-        imagem: require('../../../../assets/img/fotoexemplo.png'),
-    },
-  ]);
+  const [termoBusca, setTermoBusca] = useState('');
+  const [dados, setDados] = useState([]);
 
-  const equipeOrdenada = [...funcionario].sort((a, b) => {
-    const scoreA = a.tarefaspostadas - (a.tarefasnaoentregues * 2 + a.tarefasatrasadas);
-    const scoreB = b.tarefaspostadas - (b.tarefasnaoentregues * 2 + b.tarefasatrasadas);
-    return scoreB - scoreA;
-  }); //Por enquanto manter assim, depois mudar para se tornar mais dinamico.
+
+  //Lista Equipes em ordem de pontuação
+  async function listarDados() {
+    try {
+      const res = await api.get(`dev4tec/ranking.php`, {
+      params: {id_equipe: equipe.id_equipe }
+    });
+
+    if (res.data.success) {
+      setDados(res.data.result || []);
+    } else {
+        console.log("Erro na API:", res.data.message);
+        setDados([]);
+      }
+    }
+    catch (error) {
+      console.log("Erro ao listar as Equipes", error);
+    }
+  }
+
+  useEffect(() => {
+    listarDados();
+  }, [equipe?.id_equipe]);
+
+  //Filtra equipes pela busca
+  const filtrarEquipes = () => {
+    let equipesFiltradas = dados;
+    
+    // Aplica filtro de busca
+    if (termoBusca) {
+      const termo = termoBusca.toLowerCase();
+      equipesFiltradas = equipesFiltradas.filter(item => 
+        item.nome_equipe.toLowerCase().includes(termo) || 
+        item.nome_categoria.toLowerCase().includes(termo)
+      );
+    }
+    return equipesFiltradas;
+  };
+
 
   return (
     <View style={styles.container}>
@@ -106,21 +84,24 @@ export default function EquipeRanking({ navigation, route}) {
             style={styles.navinput}
             placeholder="🔍 Pesquisar funcionário"
             placeholderTextColor="#ffffff"
+            value={termoBusca}
+            onChangeText={setTermoBusca}
           />
 
-        {funcionario.map((item, index)=> (
-          <View 
-            key={item.id} 
-            style={styles.containertarefas}
-          >   
-            <Text style={styles.colocacao}>{index + 1}º</Text>
-            <Image source={item.imagem} style={styles.imag} />
+        {dados.map((item)=> {
+          const posicaoOriginal = dados.findIndex((d) => d.id_equipe === item.id_equipe);
+          <View key={item.FuncionarioId} style={styles.containertarefas}>   
+            <Text style={styles.colocacao}>{posicaoOriginal + 1}º</Text>
+              <Image 
+                source={item.foto_perfil ?  { uri: `${BASE_URL}${item.foto_perfil}?t=${new Date().getTime()}` } : require('../../../../assets/img/image.png')} 
+                style={styles.imag} 
+              />
             <View style={styles.textos}>
               <Text style={styles.textolistatitulo}>{item.nome}</Text>
               <Text style={styles.textolistacargo}>{item.cargo}</Text>
             </View>
           </View>
-        ))}
+        })}
         </ScrollView>
       </View>
   );

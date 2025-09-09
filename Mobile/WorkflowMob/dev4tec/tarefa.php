@@ -25,7 +25,7 @@ try {
             t.instrucoes,
             DATE_FORMAT(t.data_entrega, '%Y-%m-%d') AS data_entrega,
             EXISTS (
-                SELECT 1 
+                SELECT *
                 FROM EntregasTarefa et
                 JOIN Equipes_Membros em_sub ON et.id_equipe = em_sub.id_equipe
                 WHERE et.id_tarefa = t.id_tarefa

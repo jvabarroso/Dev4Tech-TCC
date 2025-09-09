@@ -148,7 +148,7 @@ export default function Equipes({ route, navigation }) {
                       <Card.Cover source={require('../../../../assets/img/equipes.png')} style={styles.imagemcard} />
                       <Card.Content style={styles.cardinferior}>
                         <Title style={styles.titulocard}>Funcionarios</Title>
-                        <Paragraph style={styles.paragraph}>The point of using Lorem Ipsum is that....</Paragraph>
+                        <Paragraph style={styles.paragraph}>Vejas os membros da Equipe</Paragraph>
                         <View style={styles.linhainfer}>
                           <Text style={styles.data}>16/07/20</Text>
                           <Text style={styles.Entre}>Entre aqui</Text>
@@ -167,7 +167,7 @@ export default function Equipes({ route, navigation }) {
                       <Card.Cover source={require('../../../../assets/img/tarefas.png')} style={styles.imagemcard} />
                       <Card.Content style={styles.cardinferior}>
                         <Title style={styles.titulocard}>Tarefas</Title>
-                        <Paragraph style={styles.paragraph}>The point of using Lorem Ipsum is that....</Paragraph>
+                        <Paragraph style={styles.paragraph}>Vejas as Tarefas da equipe</Paragraph>
                         <View style={styles.linhainfer}>
                           <Text style={styles.data}>16/07/20</Text>
                           <Text style={styles.Entre}>Entre aqui</Text>
@@ -187,7 +187,7 @@ export default function Equipes({ route, navigation }) {
                       <Card.Cover source={require('../../../../assets/img/ranking.png')} style={styles.imagemcard} />
                       <Card.Content style={styles.cardinferior}>
                         <Title style={styles.titulocard}>Ranking</Title>
-                        <Paragraph style={styles.paragraph}>The point of using Lorem Ipsum is that....</Paragraph>
+                        <Paragraph style={styles.paragraph}>Veja sua posição entre os membros</Paragraph>
                         <View style={styles.linhainfer}>
                           <Text style={styles.data}>16/07/20</Text>
                           <Text style={styles.Entre}>Entre aqui</Text>
