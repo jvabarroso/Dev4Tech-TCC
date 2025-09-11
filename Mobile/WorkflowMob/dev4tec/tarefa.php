@@ -23,7 +23,10 @@ try {
             t.id_tarefa,
             t.nomeTarefa,
             t.instrucoes,
+            e.nome_equipe,
+            e.id_equipe,
             DATE_FORMAT(t.data_entrega, '%Y-%m-%d') AS data_entrega,
+            DATE_FORMAT(t.data_criacao, '%Y-%m-%d') AS data_criacao,
             EXISTS (
                 SELECT *
                 FROM EntregasTarefa et

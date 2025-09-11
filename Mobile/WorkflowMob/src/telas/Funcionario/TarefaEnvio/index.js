@@ -4,18 +4,26 @@ import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
 import { LayoutAnimation, UIManager, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import FlashMessage, { showMessage } from "react-native-flash-message";
+import * as DocumentPicker from 'expo-document-picker';
+
+import url from '../../../../services/url';
+import api from '../../../../services/api';
 
 export default function TarefaEnvio({ navigation, route }) {
     const { theme } = useTheme();
     const styles = getStyles(theme);
 
     const tarefa = route.params?.tarefa || {}; 
+    const usuario = route.params?.usuario || {}; 
 
     const [descricaoExpandida, setDescricaoExpandida] = useState(false);
     const [modalVisivel, setModalVisivel] = useState(false);
     const [problema, setProblema] = useState('');
     const [problemasEnviados, setProblemasEnviados] = useState([]);
     const [tarefaLocal, setTarefaLocal] = useState({ ...tarefa  });
+    const [file, setFile] = useState(null);
+    const [sucess, setSucess] = useState(false);
 
 
     if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
@@ -27,14 +35,162 @@ export default function TarefaEnvio({ navigation, route }) {
         setDescricaoExpandida(!descricaoExpandida);
     };
 
+    //Seleciona o Arquivo
+    async function pickDocument() {
+        try {
+        const result = await DocumentPicker.getDocumentAsync({
+            type: "*/*", // aceita qualquer tipo de arquivo
+            copyToCacheDirectory: true,
+        });
+
+        if (result.canceled) {
+            console.log("Usuário cancelou a seleção");
+            return;
+        }
+
+        console.log(result);
+        setFile(result.assets[0]); // Pega o arquivo selecionado
+        } catch (err) {
+        console.error("Erro ao selecionar documento:", err);
+        }
+    }
+
+    //Envia o Arquivo
+    async function uploadFile() {
+        if (!file) {
+            showMessage({
+            message: 'Nenhuma arquivo selecionada.',
+            description: 'Por favor, selecione ou tire uma foto primeiro.',
+            floating: true,
+            statusBarHeight: 70,
+            type: "danger",
+            duration: 2000,             
+            });
+            return false;
+        };
+
+        let filename = file.split('/').pop();
+        let match = /\.(\w+)$/.exec(filename);
+        let type = match ? `file/${match[1]}` : `file`;
+
+        let formData = new FormData();
+        formData.append("file", { uri: file, name: filename,type });
+
+        try {
+            const res = await fetch(`${url}/upload_arquivos.php`, {
+                method: "POST",
+                body: formData
+        });
+
+        const text = await response.text();
+        let resJson;
+            
+        try {
+            resJson = JSON.parse(text);
+        } catch (e) {
+            console.error("Erro ao converter JSON:", e);
+        }
+
+        if (response.ok && resJson.success) {        
+            showMessage({
+                message: 'Sucesso.',
+                description: 'Imagem enviada com sucesso!',
+                floating: true,
+                statusBarHeight: 70,
+                type: "success",
+                duration: 2000,             
+        });
+        return resJson.file;
+            
+        } else {
+            showMessage({
+            message: 'Erro.',
+            description: resJson.message || "Falha ao enviar imagem.",
+            floating: true,
+            statusBarHeight: 70,
+            type: "warning",
+            duration: 2000,             
+            });
+            return false;
+        }
+    } catch (error) {
+        console.error(error);
+        showMessage({
+            message: 'Erro.',
+            description: "Ocorreu um erro ao tentar enviar a imagem.",
+            floating: true,
+            statusBarHeight: 70,
+            type: "warning",
+            duration: 2000,             
+        });
+        return false;
+        }
+    }
+
+    //Relata o problema
+    async function relatoproblema() {      
+        try {
+            const res = await api.post('dev4tec/relatoproblema.php', {
+                id_tarefa : tarefa.id_tarefa, 
+                id_equipe : tarefa.id_equipe, 
+                descricao : problema, 
+                id_empresa: usuario.id_empresa,
+            });
+
+            if (res.data.sucesso === false) {
+
+            showMessage({
+                message: "Erro ao Relatar o problema",
+                description: res.data.mensagem,
+                floating: true,
+                statusBarHeight: 70,
+                type: "warning",
+                duration: 3000,                    
+            });            
+            return;
+            }
+
+            setSucess(true);
+                showMessage({
+                message: "Relatado com sucesso com Sucesso",
+                description: "Relato Registrado",
+                floating: true,
+                statusBarHeight: 70,
+                type: "success",
+                duration: 2000,             
+            });         
+
+            } 
+        catch (error) {
+            console.log("Erro no envio do relato:", error.message);
+            if (error.response) {
+                console.log("RESPOSTA DO SERVIDOR:", error.response.data);
+            }
+            if (error.request) {
+                console.log("SEM RESPOSTA, REQUEST:", error.request);
+            }
+            setSucess(false);
+            showMessage({
+                message: "Tente novamente.",
+                description: res.data.mensagem,
+                floating: true,
+                statusBarHeight: 70,
+                type: "warning",
+                duration: 3000,                    
+            });  
+        }
+        
+    }   
+
+    //Envia a mensagem
     const enviarProblema = () => {
+        relatoproblema()
         if (problema.trim()) {
                 setProblemasEnviados([...problemasEnviados, problema]);
                 setProblema('');
                 setTarefaLocal({ ...tarefaLocal, selproblema: true }); //ajustado :D
         }
     };
-
     return (
         <View style={styles.container}>
             <ScrollView 
@@ -54,17 +210,13 @@ export default function TarefaEnvio({ navigation, route }) {
                 </View>
 
                 <View style={styles.areadetalhes}>
-                    <Image 
-                        source={tarefa.imagem ? { uri: tarefa.imagem } : require('../../../../assets/img/image.png')} 
-                        style={styles.imag} 
-                    />
                     <Text style={styles.titulotarefa}>{tarefa.nomeTarefa}</Text>
 
                     {tarefaLocal.selproblema && (
                     <Ionicons name="warning-outline" size={24} color="red" style={{ marginTop: 5 }} />
                     )}
 
-                    <Text style={styles.datadeenvio}>Postado em {tarefa.data_atribuicao}</Text>
+                    <Text style={styles.datadeenvio}>Postado em {tarefa.data_criacao}</Text>
                     
                     {tarefaLocal.selproblema && (
                         <View style={[styles.textoproblem, styles.problem]}>
@@ -108,9 +260,9 @@ export default function TarefaEnvio({ navigation, route }) {
                         <Text style={styles.subtitulos}>MEU TRABALHO</Text>
                         <TouchableOpacity 
                             style={styles.botaomostrar}
-                            onPress={() => setModalVisivel(true)}
+                            onPress={pickDocument}
                         >
-                            <Text style={styles.textoadd}>Anexar um arquivo</Text>
+                            <Text style={styles.textoadd}>Anexar um arquivo {file ? `|| ${file.name}` : ""}</Text>
                         </TouchableOpacity>
                         
                         {!tarefaLocal.selproblema && (
@@ -179,7 +331,7 @@ export default function TarefaEnvio({ navigation, route }) {
                                 />
                                 <TouchableOpacity 
                                     style={styles.botaoenviar}
-                                    onPress={enviarProblema}
+                                    onPress={relatoproblema}
                                 >
                                     <Ionicons name="paper-plane-outline" size={24} color="#1C58F2" style={styles.iconSobreposto} /> 
                                     
@@ -187,6 +339,7 @@ export default function TarefaEnvio({ navigation, route }) {
                             </View>
                         </View>
                     </View>
+                <FlashMessage position="top" />
                 </View>
             </Modal>
         </View>
