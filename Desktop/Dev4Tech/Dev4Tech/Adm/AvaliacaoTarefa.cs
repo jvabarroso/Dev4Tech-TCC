@@ -9,10 +9,9 @@ namespace Dev4Tech
         public void SalvarAvaliacao(int idTarefa, bool aceita, bool? atrasoJustificado)
         {
             string query = @"
-                INSERT INTO AvaliacaoTarefa (id_tarefa, aceita, atraso_justificado)
-                VALUES (@idTarefa, @aceita, @atraso)
-                ON DUPLICATE KEY UPDATE aceita = @aceita, atraso_justificado = @atraso";
-
+        INSERT INTO AvaliacaoTarefa (id_tarefa, aceita, atraso_justificado)
+        VALUES (@idTarefa, @aceita, @atrasoJustificado)
+        ON DUPLICATE KEY UPDATE aceita = VALUES(aceita), atraso_justificado = VALUES(atraso_justificado)";
             if (abrirConexao())
             {
                 try
@@ -21,16 +20,10 @@ namespace Dev4Tech
                     cmd.Parameters.AddWithValue("@idTarefa", idTarefa);
                     cmd.Parameters.AddWithValue("@aceita", aceita);
                     if (atrasoJustificado.HasValue)
-                        cmd.Parameters.AddWithValue("@atraso", atrasoJustificado.Value);
+                        cmd.Parameters.AddWithValue("@atrasoJustificado", atrasoJustificado.Value);
                     else
-                        cmd.Parameters.AddWithValue("@atraso", DBNull.Value);
+                        cmd.Parameters.AddWithValue("@atrasoJustificado", DBNull.Value);
                     cmd.ExecuteNonQuery();
-
-                    // Se a tarefa for aceita (e atraso justificado ou dentro do prazo), computa pontos do funcionário
-                    if (aceita)
-                    {
-                        PontuarFuncionarios(idTarefa, atrasoJustificado);
-                    }
                 }
                 finally
                 {
@@ -38,6 +31,39 @@ namespace Dev4Tech
                 }
             }
         }
+
+
+        public void ComputarPontosSeAprovado(int idTarefa)
+        {
+            AvaliacaoTarefa avaliacao = new AvaliacaoTarefa();
+            var avaliacaoInfo = avaliacao.BuscarAvaliacaoPorTarefa(idTarefa);
+
+            if (avaliacaoInfo != null && avaliacaoInfo.Aceita == true)
+            {
+                bool? atrasoJustificado = avaliacaoInfo.AtrasoJustificado;
+                if (atrasoJustificado == false)
+                    return; // Não pontua se atraso não justificado
+
+                EntregaTarefa entregaTarefa = new EntregaTarefa();
+                var entregas = entregaTarefa.BuscarEntregasPorTarefa(idTarefa);
+                if (entregas == null || entregas.Rows.Count == 0) return;
+                var tarefa = entregaTarefa.BuscarTarefaPorId(idTarefa);
+                if (tarefa == null) return;
+
+                string dificuldade = (tarefa["dificuldade"]?.ToString().ToLower()) ?? "facil";
+                int pontos = 5;
+                if (dificuldade == "fácil") pontos = 10;
+                else if (dificuldade == "média" || dificuldade == "mediana") pontos = 20;
+                else if (dificuldade == "difícil") pontos = 30;
+
+                foreach (DataRow row in entregas.Rows)
+                {
+                    int idFuncionario = Convert.ToInt32(row["FuncionarioId"]);
+                    avaliacao.AtualizarPontuacaoFuncionario(idFuncionario, pontos);
+                }
+            }
+        }
+
 
         private void PontuarFuncionarios(int idTarefa, bool? atrasoJustificado)
         {
@@ -185,5 +211,46 @@ namespace Dev4Tech
             return dt;
         }
 
+        public class AvaliacaoInfo
+        {
+            public bool? Aceita { get; set; }
+            public bool? AtrasoJustificado { get; set; }
+        }
+
+        public AvaliacaoInfo BuscarAvaliacaoPorTarefa(int idTarefa)
+        {
+            AvaliacaoInfo avaliacao = null;
+            string query = "SELECT aceita, atraso_justificado FROM AvaliacaoTarefa WHERE id_tarefa = @idTarefa";
+            if (abrirConexao())
+            {
+                try
+                {
+                    using (MySqlCommand cmd = new MySqlCommand(query, conectar))
+                    {
+                        cmd.Parameters.AddWithValue("@idTarefa", idTarefa);
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                avaliacao = new AvaliacaoInfo();
+                                if (!reader.IsDBNull(0))
+                                    avaliacao.Aceita = reader.GetBoolean(0);
+                                else
+                                    avaliacao.Aceita = null;
+                                if (!reader.IsDBNull(1))
+                                    avaliacao.AtrasoJustificado = reader.GetBoolean(1);
+                                else
+                                    avaliacao.AtrasoJustificado = null;
+                            }
+                        }
+                    }
+                }
+                finally
+                {
+                    fecharConexao();
+                }
+            }
+            return avaliacao;
+        }
     }
 }
