@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\planejamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\planejamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|c:\\users\\joao.barroso\\desktop\\dev4tech-tcc\\desktop\\dev4tech\\dev4tech\\planejamentosql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\planejamentosql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\planejamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\planejamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|c:\\users\\joao.barroso\\desktop\\dev4tech-tcc\\desktop\\dev4tech\\dev4tech\\planejamentosql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\planejamentosql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\planejamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\planejamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\tela_tarefa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -46,25 +46,12 @@
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
-      "VerticalTabListWidth": 256,
+      "VerticalTabListWidth": 100,
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Program.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\Program.cs",
-              "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Program.cs",
-              "RelativeToolTip": "Dev4Tech\\Program.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAAwBIAAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-06T02:15:24.959Z",
-              "IsPinned": true
-            },
             {
               "$type": "Document",
               "DocumentIndex": 8,
@@ -77,6 +64,31 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-31T14:32:24.403Z",
               "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "planejamentoSQL.cs",
+              "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\planejamentoSQL.cs",
+              "RelativeDocumentMoniker": "Dev4Tech\\planejamentoSQL.cs",
+              "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\planejamentoSQL.cs",
+              "RelativeToolTip": "Dev4Tech\\planejamentoSQL.cs",
+              "ViewState": "AgIAANYAAAAAAAAAAAA5wOQAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-08T16:17:17.436Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Program.cs",
+              "RelativeDocumentMoniker": "Dev4Tech\\Program.cs",
+              "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Program.cs",
+              "RelativeToolTip": "Dev4Tech\\Program.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwBIAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T02:15:24.959Z"
             },
             {
               "$type": "Document",
@@ -126,41 +138,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "planejamentoSQL.cs",
-              "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\planejamentoSQL.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\planejamentoSQL.cs",
-              "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\planejamentoSQL.cs",
-              "RelativeToolTip": "Dev4Tech\\planejamentoSQL.cs",
-              "ViewState": "AgIAAH8AAAAAAAAAAAAowJMAAAA8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-08T16:17:17.436Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Planejamento.cs",
               "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Planejamento.cs",
               "RelativeDocumentMoniker": "Dev4Tech\\Planejamento.cs",
               "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Planejamento.cs",
               "RelativeToolTip": "Dev4Tech\\Planejamento.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAA1wBkAAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAAD4CAAAAAAAAAAAAAEkCAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-08T14:18:44.008Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-08T14:18:44.008Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Planejamento.cs [Design]",
               "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Planejamento.cs",
               "RelativeDocumentMoniker": "Dev4Tech\\Planejamento.cs",
               "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Planejamento.cs [Design]",
               "RelativeToolTip": "Dev4Tech\\Planejamento.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-08T14:18:38.412Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-09-08T14:18:38.412Z"
             },
             {
               "$type": "Document",

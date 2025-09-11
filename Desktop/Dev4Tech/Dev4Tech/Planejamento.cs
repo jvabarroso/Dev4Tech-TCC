@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -21,10 +20,70 @@ namespace Dev4Tech
         }
         private void Planejamento_Load(object sender, EventArgs e)
         {
-            CarregarTarefasPendentesDoFuncionario();
-            var tarefas = BuscarTarefasDoFuncionario();
-            PopularKanban(tarefas);
+            try
+            {
+                var funcionario = Sessao.FuncionarioLogado;
+                if (funcionario == null)
+                {
+                    MessageBox.Show("Funcionário não está logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int idFuncionario = int.Parse(funcionario.getFuncionarioId());
+                var idsEquipes = dbPlanejamento.ObterIdsEquipesFuncionario(idFuncionario);
+
+                if (idsEquipes.Count == 0)
+                {
+                    MessageBox.Show("Funcionário não pertence a nenhuma equipe.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                flpP.Controls.Clear();
+
+                var tarefas = dbPlanejamento.ObterTarefasPendentesPorEquipesComArquivo(idsEquipes);
+                string pastaArquivos = @"C:\Dev4Tech\ArquivosTarefas";
+
+                foreach (var tarefa in tarefas)
+                {
+                    string caminhoPdf = Path.Combine(pastaArquivos, tarefa.NomeArquivo);
+                    if (!File.Exists(caminhoPdf))
+                        continue;
+
+                    string pastaTemporaria = dbPlanejamento.CriarPastaTemporaria();
+                    var paginasPdf = dbPlanejamento.DividirPdfEmPaginas(caminhoPdf, pastaTemporaria);
+
+                    DateTime dataEntrega = dbPlanejamento.ObterDataEntregaTarefa(tarefa.IdTarefa);
+                    string statusTarefa = dbPlanejamento.ObterStatusTarefa(tarefa.IdTarefa);
+                    List<Image> avatares = dbPlanejamento.ObterAvataresPorTarefa(tarefa.IdTarefa);
+
+                    foreach (var paginaPdf in paginasPdf)
+                    {
+                        Panel card = CriarCardTarefa(
+                            Path.GetFileNameWithoutExtension(paginaPdf),
+                            dataEntrega,
+                            avatares
+                        );
+                        card.Tag = paginaPdf;
+
+                        card.Click += (senderCard, eCard) =>
+                        {
+                            string arquivo = ((Panel)senderCard).Tag.ToString();
+                            AbrirPdfExternamente(arquivo);
+                        };
+
+                        if (statusTarefa == "Pendente")
+                        {
+                            flpP.Controls.Add(card);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar tarefas pendentes: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
 
 
         public class TarefaModelo
@@ -32,7 +91,7 @@ namespace Dev4Tech
             public int IdTarefa { get; set; }
             public string Titulo { get; set; }
             public DateTime DataEntrega { get; set; }
-            public string Status { get; set; }  // "Pendente", "Fazendo", "Concluída"
+            public string Status { get; set; } 
             public List<Image> Avatares { get; set; }
         }
 
@@ -159,14 +218,6 @@ namespace Dev4Tech
                 }
             };
         }
-
-
-
-
-
-
-
-
         private void btnPendentes_Click(object sender, EventArgs e)
         {
             // Implementar filtro pendentes
@@ -443,90 +494,6 @@ namespace Dev4Tech
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao carregar PDFs: " + ex.Message);
-            }
-        }
-
-        private void CarregarTarefasPendentesDoFuncionario()
-        {
-            try
-            {
-                var funcionario = Sessao.FuncionarioLogado;
-                if (funcionario == null)
-                {
-                    MessageBox.Show("Funcionário não está logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                int idFuncionario = int.Parse(funcionario.getFuncionarioId());
-
-                // Obtem os ids das equipes do funcionário
-                var idsEquipes = dbPlanejamento.ObterIdsEquipesFuncionario(idFuncionario);
-                if (idsEquipes.Count == 0)
-                {
-                    MessageBox.Show("Funcionário não pertence a nenhuma equipe.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
-                // Obtem as tarefas pendentes das equipes que possuem arquivo
-                var tarefas = dbPlanejamento.ObterTarefasPendentesPorEquipesComArquivo(idsEquipes);
-
-                flpPDFs.Controls.Clear();
-
-                string pastaArquivos = @"C:\Dev4Tech\ArquivosTarefas";
-
-                foreach (var tarefa in tarefas)
-                {
-                    string caminhoPdf = Path.Combine(pastaArquivos, tarefa.NomeArquivo);
-                    if (!File.Exists(caminhoPdf))
-                        continue;
-
-                    string pastaTemporaria = dbPlanejamento.CriarPastaTemporaria();
-
-                    dbPlanejamento.DividirPdfEmPaginas(caminhoPdf, pastaTemporaria);
-
-                    var paginasPdf = Directory.GetFiles(pastaTemporaria, "*.pdf").ToList();
-
-                    foreach (var pagina in paginasPdf)
-                    {
-                        Panel painelPagina = new Panel
-                        {
-                            Width = 150,
-                            Height = 200,
-                            BorderStyle = BorderStyle.FixedSingle,
-                            Margin = new Padding(10),
-                            Tag = pagina
-                        };
-
-                        Button btnAbrirPdf = new Button
-                        {
-                            Text = Path.GetFileName(pagina),
-                            Dock = DockStyle.Bottom,
-                            Height = 30
-                        };
-
-                        btnAbrirPdf.Click += (s, e) =>
-                        {
-                            string arquivo = ((Button)s).Parent.Tag.ToString();
-                            AbrirPdfExternamente(arquivo);
-                        };
-
-
-                        PictureBox picThumbnail = new PictureBox
-                        {
-                            Image = Properties.Resources.icon_documento_blue,
-                            SizeMode = PictureBoxSizeMode.Zoom,
-                            Dock = DockStyle.Fill
-                        };
-
-                        painelPagina.Controls.Add(picThumbnail);
-                        painelPagina.Controls.Add(btnAbrirPdf);
-                        flpPDFs.Controls.Add(painelPagina);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao carregar as tarefas pendentes: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
