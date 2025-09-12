@@ -43,8 +43,10 @@ namespace Dev4Tech
         // Evento para anexar arquivo
         private void BtnAnexarArquivos_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Todos os arquivos (*.*)|*.*";
+            OpenFileDialog ofd = new OpenFileDialog
+            {
+                Filter = "Todos os arquivos (*.*)|*.*"
+            };
 
             if (ofd.ShowDialog() == DialogResult.OK)
             {
@@ -111,7 +113,7 @@ namespace Dev4Tech
             string dificuldade = cmbDificuldade.SelectedItem.ToString();
             DateTime dataEntrega = dtpDataDeEntrega.Value.Date;
 
-            string pastaArquivos = @"C:\Dev4Tech\ArquivosTarefas";
+            string pastaArquivos = @"C:\xampp\htdocs\dev4tech\arquivos";
             if (!Directory.Exists(pastaArquivos))
                 Directory.CreateDirectory(pastaArquivos);
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -12,7 +13,6 @@ namespace Dev4Tech
         {
             InitializeComponent();
             panelEquipes.AutoScroll = true;
-
             filtroEquipes.Items.Add("Todos");
             filtroEquipes.Items.Add("Desenvolvedor de software");
             filtroEquipes.Items.Add("Design");
@@ -33,10 +33,8 @@ namespace Dev4Tech
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            // Limpa a sessão antes de voltar para a tela inicial
             Sessao.FuncionarioLogado = null;
             Sessao.AdminLogado = null;
-
             Form1 t_incial = new Form1();
             t_incial.Show();
             this.Hide();
@@ -46,7 +44,6 @@ namespace Dev4Tech
         {
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;
-
             if (funcionario != null)
             {
                 Home h = new Home();
@@ -55,7 +52,6 @@ namespace Dev4Tech
             }
             else if (admin != null)
             {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
                 HomeAdm t_equipeAdmin = new HomeAdm();
                 t_equipeAdmin.Show();
                 this.Hide();
@@ -70,17 +66,14 @@ namespace Dev4Tech
         {
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;
-
             if (funcionario != null)
             {
-                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
                 Ranking_Equipes t_equipe = new Ranking_Equipes();
                 t_equipe.Show();
                 this.Hide();
             }
             else if (admin != null)
             {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
                 Ranking_Equipes t_equipeAdmin = new Ranking_Equipes();
                 t_equipeAdmin.Show();
                 this.Hide();
@@ -94,9 +87,7 @@ namespace Dev4Tech
         private void txtPesquisarEquipe_Leave(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtPesquisaEquipe.Text))
-            {
                 txtPesquisaEquipe.Text = "Pesquisar Equipe";
-            }
         }
 
         private void btnFiltrar_Click(object sender, EventArgs e)
@@ -108,10 +99,8 @@ namespace Dev4Tech
         {
             panelEquipes.Controls.Clear();
             mensagensCount = 0;
-
             FiltroEquipes filtro = new FiltroEquipes();
             DataTable dt = filtro.ObterEquipesComMembrosComFotos(filtroCategoria); // Método que traz fotos e ids
-
             var equipes = dt.AsEnumerable()
                             .GroupBy(row => new
                             {
@@ -120,7 +109,6 @@ namespace Dev4Tech
                                 categoria = row.Field<string>("nome_categoria"),
                                 ultima_atividade = row.IsNull("ultima_atividade") ? (DateTime?)null : row.Field<DateTime>("ultima_atividade")
                             });
-
             foreach (var equipe in equipes)
             {
                 int diasDesdeUltimaAtividade = -1;
@@ -129,14 +117,23 @@ namespace Dev4Tech
 
                 var membros = dt.AsEnumerable()
                 .Where(r => r.Field<int>("id_equipe") == equipe.Key.id_equipe)
-                .Select(r => new MembroEquipe
+                .Select(r =>
                 {
-                    IdFuncionario = r.Field<int>("FuncionarioId"),
-                    Nome = r.Field<string>("nome_funcionario"),
-                    FotoPerfil = r.Field<byte[]>("foto_perfil")
-                })
-                .ToList();
-
+                    object fotoObj = r["foto_perfil"];
+                    string caminhoFoto = null;
+                    byte[] blobFoto = null;
+                    if (fotoObj is byte[] bytes)
+                        blobFoto = bytes;
+                    else if (fotoObj is string s)
+                        caminhoFoto = s;
+                    return new MembroEquipe
+                    {
+                        IdFuncionario = r.Field<int>("FuncionarioId"),
+                        Nome = r.Field<string>("nome_funcionario"),
+                        CaminhoFotoPerfil = caminhoFoto,
+                        FotoBlob = blobFoto
+                    };
+                }).ToList();
 
                 AdicionarPainelEquipe(
                     equipe.Key.nome_equipe,
@@ -148,11 +145,18 @@ namespace Dev4Tech
             }
         }
 
+        public class MembroEquipe
+        {
+            public int IdFuncionario { get; set; }
+            public string Nome { get; set; }
+            public string CaminhoFotoPerfil { get; set; }
+            public byte[] FotoBlob { get; set; }
+        }
+
         private void AdicionarPainelEquipe(string nomeEquipe, string categoria, System.Collections.Generic.List<MembroEquipe> membros, int idEquipe, int diasDesdeUltimaAtividade)
         {
             int x = margemEsquerda;
             int y = margemTopo + (alturaMensagem + espacamentoVertical) * mensagensCount;
-
             Panel equipePanel = new Panel
             {
                 Width = 350,
@@ -163,14 +167,12 @@ namespace Dev4Tech
                 Top = y,
                 Cursor = Cursors.Hand
             };
-
             equipePanel.Click += (s, e) =>
             {
                 Chat_geral_equipes chatForm = new Chat_geral_equipes(idEquipe, nomeEquipe, categoria);
                 chatForm.Show();
                 this.Hide();
             };
-
             PictureBox picEquipe = new PictureBox
             {
                 Image = Properties.Resources.icon_EquipLogo,
@@ -182,7 +184,6 @@ namespace Dev4Tech
                 BorderStyle = BorderStyle.FixedSingle
             };
             equipePanel.Controls.Add(picEquipe);
-
             Label lblNomeEquipe = new Label
             {
                 Text = nomeEquipe,
@@ -192,7 +193,6 @@ namespace Dev4Tech
                 AutoSize = true
             };
             equipePanel.Controls.Add(lblNomeEquipe);
-
             Label lblCategoria = new Label
             {
                 Text = categoria,
@@ -202,11 +202,9 @@ namespace Dev4Tech
                 AutoSize = true
             };
             equipePanel.Controls.Add(lblCategoria);
-
             string textoAtividade = diasDesdeUltimaAtividade == -1
                 ? "Nunca ativo"
                 : $"Ativo há {diasDesdeUltimaAtividade} dia(s)";
-
             Label lblAtividade = new Label
             {
                 Text = textoAtividade,
@@ -217,7 +215,6 @@ namespace Dev4Tech
                 AutoSize = true
             };
             equipePanel.Controls.Add(lblAtividade);
-
             Label lblColaboradores = new Label
             {
                 Text = "Colaboradores",
@@ -227,9 +224,9 @@ namespace Dev4Tech
                 AutoSize = true
             };
             equipePanel.Controls.Add(lblColaboradores);
-
             int fotoLeft = 60;
             int fotoTop = 90;
+            string basePath = @"C:\xampp\htdocs\dev4tech\img";
             foreach (var membro in membros)
             {
                 PictureBox picMembro = new PictureBox
@@ -241,14 +238,44 @@ namespace Dev4Tech
                     Top = fotoTop,
                     BorderStyle = BorderStyle.FixedSingle,
                     Cursor = Cursors.Hand,
-                    Tag = membro.IdFuncionario  // Para identificar qual funcionário representa
+                    Tag = membro.IdFuncionario
                 };
 
-                if (membro.FotoPerfil != null && membro.FotoPerfil.Length > 0)
+                if (!string.IsNullOrEmpty(membro.CaminhoFotoPerfil))
                 {
-                    using (var ms = new System.IO.MemoryStream(membro.FotoPerfil))
+                    string caminhoCompleto = System.IO.Path.Combine(basePath, membro.CaminhoFotoPerfil.Replace("/", "\\"));
+                    if (System.IO.File.Exists(caminhoCompleto))
                     {
-                        picMembro.Image = Image.FromStream(ms);
+                        try
+                        {
+                            using (var imgTemp = Image.FromFile(caminhoCompleto))
+                            {
+                                picMembro.Image = new Bitmap(imgTemp);
+                            }
+                        }
+                        catch
+                        {
+                            picMembro.Image = Properties.Resources.icon_perfil;
+                        }
+                    }
+                    else
+                    {
+                        picMembro.Image = Properties.Resources.icon_perfil;
+                    }
+                }
+                else if (membro.FotoBlob != null && membro.FotoBlob.Length > 0)
+                {
+                    try
+                    {
+                        using (var ms = new MemoryStream(membro.FotoBlob))
+                        {
+                            ms.Position = 0;
+                            picMembro.Image = Image.FromStream(ms);
+                        }
+                    }
+                    catch
+                    {
+                        picMembro.Image = Properties.Resources.icon_perfil;
                     }
                 }
                 else
@@ -261,29 +288,18 @@ namespace Dev4Tech
                     ToolTip tt = new ToolTip();
                     tt.SetToolTip(picMembro, membro.Nome);
                 };
-
                 equipePanel.Controls.Add(picMembro);
                 fotoLeft += 38;
             }
-
             panelEquipes.Controls.Add(equipePanel);
             mensagensCount++;
         }
 
-        public class MembroEquipe
-        {
-            public int IdFuncionario { get; set; }
-            public string Nome { get; set; }
-            public byte[] FotoPerfil { get; set; }
-        }
 
-
-        // Métodos e eventos que você já tinha (mantidos)
         private void btnEquipe_Click(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;
-
             if (funcionario != null)
             {
                 PesquisaEquipes t_equipe = new PesquisaEquipes();
@@ -301,11 +317,11 @@ namespace Dev4Tech
                 MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
         private void btnCalendar_Click(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;
-
             if (funcionario != null)
             {
                 Tarefas_Pendentes t_equipe = new Tarefas_Pendentes();
@@ -323,15 +339,14 @@ namespace Dev4Tech
                 MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
         private void txtPesquisaEquipe_TextChanged(object sender, EventArgs e) { }
         private void filtroEquipes_SelectedIndexChanged(object sender, EventArgs e) { }
         private void panelEquipes_Paint(object sender, PaintEventArgs e) { }
-
         private void btnConfig_Click(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;
-
             if (funcionario != null)
             {
                 Configuracoes config = new Configuracoes(funcionario);
@@ -349,10 +364,6 @@ namespace Dev4Tech
                 MessageBox.Show("Nenhum usuário logado.");
             }
         }
-
-        private void PesquisaEquipes_Load(object sender, EventArgs e)
-        {
-
-        }
+        private void PesquisaEquipes_Load(object sender, EventArgs e) { }
     }
 }

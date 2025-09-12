@@ -147,7 +147,7 @@ namespace Dev4Tech
             ofd.Filter = "Todos os arquivos (*.*)|*.*";
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                string pastaArquivos = @"C:\Dev4Tech\ArquivosEntregas";  // pasta onde vai salvar o arquivo
+                string pastaArquivos = @"C:\xampp\htdocs\dev4tech\arquivos";  // pasta onde vai salvar o arquivo
                 if (!Directory.Exists(pastaArquivos))
                     Directory.CreateDirectory(pastaArquivos);
 
@@ -178,7 +178,7 @@ namespace Dev4Tech
 
         private void AbrirArquivoEntrega(string nomeArquivo)
             {
-                string pastaArquivos = @"C:\Dev4Tech\ArquivosTarefas";
+                string pastaArquivos = @"C:\xampp\htdocs\dev4tech\arquivos";
                 string caminhoArquivo = Path.Combine(pastaArquivos, nomeArquivo);
                 if (File.Exists(caminhoArquivo))
                     System.Diagnostics.Process.Start(caminhoArquivo);

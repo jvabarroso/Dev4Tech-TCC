@@ -1,10 +1,11 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
 using System.Drawing; // Adicionado para FontStyle.Bold e manipulação de imagens
 using System.Drawing.Imaging; // Adicionado para usar o método FirstOrDefault
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using System.Collections.Generic;
 
 namespace Dev4Tech
 {
@@ -205,13 +206,13 @@ namespace Dev4Tech
         {
             var membros = new List<MembroInfo>();
             string query = @"
-                SELECT f.Nome, f.foto_perfil
-                FROM Funcionarios f
-                JOIN Equipes_Membros em ON f.FuncionarioId = em.FuncionarioId
-                WHERE em.id_equipe = @idEquipe";
+        SELECT f.Nome, f.foto_perfil
+        FROM Funcionarios f
+        JOIN Equipes_Membros em ON f.FuncionarioId = em.FuncionarioId
+        WHERE em.id_equipe = @idEquipe";
 
+            string baseFolder = @"C:\xampp\htdocs\dev4tech\";
             string connectionString = "Server=localhost;Database=Dev4Tech;Uid=root;Pwd=;SslMode=none;";
-
             using (var conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
@@ -222,13 +223,19 @@ namespace Dev4Tech
                     {
                         while (reader.Read())
                         {
+                            string caminhoRelativo = reader.IsDBNull(reader.GetOrdinal("foto_perfil"))
+                                ? null : reader.GetString("foto_perfil");
+
                             Image fotoMembro = null;
-                            if (!reader.IsDBNull(reader.GetOrdinal("foto_perfil")))
+                            if (!string.IsNullOrEmpty(caminhoRelativo))
                             {
-                                byte[] bytesImg = (byte[])reader["foto_perfil"];
-                                using (var ms = new System.IO.MemoryStream(bytesImg))
-                                    fotoMembro = Image.FromStream(ms);
+                                string caminhoCompleto = Path.Combine(baseFolder, caminhoRelativo.Replace("/", @"\"));
+                                if (File.Exists(caminhoCompleto))
+                                    fotoMembro = Image.FromFile(caminhoCompleto);
                             }
+                            if (fotoMembro == null)
+                                fotoMembro = Properties.Resources.icon_perfil; // padrão
+
                             membros.Add(new MembroInfo
                             {
                                 Nome = reader.GetString("Nome"),
@@ -240,6 +247,7 @@ namespace Dev4Tech
             }
             return membros;
         }
+
 
 
         private void PreencherCamposFuncionario()
@@ -410,9 +418,8 @@ namespace Dev4Tech
             this.Hide();
         }
 
-        private void AtualizarFotoNoBanco(byte[] fotoBytes)
+        private void AtualizarFotoNoBanco(string caminhoRelativo)
         {
-            // Adaptar para salvar na tabela correta conforme usuário atual (func/admin)
             if (funcionario != null)
             {
                 int idFuncionario = int.Parse(funcionario.getFuncionarioId());
@@ -422,7 +429,7 @@ namespace Dev4Tech
                     string query = "UPDATE Funcionarios SET foto_perfil = @foto WHERE FuncionarioId = @id";
                     using (var cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@foto", fotoBytes);
+                        cmd.Parameters.AddWithValue("@foto", caminhoRelativo);
                         cmd.Parameters.AddWithValue("@id", idFuncionario);
                         cmd.ExecuteNonQuery();
                     }
@@ -437,7 +444,7 @@ namespace Dev4Tech
                     string query = "UPDATE Administradores SET foto_perfil = @foto WHERE AdminId = @id";
                     using (var cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@foto", fotoBytes);
+                        cmd.Parameters.AddWithValue("@foto", caminhoRelativo);
                         cmd.Parameters.AddWithValue("@id", idAdmin);
                         cmd.ExecuteNonQuery();
                     }
@@ -447,24 +454,32 @@ namespace Dev4Tech
 
         private void btnTrocarFotoPerfil_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Title = "Selecione a nova foto do perfil";
-            ofd.Filter = "Imagens|*.jpg;*.jpeg;*.png;*.bmp";
-
+            OpenFileDialog ofd = new OpenFileDialog
+            {
+                Title = "Selecione a nova foto do perfil",
+                Filter = "Imagens|*.jpg;*.jpeg;*.png;*.bmp"
+            };
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                string caminhoImagem = ofd.FileName;
+                string srcFile = ofd.FileName;
+                string pastaDestino = @"C:\xampp\htdocs\dev4tech\img";
+                if (!Directory.Exists(pastaDestino))
+                    Directory.CreateDirectory(pastaDestino);
+
+                string nomeArquivo = Guid.NewGuid().ToString() + Path.GetExtension(srcFile);
+                string destFile = Path.Combine(pastaDestino, nomeArquivo);
+
+                File.Copy(srcFile, destFile, true);
+
                 IconFuncionario.SizeMode = PictureBoxSizeMode.StretchImage;
-                IconFuncionario.Image = new Bitmap(caminhoImagem);
+                IconFuncionario.Image = Image.FromFile(destFile);
 
-                // Redimensiona e comprime antes de salvar
-                byte[] fotoBytes = RedimensionarEComprimirImagem(caminhoImagem, 256, 256, 70L);
-
-                AtualizarFotoNoBanco(fotoBytes);
+                AtualizarFotoNoBanco("img/" + nomeArquivo);
 
                 MessageBox.Show("Foto de perfil atualizada!");
             }
         }
+
 
         private void Perfil_Load(object sender, EventArgs e)
         {
@@ -496,51 +511,24 @@ namespace Dev4Tech
                 using (var cmd = new MySqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@id", id);
-                    using (var rdr = cmd.ExecuteReader())
+                    var fotoPathObj = cmd.ExecuteScalar();
+                    if (fotoPathObj != null && fotoPathObj != DBNull.Value)
                     {
-                        IconFuncionario.SizeMode = PictureBoxSizeMode.StretchImage;
-                        if (rdr.Read())
+                        string caminhoRelativo = fotoPathObj.ToString();
+                        string caminhoCompleto = Path.Combine(@"C:\xampp\htdocs\dev4tech\", caminhoRelativo.Replace("/", @"\"));
+                        if (File.Exists(caminhoCompleto))
                         {
-                            if (!rdr.IsDBNull(0))
-                            {
-                                byte[] fotoBytes = (byte[])rdr["foto_perfil"];
-                                using (var ms = new System.IO.MemoryStream(fotoBytes))
-                                {
-                                    IconFuncionario.Image = Image.FromStream(ms);
-                                }
-                            }
-                            else
-                            {
-                                IconFuncionario.Image = Properties.Resources.icon_perfil; // imagem padrão
-                            }
+                            IconFuncionario.Image = Image.FromFile(caminhoCompleto);
+                            IconFuncionario.SizeMode = PictureBoxSizeMode.StretchImage;
                         }
                         else
                         {
-                            IconFuncionario.Image = Properties.Resources.icon_perfil;
+                            IconFuncionario.Image = Properties.Resources.icon_perfil; // imagem padrão
                         }
                     }
-                }
-            }
-        }
-
-        private byte[] RedimensionarEComprimirImagem(string caminhoImagem, int largura, int altura, long qualidade = 70L)
-        {
-            using (var imagemOriginal = Image.FromFile(caminhoImagem))
-            {
-                using (var imagemRedimensionada = new Bitmap(largura, altura))
-                {
-                    using (var g = Graphics.FromImage(imagemRedimensionada))
+                    else
                     {
-                        g.DrawImage(imagemOriginal, 0, 0, largura, altura);
-                    }
-                    var codec = ImageCodecInfo.GetImageEncoders().FirstOrDefault(c => c.FormatID == ImageFormat.Jpeg.Guid);
-                    var parametros = new EncoderParameters(1);
-                    parametros.Param[0] = new EncoderParameter(Encoder.Quality, qualidade);
-
-                    using (var ms = new System.IO.MemoryStream())
-                    {
-                        imagemRedimensionada.Save(ms, codec, parametros);
-                        return ms.ToArray();
+                        IconFuncionario.Image = Properties.Resources.icon_perfil;
                     }
                 }
             }

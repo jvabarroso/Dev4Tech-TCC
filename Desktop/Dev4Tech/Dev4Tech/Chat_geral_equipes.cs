@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Dev4Tech
@@ -43,7 +44,6 @@ namespace Dev4Tech
             LimparMensagens();
             DataTable dt = messageChat.ConsultarPorEquipe(idEquipe);
             mensagensCount = 0;
-
             string idUsuarioLogado = null;
             bool usuarioEhAdmin = false;
 
@@ -66,16 +66,12 @@ namespace Dev4Tech
                 bool minhaMensagem = false;
                 if (!string.IsNullOrEmpty(idUsuarioLogado))
                 {
-                    if (usuarioEhAdmin)
-                        minhaMensagem = idAdmin == idUsuarioLogado;
-                    else
-                        minhaMensagem = idFuncionario == idUsuarioLogado;
+                    minhaMensagem = usuarioEhAdmin ? idAdmin == idUsuarioLogado : idFuncionario == idUsuarioLogado;
                 }
 
                 string texto = row["texto"].ToString();
                 DateTime dataEnvio = Convert.ToDateTime(row["data_envio"]);
                 bool mensagemAdministrador = !string.IsNullOrEmpty(idAdmin);
-
                 string nomeUsuario = mensagemAdministrador
                     ? row["nome_admin"]?.ToString() ?? "Administrador"
                     : row["nome_funcionario"]?.ToString() ?? "Funcionário";
@@ -84,25 +80,31 @@ namespace Dev4Tech
                     ? (row["foto_admin"] != DBNull.Value ? (byte[])row["foto_admin"] : null)
                     : (row["foto_funcionario"] != DBNull.Value ? (byte[])row["foto_funcionario"] : null);
 
-                Image foto = null;
-                if (fotoBytes != null)
+                Image foto;
+                if (fotoBytes != null && fotoBytes.Length > 0)
                 {
-                    using (var ms = new System.IO.MemoryStream(fotoBytes))
+                    try
                     {
-                        foto = Image.FromStream(ms);
+                        using (var ms = new System.IO.MemoryStream(fotoBytes))
+                        {
+                            ms.Position = 0;
+                            foto = Image.FromStream(ms);
+                        }
+                    }
+                    catch (ArgumentException)
+                    {
+                        foto = Properties.Resources.icon_perfil;
                     }
                 }
-                if (foto == null)
+                else
                 {
-                    foto = Properties.Resources.icon_perfil; // Imagem padrão
+                    foto = Properties.Resources.icon_perfil;
                 }
 
                 int idMensagem = Convert.ToInt32(row["id_mensagem"]);
                 int idUsuarioLogadoInt = 0;
                 int.TryParse(idUsuarioLogado, out idUsuarioLogadoInt);
-
                 string statusMensagem = row["status"]?.ToString() ?? "enviada";
-
                 int? remetenteFuncionarioId = row["FuncionarioId"] == DBNull.Value ? (int?)null : Convert.ToInt32(row["FuncionarioId"]);
                 int? remetenteAdminId = row["AdminId"] == DBNull.Value ? (int?)null : Convert.ToInt32(row["AdminId"]);
 
@@ -112,13 +114,14 @@ namespace Dev4Tech
             }
         }
 
+
+
         // Versão completa com parâmetros para marcação da visualização
         private void AdicionarMensagem(string texto, DateTime dataEnvio, bool minhaMensagem, bool mensagemAdministrador,
     Image fotoPerfil, string nomeUsuario, int idMensagem, int idUsuarioLogado, int idEquipe, string statusMensagem,
     int? remetenteFuncionarioId, int? remetenteAdminId)
         {
             int y = margemTopo + (alturaMensagem + espacamentoVertical) * mensagensCount;
-
             Color fundoMensagem;
             Color bordaMensagem;
             if (minhaMensagem)
@@ -136,7 +139,6 @@ namespace Dev4Tech
                 fundoMensagem = Color.White;
                 bordaMensagem = Color.LightGray;
             }
-
             Panel mensagemPanel = new Panel
             {
                 BackColor = fundoMensagem,
@@ -147,7 +149,6 @@ namespace Dev4Tech
                 Left = minhaMensagem ? panelMensagens.Width - larguraMaxMensagem + 25 : 45,
                 Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right
             };
-
             Color statusColor;
             if (statusMensagem == "enviada")
                 statusColor = Color.Gray;
@@ -157,7 +158,6 @@ namespace Dev4Tech
                 statusColor = Color.Blue;
             else
                 statusColor = Color.Gray;
-
             Panel statusIndicator = new Panel
             {
                 Width = 20,
@@ -172,7 +172,6 @@ namespace Dev4Tech
                 gp.AddEllipse(0, 0, statusIndicator.Width - 1, statusIndicator.Height - 1);
                 statusIndicator.Region = new System.Drawing.Region(gp);
             };
-
             mensagemPanel.Paint += (s, e) =>
             {
                 var rect = new Rectangle(0, 0, mensagemPanel.Width - 1, mensagemPanel.Height - 1);
@@ -184,7 +183,6 @@ namespace Dev4Tech
                     e.Graphics.DrawRectangle(pen, rect);
                 }
             };
-
             PictureBox avatar = new PictureBox
             {
                 Image = fotoPerfil,
@@ -202,7 +200,6 @@ namespace Dev4Tech
                 gp.AddEllipse(0, 0, avatar.Width - 1, avatar.Height - 1);
                 avatar.Region = new System.Drawing.Region(gp);
             };
-
             Label lblNome = new Label
             {
                 Text = nomeUsuario,
@@ -214,11 +211,9 @@ namespace Dev4Tech
                 Left = avatar.Left - 2,
                 Top = avatar.Top + avatar.Height + 2
             };
-
             int larguraMensagem = mensagemPanel.Width - 70;
             int mensagemLeft = minhaMensagem ? 12 : 54;
             int mensagemWidth = minhaMensagem ? larguraMensagem - 40 : larguraMensagem;
-
             Label lblMensagem = new Label
             {
                 Text = texto,
@@ -233,7 +228,6 @@ namespace Dev4Tech
                 Padding = new Padding(6, 4, 6, 4),
                 BackColor = Color.Transparent
             };
-
             Label lblHora = new Label
             {
                 Text = dataEnvio.ToString("HH:mm"),
@@ -242,41 +236,31 @@ namespace Dev4Tech
                 ForeColor = Color.Gray,
                 BackColor = Color.Transparent
             };
-
             lblHora.Top = mensagemPanel.Height - lblHora.PreferredHeight - 6;
             lblHora.Left = minhaMensagem
                 ? mensagemPanel.Width - lblHora.PreferredWidth - 52
                 : 54;
-
             mensagemPanel.Controls.Add(lblMensagem);
             mensagemPanel.Controls.Add(avatar);
             mensagemPanel.Controls.Add(lblNome);
             mensagemPanel.Controls.Add(lblHora);
-
             panelMensagens.Controls.Add(statusIndicator);
             panelMensagens.Controls.Add(mensagemPanel);
 
-            // Só marca visualização se o usuário logado for diferente do remetente da mensagem
+            // Marcação da visualização da mensagem (se for de outro usuário)
             bool isRemetente = false;
             if (Sessao.FuncionarioLogado != null)
             {
-                isRemetente = (mensagemAdministrador == false && remetenteFuncionarioId.HasValue && remetenteFuncionarioId.Value == idUsuarioLogado);
+                isRemetente = (!mensagemAdministrador && remetenteFuncionarioId.HasValue && remetenteFuncionarioId.Value == idUsuarioLogado);
             }
             else if (Sessao.AdminLogado != null)
             {
-                isRemetente = (mensagemAdministrador == true && remetenteAdminId.HasValue && remetenteAdminId.Value == idUsuarioLogado);
+                isRemetente = (mensagemAdministrador && remetenteAdminId.HasValue && remetenteAdminId.Value == idUsuarioLogado);
             }
-
             if (!isRemetente && idMensagem > 0 && idUsuarioLogado > 0 && idEquipe > 0)
             {
-                string tipoUsuario = null;
-                if (Sessao.FuncionarioLogado != null)
-                    tipoUsuario = "funcionario";
-                else if (Sessao.AdminLogado != null)
-                    tipoUsuario = "admin";
-
-                if (!string.IsNullOrEmpty(tipoUsuario))
-                    messageChat.MarcarMensagemVisualizada(idMensagem, idUsuarioLogado, tipoUsuario, idEquipe);
+                string tipoUsuario = Sessao.FuncionarioLogado != null ? "funcionario" : "admin";
+                messageChat.MarcarMensagemVisualizada(idMensagem, idUsuarioLogado, tipoUsuario, idEquipe);
             }
 
             mensagensCount++;
