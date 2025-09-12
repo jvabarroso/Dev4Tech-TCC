@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, Image, TextInput, TouchableOpacity, ScrollView} from 'react-native';
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
 import { Ionicons } from '@expo/vector-icons';
 
 import api from '../../../../services/api';
+import url from '../../../../services/url';
 
 export default function EquipeRanking({ navigation, route}) {
   const { theme } = useTheme();

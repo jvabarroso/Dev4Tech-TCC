@@ -5,7 +5,7 @@ import { Dropdown } from 'react-native-element-dropdown';
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
 import api from '../../../../services/api';
-
+import url from '../../../../services/url';
 import fonts from "../../../styles/fonts";
 
 export default function Ranking({route, navigation}){
