@@ -178,14 +178,14 @@ namespace Dev4Tech
         {
             DataTable dt = new DataTable();
             string query = @"
-                SELECT t.*, c.nome_categoria, e.nome_equipe
-                FROM Tarefas t
-                INNER JOIN Equipes e ON t.id_equipe = e.id_equipe
-                INNER JOIN Categorias c ON e.id_categoria = c.id_categoria
-                LEFT JOIN EntregasTarefa et ON t.id_tarefa = et.id_tarefa AND et.FuncionarioId = @idFuncionario
-                WHERE t.id_equipe = @idEquipe
-                AND et.id_entrega IS NULL
-                ORDER BY t.data_entrega DESC";
+        SELECT t.*, c.nome_categoria, e.nome_equipe
+        FROM Tarefas t
+        INNER JOIN Equipes e ON t.id_equipe = e.id_equipe
+        INNER JOIN Categorias c ON e.id_categoria = c.id_categoria
+        LEFT JOIN EntregasTarefa et ON t.id_tarefa = et.id_tarefa AND et.FuncionarioId = @idFuncionario
+        WHERE t.id_equipe = @idEquipe
+        AND et.id_entrega IS NULL
+        ORDER BY t.data_entrega ASC";
 
             if (abrirConexao())
             {
@@ -208,6 +208,7 @@ namespace Dev4Tech
             }
             return dt;
         }
+
 
         // Busca todas as tarefas entregues pelo funcionário em uma equipe
         public DataTable BuscarTarefasEntreguesPorEquipeFuncionario(int idEquipe, int idFuncionario)

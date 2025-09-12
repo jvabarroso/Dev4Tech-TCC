@@ -161,14 +161,10 @@ namespace Dev4Tech
         public DataTable BuscarTarefasPorEquipes(List<int> idsEquipes)
         {
             DataTable dt = new DataTable();
-
             if (idsEquipes == null || idsEquipes.Count == 0)
                 return dt;
-
             var parametros = idsEquipes.Select((id, index) => "@id" + index).ToList();
-
-            string query = $"SELECT * FROM Tarefas WHERE id_equipe IN ({string.Join(", ", parametros)}) ORDER BY data_entrega DESC";
-
+            string query = $"SELECT * FROM Tarefas WHERE id_equipe IN ({string.Join(", ", parametros)}) ORDER BY data_entrega ASC";
             using (var conn = new MySqlConnection("server=localhost;database=Dev4Tech;uid=root;pwd="))
             {
                 conn.Open();
@@ -178,7 +174,6 @@ namespace Dev4Tech
                     {
                         cmd.Parameters.AddWithValue(parametros[i], idsEquipes[i]);
                     }
-
                     using (var adapter = new MySqlDataAdapter(cmd))
                     {
                         adapter.Fill(dt);
@@ -187,6 +182,7 @@ namespace Dev4Tech
             }
             return dt;
         }
+
 
         private void CarregarEquipes()
         {
