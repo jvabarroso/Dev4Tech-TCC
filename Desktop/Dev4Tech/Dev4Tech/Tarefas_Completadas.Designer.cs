@@ -190,7 +190,7 @@
             this.label21.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.Location = new System.Drawing.Point(47, 17);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(47, 13);
+            this.label21.Size = new System.Drawing.Size(46, 13);
             this.label21.TabIndex = 60;
             this.label21.Text = "Tarefa 4";
             // 
@@ -269,7 +269,7 @@
             this.label16.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.Location = new System.Drawing.Point(47, 17);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(47, 13);
+            this.label16.Size = new System.Drawing.Size(46, 13);
             this.label16.TabIndex = 60;
             this.label16.Text = "Tarefa 2";
             // 
@@ -348,7 +348,7 @@
             this.label26.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label26.Location = new System.Drawing.Point(47, 17);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(47, 13);
+            this.label26.Size = new System.Drawing.Size(46, 13);
             this.label26.TabIndex = 60;
             this.label26.Text = "Tarefa 3";
             // 
@@ -429,7 +429,7 @@
             this.label8.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(47, 17);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(47, 13);
+            this.label8.Size = new System.Drawing.Size(46, 13);
             this.label8.TabIndex = 60;
             this.label8.Text = "Tarefa 1";
             // 
@@ -481,7 +481,7 @@
             this.label1.Location = new System.Drawing.Point(440, 124);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 32);
+            this.label1.Size = new System.Drawing.Size(95, 32);
             this.label1.TabIndex = 82;
             this.label1.Text = "Tarefas";
             // 
@@ -698,6 +698,7 @@
             // 
             // panelTarefas
             // 
+            this.panelTarefas.AutoScroll = true;
             this.panelTarefas.Controls.Add(this.groupBox4);
             this.panelTarefas.Controls.Add(this.groupBox2);
             this.panelTarefas.Controls.Add(this.groupBox5);

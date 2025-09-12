@@ -13,9 +13,39 @@ namespace Dev4Tech
             CarregarTarefasCompletadas();
         }
 
+        private int ObterIdEquipeFuncionarioLogado()
+        {
+            var funcionario = Sessao.FuncionarioLogado;
+            if (funcionario == null)
+                throw new Exception("Funcionário não está logado.");
+
+            int idFuncionario = int.Parse(funcionario.getFuncionarioId());
+
+            int idEquipe = 0;
+            string connectionString = "Server=localhost;Database=Dev4Tech;Uid=root;Pwd=;SslMode=none;";
+            string query = @"
+        SELECT id_equipe FROM Equipes_Membros 
+        WHERE FuncionarioId = @idFuncionario
+        LIMIT 1";
+
+            using (var conn = new MySql.Data.MySqlClient.MySqlConnection(connectionString))
+            {
+                conn.Open();
+                using (var cmd = new MySql.Data.MySqlClient.MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@idFuncionario", idFuncionario);
+                    var result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                        idEquipe = Convert.ToInt32(result);
+                }
+            }
+            return idEquipe;
+        }
+
+
         private void CarregarTarefasCompletadas()
         {
-            int idEquipe = 1; // Ajuste conforme seu contexto ou passe como parâmetro
+            int idEquipe = ObterIdEquipeFuncionarioLogado();
 
             panelTarefas.Controls.Clear();
 

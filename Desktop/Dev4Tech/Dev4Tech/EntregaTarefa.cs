@@ -284,17 +284,13 @@ namespace Dev4Tech
         {
             DataTable dt = new DataTable();
             string query = @"
-        SELECT t.*, c.nome_categoria, e.nome_equipe
+        SELECT DISTINCT t.*, c.nome_categoria, e.nome_equipe
         FROM Tarefas t
-        INNER JOIN Equipes eq ON t.id_equipe = eq.id_equipe
-        INNER JOIN Categorias c ON eq.id_categoria = c.id_categoria
         INNER JOIN Equipes e ON t.id_equipe = e.id_equipe
+        INNER JOIN Categorias c ON e.id_categoria = c.id_categoria
+        INNER JOIN EntregasTarefa et ON t.id_tarefa = et.id_tarefa
         WHERE t.id_equipe = @idEquipe
-        AND EXISTS (
-            SELECT 1 FROM EntregasTarefa et WHERE et.id_tarefa = t.id_tarefa AND et.id_equipe = t.id_equipe
-        )
         ORDER BY t.data_entrega DESC";
-
             if (abrirConexao())
             {
                 try
@@ -315,6 +311,9 @@ namespace Dev4Tech
             }
             return dt;
         }
+
+        
+
 
         // Busca tarefas da equipe, incluindo status finalizada
         public DataTable BuscarTarefasPorEquipeComStatus(int idEquipe)
