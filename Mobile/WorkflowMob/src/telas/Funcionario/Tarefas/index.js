@@ -130,7 +130,7 @@ export default function Tarefas({ navigation, route }) {
     return tarefasFiltradas.map((item, index) => (
       <TouchableOpacity
         key={`${item.id_tarefa}-${index}`} 
-        onPress={() => navigation.navigate('TarefaEnvio', { tarefa: item, usuario: usuario })}
+        onPress={() => navigation.navigate('TarefaEnvio', { tarefa: item, usuario: usuario, filtroAtivo: filtroAtivo })}
         style={styles.containertarefas}
       >
         <View style={styles.linhaTarefa}>
@@ -148,7 +148,7 @@ export default function Tarefas({ navigation, route }) {
           <Text style={styles.textolistacargo}>
             {item.dificuldade} {/* Mostra os ícones de dificuldade */}
           </Text>
-          <Text style={styles.textolistadata}>{item.data_entrega}</Text>
+          <Text style={styles.textolistadata}>{formatarData(item.data_entrega)}</Text>
         </View>
       </TouchableOpacity>
     ));
@@ -169,6 +169,15 @@ export default function Tarefas({ navigation, route }) {
       </View>
     );
   }
+
+    // Formata as datas do banco 
+    function formatarData(data) {
+    if (!data) return "";
+    const partes = data.split("-"); // ["0000","00","00"]
+    if (partes.length !== 3) return data;
+    return `${partes[2]}/${partes[1]}/${partes[0]}`;
+    }
+
 
   return (
     <View style={styles.container}>

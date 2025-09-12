@@ -90,7 +90,7 @@ export const getStyles = (theme) => StyleSheet.create({
   },
   textolistacargo: {
     color: theme.text,
-    fontSize: 13,
+    fontSize: 15,
     fontFamily: fonts.text,
     backgroundColor: theme.inputBackground2,
     borderRadius: 15,

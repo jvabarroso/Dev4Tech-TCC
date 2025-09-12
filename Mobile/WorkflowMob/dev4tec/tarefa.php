@@ -25,6 +25,7 @@ try {
             t.instrucoes,
             e.nome_equipe,
             e.id_equipe,
+            t.dificuldade,
             DATE_FORMAT(t.data_entrega, '%Y-%m-%d') AS data_entrega,
             DATE_FORMAT(t.data_criacao, '%Y-%m-%d') AS data_criacao,
             EXISTS (

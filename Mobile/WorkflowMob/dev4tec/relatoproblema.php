@@ -2,7 +2,7 @@
 require_once("conexao.php");
 
 // Recebe os dados JSON
-$tabela = 'relatoproblema';
+$tabela = 'RelatoProblema';
 
 $postjson = json_decode(file_get_contents('php://input'), true);
 
@@ -23,16 +23,43 @@ try{
     $res->bindValue(":descricao", "$descricao");
     $res->bindValue(":id_empresa", "$id_empresa");
 
+
     if($res->execute()){
-        $result = json_encode(array('mensagem'=>'Salvo problema com sucesso!', 'sucesso'=>true));
-    } 
-    else{
-        $result = json_encode(array('mensagem'=>'Erro ao Salvar o problema', 'sucesso'=>false));
+        // Buscar tarefa atualizada
+        $queryProblemas = $pdo->prepare("SELECT descricao FROM RelatoProblema WHERE id_tarefa = :id_tarefa");
+        $queryProblemas->bindValue(':id_tarefa', $id_tarefa);
+        $queryProblemas->execute();
+        $problemas = $queryProblemas->fetchAll(PDO::FETCH_COLUMN);
+        
+        // Buscar tarefa atualizada
+        $query = $pdo->prepare("SELECT *, 
+            CASE WHEN EXISTS 
+            (SELECT 1 FROM RelatoProblema WHERE id_tarefa = :id_tarefa) 
+            THEN 1 ELSE 0 END AS selproblema 
+        FROM Tarefas 
+        WHERE id_tarefa = :id_tarefa");
+            
+        $query->bindValue(':id_tarefa', $id_tarefa ?: null, PDO::PARAM_INT);
+        $query->execute();
+        $tarefa = $query->fetch(PDO::FETCH_ASSOC);
+
+        echo json_encode([
+            'mensagem' => 'Problema salvo com sucesso!',
+            'sucesso' => true,
+            'tarefa' => $tarefa,
+            'problemas' => $problemas  // ← RETORNA TODOS OS PROBLEMAS
+        ]);
+    } else {
+        echo json_encode([
+            'mensagem' => 'Erro ao salvar o problema',
+            'sucesso' => false
+        ]);
     }
+
 } catch (PDOException $e) {
-    $result = json_encode(['mensagem'=>'Erro: ' . $e->getMessage(), 'sucesso'=>false]);
+    echo json_encode([
+        'mensagem' => 'Erro: ' . $e->getMessage(),
+        'sucesso' => false
+    ]);
 }
-
-echo $result;
-
 ?>

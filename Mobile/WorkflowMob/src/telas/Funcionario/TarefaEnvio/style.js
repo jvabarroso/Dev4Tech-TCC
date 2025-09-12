@@ -162,6 +162,8 @@ export const getStyles = (theme) => StyleSheet.create({
         fontWeight: 'bold',
         fontFamily: fonts.text,
         fontSize: 14,
+        flexDirection:"row",
+        alignItems: 'center'
     },
     
     botaoenviar: {
@@ -249,7 +251,29 @@ export const getStyles = (theme) => StyleSheet.create({
         borderBottomRightRadius: 1,
     },
     problem:{
-        marginBottom:10,
+        paddingVertical:10,
         bottom:23,
+    },
+    inputinstrucoes: {
+        width:"80%",
+        height: 160,
+        fontSize: 16,
+        borderRadius: 6,
+        borderWidth: 1,
+        borderBottomColor: '#D6D3D1',
+        backgroundColor: theme.inputBackground,
+        paddingVertical:8,    
+        paddingHorizontal:25,
+        marginBottom: 10,
+        marginTop: 15,
+        textAlignVertical: 'top'
+    },
+    texto: {
+        fontSize: 16,
+        fontFamily: fonts.text,
+        fontWeight: 'bold',
+        color: theme.text3,
+        alignSelf:"flex-start",
+        paddingHorizontal:5,
     },
 });
