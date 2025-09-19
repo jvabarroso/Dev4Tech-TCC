@@ -18,6 +18,8 @@ export default function TarefaEnvio({ navigation, route }) {
     const usuario = route.params?.usuario || {}; 
     const filtroAtivo = route.params?.filtroAtivo || {}; 
 
+    console.log("Meus dados: ",usuario.FuncionarioId)
+
     const [descricao, setDescricao] = useState("");
     const [descricaoExpandida, setDescricaoExpandida] = useState(false);
     const [modalVisivel, setModalVisivel] = useState(false);
@@ -242,16 +244,16 @@ export default function TarefaEnvio({ navigation, route }) {
 
     //Entrega a Tarefa
     async function entrega() {      
-        const arquivo = await uploadFile();
-        if (!arquivo) return;  
+        // const arquivo = await uploadFile();
+        // if (!arquivo) return;  
 
         try {
             const res = await api.post('dev4tec/enviotarefas.php', {
-                id_tarefa : tarefa.id_tarefa, 
-                id_equipe : tarefa.id_equipe, 
-                descricao : descricao, 
-                nome_arquivo: arquivo,
-                FuncionarioId: usuario.FuncionarioId,
+                id_tarefa : tarefa.id_tarefa,
+                id_equipe : tarefa.id_equipe,
+                // descricao : descricao, 
+                // nome_arquivo: arquivo,
+                FuncionarioId: usuario.FuncionarioId
             });
 
             if (res.data.sucesso === false) {
@@ -263,8 +265,8 @@ export default function TarefaEnvio({ navigation, route }) {
                 statusBarHeight: 70,
                 type: "warning",
                 duration: 3000,                    
-            });  
-            limparCampos();            
+            });      
+            console.log(res.data.mensagem)       
             return;
             }
 

@@ -7,8 +7,6 @@ import { Ionicons } from '@expo/vector-icons';
 
 import api from '../../../../services/api';
 
-
-
 export default function CadastroFuncionario({navigation, route}){
     const { theme } = useTheme();
     const styles = getStyles(theme);
@@ -75,7 +73,7 @@ export default function CadastroFuncionario({navigation, route}){
                 endereco : endereco, 
                 numero : numero,
                 id_empresa: usuario.id_empresa,
-                id_administradores: usuario.id // Use o ID do usuário logado
+                id_administradores: usuario.AdminId // Use o ID do usuário logado
             });
 
             if (res.data.sucesso === false) {

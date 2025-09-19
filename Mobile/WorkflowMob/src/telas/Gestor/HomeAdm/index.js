@@ -23,14 +23,14 @@ export default function HomeAdm({navigation, route}){
 
 //Mostra a foto do Usuario:
   useEffect(() => {
-    if (!usuario.id || !usuario.role) return;
+    if (!usuario.AdminId || !usuario.role) return;
 
     async function carregarImagens() {
       try {
         const response = await fetch(`${url}/dev4tec/imagem_usuario.php`,{
             method:'POST',
             headers:{'Content-Type': 'application/json'},
-            body: JSON.stringify({id: usuario.id, role: usuario.role})
+            body: JSON.stringify({id: usuario.AdminId, role: usuario.role})
           }
         );
         const data = await response.json();
