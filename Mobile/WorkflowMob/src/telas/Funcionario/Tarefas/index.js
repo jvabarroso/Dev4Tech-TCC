@@ -17,6 +17,8 @@ export default function Tarefas({ navigation, route }) {
   const [termoBusca, setTermoBusca] = useState('');
   const [usuarioState, setusuarioState] = useState(usuario);
 
+  console.log("Dados do usuario: ",usuario)
+
   useFocusEffect(
   React.useCallback(() => {
     listarDados();
@@ -30,7 +32,7 @@ export default function Tarefas({ navigation, route }) {
 }, [route.params?.usuario]);
 
   async function listarDados() {
-    if (!usuario?.id) {
+    if (!usuario?.FuncionarioId) {
       console.log("ID do usuário não disponível");
       return;
     }
@@ -38,7 +40,7 @@ export default function Tarefas({ navigation, route }) {
     try {
       setErrorMessage(null);
       const res = await api.get(`dev4tec/tarefa.php`, {
-        params: { id_funcionario: usuario.id }
+        params: { id_funcionario: usuario.FuncionarioId }
       });
 
       console.log('Resposta bruta:', res);

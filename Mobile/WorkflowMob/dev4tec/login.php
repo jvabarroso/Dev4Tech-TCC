@@ -8,8 +8,18 @@ $Senha = $postjson['Senha'] ?? '';
 
 try {
     $query = $pdo->prepare("SELECT 
-        f.*, 
-        f.FuncionarioId AS id, 
+        f.FuncionarioId,
+        f.Nome,
+        f.Cargo,
+        f.CPF,
+        f.DataNascimento,
+        f.Telefone,
+        f.Email,
+        f.endereco,
+        f.numero,
+        f.id_empresa,
+        f.foto_perfil,
+        f.senha,
         'funcionario' AS role 
     FROM Funcionarios f 
     WHERE f.Email = :email AND f.Senha = :senha");
@@ -20,8 +30,18 @@ try {
     $userfuncionario = $query->fetch(PDO::FETCH_ASSOC);
 
     $query2 = $pdo->prepare("SELECT 
-        a.*, 
-        a.AdminId AS id, 
+        a.AdminId,
+        a.Nome,
+        a.Cargo,
+        a.CPF,
+        a.DataNascimento,
+        a.Telefone,
+        a.Email,
+        a.endereco,
+        a.num,
+        a.foto_perfil,
+        a.id_empresa,
+        a.senha,
         'administrador' AS role 
     FROM Administradores a 
     WHERE a.Email = :email AND a.Senha = :senha");
@@ -49,7 +69,7 @@ if ($userfuncionario) {
         'success' => true,
         'role' => 'funcionario',
         'usuario' => [
-            'id' => $userfuncionario['id'],
+            'FuncionarioId' => $userfuncionario['FuncionarioId'],
             'nome' => $userfuncionario['Nome'],
             'email' => $userfuncionario['Email'],
             'cargo' => $userfuncionario['Cargo'],
@@ -59,7 +79,6 @@ if ($userfuncionario) {
             'endereco' => $userfuncionario['endereco'],
             'numero' => $userfuncionario['numero'],
             'id_empresa' => $userfuncionario['id_empresa'],
-            'AdminId' => $userfuncionario['AdminId'],
             'foto_perfil' => $fotoUrl,
             'role' => 'funcionario'
         ],
@@ -73,11 +92,10 @@ if ($userfuncionario) {
         'success' => true,
         'role' => 'administrador', 
         'usuario' => [
-            'id' => $useradministrador['id'],
+            'AdminId' => $useradministrador['AdminId'],
             'nome' => $useradministrador['Nome'],
             'email' => $useradministrador['Email'],
             'cargo' => $useradministrador['Cargo'],
-            'data_cadAdmin' => $useradministrador['data_cadAdmin'],
             'telefone' => $useradministrador['Telefone'],
             'cpf' => $useradministrador['CPF'],
             'dataNascimento' => $useradministrador['DataNascimento'],

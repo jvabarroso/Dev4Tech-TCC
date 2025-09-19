@@ -35,7 +35,7 @@ export default function EquipesAdm({ route, navigation }) {
 
   //Lista Equipes
   async function listarDados() {
-  if (!usuario?.id) {
+  if (!usuario?.AdminId) {
         console.log("ID do usuário não disponível");
         return;
   }
@@ -44,7 +44,7 @@ export default function EquipesAdm({ route, navigation }) {
     setErrorMessage(null);
     const res = await api.get(`dev4tec/equipeadm.php`, {
       params: {
-        id_administrador: usuario.id // Use o ID do usuário logado
+        id_administrador: usuario.AdminId // Use o ID do usuário logado
       }
     });
 
@@ -63,10 +63,10 @@ export default function EquipesAdm({ route, navigation }) {
 
   useEffect(() => {
     listarDados();
-  }, [usuarioState?.id]);
+  }, [usuarioState?.AdminId]);
 
-  const toggleEquipe = (id) => {
-    setEquipeSelecionada(equipeSelecionada === id ? null : id);
+  const toggleEquipe = (AdminId) => {
+    setEquipeSelecionada(equipeSelecionada === AdminId ? null : AdminId);
   };
 
 

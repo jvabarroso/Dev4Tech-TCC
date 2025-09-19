@@ -24,12 +24,15 @@ export default function Configuracoes({navigation, route}){
       telefone:'Telefone não definido',
       endereco:'Endereço não definido',
       cpf:"CPF não definido",
+      role: 'funcionario',
+      id: null,
     };
     
   const usuario = {
     ...initialUsuario,
     ...routeUsuario,
-    role: routeUsuario.role
+    id: routeUsuario.FuncionarioId ?? routeUsuario.AdminId ?? null,
+    role: routeUsuario.role ?? 'funcionario'
   };
 
     const [dados, setDados] = useState([]);
@@ -303,9 +306,11 @@ export default function Configuracoes({navigation, route}){
                 <Ionicons name="chevron-back-outline" size={20} color={theme.text} style={styles.botaodevoltar}/>
               </TouchableOpacity>
 
-              <Text style={styles.pontuacao}>
-                Pontuação:<Text style={styles.pontuacaotext}> {dados?.pontos ?? 0}</Text>
-              </Text>
+              {usuarioState.role === 'funcionario' && (
+                <Text style={styles.pontuacao}>
+                  Pontuação: <Text style={styles.pontuacaotext}>{dados?.pontos ?? 0}</Text>
+                </Text>
+              )}
             </View>
 
             <View style={styles.containerfuncionario}>

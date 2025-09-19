@@ -106,7 +106,7 @@ export default function CadastroEquipes({ route, navigation}){
         formData.append('photo', { uri: image, name: filename, type });
 
         try {
-            const response = await fetch(`${url}/dev4tec/upload_equipe.php`, {
+            const response = await fetch(`${url}/dev4tec/upload_equipe2.php`, {
                 method: 'POST',
                 body: formData,
             });
@@ -129,7 +129,7 @@ export default function CadastroEquipes({ route, navigation}){
                     type: "success",
                     duration: 2000,             
             });
-            return resJson.file;
+            return resJson.url ?? resJson.file ?? resJson;
             
             } else {
                 showMessage({
@@ -179,7 +179,7 @@ export default function CadastroEquipes({ route, navigation}){
                 id_categoria: categoriaSelecionada,
                 id_empresa: usuario.id_empresa,
                 foto_equipe,
-                AdminId: usuario.id
+                AdminId: usuario.AdminId
             });
 
             if (res.data.sucesso === false) {

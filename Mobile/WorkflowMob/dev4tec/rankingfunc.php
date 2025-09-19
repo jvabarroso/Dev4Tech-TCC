@@ -26,7 +26,7 @@ try {
     INNER JOIN Funcionarios f ON f.FuncionarioId = em.FuncionarioId
     LEFT JOIN PontuacaoFuncionario pf ON f.FuncionarioId = pf.id_funcionario
     WHERE em.id_equipe = :id_equipe
-    ORDER BY pf.pontos DESC");
+    ORDER BY pontos DESC");
     
     $query->bindValue(':id_empresa', $id_empresa, PDO::PARAM_INT);
     $query->execute();

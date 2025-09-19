@@ -6,6 +6,7 @@ import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
 
 import api from '../../../../services/api';
+import url from '../../../../services/url';
 
 export default function Equipes({ route, navigation }) {
   const { theme } = useTheme();
@@ -18,6 +19,7 @@ export default function Equipes({ route, navigation }) {
   const [errorMessage, setErrorMessage] = useState(null);
   const [termoBusca, setTermoBusca] = useState('');
   const [usuarioState, setusuarioState] = useState(usuario);
+  const BASE_URL = `${url}/dev4tec/img/`
 
   useFocusEffect(
   React.useCallback(() => {
@@ -33,7 +35,7 @@ export default function Equipes({ route, navigation }) {
 
 
   async function listarDados() {
-  if (!usuario?.id) {
+  if (!usuario?.FuncionarioId) {
         console.log("ID do usuário não disponível");
         return;
   }
@@ -41,10 +43,10 @@ export default function Equipes({ route, navigation }) {
   try {
     setIsLoading(true);
     setErrorMessage(null);
-    console.log("ID do administrador enviado:", usuario.id);
+    console.log("ID do Funcionario enviado:", usuario.FuncionarioId);
     const res = await api.get(`dev4tec/equipe.php`, {
       params: {
-        id_funcionario: usuario.id // Use o ID do usuário logado
+        id_funcionario: usuario.FuncionarioId // Use o ID do usuário logado
       }
     });
 
@@ -66,10 +68,10 @@ export default function Equipes({ route, navigation }) {
 
   useEffect(() => {
     listarDados();
-  }, [usuarioState?.id]);
+  }, [usuarioState?.FuncionarioId]);
 
-  const toggleEquipe = (id) => {
-    setEquipeSelecionada(equipeSelecionada === id ? null : id);
+  const toggleEquipe = (FuncionarioId) => {
+    setEquipeSelecionada(equipeSelecionada === FuncionarioId ? null : FuncionarioId);
   };
 
   if (isLoading) {
