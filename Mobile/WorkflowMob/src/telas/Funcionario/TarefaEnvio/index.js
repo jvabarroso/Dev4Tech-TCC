@@ -27,7 +27,7 @@ export default function TarefaEnvio({ navigation, route }) {
     const [problemasEnviados, setProblemasEnviados] = useState([]);
     const [tarefaLocal, setTarefaLocal] = useState({ ...tarefa  });
     const [file, setFile] = useState(null);
-
+    const [sucess, setSucess] = useState(false);
 
     if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
         UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -87,7 +87,7 @@ export default function TarefaEnvio({ navigation, route }) {
         formData.append("file", { uri: file.uri, name: filename, type });
 
         try {
-            const response = await fetch(`${url}/upload_arquivos.php`, {
+            const response = await fetch(`${url}/dev4tec//upload_arquivos.php`, {
                 method: "POST",
                 body: formData
             });
@@ -105,7 +105,7 @@ export default function TarefaEnvio({ navigation, route }) {
             if (response.ok && resJson.success) {        
                 showMessage({
                     message: 'Sucesso.',
-                    description: 'Imagem enviada com sucesso!',
+                    description: 'Tarefa enviada com sucesso!',
                     floating: true,
                     statusBarHeight: 70,
                     type: "success",
@@ -116,7 +116,7 @@ export default function TarefaEnvio({ navigation, route }) {
             } else {
                 showMessage({
                 message: 'Erro.',
-                description: resJson.message || "Falha ao enviar imagem.",
+                description: resJson.message || "Falha ao enviar Tarefa.",
                 floating: true,
                 statusBarHeight: 70,
                 type: "warning",
@@ -171,11 +171,12 @@ export default function TarefaEnvio({ navigation, route }) {
             });
         }
     };
-    
+
+    //Carrega os problemas
     useEffect(() => {
         carregarProblemasExistentes();
     }, []);
-    //Carrega os problemas
+
     async function carregarProblemasExistentes() {
         try {
             if (tarefa.id_tarefa) {
@@ -193,13 +194,37 @@ export default function TarefaEnvio({ navigation, route }) {
         }
     }
 
+    //Carrega a tarefa, caso estiver concluida
+    useEffect(() => {
+        carregartarefa();
+    }, []);
+
+    async function carregartarefa() {
+        try {
+            if (tarefa.id_tarefa) {
+
+                const res = await api.get('dev4tec/carregartarefa.php', {
+                    params: { id_tarefa: tarefa.id_tarefa }
+                });
+                if (res.data.sucesso) {
+                    const tarefaConcluida = res.data.tarefa;
+                    setDescricao(tarefaConcluida.descricao || '');
+                    if (tarefaConcluida.nome_arquivo) {
+                        setFile({ name: tarefaConcluida.nome_arquivo, uri: '', mimeType: '' });
+                    }
+                }
+            }
+        } catch (error) {
+            console.log("Erro ao carregar Tarefas:", error);
+        }
+    }
+
     //Envia a mensagem
     const enviarProblema = () => {
         if(problema.trim()) {
             relatoproblema();
         }
     };
-
 
 
     //Desfaz Tarefas
@@ -244,15 +269,15 @@ export default function TarefaEnvio({ navigation, route }) {
 
     //Entrega a Tarefa
     async function entrega() {      
-        // const arquivo = await uploadFile();
-        // if (!arquivo) return;  
+        const arquivo = await uploadFile();
+        if (!arquivo) return;  
 
         try {
             const res = await api.post('dev4tec/enviotarefas.php', {
                 id_tarefa : tarefa.id_tarefa,
                 id_equipe : tarefa.id_equipe,
-                // descricao : descricao, 
-                // nome_arquivo: arquivo,
+                descricao : descricao, 
+                nome_arquivo: arquivo,
                 FuncionarioId: usuario.FuncionarioId
             });
 
@@ -367,22 +392,44 @@ export default function TarefaEnvio({ navigation, route }) {
                     <View style={styles.linha2}>
                         <Text style={styles.subtitulos}>MEU TRABALHO</Text>
 
-                        <Text style={styles.texto}>Comentário</Text>
-                        <TextInput
-                            style={styles.inputinstrucoes}
-                            multiline
-                            numberOfLines={7}
-                            placeholder="Digite um comentário..."
-                            placeholderTextColor={theme.text}
-                            onChangeText={setDescricao}
-                        />
+                        {/* So para não ficar confuso, esse mostra a descrição */}
+                        {filtroAtivo === "concluido" ? (  
+                            <View>
+                                <Text style={styles.texto}>Comentário</Text>
+                                <View style={[styles.inputinstrucoes, { padding: 8, minHeight: 100 }]}>
+                                    <Text style={{ color: theme.text }}>{descricao}</Text>
+                                </View>
+                            </View>
+                        ):  
+                            <View>
+                                <Text style={styles.texto}>Comentário</Text>
+                                <TextInput
+                                    style={styles.inputinstrucoes}
+                                    multiline
+                                    numberOfLines={7}
+                                    placeholder="Digite um comentário..."
+                                    placeholderTextColor={theme.text}
+                                    onChangeText={setDescricao}
+                                />
+                            </View>
+                        }
 
-                        <TouchableOpacity 
-                            style={styles.botaomostrar}
-                            onPress={pickDocument}
-                        >
-                            <Text style={styles.textoadd}>Anexar um arquivo {file ? `|| ${file.name}` : ""}</Text>
-                        </TouchableOpacity>
+                        {/* Esse para Anexar Arquivo */}
+                        {filtroAtivo === "concluido" ? (                        
+                            <View style={styles.botaomostrar}>
+                                <Text style={styles.textoadd}>{file?.name || ''}</Text>
+                            </View>
+
+                        ):
+                            <TouchableOpacity 
+                                style={styles.botaomostrar}
+                                onPress={pickDocument}
+                            >
+                                <Text style={styles.textoadd}>{file ? file.name : "Anexar um arquivo"}</Text>
+                            </TouchableOpacity>
+                        }
+
+                        {/* Esse para relatar problema*/}
                         {filtroAtivo !== "concluido" && (
                         <TouchableOpacity
                             style={styles.botaomostrar}
@@ -392,6 +439,8 @@ export default function TarefaEnvio({ navigation, route }) {
                         </TouchableOpacity>
                         )}
                     </View>
+                    
+                    {/* Esse para relatar Enviar ou desfazer entrega*/}
                     {filtroAtivo === "concluido" ? (                        
                         <TouchableOpacity
                             style={[styles.botaoenviar, { backgroundColor: "#FF4444" }]}

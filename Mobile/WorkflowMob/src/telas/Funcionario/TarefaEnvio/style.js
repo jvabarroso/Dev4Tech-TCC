@@ -276,4 +276,7 @@ export const getStyles = (theme) => StyleSheet.create({
         alignSelf:"flex-start",
         paddingHorizontal:5,
     },
+    textod:{
+        color: theme.text,
+    }
 });

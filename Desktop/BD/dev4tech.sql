@@ -155,6 +155,8 @@ ALTER TABLE EntregasTarefa
 ADD COLUMN FuncionarioId INT NOT NULL,
 ADD FOREIGN KEY (FuncionarioId) REFERENCES Funcionarios(FuncionarioId) ON DELETE CASCADE;
 
+ALTER TABLE EntregasTarefa ADD COLUMN entregue BOOL;
+
 CREATE TABLE PontuacaoFuncionario (
     id_pontuacao INT AUTO_INCREMENT PRIMARY KEY,
     id_funcionario INT NOT NULL,
