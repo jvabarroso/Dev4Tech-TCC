@@ -1,10 +1,11 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Drawing; // Adicionado para FontStyle.Bold e manipulação de imagens
-using System.Drawing.Imaging; // Adicionado para usar o método FirstOrDefault
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Dev4Tech
@@ -19,11 +20,9 @@ namespace Dev4Tech
         {
             InitializeComponent();
             funcionario = func;
-            admin = null; // Garante que admin é nulo
+            admin = null;
             PreencherCamposFuncionario();
-
-            this.Load += Perfil_Load; // Adiciona evento Load para carregar foto
-            IconFuncionario.SizeMode = PictureBoxSizeMode.StretchImage; // Define modo stretch no PictureBox
+            this.Load += Configuracoes_Load;
         }
 
         // Construtor para administrador
@@ -31,11 +30,9 @@ namespace Dev4Tech
         {
             InitializeComponent();
             admin = adm;
-            funcionario = null; // Garante que funcionario é nulo
+            funcionario = null;
             PreencherCamposAdmin();
-
-            this.Load += Perfil_Load; // Adiciona evento Load para carregar foto
-            IconFuncionario.SizeMode = PictureBoxSizeMode.StretchImage; // Define modo stretch no PictureBox
+            this.Load += Configuracoes_Load;
         }
 
         private void CarregarEquipesDoUsuario(int idUsuario, bool isFuncionario)
@@ -211,8 +208,8 @@ namespace Dev4Tech
         JOIN Equipes_Membros em ON f.FuncionarioId = em.FuncionarioId
         WHERE em.id_equipe = @idEquipe";
 
-            string baseFolder = @"C:\xampp\htdocs\dev4tech\";
             string connectionString = "Server=localhost;Database=Dev4Tech;Uid=root;Pwd=;SslMode=none;";
+
             using (var conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
@@ -223,18 +220,49 @@ namespace Dev4Tech
                     {
                         while (reader.Read())
                         {
-                            string caminhoRelativo = reader.IsDBNull(reader.GetOrdinal("foto_perfil"))
-                                ? null : reader.GetString("foto_perfil");
-
+                            // Verificar se é blob ou caminho
+                            object fotoData = reader["foto_perfil"];
                             Image fotoMembro = null;
-                            if (!string.IsNullOrEmpty(caminhoRelativo))
+
+                            if (fotoData != null && fotoData != DBNull.Value)
                             {
-                                string caminhoCompleto = Path.Combine(baseFolder, caminhoRelativo.Replace("/", @"\"));
-                                if (File.Exists(caminhoCompleto))
-                                    fotoMembro = Image.FromFile(caminhoCompleto);
+                                if (fotoData is byte[] imageData)
+                                {
+                                    // É um blob
+                                    try
+                                    {
+                                        using (var ms = new MemoryStream(imageData))
+                                        {
+                                            fotoMembro = Image.FromStream(ms);
+                                        }
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Console.WriteLine($"Erro ao carregar imagem do blob: {ex.Message}");
+                                    }
+                                }
+                                else if (fotoData is string caminhoRelativo)
+                                {
+                                    // É um caminho (para compatibilidade com registros antigos)
+                                    string baseFolder = @"C:\xampp\htdocs\dev4tech\";
+                                    string caminhoCompleto = Path.Combine(baseFolder, caminhoRelativo.Replace("/", @"\"));
+
+                                    if (File.Exists(caminhoCompleto))
+                                    {
+                                        try
+                                        {
+                                            fotoMembro = Image.FromFile(caminhoCompleto);
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            Console.WriteLine($"Erro ao carregar imagem: {ex.Message}");
+                                        }
+                                    }
+                                }
                             }
+
                             if (fotoMembro == null)
-                                fotoMembro = Properties.Resources.icon_perfil; // padrão
+                                fotoMembro = Properties.Resources.icon_perfil;
 
                             membros.Add(new MembroInfo
                             {
@@ -248,8 +276,6 @@ namespace Dev4Tech
             return membros;
         }
 
-
-
         private void PreencherCamposFuncionario()
         {
             lblNomeFunc.Text = funcionario.getNome();
@@ -262,7 +288,6 @@ namespace Dev4Tech
             txtEmail.Text = funcionario.getEmail();
             textBox1.Text = $"{funcionario.getEndereco()}, {funcionario.getNumero()}";
 
-            // Obter e mostrar a pontuação atual do funcionário
             pontuacaoUsuarios ptFunc = new pontuacaoUsuarios();
             int idFunc = int.Parse(funcionario.getFuncionarioId());
             int pontos = ptFunc.ObterPontos(idFunc);
@@ -281,11 +306,9 @@ namespace Dev4Tech
             txtEmail.Text = admin.getEmail();
             textBox1.Text = $"{admin.getEndereco()}, {admin.getNum()}";
 
-            // Para administrador, pode exibir um texto diferente ou 0 pontos
-            lblPontos.Text = "Administrador"; // Ou "0" ou "N/A"
+            lblPontos.Text = "Administrador";
         }
 
-        // Os demais métodos e eventos permanecem os mesmos, sem alterações
         private void label8_Click(object sender, EventArgs e) { }
         private void label1_Click(object sender, EventArgs e)
         {
@@ -312,7 +335,6 @@ namespace Dev4Tech
         private void label13_Click(object sender, EventArgs e) { }
         private void txtNome_TextChanged(object sender, EventArgs e) { }
 
-        // Corrigido para verificar FuncionarioLogado e AdminLogado
         private void btnConfigurações_Click(object sender, EventArgs e)
         {
             var funcionarioSessao = Sessao.FuncionarioLogado;
@@ -355,7 +377,6 @@ namespace Dev4Tech
             }
             else if (adminSessao != null)
             {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
                 HomeAdm t_equipeAdmin = new HomeAdm();
                 t_equipeAdmin.Show();
                 this.Hide();
@@ -367,7 +388,6 @@ namespace Dev4Tech
         }
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            // Limpa a sessão antes de voltar para a tela inicial
             Sessao.FuncionarioLogado = null;
             Sessao.AdminLogado = null;
 
@@ -397,11 +417,13 @@ namespace Dev4Tech
             {
                 idUsuario = int.Parse(funcionario.getFuncionarioId());
                 isFuncionario = true;
+                CarregarFotoDoBanco(idUsuario, true);
             }
             else if (admin != null)
             {
                 idUsuario = int.Parse(admin.getAdminId());
                 isFuncionario = false;
+                CarregarFotoDoBanco(idUsuario, false);
             }
             else
             {
@@ -410,7 +432,7 @@ namespace Dev4Tech
             }
             CarregarEquipesDoUsuario(idUsuario, isFuncionario);
         }
-        // Mantido se associado no Designer
+
         private void pictureBox9_Click(object sender, EventArgs e)
         {
             Tarefas_Pendentes t_pendente = new Tarefas_Pendentes();
@@ -418,7 +440,44 @@ namespace Dev4Tech
             this.Hide();
         }
 
-        private void AtualizarFotoNoBanco(string caminhoRelativo)
+        private void btnTrocarFotoPerfil_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog
+            {
+                Title = "Selecione a nova foto do perfil",
+                Filter = "Imagens|*.jpg;*.jpeg;*.png;*.bmp"
+            };
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    // Carregar a imagem e converter para bytes
+                    byte[] imageData;
+                    using (Image novaImagem = Image.FromFile(ofd.FileName))
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        novaImagem.Save(ms, ImageFormat.Jpeg);
+                        imageData = ms.ToArray();
+                    }
+
+                    // Atualizar a PictureBox
+                    IconFuncionario.Image = Image.FromStream(new MemoryStream(imageData));
+                    IconFuncionario.SizeMode = PictureBoxSizeMode.StretchImage;
+
+                    // Atualizar no banco de dados como BLOB
+                    AtualizarFotoNoBancoComoBlob(imageData);
+
+                    MessageBox.Show("Foto de perfil atualizada!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erro ao processar imagem: {ex.Message}");
+                }
+            }
+        }
+
+        private void AtualizarFotoNoBancoComoBlob(byte[] imageData)
         {
             if (funcionario != null)
             {
@@ -429,7 +488,7 @@ namespace Dev4Tech
                     string query = "UPDATE Funcionarios SET foto_perfil = @foto WHERE FuncionarioId = @id";
                     using (var cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@foto", caminhoRelativo);
+                        cmd.Parameters.AddWithValue("@foto", imageData);
                         cmd.Parameters.AddWithValue("@id", idFuncionario);
                         cmd.ExecuteNonQuery();
                     }
@@ -444,7 +503,7 @@ namespace Dev4Tech
                     string query = "UPDATE Administradores SET foto_perfil = @foto WHERE AdminId = @id";
                     using (var cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@foto", caminhoRelativo);
+                        cmd.Parameters.AddWithValue("@foto", imageData);
                         cmd.Parameters.AddWithValue("@id", idAdmin);
                         cmd.ExecuteNonQuery();
                     }
@@ -452,87 +511,79 @@ namespace Dev4Tech
             }
         }
 
-        private void btnTrocarFotoPerfil_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog ofd = new OpenFileDialog
-            {
-                Title = "Selecione a nova foto do perfil",
-                Filter = "Imagens|*.jpg;*.jpeg;*.png;*.bmp"
-            };
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                string srcFile = ofd.FileName;
-                string pastaDestino = @"C:\xampp\htdocs\dev4tech\img";
-                if (!Directory.Exists(pastaDestino))
-                    Directory.CreateDirectory(pastaDestino);
-
-                string nomeArquivo = Guid.NewGuid().ToString() + Path.GetExtension(srcFile);
-                string destFile = Path.Combine(pastaDestino, nomeArquivo);
-
-                File.Copy(srcFile, destFile, true);
-
-                IconFuncionario.SizeMode = PictureBoxSizeMode.StretchImage;
-                IconFuncionario.Image = Image.FromFile(destFile);
-
-                AtualizarFotoNoBanco("img/" + nomeArquivo);
-
-                MessageBox.Show("Foto de perfil atualizada!");
-            }
-        }
-
-
-        private void Perfil_Load(object sender, EventArgs e)
-        {
-            if (funcionario != null)
-            {
-                int idFuncionario = int.Parse(funcionario.getFuncionarioId());
-                CarregarFotoDoBanco(idFuncionario, true);
-            }
-            else if (admin != null)
-            {
-                int idAdmin = int.Parse(admin.getAdminId());
-                CarregarFotoDoBanco(idAdmin, false);
-            }
-            else
-            {
-                IconFuncionario.SizeMode = PictureBoxSizeMode.StretchImage;
-                IconFuncionario.Image = Properties.Resources.icon_perfil;
-            }
-        }
+        private void Perfil_Load(object sender, EventArgs e) { }
 
         private void CarregarFotoDoBanco(int id, bool isFuncionario)
         {
-            using (var conn = new MySqlConnection("server=localhost;database=Dev4Tech;uid=root;pwd="))
+            try
             {
-                conn.Open();
-                string query = isFuncionario
-                    ? "SELECT foto_perfil FROM Funcionarios WHERE FuncionarioId = @id"
-                    : "SELECT foto_perfil FROM Administradores WHERE AdminId = @id";
-                using (var cmd = new MySqlCommand(query, conn))
+                string connectionString = "server=localhost;database=Dev4Tech;uid=root;pwd=";
+
+                using (var conn = new MySqlConnection(connectionString))
                 {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    var fotoPathObj = cmd.ExecuteScalar();
-                    if (fotoPathObj != null && fotoPathObj != DBNull.Value)
+                    conn.Open();
+                    string query = isFuncionario
+                        ? "SELECT foto_perfil FROM Funcionarios WHERE FuncionarioId = @id"
+                        : "SELECT foto_perfil FROM Administradores WHERE AdminId = @id";
+
+                    using (var cmd = new MySqlCommand(query, conn))
                     {
-                        string caminhoRelativo = fotoPathObj.ToString();
-                        string caminhoCompleto = Path.Combine(@"C:\xampp\htdocs\dev4tech\", caminhoRelativo.Replace("/", @"\"));
-                        if (File.Exists(caminhoCompleto))
-                        {
-                            IconFuncionario.Image = Image.FromFile(caminhoCompleto);
-                            IconFuncionario.SizeMode = PictureBoxSizeMode.StretchImage;
-                        }
-                        else
-                        {
-                            IconFuncionario.Image = Properties.Resources.icon_perfil; // imagem padrão
-                        }
-                    }
-                    else
-                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        var result = cmd.ExecuteScalar();
+
+                        // Definir imagem padrão primeiro
                         IconFuncionario.Image = Properties.Resources.icon_perfil;
+                        IconFuncionario.SizeMode = PictureBoxSizeMode.StretchImage;
+
+                        if (result != null && result != DBNull.Value)
+                        {
+                            if (result is byte[] imageData)
+                            {
+                                // É um blob
+                                try
+                                {
+                                    using (var ms = new MemoryStream(imageData))
+                                    {
+                                        IconFuncionario.Image = Image.FromStream(ms);
+                                        IconFuncionario.SizeMode = PictureBoxSizeMode.StretchImage;
+                                    }
+                                }
+                                catch (ArgumentException ex)
+                                {
+                                    Console.WriteLine($"Imagem corrompida: {ex.Message}");
+                                }
+                            }
+                            else if (result is string caminhoRelativo)
+                            {
+                                // É um caminho (para compatibilidade)
+                                string baseFolder = @"C:\xampp\htdocs\dev4tech\";
+                                string caminhoCompleto = Path.Combine(baseFolder, caminhoRelativo.Replace("/", @"\"));
+
+                                if (File.Exists(caminhoCompleto))
+                                {
+                                    try
+                                    {
+                                        IconFuncionario.Image = Image.FromFile(caminhoCompleto);
+                                        IconFuncionario.SizeMode = PictureBoxSizeMode.StretchImage;
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Console.WriteLine($"Erro ao carregar imagem do arquivo: {ex.Message}");
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar foto: {ex.Message}");
+                IconFuncionario.Image = Properties.Resources.icon_perfil;
+                IconFuncionario.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
         }
 
+        private void panelDados_Paint(object sender, PaintEventArgs e) { }
     }
 }

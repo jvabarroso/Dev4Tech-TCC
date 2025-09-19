@@ -47,10 +47,11 @@
             this.txtTelefone = new System.Windows.Forms.MaskedTextBox();
             this.txtCPF = new System.Windows.Forms.MaskedTextBox();
             this.panelDados = new System.Windows.Forms.Panel();
+            this.flowLayoutPanelEquipes = new System.Windows.Forms.FlowLayoutPanel();
+            this.pnlEquipe = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.txtDataNascFunc = new System.Windows.Forms.MaskedTextBox();
-            this.pnlEquipe = new System.Windows.Forms.Panel();
             this.btnTrocarFotoPerfil = new System.Windows.Forms.Button();
             this.IconFuncionario = new System.Windows.Forms.PictureBox();
             this.picPerfilMembro = new System.Windows.Forms.PictureBox();
@@ -61,8 +62,8 @@
             this.btnConfigurações = new System.Windows.Forms.PictureBox();
             this.btnHome = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.flowLayoutPanelEquipes = new System.Windows.Forms.FlowLayoutPanel();
             this.panelDados.SuspendLayout();
+            this.flowLayoutPanelEquipes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IconFuncionario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPerfilMembro)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEquipes)).BeginInit();
@@ -72,7 +73,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnConfigurações)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnHome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.flowLayoutPanelEquipes.SuspendLayout();
             this.SuspendLayout();
             // 
             // label7
@@ -277,6 +277,25 @@
             this.panelDados.Name = "panelDados";
             this.panelDados.Size = new System.Drawing.Size(895, 724);
             this.panelDados.TabIndex = 153;
+            this.panelDados.Paint += new System.Windows.Forms.PaintEventHandler(this.panelDados_Paint);
+            // 
+            // flowLayoutPanelEquipes
+            // 
+            this.flowLayoutPanelEquipes.AutoScroll = true;
+            this.flowLayoutPanelEquipes.Controls.Add(this.pnlEquipe);
+            this.flowLayoutPanelEquipes.Location = new System.Drawing.Point(118, 128);
+            this.flowLayoutPanelEquipes.Name = "flowLayoutPanelEquipes";
+            this.flowLayoutPanelEquipes.Size = new System.Drawing.Size(525, 152);
+            this.flowLayoutPanelEquipes.TabIndex = 157;
+            // 
+            // pnlEquipe
+            // 
+            this.pnlEquipe.Location = new System.Drawing.Point(2, 2);
+            this.pnlEquipe.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlEquipe.Name = "pnlEquipe";
+            this.pnlEquipe.Size = new System.Drawing.Size(284, 112);
+            this.pnlEquipe.TabIndex = 141;
+            this.pnlEquipe.Paint += new System.Windows.Forms.PaintEventHandler(this.panelEquipes_Paint);
             // 
             // textBox1
             // 
@@ -310,15 +329,6 @@
             this.txtDataNascFunc.TabIndex = 154;
             this.txtDataNascFunc.ValidatingType = typeof(System.DateTime);
             this.txtDataNascFunc.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.txtDataNascFunc_MaskInputRejected);
-            // 
-            // pnlEquipe
-            // 
-            this.pnlEquipe.Location = new System.Drawing.Point(2, 2);
-            this.pnlEquipe.Margin = new System.Windows.Forms.Padding(2);
-            this.pnlEquipe.Name = "pnlEquipe";
-            this.pnlEquipe.Size = new System.Drawing.Size(284, 112);
-            this.pnlEquipe.TabIndex = 141;
-            this.pnlEquipe.Paint += new System.Windows.Forms.PaintEventHandler(this.panelEquipes_Paint);
             // 
             // btnTrocarFotoPerfil
             // 
@@ -438,15 +448,6 @@
             this.pictureBox2.TabIndex = 106;
             this.pictureBox2.TabStop = false;
             // 
-            // flowLayoutPanelEquipes
-            // 
-            this.flowLayoutPanelEquipes.AutoScroll = true;
-            this.flowLayoutPanelEquipes.Controls.Add(this.pnlEquipe);
-            this.flowLayoutPanelEquipes.Location = new System.Drawing.Point(118, 128);
-            this.flowLayoutPanelEquipes.Name = "flowLayoutPanelEquipes";
-            this.flowLayoutPanelEquipes.Size = new System.Drawing.Size(525, 152);
-            this.flowLayoutPanelEquipes.TabIndex = 157;
-            // 
             // Configuracoes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -475,6 +476,7 @@
             this.Load += new System.EventHandler(this.Configuracoes_Load);
             this.panelDados.ResumeLayout(false);
             this.panelDados.PerformLayout();
+            this.flowLayoutPanelEquipes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.IconFuncionario)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPerfilMembro)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEquipes)).EndInit();
@@ -484,7 +486,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnConfigurações)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnHome)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.flowLayoutPanelEquipes.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
