@@ -12,6 +12,7 @@ namespace Dev4Tech
         public PesquisaEquipes()
         {
             InitializeComponent();
+            Sessao.LimparEquipeSelecionada();
             panelEquipes.AutoScroll = true;
             filtroEquipes.Items.Add("Todos");
             filtroEquipes.Items.Add("Desenvolvedor de software");
@@ -169,7 +170,9 @@ namespace Dev4Tech
             };
             equipePanel.Click += (s, e) =>
             {
-                Chat_geral_equipes chatForm = new Chat_geral_equipes(idEquipe, nomeEquipe, categoria);
+                // Usar o método novo para definir a equipe selecionada
+                Sessao.DefinirEquipeSelecionada(idEquipe, nomeEquipe, categoria);
+                Chat_geral_equipes chatForm = new Chat_geral_equipes();
                 chatForm.Show();
                 this.Hide();
             };

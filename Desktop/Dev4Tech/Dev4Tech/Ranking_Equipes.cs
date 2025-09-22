@@ -21,6 +21,7 @@ namespace Dev4Tech
             CarregarRankingEquipes();
         }
 
+
         private void CarregarRankingEquipes()
         {
             panelRankingEquipes.Controls.Clear();
@@ -274,26 +275,22 @@ namespace Dev4Tech
 
         private void lblGeral_Click(object sender, EventArgs e)
         {
-            var funcionario = Sessao.FuncionarioLogado;
-            var admin = Sessao.AdminLogado;
-
-            if (funcionario != null)
+            if (Sessao.IdEquipeSelecionada == 0)
             {
-                Chat_geral_equipes t_equipe = new Chat_geral_equipes();
-                t_equipe.Show();
-                this.Hide();
-            }
-            else if (admin != null)
-            {
-                Chat_geral_equipes t_equipeAdmin = new Chat_geral_equipes();
-                t_equipeAdmin.Show();
+                MessageBox.Show("Selecione uma equipe primeiro.");
+                PesquisaEquipes pesquisa = new PesquisaEquipes();
+                pesquisa.Show();
                 this.Hide();
             }
             else
             {
-                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Chat_geral_equipes chat = new Chat_geral_equipes();
+                chat.Show();
+                this.Hide();
             }
         }
+
+
 
         private void lblRanking_Click(object sender, EventArgs e)
         {

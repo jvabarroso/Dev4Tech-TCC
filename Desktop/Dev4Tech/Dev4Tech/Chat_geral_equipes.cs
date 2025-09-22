@@ -21,11 +21,24 @@ namespace Dev4Tech
         public Chat_geral_equipes()
         {
             InitializeComponent();
-            idEquipe = 0;
-            nomeEquipe = "Equipe não definida";
-            categoriaEquipe = "Categoria não definida";
+
+            // SEMPRE usar os dados da sessão
+            if (Sessao.IdEquipeSelecionada == 0)
+            {
+                MessageBox.Show("Nenhuma equipe selecionada. Redirecionando para pesquisa de equipes.");
+                PesquisaEquipes pesquisa = new PesquisaEquipes();
+                pesquisa.Show();
+                this.Close();
+                return;
+            }
+
+            this.idEquipe = Sessao.IdEquipeSelecionada;
+            this.nomeEquipe = Sessao.NomeEquipeSelecionada;
+            this.categoriaEquipe = Sessao.CategoriaEquipeSelecionada;
+
             lblNomeEquipe.Text = nomeEquipe;
             lblCategoriaEquipe.Text = categoriaEquipe;
+            CarregarMensagens();
         }
 
         public Chat_geral_equipes(int idEquipe, string nomeEquipe, string categoriaEquipe)
@@ -42,6 +55,13 @@ namespace Dev4Tech
         private void CarregarMensagens()
         {
             LimparMensagens();
+
+            if (idEquipe == 0)
+            {
+                MessageBox.Show("ID da equipe não definido.");
+                return;
+            }
+
             DataTable dt = messageChat.ConsultarPorEquipe(idEquipe);
             mensagensCount = 0;
             string idUsuarioLogado = null;

@@ -14,6 +14,7 @@ namespace Dev4Tech
         private Dictionary<int, string> equipesNomeMap;
         private int idFuncionarioLogado; // ID do funcionário logado para filtro individual
         private EntregaTarefa entregaTarefa; // Instância da classe para manipular entregas
+        private const string TextoPlaceholder = "Pesquisar uma tarefa";
 
         public Tarefas_Pendentes()
         {
@@ -21,9 +22,13 @@ namespace Dev4Tech
 
             entregaTarefa = new EntregaTarefa();
 
-            idFuncionarioLogado = Sessao.FuncionarioLogado != null 
-                ? int.Parse(Sessao.FuncionarioLogado.getFuncionarioId()) 
+            idFuncionarioLogado = Sessao.FuncionarioLogado != null
+                ? int.Parse(Sessao.FuncionarioLogado.getFuncionarioId())
                 : 0;
+
+            // Configurar placeholder na textbox
+            txtPesquisarTarefa.Text = TextoPlaceholder;
+            txtPesquisarTarefa.ForeColor = Color.Gray;
 
             // Carregar as equipes do funcionário logado
             CarregarEquipes();
@@ -36,11 +41,32 @@ namespace Dev4Tech
             AtualizarTarefas();
         }
 
+        private void txtPesquisarTarefa_Enter(object sender, EventArgs e)
+        {
+            if (txtPesquisarTarefa.Text == TextoPlaceholder)
+            {
+                txtPesquisarTarefa.Text = "";
+                txtPesquisarTarefa.ForeColor = Color.Black;
+            }
+        }
+
+        private void txtPesquisarTarefa_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtPesquisarTarefa.Text))
+            {
+                txtPesquisarTarefa.Text = TextoPlaceholder;
+                txtPesquisarTarefa.ForeColor = Color.Gray;
+            }
+        }
+
         // Atualiza a lista de tarefas exibidas segundo filtros ativos (equipe/pesquisa)
         private void AtualizarTarefas()
         {
             string filtroNome = txtPesquisarTarefa.Text.Trim();
             List<int> equipesFiltrar = null;
+
+            // Se for o texto placeholder ou vazio, não filtrar por nome
+            bool usarFiltroNome = !string.IsNullOrEmpty(filtroNome) && filtroNome != TextoPlaceholder;
 
             if (cmbEquipes.SelectedItem == null || cmbEquipes.SelectedItem.ToString() == "Todas")
             {
@@ -57,7 +83,7 @@ namespace Dev4Tech
 
             DataTable tarefas = new DataTable();
 
-            if (string.IsNullOrEmpty(filtroNome))
+            if (!usarFiltroNome)
             {
                 tarefas = new DataTable();
                 if (equipesFiltrar != null)
@@ -92,42 +118,6 @@ namespace Dev4Tech
             }
 
             MostrarTarefas(tarefas);
-        }
-
-        // Pesquisa tarefas por nome e filtra pelas equipes selecionadas (não mais usado para atualização principal)
-        private DataTable BuscarTarefasPorNomeEFiltroEquipes(string filtroNome, List<int> idsEquipes)
-        {
-            DataTable dt = new DataTable();
-
-            if (idsEquipes == null || idsEquipes.Count == 0)
-                return dt;
-
-            var parametros = idsEquipes.Select((id, index) => "@id" + index).ToList();
-
-            string query = $@"
-        SELECT t.*, e.nome_equipe, c.nome_categoria
-        FROM Tarefas t
-        INNER JOIN Equipes e ON t.id_equipe = e.id_equipe
-        INNER JOIN Categorias c ON e.id_categoria = c.id_categoria
-        WHERE t.nomeTarefa LIKE @filtroNome
-        AND t.id_equipe IN ({string.Join(", ", parametros)})
-        ORDER BY t.data_entrega DESC";
-
-            using (var conn = new MySqlConnection("server=localhost;database=Dev4Tech;uid=root;pwd="))
-            {
-                conn.Open();
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@filtroNome", "%" + filtroNome + "%");
-                    for (int i = 0; i < idsEquipes.Count; i++)
-                    {
-                        cmd.Parameters.AddWithValue(parametros[i], idsEquipes[i]);
-                    }
-                    MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-                    da.Fill(dt);
-                }
-            }
-            return dt;
         }
 
         // Exibe painel com as tarefas do DataTable (igual seu método AtualizarListaTarefas)
@@ -220,71 +210,17 @@ namespace Dev4Tech
 
         private void cmbEquipes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbEquipes.SelectedItem.ToString() == "Todas")
-            {
-                DataTable dtTarefas = new DataTable();
-                if (equipesFuncionario != null)
-                {
-                    foreach (var idEquipe in equipesFuncionario)
-                    {
-                        DataTable dt = entregaTarefa.BuscarTarefasPendentesPorEquipeFuncionario(idEquipe, idFuncionarioLogado);
-                        dtTarefas.Merge(dt);
-                    }
-                }
-                MostrarTarefas(dtTarefas);
-            }
-            else
-            {
-                var equipeSelecionada = equipesNomeMap.FirstOrDefault(x => x.Value == cmbEquipes.SelectedItem.ToString());
-                if (equipeSelecionada.Key != 0)
-                {
-                    var dtTarefas = entregaTarefa.BuscarTarefasPendentesPorEquipeFuncionario(equipeSelecionada.Key, idFuncionarioLogado);
-                    MostrarTarefas(dtTarefas);
-                }
-            }
+            AtualizarTarefas();
         }
 
         // Pesquisa dinâmica na txtPesquisarTarefa e atualiza lista
         private void txtPesquisarTarefa_TextChanged(object sender, EventArgs e)
         {
-            string filtro = txtPesquisarTarefa.Text.Trim();
-
-            DataTable tarefasFiltradas;
-
-            // Exibe todas as tarefas se o campo estiver vazio ou com o texto padrão
-            if (string.IsNullOrEmpty(filtro) || filtro.Equals("pesquisar uma tarefa", StringComparison.OrdinalIgnoreCase))
+            // Só atualiza se não for o texto do placeholder
+            if (txtPesquisarTarefa.Text != TextoPlaceholder)
             {
-                DataTable dtTarefas = new DataTable();
-                if (equipesFuncionario != null)
-                {
-                    foreach (var idEquipe in equipesFuncionario)
-                    {
-                        DataTable dt = entregaTarefa.BuscarTarefasPendentesPorEquipeFuncionario(idEquipe, idFuncionarioLogado);
-                        dtTarefas.Merge(dt);
-                    }
-                }
-                tarefasFiltradas = dtTarefas;
+                AtualizarTarefas();
             }
-            else
-            {
-                DataTable dtTarefas = new DataTable();
-                if (equipesFuncionario != null)
-                {
-                    foreach (var idEquipe in equipesFuncionario)
-                    {
-                        DataTable dt = entregaTarefa.BuscarTarefasPendentesPorEquipeFuncionario(idEquipe, idFuncionarioLogado);
-                        dtTarefas.Merge(dt);
-                    }
-                }
-                var rowsFiltrados = dtTarefas.AsEnumerable()
-                    .Where(r => r.Field<string>("nomeTarefa").IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0);
-                if (rowsFiltrados.Any())
-                    tarefasFiltradas = rowsFiltrados.CopyToDataTable();
-                else
-                    tarefasFiltradas = dtTarefas.Clone();
-            }
-
-            AtualizarListaTarefas(tarefasFiltradas);
         }
 
         private void AtualizarListaTarefas(DataTable tarefas)

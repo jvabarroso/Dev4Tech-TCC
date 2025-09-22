@@ -6,33 +6,6 @@ namespace Dev4Tech
 {
     class EntregaTarefa : conexao
     {
-        // Busca a tarefa da equipe selecionada (última criada)
-        public DataRow BuscarTarefaPorEquipe(int idEquipe)
-        {
-            DataTable dt = new DataTable();
-            string query = "SELECT * FROM Tarefas WHERE id_equipe = @idEquipe ORDER BY id_tarefa DESC LIMIT 1";
-
-            if (abrirConexao())
-            {
-                try
-                {
-                    using (MySqlCommand cmd = new MySqlCommand(query, conectar))
-                    {
-                        cmd.Parameters.AddWithValue("@idEquipe", idEquipe);
-                        using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
-                        {
-                            da.Fill(dt);
-                        }
-                    }
-                }
-                finally
-                {
-                    fecharConexao();
-                }
-            }
-            return dt.Rows.Count > 0 ? dt.Rows[0] : null;
-        }
-
         // Busca uma tarefa específica por ID (nome do método corrigido)
         public DataRow BuscarTarefaPorId(int idTarefa)
         {
@@ -185,6 +158,7 @@ namespace Dev4Tech
         LEFT JOIN EntregasTarefa et ON t.id_tarefa = et.id_tarefa AND et.FuncionarioId = @idFuncionario
         WHERE t.id_equipe = @idEquipe
         AND et.id_entrega IS NULL
+        AND t.data_entrega >= CURDATE()
         ORDER BY t.data_entrega ASC";
 
             if (abrirConexao())
@@ -211,39 +185,7 @@ namespace Dev4Tech
 
 
         // Busca todas as tarefas entregues pelo funcionário em uma equipe
-        public DataTable BuscarTarefasEntreguesPorEquipeFuncionario(int idEquipe, int idFuncionario)
-        {
-            DataTable dt = new DataTable();
-            string query = @"
-                SELECT DISTINCT t.*, c.nome_categoria, e.nome_equipe
-                FROM Tarefas t
-                INNER JOIN Equipes e ON t.id_equipe = e.id_equipe
-                INNER JOIN Categorias c ON e.id_categoria = c.id_categoria
-                INNER JOIN EntregasTarefa et ON t.id_tarefa = et.id_tarefa AND et.FuncionarioId = @idFuncionario
-                WHERE t.id_equipe = @idEquipe
-                ORDER BY t.data_entrega DESC";
-
-            if (abrirConexao())
-            {
-                try
-                {
-                    using (MySqlCommand cmd = new MySqlCommand(query, conectar))
-                    {
-                        cmd.Parameters.AddWithValue("@idEquipe", idEquipe);
-                        cmd.Parameters.AddWithValue("@idFuncionario", idFuncionario);
-                        using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
-                        {
-                            da.Fill(dt);
-                        }
-                    }
-                }
-                finally
-                {
-                    fecharConexao();
-                }
-            }
-            return dt;
-        }
+        
 
         public DataTable BuscarTarefasAtrasadasPorEquipe(int idEquipe)
         {
@@ -292,46 +234,6 @@ namespace Dev4Tech
         INNER JOIN EntregasTarefa et ON t.id_tarefa = et.id_tarefa
         WHERE t.id_equipe = @idEquipe
         ORDER BY t.data_entrega DESC";
-            if (abrirConexao())
-            {
-                try
-                {
-                    using (MySqlCommand cmd = new MySqlCommand(query, conectar))
-                    {
-                        cmd.Parameters.AddWithValue("@idEquipe", idEquipe);
-                        using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
-                        {
-                            da.Fill(dt);
-                        }
-                    }
-                }
-                finally
-                {
-                    fecharConexao();
-                }
-            }
-            return dt;
-        }
-
-        
-
-
-        // Busca tarefas da equipe, incluindo status finalizada
-        public DataTable BuscarTarefasPorEquipeComStatus(int idEquipe)
-        {
-            DataTable dt = new DataTable();
-            string query = @"
-                SELECT t.*,
-                       (SELECT COUNT(*) FROM Equipes_Membros WHERE id_equipe = t.id_equipe) AS total_membros,
-                       (SELECT COUNT(DISTINCT FuncionarioId) FROM EntregasTarefa WHERE id_tarefa = t.id_tarefa AND id_equipe = t.id_equipe) AS total_entregas,
-                       CASE WHEN 
-                           (SELECT COUNT(*) FROM Equipes_Membros WHERE id_equipe = t.id_equipe) = 
-                           (SELECT COUNT(DISTINCT FuncionarioId) FROM EntregasTarefa WHERE id_tarefa = t.id_tarefa AND id_equipe = t.id_equipe)
-                       THEN 1 ELSE 0 END AS tarefa_finalizada
-                FROM Tarefas t
-                WHERE t.id_equipe = @idEquipe
-                ORDER BY t.data_entrega DESC";
-
             if (abrirConexao())
             {
                 try
