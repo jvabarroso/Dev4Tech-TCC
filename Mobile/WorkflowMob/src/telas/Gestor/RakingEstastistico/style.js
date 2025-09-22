@@ -70,6 +70,7 @@ export const getStyles = (theme) => StyleSheet.create({
       width: 45,
       height: 45,
       marginLeft: 10,
+      borderRadius:12,
     },
     textos: {
       marginLeft: 15,
@@ -115,26 +116,25 @@ export const getStyles = (theme) => StyleSheet.create({
       paddingHorizontal:5
     },
     containerbarras:{
-      flexDirection: 'row',
-      height: 200, 
-      padding: 8,
+      marginVertical: 13
     },
-    colunagrafico:{
-      gap:30,
+    colunagrafico: {
+      gap: 10,
       marginRight: 10,
-      paddingVertical:15,
+      paddingVertical: 15,
+      maxWidth: 120,
     },
     textobarras:{
       fontSize: 14,
-
     },
     color:{
       color:"#0E499E"
     },
     barras:{
-      flex:1,
-      height: 163, // ou outro valor adequado
-      paddingVertical:14,
+      flex: 1, 
+      height: 20, 
+      backgroundColor: '#e0e0e0', 
+      borderRadius: 10
     },
     circleProgressView:{
       flexDirection: 'row', 
@@ -179,6 +179,16 @@ export const getStyles = (theme) => StyleSheet.create({
       fontFamily: fonts.text,
       color: theme.text,
       fontSize:20,
+    },
+    areafuncionario:{
+      flexDirection: 'row',
+      alignItems: 'center', 
+      marginBottom: 6
+    },
+    barra:{
+      height: '100%',
+      backgroundColor: '#0E499E',
+      borderRadius: 10,
     },
 
 });

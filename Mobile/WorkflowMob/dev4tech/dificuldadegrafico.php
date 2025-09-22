@@ -14,25 +14,15 @@ if (empty($id_equipe)) {
 }
 
 try {
-    $query = $pdo->prepare("SELECT 
-        f.funcionarioId, 
-        f.nome, 
-        COALESCE(SUM(pf.pontos), 0) AS pontos
-    FROM equipes_membros em
-    INNER JOIN funcionarios f ON f.funcionarioId = em.funcionarioId
-    LEFT JOIN pontuacaofuncionario pf ON f.funcionarioId = pf.id_funcionario
-    WHERE em.id_equipe = :id_equipe
-    GROUP BY f.funcionarioId, f.nome
-    ORDER BY pontos DESC;
-");
+    $query = $pdo->prepare("SELECT dificuldade FROM tarefas WHERE id_equipe = :id_equipe");
     $query->bindValue(':id_equipe', $id_equipe, PDO::PARAM_INT);
     $query->execute();
     
-    $pontosfuncionario = $query->fetchAll(PDO::FETCH_ASSOC);
+    $dificuldade = $query->fetchAll(PDO::FETCH_ASSOC);
 
     echo json_encode([
         'success' => true,
-        'result' => $pontosfuncionario
+        'result' => $dificuldade
     ]);
 
 } catch (PDOException $e) {

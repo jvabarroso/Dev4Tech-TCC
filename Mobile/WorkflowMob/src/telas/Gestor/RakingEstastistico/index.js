@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, Image, FlatList, TextInput, TouchableOpacity, ScrollView} from 'react-native';
 import { BarChart, Grid, XAxis} from 'react-native-svg-charts';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
@@ -6,6 +6,7 @@ import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
 import { Ionicons } from '@expo/vector-icons';
+import api from '../../../../services/api';
 
 export default function RankingEstastistico({navigation, route}){
     const { theme } = useTheme();
@@ -14,6 +15,9 @@ export default function RankingEstastistico({navigation, route}){
     const equipe = route.params?.equipe || {}; 
     const posicaoOriginal = route.params?.posicaoOriginal || {}; 
 
+    const [dados, setDados] = useState([]);
+    const maxPontos = Math.max(...dados.map(item => item.pontos), 1);
+
     const [verificacaoinfor, setVerificacaoinfor] = useState(true);
     const [verificacaodesem, setVerificacaodesem] = useState(true);
     const [verificacaoentre, setVerificacaoentre] = useState(true);
@@ -21,23 +25,30 @@ export default function RankingEstastistico({navigation, route}){
     const cliqueinformacao = () => {setVerificacaoinfor(valorAtual => !valorAtual);};
     const cliquedesempenho = () => {setVerificacaodesem(valorAtual => !valorAtual);};
     const cliqueentrega = () => {setVerificacaoentre(valorAtual => !valorAtual);};
-
-
-    const data = [
-    { value: equipe.tarefaspostadas, svg: { fill: '#8000FF', rx: 10, ry: 10 } },
-    { value: equipe.tarefasatrasadas, svg: { fill: '#3288D7', rx: 10, ry: 10 } },
-    { value: equipe.tarefasnaoentregues, svg: { fill: '#FF0F00', rx: 10, ry: 10 } },
-    ];
-    const labels = ['Tarefas postadas', 'Tarefas Atrasadas', 'Tarefas não entregues'];
-    const labelsdata = [equipe.tarefaspostadas, equipe.tarefasatrasadas, equipe.tarefasnaoentregues];
     
+    //Lista Pontos da equipe
+    async function listarpontos() {
+        try {
+        const res = await api.get(`dev4tech/pontuacaofuncionariografico.php`, {
+        params: {id_equipe: equipe.id_equipe }
+        });
 
-    const pontosganhos = equipe.tarefaspostadas;
-    const pontosperdidos = equipe.tarefasnaoentregues * 2 + equipe.tarefasatrasadas
-    const total = pontosganhos + pontosperdidos
-    const desempenho = total > 0
-    ? (pontosganhos/total)*100
-    : 0;
+        if (res.data.success) {
+        setDados(res.data.result || []);
+        } else {
+            console.log("Erro na API:", res.data.message);
+            setDados([]);
+        }
+        }
+        catch (error) {
+        console.log("Erro ao listar funcionarios", error);
+        }
+    }
+
+    useEffect(() => {
+        listarpontos();
+    }, [equipe?.id_equipe]);
+
 
     return(
       <View style={styles.container}>
@@ -46,10 +57,10 @@ export default function RankingEstastistico({navigation, route}){
                 contentContainerStyle={styles.containerConteudo}
                 showsVerticalScrollIndicator={false}
             >
-      <View style={styles.nav}>
+                <View style={styles.nav}>
                     <TouchableOpacity 
                         style={styles.botaodevoltar}
-                        onPress={() => navigation.navigate('HomeAdm', { screen: 'RankingAdm' })}
+                        onPress={() => navigation.goBack()}
                     >
                         <Ionicons name="arrow-back" size={24} color={theme.text} />
                     </TouchableOpacity>
@@ -64,11 +75,14 @@ export default function RankingEstastistico({navigation, route}){
                     placeholderTextColor="#ffffff"
                 />
                 <View style={styles.containertarefas}>
-                    <Text style={styles.colocacao}>{posicaoOriginal + 1}º</Text>
-                    <Image source={equipe.imagem} style={styles.imag} />
+                    <Text style={styles.colocacao}>{posicaoOriginal}º</Text>
+                    <Image 
+                      source={equipe.foto_equipe ? { uri: equipe.foto_equipe } : require('../../../../assets/img/image.png')} 
+                      style={styles.imag} 
+                    />
                     <View style={styles.textos}>
-                        <Text style={styles.textolistatitulo}>{equipe.titulo}</Text>
-                        <Text style={styles.textolistacargo}>{equipe.cargo}</Text>
+                      <Text style={styles.textolistatitulo}>{equipe.nome_equipe}</Text>
+                      <Text style={styles.textolistacargo}>{equipe.nome_categoria}</Text>
                     </View>
                 </View>
 
@@ -88,28 +102,25 @@ export default function RankingEstastistico({navigation, route}){
 
                     {!verificacaoinfor && (
                         <View style={styles.containerbarras}>
-                             <View style={styles.colunagrafico}>
-                                {labels.map((label, posicaoOriginal) => (
-                                <Text key={posicaoOriginal} style={styles.textobarras}>{label}</Text>
-                                ))}
+                           {dados.map((item, index) => ( 
+                            <View key={index} style={styles.areafuncionario}>
+
+                                <Text style={[styles.textobarras, { width:90 }]} numberOfLines={2} ellipsizeMode="tail">
+                                    {item.nome}
+                                </Text>
+
+                                <Text style={[styles.textobarras, styles.color, { width: 50, textAlign: 'right', marginRight: 10 }]}>
+                                    {item.pontos}
+                                </Text>
+                                
+                                <View style={styles.barras}>
+                                    <View style={[styles.barra, {width: `${(item.pontos / maxPontos) * 100}%` }]}
+                                />
+                                </View>
                             </View>
-                            <View style={styles.colunagrafico}>
-                                {labelsdata.map((label, posicaoOriginal) => (
-                                <Text key={posicaoOriginal} style={[styles.textobarras, styles.color]}>{label}</Text>
-                                ))}
-                            </View>
-                            <BarChart
-                                style={styles.barras}
-                                data={data}
-                                horizontal={true}
-                                yAccessor={({ item }) => item.value}
-                                contentInset={{ top: 4, bottom: 8 }}
-                                spacingInner={0.6}
-                                gridMin={0}
-                            >
-                            </BarChart>
+                            ))}
                         </View>
-                    )}
+                        )}
 
                     <View style={[styles.linha, { alignItems: 'center', justifyContent: 'space-between' }]}>
                         <Text style={styles.titulodetalhes}>Desempenho</Text>
