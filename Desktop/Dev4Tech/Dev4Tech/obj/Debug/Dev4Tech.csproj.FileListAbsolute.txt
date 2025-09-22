@@ -558,3 +558,18 @@ C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\d
 C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\MigraDoc.RtfRendering.resources.dll
 C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\PdfSharp.resources.dll
 C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\PdfSharp.Charting.resources.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.DocumentObjectModel.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.Rendering.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.RtfRendering.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.Charting.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.DocumentObjectModel.xml
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.Rendering.xml
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.RtfRendering.xml
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.xml
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.Charting.xml
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\MigraDoc.DocumentObjectModel.resources.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\MigraDoc.Rendering.resources.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\MigraDoc.RtfRendering.resources.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\PdfSharp.resources.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\PdfSharp.Charting.resources.dll

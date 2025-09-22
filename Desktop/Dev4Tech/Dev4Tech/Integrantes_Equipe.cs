@@ -1,21 +1,27 @@
 ﻿using System;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
+
 namespace Dev4Tech
 {
     public partial class Integrantes_Equipe : Form
     {
         private int equipeSelecionadaId = -1;
+        private string baseFolder = @"C:\xampp\htdocs\dev4tech\";
+
         public Integrantes_Equipe()
         {
             InitializeComponent();
             CarregarEquipes();
         }
+
         private void Integrantes_Equipe_Load(object sender, EventArgs e)
         {
             // Opcional: CarregarEquipes();
         }
+
         private void CarregarEquipes()
         {
             panelEquipes.Controls.Clear();
@@ -84,12 +90,45 @@ namespace Dev4Tech
                     // Carregar a foto do perfil se existir
                     if (m.Table.Columns.Contains("foto_perfil") && m["foto_perfil"] != DBNull.Value)
                     {
-                        byte[] fotoBytes = (byte[])m["foto_perfil"];
-                        if (fotoBytes.Length > 0)
+                        // Verificar se é um caminho (string) ou blob (byte[])
+                        object fotoData = m["foto_perfil"];
+
+                        if (fotoData is string caminhoRelativo && !string.IsNullOrEmpty(caminhoRelativo))
                         {
-                            using (var ms = new System.IO.MemoryStream(fotoBytes))
+                            // É um caminho de arquivo
+                            string caminhoCompleto = Path.Combine(baseFolder, caminhoRelativo.Replace("/", @"\"));
+
+                            if (File.Exists(caminhoCompleto))
                             {
-                                picMembro.Image = Image.FromStream(ms);
+                                try
+                                {
+                                    picMembro.Image = Image.FromFile(caminhoCompleto);
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine($"Erro ao carregar imagem: {ex.Message}");
+                                    picMembro.Image = Properties.Resources.icon_perfil;
+                                }
+                            }
+                            else
+                            {
+                                picMembro.Image = Properties.Resources.icon_perfil;
+                            }
+                        }
+                        else if (fotoData is byte[] imageData)
+                        {
+                            // É um blob (para compatibilidade com dados antigos)
+                            try
+                            {
+                                using (var ms = new System.IO.MemoryStream(imageData))
+                                {
+                                    picMembro.Image = Image.FromStream(ms);
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine($"Erro ao carregar imagem do blob: {ex.Message}");
+                                picMembro.Image = Properties.Resources.icon_perfil;
                             }
                         }
                         else
@@ -114,6 +153,7 @@ namespace Dev4Tech
                 top += 80;
             }
         }
+
         private void CarregarMembrosDaEquipe(string filtroNome = "")
         {
             panelMembros.Controls.Clear();
@@ -144,12 +184,45 @@ namespace Dev4Tech
                 // Carregar a foto do perfil
                 if (row.Table.Columns.Contains("foto_perfil") && row["foto_perfil"] != DBNull.Value)
                 {
-                    byte[] fotoBytes = (byte[])row["foto_perfil"];
-                    if (fotoBytes.Length > 0)
+                    // Verificar se é um caminho (string) ou blob (byte[])
+                    object fotoData = row["foto_perfil"];
+
+                    if (fotoData is string caminhoRelativo && !string.IsNullOrEmpty(caminhoRelativo))
                     {
-                        using (var ms = new System.IO.MemoryStream(fotoBytes))
+                        // É um caminho de arquivo
+                        string caminhoCompleto = Path.Combine(baseFolder, caminhoRelativo.Replace("/", @"\"));
+
+                        if (File.Exists(caminhoCompleto))
                         {
-                            pic.Image = Image.FromStream(ms);
+                            try
+                            {
+                                pic.Image = Image.FromFile(caminhoCompleto);
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine($"Erro ao carregar imagem: {ex.Message}");
+                                pic.Image = Properties.Resources.icon_perfil;
+                            }
+                        }
+                        else
+                        {
+                            pic.Image = Properties.Resources.icon_perfil;
+                        }
+                    }
+                    else if (fotoData is byte[] imageData)
+                    {
+                        // É um blob (para compatibilidade com dados antigos)
+                        try
+                        {
+                            using (var ms = new System.IO.MemoryStream(imageData))
+                            {
+                                pic.Image = Image.FromStream(ms);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Erro ao carregar imagem do blob: {ex.Message}");
+                            pic.Image = Properties.Resources.icon_perfil;
                         }
                     }
                     else
@@ -193,11 +266,13 @@ namespace Dev4Tech
                 top += 70;
             }
         }
+
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
             string filtro = txtPesquisarMembros.Text.Trim();
             CarregarMembrosDaEquipe(filtro);
         }
+
         // Eventos existentes mantidos...
         private void lblMembros_Click(object sender, EventArgs e)
         {
@@ -220,6 +295,7 @@ namespace Dev4Tech
                 MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
         private void lblPlanejamento_Click(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;
@@ -241,12 +317,15 @@ namespace Dev4Tech
                 MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
         private void txtProcurarMebros_TextChanged(object sender, EventArgs e)
         {
         }
+
         private void btnMostrarMembros_Click(object sender, EventArgs e)
         {
         }
+
         private void lblRanking_Click(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;
@@ -268,6 +347,7 @@ namespace Dev4Tech
                 MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
         private void lblTarefas_Click(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;
@@ -289,6 +369,7 @@ namespace Dev4Tech
                 MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
         private void lblGeral_Click(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;
@@ -310,6 +391,7 @@ namespace Dev4Tech
                 MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
         private void btnHome_Click_1(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;
@@ -331,6 +413,7 @@ namespace Dev4Tech
                 MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
         private void btnEquipes_Click_1(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;
@@ -352,6 +435,7 @@ namespace Dev4Tech
                 MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
         private void btnRanking_Click_1(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;
@@ -373,6 +457,7 @@ namespace Dev4Tech
                 MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
         private void btnConfigurações_Click(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;
@@ -387,6 +472,7 @@ namespace Dev4Tech
                 MessageBox.Show("Nenhum funcionário logado.");
             }
         }
+
         private void btnLogout_Click_1(object sender, EventArgs e)
         {
             Sessao.FuncionarioLogado = null;
@@ -395,6 +481,7 @@ namespace Dev4Tech
             t_incial.Show();
             this.Hide();
         }
+
         private void btnCalendar_Click(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;
@@ -416,6 +503,7 @@ namespace Dev4Tech
                 MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
         private void label1_Click(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;

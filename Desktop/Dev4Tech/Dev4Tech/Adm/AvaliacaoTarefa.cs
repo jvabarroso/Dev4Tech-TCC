@@ -12,6 +12,7 @@ namespace Dev4Tech
         INSERT INTO AvaliacaoTarefa (id_tarefa, aceita, atraso_justificado)
         VALUES (@idTarefa, @aceita, @atrasoJustificado)
         ON DUPLICATE KEY UPDATE aceita = VALUES(aceita), atraso_justificado = VALUES(atraso_justificado)";
+
             if (abrirConexao())
             {
                 try
@@ -24,6 +25,9 @@ namespace Dev4Tech
                     else
                         cmd.Parameters.AddWithValue("@atrasoJustificado", DBNull.Value);
                     cmd.ExecuteNonQuery();
+
+                    // Atualizar o status de entrega na tabela EntregasTarefa
+                    AtualizarStatusEntrega(idTarefa, aceita);
                 }
                 finally
                 {
@@ -32,6 +36,25 @@ namespace Dev4Tech
             }
         }
 
+        private void AtualizarStatusEntrega(int idTarefa, bool aceita)
+        {
+            string query = "UPDATE EntregasTarefa SET entregue = @entregue WHERE id_tarefa = @idTarefa";
+
+            if (abrirConexao())
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, conectar);
+                    cmd.Parameters.AddWithValue("@entregue", aceita);
+                    cmd.Parameters.AddWithValue("@idTarefa", idTarefa);
+                    cmd.ExecuteNonQuery();
+                }
+                finally
+                {
+                    fecharConexao();
+                }
+            }
+        }
 
         public void ComputarPontosSeAprovado(int idTarefa)
         {
@@ -63,7 +86,6 @@ namespace Dev4Tech
                 }
             }
         }
-
 
         private void PontuarFuncionarios(int idTarefa, bool? atrasoJustificado)
         {
@@ -152,6 +174,7 @@ namespace Dev4Tech
 
             return dt;
         }
+
         public DataRow BuscarTarefaPorId(int idTarefa)
         {
             DataTable dt = new DataTable();
@@ -182,16 +205,20 @@ namespace Dev4Tech
             return null;
         }
 
-        public DataTable BuscarTarefasPorEquipe(int idEquipe)
+        public DataTable BuscarTarefasNaoAvaliadasPorEquipe(int idEquipe)
         {
             DataTable dt = new DataTable();
             string query = @"
-            SELECT t.id_tarefa, t.nomeTarefa, t.dificuldade, e.nome_equipe, t.data_entrega
+            SELECT DISTINCT t.id_tarefa, t.nomeTarefa, t.dificuldade, e.nome_equipe, t.data_entrega
             FROM Tarefas t
             INNER JOIN Equipes e ON t.id_equipe = e.id_equipe
-            INNER JOIN Entregas en ON en.id_tarefa = t.id_tarefa
-            LEFT JOIN Avaliacoes av ON av.id_tarefa = t.id_tarefa
-            WHERE t.id_equipe = @idEquipe AND av.id_tarefa IS NULL";
+            INNER JOIN EntregasTarefa et ON et.id_tarefa = t.id_tarefa
+            WHERE t.id_equipe = @idEquipe 
+            AND (et.entregue IS NULL OR et.entregue = FALSE)
+            AND NOT EXISTS (
+                SELECT 1 FROM AvaliacaoTarefa av 
+                WHERE av.id_tarefa = t.id_tarefa
+            )";
 
             if (abrirConexao())
             {

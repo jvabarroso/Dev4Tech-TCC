@@ -1,8 +1,8 @@
-﻿// EquipesRanking.cs
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using MySql.Data.MySqlClient;
 
 namespace Dev4Tech
@@ -16,6 +16,7 @@ namespace Dev4Tech
     public class EquipesRanking : conexao
     {
         private string conexaoString = "server=localhost;database=Dev4Tech;uid=root;pwd=;";
+        private string baseFolder = @"C:\xampp\htdocs\dev4tech\";
 
         public DataTable BuscarEquipesComPontuacao()
         {
@@ -65,12 +66,52 @@ namespace Dev4Tech
                         MembroEquipe membro = new MembroEquipe();
                         membro.Nome = reader["Nome"].ToString();
 
-                        if (!reader.IsDBNull(reader.GetOrdinal("foto_perfil")))
+                        // Verificar se é um caminho (string) ou blob (byte[])
+                        object fotoData = reader["foto_perfil"];
+
+                        if (fotoData != null && fotoData != DBNull.Value)
                         {
-                            byte[] fotoBytes = (byte[])reader["foto_perfil"];
-                            using (var ms = new System.IO.MemoryStream(fotoBytes))
+                            if (fotoData is string caminhoRelativo && !string.IsNullOrEmpty(caminhoRelativo))
                             {
-                                membro.FotoPerfil = Image.FromStream(ms);
+                                // É um caminho de arquivo
+                                string caminhoCompleto = Path.Combine(baseFolder, caminhoRelativo.Replace("/", @"\"));
+
+                                if (File.Exists(caminhoCompleto))
+                                {
+                                    try
+                                    {
+                                        membro.FotoPerfil = Image.FromFile(caminhoCompleto);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Console.WriteLine($"Erro ao carregar imagem: {ex.Message}");
+                                        membro.FotoPerfil = Properties.Resources.icon_perfil;
+                                    }
+                                }
+                                else
+                                {
+                                    membro.FotoPerfil = Properties.Resources.icon_perfil;
+                                }
+                            }
+                            else if (fotoData is byte[] imageData)
+                            {
+                                // É um blob (para compatibilidade com dados antigos)
+                                try
+                                {
+                                    using (var ms = new System.IO.MemoryStream(imageData))
+                                    {
+                                        membro.FotoPerfil = Image.FromStream(ms);
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine($"Erro ao carregar imagem do blob: {ex.Message}");
+                                    membro.FotoPerfil = Properties.Resources.icon_perfil;
+                                }
+                            }
+                            else
+                            {
+                                membro.FotoPerfil = Properties.Resources.icon_perfil;
                             }
                         }
                         else

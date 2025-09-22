@@ -13,10 +13,10 @@ namespace Dev4Tech
         public AvaliaçãoTarefaAdmin()
         {
             InitializeComponent();
-            CarregarTarefasEntregues();
+            CarregarTarefasNaoAvaliadas();
         }
 
-        private void CarregarTarefasEntregues()
+        private void CarregarTarefasNaoAvaliadas()
         {
             panelAvaliacaoEquipes.Controls.Clear();
             List<int> equipesIds = BuscarIdsEquipes();
@@ -24,10 +24,10 @@ namespace Dev4Tech
             int top = 10;
             foreach (int idEquipe in equipesIds)
             {
-                EntregaTarefa entregaTarefa = new EntregaTarefa();
-                DataTable tarefasEntregues = entregaTarefa.BuscarTarefasCompletadasPorEquipe(idEquipe);
+                AvaliacaoTarefa avaliacaoTarefa = new AvaliacaoTarefa();
+                DataTable tarefasNaoAvaliadas = avaliacaoTarefa.BuscarTarefasNaoAvaliadasPorEquipe(idEquipe);
 
-                foreach (DataRow tarefa in tarefasEntregues.Rows)
+                foreach (DataRow tarefa in tarefasNaoAvaliadas.Rows)
                 {
                     int idTarefa = Convert.ToInt32(tarefa["id_tarefa"]);
                     string nomeTarefa = tarefa["nomeTarefa"].ToString();
@@ -44,7 +44,7 @@ namespace Dev4Tech
                         Left = 10,
                         BorderStyle = BorderStyle.FixedSingle,
                         Tag = idTarefa,
-                        Cursor = Cursors.Default // Mudado para Default para evitar confusão com clique
+                        Cursor = Cursors.Default
                     };
 
                     // Labels
@@ -160,35 +160,35 @@ namespace Dev4Tech
         }
 
         private void btnSalvarAvaliacoes_Click(object sender, EventArgs e)
-{
-    AvaliacaoTarefa av_admin = new AvaliacaoTarefa();
-
-    foreach (var item in avaliacoes)
-    {
-        int idTarefa = item.Key;
-        AvaliacaoInfo info = item.Value;
-
-        if (info.Aceita == null)
         {
-            MessageBox.Show($"Por favor, avalie a tarefa ID {idTarefa}.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            return;
-        }
+            AvaliacaoTarefa av_admin = new AvaliacaoTarefa();
 
-        av_admin.SalvarAvaliacao(idTarefa, info.Aceita.Value, info.AtrasoJustificado);
-
-        if (info.Aceita.Value)
-        {
-            bool computarPontos = info.AtrasoJustificado.HasValue ? info.AtrasoJustificado.Value : true;
-            if (computarPontos)
+            foreach (var item in avaliacoes)
             {
-                AvancarPontuacaoFuncionarios(idTarefa);
-            }
-        }
-    }
+                int idTarefa = item.Key;
+                AvaliacaoInfo info = item.Value;
 
-    MessageBox.Show("Avaliações salvas com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            CarregarTarefasEntregues();
-}
+                if (info.Aceita == null)
+                {
+                    MessageBox.Show($"Por favor, avalie a tarefa ID {idTarefa}.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                av_admin.SalvarAvaliacao(idTarefa, info.Aceita.Value, info.AtrasoJustificado);
+
+                if (info.Aceita.Value)
+                {
+                    bool computarPontos = info.AtrasoJustificado.HasValue ? info.AtrasoJustificado.Value : true;
+                    if (computarPontos)
+                    {
+                        AvancarPontuacaoFuncionarios(idTarefa);
+                    }
+                }
+            }
+
+            MessageBox.Show("Avaliações salvas com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            CarregarTarefasNaoAvaliadas();
+        }
 
         private void AvancarPontuacaoFuncionarios(int idTarefa)
         {
@@ -229,7 +229,6 @@ namespace Dev4Tech
                 avaliacaoTarefa.AtualizarPontuacaoFuncionario(idFuncionario, pontos);
             }
         }
-
 
         private List<int> BuscarIdsEquipes()
         {
@@ -344,7 +343,7 @@ namespace Dev4Tech
 
         private void AvaliaçãoTarefaAdmin_Load(object sender, EventArgs e)
         {
-            CarregarTarefasEntregues(); // Recarrega as tarefas ao voltar para a tela
+            CarregarTarefasNaoAvaliadas();
         }
 
         private void lblGeral_Click(object sender, EventArgs e)

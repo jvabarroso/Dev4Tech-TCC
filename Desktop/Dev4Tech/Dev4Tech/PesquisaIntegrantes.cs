@@ -60,20 +60,28 @@ namespace Dev4Tech
                     // Agora para cada linha do DataTable:
                     foreach (DataRow row in dt.Rows)
                     {
-                        string caminhoRelativo = row["foto_perfil"] as string;
-                        if (!string.IsNullOrEmpty(caminhoRelativo))
+                        // Verificar se é um caminho (string) ou blob (byte[])
+                        object fotoData = row["foto_perfil"];
+
+                        if (fotoData != null && fotoData != DBNull.Value)
                         {
-                            string caminhoCompleto = Path.Combine(caminhoBaseImagens, caminhoRelativo.Replace("/", @"\"));
-                            if (File.Exists(caminhoCompleto))
+                            if (fotoData is string caminhoRelativo && !string.IsNullOrEmpty(caminhoRelativo))
                             {
-                                // Opcional: carregar imagem para algum controle ou armazenar caminho para exibição
-                                 row["foto_perfil"] = caminhoCompleto; // se quiser alterar para caminho completo
+                                // É um caminho de arquivo
+                                string caminhoCompleto = Path.Combine(caminhoBaseImagens, caminhoRelativo.Replace("/", @"\"));
+
+                                if (File.Exists(caminhoCompleto))
+                                {
+                                    // Manter o caminho relativo para compatibilidade com outras partes do código
+                                    row["foto_perfil"] = caminhoRelativo;
+                                }
+                                else
+                                {
+                                    // arquivo não encontrado, pode manter imagem padrão ou nulo
+                                    row["foto_perfil"] = DBNull.Value;
+                                }
                             }
-                            else
-                            {
-                                // arquivo não encontrado, pode manter imagem padrão ou nulo
-                                 row["foto_perfil"] = null;
-                            }
+                            // Se for byte[] (blob), manter como está para compatibilidade
                         }
                     }
                 }
