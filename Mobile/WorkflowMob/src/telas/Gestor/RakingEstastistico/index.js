@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Text, View, Image, FlatList, TextInput, TouchableOpacity, ScrollView} from 'react-native';
-{/* import { BarChart, Grid, XAxis} from 'react-native-svg-charts';*/}
+import { BarChart, Grid, XAxis} from 'react-native-svg-charts';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 
 import { getStyles } from './style';
@@ -11,7 +11,9 @@ export default function RankingEstastistico({navigation, route}){
     const { theme } = useTheme();
     const styles = getStyles(theme);
 
-    const { equipe, index } = route.params;
+    const equipe = route.params?.equipe || {}; 
+    const posicaoOriginal = route.params?.posicaoOriginal || {}; 
+
     const [verificacaoinfor, setVerificacaoinfor] = useState(true);
     const [verificacaodesem, setVerificacaodesem] = useState(true);
     const [verificacaoentre, setVerificacaoentre] = useState(true);
@@ -44,7 +46,7 @@ export default function RankingEstastistico({navigation, route}){
                 contentContainerStyle={styles.containerConteudo}
                 showsVerticalScrollIndicator={false}
             >
-{/*                  <View style={styles.nav}>
+      <View style={styles.nav}>
                     <TouchableOpacity 
                         style={styles.botaodevoltar}
                         onPress={() => navigation.navigate('HomeAdm', { screen: 'RankingAdm' })}
@@ -62,7 +64,7 @@ export default function RankingEstastistico({navigation, route}){
                     placeholderTextColor="#ffffff"
                 />
                 <View style={styles.containertarefas}>
-                    <Text style={styles.colocacao}>{index + 1}º</Text>
+                    <Text style={styles.colocacao}>{posicaoOriginal + 1}º</Text>
                     <Image source={equipe.imagem} style={styles.imag} />
                     <View style={styles.textos}>
                         <Text style={styles.textolistatitulo}>{equipe.titulo}</Text>
@@ -77,7 +79,7 @@ export default function RankingEstastistico({navigation, route}){
                     </View>
 
                     <View style={[styles.linha, { alignItems: 'center', justifyContent: 'space-between' }]}>
-                        <Text style={styles.titulodetalhes}>Contribuições</Text>
+                        <Text style={styles.titulodetalhes}>Contribuições de funcionarios</Text>
                         <TouchableOpacity
                             onPress={cliqueinformacao}>
                              <Ionicons name="information-circle-outline" size={22} color="#00000" style={{paddingHorizontal:5, marginRight:270, paddingVertical:5}}/>
@@ -87,13 +89,13 @@ export default function RankingEstastistico({navigation, route}){
                     {!verificacaoinfor && (
                         <View style={styles.containerbarras}>
                              <View style={styles.colunagrafico}>
-                                {labels.map((label, index) => (
-                                <Text key={index} style={styles.textobarras}>{label}</Text>
+                                {labels.map((label, posicaoOriginal) => (
+                                <Text key={posicaoOriginal} style={styles.textobarras}>{label}</Text>
                                 ))}
                             </View>
                             <View style={styles.colunagrafico}>
-                                {labelsdata.map((label, index) => (
-                                <Text key={index} style={[styles.textobarras, styles.color]}>{label}</Text>
+                                {labelsdata.map((label, posicaoOriginal) => (
+                                <Text key={posicaoOriginal} style={[styles.textobarras, styles.color]}>{label}</Text>
                                 ))}
                             </View>
                             <BarChart
@@ -178,7 +180,6 @@ export default function RankingEstastistico({navigation, route}){
                         </View>
                     )}  
                 </View> 
-*/}
             </ScrollView> 
         </View>
   );

@@ -33,7 +33,7 @@ export default function CadastroEquipes({ route, navigation}){
 //Buscar Categorias
     async function listarDados() {
         try {
-            const res = await api.get(`dev4tec/categoria.php`, {
+            const res = await api.get(`dev4tech/categoria.php`, {
             params: {id_empresa: usuario.id_empresa }
             });
 
@@ -106,7 +106,7 @@ export default function CadastroEquipes({ route, navigation}){
         formData.append('photo', { uri: image, name: filename, type });
 
         try {
-            const response = await fetch(`${url}/dev4tec/upload_equipe2.php`, {
+            const response = await fetch(`${url}/dev4tech/upload_equipe2.php`, {
                 method: 'POST',
                 body: formData,
             });
@@ -174,7 +174,7 @@ export default function CadastroEquipes({ route, navigation}){
             return;
         }
         try {
-            const res = await api.post('dev4tec/cadastroequipe.php', {
+            const res = await api.post('dev4tech/cadastroequipe.php', {
                 nome_equipe,
                 id_categoria: categoriaSelecionada,
                 id_empresa: usuario.id_empresa,

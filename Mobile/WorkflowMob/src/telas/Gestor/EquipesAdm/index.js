@@ -42,7 +42,7 @@ export default function EquipesAdm({ route, navigation }) {
   
   try {
     setErrorMessage(null);
-    const res = await api.get(`dev4tec/equipeadm.php`, {
+    const res = await api.get(`dev4tech/equipeadm.php`, {
       params: {
         id_administrador: usuario.AdminId // Use o ID do usuário logado
       }

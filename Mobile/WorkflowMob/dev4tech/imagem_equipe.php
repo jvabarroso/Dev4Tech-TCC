@@ -34,7 +34,7 @@ try {
         $caminhoCompleto = $diretorio . $foto;
 
         if (file_exists($caminhoCompleto)) {
-            $urlCompleta = "http://10.239.0.125/dev4tec/img/" . $foto;
+            $urlCompleta = "http://10.239.0.125/dev4tech/img/" . $foto;
             echo json_encode(['success' => true, 'imagem' => $urlCompleta], JSON_UNESCAPED_UNICODE);
         } else {
             echo json_encode(['success' => false, 'message' => 'Imagem não encontrada']);

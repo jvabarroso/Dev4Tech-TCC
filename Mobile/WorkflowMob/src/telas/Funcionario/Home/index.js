@@ -29,7 +29,7 @@ export default function Home({navigation, route}){
 
     async function carregarImagens() {
       try {
-        const response = await fetch(`${url}/dev4tec/imagem_usuario.php`,{
+        const response = await fetch(`${url}/dev4tech/imagem_usuario.php`,{
             method:'POST',
             headers:{'Content-Type': 'application/json'},
             body: JSON.stringify({id: usuario.FuncionarioId, role: usuario.role})

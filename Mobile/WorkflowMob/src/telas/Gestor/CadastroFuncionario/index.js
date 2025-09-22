@@ -63,7 +63,7 @@ export default function CadastroFuncionario({navigation, route}){
             return;
         }
         try {
-            const res = await api.post('dev4tec/cadastrofunc.php', {
+            const res = await api.post('dev4tech/cadastrofunc.php', {
                 Nome : nome, 
                 Cargo :cargo, 
                 DataNascimento : formatarDataParaBanco(dataNascimento), 

@@ -39,7 +39,7 @@ export default function Tarefas({ navigation, route }) {
     
     try {
       setErrorMessage(null);
-      const res = await api.get(`dev4tec/tarefa.php`, {
+      const res = await api.get(`dev4tech/tarefa.php`, {
         params: { id_funcionario: usuario.FuncionarioId }
       });
 

@@ -15,12 +15,12 @@ export default function EquipeFuncionario({ navigation, route }) {
   console.log("Equipe:", equipe);
 
   const [dados, setDados] = useState([]);
-  const BASE_URL = `${url}/dev4tec/img/`
+  const BASE_URL = `${url}/dev4tech/img/`
   
   //Lista os funcionarios
   async function listarFuncionarios() {
     try {
-      const res = await api.get(`dev4tec/funcionario.php`, {
+      const res = await api.get(`dev4tech/funcionario.php`, {
         params: {
           id_equipe: equipe.id_equipe
         }
