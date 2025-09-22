@@ -9,15 +9,18 @@ using System.Windows.Forms;
 
 namespace Dev4Tech
 {
-    // Classe para representar dados da tarefa com arquivo
     public class TarefaArquivo
     {
         public int IdTarefa { get; set; }
         public string NomeArquivo { get; set; }
+        public string NomeTarefa { get; set; }
     }
 
     public class planejamentoSQL : conexao
     {
+        // Definir caminho base consistente para todos os arquivos PDF
+        private readonly string PastaBaseArquivos = @"C:\xampp\htdocs\dev4tech\arquivos";
+
         public List<int> ObterIdsEquipesFuncionario(int idFuncionario)
         {
             var idsEquipes = new List<int>();
@@ -47,29 +50,28 @@ namespace Dev4Tech
         }
 
         public string ObterNomeArquivoTarefa(int idTarefa)
-{
-    string nomeArquivo = null;
-    string query = "SELECT nome_arquivo FROM Tarefas WHERE id_tarefa=@idTarefa";
-    if (abrirConexao())
-    {
-        try
         {
-            using (var cmd = new MySqlCommand(query, conectar))
+            string nomeArquivo = null;
+            string query = "SELECT nome_arquivo FROM Tarefas WHERE id_tarefa = @idTarefa";
+            if (abrirConexao())
             {
-                cmd.Parameters.AddWithValue("@idTarefa", idTarefa);
-                var resultado = cmd.ExecuteScalar();
-                if (resultado != null && resultado != DBNull.Value)
-                    nomeArquivo = resultado.ToString();
+                try
+                {
+                    using (var cmd = new MySqlCommand(query, conectar))
+                    {
+                        cmd.Parameters.AddWithValue("@idTarefa", idTarefa);
+                        var resultado = cmd.ExecuteScalar();
+                        if (resultado != null && resultado != DBNull.Value)
+                            nomeArquivo = resultado.ToString();
+                    }
+                }
+                finally
+                {
+                    fecharConexao();
+                }
             }
+            return nomeArquivo;
         }
-        finally
-        {
-            fecharConexao();
-        }
-    }
-    return nomeArquivo;
-}
-
 
         public List<TarefaArquivo> ObterTarefasPendentesPorEquipesComArquivo(List<int> idsEquipes)
         {
@@ -79,7 +81,7 @@ namespace Dev4Tech
 
             string ids = string.Join(",", idsEquipes);
             string query = $@"
-                SELECT t.id_tarefa, t.nome_arquivo
+                SELECT t.id_tarefa, t.nome_arquivo, t.nomeTarefa
                 FROM Tarefas t
                 LEFT JOIN EntregasTarefa e ON t.id_tarefa = e.id_tarefa
                 WHERE t.id_equipe IN ({ids})
@@ -99,7 +101,8 @@ namespace Dev4Tech
                                 var tarefa = new TarefaArquivo
                                 {
                                     IdTarefa = reader.GetInt32("id_tarefa"),
-                                    NomeArquivo = reader.GetString("nome_arquivo")
+                                    NomeArquivo = reader.GetString("nome_arquivo"),
+                                    NomeTarefa = reader.GetString("nomeTarefa")
                                 };
                                 tarefas.Add(tarefa);
                             }
@@ -111,7 +114,6 @@ namespace Dev4Tech
                     fecharConexao();
                 }
             }
-
             return tarefas;
         }
 
@@ -214,7 +216,7 @@ namespace Dev4Tech
 
         public string CriarPastaTemporaria()
         {
-            string pastaTemp = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            string pastaTemp = Path.Combine(Path.GetTempPath(), "Dev4Tech_PDFs", Guid.NewGuid().ToString());
             Directory.CreateDirectory(pastaTemp);
             return pastaTemp;
         }
@@ -222,22 +224,45 @@ namespace Dev4Tech
         public List<string> DividirPdfEmPaginas(string caminhoArquivoEntrada, string pastaSaida)
         {
             List<string> arquivosPaginas = new List<string>();
-            PdfDocument documento = PdfReader.Open(caminhoArquivoEntrada, PdfDocumentOpenMode.Import);
-            int totalPaginas = documento.PageCount;
-            if (!Directory.Exists(pastaSaida))
-                Directory.CreateDirectory(pastaSaida);
-            for (int i = 0; i < totalPaginas; i++)
+
+            if (!File.Exists(caminhoArquivoEntrada))
             {
-                PdfDocument novoDocumento = new PdfDocument
-                {
-                    Version = documento.Version
-                };
-                novoDocumento.AddPage(documento.Pages[i]);
-                string caminhoNovoArquivo = Path.Combine(pastaSaida, $"pagina_{i + 1}.pdf");
-                novoDocumento.Save(caminhoNovoArquivo);
-                arquivosPaginas.Add(caminhoNovoArquivo);
+                MessageBox.Show($"Arquivo PDF não encontrado: {caminhoArquivoEntrada}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return arquivosPaginas;
             }
+
+            try
+            {
+                PdfDocument documento = PdfReader.Open(caminhoArquivoEntrada, PdfDocumentOpenMode.Import);
+                int totalPaginas = documento.PageCount;
+
+                if (!Directory.Exists(pastaSaida))
+                    Directory.CreateDirectory(pastaSaida);
+
+                for (int i = 0; i < totalPaginas; i++)
+                {
+                    PdfDocument novoDocumento = new PdfDocument
+                    {
+                        Version = documento.Version
+                    };
+                    novoDocumento.AddPage(documento.Pages[i]);
+                    string caminhoNovoArquivo = Path.Combine(pastaSaida, $"pagina_{i + 1}.pdf");
+                    novoDocumento.Save(caminhoNovoArquivo);
+                    arquivosPaginas.Add(caminhoNovoArquivo);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao dividir PDF: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
             return arquivosPaginas;
+        }
+
+        // Método para obter o caminho completo do arquivo PDF
+        public string ObterCaminhoCompletoPdf(string nomeArquivo)
+        {
+            return Path.Combine(PastaBaseArquivos, nomeArquivo);
         }
     }
 }

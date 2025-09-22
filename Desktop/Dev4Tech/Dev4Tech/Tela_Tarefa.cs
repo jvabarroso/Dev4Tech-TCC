@@ -94,6 +94,7 @@ namespace Dev4Tech
         }
 
         // Evento para abrir o arquivo anexado à tarefa
+        // No método LblArquivoTarefa_Click, corrija o caminho:
         private void LblArquivoTarefa_Click(object sender, EventArgs e)
         {
             if (idTarefaExibida == 0) return;
@@ -106,7 +107,8 @@ namespace Dev4Tech
                 try
                 {
                     string nomeArquivo = tarefa["nome_arquivo"].ToString();
-                    string pastaArquivos = @"C:\Dev4Tech\ArquivosTarefas";
+                    // Use o mesmo caminho que está no planejamento
+                    string pastaArquivos = @"C:\xampp\htdocs\dev4tech\arquivos";
                     string caminhoArquivo = Path.Combine(pastaArquivos, nomeArquivo);
 
                     if (File.Exists(caminhoArquivo))
@@ -173,18 +175,6 @@ namespace Dev4Tech
                 }
             }
         }
-
-
-
-        private void AbrirArquivoEntrega(string nomeArquivo)
-            {
-                string pastaArquivos = @"C:\xampp\htdocs\dev4tech\arquivos";
-                string caminhoArquivo = Path.Combine(pastaArquivos, nomeArquivo);
-                if (File.Exists(caminhoArquivo))
-                    System.Diagnostics.Process.Start(caminhoArquivo);
-                else
-                    MessageBox.Show("Arquivo não encontrado no servidor.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
 
 
 

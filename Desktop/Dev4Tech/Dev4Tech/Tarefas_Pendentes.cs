@@ -120,7 +120,6 @@ namespace Dev4Tech
             MostrarTarefas(tarefas);
         }
 
-        // Exibe painel com as tarefas do DataTable (igual seu método AtualizarListaTarefas)
         private void MostrarTarefas(DataTable tarefas)
         {
             AtualizarListaTarefas(tarefas);

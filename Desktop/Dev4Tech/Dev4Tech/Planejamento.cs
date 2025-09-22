@@ -4,20 +4,20 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using PdfSharp.Pdf;
-using PdfSharp.Pdf.IO;
 
 namespace Dev4Tech
 {
     public partial class Planejamento : Form
     {
         private planejamentoSQL dbPlanejamento = new planejamentoSQL();
+        private Dictionary<int, List<string>> tarefasPaginasCache = new Dictionary<int, List<string>>();
 
         public Planejamento()
         {
             InitializeComponent();
             this.Load += Planejamento_Load;
         }
+
         private void Planejamento_Load(object sender, EventArgs e)
         {
             try
@@ -39,42 +39,28 @@ namespace Dev4Tech
                 }
 
                 flpP.Controls.Clear();
+                flpPDFs.Controls.Clear();
 
                 var tarefas = dbPlanejamento.ObterTarefasPendentesPorEquipesComArquivo(idsEquipes);
-                string pastaArquivos = @"C:\Dev4Tech\ArquivosTarefas";
 
                 foreach (var tarefa in tarefas)
                 {
-                    string caminhoPdf = Path.Combine(pastaArquivos, tarefa.NomeArquivo);
-                    if (!File.Exists(caminhoPdf))
-                        continue;
-
-                    string pastaTemporaria = dbPlanejamento.CriarPastaTemporaria();
-                    var paginasPdf = dbPlanejamento.DividirPdfEmPaginas(caminhoPdf, pastaTemporaria);
-
                     DateTime dataEntrega = dbPlanejamento.ObterDataEntregaTarefa(tarefa.IdTarefa);
                     string statusTarefa = dbPlanejamento.ObterStatusTarefa(tarefa.IdTarefa);
                     List<Image> avatares = dbPlanejamento.ObterAvataresPorTarefa(tarefa.IdTarefa);
 
-                    foreach (var paginaPdf in paginasPdf)
+                    Panel card = CriarCardTarefa(tarefa.NomeTarefa, dataEntrega, avatares);
+                    card.Tag = tarefa.IdTarefa;
+
+                    card.Click += (senderCard, eCard) =>
                     {
-                        Panel card = CriarCardTarefa(
-                            Path.GetFileNameWithoutExtension(paginaPdf),
-                            dataEntrega,
-                            avatares
-                        );
-                        card.Tag = paginaPdf;
+                        int idTarefa = (int)((Panel)senderCard).Tag;
+                        CarregarPdfDaTarefa(idTarefa);
+                    };
 
-                        card.Click += (senderCard, eCard) =>
-                        {
-                            string arquivo = ((Panel)senderCard).Tag.ToString();
-                            AbrirPdfExternamente(arquivo);
-                        };
-
-                        if (statusTarefa == "Pendente")
-                        {
-                            flpP.Controls.Add(card);
-                        }
+                    if (statusTarefa == "Pendente")
+                    {
+                        flpP.Controls.Add(card);
                     }
                 }
             }
@@ -84,18 +70,6 @@ namespace Dev4Tech
             }
         }
 
-
-
-        public class TarefaModelo
-        {
-            public int IdTarefa { get; set; }
-            public string Titulo { get; set; }
-            public DateTime DataEntrega { get; set; }
-            public string Status { get; set; } 
-            public List<Image> Avatares { get; set; }
-        }
-
-        // Cria cada card visual conforme design
         private Panel CriarCardTarefa(string titulo, DateTime dataEntrega, List<Image> avatares)
         {
             Panel card = new Panel
@@ -105,7 +79,8 @@ namespace Dev4Tech
                 BorderStyle = BorderStyle.FixedSingle,
                 Margin = new Padding(5),
                 Padding = new Padding(8),
-                BackColor = Color.White
+                BackColor = Color.White,
+                Cursor = Cursors.Hand
             };
 
             FlowLayoutPanel membrosPanel = new FlowLayoutPanel
@@ -118,7 +93,7 @@ namespace Dev4Tech
                 AutoScroll = false,
             };
 
-            foreach (var avatar in avatares)
+            foreach (var avatar in avatares.Take(5)) // Limitar a 5 avatares
             {
                 PictureBox pic = new PictureBox
                 {
@@ -126,15 +101,14 @@ namespace Dev4Tech
                     Width = 24,
                     Height = 24,
                     SizeMode = PictureBoxSizeMode.Zoom,
-                    Margin = new Padding(2),
-                    Cursor = Cursors.Hand
+                    Margin = new Padding(2)
                 };
                 membrosPanel.Controls.Add(pic);
             }
 
             Label lblTitulo = new Label
             {
-                Text = titulo,
+                Text = titulo.Length > 50 ? titulo.Substring(0, 47) + "..." : titulo,
                 Location = new Point(0, 30),
                 Font = new Font("Segoe UI", 10, FontStyle.Bold),
                 AutoSize = false,
@@ -145,7 +119,7 @@ namespace Dev4Tech
 
             Label lblData = new Label
             {
-                Text = "Até " + dataEntrega.ToString("dd/MM"),
+                Text = "Até " + dataEntrega.ToString("dd/MM/yyyy"),
                 Location = new Point(0, 65),
                 Font = new Font("Segoe UI", 8, FontStyle.Regular),
                 ForeColor = Color.Gray,
@@ -159,78 +133,151 @@ namespace Dev4Tech
             return card;
         }
 
-        // Popular os FlowLayoutPanels das colunas do Kanban com os cards
-        private void PopularKanban(List<TarefaModelo> tarefas)
+        private void CarregarPdfDaTarefa(int idTarefa)
         {
-            flpP.Controls.Clear();
-            flpF.Controls.Clear();
-            flpC.Controls.Clear();
-
-            foreach (var tarefa in tarefas)
+            try
             {
-                Panel card = CriarCardTarefa(tarefa.Titulo, tarefa.DataEntrega, tarefa.Avatares);
-                switch (tarefa.Status)
+                // Verificar se já temos as páginas em cache
+                if (!tarefasPaginasCache.ContainsKey(idTarefa))
                 {
-                    case "Pendente":
-                        flpP.Controls.Add(card);
-                        break;
-                    case "Fazendo":
-                        flpF.Controls.Add(card);
-                        break;
-                    case "Concluida":
-                        flpC.Controls.Add(card);
-                        break;
+                    string nomeArquivo = dbPlanejamento.ObterNomeArquivoTarefa(idTarefa);
+
+                    if (string.IsNullOrEmpty(nomeArquivo))
+                    {
+                        MessageBox.Show("Nenhum arquivo PDF encontrado para essa tarefa.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                    string caminhoPdf = dbPlanejamento.ObterCaminhoCompletoPdf(nomeArquivo);
+
+                    if (!File.Exists(caminhoPdf))
+                    {
+                        MessageBox.Show($"Arquivo PDF não encontrado: {caminhoPdf}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    string pastaPaginas = dbPlanejamento.CriarPastaTemporaria();
+                    List<string> paginas = dbPlanejamento.DividirPdfEmPaginas(caminhoPdf, pastaPaginas);
+
+                    tarefasPaginasCache[idTarefa] = paginas;
                 }
+
+                ExibirPdfsNoFlowLayout(tarefasPaginasCache[idTarefa]);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar PDFs: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        // Exemplo simplificado para buscar tarefas do banco - substitua pela sua lógica real
-        private List<TarefaModelo> BuscarTarefasDoFuncionario()
+        private void ExibirPdfsNoFlowLayout(List<string> caminhosArquivosPdf)
         {
-            // Aqui, use dbPlanejamento para buscar tarefas pendentes, fazer map dos status, carregar imagens etc.
-            // Exemplo estático só para demonstração:
+            flpPDFs.Controls.Clear();
 
-            return new List<TarefaModelo>()
+            if (!caminhosArquivosPdf.Any())
             {
-                new TarefaModelo
+                Label lblSemPaginas = new Label
                 {
-                    IdTarefa = 1,
-                    Titulo = "Documentação da empresa",
-                    DataEntrega = DateTime.Parse("2025-09-08"),
-                    Status = "Pendente",
-                    Avatares = new List<Image> { Properties.Resources.icon_perfil, Properties.Resources.icon_perfil }
-                },
-                new TarefaModelo
+                    Text = "Nenhuma página encontrada",
+                    Font = new Font("Segoe UI", 10, FontStyle.Italic),
+                    ForeColor = Color.Gray,
+                    AutoSize = true,
+                    Dock = DockStyle.Fill,
+                    TextAlign = ContentAlignment.MiddleCenter
+                };
+                flpPDFs.Controls.Add(lblSemPaginas);
+                return;
+            }
+
+            foreach (string caminhoPdf in caminhosArquivosPdf)
+            {
+                Panel painelCartao = new Panel
                 {
-                    IdTarefa = 2,
-                    Titulo = "Documentação da empresa",
-                    DataEntrega = DateTime.Parse("2025-09-08"),
-                    Status = "Fazendo",
-                    Avatares = new List<Image> { Properties.Resources.icon_perfil, Properties.Resources.icon_perfil }
-                },
-                new TarefaModelo
+                    Width = 150,
+                    Height = 200,
+                    BorderStyle = BorderStyle.FixedSingle,
+                    Margin = new Padding(10),
+                    Tag = caminhoPdf,
+                    Cursor = Cursors.Hand
+                };
+
+                Button btnAbrirPdf = new Button
                 {
-                    IdTarefa = 3,
-                    Titulo = "Documentação da empresa",
-                    DataEntrega = DateTime.Parse("2025-09-08"),
-                    Status = "Concluida",
-                    Avatares = new List<Image> { Properties.Resources.icon_perfil, Properties.Resources.icon_perfil }
-                }
-            };
+                    Text = $"Página {Path.GetFileNameWithoutExtension(caminhoPdf).Replace("pagina_", "")}",
+                    Dock = DockStyle.Bottom,
+                    Height = 30
+                };
+                btnAbrirPdf.Click += (s, e) =>
+                {
+                    string arquivoSelecionado = ((Button)s).Parent.Tag.ToString();
+                    AbrirPdfExternamente(arquivoSelecionado);
+                };
+
+                PictureBox picThumbnail = new PictureBox
+                {
+                    Image = Properties.Resources.icon_documento_blue,
+                    SizeMode = PictureBoxSizeMode.Zoom,
+                    Dock = DockStyle.Fill
+                };
+
+                // Também permitir clicar no próprio painel para abrir o PDF
+                painelCartao.Click += (s, e) =>
+                {
+                    string arquivoSelecionado = ((Panel)s).Tag.ToString();
+                    AbrirPdfExternamente(arquivoSelecionado);
+                };
+
+                painelCartao.Controls.Add(picThumbnail);
+                painelCartao.Controls.Add(btnAbrirPdf);
+
+                flpPDFs.Controls.Add(painelCartao);
+            }
         }
+
+        private void AbrirPdfExternamente(string caminhoPdf)
+        {
+            try
+            {
+                if (File.Exists(caminhoPdf))
+                {
+                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
+                    {
+                        FileName = caminhoPdf,
+                        UseShellExecute = true
+                    });
+                }
+                else
+                {
+                    MessageBox.Show("Arquivo PDF não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao abrir PDF: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Métodos de navegação (mantidos do código original)
+
         private void btnPendentes_Click(object sender, EventArgs e)
         {
-            // Implementar filtro pendentes
+            Tarefas_Pendentes trf_Pendentes = new Tarefas_Pendentes();
+            trf_Pendentes.Show();
+            this.Hide();
         }
 
         private void btnEmAtraso_Click(object sender, EventArgs e)
         {
-            // Implementar filtro atrasados
+            Tarefas_Atrasadas trf_Atrasadas = new Tarefas_Atrasadas();
+            trf_Atrasadas.Show();
+            this.Hide();
         }
 
         private void btnCompletadas_Click(object sender, EventArgs e)
         {
-            // Implementar filtro completadas
+            Tarefas_Completadas trf_Completas = new Tarefas_Completadas();
+            trf_Completas.Show();
+            this.Hide();
         }
 
         private void btnHome_Click(object sender, EventArgs e)
@@ -437,144 +484,9 @@ namespace Dev4Tech
             this.Hide();
         }
 
-        public void divisaoPDF(string caminhoArquivoEntrada, string pastaSaida)
-        {
-            PdfDocument documento = PdfReader.Open(caminhoArquivoEntrada, PdfDocumentOpenMode.Import);
-            int totalPaginas = documento.PageCount;
-
-            if (!Directory.Exists(pastaSaida))
-                Directory.CreateDirectory(pastaSaida);
-
-            for (int i = 0; i < totalPaginas; i++)
-            {
-                PdfDocument novoDocumento = new PdfDocument();
-                novoDocumento.Version = documento.Version;
-                novoDocumento.AddPage(documento.Pages[i]);
-                string caminhoNovoArquivo = Path.Combine(pastaSaida, $"pagina_{i + 1}.pdf");
-                novoDocumento.Save(caminhoNovoArquivo);
-            }
-        }
-
         private void flpPDFs_Paint(object sender, PaintEventArgs e)
         {
             // Se desejar, pode customizar o paint do flowlayoutpanel
-        }
-
-        private void CarregarPdfDaTarefa(int idTarefa)
-        {
-            try
-            {
-                string pastaArquivos = @"C:\Dev4Tech\ArquivosTarefas";
-
-                // Obter nome do arquivo PDF salvo no banco para a tarefa
-                string nomeArquivo = dbPlanejamento.ObterNomeArquivoTarefa(idTarefa);
-
-                if (string.IsNullOrEmpty(nomeArquivo))
-                {
-                    MessageBox.Show("Nenhum arquivo PDF encontrado para essa tarefa.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
-                string caminhoPdf = Path.Combine(pastaArquivos, nomeArquivo);
-
-                string pastaPaginas = dbPlanejamento.CriarPastaTemporaria();
-
-                divisaoPDF(caminhoPdf, pastaPaginas);
-
-                List<string> arquivosPdf = Directory.GetFiles(pastaPaginas, "*.pdf").ToList();
-
-                if (!arquivosPdf.Any())
-                {
-                    MessageBox.Show("Nenhum arquivo PDF encontrado para essa tarefa.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
-                ExibirPdfsNoFlowLayout(arquivosPdf);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao carregar PDFs: " + ex.Message);
-            }
-        }
-
-        private void AbrirPdfExternamente(string caminhoPdf)
-        {
-            try
-            {
-                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
-                {
-                    FileName = caminhoPdf,
-                    UseShellExecute = true
-                });
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao abrir PDF externo: " + ex.Message);
-            }
-        }
-
-        private void ExibirPdfNoVisualizador(string caminhoPdf)
-        {
-            try
-            {
-                webBrowserPdf.Navigate("about:blank");
-                webBrowserPdf.DocumentCompleted += (s, e) =>
-                {
-                    if (webBrowserPdf.Url.ToString() == "about:blank")
-                        webBrowserPdf.Navigate(caminhoPdf);
-                };
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao exibir PDF: " + ex.Message);
-            }
-        }
-
-        private void ExibirPdfsNoFlowLayout(List<string> caminhosArquivosPdf)
-        {
-            flpPDFs.Controls.Clear();
-
-            foreach (string caminhoPdf in caminhosArquivosPdf)
-            {
-                Panel painelCartao = new Panel
-                {
-                    Width = 150,
-                    Height = 200,
-                    BorderStyle = BorderStyle.FixedSingle,
-                    Margin = new Padding(10),
-                    Tag = caminhoPdf
-                };
-
-                Button btnAbrirPdf = new Button
-                {
-                    Text = Path.GetFileName(caminhoPdf),
-                    Dock = DockStyle.Bottom,
-                    Height = 30
-                };
-                btnAbrirPdf.Click += (s, e) =>
-                {
-                    string arquivoSelecionado = ((Button)s).Parent.Tag.ToString();
-                    ExibirPdfNoVisualizador(arquivoSelecionado);
-                };
-
-                PictureBox picThumbnail = new PictureBox
-                {
-                    Image = Properties.Resources.icon_documento_blue,
-                    SizeMode = PictureBoxSizeMode.Zoom,
-                    Dock = DockStyle.Fill
-                };
-
-                painelCartao.Controls.Add(picThumbnail);
-                painelCartao.Controls.Add(btnAbrirPdf);
-
-                flpPDFs.Controls.Add(painelCartao);
-            }
-        }
-
-        // Exemplo de evento para carregar a tarefa ao selecionar na UI - você deve conectar conforme sua interface
-        private void OnTarefaSelecionada(int idTarefaSelecionada)
-        {
-            CarregarPdfDaTarefa(idTarefaSelecionada);
         }
 
         private void panelKBS_Paint(object sender, PaintEventArgs e)
@@ -595,6 +507,143 @@ namespace Dev4Tech
         private void flpC_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void Tarefa1_Enter(object sender, EventArgs e)
+        {
+        }
+
+        private void txtPesquisaTarefa_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void groupBox5_Enter(object sender, EventArgs e)
+        {
+        }
+
+        private void panelTarefas_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void Tarefas_Pendentes_Load(object sender, EventArgs e)
+        {
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
+            if (funcionario != null)
+            {
+                Home t_equipe = new Home();
+                t_equipe.Show();
+                this.Hide();
+            }
+            else if (admin != null)
+            {
+                HomeAdm t_equipeAdmin = new HomeAdm();
+                t_equipeAdmin.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        // Métodos da classe TarefaModelo (mantidos para compatibilidade)
+        public class TarefaModelo
+        {
+            public int IdTarefa { get; set; }
+            public string Titulo { get; set; }
+            public DateTime DataEntrega { get; set; }
+            public string Status { get; set; }
+            public List<Image> Avatares { get; set; }
+        }
+
+        // Método PopularKanban mantido para compatibilidade
+        private void PopularKanban(List<TarefaModelo> tarefas)
+        {
+            flpP.Controls.Clear();
+            flpF.Controls.Clear();
+            flpC.Controls.Clear();
+
+            foreach (var tarefa in tarefas)
+            {
+                Panel card = CriarCardTarefa(tarefa.Titulo, tarefa.DataEntrega, tarefa.Avatares);
+                switch (tarefa.Status)
+                {
+                    case "Pendente":
+                        flpP.Controls.Add(card);
+                        break;
+                    case "Fazendo":
+                        flpF.Controls.Add(card);
+                        break;
+                    case "Concluida":
+                        flpC.Controls.Add(card);
+                        break;
+                }
+            }
+        }
+
+        // Método BuscarTarefasDoFuncionario mantido para compatibilidade
+        private List<TarefaModelo> BuscarTarefasDoFuncionario()
+        {
+            return new List<TarefaModelo>()
+            {
+                new TarefaModelo
+                {
+                    IdTarefa = 1,
+                    Titulo = "Documentação da empresa",
+                    DataEntrega = DateTime.Parse("2025-09-08"),
+                    Status = "Pendente",
+                    Avatares = new List<Image> { Properties.Resources.icon_perfil, Properties.Resources.icon_perfil }
+                },
+                new TarefaModelo
+                {
+                    IdTarefa = 2,
+                    Titulo = "Documentação da empresa",
+                    DataEntrega = DateTime.Parse("2025-09-08"),
+                    Status = "Fazendo",
+                    Avatares = new List<Image> { Properties.Resources.icon_perfil, Properties.Resources.icon_perfil }
+                },
+                new TarefaModelo
+                {
+                    IdTarefa = 3,
+                    Titulo = "Documentação da empresa",
+                    DataEntrega = DateTime.Parse("2025-09-08"),
+                    Status = "Concluida",
+                    Avatares = new List<Image> { Properties.Resources.icon_perfil, Properties.Resources.icon_perfil }
+                }
+            };
+        }
+
+        // Método ExibirPdfNoVisualizador mantido para compatibilidade
+        private void ExibirPdfNoVisualizador(string caminhoPdf)
+        {
+            try
+            {
+                webBrowserPdf.Navigate("about:blank");
+                webBrowserPdf.DocumentCompleted += (s, e) =>
+                {
+                    if (webBrowserPdf.Url.ToString() == "about:blank")
+                        webBrowserPdf.Navigate(caminhoPdf);
+                };
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao exibir PDF: " + ex.Message);
+            }
+        }
+
+        // Método OnTarefaSelecionada mantido para compatibilidade
+        private void OnTarefaSelecionada(int idTarefaSelecionada)
+        {
+            CarregarPdfDaTarefa(idTarefaSelecionada);
         }
     }
 }
