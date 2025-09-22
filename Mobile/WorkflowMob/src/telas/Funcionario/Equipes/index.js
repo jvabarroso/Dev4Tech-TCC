@@ -19,7 +19,7 @@ export default function Equipes({ route, navigation }) {
   const [errorMessage, setErrorMessage] = useState(null);
   const [termoBusca, setTermoBusca] = useState('');
   const [usuarioState, setusuarioState] = useState(usuario);
-  const BASE_URL = `${url}/dev4tec/img/`
+  const BASE_URL = `${url}/dev4tech/img/`
 
   useFocusEffect(
   React.useCallback(() => {
@@ -44,7 +44,7 @@ export default function Equipes({ route, navigation }) {
     setIsLoading(true);
     setErrorMessage(null);
     console.log("ID do Funcionario enviado:", usuario.FuncionarioId);
-    const res = await api.get(`dev4tec/equipe.php`, {
+    const res = await api.get(`dev4tech/equipe.php`, {
       params: {
         id_funcionario: usuario.FuncionarioId // Use o ID do usuário logado
       }

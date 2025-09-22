@@ -13,7 +13,7 @@ export default function EquipeRanking({ navigation, route}) {
 
   const equipe = route.params?.equipe || {}; 
   const usuario = route.params?.usuario;
-  const BASE_URL = `${url}/dev4tec/img/`
+  const BASE_URL = `${url}/dev4tech/img/`
   
   const [termoBusca, setTermoBusca] = useState('');
   const [dados, setDados] = useState([]);
@@ -22,7 +22,7 @@ export default function EquipeRanking({ navigation, route}) {
   //Lista Equipes em ordem de pontuação
   async function listarDados() {
     try {
-      const res = await api.get(`dev4tec/ranking.php`, {
+      const res = await api.get(`dev4tech/ranking.php`, {
       params: {id_equipe: equipe.id_equipe }
     });
 

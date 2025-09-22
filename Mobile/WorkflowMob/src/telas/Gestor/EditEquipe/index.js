@@ -62,7 +62,7 @@ export default function EditEquipe({ navigation, route }) {
     //Lista os funcionarios
     async function listarFuncionarios() {
         try {
-            const res = await api.get(`dev4tec/funcionariosadm.php`, {
+            const res = await api.get(`dev4tech/funcionariosadm.php`, {
             params: {
                 id_empresa: equipe.id_empresa,
                 id_equipe: equipe.id_equipe
@@ -91,7 +91,7 @@ export default function EditEquipe({ navigation, route }) {
     async function listarDados() {
         console.log("ID da empresa enviado:", equipe.id_empresa);
         try {
-            const res = await api.get(`dev4tec/categoria.php`, {
+            const res = await api.get(`dev4tech/categoria.php`, {
             params: {id_empresa: equipe.id_empresa }
             });
             console.log("Resposta da API categoria:", res.data);
@@ -163,7 +163,7 @@ export default function EditEquipe({ navigation, route }) {
         formData.append('photo', { uri: image, name: filename, type });
 
         try {
-            const response = await fetch(`${url}/dev4tec/upload_equipe2.php`, {
+            const response = await fetch(`${url}/dev4tech/upload_equipe2.php`, {
                 method: 'POST',
                 body: formData,
             });
@@ -236,7 +236,7 @@ export default function EditEquipe({ navigation, route }) {
 
          console.log('Dados enviados para edição:', obj); // Log para debug
 
-          const res = await api.post('dev4tec/editarequipe.php', obj, {
+          const res = await api.post('dev4tech/editarequipe.php', obj, {
             headers: {
               'Content-Type': 'application/json',
             }

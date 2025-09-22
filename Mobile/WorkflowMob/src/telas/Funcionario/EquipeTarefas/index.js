@@ -43,7 +43,7 @@ export default function EquipeTarefas({ navigation, route }) {
     
     try {
       setErrorMessage(null);
-      const res = await api.get(`dev4tec/tarefaadm.php`, {
+      const res = await api.get(`dev4tech/tarefaadm.php`, {
         params: { id_equipe: equipe.id_equipe }
       });
 

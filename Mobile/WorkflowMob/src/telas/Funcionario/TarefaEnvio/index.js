@@ -87,7 +87,7 @@ export default function TarefaEnvio({ navigation, route }) {
         formData.append("file", { uri: file.uri, name: filename, type });
 
         try {
-            const response = await fetch(`${url}/dev4tec//upload_arquivos.php`, {
+            const response = await fetch(`${url}/dev4tech//upload_arquivos.php`, {
                 method: "POST",
                 body: formData
             });
@@ -141,7 +141,7 @@ export default function TarefaEnvio({ navigation, route }) {
     //Relata o problema
     async function relatoproblema() {      
         try {
-            const res = await api.post('dev4tec/relatoproblema.php', {
+            const res = await api.post('dev4tech/relatoproblema.php', {
                 id_tarefa : tarefa.id_tarefa, 
                 id_equipe : tarefa.id_equipe, 
                 descricao : problema, 
@@ -181,7 +181,7 @@ export default function TarefaEnvio({ navigation, route }) {
         try {
             if (tarefa.id_tarefa) {
 
-                const res = await api.get('dev4tec/verificarproblemas.php', {
+                const res = await api.get('dev4tech/verificarproblemas.php', {
                     params: { id_tarefa: tarefa.id_tarefa }
                 });
                 if (res.data.sucesso) {
@@ -203,7 +203,7 @@ export default function TarefaEnvio({ navigation, route }) {
         try {
             if (tarefa.id_tarefa) {
 
-                const res = await api.get('dev4tec/carregartarefa.php', {
+                const res = await api.get('dev4tech/carregartarefa.php', {
                     params: { id_tarefa: tarefa.id_tarefa }
                 });
                 if (res.data.sucesso) {
@@ -230,7 +230,7 @@ export default function TarefaEnvio({ navigation, route }) {
     //Desfaz Tarefas
     async function desfazerTarefas() {
         try {
-            const res = await api.get(`dev4tec/desfazertarefas.php`, {
+            const res = await api.get(`dev4tech/desfazertarefas.php`, {
                 params: { id_tarefa: tarefa.id_tarefa }
         });
         console.log(res.data);
@@ -273,7 +273,7 @@ export default function TarefaEnvio({ navigation, route }) {
         if (!arquivo) return;  
 
         try {
-            const res = await api.post('dev4tec/enviotarefas.php', {
+            const res = await api.post('dev4tech/enviotarefas.php', {
                 id_tarefa : tarefa.id_tarefa,
                 id_equipe : tarefa.id_equipe,
                 descricao : descricao, 

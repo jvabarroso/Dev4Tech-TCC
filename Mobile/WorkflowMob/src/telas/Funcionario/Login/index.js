@@ -26,7 +26,7 @@ export default function Login({navigation}){
         return;
       }
       try {
-        const response = await api.post('dev4tec/login.php', {
+        const response = await api.post('dev4tech/login.php', {
           Email: email,
           Senha: senha
         }, {

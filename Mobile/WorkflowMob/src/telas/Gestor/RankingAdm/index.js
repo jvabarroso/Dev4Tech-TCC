@@ -24,7 +24,7 @@ export default function RankingAdm({route, navigation}){
   //Lista Equipes em ordem de pontuação
   async function listarDados() {
     try {
-      const res = await api.get(`dev4tec/ranking.php`, {
+      const res = await api.get(`dev4tech/ranking.php`, {
       params: {id_empresa: usuario.id_empresa }
     });
 

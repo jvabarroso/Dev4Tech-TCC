@@ -59,7 +59,7 @@ export const getStyles = (theme) => StyleSheet.create({
       color: '#fff',
     },
     containertarefas: {
-      backgroundColor: theme.input.Background,
+      backgroundColor: theme.inputBackground,
       borderRadius: 10,
       padding: 10,
       marginBottom: 20,
@@ -160,19 +160,19 @@ export const getStyles = (theme) => StyleSheet.create({
     azul:{
       width:10,
       height:10,
-      borderRadius:"100%",
+      borderRadius:5,
       backgroundColor:"#0E499E",
     },
     cinza:{
       width:10,
       height:10,
-      borderRadius:"100%",
+      borderRadius:5,
       backgroundColor:"#e0e0e0",
     },
     verde:{
       width:10,
       height:10,
-      borderRadius:"100%",
+      borderRadius:5,
       backgroundColor:"#5BB14F",
     },
     numberInside:{

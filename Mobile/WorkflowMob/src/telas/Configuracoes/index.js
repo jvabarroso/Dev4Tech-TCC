@@ -142,7 +142,7 @@ export default function Configuracoes({navigation, route}){
       formData.append("id", usuarioState.id);
 
       try {
-        const response = await fetch(`${url}/dev4tec/upload_usuario.php`, {
+        const response = await fetch(`${url}/dev4tech/upload_usuario.php`, {
           method: 'POST',
           body: formData,
         });
@@ -194,7 +194,7 @@ export default function Configuracoes({navigation, route}){
     async function carregarImagens() {
       try {
         const response = await fetch(
-          `${url}/dev4tec/imagem_usuario.php`,{
+          `${url}/dev4tech/imagem_usuario.php`,{
             method:'POST',
             headers:{'Content-Type': 'application/json'},
             body: JSON.stringify({ id: usuarioState.id, role: usuarioState.role })
@@ -241,7 +241,7 @@ export default function Configuracoes({navigation, route}){
 
          console.log('Dados enviados para edição:', obj); // Log para debug
 
-          const res = await api.post('dev4tec/editardados.php', obj, {
+          const res = await api.post('dev4tech/editardados.php', obj, {
             headers: {
               'Content-Type': 'application/json',
             }
@@ -269,7 +269,7 @@ export default function Configuracoes({navigation, route}){
 //Buscar Categorias
   async function listarpontos() {
     try {
-      const res = await api.get(`dev4tec/pontuacao.php`, {
+      const res = await api.get(`dev4tech/pontuacao.php`, {
       params: {id_funcionario: usuario.id }
       });
 

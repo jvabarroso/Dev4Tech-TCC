@@ -30,7 +30,7 @@ export default function Ranking({route, navigation}){
   //Lista Equipes em ordem de pontuação
   async function listarDados() {
     try {
-      const res = await api.get(`dev4tec/ranking.php`, {
+      const res = await api.get(`dev4tech/ranking.php`, {
       params: {id_empresa: usuario.id_empresa }
     });
 
@@ -54,7 +54,7 @@ export default function Ranking({route, navigation}){
 //Buscar Categorias
     async function listarcategorias() {
       try {
-        const res = await api.get(`dev4tec/categoria.php`, {
+        const res = await api.get(`dev4tech/categoria.php`, {
         params: {id_empresa: usuario.id_empresa }
       });
 
