@@ -106,7 +106,7 @@ export default function CadastroEquipes({ route, navigation}){
         formData.append('photo', { uri: image, name: filename, type });
 
         try {
-            const response = await fetch(`${url}/dev4tech/upload_equipe2.php`, {
+            const response = await fetch(`${url}/dev4tech/upload_equipe.php`, {
                 method: 'POST',
                 body: formData,
             });

@@ -19,7 +19,6 @@ export default function Equipes({ route, navigation }) {
   const [errorMessage, setErrorMessage] = useState(null);
   const [termoBusca, setTermoBusca] = useState('');
   const [usuarioState, setusuarioState] = useState(usuario);
-  const BASE_URL = `${url}/dev4tech/img/`
 
   useFocusEffect(
   React.useCallback(() => {
@@ -129,7 +128,7 @@ export default function Equipes({ route, navigation }) {
                 onPress={() => toggleEquipe(item.id_equipe)}
               >
                 <Image 
-                  source={item.foto_equipe ? { uri: item.foto_equipe } : require('../../../../assets/img/image.png')} 
+                  source={item.foto_url ? { uri: item.foto_url } : require('../../../../assets/img/image.png')} 
                   style={styles.imag} 
                 />
 

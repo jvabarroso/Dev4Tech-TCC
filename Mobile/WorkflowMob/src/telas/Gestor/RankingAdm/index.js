@@ -86,7 +86,7 @@ export default function RankingAdm({route, navigation}){
                   <View style={styles.containertarefas}>
                     <Text style={styles.colocacao}>{posicaoOriginal + 1}º</Text>
                     <Image 
-                      source={item.foto_equipe ? { uri: item.foto_equipe } : require('../../../../assets/img/image.png')} 
+                      source={item.foto_url ? { uri: item.foto_url } : require('../../../../assets/img/image.png')} 
                       style={styles.imag} 
                     />
                     <View style={styles.textos}>

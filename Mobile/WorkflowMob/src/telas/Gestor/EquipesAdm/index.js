@@ -7,6 +7,7 @@ import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
 
 import api from '../../../../services/api';
+import url from '../../../../services/url';
 
 export default function EquipesAdm({ route, navigation }) {
   const { theme } = useTheme();
@@ -14,7 +15,6 @@ export default function EquipesAdm({ route, navigation }) {
   
   const usuario = route.params?.usuario;
   const [dados, setDados] = useState([]);
-  const [imagensEquipes, setImagensEquipes] = useState({});
   const [equipeSelecionada, setEquipeSelecionada] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null);
   const [termoBusca, setTermoBusca] = useState('');
@@ -118,7 +118,7 @@ export default function EquipesAdm({ route, navigation }) {
                 onPress={() => toggleEquipe(item.id_equipe)}
               >
                 <Image 
-                  source={item.foto_equipe? { uri: item.foto_equipe } : require('../../../../assets/img/image.png')} 
+                  source={item.foto_url ? { uri: item.foto_url } : require('../../../../assets/img/image.png')} 
                   style={styles.imag} 
                 />
                 <View style={styles.areatextobotao}>
