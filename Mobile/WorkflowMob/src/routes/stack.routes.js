@@ -119,7 +119,7 @@ function TabsAdm({route}){
         ),
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
-          if (route.name === 'HomeAdm') {
+          if (route.name === 'Home') {
             iconName = 'home';
           } else if (route.name === 'CadastroFuncionario') {
             iconName = 'person-circle-outline';
@@ -148,7 +148,7 @@ function TabsAdm({route}){
         },
       })}
     >
-      <Tab.Screen name="HomeAdm" component={HomeAdm} initialParams={{ usuario }}/>
+      <Tab.Screen name="Home" component={Home} initialParams={{ usuario }}/>
       <Tab.Screen name="CadastroFuncionario" component={CadastroFuncionario} initialParams={{ usuario }} />
       <Tab.Screen name="CadastroTarefas" component={CadastroTarefas} initialParams={{ usuario }}/>
       <Tab.Screen name="CadastroEquipes" component={CadastroEquipes} initialParams={{ usuario }}/>

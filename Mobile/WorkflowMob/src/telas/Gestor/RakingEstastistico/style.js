@@ -91,6 +91,7 @@ export const getStyles = (theme) => StyleSheet.create({
       fontSize: 28, 
       fontWeight: 'bold', 
       fontFamily: fonts.text,
+      color: theme.text,
       marginRight: 10,
     },
     containerestatisticas:{
@@ -126,6 +127,8 @@ export const getStyles = (theme) => StyleSheet.create({
     },
     textobarras:{
       fontSize: 14,
+      fontFamily: fonts.text,
+      color: theme.text,
     },
     color:{
       color:"#0E499E"
@@ -161,13 +164,13 @@ export const getStyles = (theme) => StyleSheet.create({
       width:10,
       height:10,
       borderRadius:5,
-      backgroundColor:"#0E499E",
+      backgroundColor:"#1C58F2",
     },
-    cinza:{
+    vermelho:{
       width:10,
       height:10,
       borderRadius:5,
-      backgroundColor:"#e0e0e0",
+      backgroundColor:"#D9534F",
     },
     verde:{
       width:10,
@@ -190,5 +193,12 @@ export const getStyles = (theme) => StyleSheet.create({
       backgroundColor: '#0E499E',
       borderRadius: 10,
     },
-
+    circleProgressView: {
+      flexDirection: 'row', 
+      alignItems: 'center', 
+      padding: 10,
+      justifyContent: 'center',
+      minHeight: 150,
+    },
+    
 });
