@@ -37,12 +37,13 @@ namespace Dev4Tech
             if (idEquipe <= 0)
             {
                 MessageBox.Show("Por favor, selecione uma equipe válida antes de abrir as estatísticas.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                this.Close(); // or navigate back, disable UI, etc.
+                this.Close();
                 return;
             }
 
             CarregarGrafico();
             CarregarEquipeSelecionada();
+            CarregarFuncionariosEquipe();
         }
 
 
@@ -590,6 +591,131 @@ namespace Dev4Tech
             {
                 MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void CarregarFuncionariosEquipe()
+        {
+            flpRankFunc.Controls.Clear();
+
+            EquipesRanking dao = new EquipesRanking();
+            List<MembroEquipe> membros = dao.BuscarMembrosEquipe(idEquipe);
+
+            if (membros.Count == 0)
+            {
+                Label lblSemMembros = new Label
+                {
+                    Text = "Nenhum membro encontrado nesta equipe",
+                    Font = new Font("Segoe UI", 10, FontStyle.Italic),
+                    ForeColor = Color.Gray,
+                    AutoSize = true,
+                    TextAlign = ContentAlignment.MiddleCenter
+                };
+                flpRankFunc.Controls.Add(lblSemMembros);
+                return;
+            }
+
+            // Buscar pontuações individuais dos funcionários
+            Dictionary<int, int> pontuacoes = ObterPontuacoesFuncionarios();
+
+            foreach (var membro in membros)
+            {
+                Panel cardFuncionario = CriarCardFuncionario(membro, pontuacoes);
+                flpRankFunc.Controls.Add(cardFuncionario);
+            }
+        }
+
+        private Dictionary<int, int> ObterPontuacoesFuncionarios()
+        {
+            Dictionary<int, int> pontuacoes = new Dictionary<int, int>();
+
+            string connectionString = "SERVER=localhost;DATABASE=dev4tech;UID=root;PASSWORD=";
+            using (MySqlConnection con = new MySqlConnection(connectionString))
+            {
+                con.Open();
+                string query = @"SELECT f.funcionarioId, COALESCE(SUM(pf.pontos), 0) AS pontos
+                        FROM funcionarios f
+                        LEFT JOIN pontuacaofuncionario pf ON f.funcionarioId = pf.id_funcionario
+                        WHERE f.funcionarioId IN (
+                            SELECT funcionarioId FROM equipes_membros WHERE id_equipe = @id_equipe
+                        )
+                        GROUP BY f.funcionarioId";
+
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@id_equipe", idEquipe);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int funcionarioId = reader.GetInt32("funcionarioId");
+                        int pontos = reader.GetInt32("pontos");
+                        pontuacoes[funcionarioId] = pontos;
+                    }
+                }
+            }
+
+            return pontuacoes;
+        }
+
+        private Panel CriarCardFuncionario(MembroEquipe membro, Dictionary<int, int> pontuacoes)
+        {
+            Panel card = new Panel
+            {
+                Width = flpRankFunc.Width - 25,
+                Height = 80,
+                BackColor = Color.White,
+                BorderStyle = BorderStyle.FixedSingle,
+                Margin = new Padding(5),
+                Padding = new Padding(10)
+            };
+
+            // PictureBox para a foto do perfil
+            PictureBox picPerfil = new PictureBox
+            {
+                Image = membro.FotoPerfil,
+                SizeMode = PictureBoxSizeMode.Zoom,
+                Width = 50,
+                Height = 50,
+                Location = new Point(10, 15)
+            };
+            card.Controls.Add(picPerfil);
+
+            // Nome do funcionário
+            Label lblNome = new Label
+            {
+                Text = membro.Nome,
+                Font = new Font("Segoe UI", 11, FontStyle.Bold),
+                ForeColor = Color.Black,
+                AutoSize = true,
+                Location = new Point(picPerfil.Right + 15, 15)
+            };
+            card.Controls.Add(lblNome);
+
+            // Cargo do funcionário
+            Label lblCargo = new Label
+            {
+                Text = membro.Cargo,
+                Font = new Font("Segoe UI", 9, FontStyle.Regular),
+                ForeColor = Color.Gray,
+                AutoSize = true,
+                Location = new Point(picPerfil.Right + 15, lblNome.Bottom + 5)
+            };
+            card.Controls.Add(lblCargo);
+
+            // Pontuação do funcionário
+            int pontos = pontuacoes.ContainsKey(membro.FuncionarioId) ? pontuacoes[membro.FuncionarioId] : 0;
+
+            Label lblPontos = new Label
+            {
+                Text = $"{pontos} pts",
+                Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                ForeColor = Color.DodgerBlue,
+                AutoSize = true,
+                Location = new Point(card.Width - 80, 30)
+            };
+            card.Controls.Add(lblPontos);
+
+            return card;
         }
     }
 }

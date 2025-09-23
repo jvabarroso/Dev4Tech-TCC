@@ -8,8 +8,10 @@ namespace Dev4Tech
 {
     public class MembroEquipe
     {
+        public int FuncionarioId { get; set; }
         public string Nome { get; set; }
         public Image FotoPerfil { get; set; }
+        public string Cargo { get; set; } 
     }
     public class EquipesRanking : conexao
     {
@@ -63,11 +65,12 @@ namespace Dev4Tech
         {
             List<MembroEquipe> membros = new List<MembroEquipe>();
             string query = @"
-                    SELECT f.Nome, f.foto_perfil
-                    FROM Equipes_Membros em
-                    INNER JOIN Funcionarios f ON f.FuncionarioId = em.FuncionarioId
-                    WHERE em.id_equipe = @idEquipe
-                    ORDER BY f.Nome";
+            SELECT f.FuncionarioId, f.Nome, f.Cargo, f.foto_perfil
+            FROM Equipes_Membros em
+            INNER JOIN Funcionarios f ON f.FuncionarioId = em.FuncionarioId
+            WHERE em.id_equipe = @idEquipe
+            ORDER BY f.Nome";
+
             using (var conn = new MySqlConnection(conexaoString))
             {
                 conn.Open();
@@ -78,7 +81,10 @@ namespace Dev4Tech
                     while (reader.Read())
                     {
                         MembroEquipe membro = new MembroEquipe();
+                        membro.FuncionarioId = reader.GetInt32("FuncionarioId");
                         membro.Nome = reader["Nome"].ToString();
+                        membro.Cargo = reader["Cargo"] != DBNull.Value ? reader["Cargo"].ToString() : "Desenvolvedor de software";
+
                         if (!reader.IsDBNull(reader.GetOrdinal("foto_perfil")))
                         {
                             byte[] fotoBytes = (byte[])reader["foto_perfil"];
@@ -97,5 +103,6 @@ namespace Dev4Tech
             }
             return membros;
         }
+
     }
 }
