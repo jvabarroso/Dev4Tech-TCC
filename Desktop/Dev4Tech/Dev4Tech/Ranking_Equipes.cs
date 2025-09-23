@@ -1,4 +1,5 @@
-﻿using System;
+﻿// Ranking_Equipes.cs
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
@@ -13,7 +14,8 @@ namespace Dev4Tech
         public Ranking_Equipes()
         {
             InitializeComponent();
-            this.Load += Ranking_Equipes_Load;
+            this.Load += new System.EventHandler(this.Ranking_Equipes_Load);
+
         }
 
         private void Ranking_Equipes_Load(object sender, EventArgs e)
@@ -25,21 +27,19 @@ namespace Dev4Tech
         private void CarregarRankingEquipes()
         {
             panelRankingEquipes.Controls.Clear();
-
-            DataTable dtEquipes = equipesRanking.BuscarEquipesComPontuacao();
-
+            EquipesRanking dao = new EquipesRanking();
+            DataTable dtEquipes = dao.BuscarEquipesComPontuacao();
             int top = 10;
             int rank = 1;
+
             foreach (DataRow row in dtEquipes.Rows)
             {
-                int idEquipe = (int)row["id_equipe"];
+                int idEquipe = Convert.ToInt32(row["id_equipe"]);
                 string nomeEquipe = row["nome_equipe"].ToString();
                 int pontosEquipe = row["pontos"] != DBNull.Value ? Convert.ToInt32(row["pontos"]) : 0;
-
-                List<MembroEquipe> membros = equipesRanking.BuscarMembrosEquipe(idEquipe);
+                List<MembroEquipe> membros = dao.BuscarMembrosEquipe(idEquipe); // lista de membros da equipe
 
                 int alturaPainel = 90;
-
                 Panel equipePanel = new Panel
                 {
                     Width = panelRankingEquipes.Width - 40,
@@ -48,7 +48,8 @@ namespace Dev4Tech
                     Top = top,
                     Left = 10,
                     BorderStyle = BorderStyle.FixedSingle,
-                    Tag = idEquipe
+                    Tag = idEquipe,
+                    Cursor = Cursors.Hand
                 };
 
                 PictureBox picIcone = new PictureBox
@@ -57,8 +58,7 @@ namespace Dev4Tech
                     Height = 44,
                     Left = 10,
                     Top = 20,
-                    SizeMode = PictureBoxSizeMode.StretchImage,
-                    Image = null
+                    SizeMode = PictureBoxSizeMode.StretchImage
                 };
                 if (rank == 1)
                     picIcone.Image = Properties.Resources.icon_ranking_1;
@@ -100,16 +100,16 @@ namespace Dev4Tech
                 };
                 equipePanel.Controls.Add(lblPontos);
 
+                // Mostrar até 3 fotos dos membros com ToolTip com nome
                 int numMembrosParaMostrar = Math.Min(membros.Count, 3);
                 int leftFoto = equipePanel.Width - 40 - 35 * numMembrosParaMostrar;
-
                 ToolTip toolTipMembros = new ToolTip();
 
                 for (int i = 0; i < numMembrosParaMostrar; i++)
                 {
                     PictureBox picMembro = new PictureBox
                     {
-                        Image = membros[i].FotoPerfil,
+                        Image = membros[i].FotoPerfil ?? Properties.Resources.icon_perfil,
                         SizeMode = PictureBoxSizeMode.StretchImage,
                         Width = 34,
                         Height = 34,
@@ -118,20 +118,27 @@ namespace Dev4Tech
                         BorderStyle = BorderStyle.FixedSingle,
                         Cursor = Cursors.Hand
                     };
-
                     toolTipMembros.SetToolTip(picMembro, membros[i].Nome);
-
                     equipePanel.Controls.Add(picMembro);
                 }
 
-                panelRankingEquipes.Controls.Add(equipePanel);
+                equipePanel.Click += (s, e) =>
+                {
+                    int equipeSelecionadaId = (int)((Panel)s).Tag;
+                    int equipeSelecionadaRank = rank; // 'rank' is looping variable in CarregarRankingEquipes
 
+
+                    Equipes_Estatisticas estatisticas = new Equipes_Estatisticas();
+                    estatisticas.idEquipe = equipeSelecionadaId; // Set selected team id
+                    estatisticas.CarregarGrafico();
+                    estatisticas.Show();
+                    this.Hide();
+                };
+                panelRankingEquipes.Controls.Add(equipePanel);
                 top += equipePanel.Height + 10;
                 rank++;
             }
         }
-
-        // Eventos e métodos inalterados seguem abaixo
 
         private void btnHome_Click(object sender, EventArgs e)
         {
@@ -275,22 +282,26 @@ namespace Dev4Tech
 
         private void lblGeral_Click(object sender, EventArgs e)
         {
-            if (Sessao.IdEquipeSelecionada == 0)
+            var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
+
+            if (funcionario != null)
             {
-                MessageBox.Show("Selecione uma equipe primeiro.");
-                PesquisaEquipes pesquisa = new PesquisaEquipes();
-                pesquisa.Show();
+                Chat_geral_equipes t_equipe = new Chat_geral_equipes();
+                t_equipe.Show();
+                this.Hide();
+            }
+            else if (admin != null)
+            {
+                Chat_geral_equipes t_equipeAdmin = new Chat_geral_equipes();
+                t_equipeAdmin.Show();
                 this.Hide();
             }
             else
             {
-                Chat_geral_equipes chat = new Chat_geral_equipes();
-                chat.Show();
-                this.Hide();
+                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
-
 
         private void lblRanking_Click(object sender, EventArgs e)
         {

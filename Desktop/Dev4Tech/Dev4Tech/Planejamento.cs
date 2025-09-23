@@ -486,7 +486,7 @@ namespace Dev4Tech
 
         private void flpPDFs_Paint(object sender, PaintEventArgs e)
         {
-            // Se desejar, pode customizar o paint do flowlayoutpanel
+
         }
 
         private void panelKBS_Paint(object sender, PaintEventArgs e)
@@ -563,87 +563,6 @@ namespace Dev4Tech
             public DateTime DataEntrega { get; set; }
             public string Status { get; set; }
             public List<Image> Avatares { get; set; }
-        }
-
-        // Método PopularKanban mantido para compatibilidade
-        private void PopularKanban(List<TarefaModelo> tarefas)
-        {
-            flpP.Controls.Clear();
-            flpF.Controls.Clear();
-            flpC.Controls.Clear();
-
-            foreach (var tarefa in tarefas)
-            {
-                Panel card = CriarCardTarefa(tarefa.Titulo, tarefa.DataEntrega, tarefa.Avatares);
-                switch (tarefa.Status)
-                {
-                    case "Pendente":
-                        flpP.Controls.Add(card);
-                        break;
-                    case "Fazendo":
-                        flpF.Controls.Add(card);
-                        break;
-                    case "Concluida":
-                        flpC.Controls.Add(card);
-                        break;
-                }
-            }
-        }
-
-        // Método BuscarTarefasDoFuncionario mantido para compatibilidade
-        private List<TarefaModelo> BuscarTarefasDoFuncionario()
-        {
-            return new List<TarefaModelo>()
-            {
-                new TarefaModelo
-                {
-                    IdTarefa = 1,
-                    Titulo = "Documentação da empresa",
-                    DataEntrega = DateTime.Parse("2025-09-08"),
-                    Status = "Pendente",
-                    Avatares = new List<Image> { Properties.Resources.icon_perfil, Properties.Resources.icon_perfil }
-                },
-                new TarefaModelo
-                {
-                    IdTarefa = 2,
-                    Titulo = "Documentação da empresa",
-                    DataEntrega = DateTime.Parse("2025-09-08"),
-                    Status = "Fazendo",
-                    Avatares = new List<Image> { Properties.Resources.icon_perfil, Properties.Resources.icon_perfil }
-                },
-                new TarefaModelo
-                {
-                    IdTarefa = 3,
-                    Titulo = "Documentação da empresa",
-                    DataEntrega = DateTime.Parse("2025-09-08"),
-                    Status = "Concluida",
-                    Avatares = new List<Image> { Properties.Resources.icon_perfil, Properties.Resources.icon_perfil }
-                }
-            };
-        }
-
-        // Método ExibirPdfNoVisualizador mantido para compatibilidade
-        private void ExibirPdfNoVisualizador(string caminhoPdf)
-        {
-            try
-            {
-                webBrowserPdf.Navigate("about:blank");
-                webBrowserPdf.DocumentCompleted += (s, e) =>
-                {
-                    if (webBrowserPdf.Url.ToString() == "about:blank")
-                        webBrowserPdf.Navigate(caminhoPdf);
-                };
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao exibir PDF: " + ex.Message);
-            }
-        }
-
-        // Método OnTarefaSelecionada mantido para compatibilidade
-        private void OnTarefaSelecionada(int idTarefaSelecionada)
-        {
-            CarregarPdfDaTarefa(idTarefaSelecionada);
         }
     }
 }
