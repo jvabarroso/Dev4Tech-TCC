@@ -617,9 +617,17 @@ namespace Dev4Tech
             // Buscar pontuações individuais dos funcionários
             Dictionary<int, int> pontuacoes = ObterPontuacoesFuncionarios();
 
-            foreach (var membro in membros)
+            // Combinar membros com suas pontuações e ordenar por pontos (decrescente)
+            var membrosOrdenados = membros.Select(m => new
             {
-                Panel cardFuncionario = CriarCardFuncionario(membro, pontuacoes);
+                Membro = m,
+                Pontos = pontuacoes.ContainsKey(m.FuncionarioId) ? pontuacoes[m.FuncionarioId] : 0
+            }).OrderByDescending(x => x.Pontos).ToList();
+
+            foreach (var item in membrosOrdenados)
+            {
+                int rank = membrosOrdenados.IndexOf(item) + 1; // Posição no ranking (1-based)
+                Panel cardFuncionario = CriarCardFuncionario(item.Membro, item.Pontos, rank);
                 flpRankFunc.Controls.Add(cardFuncionario);
             }
         }
@@ -657,7 +665,7 @@ namespace Dev4Tech
             return pontuacoes;
         }
 
-        private Panel CriarCardFuncionario(MembroEquipe membro, Dictionary<int, int> pontuacoes)
+        private Panel CriarCardFuncionario(MembroEquipe membro, int pontos, int rank)
         {
             Panel card = new Panel
             {
@@ -669,27 +677,79 @@ namespace Dev4Tech
                 Padding = new Padding(10)
             };
 
-            // PictureBox para a foto do perfil
+            // Ícone de classificação (1°, 2°, 3°)
+            if (rank <= 3)
+            {
+                PictureBox picRank = new PictureBox
+                {
+                    SizeMode = PictureBoxSizeMode.Zoom,
+                    Width = 30,
+                    Height = 30,
+                    Location = new Point(10, 25)
+                };
+
+                switch (rank)
+                {
+                    case 1:
+                        picRank.Image = Properties.Resources.icon_ranking_1;
+                        break;
+                    case 2:
+                        picRank.Image = Properties.Resources.icon_ranking_2;
+                        break;
+                    case 3:
+                        picRank.Image = Properties.Resources.icon_ranking_3;
+                        break;
+                }
+
+                card.Controls.Add(picRank);
+            }
+            else
+            {
+                // Para ranks acima de 3, mostrar apenas o número
+                Label lblRank = new Label
+                {
+                    Text = $"#{rank}",
+                    Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                    ForeColor = Color.Gray,
+                    AutoSize = true,
+                    Location = new Point(15, 30)
+                };
+                card.Controls.Add(lblRank);
+            }
+
+            // PictureBox para a foto do perfil - posicionada após o ícone de rank
+            int leftFoto = 50;
             PictureBox picPerfil = new PictureBox
             {
                 Image = membro.FotoPerfil,
                 SizeMode = PictureBoxSizeMode.Zoom,
-                Width = 50,
-                Height = 50,
-                Location = new Point(10, 15)
+                Width = 45,
+                Height = 45,
+                Location = new Point(leftFoto, 17)
             };
             card.Controls.Add(picPerfil);
+
+            // Área de informações do funcionário (nome e cargo)
+            Panel pnlInfo = new Panel
+            {
+                Width = card.Width - 180, // Deixa espaço para a pontuação
+                Height = 45,
+                Location = new Point(picPerfil.Right + 10, 17),
+                BackColor = Color.Transparent
+            };
 
             // Nome do funcionário
             Label lblNome = new Label
             {
                 Text = membro.Nome,
-                Font = new Font("Segoe UI", 11, FontStyle.Bold),
+                Font = new Font("Segoe UI", 10, FontStyle.Bold),
                 ForeColor = Color.Black,
-                AutoSize = true,
-                Location = new Point(picPerfil.Right + 15, 15)
+                AutoSize = false,
+                Width = pnlInfo.Width,
+                Height = 20,
+                Location = new Point(0, 0)
             };
-            card.Controls.Add(lblNome);
+            pnlInfo.Controls.Add(lblNome);
 
             // Cargo do funcionário
             Label lblCargo = new Label
@@ -697,23 +757,57 @@ namespace Dev4Tech
                 Text = membro.Cargo,
                 Font = new Font("Segoe UI", 9, FontStyle.Regular),
                 ForeColor = Color.Gray,
-                AutoSize = true,
-                Location = new Point(picPerfil.Right + 15, lblNome.Bottom + 5)
+                AutoSize = false,
+                Width = pnlInfo.Width,
+                Height = 20,
+                Location = new Point(0, 22)
             };
-            card.Controls.Add(lblCargo);
+            pnlInfo.Controls.Add(lblCargo);
 
-            // Pontuação do funcionário
-            int pontos = pontuacoes.ContainsKey(membro.FuncionarioId) ? pontuacoes[membro.FuncionarioId] : 0;
+            card.Controls.Add(pnlInfo);
 
+            // Container para pontuação (alinhado à direita) - mais compacto
+            Panel pnlPontos = new Panel
+            {
+                Width = 60,
+                Height = 30,
+                Location = new Point(card.Width - 75, 25),
+                BackColor = Color.FromArgb(240, 245, 255), // Azul muito claro
+                BorderStyle = BorderStyle.FixedSingle,
+                Padding = new Padding(2)
+            };
+
+            // Label da pontuação
             Label lblPontos = new Label
             {
                 Text = $"{pontos} pts",
-                Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                Font = new Font("Segoe UI", 9, FontStyle.Bold),
                 ForeColor = Color.DodgerBlue,
-                AutoSize = true,
-                Location = new Point(card.Width - 80, 30)
+                AutoSize = false,
+                Width = pnlPontos.Width - 4,
+                Height = pnlPontos.Height - 4,
+                TextAlign = ContentAlignment.MiddleCenter,
+                Dock = DockStyle.Fill
             };
-            card.Controls.Add(lblPontos);
+            pnlPontos.Controls.Add(lblPontos);
+            card.Controls.Add(pnlPontos);
+
+            // Adicionar efeito visual para os primeiros colocados
+            if (rank == 1)
+            {
+                card.BackColor = Color.FromArgb(255, 250, 240); // Dourado claro
+                pnlPontos.BackColor = Color.FromArgb(255, 245, 200); // Dourado mais forte
+            }
+            else if (rank == 2)
+            {
+                card.BackColor = Color.FromArgb(248, 248, 248); // Prata claro
+                pnlPontos.BackColor = Color.FromArgb(230, 230, 230); // Prata mais forte
+            }
+            else if (rank == 3)
+            {
+                card.BackColor = Color.FromArgb(255, 245, 238); // Bronze claro
+                pnlPontos.BackColor = Color.FromArgb(245, 220, 190); // Bronze mais forte
+            }
 
             return card;
         }
