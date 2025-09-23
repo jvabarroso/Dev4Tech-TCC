@@ -14,7 +14,13 @@ if (empty($id_equipe)) {
 }
 
 try {
-    $query = $pdo->prepare("SELECT dificuldade FROM tarefas WHERE id_equipe = :id_equipe");
+    $query = $pdo->prepare("SELECT 
+    e.dificuldade, COUNT(*) as total 
+        FROM equipes e 
+        INNER JOIN entregastarefas et ON e.id_equipe = et.id_equipe
+        WHERE et.id_equipe = :id_equipe
+        GROUP BY dificuldade
+    ");
     $query->bindValue(':id_equipe', $id_equipe, PDO::PARAM_INT);
     $query->execute();
     
