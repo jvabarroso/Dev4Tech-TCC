@@ -16,6 +16,7 @@ export default function RankingEstastistico({navigation, route}){
     const posicaoOriginal = route.params?.posicaoOriginal || {}; 
 
     const [dados, setDados] = useState([]);
+    const [dificuldade, setDificuldade] = useState([]);
     const maxPontos = Math.max(...dados.map(item => item.pontos), 1);
 
     const [verificacaoinfor, setVerificacaoinfor] = useState(true);
@@ -47,6 +48,30 @@ export default function RankingEstastistico({navigation, route}){
 
     useEffect(() => {
         listarpontos();
+    }, [equipe?.id_equipe]);
+
+
+    //Lista a quantidade de Tarefas pela dificuldade
+    async function listardificuldades() {
+        try {
+        const res = await api.get(`dev4tech/dificuldadegrafico.php`, {
+        params: {id_equipe: equipe.id_equipe }
+        });
+
+        if (res.data.success) {
+        setDificuldade(res.data.result || []);
+        } else {
+            console.log("Erro na API:", res.data.message);
+            setDificuldade([]);
+        }
+        }
+        catch (error) {
+        console.log("Erro ao listar Tarefas", error);
+        }
+    }
+
+    useEffect(() => {
+        listardificuldades();
     }, [equipe?.id_equipe]);
 
 
@@ -123,7 +148,7 @@ export default function RankingEstastistico({navigation, route}){
                         )}
 
                     <View style={[styles.linha, { alignItems: 'center', justifyContent: 'space-between' }]}>
-                        <Text style={styles.titulodetalhes}>Desempenho</Text>
+                        <Text style={styles.titulodetalhes}>Quantidade de Tarefas</Text>
                         <TouchableOpacity
                             onPress={cliquedesempenho}>
                              <Ionicons name="information-circle-outline" size={22} color="#00000" style={{paddingHorizontal:5, marginRight:270, paddingVertical:5}}/>
@@ -144,11 +169,15 @@ export default function RankingEstastistico({navigation, route}){
                             <View style={styles.areapontos}>
                                 <View style={styles.linhaIconeTexto}>
                                     <View style={styles.azul}></View>
-                                    <Text style={styles.textopontos}>Pontos ganhos   {pontosganhos}</Text>
+                                    <Text style={styles.textopontos}>Tarefas Fáceis</Text>
+                                </View>
+                                <View style={styles.linhaIconeTexto}>
+                                    <View style={styles.azul}></View>
+                                    <Text style={styles.textopontos}>Tarefas Médios</Text>
                                 </View>
                                 <View style={styles.linhaIconeTexto}>
                                     <View style={styles.cinza}></View>
-                                    <Text style={styles.textopontos}>Pontos Perdidos  {pontosperdidos}</Text>
+                                    <Text style={styles.textopontos}>Tarefas Difíceis</Text>
                                 </View>
                             </View>   
                         </View>
