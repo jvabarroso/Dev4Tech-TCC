@@ -383,15 +383,36 @@ namespace Dev4Tech
         {
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;
-            if (funcionario != null || admin != null)
+
+            if (Sessao.IdEquipeSelecionada != 0)
             {
-                Chat_geral_equipes t_chat = new Chat_geral_equipes();
-                t_chat.Show();
-                this.Hide();
+                int idEquipe = Sessao.IdEquipeSelecionada;
+                string nomeEquipe = "Nome da equipe"; // Ajuste para obter o nome real da equipe
+                string categoriaEquipe = "Categoria da equipe"; // Ajuste para obter a categoria real da equipe
+
+                if (funcionario != null)
+                {
+                    Chat_geral_equipes t_equipe = new Chat_geral_equipes(idEquipe, nomeEquipe, categoriaEquipe);
+                    t_equipe.Show();
+                    this.Hide();
+                }
+                else if (admin != null)
+                {
+                    Chat_geral_equipes t_equipeAdmin = new Chat_geral_equipes(idEquipe, nomeEquipe, categoriaEquipe);
+                    t_equipeAdmin.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             else
             {
-                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Nenhuma equipe selecionada.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                PesquisaEquipes pesquisa = new PesquisaEquipes();
+                pesquisa.Show();
+                this.Hide();
             }
         }
 

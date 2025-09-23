@@ -309,9 +309,39 @@ namespace Dev4Tech
 
         private void lblGeral_Click(object sender, EventArgs e)
         {
-            Chat_geral_equipes chatEquipe = new Chat_geral_equipes();
-            chatEquipe.Show();
-            this.Hide();
+            var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
+
+            if (Sessao.IdEquipeSelecionada != 0)
+            {
+                int idEquipe = Sessao.IdEquipeSelecionada;
+                string nomeEquipe = "Nome da equipe"; // Ajuste para obter o nome real da equipe
+                string categoriaEquipe = "Categoria da equipe"; // Ajuste para obter a categoria real da equipe
+
+                if (funcionario != null)
+                {
+                    Chat_geral_equipes t_equipe = new Chat_geral_equipes(idEquipe, nomeEquipe, categoriaEquipe);
+                    t_equipe.Show();
+                    this.Hide();
+                }
+                else if (admin != null)
+                {
+                    Chat_geral_equipes t_equipeAdmin = new Chat_geral_equipes(idEquipe, nomeEquipe, categoriaEquipe);
+                    t_equipeAdmin.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nenhuma equipe selecionada.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                PesquisaEquipes pesquisa = new PesquisaEquipes();
+                pesquisa.Show();
+                this.Hide();
+            }
         }
 
         private void lblMembros_Click(object sender, EventArgs e)

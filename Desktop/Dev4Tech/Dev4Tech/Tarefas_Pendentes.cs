@@ -226,6 +226,21 @@ namespace Dev4Tech
         {
             panelTarefas.Controls.Clear();
 
+            if (tarefas.Rows.Count == 0)
+            {
+                Label lblSemTarefas = new Label
+                {
+                    Text = "Nenhuma tarefa pendente encontrada!",
+                    Font = new Font("Segoe UI", 12, FontStyle.Italic),
+                    ForeColor = Color.Gray,
+                    AutoSize = true,
+                    Left = panelTarefas.Width / 2 - 120,
+                    Top = 50
+                };
+                panelTarefas.Controls.Add(lblSemTarefas);
+                return;
+            }
+
             int margemTopo = 20;
             int margemEsquerda = 20;
             int espacamentoVertical = 20;
@@ -366,8 +381,6 @@ namespace Dev4Tech
             }
         }
 
-        // Mantém todos os seus eventos e métodos originais abaixo sem modificação.
-
         private void btnRanking_Click(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;
@@ -429,21 +442,35 @@ namespace Dev4Tech
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;
 
-            if (funcionario != null)
+            if (Sessao.IdEquipeSelecionada != 0)
             {
-                Chat_geral_equipes t_equipe = new Chat_geral_equipes();
-                t_equipe.Show();
-                this.Hide();
-            }
-            else if (admin != null)
-            {
-                Chat_geral_equipes t_equipeAdmin = new Chat_geral_equipes();
-                t_equipeAdmin.Show();
-                this.Hide();
+                int idEquipe = Sessao.IdEquipeSelecionada;
+                string nomeEquipe = "Nome da equipe"; // Ajuste para obter o nome real da equipe
+                string categoriaEquipe = "Categoria da equipe"; // Ajuste para obter a categoria real da equipe
+
+                if (funcionario != null)
+                {
+                    Chat_geral_equipes t_equipe = new Chat_geral_equipes(idEquipe, nomeEquipe, categoriaEquipe);
+                    t_equipe.Show();
+                    this.Hide();
+                }
+                else if (admin != null)
+                {
+                    Chat_geral_equipes t_equipeAdmin = new Chat_geral_equipes(idEquipe, nomeEquipe, categoriaEquipe);
+                    t_equipeAdmin.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             else
             {
-                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Nenhuma equipe selecionada.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                PesquisaEquipes pesquisa = new PesquisaEquipes();
+                pesquisa.Show();
+                this.Hide();
             }
         }
 

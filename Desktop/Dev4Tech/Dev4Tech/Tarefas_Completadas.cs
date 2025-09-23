@@ -1,56 +1,144 @@
 ﻿using System;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
+using System.Collections.Generic;
 
 namespace Dev4Tech
 {
     public partial class Tarefas_Completadas : Form
     {
+        private List<int> equipesFuncionario;
+        private Dictionary<int, string> equipesNomeMap;
+        private int idFuncionarioLogado;
+        private EntregaTarefa entregaTarefa;
+        private const string TextoPlaceholder = "Pesquisar uma tarefa";
+
         public Tarefas_Completadas()
         {
             InitializeComponent();
-            CarregarTarefasCompletadas();
+
+            entregaTarefa = new EntregaTarefa();
+            idFuncionarioLogado = Sessao.FuncionarioLogado != null
+                ? int.Parse(Sessao.FuncionarioLogado.getFuncionarioId())
+                : 0;
+
+            // Configurar placeholder na textbox
+            txtPesquisarTarefa.Text = TextoPlaceholder;
+            txtPesquisarTarefa.ForeColor = Color.Gray;
+
+            // Carregar as equipes do funcionário logado
+            CarregarEquipes();
+
+            // Vincular eventos
+            cmbEquipes.SelectedIndexChanged += cmbEquipes_SelectedIndexChanged;
+            txtPesquisarTarefa.Enter += txtPesquisarTarefa_Enter;
+            txtPesquisarTarefa.Leave += txtPesquisarTarefa_Leave;
+            txtPesquisarTarefa.TextChanged += txtPesquisarTarefa_TextChanged;
+
+            // Carregar tarefas iniciais (todas equipes)
+            AtualizarTarefas();
         }
 
-        private int ObterIdEquipeFuncionarioLogado()
+        private void txtPesquisarTarefa_Enter(object sender, EventArgs e)
         {
-            var funcionario = Sessao.FuncionarioLogado;
-            if (funcionario == null)
-                throw new Exception("Funcionário não está logado.");
-
-            int idFuncionario = int.Parse(funcionario.getFuncionarioId());
-
-            int idEquipe = 0;
-            string connectionString = "Server=localhost;Database=Dev4Tech;Uid=root;Pwd=;SslMode=none;";
-            string query = @"
-        SELECT id_equipe FROM Equipes_Membros 
-        WHERE FuncionarioId = @idFuncionario
-        LIMIT 1";
-
-            using (var conn = new MySql.Data.MySqlClient.MySqlConnection(connectionString))
+            if (txtPesquisarTarefa.Text == TextoPlaceholder)
             {
-                conn.Open();
-                using (var cmd = new MySql.Data.MySqlClient.MySqlCommand(query, conn))
+                txtPesquisarTarefa.Text = "";
+                txtPesquisarTarefa.ForeColor = Color.Black;
+            }
+        }
+
+        private void txtPesquisarTarefa_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtPesquisarTarefa.Text))
+            {
+                txtPesquisarTarefa.Text = TextoPlaceholder;
+                txtPesquisarTarefa.ForeColor = Color.Gray;
+            }
+        }
+
+        // Atualiza a lista de tarefas exibidas segundo filtros ativos (equipe/pesquisa)
+        private void AtualizarTarefas()
+        {
+            string filtroNome = txtPesquisarTarefa.Text.Trim();
+            List<int> equipesFiltrar = null;
+
+            // Se for o texto placeholder ou vazio, não filtrar por nome
+            bool usarFiltroNome = !string.IsNullOrEmpty(filtroNome) && filtroNome != TextoPlaceholder;
+
+            if (cmbEquipes.SelectedItem == null || cmbEquipes.SelectedItem.ToString() == "Todas")
+            {
+                equipesFiltrar = equipesFuncionario; // todas as equipes do funcionário
+            }
+            else
+            {
+                var nomeEquipe = cmbEquipes.SelectedItem.ToString();
+                equipesFiltrar = new List<int>();
+                foreach (var kvp in equipesNomeMap)
+                    if (kvp.Value == nomeEquipe)
+                        equipesFiltrar.Add(kvp.Key);
+            }
+
+            DataTable tarefas = new DataTable();
+
+            if (!usarFiltroNome)
+            {
+                tarefas = new DataTable();
+                if (equipesFiltrar != null)
                 {
-                    cmd.Parameters.AddWithValue("@idFuncionario", idFuncionario);
-                    var result = cmd.ExecuteScalar();
-                    if (result != null && result != DBNull.Value)
-                        idEquipe = Convert.ToInt32(result);
+                    foreach (var idEquipe in equipesFiltrar)
+                    {
+                        DataTable dtEquipe = entregaTarefa.BuscarTarefasCompletadasPorEquipe(idEquipe);
+                        tarefas.Merge(dtEquipe);
+                    }
                 }
             }
-            return idEquipe;
+            else
+            {
+                // Busca tarefas completadas para as equipes filtradas e filtra pelo nome
+                DataTable tarefasCompletadas = new DataTable();
+                if (equipesFiltrar != null)
+                {
+                    foreach (var idEquipe in equipesFiltrar)
+                    {
+                        DataTable dtEquipe = entregaTarefa.BuscarTarefasCompletadasPorEquipe(idEquipe);
+                        tarefasCompletadas.Merge(dtEquipe);
+                    }
+                }
+
+                var rowsFiltrados = tarefasCompletadas.AsEnumerable()
+                    .Where(r => r.Field<string>("nomeTarefa").IndexOf(filtroNome, StringComparison.OrdinalIgnoreCase) >= 0);
+
+                if (rowsFiltrados.Any())
+                    tarefas = rowsFiltrados.CopyToDataTable();
+                else
+                    tarefas = tarefasCompletadas.Clone(); // vazio porém com as colunas
+            }
+
+            MostrarTarefas(tarefas);
         }
 
-
-        private void CarregarTarefasCompletadas()
+        private void MostrarTarefas(DataTable tarefas)
         {
-            int idEquipe = ObterIdEquipeFuncionarioLogado();
-
             panelTarefas.Controls.Clear();
 
-            EntregaTarefa entregaTarefa = new EntregaTarefa();
-            DataTable dt = entregaTarefa.BuscarTarefasCompletadasPorEquipe(idEquipe);
+            if (tarefas.Rows.Count == 0)
+            {
+                Label lblSemTarefas = new Label
+                {
+                    Text = "Nenhuma tarefa completada encontrada!",
+                    Font = new Font("Segoe UI", 12, FontStyle.Italic),
+                    ForeColor = Color.Gray,
+                    AutoSize = true,
+                    Left = panelTarefas.Width / 2 - 120,
+                    Top = 50
+                };
+                panelTarefas.Controls.Add(lblSemTarefas);
+                return;
+            }
 
             int margemTopo = 20;
             int margemEsquerda = 20;
@@ -60,9 +148,9 @@ namespace Dev4Tech
             int alturaPanel = 100;
             int colunas = 2;
 
-            for (int i = 0; i < dt.Rows.Count; i++)
+            for (int i = 0; i < tarefas.Rows.Count; i++)
             {
-                DataRow row = dt.Rows[i];
+                DataRow row = tarefas.Rows[i];
 
                 string dificuldade = row.Table.Columns.Contains("dificuldade") && row["dificuldade"] != DBNull.Value
                     ? row["dificuldade"].ToString()
@@ -72,7 +160,7 @@ namespace Dev4Tech
                 {
                     Width = larguraPanel,
                     Height = alturaPanel,
-                    BackColor = Color.White, // Fundo branco do painel
+                    BackColor = Color.White,
                     BorderStyle = BorderStyle.FixedSingle,
                     Left = margemEsquerda + (i % colunas) * (larguraPanel + espacamentoHorizontal),
                     Top = margemTopo + (i / colunas) * (alturaPanel + espacamentoVertical),
@@ -80,6 +168,7 @@ namespace Dev4Tech
                     Tag = row["id_tarefa"]
                 };
 
+                int idEquipe = Convert.ToInt32(row["id_equipe"]);
                 tarefaPanel.Click += (s, e) =>
                 {
                     int idTarefa = Convert.ToInt32(((Panel)s).Tag);
@@ -112,7 +201,7 @@ namespace Dev4Tech
 
                 Label lblSub = new Label
                 {
-                    Text = row["nome_equipe"].ToString(), // Nome da equipe
+                    Text = row["nome_equipe"].ToString(),
                     Font = new Font("Segoe UI", 10, FontStyle.Regular),
                     Left = 60,
                     Top = 30,
@@ -122,7 +211,7 @@ namespace Dev4Tech
 
                 Label lblCategoria = new Label
                 {
-                    Text = row["nome_categoria"].ToString(), // Categoria da equipe
+                    Text = row["nome_categoria"].ToString(),
                     Font = new Font("Segoe UI", 9, FontStyle.Regular),
                     Left = 60,
                     Top = 50,
@@ -162,18 +251,17 @@ namespace Dev4Tech
                     AutoSize = true
                 };
 
-                // Define a cor de fundo da label conforme a dificuldade
                 switch (dificuldade.ToLower())
                 {
                     case "difícil":
-                        lblDificuldade.BackColor = Color.LightCoral; // vermelho claro
+                        lblDificuldade.BackColor = Color.LightCoral;
                         break;
                     case "média":
                     case "mediana":
-                        lblDificuldade.BackColor = Color.LightGoldenrodYellow; // amarelo claro
+                        lblDificuldade.BackColor = Color.LightGoldenrodYellow;
                         break;
                     case "fácil":
-                        lblDificuldade.BackColor = Color.LightGreen; // verde claro
+                        lblDificuldade.BackColor = Color.LightGreen;
                         break;
                     default:
                         lblDificuldade.BackColor = Color.Transparent;
@@ -184,6 +272,76 @@ namespace Dev4Tech
 
                 panelTarefas.Controls.Add(tarefaPanel);
             }
+        }
+
+        private void CarregarEquipes()
+        {
+            int idFunc = idFuncionarioLogado;
+            equipesFuncionario = ObterEquipesDoFuncionario(idFunc);
+
+            equipesNomeMap = new Dictionary<int, string>();
+
+            foreach (var idEq in equipesFuncionario)
+            {
+                string nome = BuscarNomeEquipe(idEq);
+                equipesNomeMap[idEq] = nome;
+            }
+
+            cmbEquipes.Items.Clear();
+            cmbEquipes.Items.Add("Todas");
+            cmbEquipes.Items.AddRange(equipesNomeMap.Values.ToArray());
+            cmbEquipes.SelectedIndex = 0;
+        }
+
+        private void cmbEquipes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AtualizarTarefas();
+        }
+
+        // Pesquisa dinâmica na txtPesquisarTarefa e atualiza lista
+        private void txtPesquisarTarefa_TextChanged(object sender, EventArgs e)
+        {
+            // Só atualiza se não for o texto do placeholder
+            if (txtPesquisarTarefa.Text != TextoPlaceholder)
+            {
+                AtualizarTarefas();
+            }
+        }
+
+        public List<int> ObterEquipesDoFuncionario(int idFuncionario)
+        {
+            List<int> equipes = new List<int>();
+            string query = "SELECT id_equipe FROM Equipes_Membros WHERE FuncionarioId = @idFuncionario";
+
+            using (var conn = new MySqlConnection("server=localhost;database=Dev4Tech;uid=root;pwd="))
+            {
+                conn.Open();
+                var cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@idFuncionario", idFuncionario);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        equipes.Add(reader.GetInt32("id_equipe"));
+                    }
+                }
+            }
+            return equipes;
+        }
+
+        private string BuscarNomeEquipe(int idEquipe)
+        {
+            string nome = "";
+            using (var conn = new MySqlConnection("server=localhost;database=Dev4Tech;uid=root;pwd="))
+            {
+                conn.Open();
+                var cmd = new MySqlCommand("SELECT nome_equipe FROM Equipes WHERE id_equipe = @id", conn);
+                cmd.Parameters.AddWithValue("@id", idEquipe);
+                var result = cmd.ExecuteScalar();
+                if (result != null)
+                    nome = result.ToString();
+            }
+            return nome;
         }
 
         private void btnHome_Click(object sender, EventArgs e)
@@ -199,7 +357,6 @@ namespace Dev4Tech
             }
             else if (admin != null)
             {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
                 HomeAdm t_equipeAdmin = new HomeAdm();
                 t_equipeAdmin.Show();
                 this.Hide();
@@ -217,14 +374,12 @@ namespace Dev4Tech
 
             if (funcionario != null)
             {
-                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
                 PesquisaEquipes t_equipe = new PesquisaEquipes();
                 t_equipe.Show();
                 this.Hide();
             }
             else if (admin != null)
             {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
                 PesquisaEquipes t_equipeAdmin = new PesquisaEquipes();
                 t_equipeAdmin.Show();
                 this.Hide();
@@ -242,14 +397,12 @@ namespace Dev4Tech
 
             if (funcionario != null)
             {
-                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
                 Ranking_Equipes t_equipe = new Ranking_Equipes();
                 t_equipe.Show();
                 this.Hide();
             }
             else if (admin != null)
             {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
                 Ranking_Equipes t_equipeAdmin = new Ranking_Equipes();
                 t_equipeAdmin.Show();
                 this.Hide();
@@ -262,7 +415,6 @@ namespace Dev4Tech
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            // Limpa a sessão antes de voltar para a tela inicial
             Sessao.FuncionarioLogado = null;
             Sessao.AdminLogado = null;
 
@@ -276,23 +428,35 @@ namespace Dev4Tech
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;
 
-            if (funcionario != null)
+            if (Sessao.IdEquipeSelecionada != 0)
             {
-                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
-                Chat_geral_equipes t_equipe = new Chat_geral_equipes();
-                t_equipe.Show();
-                this.Hide();
-            }
-            else if (admin != null)
-            {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
-                Chat_geral_equipes t_equipeAdmin = new Chat_geral_equipes();
-                t_equipeAdmin.Show();
-                this.Hide();
+                int idEquipe = Sessao.IdEquipeSelecionada;
+                string nomeEquipe = "Nome da equipe";
+                string categoriaEquipe = "Categoria da equipe";
+
+                if (funcionario != null)
+                {
+                    Chat_geral_equipes t_equipe = new Chat_geral_equipes(idEquipe, nomeEquipe, categoriaEquipe);
+                    t_equipe.Show();
+                    this.Hide();
+                }
+                else if (admin != null)
+                {
+                    Chat_geral_equipes t_equipeAdmin = new Chat_geral_equipes(idEquipe, nomeEquipe, categoriaEquipe);
+                    t_equipeAdmin.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             else
             {
-                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Nenhuma equipe selecionada.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                PesquisaEquipes pesquisa = new PesquisaEquipes();
+                pesquisa.Show();
+                this.Hide();
             }
         }
 
@@ -303,14 +467,12 @@ namespace Dev4Tech
 
             if (funcionario != null)
             {
-                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
                 Tarefas_Pendentes t_equipe = new Tarefas_Pendentes();
                 t_equipe.Show();
                 this.Hide();
             }
             else if (admin != null)
             {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
                 AvaliaçãoTarefaAdmin t_equipeAdmin = new AvaliaçãoTarefaAdmin();
                 t_equipeAdmin.Show();
                 this.Hide();
@@ -328,14 +490,12 @@ namespace Dev4Tech
 
             if (funcionario != null)
             {
-                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
                 Ranking_Equipes t_equipe = new Ranking_Equipes();
                 t_equipe.Show();
                 this.Hide();
             }
             else if (admin != null)
             {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
                 Ranking_Equipes t_equipeAdmin = new Ranking_Equipes();
                 t_equipeAdmin.Show();
                 this.Hide();
@@ -348,20 +508,17 @@ namespace Dev4Tech
 
         private void lblMembros_Click(object sender, EventArgs e)
         {
-
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;
 
             if (funcionario != null)
             {
-                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
                 Integrantes_Equipe t_equipe = new Integrantes_Equipe();
                 t_equipe.Show();
                 this.Hide();
             }
             else if (admin != null)
             {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
                 AdicionarEquipes t_equipeAdmin = new AdicionarEquipes();
                 t_equipeAdmin.Show();
                 this.Hide();
@@ -395,12 +552,10 @@ namespace Dev4Tech
 
         private void Tarefa1_Enter(object sender, EventArgs e)
         {
-            // Se precisar implementar
         }
 
         private void txtPesquisaTarefa_TextChanged(object sender, EventArgs e)
         {
-            // Se precisar implementar
         }
 
         private void lblPlanejamento_Click(object sender, EventArgs e)
@@ -410,14 +565,12 @@ namespace Dev4Tech
 
             if (funcionario != null)
             {
-                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
                 Planejamento t_equipe = new Planejamento();
                 t_equipe.Show();
                 this.Hide();
             }
             else if (admin != null)
             {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
                 Planejamento t_equipeAdmin = new Planejamento();
                 t_equipeAdmin.Show();
                 this.Hide();
@@ -430,7 +583,6 @@ namespace Dev4Tech
 
         private void panelTarefas_Paint(object sender, PaintEventArgs e)
         {
-            // Se precisar implementar
         }
 
         private void btnConfig_Click(object sender, EventArgs e)
@@ -456,14 +608,12 @@ namespace Dev4Tech
 
             if (funcionario != null)
             {
-                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
                 Planejamento pl = new Planejamento();
                 pl.Show();
                 this.Hide();
             }
             else if (admin != null)
             {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
                 Equipes_Estatisticas t_equipeEstat = new Equipes_Estatisticas();
                 t_equipeEstat.Show();
                 this.Hide();
@@ -476,12 +626,10 @@ namespace Dev4Tech
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-
         }
 
         private void Tarefas_Completadas_Load(object sender, EventArgs e)
         {
-
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -491,14 +639,12 @@ namespace Dev4Tech
 
             if (funcionario != null)
             {
-                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
                 Home t_equipe = new Home();
                 t_equipe.Show();
                 this.Hide();
             }
             else if (admin != null)
             {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
                 HomeAdm t_equipeAdmin = new HomeAdm();
                 t_equipeAdmin.Show();
                 this.Hide();

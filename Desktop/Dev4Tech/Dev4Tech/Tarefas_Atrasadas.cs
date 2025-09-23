@@ -14,6 +14,7 @@ namespace Dev4Tech
         private Dictionary<int, string> equipesNomeMap;
         private int idFuncionarioLogado;
         private EntregaTarefa entregaTarefa;
+        private const string TextoPlaceholder = "Pesquisar uma tarefa";
 
         public Tarefas_Atrasadas()
         {
@@ -24,37 +25,119 @@ namespace Dev4Tech
                 ? int.Parse(Sessao.FuncionarioLogado.getFuncionarioId())
                 : 0;
 
+            // Configurar placeholder na textbox
+            txtPesquisarTarefa.Text = TextoPlaceholder;
+            txtPesquisarTarefa.ForeColor = Color.Gray;
+
             // Carregar as equipes do funcionário logado
             CarregarEquipes();
-            CarregarTarefasAtrasadas();
+
+            // Vincular eventos
+            cmbEquipes.SelectedIndexChanged += cmbEquipes_SelectedIndexChanged;
+            txtPesquisarTarefa.Enter += txtPesquisarTarefa_Enter;
+            txtPesquisarTarefa.Leave += txtPesquisarTarefa_Leave;
+            txtPesquisarTarefa.TextChanged += txtPesquisarTarefa_TextChanged;
+
+            // Carregar tarefas iniciais (todas equipes)
+            AtualizarTarefas();
         }
 
-        private void CarregarEquipes()
+        private void txtPesquisarTarefa_Enter(object sender, EventArgs e)
         {
-            equipesFuncionario = ObterEquipesDoFuncionario(idFuncionarioLogado);
-            equipesNomeMap = new Dictionary<int, string>();
-
-            foreach (var idEq in equipesFuncionario)
+            if (txtPesquisarTarefa.Text == TextoPlaceholder)
             {
-                string nome = BuscarNomeEquipe(idEq);
-                equipesNomeMap[idEq] = nome;
+                txtPesquisarTarefa.Text = "";
+                txtPesquisarTarefa.ForeColor = Color.Black;
             }
         }
 
-        private void CarregarTarefasAtrasadas()
+        private void txtPesquisarTarefa_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtPesquisarTarefa.Text))
+            {
+                txtPesquisarTarefa.Text = TextoPlaceholder;
+                txtPesquisarTarefa.ForeColor = Color.Gray;
+            }
+        }
+
+        // Atualiza a lista de tarefas exibidas segundo filtros ativos (equipe/pesquisa)
+        private void AtualizarTarefas()
+        {
+            string filtroNome = txtPesquisarTarefa.Text.Trim();
+            List<int> equipesFiltrar = null;
+
+            // Se for o texto placeholder ou vazio, não filtrar por nome
+            bool usarFiltroNome = !string.IsNullOrEmpty(filtroNome) && filtroNome != TextoPlaceholder;
+
+            if (cmbEquipes.SelectedItem == null || cmbEquipes.SelectedItem.ToString() == "Todas")
+            {
+                equipesFiltrar = equipesFuncionario; // todas as equipes do funcionário
+            }
+            else
+            {
+                var nomeEquipe = cmbEquipes.SelectedItem.ToString();
+                equipesFiltrar = new List<int>();
+                foreach (var kvp in equipesNomeMap)
+                    if (kvp.Value == nomeEquipe)
+                        equipesFiltrar.Add(kvp.Key);
+            }
+
+            DataTable tarefas = new DataTable();
+
+            if (!usarFiltroNome)
+            {
+                tarefas = new DataTable();
+                if (equipesFiltrar != null)
+                {
+                    foreach (var idEquipe in equipesFiltrar)
+                    {
+                        DataTable dtEquipe = entregaTarefa.BuscarTarefasAtrasadasPorEquipe(idEquipe);
+                        tarefas.Merge(dtEquipe);
+                    }
+                }
+            }
+            else
+            {
+                // Busca tarefas atrasadas para as equipes filtradas e filtra pelo nome
+                DataTable tarefasAtrasadas = new DataTable();
+                if (equipesFiltrar != null)
+                {
+                    foreach (var idEquipe in equipesFiltrar)
+                    {
+                        DataTable dtEquipe = entregaTarefa.BuscarTarefasAtrasadasPorEquipe(idEquipe);
+                        tarefasAtrasadas.Merge(dtEquipe);
+                    }
+                }
+
+                var rowsFiltrados = tarefasAtrasadas.AsEnumerable()
+                    .Where(r => r.Field<string>("nomeTarefa").IndexOf(filtroNome, StringComparison.OrdinalIgnoreCase) >= 0);
+
+                if (rowsFiltrados.Any())
+                    tarefas = rowsFiltrados.CopyToDataTable();
+                else
+                    tarefas = tarefasAtrasadas.Clone(); // vazio porém com as colunas
+            }
+
+            MostrarTarefas(tarefas);
+        }
+
+        private void MostrarTarefas(DataTable tarefas)
         {
             panelTarefas.Controls.Clear();
 
-            DataTable dtTarefas = new DataTable();
-
-            // Buscar tarefas atrasadas de todas as equipes do funcionário
-            if (equipesFuncionario != null)
+            if (tarefas.Rows.Count == 0)
             {
-                foreach (var idEquipe in equipesFuncionario)
+                Label lblSemTarefas = new Label
                 {
-                    DataTable dt = entregaTarefa.BuscarTarefasAtrasadasPorEquipe(idEquipe);
-                    dtTarefas.Merge(dt);
-                }
+                    Text = "Nenhuma tarefa atrasada encontrada!",
+                    Font = new Font("Segoe UI", 12, FontStyle.Italic),
+                    ForeColor = Color.Gray,
+                    AutoSize = true,
+                    Left = panelTarefas.Width / 2 - 120,
+                    Top = 50
+                };
+                panelTarefas.Controls.Add(lblSemTarefas);
+                return;
             }
 
             int margemTopo = 20;
@@ -65,9 +148,9 @@ namespace Dev4Tech
             int alturaPanel = 100;
             int colunas = 2;
 
-            for (int i = 0; i < dtTarefas.Rows.Count; i++)
+            for (int i = 0; i < tarefas.Rows.Count; i++)
             {
-                DataRow row = dtTarefas.Rows[i];
+                DataRow row = tarefas.Rows[i];
 
                 string dificuldade = row.Table.Columns.Contains("dificuldade") && row["dificuldade"] != DBNull.Value
                     ? row["dificuldade"].ToString()
@@ -190,20 +273,39 @@ namespace Dev4Tech
 
                 panelTarefas.Controls.Add(tarefaPanel);
             }
+        }
 
-            // Mensagem se não houver tarefas atrasadas
-            if (dtTarefas.Rows.Count == 0)
+        private void CarregarEquipes()
+        {
+            int idFunc = idFuncionarioLogado;
+            equipesFuncionario = ObterEquipesDoFuncionario(idFunc);
+
+            equipesNomeMap = new Dictionary<int, string>();
+
+            foreach (var idEq in equipesFuncionario)
             {
-                Label lblSemTarefas = new Label
-                {
-                    Text = "Nenhuma tarefa atrasada encontrada!",
-                    Font = new Font("Segoe UI", 12, FontStyle.Italic),
-                    ForeColor = Color.Gray,
-                    AutoSize = true,
-                    Left = panelTarefas.Width / 2 - 120,
-                    Top = 50
-                };
-                panelTarefas.Controls.Add(lblSemTarefas);
+                string nome = BuscarNomeEquipe(idEq);
+                equipesNomeMap[idEq] = nome;
+            }
+
+            cmbEquipes.Items.Clear();
+            cmbEquipes.Items.Add("Todas");
+            cmbEquipes.Items.AddRange(equipesNomeMap.Values.ToArray());
+            cmbEquipes.SelectedIndex = 0;
+        }
+
+        private void cmbEquipes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AtualizarTarefas();
+        }
+
+        // Pesquisa dinâmica na txtPesquisarTarefa e atualiza lista
+        private void txtPesquisarTarefa_TextChanged(object sender, EventArgs e)
+        {
+            // Só atualiza se não for o texto do placeholder
+            if (txtPesquisarTarefa.Text != TextoPlaceholder)
+            {
+                AtualizarTarefas();
             }
         }
 
@@ -242,6 +344,8 @@ namespace Dev4Tech
             }
             return nome;
         }
+
+        // Mantém todos os seus eventos e métodos originais abaixo sem modificação.
 
         private void btnHome_Click(object sender, EventArgs e)
         {
@@ -532,16 +636,6 @@ namespace Dev4Tech
             {
                 MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        }
-
-        private void Tarefas_Atrasadas_Load(object sender, EventArgs e)
-        {
-            // Pode implementar ou deixar vazio
-        }
-
-        private void panelTarefas_Paint(object sender, PaintEventArgs e)
-        {
-            // Pode implementar ou deixar vazio
         }
     }
 }

@@ -105,7 +105,7 @@ namespace Dev4Tech
                 {
                     try
                     {
-                        using (var ms = new System.IO.MemoryStream(fotoBytes))
+                        using (var ms = new MemoryStream(fotoBytes))
                         {
                             ms.Position = 0;
                             foto = Image.FromStream(ms);

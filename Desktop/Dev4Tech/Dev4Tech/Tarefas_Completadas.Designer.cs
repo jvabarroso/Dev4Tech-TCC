@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtPesquisaTarefa = new System.Windows.Forms.TextBox();
+            this.txtPesquisarTarefa = new System.Windows.Forms.TextBox();
             this.btnCompletadas = new System.Windows.Forms.Label();
             this.btnEmAtraso = new System.Windows.Forms.Label();
             this.btnPendentes = new System.Windows.Forms.Label();
@@ -53,6 +53,7 @@
             this.lblPlanejamento = new System.Windows.Forms.Label();
             this.panelTarefas = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.cmbEquipes = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -66,17 +67,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // txtPesquisaTarefa
+            // txtPesquisarTarefa
             // 
-            this.txtPesquisaTarefa.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPesquisaTarefa.Location = new System.Drawing.Point(449, 185);
-            this.txtPesquisaTarefa.Margin = new System.Windows.Forms.Padding(2);
-            this.txtPesquisaTarefa.Multiline = true;
-            this.txtPesquisaTarefa.Name = "txtPesquisaTarefa";
-            this.txtPesquisaTarefa.Size = new System.Drawing.Size(308, 31);
-            this.txtPesquisaTarefa.TabIndex = 90;
-            this.txtPesquisaTarefa.Text = "Pesquisar uma tarefa";
-            this.txtPesquisaTarefa.TextChanged += new System.EventHandler(this.txtPesquisaTarefa_TextChanged);
+            this.txtPesquisarTarefa.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPesquisarTarefa.Location = new System.Drawing.Point(449, 185);
+            this.txtPesquisarTarefa.Margin = new System.Windows.Forms.Padding(2);
+            this.txtPesquisarTarefa.Multiline = true;
+            this.txtPesquisarTarefa.Name = "txtPesquisarTarefa";
+            this.txtPesquisarTarefa.Size = new System.Drawing.Size(308, 31);
+            this.txtPesquisarTarefa.TabIndex = 90;
+            this.txtPesquisarTarefa.Text = "Pesquisar uma tarefa";
+            this.txtPesquisarTarefa.TextChanged += new System.EventHandler(this.txtPesquisaTarefa_TextChanged);
             // 
             // btnCompletadas
             // 
@@ -363,15 +364,25 @@
             this.label2.Text = "<- Voltar";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
+            // cmbEquipes
+            // 
+            this.cmbEquipes.FormattingEnabled = true;
+            this.cmbEquipes.Location = new System.Drawing.Point(761, 195);
+            this.cmbEquipes.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbEquipes.Name = "cmbEquipes";
+            this.cmbEquipes.Size = new System.Drawing.Size(92, 21);
+            this.cmbEquipes.TabIndex = 134;
+            // 
             // Tarefas_Completadas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.cmbEquipes);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panelTarefas);
             this.Controls.Add(this.lblPlanejamento);
-            this.Controls.Add(this.txtPesquisaTarefa);
+            this.Controls.Add(this.txtPesquisarTarefa);
             this.Controls.Add(this.btnCompletadas);
             this.Controls.Add(this.btnEmAtraso);
             this.Controls.Add(this.btnPendentes);
@@ -413,7 +424,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtPesquisaTarefa;
+        private System.Windows.Forms.TextBox txtPesquisarTarefa;
         private System.Windows.Forms.Label btnCompletadas;
         private System.Windows.Forms.Label btnEmAtraso;
         private System.Windows.Forms.Label btnPendentes;
@@ -438,5 +449,6 @@
         private System.Windows.Forms.Label lblPlanejamento;
         private System.Windows.Forms.Panel panelTarefas;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cmbEquipes;
     }
 }
