@@ -22,7 +22,7 @@ try {
         e.nome_equipe, 
         e.id_categoria, 
         e.data_criacao,
-        e.foto_equipe,
+        CONCAT('http://10.239.0.125/dev4tech/img/', foto_equipe) AS foto_url,
         c.nome_categoria
     FROM Equipes e
     JOIN Categorias c ON e.id_categoria = c.id_categoria

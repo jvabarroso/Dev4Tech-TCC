@@ -21,7 +21,7 @@ try {
         e.nome_equipe, 
         e.id_categoria, 
         c.nome_categoria,
-        e.foto_equipe,
+        CONCAT('http://10.239.0.125/dev4tech/img/', foto_equipe) AS foto_url,
         COALESCE(SUM(pf.pontos), 0) AS pontuacao_total
     FROM Equipes e
     LEFT JOIN Equipes_Membros em ON e.id_equipe = em.id_equipe
