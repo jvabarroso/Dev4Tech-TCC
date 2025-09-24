@@ -24,8 +24,8 @@ export default function RankingEstastistico({navigation, route}){
         dificil: "#D9534F"
     };
 
-    const maxPontos = Math.max(...dados.map(item => item.pontos), 1);
-    const maxTarefas = Math.max(...tarefa.map(item => Number(item.total) || 0), 1);
+    const maxPontos = Math.max(...dados.map(item => item.pontos), 0);
+    const maxTarefas = Math.max(...tarefa.map(item => Number(item.total) || 0), 0);
     const totalGeral = dificuldade.reduce((soma, item) => soma + Number(item.total), 0);
 
     const [verificacaoinfor, setVerificacaoinfor] = useState(true);
@@ -162,7 +162,9 @@ export default function RankingEstastistico({navigation, route}){
 
                     {!verificacaoinfor && (
                         <View style={styles.containerbarras}>
-                           {dados.map((item, index) => ( 
+                           {
+                           maxPontos > 0
+                           ?dados.map((item, index) => ( 
                             <View key={index} style={styles.areafuncionario}>
 
                                 <Text style={[styles.textobarras, { width:90 }]} numberOfLines={2} ellipsizeMode="tail">
@@ -178,7 +180,7 @@ export default function RankingEstastistico({navigation, route}){
                                 />
                                 </View>
                             </View>
-                            ))}
+                            )): <Text style={[styles.textobarras, { textAlign: 'center'}]}>Nenhuma contribuição enviada</Text>}
                         </View>
                         )}
 
@@ -195,13 +197,13 @@ export default function RankingEstastistico({navigation, route}){
                             <View style={{ alignItems: 'center' }}>
                                 <PieChart
                                     style={{ height: 120, width: 120 }}
-                                    data={dificuldade.map((item, index) => ({
+                                    data={
+                                        totalGeral> 0
+                                        ?dificuldade.map((item, index) => ({
                                         key: index,
                                         value: Number(item.total),
-                                        svg: { 
-                                            fill: cores[item.dificuldade] || "#ccc",
-                                        },
-                                    }))}
+                                        svg: { fill: cores[item.dificuldade] || "#ccc"},
+                                    })) : [{ key: 0, value: 1, svg: { fill: "#e0e0e0" } }]}
                                     innerRadius={"45%"}
                                     padAngle={0.01}
                                 />
@@ -239,7 +241,9 @@ export default function RankingEstastistico({navigation, route}){
 
                     {!verificacaoentre && (
                         <View style={styles.containerbarras}>
-                           {tarefa.map((item, index) => ( 
+                           {
+                           maxTarefas> 0
+                           ?tarefa.map((item, index) => ( 
                             <View key={index} style={styles.areafuncionario}>
 
                                 <Text style={[styles.textobarras, { width:90 }]} numberOfLines={2} ellipsizeMode="tail">
@@ -255,7 +259,7 @@ export default function RankingEstastistico({navigation, route}){
                                 />
                                 </View>
                             </View>
-                            ))}
+                            )): <Text style={[styles.textobarras, { textAlign: 'center'}]}>Nenhuma tarefa enviada</Text>}
                         </View>
                     )}
 
