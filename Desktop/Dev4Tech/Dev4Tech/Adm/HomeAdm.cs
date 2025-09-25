@@ -141,22 +141,23 @@ namespace Dev4Tech
             this.Hide();
         }
 
+        private cadastro_funcionário cadastroFunc = null;
+
         private void btnEntrarCadastroFuncionario_Click(object sender, EventArgs e)
         {
             var admin = Sessao.AdminLogado;
-            if(admin != null)
+            if (admin != null)
             {
-
-                // Supondo que "adminLogado" é o objeto que você tem após login
-                Sessao.AdminLogado.getAdminId();
-                Sessao.AdminLogado.getIdEmpresa();
-
-                cadastro_funcionário cadastroFunc = new cadastro_funcionário(
-    Sessao.AdminLogado.getAdminId(),
-    Sessao.AdminLogado.getIdEmpresa());
-
+                if (cadastroFunc == null || cadastroFunc.IsDisposed)
+                {
+                    cadastroFunc = new cadastro_funcionário(
+                        Sessao.AdminLogado.getAdminId(),
+                        Sessao.AdminLogado.getIdEmpresa());
+                    cadastroFunc.FormClosed += (s, args) => cadastroFunc = null; // Limpa a instância ao fechar
+                }
                 cadastroFunc.Show();
-
+                cadastroFunc.BringToFront();
+                this.Hide();
             }
         }
 
