@@ -19,6 +19,7 @@ export default function CadastroFuncionario({navigation, route}){
     const [email, setEmail] = useState('');
     const [dataNascimento, setDataNascimento] = useState('');
     const [cargo, setCargo] = useState('');
+    const [cpf, setCpf] = useState('');
     const [telefone, setTelefone] = useState('');
     const [endereco, setEndereco] = useState('');
     const [numero, setNumero] = useState('');
@@ -29,6 +30,7 @@ export default function CadastroFuncionario({navigation, route}){
         email,
         dataNascimento,
         cargo,
+        cpf,
         telefone,
         endereco,
         numero
@@ -43,6 +45,7 @@ export default function CadastroFuncionario({navigation, route}){
         setEmail('');
         setDataNascimento('');
         setCargo('');
+        setCpf('');
         setTelefone('');
         setEndereco('');
         setNumero('');
@@ -69,6 +72,7 @@ export default function CadastroFuncionario({navigation, route}){
                 DataNascimento : formatarDataParaBanco(dataNascimento), 
                 Telefone : telefone, 
                 Email : email, 
+                CPF : cpf, 
                 Senha : senha, 
                 endereco : endereco, 
                 numero : numero,
@@ -208,6 +212,14 @@ export default function CadastroFuncionario({navigation, route}){
                             placeholder="(13) 99899989"
                             placeholderTextColor={theme.text}
                             onChangeText={(text) => setTelefone(formatarTelefoneInput(text))}
+                        />
+                        <Text style={styles.texto}>CPF</Text>
+                        <TextInput
+                            style={styles.input}
+                            value={cpf}
+                            placeholder="123.456.789-09"
+                            placeholderTextColor={theme.text}
+                            onChangeText={(text) => setCpf(text)}
                         />
                         <View style={styles.linha}>
                             <Text style={styles.textoe}>Endereço</Text> 

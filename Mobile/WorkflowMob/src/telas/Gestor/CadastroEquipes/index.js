@@ -21,14 +21,25 @@ export default function CadastroEquipes({ route, navigation}){
     const [nome_equipe, setNome_equipe] = useState('');
     const [categoriaEquipe, setCategoriaEquipe] = useState('');
     const [categoriaSelecionada, setCategoriaSelecionada] = useState(null);
+    const [funcionarioEquipe, setFuncionarioEquipe] = useState('');
+    const [funcionarioSelecionada, setFuncionarioSelecionada] = useState(null);
+    const [funcionariosEquipeArray, setFuncionariosEquipeArray] = useState([]);
+
+    const [dados, setDados] = useState([]); 
+    const [dadosFuncionario, setDadosFuncionario] = useState([]);
+    const [sucess, setSucess] = useState(false);
 
     const campos = {
         nome_equipe,
         categoriaEquipe
     };
 
-    const [dados, setDados] = useState([]); 
-    const [sucess, setSucess] = useState(false);
+// Filtra os Funcionários
+    const funcionariosDisponiveis = dadosFuncionario.filter(
+        funcionario => !funcionariosEquipeArray.some(
+            added => added.FuncionarioId === funcionario.FuncionarioId
+        )
+    );
 
 //Buscar Categorias
     async function listarDados() {
@@ -53,6 +64,70 @@ export default function CadastroEquipes({ route, navigation}){
     useEffect(() => {
         listarDados();
     }, [usuario?.id_empresa]);
+    
+//Lista Funcionarios
+    async function listarFuncionarios() {
+        try {
+            const res = await api.get(`dev4tech/funcionarioequipecadastro.php`, {
+            params: {
+                id_empresa: usuario.id_empresa
+            }
+            });
+            
+            if (res.data.success) {
+            setDadosFuncionario(res.data.result || []);
+            } else {
+            console.log("Erro na API:", res.data.message);
+            setDadosFuncionario([]);
+            }
+        }
+        catch (error) {
+            console.log("Erro ao listar categorias", error);
+        }
+        }
+
+
+    useEffect(() => {
+        listarFuncionarios();
+    }, [usuario?.id_empresa]);
+
+
+//Adicionar funcionario na equipe
+    function adicionarFuncionario() {
+        if (funcionarioSelecionada) {
+            const jaExiste = funcionariosEquipeArray.some(
+                f => f.FuncionarioId === funcionarioSelecionada
+            );
+
+            if (!jaExiste) {
+                const funcionarioCompleto = dadosFuncionario.find(
+                    f => f.FuncionarioId === funcionarioSelecionada
+                );
+
+            if (funcionarioCompleto) {
+                setFuncionariosEquipeArray(prev => [
+                    ...prev, 
+                    {
+                        FuncionarioId: funcionarioCompleto.FuncionarioId,
+                        nome: funcionarioCompleto.nome,
+                        cargo: funcionarioCompleto.cargo || 'Cargo não informado',
+                        foto_url: funcionarioCompleto.foto_url || null
+                    }
+                ]);
+                
+                setFuncionarioSelecionada(null);
+                setFuncionarioEquipe('');
+            }
+        } 
+    }
+}
+
+// Remove Funcionário da Lista
+function removerFuncionario(index) {
+    setFuncionariosEquipeArray(prev => 
+        prev.filter((_, i) => i !== index)
+    );
+}
 
 
 //Escolha de Imagem
@@ -293,6 +368,62 @@ export default function CadastroEquipes({ route, navigation}){
                         }}
                         activeColor={theme.inputBackground} 
                     />
+
+                    <Text style={styles.texto}>Adicionar membros à equipe</Text>
+                    <View style={styles.linha}>
+                        <Dropdown
+                            style={styles.dropdownfuncionario}
+                            data={funcionariosDisponiveis}
+                            labelField="nome" 
+                            valueField="FuncionarioId"
+                            placeholder={funcionarioEquipe || "membros da equipe"}
+                            placeholderStyle={{ color: theme.text3, fontSize: 14 }}
+                            selectedTextStyle={{ color: theme.text, fontSize: 14 }}
+                            value={funcionarioSelecionada}
+                            onChange={item => {
+                                setFuncionarioSelecionada(item.FuncionarioId);
+                                setFuncionarioEquipe(item.nome);
+                            }}
+                            containerStyle={{
+                                backgroundColor: theme.inputBackground3,
+                            }}
+                            itemTextStyle={{
+                                color: theme.text,
+                                fontSize: 14,
+                                fontFamily: fonts.text,
+                            }}
+                            selectedStyle={{
+                                color: theme.text,
+                                fontSize: 14,
+                                fontFamily: fonts.text,
+                            }}
+                            activeColor={theme.inputBackground} 
+                    
+                        />
+                        <TouchableOpacity 
+                            style={styles.botaoadd}
+                            onPress={adicionarFuncionario}   
+                        >
+                            <Ionicons name="add" size={24} color="#FFFFFF" /> 
+                        </TouchableOpacity>  
+                    </View>
+                    {funcionariosEquipeArray.map((item, index) =>{
+                        return(
+                            <View key={index} style={styles.containerfuncionarios}>
+                                <Image 
+                                    source={item.foto_url ? { uri: item.foto_url } : require('../../../../assets/img/image.png')} 
+                                    style={styles.imag} 
+                                />
+                                <View style={styles.textos}>
+                                    <Text style={styles.textolistatitulo}>{item.nome}</Text>
+                                    <Text style={styles.textolistacargo}>{item.cargo}</Text>
+                                </View>
+                                <TouchableOpacity onPress={() => removerFuncionario(index)} >
+                                    <Ionicons name="close" size={30} color="#FF0000" />
+                                </TouchableOpacity>
+                            </View>
+                    )})}
+
                     <TouchableOpacity 
                         style={styles.botaocriar}
                         onPress={cadastrar}

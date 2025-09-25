@@ -156,8 +156,8 @@ function DrawerAdm({route, navigation}){
       <Drawer.Screen name="EquipesAdm" component={EquipesAdm} initialParams={{ usuario }} options={{ title: 'Equipes' }}/>
       <Drawer.Screen name="RankingAdm" component={RankingAdm} initialParams={{ usuario }} options={{ title: 'Ranking' }}/>
       <Drawer.Screen name="CadastroFuncionario" component={CadastroFuncionario} initialParams={{ usuario }} options={{ title: 'Cadastro de Funcionários' }} />
-      <Drawer.Screen name="CadastroTarefas" component={CadastroTarefas} initialParams={{ usuario }} options={{ title: 'Cadastro de Tarefas' }}/>
       <Drawer.Screen name="CadastroEquipes" component={CadastroEquipes} initialParams={{ usuario }} options={{ title: 'Cadastro de Equipes' }}/>
+      <Drawer.Screen name="CadastroTarefas" component={CadastroTarefas} initialParams={{ usuario }} options={{ title: 'Cadastro de Tarefas' }}/>
     </Drawer.Navigator>
   );
 }

@@ -76,7 +76,7 @@ export default function RankingAdm({route, navigation}){
             {dados.length === 0 ? (
                       <Text style={{ textAlign: 'center', marginTop: 20 }}>Nenhuma equipe encontrada</Text>
             ) : (
-              filtrarEquipes().map((item) => {
+            filtrarEquipes().map((item) => {
               const posicaoOriginal = dados.findIndex((d) => d.id_equipe === item.id_equipe); {/* findIndex percorre todo o array e retorna a posição do primeiro elemento encontrado */}
               return (
               <TouchableOpacity

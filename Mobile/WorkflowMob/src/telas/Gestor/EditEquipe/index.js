@@ -59,7 +59,7 @@ export default function EditEquipe({ navigation, route }) {
             }
         }
     }
-    //Lista os funcionarios
+    //Lista apenas os funcionarios que não estão na equipe
     async function listarFuncionarios() {
         try {
             const res = await api.get(`dev4tech/funcionariosadm.php`, {
