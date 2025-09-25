@@ -254,7 +254,8 @@ function removerFuncionario(index) {
                 id_categoria: categoriaSelecionada,
                 id_empresa: usuario.id_empresa,
                 foto_equipe,
-                AdminId: usuario.AdminId
+                AdminId: usuario.AdminId,
+                funcionarios: funcionariosEquipeArray.map(f => f.FuncionarioId)
             });
 
             if (res.data.sucesso === false) {

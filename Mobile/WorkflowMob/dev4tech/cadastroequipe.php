@@ -12,7 +12,6 @@ $id_categoria = @$postjson['id_categoria'];
 $AdminId = @$postjson['AdminId'];
 $foto_equipe = @$postjson['foto_equipe'];
 $id_empresa = @$postjson['id_empresa'];
-
 try {
     $query = $pdo->prepare("SELECT * FROM categorias  WHERE id_categoria = :id_categoria");
     $query->bindValue(':id_categoria', $id_categoria, PDO::PARAM_INT);
@@ -35,9 +34,22 @@ try {
     $res->bindValue(":AdminId", "$AdminId");
     $res->bindValue(":id_empresa", "$id_empresa");
     $res->bindValue(":foto_equipe", "$foto_equipe");
-
+    
     if ($res->execute()) {
         $idEquipe = $pdo->lastInsertId();
+        
+        if (!empty($postjson['funcionarios']) && is_array($postjson['funcionarios'])) {
+            foreach ($postjson['funcionarios'] as $funcId) {
+                $res2 = $pdo->prepare("INSERT INTO equipes_membros SET 
+                    FuncionarioId = :FuncionarioId,
+                    id_equipe = :id_equipe
+                ");
+                $res2->bindValue(":FuncionarioId", $funcId);
+                $res2->bindValue(":id_equipe", $idEquipe);
+                $res2->execute();
+            }
+        }
+
         $result = json_encode(['mensagem'=>'Salvo com sucesso!', 'sucesso'=>true, 'id_equipe'=>$idEquipe, 'foto'=>$foto_equipe]);
     } else {
         $result = json_encode(['mensagem'=>'Erro ao Salvar', 'sucesso'=>false]);
