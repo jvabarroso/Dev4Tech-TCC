@@ -77,8 +77,8 @@ namespace Dev4Tech
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            Form1 t_incial = new Form1();
-            t_incial.Show();
+            HomeAdm homeAdm = new HomeAdm();
+            homeAdm.Show();
             this.Hide();
         }
 

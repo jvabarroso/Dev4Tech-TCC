@@ -242,7 +242,7 @@ namespace Dev4Tech
                 MySqlCommand comandos = con.CreateCommand();
                 con.Open();
                 comandos.Parameters.AddWithValue("@id_equipe", idEquipe);
-                comandos.CommandText = "SELECT dificuldade FROM tarefas WHERE id_equipe = @id_equipe";
+                comandos.CommandText = "SELECT t.dificuldade FROM tarefas t JOIN entregastarefa e ON t.id_tarefa = e.id_tarefa WHERE e.id_equipe = @id_equipe AND e.entregue = 1";
 
                 Dictionary<string, double> dificuldadePontos = new Dictionary<string, double>()
     {
