@@ -459,6 +459,27 @@
   <ItemGroup>
     <None Include="Resources\Group 625908.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CadEmpresa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CadFunc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CadFunc1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cadAdmin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CadFunc2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CadFunc3.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
