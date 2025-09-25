@@ -279,14 +279,19 @@ namespace Dev4Tech
         private void PreencherCamposFuncionario()
         {
             lblNomeFunc.Text = funcionario.getNome();
-            lblCargo.Text = funcionario.getNome();
-            txtNome.Text = funcionario.getNome();
             lblCargo.Text = funcionario.getCargo();
+            txtNome.Text = funcionario.getNome();
+            txtNome.ReadOnly = true; // desabilita edição do nome
             txtCPF.Text = funcionario.getCPF();
+            txtCPF.ReadOnly = true; // desabilita edição do CPF
             txtDataNascFunc.Text = funcionario.getDataNascimento().ToString("dd/MM/yyyy");
+            txtDataNascFunc.ReadOnly = true; // desabilita edição da data de nascimento
             txtTelefone.Text = funcionario.getTelefone();
+            txtTelefone.ReadOnly = false; // permite edição do telefone
             txtEmail.Text = funcionario.getEmail();
+            txtEmail.ReadOnly = true; // desabilita edição do email
             textBox1.Text = $"{funcionario.getEndereco()}, {funcionario.getNumero()}";
+ 
 
             pontuacaoUsuarios ptFunc = new pontuacaoUsuarios();
             int idFunc = int.Parse(funcionario.getFuncionarioId());
@@ -585,5 +590,50 @@ namespace Dev4Tech
         }
 
         private void panelDados_Paint(object sender, PaintEventArgs e) { }
+
+        private void btnEditDadosConfig_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (admin == null)
+                {
+                    MessageBox.Show("Administrador não está definido.");
+                    return;
+                }
+                string idStr = admin.getAdminId();
+                if (string.IsNullOrWhiteSpace(idStr) || !int.TryParse(idStr, out int idAdmin))
+                {
+                    MessageBox.Show("ID do administrador inválido.");
+                    return;
+                }
+                string novoTelefone = txtTelefone.Text.Trim();
+                using (var conn = new MySqlConnection("server=localhost;database=Dev4Tech;uid=root;pwd="))
+                {
+                    conn.Open();
+                    string query = "UPDATE Administradores SET Telefone = @telefone WHERE AdminId = @id";
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@telefone", novoTelefone);
+                        cmd.Parameters.AddWithValue("@id", idAdmin);
+                        int linhasAfetadas = cmd.ExecuteNonQuery();
+                        if (linhasAfetadas > 0)
+                        {
+                            admin.setTelefone(novoTelefone);
+                            Sessao.AdminLogado.setTelefone(novoTelefone);
+                            MessageBox.Show("Telefone do administrador atualizado com sucesso!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Nenhum registro foi atualizado. Verifique o ID do administrador.");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao atualizar telefone do administrador: {ex.Message}");
+            }
+        }
+
     }
 }

@@ -264,5 +264,9 @@ namespace Dev4Tech
         {
             return Path.Combine(PastaBaseArquivos, nomeArquivo);
         }
+        public bool VerificarPastaArquivos()
+        {
+            return Directory.Exists(PastaBaseArquivos);
+        }
     }
 }
