@@ -1,7 +1,9 @@
 import React from 'react';
+
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { NavigationContainer} from '@react-navigation/native';
 import { createStackNavigator} from '@react-navigation/stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { useNavigation } from '@react-navigation/native';
 
@@ -29,7 +31,7 @@ import RankingEstastistico from '../../src/telas/Gestor/RakingEstastistico';
 import EquipesAdm from '../../src/telas/Gestor/EquipesAdm';
 import EditEquipe from '../../src/telas/Gestor/EditEquipe';
 
-import fonts from "../styles/fonts";
+
 import {Ionicons} from '@expo/vector-icons';
 
 
@@ -93,16 +95,17 @@ function Tabs({route}){
   );
 }
 
-function TabsAdm({route}){  
+function DrawerAdm({route, navigation}){  
   const { theme } = useTheme();
   const styles = getStyles(theme);
 
+  const Drawer = createDrawerNavigator();
   const usuario = route.params?.usuario || null;
   const equipe = route.params?.equipe || null;
 
-  const navigation = useNavigation();
+
   return (
-    <Tab.Navigator
+    <Drawer.Navigator
       screenOptions={({ route }) => ({
         headerStyle:   { backgroundColor: theme.background },
         headerTintColor: theme.text,
@@ -117,9 +120,10 @@ function TabsAdm({route}){
             onPress={() => navigation.navigate('Configuracoes', { usuario, equipe })}
           />
         ),
-        tabBarIcon: ({ focused, color, size }) => {
+
+        drawerIcon: ({ focused, size, color }) => {
           let iconName;
-          if (route.name === 'Home') {
+          if (route.name === 'HomeAdm') {
             iconName = 'home';
           } else if (route.name === 'CadastroFuncionario') {
             iconName = 'person-circle-outline';
@@ -140,24 +144,23 @@ function TabsAdm({route}){
           return <Ionicons name={iconName} size={size} color={iconColor} />;
         },
 
-        tabBarActiveTintColor: theme.primary,   
-        tabBarInactiveTintColor: theme.textSecondary, 
+        drawerActiveTintColor: theme.primary,
+        drawerInactiveTintColor: theme.textSecondary, 
         
-        tabBarStyle: {
+        drawerStyle: {
           backgroundColor: theme.background,
         },
       })}
     >
-      <Tab.Screen name="Home" component={Home} initialParams={{ usuario }}/>
-      <Tab.Screen name="CadastroFuncionario" component={CadastroFuncionario} initialParams={{ usuario }} />
-      <Tab.Screen name="CadastroTarefas" component={CadastroTarefas} initialParams={{ usuario }}/>
-      <Tab.Screen name="CadastroEquipes" component={CadastroEquipes} initialParams={{ usuario }}/>
-      <Tab.Screen name="EquipesAdm" component={EquipesAdm} initialParams={{ usuario }}/>
-      <Tab.Screen name="RankingAdm" component={RankingAdm} initialParams={{ usuario }}/>
-    </Tab.Navigator>
+      <Drawer.Screen name="HomeAdm" component={HomeAdm} initialParams={{ usuario }} options={{ title: 'Home' }}/>
+      <Drawer.Screen name="EquipesAdm" component={EquipesAdm} initialParams={{ usuario }} options={{ title: 'Equipes' }}/>
+      <Drawer.Screen name="RankingAdm" component={RankingAdm} initialParams={{ usuario }} options={{ title: 'Ranking' }}/>
+      <Drawer.Screen name="CadastroFuncionario" component={CadastroFuncionario} initialParams={{ usuario }} options={{ title: 'Cadastro de Funcionários' }} />
+      <Drawer.Screen name="CadastroTarefas" component={CadastroTarefas} initialParams={{ usuario }} options={{ title: 'Cadastro de Tarefas' }}/>
+      <Drawer.Screen name="CadastroEquipes" component={CadastroEquipes} initialParams={{ usuario }} options={{ title: 'Cadastro de Equipes' }}/>
+    </Drawer.Navigator>
   );
 }
-
 
 
 export default function App() {
@@ -206,9 +209,10 @@ export default function App() {
           component={Configuracoes} 
           options={{ headerShown: false }}
         />
+
         <Stack.Screen
           name="HomeAdm"
-          component={TabsAdm} 
+          component={DrawerAdm} 
           options={{ headerShown: false }}
         />   
         <Stack.Screen
