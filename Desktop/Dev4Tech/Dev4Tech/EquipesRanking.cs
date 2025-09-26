@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using MySql.Data.MySqlClient;
+using System.IO;
 
 namespace Dev4Tech
 {
@@ -11,11 +12,13 @@ namespace Dev4Tech
         public int FuncionarioId { get; set; }
         public string Nome { get; set; }
         public Image FotoPerfil { get; set; }
-        public string Cargo { get; set; } 
+        public string Cargo { get; set; }
     }
+
     public class EquipesRanking : conexao
     {
         private string conexaoString = "server=localhost;database=Dev4Tech;uid=root;pwd=;";
+        private string baseFolder = @"C:\xampp\htdocs\dev4tech\";
 
         public DataTable BuscarEquipesComPontuacao()
         {
@@ -85,24 +88,53 @@ namespace Dev4Tech
                         membro.Nome = reader["Nome"].ToString();
                         membro.Cargo = reader["Cargo"] != DBNull.Value ? reader["Cargo"].ToString() : "Desenvolvedor de software";
 
-                        if (!reader.IsDBNull(reader.GetOrdinal("foto_perfil")))
+                        // VERIFICAR SE É BLOB OU CAMINHO (MESMA LÓGICA DAS OUTRAS TELAS)
+                        object fotoData = reader["foto_perfil"];
+                        Image fotoMembro = null;
+
+                        if (fotoData != null && fotoData != DBNull.Value)
                         {
-                            byte[] fotoBytes = (byte[])reader["foto_perfil"];
-                            using (var ms = new System.IO.MemoryStream(fotoBytes))
+                            if (fotoData is byte[] imageData)
                             {
-                                membro.FotoPerfil = Image.FromStream(ms);
+                                // É um blob
+                                try
+                                {
+                                    using (var ms = new MemoryStream(imageData))
+                                    {
+                                        fotoMembro = Image.FromStream(ms);
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine($"Erro ao carregar imagem do blob: {ex.Message}");
+                                }
+                            }
+                            else if (fotoData is string caminhoRelativo)
+                            {
+                                // É um caminho (para compatibilidade com registros antigos)
+                                string caminhoCompleto = Path.Combine(baseFolder, caminhoRelativo.Replace("/", @"\"));
+
+                                if (File.Exists(caminhoCompleto))
+                                {
+                                    try
+                                    {
+                                        fotoMembro = Image.FromFile(caminhoCompleto);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Console.WriteLine($"Erro ao carregar imagem: {ex.Message}");
+                                    }
+                                }
                             }
                         }
-                        else
-                        {
-                            membro.FotoPerfil = Properties.Resources.icon_perfil;
-                        }
+
+                        // Se não conseguiu carregar a foto, usa a padrão
+                        membro.FotoPerfil = fotoMembro ?? Properties.Resources.icon_perfil;
                         membros.Add(membro);
                     }
                 }
             }
             return membros;
         }
-
     }
 }

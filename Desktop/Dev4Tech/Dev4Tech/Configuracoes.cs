@@ -419,18 +419,25 @@ namespace Dev4Tech
             {
                 try
                 {
-                    byte[] imageData;
-                    using (Image novaImagem = Image.FromFile(ofd.FileName))
-                    using (MemoryStream ms = new MemoryStream())
-                    {
-                        novaImagem.Save(ms, ImageFormat.Jpeg);
-                        imageData = ms.ToArray();
-                    }
+                    string nomeArquivoOriginal = Path.GetFileName(ofd.FileName);
+                    string randomName = $"{new Random().Next(1000, 1000000)}-{nomeArquivoOriginal}";
+                    randomName = Regex.Replace(randomName, @"\s+", "-");
 
-                    IconFuncionario.Image = Image.FromStream(new MemoryStream(imageData));
+                    string pastaUpload = @"C:\xampp\htdocs\dev4tech\img";
+                    string caminhoCompleto = Path.Combine(pastaUpload, randomName);
+
+                    // Copia o arquivo para a pasta img/
+                    File.Copy(ofd.FileName, caminhoCompleto, true);
+
+                    // Atualiza imagem na tela
+                    IconFuncionario.Image = Image.FromFile(caminhoCompleto);
                     IconFuncionario.SizeMode = PictureBoxSizeMode.StretchImage;
-                    AtualizarFotoNoBancoComoBlob(imageData);
-                    MessageBox.Show("Foto de perfil atualizada!");
+
+                    // Salva apenas o caminho relativo no banco
+                    string caminhoRelativo = "img/" + randomName;
+                    AtualizarFotoNoBancoComoCaminho(caminhoRelativo);
+
+                    MessageBox.Show("Foto de perfil atualizada com sucesso!");
                 }
                 catch (Exception ex)
                 {
@@ -438,6 +445,42 @@ namespace Dev4Tech
                 }
             }
         }
+        private void AtualizarFotoNoBancoComoCaminho(string caminhoRelativo)
+        {
+            string connectionString = "server=localhost;database=Dev4Tech;uid=root;pwd=";
+
+            if (funcionario != null)
+            {
+                int idFuncionario = int.Parse(funcionario.getFuncionarioId());
+                using (var conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "UPDATE Funcionarios SET foto_perfil = @caminho WHERE FuncionarioId = @id";
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@caminho", caminhoRelativo);
+                        cmd.Parameters.AddWithValue("@id", idFuncionario);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            else if (admin != null)
+            {
+                int idAdmin = int.Parse(admin.getAdminId());
+                using (var conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "UPDATE Administradores SET foto_perfil = @caminho WHERE AdminId = @id";
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@caminho", caminhoRelativo);
+                        cmd.Parameters.AddWithValue("@id", idAdmin);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
+
 
         private void AtualizarFotoNoBancoComoBlob(byte[] imageData)
         {

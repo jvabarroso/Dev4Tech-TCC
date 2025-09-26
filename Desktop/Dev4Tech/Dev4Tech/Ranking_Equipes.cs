@@ -34,10 +34,13 @@ namespace Dev4Tech
 
             foreach (DataRow row in dtEquipes.Rows)
             {
+                // CAPTURAR OS VALORES ANTES DO EVENTO
                 int idEquipe = Convert.ToInt32(row["id_equipe"]);
                 string nomeEquipe = row["nome_equipe"].ToString();
                 int pontosEquipe = row["pontos"] != DBNull.Value ? Convert.ToInt32(row["pontos"]) : 0;
-                List<MembroEquipe> membros = dao.BuscarMembrosEquipe(idEquipe); // lista de membros da equipe
+                int currentRank = rank; // Capturar o rank atual
+
+                List<MembroEquipe> membros = dao.BuscarMembrosEquipe(idEquipe);
 
                 int alturaPainel = 90;
                 Panel equipePanel = new Panel
@@ -60,17 +63,17 @@ namespace Dev4Tech
                     Top = 20,
                     SizeMode = PictureBoxSizeMode.StretchImage
                 };
-                if (rank == 1)
+                if (currentRank == 1)
                     picIcone.Image = Properties.Resources.icon_ranking_1;
-                else if (rank == 2)
+                else if (currentRank == 2)
                     picIcone.Image = Properties.Resources.icon_ranking_2;
-                else if (rank == 3)
+                else if (currentRank == 3)
                     picIcone.Image = Properties.Resources.icon_ranking_3;
                 equipePanel.Controls.Add(picIcone);
 
                 Label lblRank = new Label
                 {
-                    Text = $"#{rank}",
+                    Text = $"#{currentRank}",
                     Font = new Font("Segoe UI", 12, FontStyle.Bold),
                     Left = picIcone.Right + 10,
                     Top = 18,
@@ -122,18 +125,16 @@ namespace Dev4Tech
                     equipePanel.Controls.Add(picMembro);
                 }
 
+                // USAR VARIÁVEIS CAPTURADAS NO EVENTO
                 equipePanel.Click += (s, e) =>
                 {
-                    int equipeSelecionadaId = (int)((Panel)s).Tag;
-                    int equipeSelecionadaRank = rank; // 'rank' is looping variable in CarregarRankingEquipes
-
-
                     Equipes_Estatisticas estatisticas = new Equipes_Estatisticas();
-                    estatisticas.idEquipe = equipeSelecionadaId; // Set selected team id
+                    estatisticas.idEquipe = idEquipe; // Usar variável capturada
                     estatisticas.CarregarGrafico();
                     estatisticas.Show();
                     this.Hide();
                 };
+
                 panelRankingEquipes.Controls.Add(equipePanel);
                 top += equipePanel.Height + 10;
                 rank++;
