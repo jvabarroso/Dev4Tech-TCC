@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Dev4Tech
 {
@@ -15,6 +16,7 @@ namespace Dev4Tech
         private int idFuncionarioLogado;
         private EntregaTarefa entregaTarefa;
         private const string TextoPlaceholder = "Pesquisar uma tarefa";
+        private string basePathImagemEquipe = @"C:\xampp\htdocs\dev4tech\img";
 
         public Tarefas_Atrasadas()
         {
@@ -40,6 +42,37 @@ namespace Dev4Tech
 
             // Carregar tarefas iniciais (todas equipes)
             AtualizarTarefas();
+        }
+
+        // Método para obter nome do arquivo da foto (igual ao primeiro código)
+        private string ObterFotoEquipeNomeArquivo(int idEquipe)
+        {
+            string nomeArquivo = null;
+            string query = "SELECT foto_equipe FROM Equipes WHERE id_equipe = @idEquipe LIMIT 1";
+            string connectionString = "Server=localhost;Database=Dev4Tech;Uid=root;Pwd=;SslMode=none;";
+
+            using (var conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@idEquipe", idEquipe);
+                    var resultado = cmd.ExecuteScalar();
+
+                    if (resultado != null && resultado != DBNull.Value)
+                    {
+                        if (resultado is byte[] bytes)
+                        {
+                            nomeArquivo = System.Text.Encoding.UTF8.GetString(bytes);
+                        }
+                        else
+                        {
+                            nomeArquivo = resultado.ToString();
+                        }
+                    }
+                }
+            }
+            return nomeArquivo;
         }
 
         private void txtPesquisarTarefa_Enter(object sender, EventArgs e)
@@ -156,6 +189,14 @@ namespace Dev4Tech
                     ? row["dificuldade"].ToString()
                     : "Desconhecida";
 
+                // CAPTURAR OS VALORES ANTES DO EVENTO
+                int idTarefa = Convert.ToInt32(row["id_tarefa"]);
+                int idEquipe = Convert.ToInt32(row["id_equipe"]);
+                string nomeTarefa = row["nomeTarefa"].ToString();
+                string nomeEquipe = row["nome_equipe"].ToString();
+                string nomeCategoria = row["nome_categoria"].ToString();
+                DateTime dataEntrega = Convert.ToDateTime(row["data_entrega"]);
+
                 Panel tarefaPanel = new Panel
                 {
                     Width = larguraPanel,
@@ -165,13 +206,12 @@ namespace Dev4Tech
                     Left = margemEsquerda + (i % colunas) * (larguraPanel + espacamentoHorizontal),
                     Top = margemTopo + (i / colunas) * (alturaPanel + espacamentoVertical),
                     Cursor = Cursors.Hand,
-                    Tag = row["id_tarefa"]
+                    Tag = idTarefa // Usar a variável capturada
                 };
 
+                // USAR VARIÁVEIS CAPTURADAS NO EVENTO
                 tarefaPanel.Click += (s, e) =>
                 {
-                    int idTarefa = Convert.ToInt32(((Panel)s).Tag);
-                    int idEquipe = Convert.ToInt32(row["id_equipe"]);
                     Tela_Tarefa telaTarefa = new Tela_Tarefa(idEquipe);
                     telaTarefa.CarregarDetalhesTarefa(idTarefa);
                     telaTarefa.Show();
@@ -180,18 +220,48 @@ namespace Dev4Tech
 
                 PictureBox pic = new PictureBox
                 {
-                    Image = Properties.Resources.icon_EquipLogo,
                     SizeMode = PictureBoxSizeMode.StretchImage,
                     Width = 40,
                     Height = 40,
                     Left = 10,
                     Top = 10
                 };
+
+                // CARREGAR FOTO DA EQUIPE (usando a variável capturada)
+                string nomeArquivoFotoEquipe = ObterFotoEquipeNomeArquivo(idEquipe);
+
+                if (!string.IsNullOrEmpty(nomeArquivoFotoEquipe))
+                {
+                    string caminhoImagemEquipe = Path.Combine(basePathImagemEquipe, nomeArquivoFotoEquipe);
+                    if (File.Exists(caminhoImagemEquipe))
+                    {
+                        try
+                        {
+                            using (var imgTemp = Image.FromFile(caminhoImagemEquipe))
+                            {
+                                pic.Image = new Bitmap(imgTemp);
+                            }
+                        }
+                        catch
+                        {
+                            pic.Image = Properties.Resources.icon_EquipLogo;
+                        }
+                    }
+                    else
+                    {
+                        pic.Image = Properties.Resources.icon_EquipLogo;
+                    }
+                }
+                else
+                {
+                    pic.Image = Properties.Resources.icon_EquipLogo;
+                }
+
                 tarefaPanel.Controls.Add(pic);
 
                 Label lblNome = new Label
                 {
-                    Text = row["nomeTarefa"].ToString(),
+                    Text = nomeTarefa, // Usar variável capturada
                     Font = new Font("Segoe UI", 11, FontStyle.Bold),
                     Left = 60,
                     Top = 5,
@@ -201,7 +271,7 @@ namespace Dev4Tech
 
                 Label lblSub = new Label
                 {
-                    Text = row["nome_equipe"].ToString(),
+                    Text = nomeEquipe, // Usar variável capturada
                     Font = new Font("Segoe UI", 10, FontStyle.Regular),
                     Left = 60,
                     Top = 30,
@@ -211,7 +281,7 @@ namespace Dev4Tech
 
                 Label lblCategoria = new Label
                 {
-                    Text = row["nome_categoria"].ToString(),
+                    Text = nomeCategoria, // Usar variável capturada
                     Font = new Font("Segoe UI", 9, FontStyle.Regular),
                     Left = 60,
                     Top = 50,
@@ -221,7 +291,7 @@ namespace Dev4Tech
 
                 Label lblConclusao = new Label
                 {
-                    Text = "Prazo expirado em " + Convert.ToDateTime(row["data_entrega"]).ToString("dd/MM/yy"),
+                    Text = "Prazo expirado em " + dataEntrega.ToString("dd/MM/yy"), // Usar variável capturada
                     Font = new Font("Segoe UI", 9, FontStyle.Regular),
                     Left = 60,
                     Top = 70,
@@ -431,21 +501,35 @@ namespace Dev4Tech
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;
 
-            if (funcionario != null)
+            if (Sessao.IdEquipeSelecionada != 0)
             {
-                Chat_geral_equipes t_equipe = new Chat_geral_equipes();
-                t_equipe.Show();
-                this.Hide();
-            }
-            else if (admin != null)
-            {
-                Chat_geral_equipes t_equipeAdmin = new Chat_geral_equipes();
-                t_equipeAdmin.Show();
-                this.Hide();
+                int idEquipe = Sessao.IdEquipeSelecionada;
+                string nomeEquipe = "Nome da equipe"; // Ajuste para obter o nome real da equipe
+                string categoriaEquipe = "Categoria da equipe"; // Ajuste para obter a categoria real da equipe
+
+                if (funcionario != null)
+                {
+                    Chat_geral_equipes t_equipe = new Chat_geral_equipes(idEquipe, nomeEquipe, categoriaEquipe);
+                    t_equipe.Show();
+                    this.Hide();
+                }
+                else if (admin != null)
+                {
+                    Chat_geral_equipes t_equipeAdmin = new Chat_geral_equipes(idEquipe, nomeEquipe, categoriaEquipe);
+                    t_equipeAdmin.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             else
             {
-                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Nenhuma equipe selecionada.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                PesquisaEquipes pesquisa = new PesquisaEquipes();
+                pesquisa.Show();
+                this.Hide();
             }
         }
 

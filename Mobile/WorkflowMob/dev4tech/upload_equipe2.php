@@ -23,7 +23,7 @@ try {
             $file_url = (isset($_SERVER['HTTP_HOST']) ? (isset($_SERVER['REQUEST_SCHEME']) ? $_SERVER['REQUEST_SCHEME'] : 'http') . '://' . $_SERVER['HTTP_HOST'] : 'http://10.239.0.125') 
                         . dirname($_SERVER['SCRIPT_NAME']) . "/img/" . $random_name;
             // Normalmente você pode montar a URL fixa:
-            // $file_url = "http://10.239.0.126/dev4tec/img/" . $random_name;
+            // $file_url = "http://10.239.20.68/dev4tec/img/" . $random_name;
             echo json_encode([
                 'success' => true,
                 'message' => 'Upload realizado com sucesso!',

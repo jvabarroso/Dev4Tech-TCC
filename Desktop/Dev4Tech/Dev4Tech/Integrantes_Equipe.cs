@@ -3,6 +3,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient; // Adicione esta using
 
 namespace Dev4Tech
 {
@@ -10,6 +11,7 @@ namespace Dev4Tech
     {
         private int equipeSelecionadaId = -1;
         private string baseFolder = @"C:\xampp\htdocs\dev4tech\";
+        private string basePathImagemEquipe = @"C:\xampp\htdocs\dev4tech\img"; // Mesmo caminho do primeiro código
 
         public Integrantes_Equipe()
         {
@@ -22,17 +24,50 @@ namespace Dev4Tech
             // Opcional: CarregarEquipes();
         }
 
+        // Método para obter nome do arquivo da foto (igual ao primeiro código)
+        private string ObterFotoEquipeNomeArquivo(int idEquipe)
+        {
+            string nomeArquivo = null;
+            string query = "SELECT foto_equipe FROM Equipes WHERE id_equipe = @idEquipe LIMIT 1";
+            string connectionString = "Server=localhost;Database=Dev4Tech;Uid=root;Pwd=;SslMode=none;";
+
+            using (var conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@idEquipe", idEquipe);
+                    var resultado = cmd.ExecuteScalar();
+
+                    if (resultado != null && resultado != DBNull.Value)
+                    {
+                        if (resultado is byte[] bytes)
+                        {
+                            nomeArquivo = System.Text.Encoding.UTF8.GetString(bytes);
+                        }
+                        else
+                        {
+                            nomeArquivo = resultado.ToString();
+                        }
+                    }
+                }
+            }
+            return nomeArquivo;
+        }
+
         private void CarregarEquipes()
         {
             panelEquipes.Controls.Clear();
             PesquisaIntegrantes dao = new PesquisaIntegrantes();
             DataTable equipes = dao.BuscarEquipesComCategoriaEMembros();
             int top = 10;
+
             foreach (DataRow row in equipes.Rows)
             {
                 int idEquipe = Convert.ToInt32(row["id_equipe"]);
                 string nomeEquipe = row["nome_equipe"].ToString();
                 string categoria = row["nome_categoria"].ToString();
+
                 Panel equipePanel = new Panel
                 {
                     Width = 300,
@@ -43,16 +78,48 @@ namespace Dev4Tech
                     BorderStyle = BorderStyle.FixedSingle,
                     Tag = idEquipe
                 };
+
                 PictureBox picEquipe = new PictureBox
                 {
-                    Image = Properties.Resources.icon_EquipLogo,
                     SizeMode = PictureBoxSizeMode.StretchImage,
                     Width = 40,
                     Height = 40,
                     Left = 10,
                     Top = 15
                 };
+
+                // CARREGAR FOTO DA EQUIPE (MESMA LÓGICA DO PRIMEIRO CÓDIGO)
+                string nomeArquivoFotoEquipe = ObterFotoEquipeNomeArquivo(idEquipe);
+
+                if (!string.IsNullOrEmpty(nomeArquivoFotoEquipe))
+                {
+                    string caminhoImagemEquipe = Path.Combine(basePathImagemEquipe, nomeArquivoFotoEquipe);
+                    if (File.Exists(caminhoImagemEquipe))
+                    {
+                        try
+                        {
+                            using (var imgTemp = Image.FromFile(caminhoImagemEquipe))
+                            {
+                                picEquipe.Image = new Bitmap(imgTemp);
+                            }
+                        }
+                        catch
+                        {
+                            picEquipe.Image = Properties.Resources.icon_EquipLogo;
+                        }
+                    }
+                    else
+                    {
+                        picEquipe.Image = Properties.Resources.icon_EquipLogo;
+                    }
+                }
+                else
+                {
+                    picEquipe.Image = Properties.Resources.icon_EquipLogo;
+                }
+
                 equipePanel.Controls.Add(picEquipe);
+
                 Label lblNome = new Label
                 {
                     Text = nomeEquipe,
@@ -62,6 +129,7 @@ namespace Dev4Tech
                     AutoSize = true
                 };
                 equipePanel.Controls.Add(lblNome);
+
                 Label lblCategoria = new Label
                 {
                     Text = categoria,
@@ -71,13 +139,16 @@ namespace Dev4Tech
                     AutoSize = true
                 };
                 equipePanel.Controls.Add(lblCategoria);
-                // Fotos dos membros (até 3)
+
+                // Fotos dos membros (até 3) - MANTIDO IGUAL
                 DataTable membros = dao.BuscarMembrosDaEquipe(idEquipe);
                 int leftFoto = 200;
                 int count = 0;
+
                 foreach (DataRow m in membros.Rows)
                 {
                     if (count >= 3) break;
+
                     PictureBox picMembro = new PictureBox
                     {
                         SizeMode = PictureBoxSizeMode.StretchImage,
@@ -87,15 +158,14 @@ namespace Dev4Tech
                         Top = 20,
                         BorderStyle = BorderStyle.FixedSingle
                     };
-                    // Carregar a foto do perfil se existir
+
+                    // Carregar a foto do perfil se existir - MANTIDO IGUAL
                     if (m.Table.Columns.Contains("foto_perfil") && m["foto_perfil"] != DBNull.Value)
                     {
-                        // Verificar se é um caminho (string) ou blob (byte[])
                         object fotoData = m["foto_perfil"];
 
                         if (fotoData is string caminhoRelativo && !string.IsNullOrEmpty(caminhoRelativo))
                         {
-                            // É um caminho de arquivo
                             string caminhoCompleto = Path.Combine(baseFolder, caminhoRelativo.Replace("/", @"\"));
 
                             if (File.Exists(caminhoCompleto))
@@ -117,7 +187,6 @@ namespace Dev4Tech
                         }
                         else if (fotoData is byte[] imageData)
                         {
-                            // É um blob (para compatibilidade com dados antigos)
                             try
                             {
                                 using (var ms = new System.IO.MemoryStream(imageData))
@@ -140,15 +209,18 @@ namespace Dev4Tech
                     {
                         picMembro.Image = Properties.Resources.icon_perfil;
                     }
+
                     equipePanel.Controls.Add(picMembro);
                     leftFoto += 35;
                     count++;
                 }
+
                 equipePanel.Click += (s, e) =>
                 {
                     equipeSelecionadaId = idEquipe;
                     CarregarMembrosDaEquipe();
                 };
+
                 panelEquipes.Controls.Add(equipePanel);
                 top += 80;
             }
@@ -158,9 +230,11 @@ namespace Dev4Tech
         {
             panelMembros.Controls.Clear();
             if (equipeSelecionadaId == -1) return;
+
             PesquisaIntegrantes dao = new PesquisaIntegrantes();
             DataTable membros = dao.BuscarMembrosDaEquipe(equipeSelecionadaId, filtroNome);
             int top = 10;
+
             foreach (DataRow row in membros.Rows)
             {
                 Panel membroPanel = new Panel
@@ -172,6 +246,7 @@ namespace Dev4Tech
                     Left = 10,
                     BorderStyle = BorderStyle.FixedSingle
                 };
+
                 PictureBox pic = new PictureBox
                 {
                     SizeMode = PictureBoxSizeMode.StretchImage,
@@ -181,15 +256,14 @@ namespace Dev4Tech
                     Top = 6,
                     BorderStyle = BorderStyle.FixedSingle
                 };
-                // Carregar a foto do perfil
+
+                // Carregar a foto do perfil - MANTIDO IGUAL
                 if (row.Table.Columns.Contains("foto_perfil") && row["foto_perfil"] != DBNull.Value)
                 {
-                    // Verificar se é um caminho (string) ou blob (byte[])
                     object fotoData = row["foto_perfil"];
 
                     if (fotoData is string caminhoRelativo && !string.IsNullOrEmpty(caminhoRelativo))
                     {
-                        // É um caminho de arquivo
                         string caminhoCompleto = Path.Combine(baseFolder, caminhoRelativo.Replace("/", @"\"));
 
                         if (File.Exists(caminhoCompleto))
@@ -211,7 +285,6 @@ namespace Dev4Tech
                     }
                     else if (fotoData is byte[] imageData)
                     {
-                        // É um blob (para compatibilidade com dados antigos)
                         try
                         {
                             using (var ms = new System.IO.MemoryStream(imageData))
@@ -234,7 +307,9 @@ namespace Dev4Tech
                 {
                     pic.Image = Properties.Resources.icon_perfil;
                 }
+
                 membroPanel.Controls.Add(pic);
+
                 Label lblNome = new Label
                 {
                     Text = row["Nome"].ToString(),
@@ -244,6 +319,7 @@ namespace Dev4Tech
                     AutoSize = true
                 };
                 membroPanel.Controls.Add(lblNome);
+
                 Label lblEmail = new Label
                 {
                     Text = "Email: " + row["Email"].ToString(),
@@ -253,6 +329,7 @@ namespace Dev4Tech
                     AutoSize = true
                 };
                 membroPanel.Controls.Add(lblEmail);
+
                 Label lblTelefone = new Label
                 {
                     Text = "Telefone: " + row["Telefone"].ToString(),
@@ -262,18 +339,19 @@ namespace Dev4Tech
                     AutoSize = true
                 };
                 membroPanel.Controls.Add(lblTelefone);
+
                 panelMembros.Controls.Add(membroPanel);
                 top += 70;
             }
         }
 
+        // TODOS OS MÉTODOS EXISTENTES PERMANECEM EXATAMENTE IGUAIS
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
             string filtro = txtPesquisarMembros.Text.Trim();
             CarregarMembrosDaEquipe(filtro);
         }
 
-        // Eventos existentes mantidos...
         private void lblMembros_Click(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;
@@ -318,13 +396,9 @@ namespace Dev4Tech
             }
         }
 
-        private void txtProcurarMebros_TextChanged(object sender, EventArgs e)
-        {
-        }
+        private void txtProcurarMebros_TextChanged(object sender, EventArgs e) { }
 
-        private void btnMostrarMembros_Click(object sender, EventArgs e)
-        {
-        }
+        private void btnMostrarMembros_Click(object sender, EventArgs e) { }
 
         private void lblRanking_Click(object sender, EventArgs e)
         {
@@ -378,8 +452,8 @@ namespace Dev4Tech
             if (Sessao.IdEquipeSelecionada != 0)
             {
                 int idEquipe = Sessao.IdEquipeSelecionada;
-                string nomeEquipe = "Nome da equipe"; // Ajuste para obter o nome real da equipe
-                string categoriaEquipe = "Categoria da equipe"; // Ajuste para obter a categoria real da equipe
+                string nomeEquipe = "Nome da equipe";
+                string categoriaEquipe = "Categoria da equipe";
 
                 if (funcionario != null)
                 {

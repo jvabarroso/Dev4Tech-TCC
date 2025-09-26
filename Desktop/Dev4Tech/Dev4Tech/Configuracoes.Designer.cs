@@ -47,6 +47,7 @@
             this.txtTelefone = new System.Windows.Forms.MaskedTextBox();
             this.txtCPF = new System.Windows.Forms.MaskedTextBox();
             this.panelDados = new System.Windows.Forms.Panel();
+            this.btnEditDadosConfig = new System.Windows.Forms.Button();
             this.flowLayoutPanelEquipes = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlEquipe = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -62,7 +63,6 @@
             this.btnConfigurações = new System.Windows.Forms.PictureBox();
             this.btnHome = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.btnEditDadosConfig = new System.Windows.Forms.Button();
             this.panelDados.SuspendLayout();
             this.flowLayoutPanelEquipes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IconFuncionario)).BeginInit();
@@ -207,7 +207,7 @@
             // 
             this.txtEmail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmail.Location = new System.Drawing.Point(169, 560);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(4);
             this.txtEmail.Multiline = true;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.ReadOnly = true;
@@ -220,7 +220,7 @@
             // 
             this.txtNome.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNome.Location = new System.Drawing.Point(169, 405);
-            this.txtNome.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNome.Margin = new System.Windows.Forms.Padding(4);
             this.txtNome.Multiline = true;
             this.txtNome.Name = "txtNome";
             this.txtNome.ReadOnly = true;
@@ -233,7 +233,7 @@
             // 
             this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox5.Location = new System.Drawing.Point(389, 1105);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(4);
             this.textBox5.Multiline = true;
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(912, 45);
@@ -258,7 +258,7 @@
             this.txtTelefone.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtTelefone.Mask = "(99) 00000-0000";
             this.txtTelefone.Name = "txtTelefone";
-            this.txtTelefone.Size = new System.Drawing.Size(137, 34);
+            this.txtTelefone.Size = new System.Drawing.Size(197, 34);
             this.txtTelefone.TabIndex = 151;
             this.txtTelefone.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.txtTelefone_MaskInputRejected);
             // 
@@ -270,7 +270,7 @@
             this.txtCPF.Mask = "000.000.000-00";
             this.txtCPF.Name = "txtCPF";
             this.txtCPF.ReadOnly = true;
-            this.txtCPF.Size = new System.Drawing.Size(135, 34);
+            this.txtCPF.Size = new System.Drawing.Size(194, 34);
             this.txtCPF.TabIndex = 152;
             this.txtCPF.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.txtCPF_MaskInputRejected);
             // 
@@ -299,12 +299,22 @@
             this.panelDados.TabIndex = 153;
             this.panelDados.Paint += new System.Windows.Forms.PaintEventHandler(this.panelDados_Paint);
             // 
+            // btnEditDadosConfig
+            // 
+            this.btnEditDadosConfig.Location = new System.Drawing.Point(374, 638);
+            this.btnEditDadosConfig.Name = "btnEditDadosConfig";
+            this.btnEditDadosConfig.Size = new System.Drawing.Size(147, 34);
+            this.btnEditDadosConfig.TabIndex = 158;
+            this.btnEditDadosConfig.Text = "Atualizar Telefone";
+            this.btnEditDadosConfig.UseVisualStyleBackColor = true;
+            this.btnEditDadosConfig.Click += new System.EventHandler(this.btnEditDadosConfig_Click);
+            // 
             // flowLayoutPanelEquipes
             // 
             this.flowLayoutPanelEquipes.AutoScroll = true;
             this.flowLayoutPanelEquipes.Controls.Add(this.pnlEquipe);
             this.flowLayoutPanelEquipes.Location = new System.Drawing.Point(157, 158);
-            this.flowLayoutPanelEquipes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanelEquipes.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanelEquipes.Name = "flowLayoutPanelEquipes";
             this.flowLayoutPanelEquipes.Size = new System.Drawing.Size(700, 187);
             this.flowLayoutPanelEquipes.TabIndex = 157;
@@ -322,7 +332,7 @@
             // 
             this.textBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(671, 405);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
@@ -362,7 +372,7 @@
             this.btnTrocarFotoPerfil.Image = ((System.Drawing.Image)(resources.GetObject("btnTrocarFotoPerfil.Image")));
             this.btnTrocarFotoPerfil.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnTrocarFotoPerfil.Location = new System.Drawing.Point(273, 172);
-            this.btnTrocarFotoPerfil.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTrocarFotoPerfil.Margin = new System.Windows.Forms.Padding(4);
             this.btnTrocarFotoPerfil.Name = "btnTrocarFotoPerfil";
             this.btnTrocarFotoPerfil.Size = new System.Drawing.Size(183, 49);
             this.btnTrocarFotoPerfil.TabIndex = 149;
@@ -377,7 +387,7 @@
             this.IconFuncionario.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
             this.IconFuncionario.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.IconFuncionario.Location = new System.Drawing.Point(179, 79);
-            this.IconFuncionario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.IconFuncionario.Margin = new System.Windows.Forms.Padding(4);
             this.IconFuncionario.Name = "IconFuncionario";
             this.IconFuncionario.Size = new System.Drawing.Size(80, 74);
             this.IconFuncionario.TabIndex = 114;
@@ -389,7 +399,7 @@
             this.picPerfilMembro.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
             this.picPerfilMembro.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.picPerfilMembro.Location = new System.Drawing.Point(16, 751);
-            this.picPerfilMembro.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.picPerfilMembro.Margin = new System.Windows.Forms.Padding(4);
             this.picPerfilMembro.Name = "picPerfilMembro";
             this.picPerfilMembro.Size = new System.Drawing.Size(32, 28);
             this.picPerfilMembro.TabIndex = 113;
@@ -401,7 +411,7 @@
             this.btnEquipes.BackColor = System.Drawing.Color.Blue;
             this.btnEquipes.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_equip;
             this.btnEquipes.Location = new System.Drawing.Point(16, 63);
-            this.btnEquipes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEquipes.Margin = new System.Windows.Forms.Padding(4);
             this.btnEquipes.Name = "btnEquipes";
             this.btnEquipes.Size = new System.Drawing.Size(32, 28);
             this.btnEquipes.TabIndex = 112;
@@ -414,7 +424,7 @@
             this.pictureBox9.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_calendar;
             this.pictureBox9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox9.Location = new System.Drawing.Point(16, 111);
-            this.pictureBox9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox9.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(32, 28);
             this.pictureBox9.TabIndex = 111;
@@ -427,7 +437,7 @@
             this.btnRanking.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_ranking;
             this.btnRanking.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRanking.Location = new System.Drawing.Point(16, 161);
-            this.btnRanking.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRanking.Margin = new System.Windows.Forms.Padding(4);
             this.btnRanking.Name = "btnRanking";
             this.btnRanking.Size = new System.Drawing.Size(32, 28);
             this.btnRanking.TabIndex = 110;
@@ -440,7 +450,7 @@
             this.btnLogout.BackgroundImage = global::Dev4Tech.Properties.Resources.Nav_Icon_Item;
             this.btnLogout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnLogout.Location = new System.Drawing.Point(16, 698);
-            this.btnLogout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(32, 28);
             this.btnLogout.TabIndex = 109;
@@ -453,7 +463,7 @@
             this.btnConfigurações.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_config;
             this.btnConfigurações.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnConfigurações.Location = new System.Drawing.Point(16, 662);
-            this.btnConfigurações.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnConfigurações.Margin = new System.Windows.Forms.Padding(4);
             this.btnConfigurações.Name = "btnConfigurações";
             this.btnConfigurações.Size = new System.Drawing.Size(32, 28);
             this.btnConfigurações.TabIndex = 108;
@@ -466,7 +476,7 @@
             this.btnHome.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_Home;
             this.btnHome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnHome.Location = new System.Drawing.Point(16, 15);
-            this.btnHome.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnHome.Margin = new System.Windows.Forms.Padding(4);
             this.btnHome.Name = "btnHome";
             this.btnHome.Size = new System.Drawing.Size(32, 28);
             this.btnHome.TabIndex = 107;
@@ -477,21 +487,11 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Blue;
             this.pictureBox2.Location = new System.Drawing.Point(-4, -4);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(72, 847);
             this.pictureBox2.TabIndex = 106;
             this.pictureBox2.TabStop = false;
-            // 
-            // btnEditDadosConfig
-            // 
-            this.btnEditDadosConfig.Location = new System.Drawing.Point(673, 532);
-            this.btnEditDadosConfig.Name = "btnEditDadosConfig";
-            this.btnEditDadosConfig.Size = new System.Drawing.Size(91, 34);
-            this.btnEditDadosConfig.TabIndex = 158;
-            this.btnEditDadosConfig.Text = "button1";
-            this.btnEditDadosConfig.UseVisualStyleBackColor = true;
-            this.btnEditDadosConfig.Click += new System.EventHandler(this.btnEditDadosConfig_Click);
             // 
             // Configuracoes
             // 
@@ -516,7 +516,7 @@
             this.Controls.Add(this.lblPontos);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.panelDados);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Configuracoes";
             this.Text = "Configuracoes";
             this.Load += new System.EventHandler(this.Configuracoes_Load);

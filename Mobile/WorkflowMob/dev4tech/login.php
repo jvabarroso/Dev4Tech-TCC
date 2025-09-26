@@ -59,7 +59,7 @@ try {
     exit();
 }
 
-$diretorioImg = 'http://26.205.151.98/dev4tec/img/';
+$diretorioImg = 'http://10.239.20.68/dev4tec/img/';
 if ($userfuncionario) {
     $fotoUrl = $userfuncionario['foto_perfil'] 
                ? $diretorioImg . $userfuncionario['foto_perfil'] 

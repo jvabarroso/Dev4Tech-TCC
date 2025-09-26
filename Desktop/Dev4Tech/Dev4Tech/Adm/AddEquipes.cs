@@ -11,7 +11,7 @@ namespace Dev4Tech
         private string categoria;
         private string emailFuncionario;
         private string adminId; // Campo para armazenar AdminId como string
-        private byte[] fotoEquipe; // Adicionando o campo fotoEquipe
+        private string fotoEquipe; // Adicionando o campo fotoEquipe
         private string idEmpresa;
 
         // Setters
@@ -31,7 +31,7 @@ namespace Dev4Tech
         {
             this.adminId = adminId;
         }
-        public void setFotoEquipe(byte[] foto)
+        public void setFotoEquipe(string foto)
         {
             this.fotoEquipe = foto;
         }
@@ -57,7 +57,7 @@ namespace Dev4Tech
         {
             return this.adminId;
         }
-        public byte[] getFotoEquipe()
+        public string getFotoEquipe()
         {
             return this.fotoEquipe;
         }
@@ -172,9 +172,13 @@ namespace Dev4Tech
         {
             if (string.IsNullOrEmpty(getNomeEquipe()) || string.IsNullOrEmpty(getCategoria()))
                 throw new Exception("Preencha todos os campos antes de salvar.");
+
             int idCategoria = ObterOuInserirCategoria(getCategoria());
             int idEquipe = 0;
-            string query = "INSERT INTO Equipes (nome_equipe, id_categoria, AdminId, foto_equipe, id_empresa) VALUES (@nomeEquipe, @idCategoria, @adminId, @fotoEquipe, @idEmpresa); SELECT LAST_INSERT_ID();";
+
+            string query = "INSERT INTO Equipes (nome_equipe, id_categoria, AdminId, foto_equipe, id_empresa) " +
+                           "VALUES (@nomeEquipe, @idCategoria, @adminId, @fotoEquipe, @idEmpresa); SELECT LAST_INSERT_ID();";
+
             if (this.abrirConexao())
             {
                 try
@@ -183,8 +187,19 @@ namespace Dev4Tech
                     cmd.Parameters.AddWithValue("@nomeEquipe", getNomeEquipe());
                     cmd.Parameters.AddWithValue("@idCategoria", idCategoria);
                     cmd.Parameters.AddWithValue("@adminId", getAdminId());
-                    cmd.Parameters.AddWithValue("@fotoEquipe", (object)fotoEquipe ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@idEmpresa", getIdEmpresa());
+
+                    // CORREÇÃO: Converter string para bytes antes de salvar no LONGBLOB
+                    if (!string.IsNullOrEmpty(getFotoEquipe()))
+                    {
+                        byte[] fotoBytes = System.Text.Encoding.UTF8.GetBytes(getFotoEquipe());
+                        cmd.Parameters.AddWithValue("@fotoEquipe", fotoBytes);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@fotoEquipe", DBNull.Value);
+                    }
+
                     idEquipe = Convert.ToInt32(cmd.ExecuteScalar());
                 }
                 finally

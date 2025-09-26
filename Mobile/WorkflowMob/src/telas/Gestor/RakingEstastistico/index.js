@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, Image, FlatList, TextInput, TouchableOpacity, ScrollView} from 'react-native';
-import { PieChart } from 'react-native-svg-charts';
-import { AnimatedCircularProgress } from 'react-native-circular-progress';
-
+//import { PieChart } from 'react-native-svg-charts';
+//import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
 import { Ionicons } from '@expo/vector-icons';

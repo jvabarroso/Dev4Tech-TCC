@@ -248,10 +248,41 @@ namespace Dev4Tech
 
         private void pictureBox9_Click(object sender, EventArgs e)
         {
+            var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
+
+            if (funcionario != null)
+            {
+                Planejamento t_equipe = new Planejamento();
+                t_equipe.Show();
+                this.Hide();
+            }
+            else if (admin != null)
+            {
+                AdicionarTarefa t_equipeAdmin = new AdicionarTarefa();
+                t_equipeAdmin.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void pictureBox6_Click(object sender, EventArgs e)
         {
+            var funcionario = Sessao.FuncionarioLogado;
+
+            if (funcionario != null)
+            {
+                Configuracoes config = new Configuracoes(funcionario);
+                config.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum funcionário logado.");
+            }
         }
 
         private void lblMembros_Click(object sender, EventArgs e)
@@ -363,6 +394,16 @@ namespace Dev4Tech
             {
                 MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void panelRankingEquipes_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Ranking_Equipes_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

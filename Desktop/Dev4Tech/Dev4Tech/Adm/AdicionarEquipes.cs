@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Dev4Tech
@@ -12,7 +13,6 @@ namespace Dev4Tech
         AddEquipes equipe = new AddEquipes();
         private List<string> membrosSelecionados = new List<string>();
         private List<string> funcionariosSelecionados = new List<string>();
-        private byte[] fotoEquipeBytes;
 
         public AdicionarEquipes()
         {
@@ -241,10 +241,9 @@ namespace Dev4Tech
                 }
                 equipe.setAdminId(adminId);
 
-                // Defina a foto da equipe
-                equipe.setFotoEquipe(fotoEquipeBytes);
+                // CORREÇÃO: Usar a variável correta (fotoEquipe) em vez de fotoEquipeBytes
+                equipe.setFotoEquipe(fotoEquipe);
 
-                // Defina o id da empresa
                 string idEmpresa = "0";
                 if (Sessao.AdminLogado != null)
                 {
@@ -260,12 +259,12 @@ namespace Dev4Tech
                 }
 
                 MessageBox.Show("Equipe cadastrada com sucesso!");
+                LimparFormulario();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao cadastrar equipe: " + ex.Message);
             }
-            LimparFormulario();
         }
 
         private void LimparFormulario()
@@ -276,6 +275,10 @@ namespace Dev4Tech
             membrosSelecionados.Clear();
             funcionariosSelecionados.Clear();
             panelDadosFunc.Controls.Clear();
+
+            // Limpar a foto também
+            picBoxFtEquipe.Image = null;
+            fotoEquipe = null;
         }
 
         // Eventos adicionais para botões e controles conforme você já tem no código
@@ -345,6 +348,8 @@ namespace Dev4Tech
         {
         }
 
+        private string fotoEquipe;
+
         private void btnFtEquipe_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
@@ -352,21 +357,40 @@ namespace Dev4Tech
                 ofd.Filter = "Imagens|*.jpg;*.jpeg;*.png;*.webp";
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
-                    Image img = Image.FromFile(ofd.FileName);
-                    picBoxFtEquipe.Image = img;
-
-                    // Compactar para JPEG com qualidade 60%
-                    using (var ms = new System.IO.MemoryStream())
+                    try
                     {
-                        var encoder = GetEncoder(System.Drawing.Imaging.ImageFormat.Jpeg);
-                        var encoderParams = new System.Drawing.Imaging.EncoderParameters(1);
-                        encoderParams.Param[0] = new System.Drawing.Imaging.EncoderParameter(System.Drawing.Imaging.Encoder.Quality, 60L);
-                        img.Save(ms, encoder, encoderParams);
-                        fotoEquipeBytes = ms.ToArray();
+                        string pastaDestino = @"C:\xampp\htdocs\dev4tech\img\";
+                        if (!Directory.Exists(pastaDestino))
+                        {
+                            Directory.CreateDirectory(pastaDestino);
+                        }
+
+                        // Gerar nome único para o arquivo
+                        string nomeArquivo = Guid.NewGuid().ToString() + Path.GetExtension(ofd.FileName);
+                        string caminhoCompleto = Path.Combine(pastaDestino, nomeArquivo);
+
+                        // Copiar arquivo para a pasta de imagens
+                        File.Copy(ofd.FileName, caminhoCompleto, true);
+
+                        // Exibir imagem no PictureBox
+                        picBoxFtEquipe.Image = Image.FromFile(caminhoCompleto);
+                        picBoxFtEquipe.SizeMode = PictureBoxSizeMode.StretchImage;
+
+                        // Salvar apenas o nome do arquivo (igual ao mobile)
+                        fotoEquipe = nomeArquivo;
+
+                        MessageBox.Show("Imagem carregada com sucesso!", "Sucesso",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erro ao carregar imagem: {ex.Message}", "Erro",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
         }
+
 
         // Método auxiliar para obter o encoder JPEG
         private static System.Drawing.Imaging.ImageCodecInfo GetEncoder(System.Drawing.Imaging.ImageFormat format)

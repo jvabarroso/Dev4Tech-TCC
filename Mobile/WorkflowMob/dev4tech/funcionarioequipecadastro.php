@@ -19,7 +19,7 @@ try {
         FuncionarioId, 
         nome, 
         cargo,
-        CONCAT('http://10.239.0.125/dev4tech/img/', foto_perfil) AS foto_url
+        CONCAT('http://10.239.20.68/dev4tech/img/', foto_perfil) AS foto_url
     FROM funcionarios 
     WHERE id_empresa = :id_empresa");
     

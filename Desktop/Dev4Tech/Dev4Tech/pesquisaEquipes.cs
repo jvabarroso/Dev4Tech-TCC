@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -170,15 +171,19 @@ namespace Dev4Tech
             };
             equipePanel.Click += (s, e) =>
             {
-                // Usar o método novo para definir a equipe selecionada
                 Sessao.DefinirEquipeSelecionada(idEquipe, nomeEquipe, categoria);
                 Chat_geral_equipes chatForm = new Chat_geral_equipes();
                 chatForm.Show();
                 this.Hide();
             };
+
+            string basePathImagemEquipe = @"C:\xampp\htdocs\dev4tech\img";
+
+            // Obtem o nome do arquivo da foto da equipe pelo id
+            string nomeArquivoFotoEquipe = ObterFotoEquipeNomeArquivo(idEquipe);
+
             PictureBox picEquipe = new PictureBox
             {
-                Image = Properties.Resources.icon_EquipLogo,
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 Width = 40,
                 Height = 40,
@@ -186,7 +191,36 @@ namespace Dev4Tech
                 Top = 10,
                 BorderStyle = BorderStyle.FixedSingle
             };
+
+            if (!string.IsNullOrEmpty(nomeArquivoFotoEquipe))
+            {
+                string caminhoImagemEquipe = Path.Combine(basePathImagemEquipe, nomeArquivoFotoEquipe);
+                if (File.Exists(caminhoImagemEquipe))
+                {
+                    try
+                    {
+                        using (var imgTemp = Image.FromFile(caminhoImagemEquipe))
+                        {
+                            picEquipe.Image = new Bitmap(imgTemp);
+                        }
+                    }
+                    catch
+                    {
+                        picEquipe.Image = Properties.Resources.icon_EquipLogo;
+                    }
+                }
+                else
+                {
+                    picEquipe.Image = Properties.Resources.icon_EquipLogo;
+                }
+            }
+            else
+            {
+                picEquipe.Image = Properties.Resources.icon_EquipLogo;
+            }
+
             equipePanel.Controls.Add(picEquipe);
+
             Label lblNomeEquipe = new Label
             {
                 Text = nomeEquipe,
@@ -196,6 +230,7 @@ namespace Dev4Tech
                 AutoSize = true
             };
             equipePanel.Controls.Add(lblNomeEquipe);
+
             Label lblCategoria = new Label
             {
                 Text = categoria,
@@ -205,6 +240,7 @@ namespace Dev4Tech
                 AutoSize = true
             };
             equipePanel.Controls.Add(lblCategoria);
+
             string textoAtividade = diasDesdeUltimaAtividade == -1
                 ? "Nunca ativo"
                 : $"Ativo há {diasDesdeUltimaAtividade} dia(s)";
@@ -218,6 +254,7 @@ namespace Dev4Tech
                 AutoSize = true
             };
             equipePanel.Controls.Add(lblAtividade);
+
             Label lblColaboradores = new Label
             {
                 Text = "Colaboradores",
@@ -227,9 +264,11 @@ namespace Dev4Tech
                 AutoSize = true
             };
             equipePanel.Controls.Add(lblColaboradores);
+
             int fotoLeft = 60;
             int fotoTop = 90;
             string basePath = @"C:\xampp\htdocs\dev4tech\img";
+
             foreach (var membro in membros)
             {
                 PictureBox picMembro = new PictureBox
@@ -246,8 +285,9 @@ namespace Dev4Tech
 
                 if (!string.IsNullOrEmpty(membro.CaminhoFotoPerfil))
                 {
-                    string caminhoCompleto = System.IO.Path.Combine(basePath, membro.CaminhoFotoPerfil.Replace("/", "\\"));
-                    if (System.IO.File.Exists(caminhoCompleto))
+                    string caminhoFotoCorrigido = membro.CaminhoFotoPerfil.Replace("/", "\\");
+                    string caminhoCompleto = Path.Combine(basePath, caminhoFotoCorrigido);
+                    if (File.Exists(caminhoCompleto))
                     {
                         try
                         {
@@ -286,9 +326,9 @@ namespace Dev4Tech
                     picMembro.Image = Properties.Resources.icon_perfil;
                 }
 
+                ToolTip tt = new ToolTip();
                 picMembro.MouseHover += (s, e) =>
                 {
-                    ToolTip tt = new ToolTip();
                     tt.SetToolTip(picMembro, membro.Nome);
                 };
                 equipePanel.Controls.Add(picMembro);
@@ -368,5 +408,36 @@ namespace Dev4Tech
             }
         }
         private void PesquisaEquipes_Load(object sender, EventArgs e) { }
+
+        private string ObterFotoEquipeNomeArquivo(int idEquipe)
+{
+    string nomeArquivo = null;
+    string query = "SELECT foto_equipe FROM Equipes WHERE id_equipe = @idEquipe LIMIT 1";
+    string connectionString = "Server=localhost;Database=Dev4Tech;Uid=root;Pwd=;SslMode=none;";
+    
+    using (var conn = new MySqlConnection(connectionString))
+    {
+        conn.Open();
+        using (var cmd = new MySqlCommand(query, conn))
+        {
+            cmd.Parameters.AddWithValue("@idEquipe", idEquipe);
+            var resultado = cmd.ExecuteScalar();
+            
+            if (resultado != null && resultado != DBNull.Value)
+            {
+                // Se for byte[] (LONGBLOB), converter para string
+                if (resultado is byte[] bytes)
+                {
+                    nomeArquivo = System.Text.Encoding.UTF8.GetString(bytes);
+                }
+                else
+                {
+                    nomeArquivo = resultado.ToString();
+                }
+            }
+        }
+    }
+    return nomeArquivo;
+}
     }
 }
