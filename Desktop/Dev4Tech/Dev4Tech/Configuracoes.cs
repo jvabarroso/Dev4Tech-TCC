@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -14,7 +15,8 @@ namespace Dev4Tech
     {
         private empresaCadFuncionario funcionario;
         private empresaCadAdmin admin;
-        private string basePathImagemEquipe = @"C:\xampp\htdocs\dev4tech\img";
+        private string baseRoot = @"C:\xampp\htdocs\dev4tech"; // raiz do seu projeto (sem \img)
+        private string baseImgFolder = @"C:\xampp\htdocs\dev4tech\img"; // pasta onde as imagens ficam
 
         // Construtor para funcionário
         public Configuracoes(empresaCadFuncionario func)
@@ -36,6 +38,79 @@ namespace Dev4Tech
             this.Load += Configuracoes_Load;
         }
 
+        // Helper: tenta decodificar bytes para string UTF8 (trim)
+        private string TryDecodeUtf8(byte[] bytes)
+        {
+            try
+            {
+                string s = Encoding.UTF8.GetString(bytes).Trim('\0').Trim();
+                return s;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        // Helper: detecta se uma string parece ser um caminho de imagem (contém img/, .jpg, .png, barras etc)
+        private bool LooksLikePath(string s)
+        {
+            if (string.IsNullOrWhiteSpace(s)) return false;
+            s = s.ToLowerInvariant();
+            if (s.Contains("img/") || s.Contains("img\\") || s.Contains(".jpg") || s.Contains(".jpeg") || s.Contains(".png") || s.Contains(".bmp"))
+                return true;
+            return false;
+        }
+
+        // Helper: resolve o caminho completo no disco a partir do que está armazenado no banco
+        private string ResolveStoredPathToFullPath(string stored)
+        {
+            if (string.IsNullOrWhiteSpace(stored)) return null;
+
+            // Se for caminho absoluto já retorna normalizado
+            try
+            {
+                // Remove quotes e espaços estranhos
+                stored = stored.Trim().Trim('"').Trim('\'');
+
+                // Normaliza barras
+                string normalized = stored.Replace('/', Path.DirectorySeparatorChar).Replace('\\', Path.DirectorySeparatorChar);
+
+                // Se já é um caminho absoluto, retorna
+                if (Path.IsPathRooted(normalized))
+                {
+                    return normalized;
+                }
+
+                // Se começa com "img\" -> combine com root (dev4tech)
+                string prefix = "img" + Path.DirectorySeparatorChar;
+                if (normalized.StartsWith(prefix, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    string withoutLeading = normalized.Substring(prefix.Length);
+                    return Path.Combine(baseRoot, "img", withoutLeading);
+                }
+
+                // Se começa com "img" mas sem barra (ex: "imgnome.jpg") — tratamos normalmente
+                if (normalized.Equals("img", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    return Path.Combine(baseRoot, "img");
+                }
+
+                // Se for só um nome de arquivo (ex: "nome.jpg"), combine com a pasta img
+                if (!normalized.Contains(Path.DirectorySeparatorChar))
+                {
+                    return Path.Combine(baseImgFolder, normalized);
+                }
+
+                // Caso genérico: combine com root
+                return Path.Combine(baseRoot, normalized.TrimStart(Path.DirectorySeparatorChar));
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         private string ObterFotoEquipeNomeArquivo(int idEquipe)
         {
             string nomeArquivo = null;
@@ -52,9 +127,21 @@ namespace Dev4Tech
 
                     if (resultado != null && resultado != DBNull.Value)
                     {
+                        // Se veio como byte[] (provavelmente LONGBLOB)
                         if (resultado is byte[] bytes)
                         {
-                            nomeArquivo = System.Text.Encoding.UTF8.GetString(bytes);
+                            // Tenta decodificar para string
+                            string possivel = TryDecodeUtf8(bytes);
+                            if (LooksLikePath(possivel))
+                            {
+                                // devolve a string do caminho armazenado
+                                nomeArquivo = possivel;
+                            }
+                            else
+                            {
+                                // Se não for caminho, talvez seja blob real de imagem -> não temos nome de arquivo, retorne null
+                                nomeArquivo = null;
+                            }
                         }
                         else
                         {
@@ -91,16 +178,17 @@ namespace Dev4Tech
                     SizeMode = PictureBoxSizeMode.StretchImage
                 };
 
+                // Resolve o caminho da imagem da equipe (pode ser nome de arquivo, caminho relativo "img/..." ou null)
                 if (!string.IsNullOrEmpty(equipe.NomeArquivoFoto))
                 {
-                    string caminhoImagemEquipe = Path.Combine(basePathImagemEquipe, equipe.NomeArquivoFoto);
-                    if (File.Exists(caminhoImagemEquipe))
+                    string fullPath = ResolveStoredPathToFullPath(equipe.NomeArquivoFoto);
+                    if (!string.IsNullOrEmpty(fullPath) && File.Exists(fullPath))
                     {
                         try
                         {
-                            using (var imgTemp = Image.FromFile(caminhoImagemEquipe))
+                            using (var ms = new MemoryStream(File.ReadAllBytes(fullPath)))
                             {
-                                picEquipe.Image = new Bitmap(imgTemp);
+                                picEquipe.Image = Image.FromStream(ms);
                             }
                         }
                         catch
@@ -160,8 +248,6 @@ namespace Dev4Tech
                     WrapContents = false
                 };
 
-                string basePath = @"C:\xampp\htdocs\dev4tech\img";
-
                 foreach (var membro in membros)
                 {
                     PictureBox picMembro = new PictureBox
@@ -173,17 +259,17 @@ namespace Dev4Tech
                         Margin = new Padding(2)
                     };
 
+                    // Carrega a imagem do membro: se tem caminho relativo -> resolve; senão, se blob -> carrega da memória
                     if (!string.IsNullOrEmpty(membro.CaminhoFotoPerfil))
                     {
-                        string caminhoFotoCorrigido = membro.CaminhoFotoPerfil.Replace("/", "\\");
-                        string caminhoCompleto = Path.Combine(basePath, caminhoFotoCorrigido);
-                        if (File.Exists(caminhoCompleto))
+                        string fullPath = ResolveStoredPathToFullPath(membro.CaminhoFotoPerfil);
+                        if (!string.IsNullOrEmpty(fullPath) && File.Exists(fullPath))
                         {
                             try
                             {
-                                using (var imgTemp = Image.FromFile(caminhoCompleto))
+                                using (var ms = new MemoryStream(File.ReadAllBytes(fullPath)))
                                 {
-                                    picMembro.Image = new Bitmap(imgTemp);
+                                    picMembro.Image = Image.FromStream(ms);
                                 }
                             }
                             catch
@@ -202,7 +288,6 @@ namespace Dev4Tech
                         {
                             using (var ms = new MemoryStream(membro.FotoBlob))
                             {
-                                ms.Position = 0;
                                 picMembro.Image = Image.FromStream(ms);
                             }
                         }
@@ -325,7 +410,17 @@ namespace Dev4Tech
                             {
                                 if (fotoData is byte[] bytes)
                                 {
-                                    blobFoto = bytes;
+                                    // Tenta decodificar como string (caminho)
+                                    string possivel = TryDecodeUtf8(bytes);
+                                    if (LooksLikePath(possivel))
+                                    {
+                                        caminhoFoto = possivel;
+                                    }
+                                    else
+                                    {
+                                        // trata como blob binário real (imagem)
+                                        blobFoto = bytes;
+                                    }
                                 }
                                 else if (fotoData is string caminho)
                                 {
@@ -423,17 +518,20 @@ namespace Dev4Tech
                     string randomName = $"{new Random().Next(1000, 1000000)}-{nomeArquivoOriginal}";
                     randomName = Regex.Replace(randomName, @"\s+", "-");
 
-                    string pastaUpload = @"C:\xampp\htdocs\dev4tech\img";
+                    string pastaUpload = baseImgFolder; // C:\xampp\htdocs\dev4tech\img
                     string caminhoCompleto = Path.Combine(pastaUpload, randomName);
 
                     // Copia o arquivo para a pasta img/
                     File.Copy(ofd.FileName, caminhoCompleto, true);
 
-                    // Atualiza imagem na tela
-                    IconFuncionario.Image = Image.FromFile(caminhoCompleto);
-                    IconFuncionario.SizeMode = PictureBoxSizeMode.StretchImage;
+                    // Atualiza imagem na tela (ler em memória para evitar bloqueio)
+                    using (var ms = new MemoryStream(File.ReadAllBytes(caminhoCompleto)))
+                    {
+                        IconFuncionario.Image = Image.FromStream(ms);
+                        IconFuncionario.SizeMode = PictureBoxSizeMode.StretchImage;
+                    }
 
-                    // Salva apenas o caminho relativo no banco
+                    // Salva apenas o caminho relativo no banco (ex: img/nome.jpg)
                     string caminhoRelativo = "img/" + randomName;
                     AtualizarFotoNoBancoComoCaminho(caminhoRelativo);
 
@@ -445,6 +543,7 @@ namespace Dev4Tech
                 }
             }
         }
+
         private void AtualizarFotoNoBancoComoCaminho(string caminhoRelativo)
         {
             string connectionString = "server=localhost;database=Dev4Tech;uid=root;pwd=";
@@ -480,7 +579,6 @@ namespace Dev4Tech
                 }
             }
         }
-
 
         private void AtualizarFotoNoBancoComoBlob(byte[] imageData)
         {
@@ -534,42 +632,95 @@ namespace Dev4Tech
                         cmd.Parameters.AddWithValue("@id", id);
                         var result = cmd.ExecuteScalar();
 
+                        // Configura imagem padrão
                         IconFuncionario.Image = Properties.Resources.icon_perfil;
                         IconFuncionario.SizeMode = PictureBoxSizeMode.StretchImage;
 
                         if (result != null && result != DBNull.Value)
                         {
-                            if (result is byte[] imageData)
+                            // Caso venha como byte[] (campo LONGBLOB)
+                            if (result is byte[] rawBytes)
                             {
+                                // Tenta decodificar como string (caminho)
+                                string possivelCaminho = TryDecodeUtf8(rawBytes);
+
+                                if (!string.IsNullOrEmpty(possivelCaminho) && LooksLikePath(possivelCaminho))
+                                {
+                                    // Resolve e tenta carregar do disco
+                                    string full = ResolveStoredPathToFullPath(possivelCaminho);
+                                    if (!string.IsNullOrEmpty(full) && File.Exists(full))
+                                    {
+                                        try
+                                        {
+                                            using (var ms = new MemoryStream(File.ReadAllBytes(full)))
+                                            {
+                                                IconFuncionario.Image = Image.FromStream(ms);
+                                                IconFuncionario.SizeMode = PictureBoxSizeMode.StretchImage;
+                                                return;
+                                            }
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            Console.WriteLine($"Erro ao carregar imagem do arquivo: {ex.Message}");
+                                        }
+                                    }
+                                }
+
+                                // Se não for caminho, tenta carregar como imagem binária
                                 try
                                 {
-                                    using (var ms = new MemoryStream(imageData))
+                                    using (var ms = new MemoryStream(rawBytes))
                                     {
                                         IconFuncionario.Image = Image.FromStream(ms);
                                         IconFuncionario.SizeMode = PictureBoxSizeMode.StretchImage;
+                                        return;
                                     }
                                 }
-                                catch (ArgumentException ex)
+                                catch (Exception ex)
                                 {
-                                    Console.WriteLine($"Imagem corrompida: {ex.Message}");
+                                    Console.WriteLine($"Não foi possível interpretar blob como imagem: {ex.Message}");
+                                    // Se possivelCaminho existir, tentamos novamente usar como caminho (fallback)
+                                    if (!string.IsNullOrEmpty(possivelCaminho))
+                                    {
+                                        string full2 = ResolveStoredPathToFullPath(possivelCaminho);
+                                        if (!string.IsNullOrEmpty(full2) && File.Exists(full2))
+                                        {
+                                            try
+                                            {
+                                                using (var ms = new MemoryStream(File.ReadAllBytes(full2)))
+                                                {
+                                                    IconFuncionario.Image = Image.FromStream(ms);
+                                                    IconFuncionario.SizeMode = PictureBoxSizeMode.StretchImage;
+                                                    return;
+                                                }
+                                            }
+                                            catch { }
+                                        }
+                                    }
                                 }
                             }
+                            // Caso venha propriamente como string
                             else if (result is string caminhoRelativo)
                             {
-                                string baseFolder = @"C:\xampp\htdocs\dev4tech\";
-                                string caminhoCompleto = Path.Combine(baseFolder, caminhoRelativo.Replace("/", @"\"));
-
-                                if (File.Exists(caminhoCompleto))
+                                string caminhoCompleto = ResolveStoredPathToFullPath(caminhoRelativo);
+                                if (!string.IsNullOrEmpty(caminhoCompleto) && File.Exists(caminhoCompleto))
                                 {
                                     try
                                     {
-                                        IconFuncionario.Image = Image.FromFile(caminhoCompleto);
-                                        IconFuncionario.SizeMode = PictureBoxSizeMode.StretchImage;
+                                        using (var ms = new MemoryStream(File.ReadAllBytes(caminhoCompleto)))
+                                        {
+                                            IconFuncionario.Image = Image.FromStream(ms);
+                                            IconFuncionario.SizeMode = PictureBoxSizeMode.StretchImage;
+                                        }
                                     }
                                     catch (Exception ex)
                                     {
                                         Console.WriteLine($"Erro ao carregar imagem do arquivo: {ex.Message}");
                                     }
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"Arquivo não encontrado: {caminhoCompleto}");
                                 }
                             }
                         }
@@ -584,6 +735,7 @@ namespace Dev4Tech
             }
         }
 
+        // ... demais métodos originais (navegação, eventos, etc.) mantidos sem alteração ...
         private void btnEditDadosConfig_Click(object sender, EventArgs e)
         {
             try
@@ -628,7 +780,7 @@ namespace Dev4Tech
             }
         }
 
-        // Todos os métodos de navegação e eventos permanecem exatamente iguais
+        // Resto das rotinas de UI seguem idênticas às suas (omitidas aqui por brevidade, mas você as mantém)
         private void label8_Click(object sender, EventArgs e) { }
         private void label1_Click(object sender, EventArgs e)
         {
