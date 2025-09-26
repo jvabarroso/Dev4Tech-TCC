@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Text, TextInput, View, TouchableOpacity, Alert} from 'react-native';
+import {Text, TextInput, View, TouchableOpacity, Image} from 'react-native';
 import { showMessage } from "react-native-flash-message";
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
@@ -66,7 +66,11 @@ export default function Login({navigation}){
 
     return (
         <View style={styles.container}>
-          <Text style={styles.logo}>WORKFLOW</Text>
+          <Image 
+            style={styles.logo}
+            source={theme.logo} >
+          </Image> 
+          
           <Text style={styles.titulo}>Login</Text>
 
           <View style={styles.area}>

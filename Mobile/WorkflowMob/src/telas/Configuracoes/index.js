@@ -212,7 +212,7 @@ export default function Configuracoes({navigation, route}){
           }));
         }
       } catch (error) {
-        console.error('Erro ao buscar imagens:', error);
+        console.warn('Não foi possível buscar a imagem.');
       } 
     }
 
@@ -294,7 +294,10 @@ export default function Configuracoes({navigation, route}){
         <ScrollView 
           contentContainerStyle={styles.scrollContent } keyboardShouldPersistTaps="handled">
           <View style={styles.nav}>
-            <Text style={styles.logo}>WORKFLOW</Text>
+            <Image 
+              style={styles.logo}
+              source={theme.logo} >
+            </Image>
           </View>
             <Text style={styles.titulo}>Configurações</Text>
 
@@ -303,7 +306,7 @@ export default function Configuracoes({navigation, route}){
                 style={styles.botaodevoltar}
                 onPress={()=> navigation.goBack()}
               >
-                <Ionicons name="chevron-back-outline" size={20} color={theme.text} style={styles.botaodevoltar}/>
+                <Ionicons name="arrow-back-outline" size={28} color={theme.text} style={styles.botaodevoltar}/>
               </TouchableOpacity>
 
               {usuarioState.role === 'funcionario' && (
@@ -316,7 +319,7 @@ export default function Configuracoes({navigation, route}){
             <View style={styles.containerfuncionario}>
               <TouchableOpacity onPress={() => setModalVisivel(true)}>
                 <Image 
-                  source={usuarioState.imagem ? { uri: usuarioState.imagem } :require('../../../assets/img/image.png')} 
+                  source={usuarioState.imagem ? { uri: usuarioState.imagem } :require('../../../assets/img/fotoexemplo.png')} 
                   style={styles.imagemfuncionario} />
               </TouchableOpacity>
 

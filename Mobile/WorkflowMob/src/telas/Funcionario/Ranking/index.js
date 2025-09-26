@@ -179,12 +179,12 @@ export default function Ranking({route, navigation}){
                 }}
                 placeholderStyle={{ 
                   color: filtroAtivo === 'categoria' ? theme.text4 : theme.text, 
-                  fontSize: 13, 
+                  fontSize: 15, 
                   fontFamily: fonts.text, 
                 }}
                 selectedTextStyle={{ 
                   color: filtroAtivo === 'categoria' ? theme.text4 : theme.text, 
-                  fontSize: 13, 
+                  fontSize: 15, 
                   fontFamily: fonts.text, 
                 }}  
                 renderItem={(item) => renderItem(item, false)}

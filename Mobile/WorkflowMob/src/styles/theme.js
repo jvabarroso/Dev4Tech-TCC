@@ -11,6 +11,7 @@ export const lightTheme = {
   inputBackground4: '#C0C0C0',
   border: '#CCCCCC',
   primary: '#1C58F2',
+  logo: require('../../assets/img/logopreta.png'),
 };
 
 export const darkTheme = {
@@ -26,4 +27,5 @@ export const darkTheme = {
   inputBackground4: '#303030',
   border: '#444',
   primary: '#1C58F2',
+  logo: require('../../assets/img/logobranca.png'),
 };

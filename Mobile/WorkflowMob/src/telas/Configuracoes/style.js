@@ -16,6 +16,7 @@ export const getStyles = (theme) => StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingVertical: 15,
+    marginTop:15,
   },
   botaodevoltar:{
     width:30,
@@ -26,12 +27,8 @@ export const getStyles = (theme) => StyleSheet.create({
     flexDirection: 'row',
   },
   logo:{
-    fontSize: 18,
-    fontFamily: fonts.text,
-    fontWeight: 'bold',
-    color: theme.text,
-    textAlign: 'center',
-    flex: 1,
+    width:200,
+    height:100,
   },
   titulo: {
     fontSize: 30,
@@ -39,7 +36,7 @@ export const getStyles = (theme) => StyleSheet.create({
     color: theme.text,
     fontWeight: 'bold',
     paddingVertical:15,
-    marginLeft:20,
+    marginLeft:10,
   },
   titulo2: {
     fontSize: 22,

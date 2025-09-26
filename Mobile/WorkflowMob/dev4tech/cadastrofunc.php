@@ -11,6 +11,7 @@ $Cargo = @$postjson['Cargo'];
 $DataNascimento = @$postjson['DataNascimento'];
 $Telefone = @$postjson['Telefone'];
 $Email = @$postjson['Email'];
+$CPF = @$postjson['CPF'];
 $Senha = @$postjson['Senha'];
 $endereco = @$postjson['endereco'];
 $id_administradores = $postjson['id_administradores'] ?? null;
@@ -24,6 +25,7 @@ try{
     DataNascimento = :DataNascimento, 
     Telefone = :Telefone, 
     Email = :Email, 
+    CPF = :CPF,
     Senha = :Senha, 
     data_cadFunc  = NOW(), 
     endereco = :endereco, 
@@ -36,6 +38,7 @@ try{
     $res->bindValue(":DataNascimento", "$DataNascimento");
     $res->bindValue(":Telefone", "$Telefone");
     $res->bindValue(":Email", "$Email");
+    $res->bindValue(":CPF", "$CPF");
     $res->bindValue(":Senha", "$Senha");
     $res->bindValue(":endereco", "$endereco");
     $res->bindValue(":numero", "$numero"); 

@@ -80,7 +80,9 @@ export const getStyles = (theme) => StyleSheet.create({
   },
   cardinferior:{
     backgroundColor: theme.background,
-    borderRadius:8,
+    borderBottomLeftRadius: 8, 
+    borderBottomRightRadius: 8,
+    borderBottomWidth: 0,   
     borderBottomWidth: -0.1,
     borderBottomColor: '#000',
   },

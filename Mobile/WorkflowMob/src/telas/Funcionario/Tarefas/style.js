@@ -16,7 +16,7 @@ export const getStyles = (theme) => StyleSheet.create({
     fontFamily: fonts.text,
     color: theme.text,
     fontWeight: 'bold',
-    marginTop: '5%',
+    padding: 10,
   },
   areabotao: {
     padding: 10,
@@ -29,7 +29,7 @@ export const getStyles = (theme) => StyleSheet.create({
   botao: {
     paddingVertical: 10,
     paddingHorizontal: 15,
-    marginHorizontal: 6,
+    marginHorizontal: 8,
     borderRadius: 15,
     alignItems: 'center',
     justifyContent: 'center'

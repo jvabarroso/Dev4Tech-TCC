@@ -17,7 +17,7 @@ export const getStyles = (theme) => StyleSheet.create({
     fontWeight: 'bold',
     fontFamily: fonts.text,
     marginTop: '5%',
-    marginBottom: "8%",
+    marginBottom: "5%",
   },
   navinput: {
     width: '100%',

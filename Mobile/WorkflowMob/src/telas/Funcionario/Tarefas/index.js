@@ -123,7 +123,7 @@ export default function Tarefas({ navigation, route }) {
     
     if (tarefasFiltradas.length === 0) {
       return (
-        <Text style={[styles.texto, { textAlign: 'center', marginTop: 20 }]}>
+        <Text style={[styles.texto, { textAlign: 'center', marginTop: 20, color: theme.text }]}>
           Nenhuma tarefa {filtroAtivo} encontrada
         </Text>
       );

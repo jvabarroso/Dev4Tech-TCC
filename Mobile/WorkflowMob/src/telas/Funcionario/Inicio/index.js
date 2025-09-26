@@ -9,13 +9,11 @@ export default function Inicio({navigation}){
 
     return(
         <View style={styles.container}>
-            <View style={styles.linha}>
-                <Text style={styles.logo}>WORKFLOW</Text> 
-                <Image 
-                    style={styles.logofoto}
-                    source={require('../../../../assets/img/logo.png')} >
-                </Image>
-            </View>
+            <Image 
+                style={styles.logo}
+                source={theme.logo} >
+            </Image>
+    
 
             <View style={styles.areaTitulo}>
               <Text style={styles.titulo}>Bem vindo ao WORKFLOW </Text>

@@ -31,7 +31,7 @@ import RankingEstastistico from '../../src/telas/Gestor/RakingEstastistico';
 import EquipesAdm from '../../src/telas/Gestor/EquipesAdm';
 import EditEquipe from '../../src/telas/Gestor/EditEquipe';
 
-
+import fonts from '../styles/fonts';
 import {Ionicons} from '@expo/vector-icons';
 
 
@@ -50,8 +50,13 @@ function Tabs({route}){
       screenOptions={({ route }) => ({
         headerStyle:   { backgroundColor: theme.background },
         headerTintColor: theme.text,
-        headerTitle: 'WORKFLOW',
         headerTitleAlign: 'center',
+        headerTitle: () => (
+          <Image
+            source={theme.logo}
+            style={{ width: 170, height: 170, marginBottom:10, }}
+          />
+        ),
         headerRight: () => (
           <Ionicons
             name="settings-outline"
@@ -109,8 +114,13 @@ function DrawerAdm({route, navigation}){
       screenOptions={({ route }) => ({
         headerStyle:   { backgroundColor: theme.background },
         headerTintColor: theme.text,
-        headerTitle: 'WORKFLOW',
         headerTitleAlign: 'center',
+        headerTitle: () => (
+          <Image
+            source={theme.logo}
+            style={{ width: 170, height: 170, marginBottom:10,}}
+          />
+        ),
         headerRight: () => (
           <Ionicons
             name="settings-outline"
@@ -144,14 +154,12 @@ function DrawerAdm({route, navigation}){
           return <Ionicons name={iconName} size={size} color={iconColor} />;
         },
 
-        drawerActiveTintColor: theme.primary,
-        drawerInactiveTintColor: theme.textSecondary, 
-        
-        drawerStyle: {
-          backgroundColor: theme.background,
-        },
-      })}
-    >
+      drawerActiveTintColor: theme.primary,
+      drawerInactiveTintColor: theme.text, 
+      drawerLabelStyle: { color: theme.text, fontFamily: fonts.text }, 
+      drawerStyle: { backgroundColor: theme.background },
+    })}
+  >
       <Drawer.Screen name="HomeAdm" component={HomeAdm} initialParams={{ usuario }} options={{ title: 'Home' }}/>
       <Drawer.Screen name="EquipesAdm" component={EquipesAdm} initialParams={{ usuario }} options={{ title: 'Equipes' }}/>
       <Drawer.Screen name="RankingAdm" component={RankingAdm} initialParams={{ usuario }} options={{ title: 'Ranking' }}/>

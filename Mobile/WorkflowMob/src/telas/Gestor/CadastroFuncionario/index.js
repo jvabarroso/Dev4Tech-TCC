@@ -65,6 +65,8 @@ export default function CadastroFuncionario({navigation, route}){
             });    
             return;
         }
+        const cpfSemMascara = formatarCpfParaBanco(cpf);
+        
         try {
             const res = await api.post('dev4tech/cadastrofunc.php', {
                 Nome : nome, 
@@ -72,7 +74,7 @@ export default function CadastroFuncionario({navigation, route}){
                 DataNascimento : formatarDataParaBanco(dataNascimento), 
                 Telefone : telefone, 
                 Email : email, 
-                CPF : cpf, 
+                CPF : cpfSemMascara, 
                 Senha : senha, 
                 endereco : endereco, 
                 numero : numero,
@@ -167,6 +169,19 @@ export default function CadastroFuncionario({navigation, route}){
       return tel.slice(0,15);
     }
 
+    function formatarCpfInput(text) {
+        const digits = text.replace(/\D/g, '').slice(0, 11);
+        if (digits.length <= 3) return digits;
+        if (digits.length <= 6) return `${digits.slice(0,3)}.${digits.slice(3)}`;
+        if (digits.length <= 9) return `${digits.slice(0,3)}.${digits.slice(3,6)}.${digits.slice(6)}`;
+        return `${digits.slice(0,3)}.${digits.slice(3,6)}.${digits.slice(6,9)}-${digits.slice(9,11)}`;
+    }
+
+    function formatarCpfParaBanco(maskedCpf) {
+        if (!maskedCpf) return '';
+        return maskedCpf.replace(/\D/g, '');
+    }
+
 
     return(
    <View style={styles.container}>
@@ -219,7 +234,7 @@ export default function CadastroFuncionario({navigation, route}){
                             value={cpf}
                             placeholder="123.456.789-09"
                             placeholderTextColor={theme.text}
-                            onChangeText={(text) => setCpf(text)}
+                            onChangeText={(text) => setCpf(formatarCpfInput(text))}
                         />
                         <View style={styles.linha}>
                             <Text style={styles.textoe}>Endereço</Text> 

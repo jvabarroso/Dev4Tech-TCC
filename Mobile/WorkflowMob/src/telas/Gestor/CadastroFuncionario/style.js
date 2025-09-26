@@ -83,7 +83,7 @@ export const getStyles = (theme) => StyleSheet.create({
     marginTop: 15,
   },
   inputnum: {
-    width:"30%",
+    width:"28%",
     fontSize: 16,
     borderRadius: 6,
     borderWidth: 1,

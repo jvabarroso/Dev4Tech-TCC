@@ -36,6 +36,7 @@ export const getStyles = (theme) => StyleSheet.create({
         width: 40,
         height: 40,
         justifyContent: 'center',
+        marginTop:10,
     },
     botaodevoltar2: {
         width: 40,
@@ -44,12 +45,8 @@ export const getStyles = (theme) => StyleSheet.create({
         zIndex: 1, 
     },
     titulo: {
-        fontSize: 18,
-        color: theme.text,
-        fontFamily: fonts.text,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        flex: 1,
+        width:150,
+        height:50,
     },
     titulo2: {
         fontSize: 18,
@@ -140,6 +137,7 @@ export const getStyles = (theme) => StyleSheet.create({
         color: theme.text2,
         marginBottom: 5,
         lineHeight: 20,
+        width:300,
     },
     textodescr: {
         fontSize: 14,

@@ -13,10 +13,10 @@ export const getStyles = (theme) => StyleSheet.create({
   },
   titulo: {
     fontSize: 30,
+    fontFamily: fonts.text,
     color: theme.text,
     fontWeight: 'bold',
-    fontFamily: fonts.text,
-    marginTop: '5%',
+    padding: 10,
   },
   navinput: {
     width: '100%',
@@ -86,7 +86,7 @@ export const getStyles = (theme) => StyleSheet.create({
     height: 40,
   },
   textobotao: {
-    fontSize: 13,
+    fontSize: 15,
     fontFamily: fonts.text,
   },
 });

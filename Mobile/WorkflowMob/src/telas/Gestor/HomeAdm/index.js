@@ -38,8 +38,6 @@ export default function HomeAdm({navigation, route}){
         if (data.success) {
           setUsuarioState(prev => ({ ...prev, imagem: data.imagem }));
         }
-      } catch (error) {
-        console.error('Erro ao buscar imagens:', error);
       } finally {
         setLoading(false);
       }

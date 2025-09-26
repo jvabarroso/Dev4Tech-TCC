@@ -40,9 +40,7 @@ export default function Home({navigation, route}){
         if (data.success) {
           setUsuarioState(prev => ({ ...prev, imagem: data.imagem }));
         }
-      } catch (error) {
-        console.error('Erro ao buscar imagens:', error);
-      } finally {
+      }finally {
         setLoading(false);
       }
     }

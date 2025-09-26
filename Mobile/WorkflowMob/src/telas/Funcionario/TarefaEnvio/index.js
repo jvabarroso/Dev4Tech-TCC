@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, TouchableOpacity, ScrollView, Modal, TextInput } from 'react-native';
+import { Text, View, TouchableOpacity, ScrollView, Modal, TextInput, Image } from 'react-native';
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
 import { LayoutAnimation, UIManager, Platform } from 'react-native';
@@ -339,9 +339,12 @@ export default function TarefaEnvio({ navigation, route }) {
                         style={styles.botaodevoltar}
                         onPress={() => navigation.goBack()}
                     >
-                        <Ionicons name="arrow-back" size={24} color={theme.text} />
+                        <Ionicons name="arrow-back" size={25} color={theme.text} />
                     </TouchableOpacity>
-                    <Text style={styles.titulo}>WORKFLOW</Text>
+                    <Image 
+                        style={styles.titulo}
+                        source={theme.logo} >
+                    </Image>
                     <View style={styles.espacoHeader} />
                 </View>
 

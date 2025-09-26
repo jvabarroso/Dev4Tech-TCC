@@ -16,8 +16,9 @@ export const getStyles = (theme) => StyleSheet.create({
     color: theme.text,
     fontWeight: 'bold',
     marginTop: '5%',
-    marginBottom: "5%",
+    marginBottom: "3%",
     fontFamily: fonts.text,
+    padding:5,
   },
   navinput: {
     width: '100%',
