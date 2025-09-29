@@ -1,12 +1,109 @@
 ﻿using System;
 using System.Data;
+using System.Drawing;
+using System.IO;
+using System.Text;
+using System.Linq;
 using MySql.Data.MySqlClient;
+using System.Collections.Generic;
 
 namespace Dev4Tech
 {
     class EntregaTarefa : conexao
     {
-        // Busca uma tarefa específica por ID (nome do método corrigido)
+
+        
+
+        public DataTable BuscarTarefasAtrasadasPorEquipe(int idEquipe)
+        {
+            DataTable dt = new DataTable();
+            string query = @"
+                SELECT t.*, c.nome_categoria, e.nome_equipe, e.foto_equipe
+                FROM Tarefas t
+                INNER JOIN Equipes e ON t.id_equipe = e.id_equipe
+                INNER JOIN Categorias c ON e.id_categoria = c.id_categoria
+                WHERE t.id_equipe = @idEquipe
+                AND t.data_entrega < CURDATE()
+                AND NOT EXISTS (
+                    SELECT 1 FROM EntregasTarefa et WHERE et.id_tarefa = t.id_tarefa AND et.id_equipe = t.id_equipe
+                )
+                ORDER BY t.data_entrega DESC";
+
+            if (abrirConexao())
+            {
+                try
+                {
+                    using (MySqlCommand cmd = new MySqlCommand(query, conectar))
+                    {
+                        cmd.Parameters.AddWithValue("@idEquipe", idEquipe);
+                        using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
+                        {
+                            da.Fill(dt);
+                        }
+                    }
+                }
+                finally
+                {
+                    fecharConexao();
+                }
+            }
+            return dt;
+        }
+
+        public List<int> ObterEquipesDoFuncionario(int idFuncionario)
+        {
+            List<int> equipes = new List<int>();
+            string query = "SELECT id_equipe FROM Equipes_Membros WHERE FuncionarioId = @idFuncionario";
+
+            if (abrirConexao())
+            {
+                try
+                {
+                    using (MySqlCommand cmd = new MySqlCommand(query, conectar))
+                    {
+                        cmd.Parameters.AddWithValue("@idFuncionario", idFuncionario);
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                equipes.Add(reader.GetInt32("id_equipe"));
+                            }
+                        }
+                    }
+                }
+                finally
+                {
+                    fecharConexao();
+                }
+            }
+            return equipes;
+        }
+
+        public string BuscarNomeEquipe(int idEquipe)
+        {
+            string nome = "";
+            string query = "SELECT nome_equipe FROM Equipes WHERE id_equipe = @id";
+
+            if (abrirConexao())
+            {
+                try
+                {
+                    using (MySqlCommand cmd = new MySqlCommand(query, conectar))
+                    {
+                        cmd.Parameters.AddWithValue("@id", idEquipe);
+                        var result = cmd.ExecuteScalar();
+                        if (result != null)
+                            nome = result.ToString();
+                    }
+                }
+                finally
+                {
+                    fecharConexao();
+                }
+            }
+            return nome;
+        }
+
         public DataRow BuscarTarefaPorId(int idTarefa)
         {
             DataTable dt = new DataTable();
@@ -38,7 +135,6 @@ namespace Dev4Tech
             return dt.Rows.Count > 0 ? dt.Rows[0] : null;
         }
 
-        // Registra a entrega da tarefa feita por um funcionário específico na tabela EntregasTarefa
         public void RegistrarEntrega(int idTarefa, int idEquipe, int idFuncionario, string descricao, string nomeArquivo, byte[] arquivoBlob)
         {
             string query = @"
@@ -72,7 +168,6 @@ namespace Dev4Tech
             }
         }
 
-        // Verifica se o funcionário já entregou a tarefa
         public bool FuncionarioEntregou(int idTarefa, int idFuncionario)
         {
             bool entregou = false;
@@ -103,7 +198,6 @@ namespace Dev4Tech
             return entregou;
         }
 
-        // Verifica se todos os funcionários da equipe já entregaram a tarefa
         public bool TodosEntregaram(int idTarefa, int idEquipe)
         {
             bool todosEntregaram = false;
@@ -145,21 +239,19 @@ namespace Dev4Tech
             return todosEntregaram;
         }
 
-        // Busca todas as tarefas pendentes da equipe (tarefas que não têm entrega do funcionário, ou seja, ele não entregou ainda)
-        // Para um funcionário específico, usando LEFT JOIN para identificar tarefas não entregues dele
         public DataTable BuscarTarefasPendentesPorEquipeFuncionario(int idEquipe, int idFuncionario)
         {
             DataTable dt = new DataTable();
             string query = @"
-        SELECT t.*, c.nome_categoria, e.nome_equipe
-        FROM Tarefas t
-        INNER JOIN Equipes e ON t.id_equipe = e.id_equipe
-        INNER JOIN Categorias c ON e.id_categoria = c.id_categoria
-        LEFT JOIN EntregasTarefa et ON t.id_tarefa = et.id_tarefa AND et.FuncionarioId = @idFuncionario
-        WHERE t.id_equipe = @idEquipe
-        AND et.id_entrega IS NULL
-        AND t.data_entrega >= CURDATE()
-        ORDER BY t.data_entrega ASC";
+                SELECT t.*, c.nome_categoria, e.nome_equipe, e.foto_equipe
+                FROM Tarefas t
+                INNER JOIN Equipes e ON t.id_equipe = e.id_equipe
+                INNER JOIN Categorias c ON e.id_categoria = c.id_categoria
+                LEFT JOIN EntregasTarefa et ON t.id_tarefa = et.id_tarefa AND et.FuncionarioId = @idFuncionario
+                WHERE t.id_equipe = @idEquipe
+                AND et.id_entrega IS NULL
+                AND t.data_entrega >= CURDATE()
+                ORDER BY t.data_entrega ASC";
 
             if (abrirConexao())
             {
@@ -183,57 +275,18 @@ namespace Dev4Tech
             return dt;
         }
 
-
-        // Busca todas as tarefas entregues pelo funcionário em uma equipe
-        
-
-        public DataTable BuscarTarefasAtrasadasPorEquipe(int idEquipe)
-        {
-            DataTable dt = new DataTable();
-            string query = @"
-        SELECT t.*, c.nome_categoria, e.nome_equipe
-        FROM Tarefas t
-        INNER JOIN Equipes e ON t.id_equipe = e.id_equipe
-        INNER JOIN Categorias c ON e.id_categoria = c.id_categoria
-        WHERE t.id_equipe = @idEquipe
-        AND t.data_entrega < CURDATE()
-        AND NOT EXISTS (
-            SELECT 1 FROM EntregasTarefa et WHERE et.id_tarefa = t.id_tarefa AND et.id_equipe = t.id_equipe
-        )
-        ORDER BY t.data_entrega DESC";
-
-            if (abrirConexao())
-            {
-                try
-                {
-                    using (MySqlCommand cmd = new MySqlCommand(query, conectar))
-                    {
-                        cmd.Parameters.AddWithValue("@idEquipe", idEquipe);
-                        using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
-                        {
-                            da.Fill(dt);
-                        }
-                    }
-                }
-                finally
-                {
-                    fecharConexao();
-                }
-            }
-            return dt;
-        }
-
         public DataTable BuscarTarefasCompletadasPorEquipe(int idEquipe)
         {
             DataTable dt = new DataTable();
             string query = @"
-        SELECT DISTINCT t.*, c.nome_categoria, e.nome_equipe
-        FROM Tarefas t
-        INNER JOIN Equipes e ON t.id_equipe = e.id_equipe
-        INNER JOIN Categorias c ON e.id_categoria = c.id_categoria
-        INNER JOIN EntregasTarefa et ON t.id_tarefa = et.id_tarefa
-        WHERE t.id_equipe = @idEquipe
-        ORDER BY t.data_entrega DESC";
+                SELECT DISTINCT t.*, c.nome_categoria, e.nome_equipe, e.foto_equipe
+                FROM Tarefas t
+                INNER JOIN Equipes e ON t.id_equipe = e.id_equipe
+                INNER JOIN Categorias c ON e.id_categoria = c.id_categoria
+                INNER JOIN EntregasTarefa et ON t.id_tarefa = et.id_tarefa
+                WHERE t.id_equipe = @idEquipe
+                ORDER BY t.data_entrega DESC";
+
             if (abrirConexao())
             {
                 try
@@ -255,7 +308,6 @@ namespace Dev4Tech
             return dt;
         }
 
-        // Remove entrega permitindo desfazer entrega para o funcionário
         public void RemoverEntrega(int idTarefa, int idFuncionario)
         {
             string query = @"
@@ -288,9 +340,9 @@ namespace Dev4Tech
         {
             DataTable dt = new DataTable();
             string query = @"
-        SELECT DISTINCT FuncionarioId
-        FROM EntregasTarefa
-        WHERE id_tarefa = @idTarefa";
+                SELECT DISTINCT FuncionarioId
+                FROM EntregasTarefa
+                WHERE id_tarefa = @idTarefa";
 
             if (abrirConexao())
             {
@@ -313,7 +365,106 @@ namespace Dev4Tech
 
             return dt;
         }
+        // ADICIONAR ESTE MÉTODO À CLASSE ENTREGATAREFA
+        public DataTable BuscarTarefasCompletadasComFoto(int idFuncionario, string filtroNome = "")
+        {
+            DataTable dt = new DataTable();
 
+            // Primeiro obtém as equipes do funcionário
+            List<int> equipesFuncionario = ObterEquipesDoFuncionario(idFuncionario);
 
+            if (equipesFuncionario.Count == 0)
+                return dt;
+
+            // Constrói a query para múltiplas equipes
+            string query = @"
+        SELECT DISTINCT t.*, c.nome_categoria, e.nome_equipe, e.foto_equipe
+        FROM Tarefas t
+        INNER JOIN Equipes e ON t.id_equipe = e.id_equipe
+        INNER JOIN Categorias c ON e.id_categoria = c.id_categoria
+        INNER JOIN EntregasTarefa et ON t.id_tarefa = et.id_tarefa
+        WHERE t.id_equipe IN (" + string.Join(",", equipesFuncionario) + @")";
+
+            if (!string.IsNullOrWhiteSpace(filtroNome))
+            {
+                query += " AND t.nomeTarefa LIKE @filtroNome";
+            }
+
+            query += " ORDER BY t.data_entrega DESC";
+
+            if (abrirConexao())
+            {
+                try
+                {
+                    using (MySqlCommand cmd = new MySqlCommand(query, conectar))
+                    {
+                        if (!string.IsNullOrWhiteSpace(filtroNome))
+                            cmd.Parameters.AddWithValue("@filtroNome", "%" + filtroNome + "%");
+
+                        using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
+                        {
+                            da.Fill(dt);
+                        }
+                    }
+                }
+                finally
+                {
+                    fecharConexao();
+                }
+            }
+            return dt;
+        }
+        // ADICIONAR ESTE MÉTODO À CLASSE ENTREGATAREFA
+        public DataTable BuscarTarefasPendentesComFoto(int idFuncionario, string filtroNome = "")
+        {
+            DataTable dt = new DataTable();
+
+            // Primeiro obtém as equipes do funcionário
+            List<int> equipesFuncionario = ObterEquipesDoFuncionario(idFuncionario);
+
+            if (equipesFuncionario.Count == 0)
+                return dt;
+
+            // Constrói a query para múltiplas equipes
+            string query = @"
+        SELECT t.*, c.nome_categoria, e.nome_equipe, e.foto_equipe
+        FROM Tarefas t
+        INNER JOIN Equipes e ON t.id_equipe = e.id_equipe
+        INNER JOIN Categorias c ON e.id_categoria = c.id_categoria
+        LEFT JOIN EntregasTarefa et ON t.id_tarefa = et.id_tarefa AND et.FuncionarioId = @idFuncionario
+        WHERE t.id_equipe IN (" + string.Join(",", equipesFuncionario) + @")
+        AND et.id_entrega IS NULL
+        AND t.data_entrega >= CURDATE()";
+
+            if (!string.IsNullOrWhiteSpace(filtroNome))
+            {
+                query += " AND t.nomeTarefa LIKE @filtroNome";
+            }
+
+            query += " ORDER BY t.data_entrega ASC";
+
+            if (abrirConexao())
+            {
+                try
+                {
+                    using (MySqlCommand cmd = new MySqlCommand(query, conectar))
+                    {
+                        cmd.Parameters.AddWithValue("@idFuncionario", idFuncionario);
+                        if (!string.IsNullOrWhiteSpace(filtroNome))
+                            cmd.Parameters.AddWithValue("@filtroNome", "%" + filtroNome + "%");
+
+                        using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
+                        {
+                            da.Fill(dt);
+                        }
+                    }
+                }
+                finally
+                {
+                    fecharConexao();
+                }
+            }
+            return dt;
+        }
     }
 }

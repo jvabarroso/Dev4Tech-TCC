@@ -3,9 +3,8 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 using System.Collections.Generic;
-using System.IO; // Adicionar para usar Path
+using System.IO;
 
 namespace Dev4Tech
 {
@@ -16,7 +15,8 @@ namespace Dev4Tech
         private int idFuncionarioLogado;
         private EntregaTarefa entregaTarefa;
         private const string TextoPlaceholder = "Pesquisar uma tarefa";
-        private string basePathImagemEquipe = @"C:\xampp\htdocs\dev4tech\img"; // Adicionado
+        private string baseRoot = @"C:\xampp\htdocs\dev4tech";
+        private string baseImgFolder = @"C:\xampp\htdocs\dev4tech\img";
 
         public Tarefas_Completadas()
         {
@@ -44,35 +44,64 @@ namespace Dev4Tech
             AtualizarTarefas();
         }
 
-        // Método para obter nome do arquivo da foto (igual ao primeiro código)
-        private string ObterFotoEquipeNomeArquivo(int idEquipe)
+        // MÉTODO PARA OBTER FOTO DA EQUIPE (MESMA LÓGICA DO PesquisaEquipes)
+        private Image ObterFotoEquipeDosDados(object fotoData)
         {
-            string nomeArquivo = null;
-            string query = "SELECT foto_equipe FROM Equipes WHERE id_equipe = @idEquipe LIMIT 1";
-            string connectionString = "Server=localhost;Database=Dev4Tech;Uid=root;Pwd=;SslMode=none;";
+            Image fotoEquipe = null;
 
-            using (var conn = new MySqlConnection(connectionString))
+            if (fotoData != null && fotoData != DBNull.Value)
             {
-                conn.Open();
-                using (var cmd = new MySqlCommand(query, conn))
+                if (fotoData is byte[] imageData)
                 {
-                    cmd.Parameters.AddWithValue("@idEquipe", idEquipe);
-                    var resultado = cmd.ExecuteScalar();
-
-                    if (resultado != null && resultado != DBNull.Value)
+                    // É um blob - tentar carregar como imagem diretamente
+                    try
                     {
-                        if (resultado is byte[] bytes)
+                        using (var ms = new MemoryStream(imageData))
                         {
-                            nomeArquivo = System.Text.Encoding.UTF8.GetString(bytes);
+                            fotoEquipe = Image.FromStream(ms);
                         }
-                        else
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Erro ao carregar imagem do blob: {ex.Message}");
+                        // Tentar como string se falhar como imagem
+                        try
                         {
-                            nomeArquivo = resultado.ToString();
+                            string nomeArquivo = System.Text.Encoding.UTF8.GetString(imageData);
+                            // LIMPAR O NOME DO ARQUIVO DE CARACTERES INVÁLIDOS
+                            nomeArquivo = new string(nomeArquivo.Where(c => !Path.GetInvalidFileNameChars().Contains(c)).ToArray());
+                            string caminhoImagemEquipe = Path.Combine(baseImgFolder, nomeArquivo);
+                            if (File.Exists(caminhoImagemEquipe))
+                            {
+                                fotoEquipe = Image.FromFile(caminhoImagemEquipe);
+                            }
+                        }
+                        catch
+                        {
+                            // Se tudo falhar, retorna null e usará imagem padrão
                         }
                     }
                 }
+                else if (fotoData is string caminhoRelativo)
+                {
+                    // É um caminho
+                    try
+                    {
+                        // LIMPAR O CAMINHO DE CARACTERES INVÁLIDOS
+                        caminhoRelativo = new string(caminhoRelativo.Where(c => !Path.GetInvalidPathChars().Contains(c)).ToArray());
+                        string caminhoCompleto = Path.Combine(baseRoot, caminhoRelativo.Replace("/", @"\"));
+                        if (File.Exists(caminhoCompleto))
+                        {
+                            fotoEquipe = Image.FromFile(caminhoCompleto);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Erro ao carregar imagem do caminho: {ex.Message}");
+                    }
+                }
             }
-            return nomeArquivo;
+            return fotoEquipe;
         }
 
         private void txtPesquisarTarefa_Enter(object sender, EventArgs e)
@@ -226,34 +255,11 @@ namespace Dev4Tech
                     Top = 10
                 };
 
-                // Carregar a foto da equipe (mesma lógica do primeiro código)
-                string nomeArquivoFotoEquipe = ObterFotoEquipeNomeArquivo(idEquipe);
-                if (!string.IsNullOrEmpty(nomeArquivoFotoEquipe))
-                {
-                    string caminhoImagemEquipe = Path.Combine(basePathImagemEquipe, nomeArquivoFotoEquipe);
-                    if (File.Exists(caminhoImagemEquipe))
-                    {
-                        try
-                        {
-                            using (var imgTemp = Image.FromFile(caminhoImagemEquipe))
-                            {
-                                pic.Image = new Bitmap(imgTemp);
-                            }
-                        }
-                        catch
-                        {
-                            pic.Image = Properties.Resources.icon_EquipLogo;
-                        }
-                    }
-                    else
-                    {
-                        pic.Image = Properties.Resources.icon_EquipLogo;
-                    }
-                }
-                else
-                {
-                    pic.Image = Properties.Resources.icon_EquipLogo;
-                }
+                // *** CORREÇÃO - CARREGAR FOTO DA EQUIPE (MESMA LÓGICA DO PesquisaEquipes) ***
+                object fotoEquipeData = row["foto_equipe"];
+                Image fotoEquipe = ObterFotoEquipeDosDados(fotoEquipeData);
+                pic.Image = fotoEquipe ?? Properties.Resources.icon_EquipLogo;
+                // *** FIM DA CORREÇÃO ***
 
                 tarefaPanel.Controls.Add(pic);
 
@@ -345,13 +351,13 @@ namespace Dev4Tech
         private void CarregarEquipes()
         {
             int idFunc = idFuncionarioLogado;
-            equipesFuncionario = ObterEquipesDoFuncionario(idFunc);
+            equipesFuncionario = entregaTarefa.ObterEquipesDoFuncionario(idFunc);
 
             equipesNomeMap = new Dictionary<int, string>();
 
             foreach (var idEq in equipesFuncionario)
             {
-                string nome = BuscarNomeEquipe(idEq);
+                string nome = entregaTarefa.BuscarNomeEquipe(idEq);
                 equipesNomeMap[idEq] = nome;
             }
 
@@ -376,42 +382,18 @@ namespace Dev4Tech
             }
         }
 
+        // MÉTODOS DE BANCO DE DADOS (usando a classe EntregaTarefa)
         public List<int> ObterEquipesDoFuncionario(int idFuncionario)
         {
-            List<int> equipes = new List<int>();
-            string query = "SELECT id_equipe FROM Equipes_Membros WHERE FuncionarioId = @idFuncionario";
-
-            using (var conn = new MySqlConnection("server=localhost;database=Dev4Tech;uid=root;pwd="))
-            {
-                conn.Open();
-                var cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@idFuncionario", idFuncionario);
-                using (var reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        equipes.Add(reader.GetInt32("id_equipe"));
-                    }
-                }
-            }
-            return equipes;
+            return entregaTarefa.ObterEquipesDoFuncionario(idFuncionario);
         }
 
         private string BuscarNomeEquipe(int idEquipe)
         {
-            string nome = "";
-            using (var conn = new MySqlConnection("server=localhost;database=Dev4Tech;uid=root;pwd="))
-            {
-                conn.Open();
-                var cmd = new MySqlCommand("SELECT nome_equipe FROM Equipes WHERE id_equipe = @id", conn);
-                cmd.Parameters.AddWithValue("@id", idEquipe);
-                var result = cmd.ExecuteScalar();
-                if (result != null)
-                    nome = result.ToString();
-            }
-            return nome;
+            return entregaTarefa.BuscarNomeEquipe(idEquipe);
         }
 
+        // TODOS OS MÉTODOS DE NAVEGAÇÃO E EVENTOS ORIGINAIS (MANTIDOS)
         private void btnHome_Click(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;

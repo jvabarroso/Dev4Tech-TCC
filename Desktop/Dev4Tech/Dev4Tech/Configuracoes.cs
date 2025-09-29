@@ -735,7 +735,6 @@ namespace Dev4Tech
             }
         }
 
-        // ... demais métodos originais (navegação, eventos, etc.) mantidos sem alteração ...
         private void btnEditDadosConfig_Click(object sender, EventArgs e)
         {
             try

@@ -2,8 +2,8 @@
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient; // Adicione esta using
 
 namespace Dev4Tech
 {
@@ -11,48 +11,12 @@ namespace Dev4Tech
     {
         private int equipeSelecionadaId = -1;
         private string baseFolder = @"C:\xampp\htdocs\dev4tech\";
-        private string basePathImagemEquipe = @"C:\xampp\htdocs\dev4tech\img"; // Mesmo caminho do primeiro código
+        private string basePathImagemEquipe = @"C:\xampp\htdocs\dev4tech\img";
 
         public Integrantes_Equipe()
         {
             InitializeComponent();
             CarregarEquipes();
-        }
-
-        private void Integrantes_Equipe_Load(object sender, EventArgs e)
-        {
-            // Opcional: CarregarEquipes();
-        }
-
-        // Método para obter nome do arquivo da foto (igual ao primeiro código)
-        private string ObterFotoEquipeNomeArquivo(int idEquipe)
-        {
-            string nomeArquivo = null;
-            string query = "SELECT foto_equipe FROM Equipes WHERE id_equipe = @idEquipe LIMIT 1";
-            string connectionString = "Server=localhost;Database=Dev4Tech;Uid=root;Pwd=;SslMode=none;";
-
-            using (var conn = new MySqlConnection(connectionString))
-            {
-                conn.Open();
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@idEquipe", idEquipe);
-                    var resultado = cmd.ExecuteScalar();
-
-                    if (resultado != null && resultado != DBNull.Value)
-                    {
-                        if (resultado is byte[] bytes)
-                        {
-                            nomeArquivo = System.Text.Encoding.UTF8.GetString(bytes);
-                        }
-                        else
-                        {
-                            nomeArquivo = resultado.ToString();
-                        }
-                    }
-                }
-            }
-            return nomeArquivo;
         }
 
         private void CarregarEquipes()
@@ -88,35 +52,10 @@ namespace Dev4Tech
                     Top = 15
                 };
 
-                // CARREGAR FOTO DA EQUIPE (MESMA LÓGICA DO PRIMEIRO CÓDIGO)
-                string nomeArquivoFotoEquipe = ObterFotoEquipeNomeArquivo(idEquipe);
-
-                if (!string.IsNullOrEmpty(nomeArquivoFotoEquipe))
-                {
-                    string caminhoImagemEquipe = Path.Combine(basePathImagemEquipe, nomeArquivoFotoEquipe);
-                    if (File.Exists(caminhoImagemEquipe))
-                    {
-                        try
-                        {
-                            using (var imgTemp = Image.FromFile(caminhoImagemEquipe))
-                            {
-                                picEquipe.Image = new Bitmap(imgTemp);
-                            }
-                        }
-                        catch
-                        {
-                            picEquipe.Image = Properties.Resources.icon_EquipLogo;
-                        }
-                    }
-                    else
-                    {
-                        picEquipe.Image = Properties.Resources.icon_EquipLogo;
-                    }
-                }
-                else
-                {
-                    picEquipe.Image = Properties.Resources.icon_EquipLogo;
-                }
+                // CARREGAR FOTO DA EQUIPE - MESMA LÓGICA DO PRIMEIRO CÓDIGO
+                object fotoEquipeData = row["foto_equipe"];
+                Image fotoEquipe = ObterFotoEquipeDosDados(fotoEquipeData);
+                picEquipe.Image = fotoEquipe ?? Properties.Resources.icon_EquipLogo;
 
                 equipePanel.Controls.Add(picEquipe);
 
@@ -140,7 +79,7 @@ namespace Dev4Tech
                 };
                 equipePanel.Controls.Add(lblCategoria);
 
-                // Fotos dos membros (até 3) - MANTIDO IGUAL
+                // Fotos dos membros (até 3)
                 DataTable membros = dao.BuscarMembrosDaEquipe(idEquipe);
                 int leftFoto = 200;
                 int count = 0;
@@ -159,56 +98,10 @@ namespace Dev4Tech
                         BorderStyle = BorderStyle.FixedSingle
                     };
 
-                    // Carregar a foto do perfil se existir - MANTIDO IGUAL
-                    if (m.Table.Columns.Contains("foto_perfil") && m["foto_perfil"] != DBNull.Value)
-                    {
-                        object fotoData = m["foto_perfil"];
-
-                        if (fotoData is string caminhoRelativo && !string.IsNullOrEmpty(caminhoRelativo))
-                        {
-                            string caminhoCompleto = Path.Combine(baseFolder, caminhoRelativo.Replace("/", @"\"));
-
-                            if (File.Exists(caminhoCompleto))
-                            {
-                                try
-                                {
-                                    picMembro.Image = Image.FromFile(caminhoCompleto);
-                                }
-                                catch (Exception ex)
-                                {
-                                    Console.WriteLine($"Erro ao carregar imagem: {ex.Message}");
-                                    picMembro.Image = Properties.Resources.icon_perfil;
-                                }
-                            }
-                            else
-                            {
-                                picMembro.Image = Properties.Resources.icon_perfil;
-                            }
-                        }
-                        else if (fotoData is byte[] imageData)
-                        {
-                            try
-                            {
-                                using (var ms = new System.IO.MemoryStream(imageData))
-                                {
-                                    picMembro.Image = Image.FromStream(ms);
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                Console.WriteLine($"Erro ao carregar imagem do blob: {ex.Message}");
-                                picMembro.Image = Properties.Resources.icon_perfil;
-                            }
-                        }
-                        else
-                        {
-                            picMembro.Image = Properties.Resources.icon_perfil;
-                        }
-                    }
-                    else
-                    {
-                        picMembro.Image = Properties.Resources.icon_perfil;
-                    }
+                    // CARREGAR FOTO DO MEMBRO - MESMA LÓGICA DO PRIMEIRO CÓDIGO
+                    object fotoMembroData = m["foto_perfil"];
+                    Image fotoMembro = ObterFotoMembroDosDados(fotoMembroData);
+                    picMembro.Image = fotoMembro ?? Properties.Resources.icon_perfil;
 
                     equipePanel.Controls.Add(picMembro);
                     leftFoto += 35;
@@ -257,56 +150,10 @@ namespace Dev4Tech
                     BorderStyle = BorderStyle.FixedSingle
                 };
 
-                // Carregar a foto do perfil - MANTIDO IGUAL
-                if (row.Table.Columns.Contains("foto_perfil") && row["foto_perfil"] != DBNull.Value)
-                {
-                    object fotoData = row["foto_perfil"];
-
-                    if (fotoData is string caminhoRelativo && !string.IsNullOrEmpty(caminhoRelativo))
-                    {
-                        string caminhoCompleto = Path.Combine(baseFolder, caminhoRelativo.Replace("/", @"\"));
-
-                        if (File.Exists(caminhoCompleto))
-                        {
-                            try
-                            {
-                                pic.Image = Image.FromFile(caminhoCompleto);
-                            }
-                            catch (Exception ex)
-                            {
-                                Console.WriteLine($"Erro ao carregar imagem: {ex.Message}");
-                                pic.Image = Properties.Resources.icon_perfil;
-                            }
-                        }
-                        else
-                        {
-                            pic.Image = Properties.Resources.icon_perfil;
-                        }
-                    }
-                    else if (fotoData is byte[] imageData)
-                    {
-                        try
-                        {
-                            using (var ms = new System.IO.MemoryStream(imageData))
-                            {
-                                pic.Image = Image.FromStream(ms);
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine($"Erro ao carregar imagem do blob: {ex.Message}");
-                            pic.Image = Properties.Resources.icon_perfil;
-                        }
-                    }
-                    else
-                    {
-                        pic.Image = Properties.Resources.icon_perfil;
-                    }
-                }
-                else
-                {
-                    pic.Image = Properties.Resources.icon_perfil;
-                }
+                // CARREGAR FOTO DO MEMBRO - MESMA LÓGICA DO PRIMEIRO CÓDIGO
+                object fotoMembroData = row["foto_perfil"];
+                Image fotoMembro = ObterFotoMembroDosDados(fotoMembroData);
+                pic.Image = fotoMembro ?? Properties.Resources.icon_perfil;
 
                 membroPanel.Controls.Add(pic);
 
@@ -345,7 +192,114 @@ namespace Dev4Tech
             }
         }
 
-        // TODOS OS MÉTODOS EXISTENTES PERMANECEM EXATAMENTE IGUAIS
+        // MÉTODO PARA OBTER FOTO DA EQUIPE (COPIADO DO PRIMEIRO CÓDIGO)
+        private Image ObterFotoEquipeDosDados(object fotoData)
+        {
+            Image fotoEquipe = null;
+
+            if (fotoData != null && fotoData != DBNull.Value)
+            {
+                if (fotoData is byte[] imageData)
+                {
+                    // É um blob - tentar carregar como imagem diretamente
+                    try
+                    {
+                        using (var ms = new MemoryStream(imageData))
+                        {
+                            fotoEquipe = Image.FromStream(ms);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Erro ao carregar imagem do blob: {ex.Message}");
+                        // Tentar como string se falhar como imagem
+                        try
+                        {
+                            string nomeArquivo = System.Text.Encoding.UTF8.GetString(imageData);
+                            // LIMPAR O NOME DO ARQUIVO DE CARACTERES INVÁLIDOS
+                            nomeArquivo = new string(nomeArquivo.Where(c => !Path.GetInvalidFileNameChars().Contains(c)).ToArray());
+                            string caminhoImagemEquipe = Path.Combine(basePathImagemEquipe, nomeArquivo);
+                            if (File.Exists(caminhoImagemEquipe))
+                            {
+                                fotoEquipe = Image.FromFile(caminhoImagemEquipe);
+                            }
+                        }
+                        catch
+                        {
+                            // Se tudo falhar, retorna null e usará imagem padrão
+                        }
+                    }
+                }
+                else if (fotoData is string caminhoRelativo)
+                {
+                    // É um caminho
+                    try
+                    {
+                        // LIMPAR O CAMINHO DE CARACTERES INVÁLIDOS
+                        caminhoRelativo = new string(caminhoRelativo.Where(c => !Path.GetInvalidPathChars().Contains(c)).ToArray());
+                        string caminhoCompleto = Path.Combine(baseFolder, caminhoRelativo.Replace("/", @"\"));
+                        if (File.Exists(caminhoCompleto))
+                        {
+                            fotoEquipe = Image.FromFile(caminhoCompleto);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Erro ao carregar imagem do caminho: {ex.Message}");
+                    }
+                }
+            }
+            return fotoEquipe;
+        }
+
+        // MÉTODO PARA OBTER FOTO DO MEMBRO (LÓGICA SIMPLIFICADA)
+        private Image ObterFotoMembroDosDados(object fotoData)
+        {
+            Image fotoMembro = null;
+
+            if (fotoData != null && fotoData != DBNull.Value)
+            {
+                if (fotoData is byte[] imageData)
+                {
+                    // É um blob - carregar diretamente da memória
+                    try
+                    {
+                        using (var ms = new MemoryStream(imageData))
+                        {
+                            ms.Position = 0;
+                            fotoMembro = Image.FromStream(ms);
+                        }
+                    }
+                    catch
+                    {
+                        fotoMembro = null;
+                    }
+                }
+                else if (fotoData is string caminhoRelativo)
+                {
+                    // É um caminho
+                    try
+                    {
+                        string caminhoCorrigido = caminhoRelativo.Replace("/", "\\");
+                        string caminhoCompleto = Path.Combine(baseFolder, caminhoCorrigido);
+                        if (File.Exists(caminhoCompleto))
+                        {
+                            using (var imgTemp = Image.FromFile(caminhoCompleto))
+                            {
+                                fotoMembro = new Bitmap(imgTemp);
+                            }
+                        }
+                    }
+                    catch
+                    {
+                        fotoMembro = null;
+                    }
+                }
+            }
+            return fotoMembro;
+        }
+
+        // RESTANTE DOS MÉTODOS DO FORMULÁRIO (event handlers)
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
             string filtro = txtPesquisarMembros.Text.Trim();
@@ -395,10 +349,6 @@ namespace Dev4Tech
                 MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
-        private void txtProcurarMebros_TextChanged(object sender, EventArgs e) { }
-
-        private void btnMostrarMembros_Click(object sender, EventArgs e) { }
 
         private void lblRanking_Click(object sender, EventArgs e)
         {
@@ -593,26 +543,10 @@ namespace Dev4Tech
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-            var funcionario = Sessao.FuncionarioLogado;
-            var admin = Sessao.AdminLogado;
-            if (funcionario != null)
-            {
-                Tarefas_Pendentes t_equipe = new Tarefas_Pendentes();
-                t_equipe.Show();
-                this.Hide();
-            }
-            else if (admin != null)
-            {
-                HomeAdm t_equipeAdmin = new HomeAdm();
-                t_equipeAdmin.Show();
-                this.Hide();
-            }
-            else
-            {
-                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
+        // Métodos vazios necessários para o designer
+        private void txtProcurarMebros_TextChanged(object sender, EventArgs e) { }
+        private void btnMostrarMembros_Click(object sender, EventArgs e) { }
+        private void Integrantes_Equipe_Load(object sender, EventArgs e) { }
+        private void label1_Click(object sender, EventArgs e) { }
     }
 }

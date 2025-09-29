@@ -10,6 +10,8 @@ namespace Dev4Tech
 {
     public partial class PesquisaEquipes : Form
     {
+        private string basePathImagemEquipe = @"C:\xampp\htdocs\dev4tech\img";
+        private string baseFolder = @"C:\xampp\htdocs\dev4tech\";
         public PesquisaEquipes()
         {
             InitializeComponent();
@@ -20,6 +22,9 @@ namespace Dev4Tech
             filtroEquipes.Items.Add("Design");
             filtroEquipes.Items.Add("Marketing");
             filtroEquipes.SelectedIndex = 0;
+
+            // Carregar equipes ao iniciar
+            CarregarEquipes();
         }
 
         private int mensagensCount = 0;
@@ -102,15 +107,18 @@ namespace Dev4Tech
             panelEquipes.Controls.Clear();
             mensagensCount = 0;
             FiltroEquipes filtro = new FiltroEquipes();
-            DataTable dt = filtro.ObterEquipesComMembrosComFotos(filtroCategoria); // Método que traz fotos e ids
+            DataTable dt = filtro.ObterEquipesComMembrosComFotos(filtroCategoria);
+
             var equipes = dt.AsEnumerable()
                             .GroupBy(row => new
                             {
                                 id_equipe = row.Field<int>("id_equipe"),
                                 nome_equipe = row.Field<string>("nome_equipe"),
                                 categoria = row.Field<string>("nome_categoria"),
+                                foto_equipe = row["foto_equipe"], // AGORA INCLUÍMOS A FOTO DA EQUIPE
                                 ultima_atividade = row.IsNull("ultima_atividade") ? (DateTime?)null : row.Field<DateTime>("ultima_atividade")
                             });
+
             foreach (var equipe in equipes)
             {
                 int diasDesdeUltimaAtividade = -1;
@@ -142,10 +150,13 @@ namespace Dev4Tech
                     equipe.Key.categoria,
                     membros,
                     equipe.Key.id_equipe,
-                    diasDesdeUltimaAtividade
+                    diasDesdeUltimaAtividade,
+                    equipe.Key.foto_equipe // PASSAMOS A FOTO DA EQUIPE
                 );
             }
         }
+
+
 
         public class MembroEquipe
         {
@@ -155,7 +166,7 @@ namespace Dev4Tech
             public byte[] FotoBlob { get; set; }
         }
 
-        private void AdicionarPainelEquipe(string nomeEquipe, string categoria, System.Collections.Generic.List<MembroEquipe> membros, int idEquipe, int diasDesdeUltimaAtividade)
+        private void AdicionarPainelEquipe(string nomeEquipe, string categoria, System.Collections.Generic.List<MembroEquipe> membros, int idEquipe, int diasDesdeUltimaAtividade, object fotoEquipeData)
         {
             int x = margemEsquerda;
             int y = margemTopo + (alturaMensagem + espacamentoVertical) * mensagensCount;
@@ -169,19 +180,21 @@ namespace Dev4Tech
                 Top = y,
                 Cursor = Cursors.Hand
             };
+
+            // CAPTURAR VALORES ANTES DO EVENTO
+            int equipeId = idEquipe;
+            string equipeNome = nomeEquipe;
+            string equipeCategoria = categoria;
+
             equipePanel.Click += (s, e) =>
             {
-                Sessao.DefinirEquipeSelecionada(idEquipe, nomeEquipe, categoria);
+                Sessao.DefinirEquipeSelecionada(equipeId, equipeNome, equipeCategoria);
                 Chat_geral_equipes chatForm = new Chat_geral_equipes();
                 chatForm.Show();
                 this.Hide();
             };
 
-            string basePathImagemEquipe = @"C:\xampp\htdocs\dev4tech\img";
-
-            // Obtem o nome do arquivo da foto da equipe pelo id
-            string nomeArquivoFotoEquipe = ObterFotoEquipeNomeArquivo(idEquipe);
-
+            // CARREGAR FOTO DA EQUIPE - USANDO OS DADOS DO DATATABLE
             PictureBox picEquipe = new PictureBox
             {
                 SizeMode = PictureBoxSizeMode.StretchImage,
@@ -192,32 +205,9 @@ namespace Dev4Tech
                 BorderStyle = BorderStyle.FixedSingle
             };
 
-            if (!string.IsNullOrEmpty(nomeArquivoFotoEquipe))
-            {
-                string caminhoImagemEquipe = Path.Combine(basePathImagemEquipe, nomeArquivoFotoEquipe);
-                if (File.Exists(caminhoImagemEquipe))
-                {
-                    try
-                    {
-                        using (var imgTemp = Image.FromFile(caminhoImagemEquipe))
-                        {
-                            picEquipe.Image = new Bitmap(imgTemp);
-                        }
-                    }
-                    catch
-                    {
-                        picEquipe.Image = Properties.Resources.icon_EquipLogo;
-                    }
-                }
-                else
-                {
-                    picEquipe.Image = Properties.Resources.icon_EquipLogo;
-                }
-            }
-            else
-            {
-                picEquipe.Image = Properties.Resources.icon_EquipLogo;
-            }
+            // Usar os dados da foto da equipe que vieram do DataTable
+            Image fotoEquipe = ObterFotoEquipeDosDados(fotoEquipeData);
+            picEquipe.Image = fotoEquipe ?? Properties.Resources.icon_EquipLogo;
 
             equipePanel.Controls.Add(picEquipe);
 
@@ -267,7 +257,6 @@ namespace Dev4Tech
 
             int fotoLeft = 60;
             int fotoTop = 90;
-            string basePath = @"C:\xampp\htdocs\dev4tech\img";
 
             foreach (var membro in membros)
             {
@@ -283,10 +272,11 @@ namespace Dev4Tech
                     Tag = membro.IdFuncionario
                 };
 
+                // CARREGAR FOTO DO MEMBRO - MESMA LÓGICA DAS OUTRAS TELAS
                 if (!string.IsNullOrEmpty(membro.CaminhoFotoPerfil))
                 {
                     string caminhoFotoCorrigido = membro.CaminhoFotoPerfil.Replace("/", "\\");
-                    string caminhoCompleto = Path.Combine(basePath, caminhoFotoCorrigido);
+                    string caminhoCompleto = Path.Combine(baseFolder, caminhoFotoCorrigido);
                     if (File.Exists(caminhoCompleto))
                     {
                         try
@@ -439,5 +429,64 @@ namespace Dev4Tech
     }
     return nomeArquivo;
 }
+        private Image ObterFotoEquipeDosDados(object fotoData)
+        {
+            Image fotoEquipe = null;
+
+            if (fotoData != null && fotoData != DBNull.Value)
+            {
+                if (fotoData is byte[] imageData)
+                {
+                    // É um blob - tentar carregar como imagem diretamente
+                    try
+                    {
+                        using (var ms = new MemoryStream(imageData))
+                        {
+                            fotoEquipe = Image.FromStream(ms);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Erro ao carregar imagem do blob: {ex.Message}");
+                        // Tentar como string se falhar como imagem
+                        try
+                        {
+                            string nomeArquivo = System.Text.Encoding.UTF8.GetString(imageData);
+                            // LIMPAR O NOME DO ARQUIVO DE CARACTERES INVÁLIDOS
+                            nomeArquivo = new string(nomeArquivo.Where(c => !Path.GetInvalidFileNameChars().Contains(c)).ToArray());
+                            string caminhoImagemEquipe = Path.Combine(basePathImagemEquipe, nomeArquivo);
+                            if (File.Exists(caminhoImagemEquipe))
+                            {
+                                fotoEquipe = Image.FromFile(caminhoImagemEquipe);
+                            }
+                        }
+                        catch
+                        {
+                            // Se tudo falhar, retorna null e usará imagem padrão
+                        }
+                    }
+                }
+                else if (fotoData is string caminhoRelativo)
+                {
+                    // É um caminho
+                    try
+                    {
+                        // LIMPAR O CAMINHO DE CARACTERES INVÁLIDOS
+                        caminhoRelativo = new string(caminhoRelativo.Where(c => !Path.GetInvalidPathChars().Contains(c)).ToArray());
+                        string caminhoCompleto = Path.Combine(baseFolder, caminhoRelativo.Replace("/", @"\"));
+                        if (File.Exists(caminhoCompleto))
+                        {
+                            fotoEquipe = Image.FromFile(caminhoCompleto);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Erro ao carregar imagem do caminho: {ex.Message}");
+                    }
+                }
+            }
+            return fotoEquipe;
+        }
+
     }
 }

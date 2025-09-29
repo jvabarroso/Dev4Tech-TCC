@@ -13,7 +13,7 @@ namespace Dev4Tech
             DataTable dt = new DataTable();
             string query = @"
             SELECT 
-                e.id_equipe, e.nome_equipe, c.nome_categoria,
+                e.id_equipe, e.nome_equipe, e.foto_equipe, c.nome_categoria,
                 f.FuncionarioId, 
                 f.Nome AS nome_funcionario, f.foto_perfil,
                 ua.ultima_atividade
@@ -30,7 +30,7 @@ namespace Dev4Tech
                 conn.Open();
                 using (var cmd = new MySqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@filtroCategoria", filtroCategoria);
+                    cmd.Parameters.AddWithValue("@filtroCategoria", string.IsNullOrEmpty(filtroCategoria) || filtroCategoria == "Todos" ? null : filtroCategoria);
                     using (var adapter = new MySqlDataAdapter(cmd))
                     {
                         adapter.Fill(dt);
