@@ -14,13 +14,14 @@ namespace Dev4Tech
         public Ranking_Equipes()
         {
             InitializeComponent();
-            this.Load += new System.EventHandler(this.Ranking_Equipes_Load);
+            this.Load += new EventHandler(this.Ranking_Equipes_Load);
 
         }
 
         private void Ranking_Equipes_Load(object sender, EventArgs e)
         {
             CarregarRankingEquipes();
+            CarregarFotoUsuario();
         }
 
 
@@ -405,6 +406,38 @@ namespace Dev4Tech
         private void Ranking_Equipes_Load_1(object sender, EventArgs e)
         {
 
+        }
+        private void CarregarFotoUsuario()
+        {
+            try
+            {
+                var usuarioFoto = new UsuarioFoto();
+                Image foto = usuarioFoto.ObterFotoUsuario();
+
+                if (picPerfil != null) // Verifica se o controle existe no form
+                {
+                    if (foto != null)
+                    {
+                        picPerfil.Image = foto;
+                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
+                    }
+                    else
+                    {
+                        // Usar imagem padrão se não encontrar foto
+                        picPerfil.Image = Properties.Resources.icon_perfil;
+                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao carregar foto do usuário: {ex.Message}");
+                if (picPerfil != null)
+                {
+                    picPerfil.Image = Properties.Resources.icon_perfil;
+                    picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+            }
         }
     }
 }

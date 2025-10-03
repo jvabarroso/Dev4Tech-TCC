@@ -276,6 +276,7 @@
     <Compile Include="Adm\Tela_TarefasAdmin.Designer.cs">
       <DependentUpon>Tela_TarefasAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="UsuarioFoto.cs" />
     <EmbeddedResource Include="Adm\AdicionarEquipes.resx">
       <DependentUpon>AdicionarEquipes.cs</DependentUpon>
     </EmbeddedResource>

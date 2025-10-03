@@ -26,6 +26,7 @@ namespace Dev4Tech
             admin = null;
             PreencherCamposFuncionario();
             this.Load += Configuracoes_Load;
+            CarregarFotoUsuario();
         }
 
         // Construtor para administrador
@@ -36,6 +37,7 @@ namespace Dev4Tech
             funcionario = null;
             PreencherCamposAdmin();
             this.Load += Configuracoes_Load;
+            CarregarFotoUsuario();
         }
 
         // Helper: tenta decodificar bytes para string UTF8 (trim)
@@ -885,7 +887,39 @@ namespace Dev4Tech
             t_pendente.Show();
             this.Hide();
         }
-        private void Perfil_Load(object sender, EventArgs e) { }
         private void panelDados_Paint(object sender, PaintEventArgs e) { }
+
+        private void CarregarFotoUsuario()
+        {
+            try
+            {
+                var usuarioFoto = new UsuarioFoto();
+                Image foto = usuarioFoto.ObterFotoUsuario();
+
+                if (picPerfil != null) // Verifica se o controle existe no form
+                {
+                    if (foto != null)
+                    {
+                        picPerfil.Image = foto;
+                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
+                    }
+                    else
+                    {
+                        // Usar imagem padrão se não encontrar foto
+                        picPerfil.Image = Properties.Resources.icon_perfil;
+                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao carregar foto do usuário: {ex.Message}");
+                if (picPerfil != null)
+                {
+                    picPerfil.Image = Properties.Resources.icon_perfil;
+                    picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+            }
+        }
     }
 }

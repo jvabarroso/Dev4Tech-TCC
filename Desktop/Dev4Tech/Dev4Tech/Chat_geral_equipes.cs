@@ -21,8 +21,6 @@ namespace Dev4Tech
         public Chat_geral_equipes()
         {
             InitializeComponent();
-
-            // SEMPRE usar os dados da sessão
             if (Sessao.IdEquipeSelecionada == 0)
             {
                 MessageBox.Show("Nenhuma equipe selecionada. Redirecionando para pesquisa de equipes.");
@@ -39,6 +37,8 @@ namespace Dev4Tech
             lblNomeEquipe.Text = nomeEquipe;
             lblCategoriaEquipe.Text = categoriaEquipe;
             CarregarMensagens();
+            CarregarFotoEquipe();
+            CarregarFotoUsuario();
         }
 
         public Chat_geral_equipes(int idEquipe, string nomeEquipe, string categoriaEquipe)
@@ -190,7 +190,7 @@ namespace Dev4Tech
             {
                 System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
                 gp.AddEllipse(0, 0, statusIndicator.Width - 1, statusIndicator.Height - 1);
-                statusIndicator.Region = new System.Drawing.Region(gp);
+                statusIndicator.Region = new Region(gp);
             };
             mensagemPanel.Paint += (s, e) =>
             {
@@ -218,7 +218,7 @@ namespace Dev4Tech
             {
                 var gp = new System.Drawing.Drawing2D.GraphicsPath();
                 gp.AddEllipse(0, 0, avatar.Width - 1, avatar.Height - 1);
-                avatar.Region = new System.Drawing.Region(gp);
+                avatar.Region = new Region(gp);
             };
             Label lblNome = new Label
             {
@@ -327,7 +327,32 @@ namespace Dev4Tech
             }
         }
 
+        private void CarregarFotoEquipe()
+        {
+            try
+            {
+                Chat_Mensagens chatMensagens = new Chat_Mensagens();
+                Image fotoEquipe = chatMensagens.ObterFotoEquipe(this.idEquipe);
 
+                if (fotoEquipe != null)
+                {
+                    iconFotoEquipe.Image = fotoEquipe;
+                    iconFotoEquipe.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                else
+                {
+                    // Usar imagem padrão se não encontrar foto
+                    iconFotoEquipe.Image = Properties.Resources.icon_EquipLogo;
+                    iconFotoEquipe.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao carregar foto da equipe: {ex.Message}");
+                iconFotoEquipe.Image = Properties.Resources.icon_EquipLogo;
+                iconFotoEquipe.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+        }
 
         private void lblRanking_Click(object sender, EventArgs e)
         {
@@ -534,6 +559,38 @@ namespace Dev4Tech
             Planejamento p_plano = new Planejamento();
             p_plano.Show();
             this.Hide();
+        }
+        private void CarregarFotoUsuario()
+        {
+            try
+            {
+                var usuarioFoto = new UsuarioFoto();
+                Image foto = usuarioFoto.ObterFotoUsuario();
+
+                if (picPerfil != null) // Verifica se o controle existe no form
+                {
+                    if (foto != null)
+                    {
+                        picPerfil.Image = foto;
+                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
+                    }
+                    else
+                    {
+                        // Usar imagem padrão se não encontrar foto
+                        picPerfil.Image = Properties.Resources.icon_perfil;
+                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao carregar foto do usuário: {ex.Message}");
+                if (picPerfil != null)
+                {
+                    picPerfil.Image = Properties.Resources.icon_perfil;
+                    picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+            }
         }
     }
 }

@@ -25,6 +25,7 @@ namespace Dev4Tech
 
             // Carregar equipes ao iniciar
             CarregarEquipes();
+            CarregarFotoUsuario();
         }
 
         private int mensagensCount = 0;
@@ -115,7 +116,7 @@ namespace Dev4Tech
                                 id_equipe = row.Field<int>("id_equipe"),
                                 nome_equipe = row.Field<string>("nome_equipe"),
                                 categoria = row.Field<string>("nome_categoria"),
-                                foto_equipe = row["foto_equipe"], // AGORA INCLUÍMOS A FOTO DA EQUIPE
+                                foto_equipe = row["foto_equipe"],
                                 ultima_atividade = row.IsNull("ultima_atividade") ? (DateTime?)null : row.Field<DateTime>("ultima_atividade")
                             });
 
@@ -488,5 +489,37 @@ namespace Dev4Tech
             return fotoEquipe;
         }
 
+        private void CarregarFotoUsuario()
+        {
+            try
+            {
+                var usuarioFoto = new UsuarioFoto();
+                Image foto = usuarioFoto.ObterFotoUsuario();
+
+                if (picPerfil != null) // Verifica se o controle existe no form
+                {
+                    if (foto != null)
+                    {
+                        picPerfil.Image = foto;
+                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
+                    }
+                    else
+                    {
+                        // Usar imagem padrão se não encontrar foto
+                        picPerfil.Image = Properties.Resources.icon_perfil;
+                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao carregar foto do usuário: {ex.Message}");
+                if (picPerfil != null)
+                {
+                    picPerfil.Image = Properties.Resources.icon_perfil;
+                    picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+            }
+        }
     }
 }

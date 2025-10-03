@@ -39,7 +39,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblCategoriaEquipe = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.iconFotoEquipe = new System.Windows.Forms.PictureBox();
             this.lblNomeEquipe = new System.Windows.Forms.Label();
             this.lblGeral = new System.Windows.Forms.Label();
             this.lblTarefas = new System.Windows.Forms.Label();
@@ -60,7 +60,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconFotoEquipe)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEnviarMensagem)).BeginInit();
             this.flowLayoutPanelMensagens.SuspendLayout();
             this.SuspendLayout();
@@ -170,7 +170,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.lblCategoriaEquipe);
-            this.groupBox1.Controls.Add(this.pictureBox3);
+            this.groupBox1.Controls.Add(this.iconFotoEquipe);
             this.groupBox1.Controls.Add(this.lblNomeEquipe);
             this.groupBox1.Location = new System.Drawing.Point(80, 73);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
@@ -190,16 +190,16 @@
             this.lblCategoriaEquipe.TabIndex = 61;
             this.lblCategoriaEquipe.Text = "Desenvolvedor de software";
             // 
-            // pictureBox3
+            // iconFotoEquipe
             // 
-            this.pictureBox3.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(4, 17);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(38, 41);
-            this.pictureBox3.TabIndex = 39;
-            this.pictureBox3.TabStop = false;
+            this.iconFotoEquipe.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
+            this.iconFotoEquipe.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.iconFotoEquipe.Location = new System.Drawing.Point(4, 17);
+            this.iconFotoEquipe.Margin = new System.Windows.Forms.Padding(2);
+            this.iconFotoEquipe.Name = "iconFotoEquipe";
+            this.iconFotoEquipe.Size = new System.Drawing.Size(38, 41);
+            this.iconFotoEquipe.TabIndex = 39;
+            this.iconFotoEquipe.TabStop = false;
             // 
             // lblNomeEquipe
             // 
@@ -356,7 +356,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconFotoEquipe)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEnviarMensagem)).EndInit();
             this.flowLayoutPanelMensagens.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -376,7 +376,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox iconFotoEquipe;
         private System.Windows.Forms.Label lblCategoriaEquipe;
         private System.Windows.Forms.Label lblNomeEquipe;
         private System.Windows.Forms.Label lblGeral;

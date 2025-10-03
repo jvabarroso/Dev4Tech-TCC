@@ -3,43 +3,87 @@
   "WorkspaceRootPath": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|c:\\users\\joao.barroso\\desktop\\dev4tech-tcc\\desktop\\dev4tech\\dev4tech\\entregatarefa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\entregatarefa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\ranking_equipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\ranking_equipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|c:\\users\\joao.barroso\\desktop\\dev4tech-tcc\\desktop\\dev4tech\\dev4tech\\integrantes_equipe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\integrantes_equipe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|c:\\users\\joao.barroso\\desktop\\dev4tech-tcc\\desktop\\dev4tech\\dev4tech\\planejamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\planejamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|c:\\users\\joao.barroso\\desktop\\dev4tech-tcc\\desktop\\dev4tech\\dev4tech\\pesquisaintegrantes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\pesquisaintegrantes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|c:\\users\\joao.barroso\\desktop\\dev4tech-tcc\\desktop\\dev4tech\\dev4tech\\pesquisaequipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\pesquisaequipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|c:\\users\\joao.barroso\\desktop\\dev4tech-tcc\\desktop\\dev4tech\\dev4tech\\filtroequipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\filtroequipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\integrantes_equipe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\integrantes_equipe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\tarefas_pendentes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\tarefas_pendentes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\tarefas_completadas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\tarefas_completadas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|c:\\users\\joao.barroso\\desktop\\dev4tech-tcc\\desktop\\dev4tech\\dev4tech\\planejamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\planejamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\tarefas_atrasadas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\tarefas_atrasadas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|c:\\users\\joao.barroso\\desktop\\dev4tech-tcc\\desktop\\dev4tech\\dev4tech\\configuracoes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\tarefas_completadas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\tarefas_completadas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\tarefas_pendentes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\tarefas_pendentes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\tarefas_pendentes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\tarefas_pendentes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\tarefas_completadas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\tarefas_completadas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\tarefas_atrasadas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\tarefas_atrasadas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|c:\\users\\joao.barroso\\desktop\\dev4tech-tcc\\desktop\\dev4tech\\dev4tech\\relato_problema.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\relato_problema.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\equipesranking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\equipesranking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\entregatarefa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\entregatarefa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\chat_geral_equipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\chat_geral_equipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\chat_geral_equipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\chat_geral_equipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\chat_mensagens.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\chat_mensagens.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\pesquisaequipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\pesquisaequipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\ranking_equipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\ranking_equipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\pesquisaequipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\pesquisaequipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\integrantes_equipe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\integrantes_equipe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\integrantes_equipe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\integrantes_equipe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\configuracoes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\configuracoes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -47,32 +91,16 @@
       "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\configuracoes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\ranking_equipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\ranking_equipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|c:\\users\\joao.barroso\\desktop\\dev4tech-tcc\\desktop\\dev4tech\\dev4tech\\usuariofoto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\usuariofoto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\equipesranking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\equipesranking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|c:\\users\\joao.barroso\\desktop\\dev4tech-tcc\\desktop\\dev4tech\\dev4tech\\filtroequipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\filtroequipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\ranking_equipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\ranking_equipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\tarefas_atrasadas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\tarefas_atrasadas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\tarefas_pendentes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\tarefas_pendentes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\chat_geral_equipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\chat_geral_equipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\tarefas_completadas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\tarefas_completadas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\pesquisaintegrantes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\pesquisaintegrantes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -82,11 +110,114 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 20,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 13,
+              "Title": "Chat_geral_equipes.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Chat_geral_equipes.cs",
+              "RelativeDocumentMoniker": "Dev4Tech\\Chat_geral_equipes.cs",
+              "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Chat_geral_equipes.cs [Design]",
+              "RelativeToolTip": "Dev4Tech\\Chat_geral_equipes.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-26T13:01:52.953Z",
+              "IsPinned": true,
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Chat_Mensagens.cs",
+              "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Chat_Mensagens.cs",
+              "RelativeDocumentMoniker": "Dev4Tech\\Chat_Mensagens.cs",
+              "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Chat_Mensagens.cs",
+              "RelativeToolTip": "Dev4Tech\\Chat_Mensagens.cs",
+              "ViewState": "AgIAAA8BAAAAAAAAAAAQwDsBAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-02T11:35:21.551Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Chat_geral_equipes.cs",
+              "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Chat_geral_equipes.cs",
+              "RelativeDocumentMoniker": "Dev4Tech\\Chat_geral_equipes.cs",
+              "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Chat_geral_equipes.cs",
+              "RelativeToolTip": "Dev4Tech\\Chat_geral_equipes.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-02T11:35:34.955Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Planejamento.cs",
+              "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Planejamento.cs",
+              "RelativeDocumentMoniker": "Dev4Tech\\Planejamento.cs",
+              "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Planejamento.cs",
+              "RelativeToolTip": "Dev4Tech\\Planejamento.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAABUAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-03T14:13:16.381Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Planejamento.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Planejamento.cs",
+              "RelativeDocumentMoniker": "Dev4Tech\\Planejamento.cs",
+              "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Planejamento.cs [Design]",
+              "RelativeToolTip": "Dev4Tech\\Planejamento.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-03T14:13:06.132Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Relato_Problema.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Relato_Problema.cs",
+              "RelativeDocumentMoniker": "Dev4Tech\\Relato_Problema.cs",
+              "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Relato_Problema.cs [Design]",
+              "RelativeToolTip": "Dev4Tech\\Relato_Problema.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-03T14:07:53.606Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "UsuarioFoto.cs",
+              "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\UsuarioFoto.cs",
+              "RelativeDocumentMoniker": "Dev4Tech\\UsuarioFoto.cs",
+              "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\UsuarioFoto.cs",
+              "RelativeToolTip": "Dev4Tech\\UsuarioFoto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-03T14:02:48.962Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "PesquisaEquipes.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\pesquisaEquipes.cs",
+              "RelativeDocumentMoniker": "Dev4Tech\\pesquisaEquipes.cs",
+              "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\pesquisaEquipes.cs [Design]",
+              "RelativeToolTip": "Dev4Tech\\pesquisaEquipes.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-02T11:43:17.607Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "EntregaTarefa.cs",
               "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\EntregaTarefa.cs",
               "RelativeDocumentMoniker": "Dev4Tech\\EntregaTarefa.cs",
@@ -99,108 +230,109 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 3,
               "Title": "Tarefas_Atrasadas.cs",
               "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Tarefas_Atrasadas.cs",
               "RelativeDocumentMoniker": "Dev4Tech\\Tarefas_Atrasadas.cs",
               "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Tarefas_Atrasadas.cs",
               "RelativeToolTip": "Dev4Tech\\Tarefas_Atrasadas.cs",
-              "ViewState": "AgIAAKYCAAAAAAAAAAAQwNgCAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-26T13:01:27.721Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 24,
               "Title": "PesquisaIntegrantes.cs",
               "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\PesquisaIntegrantes.cs",
               "RelativeDocumentMoniker": "Dev4Tech\\PesquisaIntegrantes.cs",
               "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\PesquisaIntegrantes.cs",
               "RelativeToolTip": "Dev4Tech\\PesquisaIntegrantes.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-29T14:37:42.682Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-29T14:37:42.682Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 18,
               "Title": "Integrantes_Equipe.cs",
               "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Integrantes_Equipe.cs",
               "RelativeDocumentMoniker": "Dev4Tech\\Integrantes_Equipe.cs",
               "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Integrantes_Equipe.cs",
               "RelativeToolTip": "Dev4Tech\\Integrantes_Equipe.cs",
-              "ViewState": "AgIAAAQCAAAAAAAAAAAQwCcCAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-29T14:37:08.849Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 17,
               "Title": "PesquisaEquipes.cs",
               "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\pesquisaEquipes.cs",
               "RelativeDocumentMoniker": "Dev4Tech\\pesquisaEquipes.cs",
               "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\pesquisaEquipes.cs",
               "RelativeToolTip": "Dev4Tech\\pesquisaEquipes.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAL8BAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABsAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-29T14:18:47.812Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 23,
               "Title": "FiltroEquipes.cs",
               "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\FiltroEquipes.cs",
               "RelativeDocumentMoniker": "Dev4Tech\\FiltroEquipes.cs",
               "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\FiltroEquipes.cs",
               "RelativeToolTip": "Dev4Tech\\FiltroEquipes.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-29T14:24:17.037Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 20,
               "Title": "Configuracoes.cs",
               "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Configuracoes.cs",
               "RelativeDocumentMoniker": "Dev4Tech\\Configuracoes.cs",
               "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Configuracoes.cs",
               "RelativeToolTip": "Dev4Tech\\Configuracoes.cs",
-              "ViewState": "AgIAAFIDAAAAAAAAAAAcwGYDAAA7AAAAAAAAAA==",
+              "ViewState": "AgIAAGQDAAAAAAAAAAAAACcAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-26T13:36:08.825Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 21,
               "Title": "Configuracoes.cs [Design]",
               "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Configuracoes.cs",
               "RelativeDocumentMoniker": "Dev4Tech\\Configuracoes.cs",
-              "ToolTip": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Configuracoes.cs [Design]",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Configuracoes.cs [Design]",
+              "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Configuracoes.cs [Design]",
+              "RelativeToolTip": "Dev4Tech\\Configuracoes.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T13:36:07.402Z"
+              "WhenOpened": "2025-09-26T13:36:07.402Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 16,
               "Title": "Ranking_Equipes.cs",
               "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Ranking_Equipes.cs",
               "RelativeDocumentMoniker": "Dev4Tech\\Ranking_Equipes.cs",
               "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Ranking_Equipes.cs",
               "RelativeToolTip": "Dev4Tech\\Ranking_Equipes.cs",
-              "ViewState": "AgIAAHEAAAAAAAAAAAAqwI0AAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T13:26:45.845Z"
+              "WhenOpened": "2025-09-26T13:26:45.845Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 10,
               "Title": "EquipesRanking.cs",
               "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\EquipesRanking.cs",
               "RelativeDocumentMoniker": "Dev4Tech\\EquipesRanking.cs",
@@ -208,11 +340,12 @@
               "RelativeToolTip": "Dev4Tech\\EquipesRanking.cs",
               "ViewState": "AgIAABoAAAAAAAAAAAAYwIsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T13:25:19.94Z"
+              "WhenOpened": "2025-09-26T13:25:19.94Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 8,
               "Title": "Tarefas_Atrasadas.cs [Design]",
               "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Tarefas_Atrasadas.cs",
               "RelativeDocumentMoniker": "Dev4Tech\\Tarefas_Atrasadas.cs",
@@ -224,7 +357,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 19,
               "Title": "Integrantes_Equipe.cs [Design]",
               "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Integrantes_Equipe.cs",
               "RelativeDocumentMoniker": "Dev4Tech\\Integrantes_Equipe.cs",
@@ -236,31 +369,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 0,
               "Title": "Ranking_Equipes.cs [Design]",
               "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Ranking_Equipes.cs",
               "RelativeDocumentMoniker": "Dev4Tech\\Ranking_Equipes.cs",
-              "ToolTip": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Ranking_Equipes.cs [Design]",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Ranking_Equipes.cs [Design]",
+              "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Ranking_Equipes.cs [Design]",
+              "RelativeToolTip": "Dev4Tech\\Ranking_Equipes.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T12:54:35.252Z"
+              "WhenOpened": "2025-09-26T12:54:35.252Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "Tarefas_Pendentes.cs",
               "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Tarefas_Pendentes.cs",
               "RelativeDocumentMoniker": "Dev4Tech\\Tarefas_Pendentes.cs",
               "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Tarefas_Pendentes.cs",
               "RelativeToolTip": "Dev4Tech\\Tarefas_Pendentes.cs",
-              "ViewState": "AgIAAG0CAAAAAAAAAADwv4MCAAA6AAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwCMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-26T12:51:49.477Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 6,
               "Title": "Tarefas_Pendentes.cs [Design]",
               "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Tarefas_Pendentes.cs",
               "RelativeDocumentMoniker": "Dev4Tech\\Tarefas_Pendentes.cs",
@@ -272,31 +406,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 4,
               "Title": "Tarefas_Completadas.cs",
               "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Tarefas_Completadas.cs",
               "RelativeDocumentMoniker": "Dev4Tech\\Tarefas_Completadas.cs",
               "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Tarefas_Completadas.cs",
               "RelativeToolTip": "Dev4Tech\\Tarefas_Completadas.cs",
-              "ViewState": "AgIAAJECAAAAAAAAAAAQwMMCAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAACMAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-26T12:51:14.67Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "Chat_geral_equipes.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Chat_geral_equipes.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\Chat_geral_equipes.cs",
-              "ToolTip": "C:\\Users\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Chat_geral_equipes.cs [Design]",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\jvaba\\OneDrive\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Chat_geral_equipes.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T13:01:52.953Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 7,
               "Title": "Tarefas_Completadas.cs [Design]",
               "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Tarefas_Completadas.cs",
               "RelativeDocumentMoniker": "Dev4Tech\\Tarefas_Completadas.cs",

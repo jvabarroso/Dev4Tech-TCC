@@ -1,6 +1,8 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Data;
-using MySql.Data.MySqlClient;
+using System.Drawing;
+using System.IO;
 
 namespace Dev4Tech
 {
@@ -243,6 +245,74 @@ namespace Dev4Tech
                 }
                 finally { fecharConexao(); }
             }
+        }
+        public Image ObterFotoEquipe(int idEquipe)
+        {
+            Image fotoEquipe = null;
+            string query = "SELECT foto_equipe FROM Equipes WHERE id_equipe = @idEquipe LIMIT 1";
+
+            if (abrirConexao())
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, conectar);
+                    cmd.Parameters.AddWithValue("@idEquipe", idEquipe);
+                    var resultado = cmd.ExecuteScalar();
+
+                    if (resultado != null && resultado != DBNull.Value)
+                    {
+                        // Se for byte[] (LONGBLOB), tentar carregar como imagem
+                        if (resultado is byte[] imageData)
+                        {
+                            try
+                            {
+                                using (var ms = new MemoryStream(imageData))
+                                {
+                                    fotoEquipe = Image.FromStream(ms);
+                                }
+                            }
+                            catch
+                            {
+                                // Se falhar como imagem, tentar como string/nome de arquivo
+                                try
+                                {
+                                    string nomeArquivo = System.Text.Encoding.UTF8.GetString(imageData);
+                                    string caminhoImagemEquipe = Path.Combine(@"C:\xampp\htdocs\dev4tech\img", nomeArquivo);
+                                    if (File.Exists(caminhoImagemEquipe))
+                                    {
+                                        fotoEquipe = Image.FromFile(caminhoImagemEquipe);
+                                    }
+                                }
+                                catch
+                                {
+                                    // Se tudo falhar, retorna null
+                                }
+                            }
+                        }
+                        else if (resultado is string caminhoRelativo)
+                        {
+                            // É um caminho
+                            try
+                            {
+                                string caminhoCompleto = Path.Combine(@"C:\xampp\htdocs\dev4tech\", caminhoRelativo.Replace("/", @"\"));
+                                if (File.Exists(caminhoCompleto))
+                                {
+                                    fotoEquipe = Image.FromFile(caminhoCompleto);
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine($"Erro ao carregar imagem do caminho: {ex.Message}");
+                            }
+                        }
+                    }
+                }
+                finally
+                {
+                    fecharConexao();
+                }
+            }
+            return fotoEquipe;
         }
     }
 }

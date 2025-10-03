@@ -19,6 +19,7 @@ namespace Dev4Tech
         {
             InitializeComponent();
             this.Load += Planejamento_Load;
+            CarregarFotoUsuario();
         }
 
         private void Planejamento_Load(object sender, EventArgs e)
@@ -800,15 +801,37 @@ namespace Dev4Tech
                 MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
-        // Métodos da classe TarefaModelo (mantidos para compatibilidade)
-        public class TarefaModelo
+        private void CarregarFotoUsuario()
         {
-            public int IdTarefa { get; set; }
-            public string Titulo { get; set; }
-            public DateTime DataEntrega { get; set; }
-            public string Status { get; set; }
-            public List<Image> Avatares { get; set; }
+            try
+            {
+                var usuarioFoto = new UsuarioFoto();
+                Image foto = usuarioFoto.ObterFotoUsuario();
+
+                if (picPerfil != null) // Verifica se o controle existe no form
+                {
+                    if (foto != null)
+                    {
+                        picPerfil.Image = foto;
+                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
+                    }
+                    else
+                    {
+                        // Usar imagem padrão se não encontrar foto
+                        picPerfil.Image = Properties.Resources.icon_perfil;
+                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao carregar foto do usuário: {ex.Message}");
+                if (picPerfil != null)
+                {
+                    picPerfil.Image = Properties.Resources.icon_perfil;
+                    picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+            }
         }
     }
 }

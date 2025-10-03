@@ -55,7 +55,7 @@
             this.txtDataNascFunc = new System.Windows.Forms.MaskedTextBox();
             this.btnTrocarFotoPerfil = new System.Windows.Forms.Button();
             this.IconFuncionario = new System.Windows.Forms.PictureBox();
-            this.picPerfilMembro = new System.Windows.Forms.PictureBox();
+            this.picPerfil = new System.Windows.Forms.PictureBox();
             this.btnEquipes = new System.Windows.Forms.PictureBox();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.btnRanking = new System.Windows.Forms.PictureBox();
@@ -66,7 +66,7 @@
             this.panelDados.SuspendLayout();
             this.flowLayoutPanelEquipes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IconFuncionario)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picPerfilMembro)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPerfil)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEquipes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRanking)).BeginInit();
@@ -80,10 +80,9 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(1453, 53);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(1090, 43);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(81, 20);
+            this.label7.Size = new System.Drawing.Size(67, 15);
             this.label7.TabIndex = 103;
             this.label7.Text = "Pontuação:";
             // 
@@ -92,10 +91,9 @@
             this.lblPontos.AutoSize = true;
             this.lblPontos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPontos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.lblPontos.Location = new System.Drawing.Point(1544, 53);
-            this.lblPontos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPontos.Location = new System.Drawing.Point(1158, 43);
             this.lblPontos.Name = "lblPontos";
-            this.lblPontos.Size = new System.Drawing.Size(0, 20);
+            this.lblPontos.Size = new System.Drawing.Size(0, 16);
             this.lblPontos.TabIndex = 104;
             this.lblPontos.Click += new System.EventHandler(this.label8_Click);
             // 
@@ -104,10 +102,9 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label1.Location = new System.Drawing.Point(103, 34);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(77, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 28);
+            this.label1.Size = new System.Drawing.Size(72, 21);
             this.label1.TabIndex = 115;
             this.label1.Text = "<- Voltar";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -116,10 +113,9 @@
             // 
             this.lblNomeFunc.AutoSize = true;
             this.lblNomeFunc.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomeFunc.Location = new System.Drawing.Point(277, 79);
-            this.lblNomeFunc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNomeFunc.Location = new System.Drawing.Point(208, 64);
             this.lblNomeFunc.Name = "lblNomeFunc";
-            this.lblNomeFunc.Size = new System.Drawing.Size(125, 37);
+            this.lblNomeFunc.Size = new System.Drawing.Size(97, 30);
             this.lblNomeFunc.TabIndex = 116;
             this.lblNomeFunc.Text = "Igor Felix";
             this.lblNomeFunc.Click += new System.EventHandler(this.label2_Click);
@@ -128,10 +124,9 @@
             // 
             this.lblCargo.AutoSize = true;
             this.lblCargo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCargo.Location = new System.Drawing.Point(280, 132);
-            this.lblCargo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCargo.Location = new System.Drawing.Point(210, 107);
             this.lblCargo.Name = "lblCargo";
-            this.lblCargo.Size = new System.Drawing.Size(122, 23);
+            this.lblCargo.Size = new System.Drawing.Size(95, 17);
             this.lblCargo.TabIndex = 117;
             this.lblCargo.Text = "Desenvolvedor";
             this.lblCargo.Click += new System.EventHandler(this.label3_Click);
@@ -140,10 +135,9 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(173, 682);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Location = new System.Drawing.Point(130, 554);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(49, 28);
+            this.label13.Size = new System.Drawing.Size(40, 21);
             this.label13.TabIndex = 145;
             this.label13.Text = "CPF:";
             this.label13.Click += new System.EventHandler(this.label13_Click);
@@ -152,10 +146,9 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(173, 608);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Location = new System.Drawing.Point(130, 494);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(88, 28);
+            this.label12.Size = new System.Drawing.Size(70, 21);
             this.label12.TabIndex = 144;
             this.label12.Text = "Telefone:";
             // 
@@ -163,10 +156,9 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(173, 532);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Location = new System.Drawing.Point(130, 432);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(63, 28);
+            this.label11.Size = new System.Drawing.Size(51, 21);
             this.label11.TabIndex = 143;
             this.label11.Text = "Email:";
             // 
@@ -174,10 +166,9 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(173, 464);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Location = new System.Drawing.Point(130, 377);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(193, 28);
+            this.label10.Size = new System.Drawing.Size(153, 21);
             this.label10.TabIndex = 142;
             this.label10.Text = "Data de Nascimento:";
             // 
@@ -185,10 +176,9 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(168, 377);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Location = new System.Drawing.Point(126, 306);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(70, 28);
+            this.label9.Size = new System.Drawing.Size(56, 21);
             this.label9.TabIndex = 141;
             this.label9.Text = "Nome:";
             // 
@@ -196,22 +186,20 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(169, 114);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(127, 93);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(136, 41);
+            this.label4.Size = new System.Drawing.Size(110, 32);
             this.label4.TabIndex = 140;
             this.label4.Text = "Equipes:";
             // 
             // txtEmail
             // 
             this.txtEmail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmail.Location = new System.Drawing.Point(169, 560);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(4);
+            this.txtEmail.Location = new System.Drawing.Point(127, 455);
             this.txtEmail.Multiline = true;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.ReadOnly = true;
-            this.txtEmail.Size = new System.Drawing.Size(352, 32);
+            this.txtEmail.Size = new System.Drawing.Size(265, 27);
             this.txtEmail.TabIndex = 137;
             this.txtEmail.Text = "Igor\r\n";
             this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
@@ -219,12 +207,11 @@
             // txtNome
             // 
             this.txtNome.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNome.Location = new System.Drawing.Point(169, 405);
-            this.txtNome.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNome.Location = new System.Drawing.Point(127, 329);
             this.txtNome.Multiline = true;
             this.txtNome.Name = "txtNome";
             this.txtNome.ReadOnly = true;
-            this.txtNome.Size = new System.Drawing.Size(352, 34);
+            this.txtNome.Size = new System.Drawing.Size(265, 28);
             this.txtNome.TabIndex = 135;
             this.txtNome.Text = " Igor Felix";
             this.txtNome.TextChanged += new System.EventHandler(this.txtNome_TextChanged);
@@ -232,11 +219,10 @@
             // textBox5
             // 
             this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(389, 1105);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox5.Location = new System.Drawing.Point(292, 898);
             this.textBox5.Multiline = true;
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(912, 45);
+            this.textBox5.Size = new System.Drawing.Size(685, 37);
             this.textBox5.TabIndex = 147;
             this.textBox5.Text = "Analista de Desenvolvimento";
             // 
@@ -244,33 +230,32 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(391, 1079);
-            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Location = new System.Drawing.Point(293, 877);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(66, 24);
+            this.label16.Size = new System.Drawing.Size(53, 18);
             this.label16.TabIndex = 148;
             this.label16.Text = "Cargo:";
             // 
             // txtTelefone
             // 
             this.txtTelefone.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTelefone.Location = new System.Drawing.Point(169, 635);
-            this.txtTelefone.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtTelefone.Location = new System.Drawing.Point(127, 516);
+            this.txtTelefone.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtTelefone.Mask = "(99) 00000-0000";
             this.txtTelefone.Name = "txtTelefone";
-            this.txtTelefone.Size = new System.Drawing.Size(197, 34);
+            this.txtTelefone.Size = new System.Drawing.Size(149, 29);
             this.txtTelefone.TabIndex = 151;
             this.txtTelefone.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.txtTelefone_MaskInputRejected);
             // 
             // txtCPF
             // 
             this.txtCPF.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCPF.Location = new System.Drawing.Point(172, 709);
-            this.txtCPF.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtCPF.Location = new System.Drawing.Point(129, 576);
+            this.txtCPF.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtCPF.Mask = "000.000.000-00";
             this.txtCPF.Name = "txtCPF";
             this.txtCPF.ReadOnly = true;
-            this.txtCPF.Size = new System.Drawing.Size(194, 34);
+            this.txtCPF.Size = new System.Drawing.Size(146, 29);
             this.txtCPF.TabIndex = 152;
             this.txtCPF.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.txtCPF_MaskInputRejected);
             // 
@@ -292,18 +277,19 @@
             this.panelDados.Controls.Add(this.label11);
             this.panelDados.Controls.Add(this.txtEmail);
             this.panelDados.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelDados.Location = new System.Drawing.Point(493, -4);
-            this.panelDados.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelDados.Location = new System.Drawing.Point(370, -3);
+            this.panelDados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelDados.Name = "panelDados";
-            this.panelDados.Size = new System.Drawing.Size(1193, 891);
+            this.panelDados.Size = new System.Drawing.Size(895, 724);
             this.panelDados.TabIndex = 153;
             this.panelDados.Paint += new System.Windows.Forms.PaintEventHandler(this.panelDados_Paint);
             // 
             // btnEditDadosConfig
             // 
-            this.btnEditDadosConfig.Location = new System.Drawing.Point(374, 638);
+            this.btnEditDadosConfig.Location = new System.Drawing.Point(280, 518);
+            this.btnEditDadosConfig.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnEditDadosConfig.Name = "btnEditDadosConfig";
-            this.btnEditDadosConfig.Size = new System.Drawing.Size(147, 34);
+            this.btnEditDadosConfig.Size = new System.Drawing.Size(110, 28);
             this.btnEditDadosConfig.TabIndex = 158;
             this.btnEditDadosConfig.Text = "Atualizar Telefone";
             this.btnEditDadosConfig.UseVisualStyleBackColor = true;
@@ -313,30 +299,28 @@
             // 
             this.flowLayoutPanelEquipes.AutoScroll = true;
             this.flowLayoutPanelEquipes.Controls.Add(this.pnlEquipe);
-            this.flowLayoutPanelEquipes.Location = new System.Drawing.Point(157, 158);
-            this.flowLayoutPanelEquipes.Margin = new System.Windows.Forms.Padding(4);
+            this.flowLayoutPanelEquipes.Location = new System.Drawing.Point(118, 128);
             this.flowLayoutPanelEquipes.Name = "flowLayoutPanelEquipes";
-            this.flowLayoutPanelEquipes.Size = new System.Drawing.Size(700, 187);
+            this.flowLayoutPanelEquipes.Size = new System.Drawing.Size(525, 152);
             this.flowLayoutPanelEquipes.TabIndex = 157;
             // 
             // pnlEquipe
             // 
-            this.pnlEquipe.Location = new System.Drawing.Point(3, 2);
-            this.pnlEquipe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnlEquipe.Location = new System.Drawing.Point(2, 2);
+            this.pnlEquipe.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlEquipe.Name = "pnlEquipe";
-            this.pnlEquipe.Size = new System.Drawing.Size(379, 138);
+            this.pnlEquipe.Size = new System.Drawing.Size(284, 112);
             this.pnlEquipe.TabIndex = 141;
             this.pnlEquipe.Paint += new System.Windows.Forms.PaintEventHandler(this.panelEquipes_Paint);
             // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(671, 405);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox1.Location = new System.Drawing.Point(503, 329);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(419, 34);
+            this.textBox1.Size = new System.Drawing.Size(315, 28);
             this.textBox1.TabIndex = 156;
             this.textBox1.Text = "X";
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
@@ -345,22 +329,21 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(667, 377);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Location = new System.Drawing.Point(500, 306);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(97, 28);
+            this.label14.Size = new System.Drawing.Size(77, 21);
             this.label14.TabIndex = 155;
             this.label14.Text = "Endereço:";
             // 
             // txtDataNascFunc
             // 
             this.txtDataNascFunc.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDataNascFunc.Location = new System.Drawing.Point(171, 494);
-            this.txtDataNascFunc.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtDataNascFunc.Location = new System.Drawing.Point(128, 401);
+            this.txtDataNascFunc.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtDataNascFunc.Mask = "00/00/0000";
             this.txtDataNascFunc.Name = "txtDataNascFunc";
             this.txtDataNascFunc.ReadOnly = true;
-            this.txtDataNascFunc.Size = new System.Drawing.Size(136, 34);
+            this.txtDataNascFunc.Size = new System.Drawing.Size(103, 29);
             this.txtDataNascFunc.TabIndex = 154;
             this.txtDataNascFunc.ValidatingType = typeof(System.DateTime);
             this.txtDataNascFunc.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.txtDataNascFunc_MaskInputRejected);
@@ -371,10 +354,9 @@
             this.btnTrocarFotoPerfil.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnTrocarFotoPerfil.Image = ((System.Drawing.Image)(resources.GetObject("btnTrocarFotoPerfil.Image")));
             this.btnTrocarFotoPerfil.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnTrocarFotoPerfil.Location = new System.Drawing.Point(273, 172);
-            this.btnTrocarFotoPerfil.Margin = new System.Windows.Forms.Padding(4);
+            this.btnTrocarFotoPerfil.Location = new System.Drawing.Point(205, 140);
             this.btnTrocarFotoPerfil.Name = "btnTrocarFotoPerfil";
-            this.btnTrocarFotoPerfil.Size = new System.Drawing.Size(183, 49);
+            this.btnTrocarFotoPerfil.Size = new System.Drawing.Size(137, 40);
             this.btnTrocarFotoPerfil.TabIndex = 149;
             this.btnTrocarFotoPerfil.Text = "Trocar a foto de perfil";
             this.btnTrocarFotoPerfil.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -386,34 +368,31 @@
             this.IconFuncionario.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.IconFuncionario.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
             this.IconFuncionario.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.IconFuncionario.Location = new System.Drawing.Point(179, 79);
-            this.IconFuncionario.Margin = new System.Windows.Forms.Padding(4);
+            this.IconFuncionario.Location = new System.Drawing.Point(134, 64);
             this.IconFuncionario.Name = "IconFuncionario";
-            this.IconFuncionario.Size = new System.Drawing.Size(80, 74);
+            this.IconFuncionario.Size = new System.Drawing.Size(60, 60);
             this.IconFuncionario.TabIndex = 114;
             this.IconFuncionario.TabStop = false;
             // 
-            // picPerfilMembro
+            // picPerfil
             // 
-            this.picPerfilMembro.BackColor = System.Drawing.Color.Blue;
-            this.picPerfilMembro.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
-            this.picPerfilMembro.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picPerfilMembro.Location = new System.Drawing.Point(16, 751);
-            this.picPerfilMembro.Margin = new System.Windows.Forms.Padding(4);
-            this.picPerfilMembro.Name = "picPerfilMembro";
-            this.picPerfilMembro.Size = new System.Drawing.Size(32, 28);
-            this.picPerfilMembro.TabIndex = 113;
-            this.picPerfilMembro.TabStop = false;
-            this.picPerfilMembro.Click += new System.EventHandler(this.picPerfilMembro_Click);
+            this.picPerfil.BackColor = System.Drawing.Color.Blue;
+            this.picPerfil.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
+            this.picPerfil.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picPerfil.Location = new System.Drawing.Point(12, 610);
+            this.picPerfil.Name = "picPerfil";
+            this.picPerfil.Size = new System.Drawing.Size(24, 23);
+            this.picPerfil.TabIndex = 113;
+            this.picPerfil.TabStop = false;
+            this.picPerfil.Click += new System.EventHandler(this.picPerfilMembro_Click);
             // 
             // btnEquipes
             // 
             this.btnEquipes.BackColor = System.Drawing.Color.Blue;
             this.btnEquipes.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_equip;
-            this.btnEquipes.Location = new System.Drawing.Point(16, 63);
-            this.btnEquipes.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEquipes.Location = new System.Drawing.Point(12, 51);
             this.btnEquipes.Name = "btnEquipes";
-            this.btnEquipes.Size = new System.Drawing.Size(32, 28);
+            this.btnEquipes.Size = new System.Drawing.Size(24, 23);
             this.btnEquipes.TabIndex = 112;
             this.btnEquipes.TabStop = false;
             this.btnEquipes.Click += new System.EventHandler(this.btnEquipes_Click);
@@ -423,10 +402,9 @@
             this.pictureBox9.BackColor = System.Drawing.Color.Blue;
             this.pictureBox9.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_calendar;
             this.pictureBox9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox9.Location = new System.Drawing.Point(16, 111);
-            this.pictureBox9.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox9.Location = new System.Drawing.Point(12, 90);
             this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(32, 28);
+            this.pictureBox9.Size = new System.Drawing.Size(24, 23);
             this.pictureBox9.TabIndex = 111;
             this.pictureBox9.TabStop = false;
             this.pictureBox9.Click += new System.EventHandler(this.pictureBox9_Click);
@@ -436,10 +414,9 @@
             this.btnRanking.BackColor = System.Drawing.Color.Blue;
             this.btnRanking.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_ranking;
             this.btnRanking.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnRanking.Location = new System.Drawing.Point(16, 161);
-            this.btnRanking.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRanking.Location = new System.Drawing.Point(12, 131);
             this.btnRanking.Name = "btnRanking";
-            this.btnRanking.Size = new System.Drawing.Size(32, 28);
+            this.btnRanking.Size = new System.Drawing.Size(24, 23);
             this.btnRanking.TabIndex = 110;
             this.btnRanking.TabStop = false;
             this.btnRanking.Click += new System.EventHandler(this.btnRanking_Click);
@@ -449,10 +426,9 @@
             this.btnLogout.BackColor = System.Drawing.Color.Blue;
             this.btnLogout.BackgroundImage = global::Dev4Tech.Properties.Resources.Nav_Icon_Item;
             this.btnLogout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnLogout.Location = new System.Drawing.Point(16, 698);
-            this.btnLogout.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLogout.Location = new System.Drawing.Point(12, 567);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(32, 28);
+            this.btnLogout.Size = new System.Drawing.Size(24, 23);
             this.btnLogout.TabIndex = 109;
             this.btnLogout.TabStop = false;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
@@ -462,10 +438,9 @@
             this.btnConfigurações.BackColor = System.Drawing.Color.Blue;
             this.btnConfigurações.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_config;
             this.btnConfigurações.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnConfigurações.Location = new System.Drawing.Point(16, 662);
-            this.btnConfigurações.Margin = new System.Windows.Forms.Padding(4);
+            this.btnConfigurações.Location = new System.Drawing.Point(12, 538);
             this.btnConfigurações.Name = "btnConfigurações";
-            this.btnConfigurações.Size = new System.Drawing.Size(32, 28);
+            this.btnConfigurações.Size = new System.Drawing.Size(24, 23);
             this.btnConfigurações.TabIndex = 108;
             this.btnConfigurações.TabStop = false;
             this.btnConfigurações.Click += new System.EventHandler(this.btnConfigurações_Click);
@@ -475,10 +450,9 @@
             this.btnHome.BackColor = System.Drawing.Color.Blue;
             this.btnHome.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_Home;
             this.btnHome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnHome.Location = new System.Drawing.Point(16, 15);
-            this.btnHome.Margin = new System.Windows.Forms.Padding(4);
+            this.btnHome.Location = new System.Drawing.Point(12, 12);
             this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(32, 28);
+            this.btnHome.Size = new System.Drawing.Size(24, 23);
             this.btnHome.TabIndex = 107;
             this.btnHome.TabStop = false;
             this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
@@ -486,18 +460,17 @@
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Blue;
-            this.pictureBox2.Location = new System.Drawing.Point(-4, -4);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox2.Location = new System.Drawing.Point(-3, -3);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(72, 847);
+            this.pictureBox2.Size = new System.Drawing.Size(54, 688);
             this.pictureBox2.TabIndex = 106;
             this.pictureBox2.TabStop = false;
             // 
             // Configuracoes
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1685, 841);
+            this.ClientSize = new System.Drawing.Size(1264, 683);
             this.Controls.Add(this.btnTrocarFotoPerfil);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.textBox5);
@@ -505,7 +478,7 @@
             this.Controls.Add(this.lblNomeFunc);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.IconFuncionario);
-            this.Controls.Add(this.picPerfilMembro);
+            this.Controls.Add(this.picPerfil);
             this.Controls.Add(this.btnEquipes);
             this.Controls.Add(this.pictureBox9);
             this.Controls.Add(this.btnRanking);
@@ -516,7 +489,6 @@
             this.Controls.Add(this.lblPontos);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.panelDados);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Configuracoes";
             this.Text = "Configuracoes";
             this.Load += new System.EventHandler(this.Configuracoes_Load);
@@ -524,7 +496,7 @@
             this.panelDados.PerformLayout();
             this.flowLayoutPanelEquipes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.IconFuncionario)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picPerfilMembro)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPerfil)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEquipes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRanking)).EndInit();
@@ -541,7 +513,7 @@
         private System.Windows.Forms.Label lblPontos;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox picPerfilMembro;
+        private System.Windows.Forms.PictureBox picPerfil;
         private System.Windows.Forms.PictureBox btnEquipes;
         private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.PictureBox btnRanking;
