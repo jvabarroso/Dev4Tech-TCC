@@ -741,43 +741,82 @@ namespace Dev4Tech
         {
             try
             {
-                if (admin == null)
-                {
-                    MessageBox.Show("Administrador não está definido.");
-                    return;
-                }
-                string idStr = admin.getAdminId();
-                if (string.IsNullOrWhiteSpace(idStr) || !int.TryParse(idStr, out int idAdmin))
-                {
-                    MessageBox.Show("ID do administrador inválido.");
-                    return;
-                }
                 string novoTelefone = txtTelefone.Text.Trim();
+
+                // Verificar se o telefone não está vazio
+                if (string.IsNullOrWhiteSpace(novoTelefone))
+                {
+                    MessageBox.Show("Por favor, insira um número de telefone.");
+                    return;
+                }
+
                 using (var conn = new MySqlConnection("server=localhost;database=Dev4Tech;uid=root;pwd="))
                 {
                     conn.Open();
-                    string query = "UPDATE Administradores SET Telefone = @telefone WHERE AdminId = @id";
-                    using (var cmd = new MySqlCommand(query, conn))
+
+                    if (admin != null)
                     {
-                        cmd.Parameters.AddWithValue("@telefone", novoTelefone);
-                        cmd.Parameters.AddWithValue("@id", idAdmin);
-                        int linhasAfetadas = cmd.ExecuteNonQuery();
-                        if (linhasAfetadas > 0)
+                        // Atualizar administrador
+                        string idStrAdm = admin.getAdminId();
+                        if (string.IsNullOrWhiteSpace(idStrAdm) || !int.TryParse(idStrAdm, out int idAdmin))
                         {
-                            admin.setTelefone(novoTelefone);
-                            Sessao.AdminLogado.setTelefone(novoTelefone);
-                            MessageBox.Show("Telefone do administrador atualizado com sucesso!");
+                            MessageBox.Show("ID do administrador inválido.");
+                            return;
                         }
-                        else
+
+                        string queryAdm = "UPDATE Administradores SET telefone = @telefone WHERE AdminId = @id";
+                        using (var cmd = new MySqlCommand(queryAdm, conn))
                         {
-                            MessageBox.Show("Nenhum registro foi atualizado. Verifique o ID do administrador.");
+                            cmd.Parameters.AddWithValue("@telefone", novoTelefone);
+                            cmd.Parameters.AddWithValue("@id", idAdmin);
+                            int rows = cmd.ExecuteNonQuery();
+                            if (rows > 0)
+                            {
+                                admin.setTelefone(novoTelefone);
+                                MessageBox.Show("Telefone atualizado com sucesso!");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Nenhum registro foi atualizado.");
+                            }
                         }
+                    }
+                    else if (funcionario != null)
+                    {
+                        // Atualizar funcionário
+                        string idStrFunc = funcionario.getFuncionarioId();
+                        if (string.IsNullOrWhiteSpace(idStrFunc) || !int.TryParse(idStrFunc, out int idFunc))
+                        {
+                            MessageBox.Show("ID do funcionário inválido.");
+                            return;
+                        }
+
+                        string queryFunc = "UPDATE Funcionarios SET telefone = @telefone WHERE FuncionarioId = @id";
+                        using (var cmd = new MySqlCommand(queryFunc, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@telefone", novoTelefone);
+                            cmd.Parameters.AddWithValue("@id", idFunc);
+                            int rows = cmd.ExecuteNonQuery();
+                            if (rows > 0)
+                            {
+                                funcionario.setTelefone(novoTelefone);
+                                MessageBox.Show("Telefone atualizado com sucesso!");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Nenhum registro foi atualizado.");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Nenhum usuário logado.");
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao atualizar telefone do administrador: {ex.Message}");
+                MessageBox.Show($"Erro ao atualizar telefone: {ex.Message}");
             }
         }
 

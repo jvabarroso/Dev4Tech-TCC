@@ -33,18 +33,22 @@ namespace Dev4Tech
                     string nomeTarefa = tarefa["nomeTarefa"].ToString();
                     string nomeEquipe = tarefa["nome_equipe"].ToString();
                     string dificuldade = tarefa["dificuldade"].ToString();
+                    DataRow relatoProblema = avaliacaoTarefa.BuscarRelatoProblema(idTarefa);
+                    bool temProblema = relatoProblema != null;
+
 
                     bool atrasada = Convert.ToDateTime(tarefa["data_entrega"]) < DateTime.Today;
 
                     Panel painelTarefa = new Panel
                     {
                         Width = panelAvaliacaoEquipes.Width - 40,
-                        Height = atrasada ? 140 : 110,
+                        Height = atrasada ? 140 : (temProblema ? 120 : 110), // Aumenta altura se tem problema
                         Top = top,
                         Left = 10,
                         BorderStyle = BorderStyle.FixedSingle,
                         Tag = idTarefa,
-                        Cursor = Cursors.Default
+                        Cursor = Cursors.Default,
+                        BackColor = temProblema ? Color.LightYellow : SystemColors.Control // Destaque visual
                     };
 
                     // Labels
@@ -110,6 +114,42 @@ namespace Dev4Tech
                     painelTarefa.Controls.Add(rbAceita);
                     painelTarefa.Controls.Add(rbNegada);
 
+                    if (temProblema)
+                    {
+                        Button btnVerProblema = new Button
+                        {
+                            Text = "Ver Problema",
+                            Left = 160,
+                            Top = 85,
+                            Width = 100,
+                            Height = 25,
+                            BackColor = Color.Orange,
+                            ForeColor = Color.White,
+                            Font = new Font("Segoe UI", 8, FontStyle.Bold),
+                            Name = "btnVerProblema_" + idTarefa,
+                            Cursor = Cursors.Hand
+                        };
+
+                        btnVerProblema.Click += (s, e) =>
+                        {
+                            MostrarRelatoProblema(idTarefa, nomeTarefa, relatoProblema);
+                        };
+
+                        painelTarefa.Controls.Add(btnVerProblema);
+
+                        // ADICIONAR INDICADOR VISUAL DE QUE TEM PROBLEMA
+                        Label lblTemProblema = new Label
+                        {
+                            Text = "⚠ Tem problema relatado",
+                            Font = new Font("Segoe UI", 8, FontStyle.Bold),
+                            ForeColor = Color.Red,
+                            Left = 270,
+                            Top = 90,
+                            AutoSize = true
+                        };
+                        painelTarefa.Controls.Add(lblTemProblema);
+                    }
+
                     // Checkbox para atraso justificado, se atrasada
                     CheckBox cbJustificado = null;
                     if (atrasada)
@@ -143,6 +183,90 @@ namespace Dev4Tech
             }
         }
 
+        private void MostrarRelatoProblema(int idTarefa, string nomeTarefa, DataRow relatoProblema)
+        {
+            using (Form formRelato = new Form())
+            {
+                formRelato.Text = $"Relato de Problema - Tarefa: {nomeTarefa} (ID: {idTarefa})";
+                formRelato.Size = new Size(600, 500);
+                formRelato.StartPosition = FormStartPosition.CenterParent;
+                formRelato.MaximizeBox = false;
+                formRelato.MinimizeBox = false;
+                formRelato.FormBorderStyle = FormBorderStyle.FixedDialog;
+
+                // PAINEL PRINCIPAL
+                Panel panelPrincipal = new Panel
+                {
+                    Dock = DockStyle.Fill,
+                    Padding = new Padding(20)
+                };
+
+                // LABELS COM INFORMAÇÕES DO RELATO
+                Label lblEquipe = new Label
+                {
+                    Text = $"Equipe: {relatoProblema["nome_equipe"]}",
+                    Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                    AutoSize = true,
+                    Location = new Point(10, 10)
+                };
+
+                Label lblEmpresa = new Label
+                {
+                    Text = $"Empresa: {relatoProblema["nome_empresa"]}",
+                    Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                    AutoSize = true,
+                    Location = new Point(10, 40)
+                };
+
+                Label lblDescricao = new Label
+                {
+                    Text = "Descrição do Problema:",
+                    Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                    AutoSize = true,
+                    Location = new Point(10, 80)
+                };
+
+                // TEXTBOX PARA A DESCRIÇÃO
+                TextBox txtDescricao = new TextBox
+                {
+                    Multiline = true,
+                    ReadOnly = true,
+                    Text = relatoProblema["descricao"].ToString(),
+                    ScrollBars = ScrollBars.Vertical,
+                    Location = new Point(10, 110),
+                    Size = new Size(550, 250),
+                    BorderStyle = BorderStyle.FixedSingle,
+                    BackColor = Color.White,
+                    ForeColor = Color.Black,
+                    Font = new Font("Segoe UI", 10)
+                };
+
+                // BOTÃO FECHAR
+                Button btnFechar = new Button
+                {
+                    Text = "Fechar",
+                    Size = new Size(100, 35),
+                    Location = new Point(235, 380),
+                    DialogResult = DialogResult.OK,
+                    BackColor = Color.SteelBlue,
+                    ForeColor = Color.White,
+                    Font = new Font("Segoe UI", 9, FontStyle.Bold)
+                };
+
+                btnFechar.Click += (s, e) => formRelato.Close();
+
+                // ADICIONAR CONTROLES AO PAINEL
+                panelPrincipal.Controls.Add(lblEquipe);
+                panelPrincipal.Controls.Add(lblEmpresa);
+                panelPrincipal.Controls.Add(lblDescricao);
+                panelPrincipal.Controls.Add(txtDescricao);
+                panelPrincipal.Controls.Add(btnFechar);
+
+                formRelato.Controls.Add(panelPrincipal);
+                formRelato.ShowDialog();
+            }
+        }
+
         private void AtualizarAvaliacao(int idTarefa, bool aceita)
         {
             if (avaliacoes.ContainsKey(idTarefa))
@@ -172,6 +296,27 @@ namespace Dev4Tech
                 {
                     MessageBox.Show($"Por favor, avalie a tarefa ID {idTarefa}.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
+                }
+
+                // VERIFICAR SE TEM PROBLEMA RELATADO PARA AUXILIAR NA DECISÃO
+                DataRow relatoProblema = av_admin.BuscarRelatoProblema(idTarefa);
+                bool temProblema = relatoProblema != null;
+
+                // SE TEM PROBLEMA E A TAREFA FOI ACEITA, PERGUNTAR SOBRE O ATRASO JUSTIFICADO
+                if (temProblema && info.Aceita.Value && !info.AtrasoJustificado.HasValue)
+                {
+                    string descricaoProblema = relatoProblema["descricao"].ToString();
+                    string nomeEquipe = relatoProblema["nome_equipe"].ToString();
+
+                    var result = MessageBox.Show(
+                        $"A equipe '{nomeEquipe}' relatou um problema nesta tarefa.\n\n" +
+                        $"Problema: {descricaoProblema}\n\n" +
+                        "Deseja considerar o atraso como justificado devido a este problema?",
+                        "Problema Relatado",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
+
+                    info.AtrasoJustificado = (result == DialogResult.Yes);
                 }
 
                 av_admin.SalvarAvaliacao(idTarefa, info.Aceita.Value, info.AtrasoJustificado);

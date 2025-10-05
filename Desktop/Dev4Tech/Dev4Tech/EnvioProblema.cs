@@ -7,7 +7,7 @@ namespace Dev4Tech
     {
         public void InserirRelato(int idTarefa, int idEquipe, int idEmpresa, string descricao)
         {
-            string query = "INSERT INTO RelatosProblema (id_tarefa, id_equipe, id_empresa, descricao) VALUES (@idTarefa, @idEquipe, @idEmpresa, @descricao)";
+            string query = "INSERT INTO RelatoProblema (id_tarefa, id_equipe, id_empresa, descricao) VALUES (@idTarefa, @idEquipe, @idEmpresa, @descricao)";
             if (abrirConexao())
             {
                 try

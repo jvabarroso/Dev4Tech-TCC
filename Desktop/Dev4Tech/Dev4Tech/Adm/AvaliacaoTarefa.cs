@@ -279,5 +279,39 @@ namespace Dev4Tech
             }
             return avaliacao;
         }
+        public DataRow BuscarRelatoProblema(int idTarefa)
+        {
+            DataTable dt = new DataTable();
+            string query = @"
+        SELECT 
+            rp.idProblema,
+            rp.descricao,
+            rp.id_equipe,
+            rp.id_empresa,
+            e.nome_equipe,
+            emp.nome_empresa
+        FROM RelatoProblema rp
+        INNER JOIN Equipes e ON rp.id_equipe = e.id_equipe
+        INNER JOIN Empresas emp ON rp.id_empresa = emp.id_empresa
+        WHERE rp.id_tarefa = @idTarefa
+        LIMIT 1";
+
+            if (abrirConexao())
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, conectar);
+                    cmd.Parameters.AddWithValue("@idTarefa", idTarefa);
+                    MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                    da.Fill(dt);
+                }
+                finally
+                {
+                    fecharConexao();
+                }
+            }
+
+            return dt.Rows.Count > 0 ? dt.Rows[0] : null;
+        }
     }
 }
