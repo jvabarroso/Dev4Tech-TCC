@@ -110,54 +110,56 @@ namespace Dev4Tech
             FiltroEquipes filtro = new FiltroEquipes();
             DataTable dt = filtro.ObterEquipesComMembrosComFotos(filtroCategoria);
 
-            var equipes = dt.AsEnumerable()
-                            .GroupBy(row => new
-                            {
-                                id_equipe = row.Field<int>("id_equipe"),
-                                nome_equipe = row.Field<string>("nome_equipe"),
-                                categoria = row.Field<string>("nome_categoria"),
-                                foto_equipe = row["foto_equipe"],
-                                ultima_atividade = row.IsNull("ultima_atividade") ? (DateTime?)null : row.Field<DateTime>("ultima_atividade")
-                            });
+            // Agrupa por equipe usando Distinct
+            var equipesDistinct = dt.AsEnumerable()
+                .Select(row => new
+                {
+                    id_equipe = row.Field<int>("id_equipe"),
+                    nome_equipe = row.Field<string>("nome_equipe"),
+                    categoria = row.Field<string>("nome_categoria"),
+                    foto_equipe = row["foto_equipe"],
+                    ultima_atividade = row.IsNull("ultima_atividade") ? (DateTime?)null : row.Field<DateTime>("ultima_atividade")
+                })
+                .Distinct()  // Remove duplicatas
+                .ToList();
 
-            foreach (var equipe in equipes)
+            foreach (var equipe in equipesDistinct)
             {
                 int diasDesdeUltimaAtividade = -1;
-                if (equipe.Key.ultima_atividade.HasValue)
-                    diasDesdeUltimaAtividade = (DateTime.Now - equipe.Key.ultima_atividade.Value).Days;
+                if (equipe.ultima_atividade.HasValue)
+                    diasDesdeUltimaAtividade = (DateTime.Now - equipe.ultima_atividade.Value).Days;
 
+                // Filtra os membros apenas para esta equipe
                 var membros = dt.AsEnumerable()
-                .Where(r => r.Field<int>("id_equipe") == equipe.Key.id_equipe)
-                .Select(r =>
-                {
-                    object fotoObj = r["foto_perfil"];
-                    string caminhoFoto = null;
-                    byte[] blobFoto = null;
-                    if (fotoObj is byte[] bytes)
-                        blobFoto = bytes;
-                    else if (fotoObj is string s)
-                        caminhoFoto = s;
-                    return new MembroEquipe
+                    .Where(r => r.Field<int>("id_equipe") == equipe.id_equipe)
+                    .Select(r =>
                     {
-                        IdFuncionario = r.Field<int>("FuncionarioId"),
-                        Nome = r.Field<string>("nome_funcionario"),
-                        CaminhoFotoPerfil = caminhoFoto,
-                        FotoBlob = blobFoto
-                    };
-                }).ToList();
+                        object fotoObj = r["foto_perfil"];
+                        string caminhoFoto = null;
+                        byte[] blobFoto = null;
+                        if (fotoObj is byte[] bytes)
+                            blobFoto = bytes;
+                        else if (fotoObj is string s)
+                            caminhoFoto = s;
+                        return new MembroEquipe
+                        {
+                            IdFuncionario = r.Field<int>("FuncionarioId"),
+                            Nome = r.Field<string>("nome_funcionario"),
+                            CaminhoFotoPerfil = caminhoFoto,
+                            FotoBlob = blobFoto
+                        };
+                    }).ToList();
 
                 AdicionarPainelEquipe(
-                    equipe.Key.nome_equipe,
-                    equipe.Key.categoria,
+                    equipe.nome_equipe,
+                    equipe.categoria,
                     membros,
-                    equipe.Key.id_equipe,
+                    equipe.id_equipe,
                     diasDesdeUltimaAtividade,
-                    equipe.Key.foto_equipe // PASSAMOS A FOTO DA EQUIPE
+                    equipe.foto_equipe
                 );
             }
         }
-
-
 
         public class MembroEquipe
         {
@@ -399,37 +401,6 @@ namespace Dev4Tech
             }
         }
         private void PesquisaEquipes_Load(object sender, EventArgs e) { }
-
-        private string ObterFotoEquipeNomeArquivo(int idEquipe)
-{
-    string nomeArquivo = null;
-    string query = "SELECT foto_equipe FROM Equipes WHERE id_equipe = @idEquipe LIMIT 1";
-    string connectionString = "Server=localhost;Database=Dev4Tech;Uid=root;Pwd=;SslMode=none;";
-    
-    using (var conn = new MySqlConnection(connectionString))
-    {
-        conn.Open();
-        using (var cmd = new MySqlCommand(query, conn))
-        {
-            cmd.Parameters.AddWithValue("@idEquipe", idEquipe);
-            var resultado = cmd.ExecuteScalar();
-            
-            if (resultado != null && resultado != DBNull.Value)
-            {
-                // Se for byte[] (LONGBLOB), converter para string
-                if (resultado is byte[] bytes)
-                {
-                    nomeArquivo = System.Text.Encoding.UTF8.GetString(bytes);
-                }
-                else
-                {
-                    nomeArquivo = resultado.ToString();
-                }
-            }
-        }
-    }
-    return nomeArquivo;
-}
         private Image ObterFotoEquipeDosDados(object fotoData)
         {
             Image fotoEquipe = null;
