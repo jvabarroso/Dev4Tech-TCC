@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
-using MySql;
-using MySql.Data;
 using System.Windows.Forms.DataVisualization.Charting;
 
 
@@ -44,6 +39,7 @@ namespace Dev4Tech
             CarregarGrafico();
             CarregarEquipeSelecionada();
             CarregarFuncionariosEquipe();
+            CarregarFotoEquipe();
         }
 
 
@@ -78,8 +74,13 @@ namespace Dev4Tech
             if (dt.Rows.Count == 0) return;
             DataRow row = dt.Rows[0];
             string nomeEquipe = row["nome_equipe"].ToString();
+            string categoriaEquipe = row["nome_categoria"].ToString();
             int pontosEquipe = Convert.ToInt32(row["pontos"]);
             List<MembroEquipe> membros = dao.BuscarMembrosEquipe(idEquipe);
+
+            // ATUALIZAR OS LABELS DO TOPO DO FORMULÁRIO
+            lblNomeEquipe.Text = nomeEquipe;
+            lblCategoriaEquipe.Text = categoriaEquipe;
 
             int alturaPainel = 90;
             Panel equipePanel = new Panel
@@ -126,7 +127,7 @@ namespace Dev4Tech
             };
             equipePanel.Controls.Add(lblRank);
 
-            Label lblNomeEquipe = new Label
+            Label lblNomeEquipePanel = new Label
             {
                 Text = nomeEquipe,
                 Font = new Font("Segoe UI", 13, FontStyle.Bold),
@@ -134,7 +135,7 @@ namespace Dev4Tech
                 Top = 20,
                 AutoSize = true
             };
-            equipePanel.Controls.Add(lblNomeEquipe);
+            equipePanel.Controls.Add(lblNomeEquipePanel);
 
             Label lblPontos = new Label
             {
@@ -142,7 +143,7 @@ namespace Dev4Tech
                 Font = new Font("Segoe UI", 11, FontStyle.Regular),
                 ForeColor = Color.DodgerBlue,
                 Left = picIcone.Right + 60,
-                Top = lblNomeEquipe.Bottom + 7,
+                Top = lblNomeEquipePanel.Bottom + 7,
                 AutoSize = true
             };
             equipePanel.Controls.Add(lblPontos);
@@ -171,6 +172,32 @@ namespace Dev4Tech
             panelEquipe.Refresh();
         }
 
+        private void CarregarFotoEquipe()
+        {
+            try
+            {
+                Chat_Mensagens chatMensagens = new Chat_Mensagens();
+                Image fotoEquipe = chatMensagens.ObterFotoEquipe(this.idEquipe);
+
+                if (fotoEquipe != null)
+                {
+                    iconFotoEquipe.Image = fotoEquipe;
+                    iconFotoEquipe.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                else
+                {
+                    // Usar imagem padrão se não encontrar foto
+                    iconFotoEquipe.Image = Properties.Resources.icon_EquipLogo;
+                    iconFotoEquipe.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao carregar foto da equipe: {ex.Message}");
+                iconFotoEquipe.Image = Properties.Resources.icon_EquipLogo;
+                iconFotoEquipe.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+        }
 
         public void CarregarGrafico()
         {
@@ -334,6 +361,8 @@ namespace Dev4Tech
                 }
             }
         }
+
+
 
         private void btnHome_Click_1(object sender, EventArgs e)
         {

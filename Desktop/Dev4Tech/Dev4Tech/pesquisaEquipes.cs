@@ -108,55 +108,44 @@ namespace Dev4Tech
             panelEquipes.Controls.Clear();
             mensagensCount = 0;
             FiltroEquipes filtro = new FiltroEquipes();
-            DataTable dt = filtro.ObterEquipesComMembrosComFotos(filtroCategoria);
 
-            // Agrupa por equipe usando Distinct
-            var equipesDistinct = dt.AsEnumerable()
-                .Select(row => new
-                {
-                    id_equipe = row.Field<int>("id_equipe"),
-                    nome_equipe = row.Field<string>("nome_equipe"),
-                    categoria = row.Field<string>("nome_categoria"),
-                    foto_equipe = row["foto_equipe"],
-                    ultima_atividade = row.IsNull("ultima_atividade") ? (DateTime?)null : row.Field<DateTime>("ultima_atividade")
-                })
-                .Distinct()  // Remove duplicatas
-                .ToList();
+            // Get distinct teams without members
+            DataTable equipesDt = filtro.ObterEquipesDoUsuario(filtroCategoria);
 
-            foreach (var equipe in equipesDistinct)
+            foreach (DataRow equipe in equipesDt.Rows)
             {
+                int idEquipe = equipe.Field<int>("id_equipe");
                 int diasDesdeUltimaAtividade = -1;
-                if (equipe.ultima_atividade.HasValue)
-                    diasDesdeUltimaAtividade = (DateTime.Now - equipe.ultima_atividade.Value).Days;
+                if (!equipe.IsNull("ultima_atividade"))
+                    diasDesdeUltimaAtividade = (DateTime.Now - equipe.Field<DateTime>("ultima_atividade")).Days;
 
-                // Filtra os membros apenas para esta equipe
-                var membros = dt.AsEnumerable()
-                    .Where(r => r.Field<int>("id_equipe") == equipe.id_equipe)
-                    .Select(r =>
+                // Get members for this specific team
+                DataTable membrosDt = filtro.ObterMembrosDaEquipe(idEquipe);
+                var membros = membrosDt.AsEnumerable().Select(r =>
+                {
+                    object fotoObj = r["foto_perfil"];
+                    string caminhoFoto = null;
+                    byte[] blobFoto = null;
+                    if (fotoObj is byte[] bytes)
+                        blobFoto = bytes;
+                    else if (fotoObj is string s)
+                        caminhoFoto = s;
+                    return new MembroEquipe
                     {
-                        object fotoObj = r["foto_perfil"];
-                        string caminhoFoto = null;
-                        byte[] blobFoto = null;
-                        if (fotoObj is byte[] bytes)
-                            blobFoto = bytes;
-                        else if (fotoObj is string s)
-                            caminhoFoto = s;
-                        return new MembroEquipe
-                        {
-                            IdFuncionario = r.Field<int>("FuncionarioId"),
-                            Nome = r.Field<string>("nome_funcionario"),
-                            CaminhoFotoPerfil = caminhoFoto,
-                            FotoBlob = blobFoto
-                        };
-                    }).ToList();
+                        IdFuncionario = r.Field<int>("FuncionarioId"),
+                        Nome = r.Field<string>("nome_funcionario"),
+                        CaminhoFotoPerfil = caminhoFoto,
+                        FotoBlob = blobFoto
+                    };
+                }).ToList();
 
                 AdicionarPainelEquipe(
-                    equipe.nome_equipe,
-                    equipe.categoria,
+                    equipe.Field<string>("nome_equipe"),
+                    equipe.Field<string>("nome_categoria"),
                     membros,
-                    equipe.id_equipe,
+                    idEquipe,
                     diasDesdeUltimaAtividade,
-                    equipe.foto_equipe
+                    equipe["foto_equipe"]
                 );
             }
         }

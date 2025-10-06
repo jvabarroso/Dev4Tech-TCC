@@ -46,14 +46,17 @@ namespace Dev4Tech
         {
             DataTable dt = new DataTable();
             string query = @"
-                    SELECT e.id_equipe, e.nome_equipe, 
-                           IFNULL(SUM(pf.pontos),0) AS pontos
-                    FROM Equipes e
-                    LEFT JOIN Equipes_Membros em ON em.id_equipe = e.id_equipe
-                    LEFT JOIN PontuacaoFuncionario pf ON pf.id_funcionario = em.FuncionarioId
-                    WHERE e.id_equipe = @idEquipe
-                    GROUP BY e.id_equipe, e.nome_equipe";
-            using (var conn = new MySqlConnection(conexaoString))
+        SELECT e.id_equipe, e.nome_equipe, 
+               IFNULL(SUM(pf.pontos),0) AS pontos,
+               c.nome_categoria  -- ADICIONE ESTA COLUNA
+        FROM Equipes e
+        LEFT JOIN Equipes_Membros em ON em.id_equipe = e.id_equipe
+        LEFT JOIN PontuacaoFuncionario pf ON pf.id_funcionario = em.FuncionarioId
+        INNER JOIN Categorias c ON e.id_categoria = c.id_categoria  -- ADICIONE ESTE JOIN
+        WHERE e.id_equipe = @idEquipe
+        GROUP BY e.id_equipe, e.nome_equipe, c.nome_categoria";
+
+    using (var conn = new MySqlConnection(conexaoString))
             {
                 conn.Open();
                 var cmd = new MySqlCommand(query, conn);

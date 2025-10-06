@@ -24,7 +24,6 @@ namespace Dev4Tech
             CarregarFotoUsuario();
         }
 
-
         private void CarregarRankingEquipes()
         {
             panelRankingEquipes.Controls.Clear();

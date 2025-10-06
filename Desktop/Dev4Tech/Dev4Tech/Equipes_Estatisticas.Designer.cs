@@ -28,23 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.lblMembros = new System.Windows.Forms.Label();
             this.lblRanking = new System.Windows.Forms.Label();
             this.lblTarefas = new System.Windows.Forms.Label();
             this.lblGeral = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblCategoriaEquipe = new System.Windows.Forms.Label();
+            this.iconFotoEquipe = new System.Windows.Forms.PictureBox();
+            this.lblNomeEquipe = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.btnEquipes = new System.Windows.Forms.PictureBox();
@@ -65,7 +65,7 @@
             this.panelEquipe = new System.Windows.Forms.Panel();
             this.flpRankFunc = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconFotoEquipe)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEquipes)).BeginInit();
@@ -134,53 +134,53 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.pictureBox3);
-            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.lblCategoriaEquipe);
+            this.groupBox1.Controls.Add(this.iconFotoEquipe);
+            this.groupBox1.Controls.Add(this.lblNomeEquipe);
             this.groupBox1.Location = new System.Drawing.Point(80, 75);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(199, 81);
             this.groupBox1.TabIndex = 114;
             this.groupBox1.TabStop = false;
             // 
-            // label4
+            // lblCategoriaEquipe
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(47, 44);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(147, 13);
-            this.label4.TabIndex = 61;
-            this.label4.Text = "Desenvolvedor de software";
+            this.lblCategoriaEquipe.AutoSize = true;
+            this.lblCategoriaEquipe.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCategoriaEquipe.Location = new System.Drawing.Point(47, 44);
+            this.lblCategoriaEquipe.Name = "lblCategoriaEquipe";
+            this.lblCategoriaEquipe.Size = new System.Drawing.Size(147, 13);
+            this.lblCategoriaEquipe.TabIndex = 61;
+            this.lblCategoriaEquipe.Text = "Desenvolvedor de software";
             // 
-            // pictureBox3
+            // iconFotoEquipe
             // 
-            this.pictureBox3.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(4, 17);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(38, 41);
-            this.pictureBox3.TabIndex = 39;
-            this.pictureBox3.TabStop = false;
+            this.iconFotoEquipe.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
+            this.iconFotoEquipe.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.iconFotoEquipe.Location = new System.Drawing.Point(4, 17);
+            this.iconFotoEquipe.Margin = new System.Windows.Forms.Padding(2);
+            this.iconFotoEquipe.Name = "iconFotoEquipe";
+            this.iconFotoEquipe.Size = new System.Drawing.Size(38, 41);
+            this.iconFotoEquipe.TabIndex = 39;
+            this.iconFotoEquipe.TabStop = false;
             // 
-            // label3
+            // lblNomeEquipe
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(47, 17);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 13);
-            this.label3.TabIndex = 60;
-            this.label3.Text = "EQUIPE 1";
+            this.lblNomeEquipe.AutoSize = true;
+            this.lblNomeEquipe.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNomeEquipe.Location = new System.Drawing.Point(47, 17);
+            this.lblNomeEquipe.Name = "lblNomeEquipe";
+            this.lblNomeEquipe.Size = new System.Drawing.Size(53, 13);
+            this.lblNomeEquipe.TabIndex = 60;
+            this.lblNomeEquipe.Text = "EQUIPE 1";
             // 
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.pictureBox2.Location = new System.Drawing.Point(53, 0);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(306, 688);
             this.pictureBox2.TabIndex = 113;
@@ -310,52 +310,52 @@
             // 
             // chartPontuacao
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chartPontuacao.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.chartPontuacao.Legends.Add(legend4);
+            chartArea1.Name = "ChartArea1";
+            this.chartPontuacao.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartPontuacao.Legends.Add(legend1);
             this.chartPontuacao.Location = new System.Drawing.Point(449, 290);
             this.chartPontuacao.Name = "chartPontuacao";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
-            series4.Legend = "Legend1";
-            series4.Name = "Contribuições";
-            this.chartPontuacao.Series.Add(series4);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
+            series1.Legend = "Legend1";
+            series1.Name = "Contribuições";
+            this.chartPontuacao.Series.Add(series1);
             this.chartPontuacao.Size = new System.Drawing.Size(371, 161);
             this.chartPontuacao.TabIndex = 141;
             this.chartPontuacao.Text = "chart1";
             // 
             // chartDificuldade
             // 
-            chartArea5.Name = "ChartArea1";
-            this.chartDificuldade.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            this.chartDificuldade.Legends.Add(legend5);
+            chartArea2.Name = "ChartArea1";
+            this.chartDificuldade.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartDificuldade.Legends.Add(legend2);
             this.chartDificuldade.Location = new System.Drawing.Point(886, 294);
             this.chartDificuldade.Name = "chartDificuldade";
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
-            series5.Legend = "Legend1";
-            series5.Name = "Desempenho";
-            this.chartDificuldade.Series.Add(series5);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+            series2.Legend = "Legend1";
+            series2.Name = "Desempenho";
+            this.chartDificuldade.Series.Add(series2);
             this.chartDificuldade.Size = new System.Drawing.Size(280, 146);
             this.chartDificuldade.TabIndex = 142;
             this.chartDificuldade.Text = "chart2";
             // 
             // chartEntregaTarefa
             // 
-            chartArea6.Name = "ChartArea1";
-            this.chartEntregaTarefa.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            this.chartEntregaTarefa.Legends.Add(legend6);
+            chartArea3.Name = "ChartArea1";
+            this.chartEntregaTarefa.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chartEntregaTarefa.Legends.Add(legend3);
             this.chartEntregaTarefa.Location = new System.Drawing.Point(449, 477);
             this.chartEntregaTarefa.Name = "chartEntregaTarefa";
             this.chartEntregaTarefa.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
-            series6.Legend = "Legend1";
-            series6.Name = "Entrega";
-            this.chartEntregaTarefa.Series.Add(series6);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+            series3.Legend = "Legend1";
+            series3.Name = "Entrega";
+            this.chartEntregaTarefa.Series.Add(series3);
             this.chartEntregaTarefa.Size = new System.Drawing.Size(371, 192);
             this.chartEntregaTarefa.TabIndex = 143;
             this.chartEntregaTarefa.Text = "chart3";
@@ -388,7 +388,7 @@
             // panelEquipe
             // 
             this.panelEquipe.Location = new System.Drawing.Point(434, 98);
-            this.panelEquipe.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelEquipe.Margin = new System.Windows.Forms.Padding(2);
             this.panelEquipe.Name = "panelEquipe";
             this.panelEquipe.Size = new System.Drawing.Size(654, 116);
             this.panelEquipe.TabIndex = 153;
@@ -397,7 +397,7 @@
             // 
             this.flpRankFunc.AutoScroll = true;
             this.flpRankFunc.Location = new System.Drawing.Point(890, 477);
-            this.flpRankFunc.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flpRankFunc.Margin = new System.Windows.Forms.Padding(2);
             this.flpRankFunc.Name = "flpRankFunc";
             this.flpRankFunc.Size = new System.Drawing.Size(275, 157);
             this.flpRankFunc.TabIndex = 154;
@@ -436,7 +436,7 @@
             this.Load += new System.EventHandler(this.Equipes_Estatisticas_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconFotoEquipe)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEquipes)).EndInit();
@@ -461,9 +461,9 @@
         private System.Windows.Forms.Label lblTarefas;
         private System.Windows.Forms.Label lblGeral;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblCategoriaEquipe;
+        private System.Windows.Forms.PictureBox iconFotoEquipe;
+        private System.Windows.Forms.Label lblNomeEquipe;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.PictureBox btnEquipes;

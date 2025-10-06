@@ -35,7 +35,7 @@
             this.lblGeral = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.iconFotoEquipe = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -119,7 +119,7 @@
             this.lblPlanejamento = new System.Windows.Forms.Label();
             this.panelRankingEquipes = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconFotoEquipe)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEstatisticas)).BeginInit();
@@ -226,12 +226,12 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.pictureBox3);
+            this.groupBox1.Controls.Add(this.iconFotoEquipe);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(90, 76);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(199, 81);
             this.groupBox1.TabIndex = 91;
             this.groupBox1.TabStop = false;
@@ -246,16 +246,16 @@
             this.label4.TabIndex = 61;
             this.label4.Text = "Desenvolvedor de software";
             // 
-            // pictureBox3
+            // iconFotoEquipe
             // 
-            this.pictureBox3.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(4, 17);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(40, 40);
-            this.pictureBox3.TabIndex = 39;
-            this.pictureBox3.TabStop = false;
+            this.iconFotoEquipe.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
+            this.iconFotoEquipe.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.iconFotoEquipe.Location = new System.Drawing.Point(4, 17);
+            this.iconFotoEquipe.Margin = new System.Windows.Forms.Padding(2);
+            this.iconFotoEquipe.Name = "iconFotoEquipe";
+            this.iconFotoEquipe.Size = new System.Drawing.Size(40, 40);
+            this.iconFotoEquipe.TabIndex = 39;
+            this.iconFotoEquipe.TabStop = false;
             // 
             // label3
             // 
@@ -414,7 +414,7 @@
             this.pictureBox12.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
             this.pictureBox12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox12.Location = new System.Drawing.Point(76, 16);
-            this.pictureBox12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox12.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox12.Name = "pictureBox12";
             this.pictureBox12.Size = new System.Drawing.Size(40, 40);
             this.pictureBox12.TabIndex = 62;
@@ -566,7 +566,7 @@
             this.pictureBox24.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
             this.pictureBox24.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox24.Location = new System.Drawing.Point(76, 16);
-            this.pictureBox24.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox24.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox24.Name = "pictureBox24";
             this.pictureBox24.Size = new System.Drawing.Size(40, 40);
             this.pictureBox24.TabIndex = 62;
@@ -718,7 +718,7 @@
             this.pictureBox31.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
             this.pictureBox31.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox31.Location = new System.Drawing.Point(76, 16);
-            this.pictureBox31.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox31.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox31.Name = "pictureBox31";
             this.pictureBox31.Size = new System.Drawing.Size(40, 40);
             this.pictureBox31.TabIndex = 62;
@@ -859,7 +859,7 @@
             this.pictureBox38.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
             this.pictureBox38.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox38.Location = new System.Drawing.Point(57, 16);
-            this.pictureBox38.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox38.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox38.Name = "pictureBox38";
             this.pictureBox38.Size = new System.Drawing.Size(40, 40);
             this.pictureBox38.TabIndex = 62;
@@ -1000,7 +1000,7 @@
             this.pictureBox45.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
             this.pictureBox45.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox45.Location = new System.Drawing.Point(57, 18);
-            this.pictureBox45.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox45.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox45.Name = "pictureBox45";
             this.pictureBox45.Size = new System.Drawing.Size(40, 40);
             this.pictureBox45.TabIndex = 62;
@@ -1030,7 +1030,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.pictureBox2.Location = new System.Drawing.Point(57, 0);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(306, 688);
             this.pictureBox2.TabIndex = 90;
@@ -1182,7 +1182,7 @@
             this.Load += new System.EventHandler(this.Ranking_Equipes_Load_1);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconFotoEquipe)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
@@ -1251,7 +1251,7 @@
         private System.Windows.Forms.Label lblGeral;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox iconFotoEquipe;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox picPerfil;
