@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, Image, FlatList, TextInput, TouchableOpacity, ScrollView} from 'react-native';
-//import { PieChart } from 'react-native-svg-charts';
-//import { AnimatedCircularProgress } from 'react-native-circular-progress';
+import { PieChart } from 'react-native-gifted-charts';
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
 import { Ionicons } from '@expo/vector-icons';
@@ -199,12 +198,12 @@ export default function RankingEstastistico({navigation, route}){
                                     data={
                                         totalGeral> 0
                                         ?dificuldade.map((item, index) => ({
-                                        key: index,
-                                        value: Number(item.total),
-                                        svg: { fill: cores[item.dificuldade] || "#ccc"},
-                                    })) : [{ key: 0, value: 1, svg: { fill: "#e0e0e0" } }]}
-                                    innerRadius={"45%"}
-                                    padAngle={0.01}
+                                            value: Number(item.total),
+                                            color: cores[item.dificuldade] || "#ccc",
+                                    })) : [{ value: 1, color: "#e0e0e0" }]}
+                                    donut
+                                    showText
+                                    radius={60}
                                 />
                             </View>
                             <View style={styles.areapontos}>

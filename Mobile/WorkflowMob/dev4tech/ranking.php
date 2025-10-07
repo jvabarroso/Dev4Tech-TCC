@@ -21,7 +21,7 @@ try {
         e.nome_equipe, 
         e.id_categoria, 
         c.nome_categoria,
-        CONCAT('http://10.239.20.68/dev4tech/img/', foto_equipe) AS foto_url,
+        CONCAT('http://', :server_ip, '/dev4tech/img/', foto_equipe) AS foto_url,
         COALESCE(SUM(pf.pontos), 0) AS pontuacao_total
     FROM Equipes e
     LEFT JOIN Equipes_Membros em ON e.id_equipe = em.id_equipe
@@ -33,6 +33,7 @@ try {
     ORDER BY pontuacao_total DESC");
     
     $query->bindValue(':id_empresa', $id_empresa, PDO::PARAM_INT);
+    $query->bindValue(':server_ip', $SERVER_IP, PDO::PARAM_STR);
     $query->execute();
     $equipes = $query->fetchAll(PDO::FETCH_ASSOC);
 

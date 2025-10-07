@@ -85,6 +85,8 @@ export const getStyles = (theme) => StyleSheet.create({
     borderBottom: 0.10,
     borderColor: theme.border,
     padding:10,
+    marginLeft:16,
+    width: 290,
   },
   containerequipes: {
     borderRadius: 10,

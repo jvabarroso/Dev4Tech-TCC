@@ -22,7 +22,7 @@ try {
         e.nome_equipe, 
         e.id_categoria, 
         e.data_criacao,
-        CONCAT('http://10.239.20.68/dev4tech/img/', foto_equipe) AS foto_url,
+        CONCAT('http://', :server_ip, '/dev4tech/img/', foto_equipe) AS foto_url,
         c.nome_categoria
     FROM Equipes e
     JOIN Equipes_Membros em ON e.id_equipe = em.id_equipe
@@ -30,6 +30,7 @@ try {
     WHERE em.FuncionarioId = :id_funcionario");
     
     $query->bindValue(':id_funcionario', $id_funcionario, PDO::PARAM_INT);
+    $query->bindValue(':server_ip', $SERVER_IP, PDO::PARAM_STR);
     $query->execute();
     $equipes = $query->fetchAll(PDO::FETCH_ASSOC);
 

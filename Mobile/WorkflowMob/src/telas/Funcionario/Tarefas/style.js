@@ -63,6 +63,7 @@ export const getStyles = (theme) => StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 10,
+    position: 'relative'
   },
   textosTarefa: {
     marginLeft: 10,
@@ -90,16 +91,30 @@ export const getStyles = (theme) => StyleSheet.create({
   },
   textolistacargo: {
     color: theme.text,
-    fontSize: 15,
+    fontSize: 13,
     fontFamily: fonts.text,
     backgroundColor: theme.inputBackground2,
     borderRadius: 15,
-    paddingHorizontal: 7,
-    paddingVertical: 3,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
   },
   textolistadata: {
     color: theme.text,
     fontSize: 14,
     fontFamily: fonts.text,
+    marginTop:4,
+  },
+  containerfiltro:{
+    position: 'absolute',
+    backgroundColor: "#4CAF50",
+    borderRadius: 10,
+    paddingHorizontal: 5,
+    left:260
+  },
+  textofiltro:{
+    color: "#fff",
+    fontSize: 13,
+    fontFamily: fonts.text,
+    padding:5,
   },
 });

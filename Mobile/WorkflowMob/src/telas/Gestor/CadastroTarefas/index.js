@@ -1,105 +1,351 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import { Text, View, TouchableOpacity, Image, ScrollView, TextInput} from 'react-native';
+import { Dropdown } from 'react-native-element-dropdown';
+import { showMessage } from "react-native-flash-message";
+import * as DocumentPicker from 'expo-document-picker';
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
-
-
 import { Ionicons } from '@expo/vector-icons';
 
-export default function CadastroTarefas({navigation}){
+import url from '../../../../services/url';
+import api from '../../../../services/api';
+import fonts from "../../../styles/fonts";
+
+export default function CadastroTarefas({ route, navigation }){
     const { theme } = useTheme();
     const styles = getStyles(theme);
+
+    const usuario = route.params?.usuario;
+    const [sucess, setSucess] = useState(false); 
+
+    const [nomeTarefa, setNomeTarefa] = useState('');
+    const [instrucoes, setInstrucoes] = useState('');
+    const [data, setData] = useState('');
+    const [dados, setDados] = useState([]);
+    const [equipe, setEquipe] = useState(null);
+    const [equipeselecionada, setEquipeSelecionada] = useState(null);
+    const [dificuldadeselecionada, setDificuldadeSelecionada] = useState(null);
+    const [file, setFile] = useState(null);
+
+
+    const dificuldadeOptions = [
+    { label: "Fácil", value: "facil" },
+    { label: "Médio", value: "medio" },
+    { label: "Difícil", value: "dificil" },
+    ];
+
+    //Formata a Data para o Banco
+    function formatarDataParaBanco(data) {
+      if (!data) return '';
+      
+      // Se já está no formato do banco, retorna direto
+      if (/^\d{4}-\d{2}-\d{2}$/.test(data)) return data;
+      
+      // Converte de DD/MM/AAAA para AAAA-MM-DD
+      const partes = data.split('/');
+      if (partes.length === 3) {
+        return `${partes[2]}-${partes[1]}-${partes[0]}`;
+      }
+      return data;
+    }
+
+    //Formata a Data
+    function formatarDataInput(text) {
+      let data = text.replace(/\D/g, '');
+      
+      if (data.length > 2) data = `${data.slice(0,2)}/${data.slice(2)}`;
+      if (data.length > 5) data = `${data.slice(0,5)}/${data.slice(5,9)}`;
+      
+      return data.slice(0,10);
+    }
     
-    const [equipe, setEquipe] = useState([
-        {
-            id: '1',
-            titulo: 'Equipe 1',
-            cargo: 'Desenvolvimento de Software',
-            tarefaspostadas: 20,
-            quantdeproblemas:6,
-            tarefasatrasadas:1,
-            tarefasnaoentregues: 6,
-            imagem: require('../../../../assets/img/image.png'),
-        },
-        {
-            id: '2',
-            titulo: 'Equipe 2',
-            cargo: 'Design',
-            tarefaspostadas: 10,
-            quantdeproblemas:2,
-            tarefasatrasadas:2,
-            tarefasnaoentregues: 2,
-            imagem: require('../../../../assets/img/image.png'),
+    //Lista Equipes
+    async function listarDados() {
+    if (!usuario?.AdminId) {
+            console.log("ID do usuário não disponível");
+            return;
+    }
+    
+    try {
+        const res = await api.get(`dev4tech/equipeadm.php`, {
+        params: {
+            id_administrador: usuario.AdminId // Use o ID do usuário logado
         }
-    ]);
+        });
 
-    const [equipes, setequipes] = useState(true);
-    const [equipeselecionada, setEquipeselecionada] = useState(null);
+        if (res.data.success) {
+        setDados(res.data.result || []);
+        } else {
+        console.log("Erro na API:", res.data.message);
+        setDados([]);
+        }
+    }
+    catch (error) {
+        console.log("Erro ao listar equipes:", error);
+    }
+    }
 
-    const cliqueinformacao = () => 
-        {
-            setequipes(valorAtual => !valorAtual); 
+    useEffect(() => {
+        listarDados();
+    }, [usuario?.AdminId]);
+
+    //Seleciona o Arquivo
+    async function pickDocument() {
+        try {
+        const result = await DocumentPicker.getDocumentAsync({
+            type: "*/*", // aceita qualquer tipo de arquivo
+            copyToCacheDirectory: true,
+        });
+
+        if (result.canceled) {
+            console.log("Usuário cancelou a seleção");
+            return;
+        }
+
+        console.log(result);
+        setFile(result.assets[0]); // Pega o arquivo selecionado
+        } catch (err) {
+        console.error("Erro ao selecionar documento:", err);
+        }
+    }
+
+    //Envia o Arquivo
+    async function uploadFile() {
+        if (!file) {
+            showMessage({
+            message: 'Nenhuma arquivo selecionada.',
+            description: 'Por favor, selecione ou tire uma foto primeiro.',
+            floating: true,
+            statusBarHeight: 70,
+            type: "danger",
+            duration: 2000,             
+            });
+            return false;
         };
-    
-    const confirmodeequipe = (equipeSelecionada) => 
-        {   
-            setEquipeselecionada(equipeSelecionada.titulo);
-            setequipes(valorAtual => !valorAtual); 
-        };
 
-    
+        let filename = file.name;
+        let type = file.mimeType || "application/octet-stream";
+
+        let formData = new FormData();
+        formData.append("file", { uri: file.uri, name: filename, type });
+
+        try {
+            const response = await fetch(`${url}/dev4tech//upload_arquivos.php`, {
+                method: "POST",
+                body: formData
+            });
+
+            const text = await response.text();
+            let resJson;
+            console.log("Resposta do servidor:", text);
+            
+            try {
+                resJson = JSON.parse(text);
+            } catch (e) {
+                console.error("Erro ao converter JSON:", e);
+            }
+
+            if (response.ok && resJson.success) {        
+                showMessage({
+                    message: 'Sucesso.',
+                    description: 'Tarefa enviada com sucesso!',
+                    floating: true,
+                    statusBarHeight: 70,
+                    type: "success",
+                    duration: 2000,             
+            });
+            return resJson.file;
+            
+            } else {
+                showMessage({
+                message: 'Erro.',
+                description: resJson.message || "Falha ao enviar Tarefa.",
+                floating: true,
+                statusBarHeight: 70,
+                type: "warning",
+                duration: 2000,             
+                });
+                return false;
+            }
+        } catch (error) {
+            console.error(error);
+            showMessage({
+                message: 'Erro.',
+                description: "Ocorreu um erro ao tentar enviar a imagem.",
+                floating: true,
+                statusBarHeight: 70,
+                type: "warning",
+                duration: 2000,             
+            });
+            return false;
+            }
+    }
+    useEffect(() => {
+    }, []);
+    //Cadastra a Tarefa
+    async function cadastra() {      
+        const arquivo = await uploadFile();
+        if (!arquivo) return;  
+
+        try {
+            const res = await api.post('dev4tech/cadastrotarefas.php', {
+                nomeTarefa : nomeTarefa,
+                instrucoes : instrucoes,
+                id_equipe : equipe, 
+                data_entrega: formatarDataParaBanco(data),
+                nome_arquivo: arquivo,
+                dificuldade: dificuldadeselecionada,
+                id_empresa: usuario.id_empresa,
+            });
+
+            if (res.data.sucesso === false) {
+
+            showMessage({
+                message: "Erro ao cadastrar Tarefa",
+                description: res.data.mensagem,
+                floating: true,
+                statusBarHeight: 70,
+                type: "warning",
+                duration: 3000,                    
+            });      
+            console.log(res.data.mensagem)       
+            return;
+            }
+
+            setSucess(true);
+                showMessage({
+                message: "Cadastrado com Sucesso",
+                description: "Tarefa cadastrada",
+                floating: true,
+                statusBarHeight: 70,
+                type: "success",
+                duration: 2000,             
+            });         
+
+            } 
+        catch (error) {
+            console.log("Erro no Envio:", error.message);
+            if (error.response) {
+                console.log("Resposta do Servidor:", error.response.data);
+            }
+            if (error.request) {
+                console.log("Sem resposta, request:", error.request);
+            }
+            setSucess(false);
+            showMessage({
+                message: "Alguma coisa deu errado, tente novamente.",
+                description: res.data.mensagem,
+                floating: true,
+                statusBarHeight: 70,
+                type: "warning",
+                duration: 3000,                    
+            });  
+        }
+        
+    }   
 
     return(
         <View style={styles.container}>
             <ScrollView contentContainerStyle={styles.scrollContent}>
                 <Text style={styles.titulo}>Adicionar uma tarefa</Text>
                 <View style={styles.areaInput}>
+                    <Text style={styles.texto}>Nome da Tarefa</Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Desenvolver o App"
+                        placeholderTextColor={theme.text3}
+                        onChangeText={(text) => setNomeTarefa(text)}
+                    />
                     <Text style={styles.texto}>Instruções</Text>
                     <TextInput
                         style={styles.inputinstrucoes}
                         multiline
                         numberOfLines={7}
                         placeholder="Alteração nos valores contratuais."
-                        placeholderTextColor={theme.text}
+                        placeholderTextColor={theme.text3}
+                        textAlignVertical="top"
+                        onChangeText={(text) => setInstrucoes(text)}
+                        maxLength={250}
+                    />
+                    <Text style={styles.texto}>Equipes</Text>
+                    <Dropdown
+                        style={styles.input}
+                        data={dados}
+                        labelField="nome_equipe" 
+                        valueField="id_equipe"
+                        placeholder={equipeselecionada || "Selecione uma equipe"}
+                        placeholderStyle={{ color: theme.text3, fontSize: 14 }}
+                        selectedTextStyle={{ color: theme.text, fontSize: 14 }}
+                        value={equipe}
+                        onChange={item => {
+                            setEquipe(item.id_equipe);
+                            setEquipeSelecionada(item.nome_equipe);
+                        }}
+                        containerStyle={{
+                            backgroundColor: theme.inputBackground,
+                        }}
+                        itemTextStyle={{
+                            color: theme.text,
+                            fontSize: 14,
+                            fontFamily: fonts.text,
+                        }}
+                        selectedStyle={{
+                            color: theme.text,
+                            fontSize: 14,
+                            fontFamily: fonts.text,
+                        }}
+                        activeColor={theme.inputBackground} 
+                    />
+                    <Text style={styles.texto}>Dificuldade</Text>
+                    <Dropdown
+                        style={styles.input}
+                        data={dificuldadeOptions}
+                        labelField="label" 
+                        valueField="value"
+                        placeholder={dificuldadeselecionada || "Selecione uma Dificuldade"}
+                        placeholderStyle={{ color: theme.text3, fontSize: 14 }}
+                        selectedTextStyle={{ color: theme.text, fontSize: 14 }}
+                        value={dificuldadeselecionada}
+                        onChange={item => {
+                            setDificuldadeSelecionada(item.label);
+                        }}
+                        containerStyle={{
+                            backgroundColor: theme.inputBackground,
+                        }}
+                        itemTextStyle={{
+                            color: theme.text,
+                            fontSize: 14,
+                            fontFamily: fonts.text,
+                        }}
+                        selectedStyle={{
+                            color: theme.text,
+                            fontSize: 14,
+                            fontFamily: fonts.text,
+                        }}
+                        activeColor={theme.inputBackground} 
+                    />
+                    <Text style={styles.texto}>Data de entrega</Text>
+                    <TextInput
+                        style={styles.input}
+                        value={data}
+                        placeholder="xx/xx/xxxx"
+                        placeholderTextColor={theme.text3}
+                        onChangeText={(text) => setData(formatarDataInput(text))}
                     />
                     <TouchableOpacity
                         style={[styles.botaoanexo,styles.linha]}
+                        onPress={pickDocument}
                     >
                         <View style={styles.textosanexo}>
                             <Ionicons name="document-text-outline" size={18} color="#3288D7" />
-                            <Text style={styles.textoanexo}>Anexar Arquivo</Text>  
+                            <Text style={styles.textoanexo}>{file ? file.name : "Anexar um arquivo"}</Text>  
                         </View>
                     </TouchableOpacity>
 
-                    <Text style={styles.texto}>Equipes</Text>
-                        <TouchableOpacity
-                            style={styles.input}
-                            onPress={cliqueinformacao}
-                        >
-                            <Text style={styles.textobotao}>{equipeselecionada || "Selecione uma equipe"}</Text> 
-                            <Ionicons name="caret-down-outline" size={18} color="black" />
-                        </TouchableOpacity>
-                    {!equipes && equipe.map(item => (
-                        <TouchableOpacity
-                            key={item.id}
-                            style={styles.containerequipes}
-                            onPress={() => confirmodeequipe(item)}
-                        >
-                        <Image source={item.imagem} style={styles.imag} />
-                        <View style={styles.textos}>
-                            <Text style={styles.textolistatitulo}>{item.titulo}</Text>
-                            <Text style={styles.textolistacargo}>{item.cargo}</Text>
-                        </View>
-                        </TouchableOpacity>
-                    ))}
-                    <Text style={styles.texto}>Data e entrega</Text>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="xx/xx/xxxx"
-                        placeholderTextColor={theme.text}
-                        secureTextEntry={true}
-                    />
-                    <TouchableOpacity style={styles.botaocriar}>
+                    <TouchableOpacity 
+                        style={styles.botaocriar}
+                        onPress={cadastra}
+                    >
                         <Text style={styles.textocriar}>Criar</Text>
                     </TouchableOpacity>
                 </View>

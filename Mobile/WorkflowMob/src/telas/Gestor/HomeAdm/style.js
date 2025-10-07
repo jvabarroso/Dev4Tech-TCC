@@ -88,6 +88,7 @@ export const getStyles = (theme) => StyleSheet.create({
     fontWeight: 'bold',
     fontFamily: fonts.text,
     marginBottom: -5,
+    paddingBottom:15,
   },
   paragraph:{
     color: theme.text,

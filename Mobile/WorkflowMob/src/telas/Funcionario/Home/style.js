@@ -87,10 +87,11 @@ export const getStyles = (theme) => StyleSheet.create({
     borderBottomColor: '#000',
   },
   titulocard:{
-    color:theme.text,
+    color: theme.text,
     fontWeight: 'bold',
     fontFamily: fonts.text,
     marginBottom: -5,
+    paddingBottom:15,
   },
   paragraph:{
     color:theme.text,

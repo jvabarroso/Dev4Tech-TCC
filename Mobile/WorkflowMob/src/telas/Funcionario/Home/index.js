@@ -84,11 +84,6 @@ export default function Home({navigation, route}){
                                 style={styles.imagemcard} />
                             <Card.Content style={styles.cardinferior}>
                                 <Title style={styles.titulocard}>Equipes</Title>
-                                <Paragraph style={styles.paragraph}>Veja suas Equipes</Paragraph>
-                                <View style={styles.linhainfer}>
-                                    <Text style={styles.data}>16/07/20</Text>
-                                    <Text style={styles.Entre}>Entre aqui</Text>
-                                </View>
                             </Card.Content>
                         </Card>
                     </TouchableOpacity>
@@ -102,11 +97,6 @@ export default function Home({navigation, route}){
                             style={styles.imagemcard}/>
                         <Card.Content style={styles.cardinferior}>
                             <Title style={styles.titulocard}>Tarefas</Title>
-                            <Paragraph style={styles.paragraph}>Veja suas Tarefas</Paragraph>
-                            <View style={styles.linhainfer}>
-                                <Text style={styles.data}>16/07/20</Text>
-                                <Text style={styles.Entre}>Entre aqui</Text>
-                            </View>
                         </Card.Content>
                     </Card>
                     </TouchableOpacity>
@@ -120,11 +110,6 @@ export default function Home({navigation, route}){
                             style={styles.imagemcard}/>
                         <Card.Content style={styles.cardinferior}>
                             <Title style={styles.titulocard}>Ranking</Title>
-                            <Paragraph style={styles.paragraph}>Veja aqui seus pontos</Paragraph>
-                            <View style={styles.linhainfer}>
-                                <Text style={styles.data}>16/07/20</Text>
-                                <Text style={styles.Entre}>Entre aqui</Text>
-                            </View>
                         </Card.Content>
                     </Card>
                     </TouchableOpacity>
