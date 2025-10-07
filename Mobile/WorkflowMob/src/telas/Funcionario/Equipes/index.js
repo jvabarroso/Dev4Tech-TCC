@@ -149,11 +149,7 @@ export default function Equipes({ route, navigation }) {
                       <Card.Cover source={require('../../../../assets/img/equipes.png')} style={styles.imagemcard} />
                       <Card.Content style={styles.cardinferior}>
                         <Title style={styles.titulocard}>Funcionarios</Title>
-                        <Paragraph style={styles.paragraph}>Vejas os membros da Equipe</Paragraph>
-                        <View style={styles.linhainfer}>
-                          <Text style={styles.data}>16/07/20</Text>
-                          <Text style={styles.Entre}>Entre aqui</Text>
-                        </View>
+                        <Paragraph style={styles.paragraph}>Vejas os membros de sua Equipe</Paragraph>
                       </Card.Content>
                     </Card>
                   </TouchableOpacity>
@@ -168,11 +164,7 @@ export default function Equipes({ route, navigation }) {
                       <Card.Cover source={require('../../../../assets/img/tarefas.png')} style={styles.imagemcard} />
                       <Card.Content style={styles.cardinferior}>
                         <Title style={styles.titulocard}>Tarefas</Title>
-                        <Paragraph style={styles.paragraph}>Vejas as Tarefas da equipe</Paragraph>
-                        <View style={styles.linhainfer}>
-                          <Text style={styles.data}>16/07/20</Text>
-                          <Text style={styles.Entre}>Entre aqui</Text>
-                        </View>
+                        <Paragraph style={styles.paragraph}>Vejas as Tarefas de sua equipe</Paragraph>
                       </Card.Content>
                     </Card>
 
@@ -189,10 +181,6 @@ export default function Equipes({ route, navigation }) {
                       <Card.Content style={styles.cardinferior}>
                         <Title style={styles.titulocard}>Ranking</Title>
                         <Paragraph style={styles.paragraph}>Veja sua posição entre os membros</Paragraph>
-                        <View style={styles.linhainfer}>
-                          <Text style={styles.data}>16/07/20</Text>
-                          <Text style={styles.Entre}>Entre aqui</Text>
-                        </View>
                       </Card.Content>
                     </Card>
 

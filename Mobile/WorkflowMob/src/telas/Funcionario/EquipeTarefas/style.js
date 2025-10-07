@@ -77,6 +77,7 @@ export const getStyles = (theme) => StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 10,
+    position: 'relative'
   },
   textosTarefa: {
     marginLeft: 10,
@@ -134,6 +135,19 @@ export const getStyles = (theme) => StyleSheet.create({
     justifyContent: 'center',
   },
   espacoHeader: {
-        width: 40,
+    width: 40,
+  },
+  containerfiltro:{
+    position: 'absolute',
+    backgroundColor: "#4CAF50",
+    borderRadius: 10,
+    paddingHorizontal: 5,
+    left:260
+  },
+  textofiltro:{
+    color: "#fff",
+    fontSize: 13,
+    fontFamily: fonts.text,
+    padding:5,
   },
 });

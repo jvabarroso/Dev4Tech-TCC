@@ -14,6 +14,7 @@ export default function EquipeFuncionario({ navigation, route }) {
   const equipe = route.params?.equipe || {}; 
   console.log("Equipe:", equipe);
 
+  const [termoBusca, setTermoBusca] = useState('');
   const [dados, setDados] = useState([]);
   const BASE_URL = `${url}/dev4tech/img/`
   
@@ -45,6 +46,20 @@ export default function EquipeFuncionario({ navigation, route }) {
     listarFuncionarios();
   }, [equipe?.id_equipe]);
 
+  //Filtra equipes pela busca
+  const filtrarFunc = () => {
+    let funcionarioFiltrados = dados;
+    
+    // Aplica filtro de busca
+    if (termoBusca) {
+      const termo = termoBusca.toLowerCase();
+      funcionarioFiltrados = funcionarioFiltrados.filter(item => 
+        item.nome?.toLowerCase().includes(termo) || 
+        item.cargo?.toLowerCase().includes(termo)
+      );
+    }
+    return funcionarioFiltrados;
+  };
 
 
   return ( 
@@ -78,9 +93,11 @@ export default function EquipeFuncionario({ navigation, route }) {
             style={styles.navinput}
             placeholder="🔍 Pesquisar funcionário"
             placeholderTextColor="#ffffff"
+            value={termoBusca}
+            onChangeText={setTermoBusca}
           />
 
-        {dados.map(item => (
+        {filtrarFunc().map(item => (
           <View key={item.FuncionarioId} style={styles.containertarefas}>
             <Image 
               source={item.foto_perfil ? { uri: `${BASE_URL}${item.foto_perfil}?t=${new Date().getTime()}` } : require('../../../../assets/img/image.png')} 

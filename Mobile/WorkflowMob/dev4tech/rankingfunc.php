@@ -1,7 +1,7 @@
 <?php
 include_once('conexao.php');
 
-$id_equipe= $_GET['id_equipe'] ?? null;
+$id_equipe = $_GET['id_equipe'] ?? null;
 
 if (empty($id_equipe)) {
     error_log("Erro: ID da equipe não fornecido");
@@ -28,7 +28,7 @@ try {
     WHERE em.id_equipe = :id_equipe
     ORDER BY pontos DESC");
     
-    $query->bindValue(':id_empresa', $id_empresa, PDO::PARAM_INT);
+    $query->bindValue(':id_equipe', $id_equipe, PDO::PARAM_INT);
     $query->execute();
     $equipes = $query->fetchAll(PDO::FETCH_ASSOC);
 

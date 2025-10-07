@@ -22,7 +22,7 @@ export default function EquipeRanking({ navigation, route}) {
   //Lista Equipes em ordem de pontuação
   async function listarDados() {
     try {
-      const res = await api.get(`dev4tech/ranking.php`, {
+      const res = await api.get(`dev4tech/rankingfunc.php`, {
       params: {id_equipe: equipe.id_equipe }
     });
 
@@ -43,18 +43,18 @@ export default function EquipeRanking({ navigation, route}) {
   }, [equipe?.id_equipe]);
 
   //Filtra equipes pela busca
-  const filtrarEquipes = () => {
-    let equipesFiltradas = dados;
+  const filtrarFunc = () => {
+    let funcionarioFiltrados = dados;
     
     // Aplica filtro de busca
     if (termoBusca) {
       const termo = termoBusca.toLowerCase();
-      equipesFiltradas = equipesFiltradas.filter(item => 
-        item.nome_equipe.toLowerCase().includes(termo) || 
-        item.nome_categoria.toLowerCase().includes(termo)
+      funcionarioFiltrados = funcionarioFiltrados.filter(item => 
+        item.Nome?.toLowerCase().includes(termo) || 
+        item.Cargo?.toLowerCase().includes(termo)
       );
     }
-    return equipesFiltradas;
+    return funcionarioFiltrados;
   };
 
 
@@ -73,10 +73,13 @@ export default function EquipeRanking({ navigation, route}) {
         </View>
 
         <View style={styles.containertarefas}>
-          <Image source={equipe.imagem} style={styles.imag} />
+          <Image 
+            source={equipe.foto_equipe ? { uri: equipe.foto_equipe } : require('../../../../assets/img/image.png')} 
+            style={styles.imag} 
+          />
           <View style={styles.textos}>
-            <Text style={styles.textolistatitulo}>{equipe.titulo}</Text>
-            <Text style={styles.textolistacargo}>{equipe.cargo}</Text>
+            <Text style={styles.textolistatitulo}>{equipe.nome_equipe}</Text>
+            <Text style={styles.textolistacargo}>{equipe.nome_categoria}</Text>
           </View>
         </View>
 
@@ -88,21 +91,21 @@ export default function EquipeRanking({ navigation, route}) {
             value={termoBusca}
             onChangeText={setTermoBusca}
           />
-
-        {dados.map((item)=> {
-          const posicaoOriginal = dados.findIndex((d) => d.id_equipe === item.id_equipe);
+        {filtrarFunc().map((item, index) => (
           <View key={item.FuncionarioId} style={styles.containertarefas}>   
-            <Text style={styles.colocacao}>{posicaoOriginal + 1}º</Text>
-              <Image 
-                source={item.foto_perfil ?  { uri: `${BASE_URL}${item.foto_perfil}?t=${new Date().getTime()}` } : require('../../../../assets/img/image.png')} 
-                style={styles.imag} 
-              />
+            <Text style={styles.colocacao}>{index + 1}º</Text>
+            <Image 
+              source={item.foto_perfil 
+                ? { uri: `${BASE_URL}${item.foto_perfil}?t=${new Date().getTime()}` } 
+                : require('../../../../assets/img/image.png')} 
+              style={styles.imag} 
+            />
             <View style={styles.textos}>
-              <Text style={styles.textolistatitulo}>{item.nome}</Text>
-              <Text style={styles.textolistacargo}>{item.cargo}</Text>
+              <Text style={styles.textolistatitulo}>{item.Nome}</Text>
+              <Text style={styles.textolistacargo}>{item.Cargo}</Text>
             </View>
           </View>
-        })}
+        ))}
         </ScrollView>
       </View>
   );

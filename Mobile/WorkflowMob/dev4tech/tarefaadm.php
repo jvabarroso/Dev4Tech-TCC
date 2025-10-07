@@ -23,6 +23,7 @@ try {
             t.id_tarefa,
             t.nomeTarefa,
             t.instrucoes,
+            t.dificuldade,
             DATE_FORMAT(t.data_entrega, '%Y-%m-%d') AS data_entrega,
             EXISTS (
                 SELECT *

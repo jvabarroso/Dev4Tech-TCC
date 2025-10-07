@@ -146,15 +146,43 @@ export default function EquipeTarefas({ navigation, route }) {
           />
           <View style={styles.textosTarefa}>
             <Text style={styles.textolistatitulo}>{item.nomeTarefa}</Text>
-            <Text style={styles.textolista}>{limitarTexto(item.instrucoes, 23)}</Text>
+            <Text style={styles.textolista}>{limitarTexto(item.instrucoes, 20)}</Text>
           </View>
-        </View>
 
+          {item.entregue === 1 && (
+            <View style={[styles.containerfiltro, { backgroundColor: '#4CAF50' }]}>
+              <Text style={styles.textofiltro}>Entregue</Text>
+            </View>
+          )}
+          {item.entregue ? 
+            null : 
+            <View style={[styles.containerfiltro, {backgroundColor:'#FFC107'}]}>
+              <Text style={styles.textofiltro}>Pendente</Text>
+            </View>
+          }
+          {filtroAtivo === 'atrasada'? 
+            <View style={[styles.containerfiltro, {backgroundColor:'#F44336'}]}>
+              <Text style={styles.textofiltro}>Atrasado</Text>
+            </View>: null
+            }
+        </View>
         <View style={styles.linhaInfo}>
-          <Text style={styles.textolistacargo}>
+          <Text style={[styles.textolistacargo, { backgroundColor: corDificuldade(item.dificuldade) }]}>
             {item.dificuldade} {/* Mostra os ícones de dificuldade */}
           </Text>
-          <Text style={styles.textolistadata}>{item.data_entrega}</Text>
+
+          {filtroAtivo === 'pendente' ? 
+            <Text style={styles.textolistadata}>{formatarData(item.data_entrega)}</Text>
+            : null
+          }
+          {filtroAtivo === 'atrasada'? 
+            <Text style={[styles.textolistadata, {color:"#F44336"}]}>Prazo expirado em {formatarData(item.data_entrega)}</Text>
+            : null
+          }
+          {item.entregue ? (  
+            <Text style={styles.textolistadata}>Conclusão em {formatarData(item.data_entrega)}</Text>)
+            : null
+          }
         </View>
       </TouchableOpacity>
     ));
@@ -175,6 +203,26 @@ export default function EquipeTarefas({ navigation, route }) {
       </View>
     );
   }
+
+  // Formata as datas do banco 
+  function formatarData(data) {
+    if (!data) return "";
+    const partes = data.split("-"); // ["0000","00","00"]
+    if (partes.length !== 3) return data;
+    return `${partes[2]}/${partes[1]}/${partes[0]}`;
+  }
+
+  // Define a cor pela dificuldade
+  function corDificuldade(dificuldade) {
+    switch(dificuldade.toLowerCase()) {
+      case 'fácil':
+        return '#4CAF50'; 
+      case 'médio':
+        return '#FFC107'; 
+      case 'difícil':
+        return '#F44336'; 
+    }
+}
 
   return (
     <View style={styles.container}>
@@ -231,6 +279,8 @@ export default function EquipeTarefas({ navigation, route }) {
           style={styles.navinput}
           placeholder="🔍 Pesquisa uma tarefa"
           placeholderTextColor="#ffffff"
+          value={termoBusca}
+          onChangeText={setTermoBusca}
         />
         {renderTarefas()}
       </ScrollView>
