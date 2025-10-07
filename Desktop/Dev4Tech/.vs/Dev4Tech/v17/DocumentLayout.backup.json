@@ -3,11 +3,11 @@
   "WorkspaceRootPath": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\pesquisaequipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|c:\\users\\joao.barroso\\desktop\\dev4tech-tcc\\desktop\\dev4tech\\dev4tech\\pesquisaequipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\pesquisaequipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|c:\\users\\joao.barroso\\desktop\\dev4tech-tcc\\desktop\\dev4tech\\dev4tech\\filtroequipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\dev4tech\\filtroequipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\filtroequipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -163,8 +163,7 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAIMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-29T14:24:17.037Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -172,9 +171,9 @@
               "Title": "PesquisaEquipes.cs",
               "DocumentMoniker": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\pesquisaEquipes.cs",
               "RelativeDocumentMoniker": "Dev4Tech\\pesquisaEquipes.cs",
-              "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\pesquisaEquipes.cs",
-              "RelativeToolTip": "Dev4Tech\\pesquisaEquipes.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAJAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\pesquisaEquipes.cs*",
+              "RelativeToolTip": "Dev4Tech\\pesquisaEquipes.cs*",
+              "ViewState": "AgIAAE0CAAAAAAAAAAAgwGYCAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-29T14:18:47.812Z",
               "IsPinned": true,
@@ -191,8 +190,7 @@
               "ViewState": "AgIAAMUCAAAAAAAAAAAUwOgCAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-26T13:01:27.721Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -204,8 +202,7 @@
               "RelativeToolTip": "Dev4Tech\\pesquisaEquipes.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-02T11:43:17.607Z",
-              "IsPinned": true,
-              "EditorCaption": " [Design]"
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -333,8 +330,7 @@
               "RelativeToolTip": "Dev4Tech\\Adm\\Avalia\u00E7\u00E3oTarefaAdmin.cs",
               "ViewState": "AgIAABAAAAAAAAAAAAAIwCMAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-05T21:16:37.834Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-05T21:16:37.834Z"
             },
             {
               "$type": "Document",
@@ -357,8 +353,7 @@
               "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Adm\\Avalia\u00E7\u00E3oTarefaAdmin.cs [Design]",
               "RelativeToolTip": "Dev4Tech\\Adm\\Avalia\u00E7\u00E3oTarefaAdmin.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-05T21:16:35.156Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-10-05T21:16:35.156Z"
             },
             {
               "$type": "Document",
@@ -510,8 +505,7 @@
               "ToolTip": "C:\\Users\\joao.barroso\\Desktop\\Dev4Tech-TCC\\Desktop\\Dev4Tech\\Dev4Tech\\Tarefas_Atrasadas.cs [Design]",
               "RelativeToolTip": "Dev4Tech\\Tarefas_Atrasadas.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T13:04:23.94Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-09-26T13:04:23.94Z"
             },
             {
               "$type": "Document",
