@@ -7,7 +7,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Dev4Tech
@@ -43,12 +42,7 @@ namespace Dev4Tech
 
     public class planejamentoSQL : conexao
     {
-        // Definir caminho base consistente para todos os arquivos PDF
         private readonly string PastaBaseArquivos = @"C:\xampp\htdocs\dev4tech\arquivos";
-
-        // ==================================================
-        // MÉTODOS EXISTENTES (MANTIDOS PARA COMPATIBILIDADE)
-        // ==================================================
 
         public List<int> ObterIdsEquipesFuncionario(int idFuncionario)
         {
@@ -304,13 +298,6 @@ namespace Dev4Tech
             return Directory.Exists(PastaBaseArquivos);
         }
 
-        // ==================================================
-        // NOVOS MÉTODOS PARA CONTROLE DE PROGRESSO DETALHADO
-        // ==================================================
-
-        /// <summary>
-        /// Registra a visualização de uma página específica no banco de dados
-        /// </summary>
         public void RegistrarVisualizacaoPagina(int idTarefa, int idFuncionario, int numeroPagina)
         {
             string query = @"
@@ -330,7 +317,6 @@ namespace Dev4Tech
                         cmd.ExecuteNonQuery();
                     }
 
-                    // Atualizar progresso agregado automaticamente
                     AtualizarProgressoAgregado(idTarefa, idFuncionario);
                 }
                 finally
@@ -340,9 +326,6 @@ namespace Dev4Tech
             }
         }
 
-        /// <summary>
-        /// Atualiza o progresso agregado baseado nas páginas visualizadas
-        /// </summary>
         private void AtualizarProgressoAgregado(int idTarefa, int idFuncionario)
         {
             string queryProgresso = @"
@@ -380,9 +363,6 @@ namespace Dev4Tech
             }
         }
 
-        /// <summary>
-        /// Obtém o progresso de leitura de uma tarefa para um funcionário
-        /// </summary>
         public ProgressoLeitura ObterProgressoLeitura(int idTarefa, int idFuncionario)
         {
             ProgressoLeitura progresso = null;
@@ -419,7 +399,6 @@ namespace Dev4Tech
                         }
                     }
 
-                    // Se não encontrou progresso, criar registro inicial
                     if (progresso == null)
                     {
                         int totalPaginas = ObterTotalPaginasTarefa(idTarefa);
@@ -443,9 +422,6 @@ namespace Dev4Tech
             return progresso;
         }
 
-        /// <summary>
-        /// Obtém a lista de páginas já visualizadas por um funcionário em uma tarefa
-        /// </summary>
         public List<int> ObterPaginasVisualizadas(int idTarefa, int idFuncionario)
         {
             var paginas = new List<int>();
@@ -481,9 +457,6 @@ namespace Dev4Tech
             return paginas;
         }
 
-        /// <summary>
-        /// Obtém o total de páginas de uma tarefa a partir dos metadados
-        /// </summary>
         public int ObterTotalPaginasTarefa(int idTarefa)
         {
             int totalPaginas = 0;
@@ -511,9 +484,6 @@ namespace Dev4Tech
             return totalPaginas;
         }
 
-        /// <summary>
-        /// Salva os metadados do PDF após dividi-lo em páginas
-        /// </summary>
         public void SalvarPdfMetadata(int idTarefa, string nomeArquivo, int totalPaginas)
         {
             string hashArquivo = CalcularHashArquivo(ObterCaminhoCompletoPdf(nomeArquivo));
@@ -546,9 +516,6 @@ namespace Dev4Tech
             }
         }
 
-        /// <summary>
-        /// Calcula o hash SHA256 de um arquivo para detectar alterações
-        /// </summary>
         private string CalcularHashArquivo(string caminhoArquivo)
         {
             if (!File.Exists(caminhoArquivo))
@@ -562,9 +529,6 @@ namespace Dev4Tech
             }
         }
 
-        /// <summary>
-        /// Verifica se o PDF foi alterado comparando o hash
-        /// </summary>
         public bool VerificarPdfAlterado(int idTarefa, string nomeArquivo)
         {
             string hashAtual = CalcularHashArquivo(ObterCaminhoCompletoPdf(nomeArquivo));
@@ -573,9 +537,6 @@ namespace Dev4Tech
             return hashAtual != hashArmazenado;
         }
 
-        /// <summary>
-        /// Obtém o hash armazenado no banco para uma tarefa
-        /// </summary>
         private string ObterHashArmazenado(int idTarefa)
         {
             string hash = string.Empty;
@@ -603,9 +564,6 @@ namespace Dev4Tech
             return hash;
         }
 
-        /// <summary>
-        /// Remove todas as visualizações de uma tarefa (útil quando o PDF é atualizado)
-        /// </summary>
         public void LimparVisualizacoesTarefa(int idTarefa, int idFuncionario)
         {
             string queryVisualizacoes = @"
@@ -620,7 +578,6 @@ namespace Dev4Tech
             {
                 try
                 {
-                    // Remover visualizações
                     using (var cmd = new MySqlCommand(queryVisualizacoes, conectar))
                     {
                         cmd.Parameters.AddWithValue("@idTarefa", idTarefa);
@@ -628,7 +585,6 @@ namespace Dev4Tech
                         cmd.ExecuteNonQuery();
                     }
 
-                    // Remover progresso
                     using (var cmd = new MySqlCommand(queryProgresso, conectar))
                     {
                         cmd.Parameters.AddWithValue("@idTarefa", idTarefa);
@@ -641,103 +597,6 @@ namespace Dev4Tech
                     fecharConexao();
                 }
             }
-        }
-
-        /// <summary>
-        /// Obtém estatísticas de progresso para exibição no dashboard
-        /// </summary>
-        public Dictionary<string, object> ObterEstatisticasProgresso(int idFuncionario)
-        {
-            var estatisticas = new Dictionary<string, object>();
-            string query = @"
-                SELECT 
-                    COUNT(DISTINCT tp.id_tarefa) as total_tarefas,
-                    SUM(CASE WHEN tp.concluida = true THEN 1 ELSE 0 END) as tarefas_concluidas,
-                    AVG(tp.percentual_concluido) as percentual_medio,
-                    SUM(tp.total_paginas_visualizadas) as total_paginas_lidas
-                FROM TarefaProgressoLeitura tp
-                JOIN Tarefas t ON tp.id_tarefa = t.id_tarefa
-                WHERE tp.id_funcionario = @idFuncionario";
-
-            if (abrirConexao())
-            {
-                try
-                {
-                    using (var cmd = new MySqlCommand(query, conectar))
-                    {
-                        cmd.Parameters.AddWithValue("@idFuncionario", idFuncionario);
-                        using (var reader = cmd.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                estatisticas["total_tarefas"] = reader.GetInt32("total_tarefas");
-                                estatisticas["tarefas_concluidas"] = reader.GetInt32("tarefas_concluidas");
-                                estatisticas["percentual_medio"] = reader.IsDBNull(2) ? 0 : reader.GetDecimal("percentual_medio");
-                                estatisticas["total_paginas_lidas"] = reader.GetInt32("total_paginas_lidas");
-                            }
-                        }
-                    }
-                }
-                finally
-                {
-                    fecharConexao();
-                }
-            }
-            return estatisticas;
-        }
-
-        /// <summary>
-        /// Obtém o progresso de todos os membros da equipe para uma tarefa específica
-        /// </summary>
-        public List<ProgressoLeitura> ObterProgressoEquipeTarefa(int idTarefa, int idEquipe)
-        {
-            var progressos = new List<ProgressoLeitura>();
-            string query = @"
-                SELECT 
-                    tp.id_funcionario,
-                    f.nome,
-                    tp.total_paginas_visualizadas,
-                    tp.total_paginas,
-                    tp.percentual_concluido,
-                    tp.concluida
-                FROM TarefaProgressoLeitura tp
-                JOIN Funcionarios f ON tp.id_funcionario = f.FuncionarioId
-                JOIN Equipes_Membros em ON f.FuncionarioId = em.FuncionarioId
-                WHERE tp.id_tarefa = @idTarefa AND em.id_equipe = @idEquipe
-                ORDER BY tp.percentual_concluido DESC";
-
-            if (abrirConexao())
-            {
-                try
-                {
-                    using (var cmd = new MySqlCommand(query, conectar))
-                    {
-                        cmd.Parameters.AddWithValue("@idTarefa", idTarefa);
-                        cmd.Parameters.AddWithValue("@idEquipe", idEquipe);
-
-                        using (var reader = cmd.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                var progresso = new ProgressoLeitura
-                                {
-                                    IdFuncionario = reader.GetInt32("id_funcionario"),
-                                    TotalPaginasVisualizadas = reader.GetInt32("total_paginas_visualizadas"),
-                                    TotalPaginas = reader.GetInt32("total_paginas"),
-                                    PercentualConcluido = reader.GetDecimal("percentual_concluido"),
-                                    Concluida = reader.GetBoolean("concluida")
-                                };
-                                progressos.Add(progresso);
-                            }
-                        }
-                    }
-                }
-                finally
-                {
-                    fecharConexao();
-                }
-            }
-            return progressos;
         }
     }
 }
