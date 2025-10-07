@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Windows.Forms;
 
@@ -16,16 +15,6 @@ namespace Dev4Tech
         public int IdTarefa { get; set; }
         public string NomeArquivo { get; set; }
         public string NomeTarefa { get; set; }
-    }
-
-    public class VisualizacaoPagina
-    {
-        public int IdVisualizacao { get; set; }
-        public int IdTarefa { get; set; }
-        public int IdFuncionario { get; set; }
-        public int NumeroPagina { get; set; }
-        public DateTime DataVisualizacao { get; set; }
-        public int TempoVisualizacao { get; set; }
     }
 
     public class ProgressoLeitura
