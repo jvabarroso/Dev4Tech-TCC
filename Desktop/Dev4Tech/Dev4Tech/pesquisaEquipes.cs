@@ -17,8 +17,6 @@ namespace Dev4Tech
         private int margemEsquerda = 350;
         private int espacamentoVertical = 20;
         private int alturaMensagem = 110;
-
-        // Texto placeholder usado na TextBox de pesquisa
         private const string TextoPlaceholder = "Pesquisar equipe";
 
         public PesquisaEquipes()
@@ -26,20 +24,14 @@ namespace Dev4Tech
             InitializeComponent();
             Sessao.LimparEquipeSelecionada();
             panelEquipes.AutoScroll = true;
-
-            // Inicializa UI (placeholder, categorias e carregamento inicial)
             ConfigurarPlaceholder();
             CarregarCategorias();
             CarregarEquipes(); // carrega tudo inicialmente
             CarregarFotoUsuario();
         }
 
-        // -----------------------
-        // CONFIGURAÇÕES / PLACEHOLDER
-        // -----------------------
         private void ConfigurarPlaceholder()
         {
-            // Define placeholder inicial
             txtPesquisaEquipe.ForeColor = Color.Gray;
             txtPesquisaEquipe.Text = TextoPlaceholder;
 
@@ -53,7 +45,6 @@ namespace Dev4Tech
                 }
             };
 
-            // Quando sai do campo
             txtPesquisaEquipe.Leave += (s, e) =>
             {
                 if (string.IsNullOrWhiteSpace(txtPesquisaEquipe.Text))
@@ -63,17 +54,12 @@ namespace Dev4Tech
                 }
             };
 
-            // Atualiza enquanto digita (ignora se for placeholder)
             txtPesquisaEquipe.TextChanged += (s, e) =>
             {
                 if (txtPesquisaEquipe.ForeColor == Color.Gray) return;
                 AtualizarEquipes();
             };
         }
-
-        // -----------------------
-        // CARREGAR CATEGORIAS NO COMBOBOX
-        // -----------------------
         private void CarregarCategorias()
         {
             try
@@ -98,9 +84,6 @@ namespace Dev4Tech
             }
         }
 
-        // -----------------------
-        // MÉTODOS DE ATUALIZAÇÃO / FILTRO
-        // -----------------------
         private void AtualizarEquipes()
         {
             string categoria = filtroEquipes.SelectedItem?.ToString();
@@ -112,8 +95,6 @@ namespace Dev4Tech
             CarregarEquipes(categoria, textoPesquisa);
         }
 
-        // Carrega equipes no painel segundo filtros (categoria e nome)
-        // Mantive a assinatura compatível com suas chamadas anteriores (filtroCategoria opcional).
         private void CarregarEquipes(string filtroCategoria = null, string filtroNome = null)
         {
             panelEquipes.Controls.Clear();
@@ -175,9 +156,6 @@ namespace Dev4Tech
             }
         }
 
-        // -----------------------
-        // CLASSE AUXILIAR
-        // -----------------------
         public class MembroEquipe
         {
             public int IdFuncionario { get; set; }
@@ -186,9 +164,6 @@ namespace Dev4Tech
             public byte[] FotoBlob { get; set; }
         }
 
-        // -----------------------
-        // CRIAÇÃO DOS CARDS (PANELS) DE CADA EQUIPE
-        // -----------------------
         private void AdicionarPainelEquipe(string nomeEquipe, string categoria, System.Collections.Generic.List<MembroEquipe> membros, int idEquipe, int diasDesdeUltimaAtividade, object fotoEquipeData)
         {
             int x = margemEsquerda;
@@ -293,7 +268,7 @@ namespace Dev4Tech
                     Tag = membro.IdFuncionario
                 };
 
-                // CARREGAR FOTO DO MEMBRO - MESMA LÓGICA DAS OUTRAS TELAS
+                // CARREGAR FOTO DO MEMBRO
                 if (!string.IsNullOrEmpty(membro.CaminhoFotoPerfil))
                 {
                     string caminhoFotoCorrigido = membro.CaminhoFotoPerfil.Replace("/", "\\");
@@ -349,9 +324,6 @@ namespace Dev4Tech
             mensagensCount++;
         }
 
-        // -----------------------
-        // OBTÉM IMAGEM (BLOB OU CAMINHO) COM TRATAMENTO
-        // -----------------------
         private Image ObterFotoEquipeDosDados(object fotoData)
         {
             Image fotoEquipe = null;
@@ -411,9 +383,6 @@ namespace Dev4Tech
             return fotoEquipe;
         }
 
-        // -----------------------
-        // CARREGA FOTO DO USUÁRIO (CANTO)
-        // -----------------------
         private void CarregarFotoUsuario()
         {
             try
@@ -447,9 +416,6 @@ namespace Dev4Tech
             }
         }
 
-        // -----------------------
-        // EVENT HANDLERS (mantidos/implementados)
-        // -----------------------
 
         private void txtPesquisaEquipe_Click(object sender, EventArgs e)
         {
