@@ -11,8 +11,11 @@ namespace Dev4Tech
     {
         private planejamentoSQL dbPlanejamento = new planejamentoSQL();
         private Dictionary<int, List<string>> tarefasPaginasCache = new Dictionary<int, List<string>>();
-        private Dictionary<int, int> progressoLeitura = new Dictionary<int, int>(); // ID da tarefa -> página atual
-        private Dictionary<int, int> totalPaginasPorTarefa = new Dictionary<int, int>(); // ID da tarefa -> total de páginas
+
+        // SUBSTITUIR os dicionários antigos por estes novos:
+        private Dictionary<int, HashSet<int>> paginasVisualizadasCache = new Dictionary<int, HashSet<int>>();
+        private Dictionary<int, ProgressoLeitura> progressoCache = new Dictionary<int, ProgressoLeitura>();
+
         private int idFuncionarioLogado;
 
         public Planejamento()
@@ -47,6 +50,10 @@ namespace Dev4Tech
                 flpF.Controls.Clear();
                 flpC.Controls.Clear();
                 flpPDFs.Controls.Clear();
+
+                // Limpar caches
+                paginasVisualizadasCache.Clear();
+                progressoCache.Clear();
 
                 var tarefas = dbPlanejamento.ObterTarefasPendentesPorEquipesComArquivo(idsEquipes);
 
@@ -87,24 +94,45 @@ namespace Dev4Tech
             }
         }
 
+        // MÉTODO COMPLETAMENTE REFEITO
         private string ObterStatusTarefa(int idTarefa)
         {
-            if (!progressoLeitura.ContainsKey(idTarefa) || progressoLeitura[idTarefa] == 0)
+            try
+            {
+                // Primeiro verifica se há entrega concluída no sistema antigo
+                string statusEntrega = dbPlanejamento.ObterStatusTarefa(idTarefa);
+                if (statusEntrega == "Concluida")
+                    return "Concluida";
+
+                // Depois verifica o progresso REAL de leitura
+                if (!progressoCache.ContainsKey(idTarefa))
+                {
+                    // Carregar do banco se não estiver em cache
+                    var progresso = dbPlanejamento.ObterProgressoLeitura(idTarefa, idFuncionarioLogado);
+                    progressoCache[idTarefa] = progresso;
+                }
+
+                var progressoAtual = progressoCache[idTarefa];
+
+                if (progressoAtual == null)
+                    return "Pendente";
+
+                if (progressoAtual.Concluida)
+                    return "Concluida";
+
+                if (progressoAtual.TotalPaginasVisualizadas > 0)
+                    return "Fazendo";
+
                 return "Pendente";
-
-            int paginaAtual = progressoLeitura[idTarefa];
-            int totalPaginas = totalPaginasPorTarefa.ContainsKey(idTarefa) ? totalPaginasPorTarefa[idTarefa] : 0;
-
-            if (totalPaginas == 0) return "Pendente";
-
-            if (paginaAtual > 0 && paginaAtual < totalPaginas)
-                return "Fazendo";
-            else if (paginaAtual >= totalPaginas)
-                return "Concluida";
-            else
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao obter status da tarefa {idTarefa}: {ex.Message}");
                 return "Pendente";
+            }
         }
 
+        // MÉTODO MODIFICADO para incluir informações de progresso no card
         private Panel CriarCardTarefa(string titulo, DateTime dataEntrega, List<Image> avatares, string status)
         {
             Panel card = new Panel
@@ -182,27 +210,6 @@ namespace Dev4Tech
             return card;
         }
 
-        private Color GetCorStatus(string status)
-        {
-            switch (status)
-            {
-                case "Fazendo": return Color.FromArgb(255, 255, 240); // Amarelo claro
-                case "Concluida": return Color.FromArgb(240, 255, 240); // Verde claro
-                default: return Color.White; // Branco para Pendente
-            }
-        }
-
-        private Color GetCorBadgeStatus(string status)
-        {
-            switch (status)
-            {
-                case "Pendente": return Color.Gray;
-                case "Fazendo": return Color.Orange;
-                case "Concluida": return Color.Green;
-                default: return Color.Gray;
-            }
-        }
-
         private void CarregarPdfDaTarefa(int idTarefa)
         {
             try
@@ -233,6 +240,16 @@ namespace Dev4Tech
                         return;
                     }
 
+                    // Verificar se o PDF foi alterado
+                    bool pdfAlterado = dbPlanejamento.VerificarPdfAlterado(idTarefa, nomeArquivo);
+                    if (pdfAlterado)
+                    {
+                        // Limpar visualizações antigas se o PDF foi alterado
+                        dbPlanejamento.LimparVisualizacoesTarefa(idTarefa, idFuncionarioLogado);
+                        paginasVisualizadasCache.Remove(idTarefa);
+                        progressoCache.Remove(idTarefa);
+                    }
+
                     string pastaPaginas = dbPlanejamento.CriarPastaTemporaria();
                     List<string> paginas = dbPlanejamento.DividirPdfEmPaginas(caminhoPdf, pastaPaginas);
 
@@ -243,13 +260,23 @@ namespace Dev4Tech
                     }
 
                     tarefasPaginasCache[idTarefa] = paginas;
-                    totalPaginasPorTarefa[idTarefa] = paginas.Count;
+
+                    // Salvar metadados no banco
+                    dbPlanejamento.SalvarPdfMetadata(idTarefa, nomeArquivo, paginas.Count);
                 }
 
-                // Inicializar progresso se não existir
-                if (!progressoLeitura.ContainsKey(idTarefa))
+                // Carregar páginas visualizadas do banco se não estiverem em cache
+                if (!paginasVisualizadasCache.ContainsKey(idTarefa))
                 {
-                    progressoLeitura[idTarefa] = 0;
+                    var paginasVisualizadas = dbPlanejamento.ObterPaginasVisualizadas(idTarefa, idFuncionarioLogado);
+                    paginasVisualizadasCache[idTarefa] = new HashSet<int>(paginasVisualizadas);
+                }
+
+                // Carregar progresso do banco se não estiver em cache
+                if (!progressoCache.ContainsKey(idTarefa))
+                {
+                    var progresso = dbPlanejamento.ObterProgressoLeitura(idTarefa, idFuncionarioLogado);
+                    progressoCache[idTarefa] = progresso;
                 }
 
                 ExibirPdfsNoFlowLayout(tarefasPaginasCache[idTarefa], idTarefa);
@@ -260,17 +287,10 @@ namespace Dev4Tech
             }
         }
 
-        public class PdfPaginaInfo
-        {
-            public string Arquivo { get; set; }
-            public int IdTarefa { get; set; }
-            public int Pagina { get; set; }
-            public int Total { get; set; }
-        }
-
         private void ExibirPdfsNoFlowLayout(List<string> caminhosArquivosPdf, int idTarefa)
         {
             flpPDFs.Controls.Clear();
+
             if (!caminhosArquivosPdf.Any())
             {
                 Label lblSemPaginas = new Label
@@ -285,20 +305,25 @@ namespace Dev4Tech
                 flpPDFs.Controls.Add(lblSemPaginas);
                 return;
             }
-            int paginaAtual = progressoLeitura.ContainsKey(idTarefa) ? progressoLeitura[idTarefa] : 0;
-            int totalPaginas = caminhosArquivosPdf.Count;
+
+            // Obter informações de progresso
+            var progresso = progressoCache.ContainsKey(idTarefa) ? progressoCache[idTarefa] : null;
+            var paginasVisualizadas = paginasVisualizadasCache.ContainsKey(idTarefa) ? paginasVisualizadasCache[idTarefa] : new HashSet<int>();
+
             for (int i = 0; i < caminhosArquivosPdf.Count; i++)
             {
                 string caminhoPdf = caminhosArquivosPdf[i];
                 int numeroPagina = i + 1;
-                bool foiLida = numeroPagina <= paginaAtual;
+                bool foiLida = paginasVisualizadas.Contains(numeroPagina);
+
                 var info = new PdfPaginaInfo
                 {
                     Arquivo = caminhoPdf,
                     IdTarefa = idTarefa,
                     Pagina = numeroPagina,
-                    Total = totalPaginas
+                    Total = caminhosArquivosPdf.Count
                 };
+
                 Panel painelCartao = new Panel
                 {
                     Width = 150,
@@ -309,25 +334,30 @@ namespace Dev4Tech
                     Cursor = Cursors.Hand,
                     BackColor = foiLida ? Color.LightGreen : Color.White
                 };
+
                 Button btnAbrirPdf = new Button
                 {
                     Text = $"Página {numeroPagina}",
                     Dock = DockStyle.Bottom,
                     Height = 30,
                     BackColor = foiLida ? Color.Green : SystemColors.Control,
-                    ForeColor = foiLida ? Color.White : SystemColors.ControlText
+                    ForeColor = foiLida ? Color.White : SystemColors.ControlText,
+                    Tag = info
                 };
+
                 btnAbrirPdf.Click += (s, e) =>
                 {
-                    var infoTag = (PdfPaginaInfo)((Button)s).Parent.Tag;
+                    var infoTag = (PdfPaginaInfo)((Button)s).Tag;
                     AbrirPdfExternamente(infoTag.Arquivo, infoTag.IdTarefa, infoTag.Pagina, infoTag.Total);
                 };
+
                 PictureBox picThumbnail = new PictureBox
                 {
                     Image = foiLida ? Properties.Resources.icon_documento : Properties.Resources.icon_documento_blue,
                     SizeMode = PictureBoxSizeMode.Zoom,
                     Dock = DockStyle.Fill
                 };
+
                 if (foiLida)
                 {
                     Label lblLida = new Label
@@ -341,57 +371,78 @@ namespace Dev4Tech
                     };
                     painelCartao.Controls.Add(lblLida);
                 }
+
                 painelCartao.Click += (s, e) =>
                 {
                     var infoTag = (PdfPaginaInfo)((Panel)s).Tag;
                     AbrirPdfExternamente(infoTag.Arquivo, infoTag.IdTarefa, infoTag.Pagina, infoTag.Total);
                 };
+
                 painelCartao.Controls.Add(picThumbnail);
                 painelCartao.Controls.Add(btnAbrirPdf);
                 flpPDFs.Controls.Add(painelCartao);
             }
-            AdicionarBarraProgresso(idTarefa, paginaAtual, totalPaginas);
+
+            // Adicionar barra de progresso detalhada
+            if (progresso != null)
+            {
+                AdicionarBarraProgressoDetalhada(idTarefa, progresso);
+            }
         }
 
-
-        private void AdicionarBarraProgresso(int idTarefa, int paginaAtual, int totalPaginas)
+        // NOVO MÉTODO - Barra de progresso melhorada
+        private void AdicionarBarraProgressoDetalhada(int idTarefa, ProgressoLeitura progresso)
         {
             Panel panelProgresso = new Panel
             {
                 Width = flpPDFs.Width - 20,
-                Height = 30,
-                BackColor = Color.Transparent,
-                Margin = new Padding(10, 0, 10, 10)
+                Height = 80,
+                BackColor = Color.White,
+                BorderStyle = BorderStyle.FixedSingle,
+                Margin = new Padding(10, 0, 10, 10),
+                Padding = new Padding(10)
             };
 
-            // Label de progresso
+            // Label de progresso detalhado
             Label lblProgresso = new Label
             {
-                Text = $"Progresso: {paginaAtual}/{totalPaginas} páginas",
-                Font = new Font("Segoe UI", 10, FontStyle.Regular),
+                Text = $"Progresso: {progresso.TotalPaginasVisualizadas}/{progresso.TotalPaginas} páginas ({progresso.PercentualConcluido:F1}%)",
+                Font = new Font("Segoe UI", 10, FontStyle.Bold),
                 AutoSize = true,
-                Location = new Point(0, 5)
+                Location = new Point(10, 10)
             };
             panelProgresso.Controls.Add(lblProgresso);
 
-            // Barra de progresso visual
-            if (totalPaginas > 0)
+            // Status da tarefa
+            string status = progresso.Concluida ? "Concluída" : "Em andamento";
+            Label lblStatus = new Label
             {
-                int larguraBarra = panelProgresso.Width - 150;
+                Text = $"Status: {status}",
+                Font = new Font("Segoe UI", 9, FontStyle.Regular),
+                AutoSize = true,
+                Location = new Point(10, 35),
+                ForeColor = progresso.Concluida ? Color.Green : Color.Blue
+            };
+            panelProgresso.Controls.Add(lblStatus);
+
+            // Barra de progresso visual
+            if (progresso.TotalPaginas > 0)
+            {
+                int larguraBarra = panelProgresso.Width - 30;
                 Panel panelBarraFundo = new Panel
                 {
                     Width = larguraBarra,
                     Height = 15,
                     BackColor = Color.LightGray,
-                    Location = new Point(panelProgresso.Width - larguraBarra, 7)
+                    Location = new Point(10, 55)
                 };
 
-                int larguraPreenchimento = (int)(larguraBarra * ((double)paginaAtual / totalPaginas));
+                int larguraPreenchimento = (int)(larguraBarra * ((double)progresso.TotalPaginasVisualizadas / progresso.TotalPaginas));
                 Panel panelBarraPreenchida = new Panel
                 {
                     Width = larguraPreenchimento,
                     Height = 15,
-                    BackColor = paginaAtual == totalPaginas ? Color.Green : Color.Blue,
+                    BackColor = progresso.Concluida ? Color.Green : Color.Blue,
                     Location = new Point(0, 0)
                 };
 
@@ -402,16 +453,37 @@ namespace Dev4Tech
             flpPDFs.Controls.Add(panelProgresso);
         }
 
+        // MÉTODO COMPLETAMENTE REFEITO
         private void AbrirPdfExternamente(string caminhoPdf, int idTarefa, int numeroPagina, int totalPaginas)
         {
             try
             {
                 if (File.Exists(caminhoPdf))
                 {
-                    // Atualizar o progresso - sempre pega a página mais alta
-                    if (!progressoLeitura.ContainsKey(idTarefa) || numeroPagina > progressoLeitura[idTarefa])
+                    // Registrar apenas a página específica que foi aberta
+                    dbPlanejamento.RegistrarVisualizacaoPagina(idTarefa, idFuncionarioLogado, numeroPagina);
+
+                    // Atualizar cache local
+                    if (!paginasVisualizadasCache.ContainsKey(idTarefa))
                     {
-                        progressoLeitura[idTarefa] = numeroPagina;
+                        paginasVisualizadasCache[idTarefa] = new HashSet<int>();
+                    }
+                    paginasVisualizadasCache[idTarefa].Add(numeroPagina);
+
+                    // Atualizar progresso no cache
+                    if (progressoCache.ContainsKey(idTarefa))
+                    {
+                        var progresso = progressoCache[idTarefa];
+                        progresso.TotalPaginasVisualizadas = paginasVisualizadasCache[idTarefa].Count;
+                        progresso.PercentualConcluido = (decimal)progresso.TotalPaginasVisualizadas / progresso.TotalPaginas * 100;
+                        progresso.Concluida = progresso.TotalPaginasVisualizadas >= progresso.TotalPaginas;
+                        progresso.DataUltimaAtualizacao = DateTime.Now;
+                    }
+                    else
+                    {
+                        // Recarregar do banco se não estiver em cache
+                        var progresso = dbPlanejamento.ObterProgressoLeitura(idTarefa, idFuncionarioLogado);
+                        progressoCache[idTarefa] = progresso;
                     }
 
                     // Abrir o PDF
@@ -438,12 +510,16 @@ namespace Dev4Tech
             }
         }
 
+        // MÉTODO MODIFICADO para usar o novo sistema de progresso
         private void AtualizarPainelTarefas()
         {
             // Limpar os painéis
             flpP.Controls.Clear();
             flpF.Controls.Clear();
             flpC.Controls.Clear();
+
+            // Limpar caches de progresso para forçar recarregamento
+            progressoCache.Clear();
 
             // Recarregar as tarefas
             var funcionario = Sessao.FuncionarioLogado;
@@ -483,7 +559,67 @@ namespace Dev4Tech
             }
         }
 
-        // Métodos de navegação (mantidos do código original)
+        // ==================================================
+        // MÉTODOS AUXILIARES (MANTIDOS)
+        // ==================================================
+
+        private Color GetCorStatus(string status)
+        {
+            switch (status)
+            {
+                case "Fazendo": return Color.FromArgb(255, 255, 240); // Amarelo claro
+                case "Concluida": return Color.FromArgb(240, 255, 240); // Verde claro
+                default: return Color.White; // Branco para Pendente
+            }
+        }
+
+        private Color GetCorBadgeStatus(string status)
+        {
+            switch (status)
+            {
+                case "Pendente": return Color.Gray;
+                case "Fazendo": return Color.Orange;
+                case "Concluida": return Color.Green;
+                default: return Color.Gray;
+            }
+        }
+
+        private void CarregarFotoUsuario()
+        {
+            try
+            {
+                var usuarioFoto = new UsuarioFoto();
+                Image foto = usuarioFoto.ObterFotoUsuario();
+
+                if (picPerfil != null)
+                {
+                    if (foto != null)
+                    {
+                        picPerfil.Image = foto;
+                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
+                    }
+                    else
+                    {
+                        // Usar imagem padrão se não encontrar foto
+                        picPerfil.Image = Properties.Resources.icon_perfil;
+                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao carregar foto do usuário: {ex.Message}");
+                if (picPerfil != null)
+                {
+                    picPerfil.Image = Properties.Resources.icon_perfil;
+                    picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+            }
+        }
+
+        // ==================================================
+        // MÉTODOS DE NAVEGAÇÃO (MANTIDOS - SEM ALTERAÇÕES)
+        // ==================================================
 
         private void btnPendentes_Click(object sender, EventArgs e)
         {
@@ -731,54 +867,27 @@ namespace Dev4Tech
             this.Hide();
         }
 
-        private void flpPDFs_Paint(object sender, PaintEventArgs e)
-        {
+        private void flpPDFs_Paint(object sender, PaintEventArgs e) { }
 
-        }
+        private void panelKBS_Paint(object sender, PaintEventArgs e) { }
 
-        private void panelKBS_Paint(object sender, PaintEventArgs e)
-        {
+        private void flpP_Paint(object sender, PaintEventArgs e) { }
 
-        }
+        private void flpF_Paint(object sender, PaintEventArgs e) { }
 
-        private void flpP_Paint(object sender, PaintEventArgs e)
-        {
+        private void flpC_Paint(object sender, PaintEventArgs e) { }
 
-        }
+        private void Tarefa1_Enter(object sender, EventArgs e) { }
 
-        private void flpF_Paint(object sender, PaintEventArgs e)
-        {
+        private void txtPesquisaTarefa_TextChanged(object sender, EventArgs e) { }
 
-        }
+        private void groupBox5_Enter(object sender, EventArgs e) { }
 
-        private void flpC_Paint(object sender, PaintEventArgs e)
-        {
+        private void panelTarefas_Paint(object sender, PaintEventArgs e) { }
 
-        }
+        private void Tarefas_Pendentes_Load(object sender, EventArgs e) { }
 
-        private void Tarefa1_Enter(object sender, EventArgs e)
-        {
-        }
-
-        private void txtPesquisaTarefa_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void groupBox5_Enter(object sender, EventArgs e)
-        {
-        }
-
-        private void panelTarefas_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
-        private void Tarefas_Pendentes_Load(object sender, EventArgs e)
-        {
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-        }
+        private void pictureBox2_Click(object sender, EventArgs e) { }
 
         private void label2_Click(object sender, EventArgs e)
         {
@@ -801,37 +910,15 @@ namespace Dev4Tech
                 MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        private void CarregarFotoUsuario()
-        {
-            try
-            {
-                var usuarioFoto = new UsuarioFoto();
-                Image foto = usuarioFoto.ObterFotoUsuario();
+    }
 
-                if (picPerfil != null) // Verifica se o controle existe no form
-                {
-                    if (foto != null)
-                    {
-                        picPerfil.Image = foto;
-                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
-                    }
-                    else
-                    {
-                        // Usar imagem padrão se não encontrar foto
-                        picPerfil.Image = Properties.Resources.icon_perfil;
-                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Erro ao carregar foto do usuário: {ex.Message}");
-                if (picPerfil != null)
-                {
-                    picPerfil.Image = Properties.Resources.icon_perfil;
-                    picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
-            }
-        }
+    // CLASSE AUXILIAR PARA INFO DE PÁGINA PDF
+
+    public class PdfPaginaInfo
+    {
+        public string Arquivo { get; set; }
+        public int IdTarefa { get; set; }
+        public int Pagina { get; set; }
+        public int Total { get; set; }
     }
 }
