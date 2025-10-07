@@ -46,7 +46,6 @@ namespace Dev4Tech
             AtualizarTarefas();
         }
 
-        // MÉTODO PARA OBTER FOTO DA EQUIPE (MESMA LÓGICA DO PesquisaEquipes)
         private Image ObterFotoEquipeDosDados(object fotoData)
         {
             Image fotoEquipe = null;
@@ -406,22 +405,6 @@ namespace Dev4Tech
             return equipes;
         }
 
-        private string BuscarNomeEquipe(int idEquipe)
-        {
-            string nome = "";
-            using (var conn = new MySqlConnection("server=localhost;database=Dev4Tech;uid=root;pwd="))
-            {
-                conn.Open();
-                var cmd = new MySqlCommand("SELECT nome_equipe FROM Equipes WHERE id_equipe = @id", conn);
-                cmd.Parameters.AddWithValue("@id", idEquipe);
-                var result = cmd.ExecuteScalar();
-                if (result != null)
-                    nome = result.ToString();
-            }
-            return nome;
-        }
-
-        // TODOS OS MÉTODOS DE NAVEGAÇÃO E EVENTOS ORIGINAIS
         private void btnHome_Click(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;

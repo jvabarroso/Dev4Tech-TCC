@@ -8,7 +8,8 @@ namespace Dev4Tech
     {
         private readonly string connectionString = "Server=localhost;Database=Dev4Tech;Uid=root;Pwd=;SslMode=none;";
 
-        public DataTable ObterEquipesDoUsuario(string filtroCategoria)
+        // ✅ MÉTODO PRINCIPAL — agora com filtro por nome e categoria
+        public DataTable ObterEquipesDoUsuario(string filtroCategoria, string filtroNome)
         {
             DataTable dt = new DataTable();
             int? idUsuario = null;
@@ -38,8 +39,8 @@ namespace Dev4Tech
                 LEFT JOIN UltimaAtividadeEquipe ua ON ua.id_equipe = e.id_equipe
                 WHERE 
                     (@filtroCategoria IS NULL OR @filtroCategoria = 'Todos' OR c.nome_categoria = @filtroCategoria)
-                    AND
-                    (
+                    AND (@filtroNome IS NULL OR e.nome_equipe LIKE CONCAT('%', @filtroNome, '%'))
+                    AND (
                         (@isAdmin = TRUE AND e.AdminId = @idUsuario)
                         OR
                         (@isAdmin = FALSE AND e.id_equipe IN (
@@ -56,8 +57,14 @@ namespace Dev4Tech
                 conn.Open();
                 using (var cmd = new MySqlCommand(query, conn))
                 {
+                    // Categoria
                     cmd.Parameters.AddWithValue("@filtroCategoria",
                         string.IsNullOrEmpty(filtroCategoria) || filtroCategoria == "Todos" ? null : filtroCategoria);
+
+                    // Nome
+                    cmd.Parameters.AddWithValue("@filtroNome",
+                        string.IsNullOrEmpty(filtroNome) ? null : filtroNome);
+
                     cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
                     cmd.Parameters.AddWithValue("@isAdmin", isAdmin);
 
@@ -70,6 +77,27 @@ namespace Dev4Tech
             return dt;
         }
 
+        // ✅ Novo método — carrega as categorias da tabela Categorias
+        public DataTable ObterCategorias()
+        {
+            DataTable dt = new DataTable();
+
+            string query = @"SELECT nome_categoria FROM Categorias ORDER BY nome_categoria;";
+
+            using (var conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                using (var cmd = new MySqlCommand(query, conn))
+                using (var adapter = new MySqlDataAdapter(cmd))
+                {
+                    adapter.Fill(dt);
+                }
+            }
+
+            return dt;
+        }
+
+        // ✅ Método original mantido
         public DataTable ObterMembrosDaEquipe(int idEquipe)
         {
             DataTable dt = new DataTable();
@@ -98,12 +126,6 @@ namespace Dev4Tech
                 }
             }
             return dt;
-        }
-
-        // Mantendo o método original para compatibilidade (se necessário)
-        public DataTable ObterEquipesComMembrosComFotos(string filtroCategoria)
-        {
-            return ObterEquipesDoUsuario(filtroCategoria);
         }
     }
 }

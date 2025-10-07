@@ -60,7 +60,6 @@ namespace Dev4Tech
             }
         }
 
-        // Atualiza a lista de tarefas exibidas segundo filtros ativos (equipe/pesquisa)
         private void AtualizarTarefas()
         {
             string filtroNome = txtPesquisarTarefa.Text.Trim();

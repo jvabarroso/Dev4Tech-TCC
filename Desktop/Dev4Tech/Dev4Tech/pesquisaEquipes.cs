@@ -12,18 +12,26 @@ namespace Dev4Tech
     {
         private string basePathImagemEquipe = @"C:\xampp\htdocs\dev4tech\img";
         private string baseFolder = @"C:\xampp\htdocs\dev4tech\";
+
         public PesquisaEquipes()
         {
             InitializeComponent();
             Sessao.LimparEquipeSelecionada();
             panelEquipes.AutoScroll = true;
+
+            // Carregar categorias na comboBox
+            FiltroEquipes filtro = new FiltroEquipes();
+            DataTable dtCategorias = filtro.ObterCategorias();
+
+            filtroEquipes.Items.Clear();
             filtroEquipes.Items.Add("Todos");
-            filtroEquipes.Items.Add("Desenvolvedor de software");
-            filtroEquipes.Items.Add("Design");
-            filtroEquipes.Items.Add("Marketing");
+            foreach (DataRow row in dtCategorias.Rows)
+            {
+                filtroEquipes.Items.Add(row["nome_categoria"].ToString());
+            }
             filtroEquipes.SelectedIndex = 0;
 
-            // Carregar equipes ao iniciar
+            // Carregar equipes iniciais
             CarregarEquipes();
             CarregarFotoUsuario();
         }
@@ -37,6 +45,13 @@ namespace Dev4Tech
         private void txtPesquisaEquipe_Click(object sender, EventArgs e)
         {
             txtPesquisaEquipe.Text = "";
+        }
+
+        private void AtualizarEquipes()
+        {
+            string categoria = filtroEquipes.SelectedItem?.ToString();
+            string nome = txtPesquisaEquipe.Text.Trim();
+            CarregarEquipes(categoria, nome);
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -100,17 +115,16 @@ namespace Dev4Tech
 
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
-            CarregarEquipes(filtroEquipes.SelectedItem?.ToString());
+            AtualizarEquipes();
         }
 
-        private void CarregarEquipes(string filtroCategoria = null)
+        private void CarregarEquipes(string filtroCategoria = null, string filtroNome = "")
         {
             panelEquipes.Controls.Clear();
             mensagensCount = 0;
             FiltroEquipes filtro = new FiltroEquipes();
 
-            // Get distinct teams without members
-            DataTable equipesDt = filtro.ObterEquipesDoUsuario(filtroCategoria);
+            DataTable equipesDt = filtro.ObterEquipesDoUsuario(filtroCategoria, filtroNome);
 
             foreach (DataRow equipe in equipesDt.Rows)
             {
@@ -119,7 +133,6 @@ namespace Dev4Tech
                 if (!equipe.IsNull("ultima_atividade"))
                     diasDesdeUltimaAtividade = (DateTime.Now - equipe.Field<DateTime>("ultima_atividade")).Days;
 
-                // Get members for this specific team
                 DataTable membrosDt = filtro.ObterMembrosDaEquipe(idEquipe);
                 var membros = membrosDt.AsEnumerable().Select(r =>
                 {
@@ -173,7 +186,6 @@ namespace Dev4Tech
                 Cursor = Cursors.Hand
             };
 
-            // CAPTURAR VALORES ANTES DO EVENTO
             int equipeId = idEquipe;
             string equipeNome = nomeEquipe;
             string equipeCategoria = categoria;
@@ -186,7 +198,6 @@ namespace Dev4Tech
                 this.Hide();
             };
 
-            // CARREGAR FOTO DA EQUIPE - USANDO OS DADOS DO DATATABLE
             PictureBox picEquipe = new PictureBox
             {
                 SizeMode = PictureBoxSizeMode.StretchImage,
@@ -197,10 +208,8 @@ namespace Dev4Tech
                 BorderStyle = BorderStyle.FixedSingle
             };
 
-            // Usar os dados da foto da equipe que vieram do DataTable
             Image fotoEquipe = ObterFotoEquipeDosDados(fotoEquipeData);
             picEquipe.Image = fotoEquipe ?? Properties.Resources.icon_EquipLogo;
-
             equipePanel.Controls.Add(picEquipe);
 
             Label lblNomeEquipe = new Label
@@ -264,7 +273,6 @@ namespace Dev4Tech
                     Tag = membro.IdFuncionario
                 };
 
-                // CARREGAR FOTO DO MEMBRO - MESMA LÓGICA DAS OUTRAS TELAS
                 if (!string.IsNullOrEmpty(membro.CaminhoFotoPerfil))
                 {
                     string caminhoFotoCorrigido = membro.CaminhoFotoPerfil.Replace("/", "\\");
@@ -320,7 +328,6 @@ namespace Dev4Tech
             mensagensCount++;
         }
 
-
         private void btnEquipe_Click(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;
@@ -365,9 +372,18 @@ namespace Dev4Tech
             }
         }
 
-        private void txtPesquisaEquipe_TextChanged(object sender, EventArgs e) { }
-        private void filtroEquipes_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void txtPesquisaEquipe_TextChanged(object sender, EventArgs e)
+        {
+            AtualizarEquipes();
+        }
+
+        private void filtroEquipes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AtualizarEquipes();
+        }
+
         private void panelEquipes_Paint(object sender, PaintEventArgs e) { }
+
         private void btnConfig_Click(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;
@@ -389,7 +405,9 @@ namespace Dev4Tech
                 MessageBox.Show("Nenhum usuário logado.");
             }
         }
+
         private void PesquisaEquipes_Load(object sender, EventArgs e) { }
+
         private Image ObterFotoEquipeDosDados(object fotoData)
         {
             Image fotoEquipe = null;
@@ -398,7 +416,6 @@ namespace Dev4Tech
             {
                 if (fotoData is byte[] imageData)
                 {
-                    // É um blob - tentar carregar como imagem diretamente
                     try
                     {
                         using (var ms = new MemoryStream(imageData))
@@ -409,11 +426,9 @@ namespace Dev4Tech
                     catch (Exception ex)
                     {
                         Console.WriteLine($"Erro ao carregar imagem do blob: {ex.Message}");
-                        // Tentar como string se falhar como imagem
                         try
                         {
                             string nomeArquivo = System.Text.Encoding.UTF8.GetString(imageData);
-                            // LIMPAR O NOME DO ARQUIVO DE CARACTERES INVÁLIDOS
                             nomeArquivo = new string(nomeArquivo.Where(c => !Path.GetInvalidFileNameChars().Contains(c)).ToArray());
                             string caminhoImagemEquipe = Path.Combine(basePathImagemEquipe, nomeArquivo);
                             if (File.Exists(caminhoImagemEquipe))
@@ -421,18 +436,13 @@ namespace Dev4Tech
                                 fotoEquipe = Image.FromFile(caminhoImagemEquipe);
                             }
                         }
-                        catch
-                        {
-                            // Se tudo falhar, retorna null e usará imagem padrão
-                        }
+                        catch { }
                     }
                 }
                 else if (fotoData is string caminhoRelativo)
                 {
-                    // É um caminho
                     try
                     {
-                        // LIMPAR O CAMINHO DE CARACTERES INVÁLIDOS
                         caminhoRelativo = new string(caminhoRelativo.Where(c => !Path.GetInvalidPathChars().Contains(c)).ToArray());
                         string caminhoCompleto = Path.Combine(baseFolder, caminhoRelativo.Replace("/", @"\"));
                         if (File.Exists(caminhoCompleto))
@@ -456,7 +466,7 @@ namespace Dev4Tech
                 var usuarioFoto = new UsuarioFoto();
                 Image foto = usuarioFoto.ObterFotoUsuario();
 
-                if (picPerfil != null) // Verifica se o controle existe no form
+                if (picPerfil != null)
                 {
                     if (foto != null)
                     {
@@ -465,7 +475,6 @@ namespace Dev4Tech
                     }
                     else
                     {
-                        // Usar imagem padrão se não encontrar foto
                         picPerfil.Image = Properties.Resources.icon_perfil;
                         picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
                     }
