@@ -21,6 +21,7 @@ import EquipeTarefas from '../../src/telas/Funcionario/EquipeTarefas';
 import Ranking from '../../src/telas/Funcionario/Ranking';
 import TarefaEnvio from '../../src/telas/Funcionario/TarefaEnvio';
 import Configuracoes from '../../src/telas/Configuracoes'
+import Chat from '../../src/telas/Funcionario/Chat';
 
 import HomeAdm from '../../src/telas/Gestor/HomeAdm';
 import CadastroEquipes from '../../src/telas/Gestor/CadastroEquipes';
@@ -232,7 +233,12 @@ export default function App() {
           name="EditEquipe"
           component={EditEquipe} 
           options={{ headerShown: false }}
-        />           
+        />         
+        <Stack.Screen
+          name="Chat"
+          component={Chat} 
+          options={{ headerShown: false }}
+        />       
     
       </Stack.Navigator>
     </NavigationContainer>

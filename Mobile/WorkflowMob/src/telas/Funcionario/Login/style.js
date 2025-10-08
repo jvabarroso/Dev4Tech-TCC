@@ -45,7 +45,6 @@ export const  getStyles = (theme) => StyleSheet.create({
   },
   input: {
     width: '100%',
-    backgroundColor: theme.inputBackground3,
     color:theme.text,
     padding: 10,
     fontSize: 16,

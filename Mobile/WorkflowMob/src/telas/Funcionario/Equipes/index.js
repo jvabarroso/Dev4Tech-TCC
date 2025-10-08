@@ -185,6 +185,22 @@ export default function Equipes({ route, navigation }) {
                     </Card>
 
                   </TouchableOpacity>
+
+                  <TouchableOpacity 
+                    onPress={() => navigation.navigate('Chat', { 
+                      equipe: item, 
+                      usuario: usuarioState  
+                    })}>
+
+                    <Card style={styles.cardtarequi}>
+                      <Card.Cover source={require('../../../../assets/img/chat.jpg')} style={styles.imagemcard} />
+                      <Card.Content style={styles.cardinferior}>
+                        <Title style={styles.titulocard}>Chat</Title>
+                        <Paragraph style={styles.paragraph}>Veja as mensagens de sua equipe</Paragraph>
+                      </Card.Content>
+                    </Card>
+
+                  </TouchableOpacity>
                 </View>
               )}
             </View>
