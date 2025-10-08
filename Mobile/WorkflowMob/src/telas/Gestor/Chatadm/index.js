@@ -9,7 +9,7 @@ import url from '../../../../services/url';
 
 const API_URL = `${url}dev4tech`;
 
-export default function Chat({ route, navigation }) {
+export default function Chatadm({ route, navigation }) {
   const { theme } = useTheme();
   const styles = getStyles(theme);
 
@@ -61,8 +61,8 @@ export default function Chat({ route, navigation }) {
       { 
         Texto: texto,
         id_equipe: equipe.id_equipe,
-        FuncionarioId: usuario.FuncionarioId,
-        AdminId: null,
+        FuncionarioId: null,
+        AdminId: usuario.AdminId,
         id_empresa: usuario.id_empresa
       });
       setTexto("");
@@ -114,14 +114,12 @@ export default function Chat({ route, navigation }) {
         data={mensagens}
         keyExtractor={(item) => item.id_mensagem.toString()}
         renderItem={({ item }) => {
-          const isMe = item.FuncionarioId === usuario.FuncionarioId;
-          const isAdmin = item.AdminId !== null;
+          const isMe = item.AdminId === usuario.AdminId;
           return (
             <View
               style={[
                 styles.msg,
                 isMe ? styles.msgMinha : styles.msgOutro,
-                isAdmin && styles.msgAdmin 
               ]}
             >
               {!isMe && (

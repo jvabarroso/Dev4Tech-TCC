@@ -143,10 +143,7 @@ export default function EquipesAdm({ route, navigation }) {
                       <Card.Cover source={require('../../../../assets/img/equipes.png')} style={styles.imagemcard} />
                       <Card.Content style={styles.cardinferior}>
                         <Title style={styles.titulocard}>Funcionarios</Title>
-                        <View style={styles.linhainfer}>
-                          <Text style={styles.data}>16/07/20</Text>
-                          <Text style={styles.Entre}>Entre aqui</Text>
-                        </View>
+                        <Paragraph style={styles.paragraph}>....................</Paragraph>
                       </Card.Content>
                     </Card>
                   </TouchableOpacity>
@@ -157,10 +154,7 @@ export default function EquipesAdm({ route, navigation }) {
                       <Card.Cover source={require('../../../../assets/img/tarefas.png')} style={styles.imagemcard} />
                       <Card.Content style={styles.cardinferior}>
                         <Title style={styles.titulocard}>Tarefas</Title>
-                        <View style={styles.linhainfer}>
-                          <Text style={styles.data}>16/07/20</Text>
-                          <Text style={styles.Entre}>Entre aqui</Text>
-                        </View>
+                        <Paragraph style={styles.paragraph}>....................</Paragraph>
                       </Card.Content>
                     </Card>
 
@@ -172,10 +166,23 @@ export default function EquipesAdm({ route, navigation }) {
                       <Card.Cover source={require('../../../../assets/img/ranking.png')} style={styles.imagemcard} />
                       <Card.Content style={styles.cardinferior}>
                         <Title style={styles.titulocard}>Ranking</Title>
-                        <View style={styles.linhainfer}>
-                          <Text style={styles.data}>16/07/20</Text>
-                          <Text style={styles.Entre}>Entre aqui</Text>
-                        </View>
+                        <Paragraph style={styles.paragraph}>....................</Paragraph>
+                      </Card.Content>
+                    </Card>
+
+                  </TouchableOpacity>
+
+                  <TouchableOpacity 
+                    onPress={() => navigation.navigate('Chatadm', { 
+                      equipe: item, 
+                      usuario: usuarioState  
+                    })}>
+
+                    <Card style={styles.cardtarequi}>
+                      <Card.Cover source={require('../../../../assets/img/chat.jpg')} style={styles.imagemcard} />
+                      <Card.Content style={styles.cardinferior}>
+                        <Title style={styles.titulocard}>Chat</Title>
+                        <Paragraph style={styles.paragraph}>Veja as mensagens da equipe</Paragraph>
                       </Card.Content>
                     </Card>
 

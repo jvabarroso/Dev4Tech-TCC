@@ -46,11 +46,6 @@ export const getStyles = (theme) => StyleSheet.create({
     alignSelf: "flex-start",
     borderBottomLeftRadius: 0,
   },
-  msgAdmin: {
-    backgroundColor: "#5089eaff",
-    alignSelf: "flex-start",
-    borderBottomLeftRadius: 0,
-  },
   usuario: {
     fontWeight: "bold",
     fontFamily: fonts.text,

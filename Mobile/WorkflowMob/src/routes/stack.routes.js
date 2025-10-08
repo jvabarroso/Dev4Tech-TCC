@@ -31,6 +31,7 @@ import RankingAdm from '../../src/telas/Gestor/RankingAdm';
 import RankingEstastistico from '../../src/telas/Gestor/RakingEstastistico';
 import EquipesAdm from '../../src/telas/Gestor/EquipesAdm';
 import EditEquipe from '../../src/telas/Gestor/EditEquipe';
+import Chatadm from '../../src/telas/Gestor/Chatadm';
 
 import fonts from '../styles/fonts';
 import {Ionicons} from '@expo/vector-icons';
@@ -239,6 +240,11 @@ export default function App() {
           component={Chat} 
           options={{ headerShown: false }}
         />       
+        <Stack.Screen
+          name="Chatadm"
+          component={Chatadm} 
+          options={{ headerShown: false }}
+        />      
     
       </Stack.Navigator>
     </NavigationContainer>

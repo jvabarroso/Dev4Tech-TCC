@@ -12,17 +12,21 @@ $pdo->prepare("UPDATE mensagenschat SET status = 'entregue' WHERE id_equipe = ? 
     ->execute([$id_equipe]);
 
 $stmt = $pdo->prepare("SELECT 
-    id_mensagem,
-    Texto, 
-    data_envio, 
-    id_equipe, 
-    FuncionarioId, 
-    AdminId, 
-    id_empresa,  
+    m.id_mensagem,
+    m.Texto, 
+    m.data_envio, 
+    m.id_equipe, 
+    m.FuncionarioId, 
+    m.AdminId, 
+    m.id_empresa,  
+    f.Nome AS FuncionarioNome,
+    a.Nome AS AdminNome,
     status 
-    FROM mensagenschat 
-    WHERE id_equipe = ?
-    ORDER BY id_mensagem DESC");
+    FROM mensagenschat m
+    LEFT JOIN funcionarios f ON m.FuncionarioId = f.FuncionarioId
+    LEFT JOIN administradores a ON m.AdminId = a.AdminId
+    WHERE m.id_equipe = ?
+    ORDER BY m.id_mensagem DESC");
 
 $stmt->execute([$id_equipe]);
 $mensagens = $stmt->fetchAll();

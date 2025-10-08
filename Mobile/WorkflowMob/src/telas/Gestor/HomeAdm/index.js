@@ -128,7 +128,7 @@ export default function HomeAdm({navigation, route}){
                             source={require('../../../../assets/img/ranking.png')} 
                             style={styles.imagemcard}/>
                         <Card.Content style={styles.cardinferior}>
-                            <Title style={styles.titulocard}>Rankin</Title>
+                            <Title style={styles.titulocard}>Ranking</Title>
                         </Card.Content>
                     </Card>
                     </TouchableOpacity>
