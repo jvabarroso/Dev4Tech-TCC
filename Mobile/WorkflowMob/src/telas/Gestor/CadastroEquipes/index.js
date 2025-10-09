@@ -252,6 +252,7 @@ function removerFuncionario(index) {
             const res = await api.post('dev4tech/cadastroequipe.php', {
                 nome_equipe,
                 id_categoria: categoriaSelecionada,
+                nome_categoria: categoriaEquipe,
                 id_empresa: usuario.id_empresa,
                 foto_equipe,
                 AdminId: usuario.AdminId,
@@ -280,7 +281,8 @@ function removerFuncionario(index) {
                 statusBarHeight: 70,
                 type: "success",
                 duration: 2000,             
-            });         
+            })
+            limparCampos();          
 
             } 
         catch (error) {
@@ -301,6 +303,11 @@ function removerFuncionario(index) {
     function limparCampos(){
         setNome_equipe('');
         setCategoriaEquipe('');
+        setCategoriaSelecionada(null);
+        setFuncionarioSelecionada(null);
+        setFuncionarioEquipe('');
+        setFuncionariosEquipeArray([]);
+        setImage(null);
     }
 
 
@@ -338,7 +345,7 @@ function removerFuncionario(index) {
                         placeholder="Digite o nome da equipe"
                         value={nome_equipe}
                         onChangeText={setNome_equipe} 
-                        placeholderTextColor={theme.text}
+                        placeholderTextColor={theme.text3}
                     />
                     <Text style={styles.texto}>Categoria da equipe</Text>
                     <Dropdown
@@ -368,6 +375,15 @@ function removerFuncionario(index) {
                             fontFamily: fonts.text,
                         }}
                         activeColor={theme.inputBackground} 
+                    />
+
+                    <Text style={styles.texto}>Crie nova Categoria</Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Digite a nova categoria"
+                        value={categoriaEquipe} 
+                        onChangeText={setCategoriaEquipe} 
+                        placeholderTextColor={theme.text3}
                     />
 
                     <Text style={styles.texto}>Adicionar membros à equipe</Text>

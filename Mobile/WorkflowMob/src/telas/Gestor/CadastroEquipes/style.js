@@ -263,4 +263,10 @@ export const getStyles = (theme) => StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  inputdropdown:{
+    backgroundColor: theme.inputBackground,
+    color: theme.text,
+    fontSize: 14,
+    fontFamily: fonts.text,
+  },
 })

@@ -9,12 +9,24 @@ $postjson = json_decode($input, true);
 
 $nome_equipe = @$postjson['nome_equipe'];
 $id_categoria = @$postjson['id_categoria'];
+$nome_categoria = @$postjson['nome_categoria'];
 $AdminId = @$postjson['AdminId'];
 $foto_equipe = @$postjson['foto_equipe'];
 $id_empresa = @$postjson['id_empresa'];
+
 try {
-    $query = $pdo->prepare("SELECT * FROM categorias  WHERE id_categoria = :id_categoria");
-    $query->bindValue(':id_categoria', $id_categoria, PDO::PARAM_INT);
+    if($id_categoria == null) {
+        $res = $pdo->prepare("INSERT INTO categorias SET 
+            nome_categoria = :nome_categoria, 
+            id_empresa = :id_empresa");	
+
+        $res->bindValue(":nome_categoria", "$nome_categoria");
+        $res->execute();
+        $id_categoria = $pdo->lastInsertId();
+    }
+
+    $query = $pdo->prepare("SELECT * FROM categorias  WHERE nome_categoria = :nome_categoria");
+    $query->bindValue(':nome_categoria', $nome_categoria, PDO::PARAM_STR);
     $query->execute();
 
     if (!$query->fetch(PDO::FETCH_ASSOC)) {
