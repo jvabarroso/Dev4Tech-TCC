@@ -116,16 +116,54 @@ export default function EquipesTarefasAdm({ navigation, route }) {
                     style={styles.imag} 
                 />
                 <View style={styles.textosTarefa}>
-                    <Text style={styles.textolistatitulo}>{item.nome}</Text>
-                    <Text style={styles.textolista}>{item.cargo}</Text>
+                    <Text style={styles.textolistatitulo}>Tarefa: {item.nomeTarefa}</Text>
+                    <Text style={styles.textolista}>Equipe: {item.nome_equipe}</Text>
                 </View>
                 </View>
 
                 <View style={styles.linhaInfo}>
-                <Text style={styles.textolistacargo}>
-                    {/* Status:{item.status_tarefa}  */}
-                    {/* <Text style={styles.textolistadata}>{formatarData(item.data_entrega)}</Text> */}
-                </Text>
+                <Text style={styles.textolistacargo}>Dificuldade: {item.dificuldade}</Text>
+                
+                <View style={styles.linhaBotoes}>
+                    <TouchableOpacity
+                      style={[
+                        styles.botao,
+                        item.statusAvaliacao === 'aceito'
+                          ? { backgroundColor: '#4CAF50' }
+                          : { backgroundColor: '#E0E0E0' }
+                      ]}
+                      onPress={() => {
+                        const novos = [...dados];
+                        novos[index].statusAvaliacao =
+                          item.statusAvaliacao === 'aceito' ? null : 'aceito';
+                        setDados(novos);
+                      }}
+                    >
+                    <Text style={[styles.textoBotao,{ color: item.statusAvaliacao === 'aceito' ? '#fff' : '#000' }]}>
+                      Aceitar
+                    </Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    style={[
+                      styles.botao,
+                      item.statusAvaliacao === 'negado'
+                        ? { backgroundColor: '#E53935' }
+                        : { backgroundColor: '#E0E0E0' }
+                    ]}
+                    onPress={() => {
+                      const novos = [...dados];
+                      novos[index].statusAvaliacao =
+                        item.statusAvaliacao === 'negado' ? null : 'negado';
+                      setDados(novos);
+                    }}
+                  >
+                    <Text style={[styles.textoBotao,{ color: item.statusAvaliacao === 'negado' ? '#fff' : '#000' }]}>
+                      Negar
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+
                 </View>
             </View>
           ))}

@@ -103,8 +103,8 @@ export const getStyles = (theme) => StyleSheet.create({
     fontFamily: fonts.text,
     backgroundColor: theme.inputBackground2,
     borderRadius: 15,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
+    paddingHorizontal: 5,
+    paddingVertical: 3,
   },
   textolistadata: {
     color: theme.text,
@@ -142,5 +142,24 @@ export const getStyles = (theme) => StyleSheet.create({
   tituloi: {
     width:150,
     height:50,
+  },
+  botao: {
+    paddingVertical: 4,
+    paddingHorizontal: 10,
+    borderRadius: 8,
+    borderWidth: 2,
+    borderColor: theme.border
+  },
+  textoBotao: {
+    color: '#eeeeeeff',
+    fontWeight: 'bold',
+    fontSize: 13,
+    fontFamily: fonts.text,
+  },
+  linhaBotoes: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    gap:5,
+    bottom:3
   },
 });

@@ -20,8 +20,9 @@ try {
     
     // Consulta corrigida usando JOIN com Equipes_Membros
     $query = $pdo->prepare("SELECT 
-        f.nome,
-        f.cargo,
+        t.nomeTarefa,
+        e.nome_equipe,
+        t.dificuldade,
         t.id_tarefa,
         DATE_FORMAT(t.data_entrega, '%Y-%m-%d') AS data_entrega,
         DATE_FORMAT(t.data_criacao, '%Y-%m-%d') AS data_criacao
