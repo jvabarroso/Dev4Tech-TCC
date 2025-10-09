@@ -2,11 +2,11 @@
 include_once('conexao.php');
 
 // Obter o ID do funcionário
-$id_funcionario = $_GET['id_funcionario'] ?? null;
-error_log("ID do funcionário recebido: " . var_export($id_funcionario, true));
+$AdminId = $_GET['AdminId'] ?? null;
+error_log("ID do admiministrador recebido: " . var_export($AdminId, true));
 
-if (empty($id_funcionario)) {
-    error_log("Erro: ID do funcionário não fornecido");
+if (empty($AdminId)) {
+    error_log("Erro: ID do administrador não fornecido");
     echo json_encode([
         'success' => false,
         'message' => 'ID do funcionário não fornecido',
@@ -16,34 +16,26 @@ if (empty($id_funcionario)) {
 }
 
 try {
-    error_log("Buscando tarefas para o funcionário ID: " . $id_funcionario);
+    error_log("Buscando tarefas enviadas " . $AdminId);
     
     // Consulta corrigida usando JOIN com Equipes_Membros
     $query = $pdo->prepare("SELECT 
+        f.nome,
+        f.cargo,
         t.id_tarefa,
-        t.nomeTarefa,
-        t.instrucoes,
-        e.nome_equipe,
-        e.id_equipe,
-        t.dificuldade,
         DATE_FORMAT(t.data_entrega, '%Y-%m-%d') AS data_entrega,
-        DATE_FORMAT(t.data_criacao, '%Y-%m-%d') AS data_criacao,
-        EXISTS (
-            SELECT 1
-            FROM EntregasTarefa et
-            WHERE et.id_tarefa = t.id_tarefa
-            AND et.FuncionarioId = :id_funcionario_exist
-        ) AS entregue
-        FROM Tarefas t
-        JOIN Equipes e ON t.id_equipe = e.id_equipe
-        JOIN Equipes_Membros em ON t.id_equipe = em.id_equipe
-        WHERE em.FuncionarioId = :id_funcionario
+        DATE_FORMAT(t.data_criacao, '%Y-%m-%d') AS data_criacao
+        FROM Funcionarios f
+        JOIN entregastarefa et ON f.FuncionarioId = et.FuncionarioId
+        JOIN Tarefas t ON et.id_tarefa = t.id_tarefa    
+        JOIN equipes e ON t.id_equipe = e.id_equipe
+        WHERE e.AdminId = :AdminId
+        AND et.entregue = 0
         ORDER BY t.data_entrega ASC");
         
     error_log("Consulta preparada com sucesso");
     
-    $query->bindValue(':id_funcionario', $id_funcionario, PDO::PARAM_INT);
-    $query->bindValue(':id_funcionario_exist', $id_funcionario, PDO::PARAM_INT);
+    $query->bindValue(':AdminId', $AdminId, PDO::PARAM_INT);
     $query->execute();
     error_log("Consulta executada com sucesso");
     

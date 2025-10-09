@@ -137,40 +137,6 @@ export default function EquipesAdm({ route, navigation }) {
               </TouchableOpacity>
                 {equipeSelecionada === item.id_equipe && (
                 <View style={styles.areacard}>
-                  <TouchableOpacity>
-
-                    <Card style={styles.cardtarequi}>
-                      <Card.Cover source={require('../../../../assets/img/equipes.png')} style={styles.imagemcard} />
-                      <Card.Content style={styles.cardinferior}>
-                        <Title style={styles.titulocard}>Funcionarios</Title>
-                        <Paragraph style={styles.paragraph}>....................</Paragraph>
-                      </Card.Content>
-                    </Card>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity>
-
-                    <Card style={styles.cardtarequi}>
-                      <Card.Cover source={require('../../../../assets/img/tarefas.png')} style={styles.imagemcard} />
-                      <Card.Content style={styles.cardinferior}>
-                        <Title style={styles.titulocard}>Tarefas</Title>
-                        <Paragraph style={styles.paragraph}>....................</Paragraph>
-                      </Card.Content>
-                    </Card>
-
-                  </TouchableOpacity>
-
-                  <TouchableOpacity>
-
-                    <Card style={styles.cardtarequi}>
-                      <Card.Cover source={require('../../../../assets/img/ranking.png')} style={styles.imagemcard} />
-                      <Card.Content style={styles.cardinferior}>
-                        <Title style={styles.titulocard}>Ranking</Title>
-                        <Paragraph style={styles.paragraph}>....................</Paragraph>
-                      </Card.Content>
-                    </Card>
-
-                  </TouchableOpacity>
 
                   <TouchableOpacity 
                     onPress={() => navigation.navigate('Chatadm', { 
@@ -181,12 +147,64 @@ export default function EquipesAdm({ route, navigation }) {
                     <Card style={styles.cardtarequi}>
                       <Card.Cover source={require('../../../../assets/img/chat.jpg')} style={styles.imagemcard} />
                       <Card.Content style={styles.cardinferior}>
-                        <Title style={styles.titulocard}>Chat</Title>
+                        <Title style={styles.titulocard}>Geral</Title>
                         <Paragraph style={styles.paragraph}>Veja as mensagens da equipe</Paragraph>
                       </Card.Content>
                     </Card>
 
                   </TouchableOpacity>
+
+                  <TouchableOpacity 
+                    onPress={() => navigation.navigate('EquipesTarefasAdm', { 
+                      equipe: item, 
+                      usuario: usuarioState  
+                    })}>
+
+                    <Card style={styles.cardtarequi}>
+                      <Card.Cover source={require('../../../../assets/img/tarefas.png')} style={styles.imagemcard} />
+                      <Card.Content style={styles.cardinferior}>
+                        <Title style={styles.titulocard}>Tarefas</Title>
+                        <Paragraph style={styles.paragraph}>Avalie as tarefas enviadas</Paragraph>
+                      </Card.Content>
+                    </Card>
+
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate('RankingAdm')}>
+
+                    <Card style={styles.cardtarequi}>
+                      <Card.Cover source={require('../../../../assets/img/ranking.png')} style={styles.imagemcard} />
+                      <Card.Content style={styles.cardinferior}>
+                        <Title style={styles.titulocard}>Ranking</Title>
+                        <Paragraph style={styles.paragraph}>Veja a posição das Equipes e seus dados</Paragraph>
+                      </Card.Content>
+                    </Card>
+
+                  </TouchableOpacity>
+
+                  <TouchableOpacity>
+
+                    <Card style={styles.cardtarequi}>
+                      <Card.Cover source={require('../../../../assets/img/equipes.png')} style={styles.imagemcard} />
+                      <Card.Content style={styles.cardinferior}>
+                        <Title style={styles.titulocard}>Membros</Title>
+                        <Paragraph style={styles.paragraph}>Veja os membros da Equipe</Paragraph>
+                      </Card.Content>
+                    </Card>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity>
+
+                    <Card style={styles.cardtarequi}>
+                      <Card.Cover source={require('../../../../assets/img/kanban.webp')} style={styles.imagemcard} />
+                      <Card.Content style={styles.cardinferior}>
+                        <Title style={styles.titulocard}>Planejamento</Title>
+                        <Paragraph style={styles.paragraph}>KanBan e Scrum</Paragraph>
+                      </Card.Content>
+                    </Card>
+                  </TouchableOpacity>
+
                 </View>
               )}
             </View>

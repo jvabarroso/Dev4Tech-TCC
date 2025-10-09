@@ -32,6 +32,7 @@ import RankingEstastistico from '../../src/telas/Gestor/RakingEstastistico';
 import EquipesAdm from '../../src/telas/Gestor/EquipesAdm';
 import EditEquipe from '../../src/telas/Gestor/EditEquipe';
 import Chatadm from '../../src/telas/Gestor/Chatadm';
+import EquipesTarefasAdm from '../../src/telas/Gestor/EquipesTarefasAdm';
 
 import fonts from '../styles/fonts';
 import {Ionicons} from '@expo/vector-icons';
@@ -219,6 +220,11 @@ export default function App() {
           component={Configuracoes} 
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="Chat"
+          component={Chat} 
+          options={{ headerShown: false }}
+        />   
 
         <Stack.Screen
           name="HomeAdm"
@@ -234,17 +240,17 @@ export default function App() {
           name="EditEquipe"
           component={EditEquipe} 
           options={{ headerShown: false }}
-        />         
-        <Stack.Screen
-          name="Chat"
-          component={Chat} 
-          options={{ headerShown: false }}
-        />       
+        />             
         <Stack.Screen
           name="Chatadm"
           component={Chatadm} 
           options={{ headerShown: false }}
         />      
+        <Stack.Screen
+          name="EquipesTarefasAdm"
+          component={EquipesTarefasAdm} 
+          options={{ headerShown: false }}
+        />     
     
       </Stack.Navigator>
     </NavigationContainer>

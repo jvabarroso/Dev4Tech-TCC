@@ -18,7 +18,8 @@ try{
     id_equipe = :id_equipe,
     descricao = :descricao, 
     nome_arquivo = :nome_arquivo, 
-    FuncionarioId = :FuncionarioId
+    FuncionarioId = :FuncionarioId,
+    entregue = 0
     ");	
 
     $res->bindValue(":id_tarefa","$id_tarefa");

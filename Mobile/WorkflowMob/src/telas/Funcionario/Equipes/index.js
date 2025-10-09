@@ -139,19 +139,21 @@ export default function Equipes({ route, navigation }) {
               </TouchableOpacity>
                 {equipeSelecionada === item.id_equipe && (
                 <View style={styles.areacard}>
+
                   <TouchableOpacity 
-                    onPress={() => navigation.navigate('EquipeFuncionario',  { 
+                    onPress={() => navigation.navigate('Chat', { 
                       equipe: item, 
-                      usuario: usuarioState 
+                      usuario: usuarioState  
                     })}>
-                      
+
                     <Card style={styles.cardtarequi}>
-                      <Card.Cover source={require('../../../../assets/img/equipes.png')} style={styles.imagemcard} />
+                      <Card.Cover source={require('../../../../assets/img/chat.jpg')} style={styles.imagemcard} />
                       <Card.Content style={styles.cardinferior}>
-                        <Title style={styles.titulocard}>Funcionarios</Title>
-                        <Paragraph style={styles.paragraph}>Vejas os membros de sua Equipe</Paragraph>
+                        <Title style={styles.titulocard}>Geral</Title>
+                        <Paragraph style={styles.paragraph}>Veja as mensagens de sua equipe</Paragraph>
                       </Card.Content>
                     </Card>
+
                   </TouchableOpacity>
 
                   <TouchableOpacity 
@@ -171,7 +173,7 @@ export default function Equipes({ route, navigation }) {
                   </TouchableOpacity>
 
                   <TouchableOpacity 
-                    onPress={() => navigation.navigate('EquipeRanking', { 
+                    onPress={() => navigation.navigate('Ranking', { 
                       equipe: item, 
                       usuario: usuarioState  
                     })}>
@@ -187,20 +189,20 @@ export default function Equipes({ route, navigation }) {
                   </TouchableOpacity>
 
                   <TouchableOpacity 
-                    onPress={() => navigation.navigate('Chat', { 
+                    onPress={() => navigation.navigate('EquipeFuncionario',  { 
                       equipe: item, 
-                      usuario: usuarioState  
+                      usuario: usuarioState 
                     })}>
-
+                      
                     <Card style={styles.cardtarequi}>
-                      <Card.Cover source={require('../../../../assets/img/chat.jpg')} style={styles.imagemcard} />
+                      <Card.Cover source={require('../../../../assets/img/equipes.png')} style={styles.imagemcard} />
                       <Card.Content style={styles.cardinferior}>
-                        <Title style={styles.titulocard}>Chat</Title>
-                        <Paragraph style={styles.paragraph}>Veja as mensagens de sua equipe</Paragraph>
+                        <Title style={styles.titulocard}>Membros</Title>
+                        <Paragraph style={styles.paragraph}>Vejas os membros de sua Equipe</Paragraph>
                       </Card.Content>
                     </Card>
-
                   </TouchableOpacity>
+
                 </View>
               )}
             </View>

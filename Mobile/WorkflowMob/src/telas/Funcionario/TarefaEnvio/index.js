@@ -71,7 +71,7 @@ export default function TarefaEnvio({ navigation, route }) {
         if (!file) {
             showMessage({
             message: 'Nenhuma arquivo selecionada.',
-            description: 'Por favor, selecione ou tire uma foto primeiro.',
+            description: 'Por favor, selecione um arquivo primeiro.',
             floating: true,
             statusBarHeight: 70,
             type: "danger",
@@ -128,7 +128,7 @@ export default function TarefaEnvio({ navigation, route }) {
             console.error(error);
             showMessage({
                 message: 'Erro.',
-                description: "Ocorreu um erro ao tentar enviar a imagem.",
+                description: "Ocorreu um erro ao tentar enviar a tarefa.",
                 floating: true,
                 statusBarHeight: 70,
                 type: "warning",
