@@ -19,6 +19,9 @@ namespace Dev4Tech
         private void CarregarTarefasNaoAvaliadas()
         {
             panelAvaliacaoEquipes.Controls.Clear();
+            avaliacoes.Clear();
+            bool temTarefas = false;
+
             List<int> equipesIds = BuscarIdsEquipes();
 
             int top = 10;
@@ -29,6 +32,8 @@ namespace Dev4Tech
 
                 foreach (DataRow tarefa in tarefasNaoAvaliadas.Rows)
                 {
+                    temTarefas = true;
+
                     int idTarefa = Convert.ToInt32(tarefa["id_tarefa"]);
                     string nomeTarefa = tarefa["nomeTarefa"].ToString();
                     string nomeEquipe = tarefa["nome_equipe"].ToString();
@@ -49,39 +54,53 @@ namespace Dev4Tech
                     bool temProblema = relatoProblema != null;
                     bool atrasada = Convert.ToDateTime(tarefa["data_entrega"]) < DateTime.Today;
 
-                    // Calcula altura dinamicamente baseada nos elementos
-                    int alturaBase = atrasada ? 140 : (temProblema ? 120 : 110);
-                    int alturaPainel = temArquivo ? alturaBase + 30 : alturaBase;
+                    // Design melhorado - cores suaves
+                    Color corFundo = temProblema ? Color.LightYellow : (atrasada ? Color.LightCoral : Color.White);
+                    Color corBorda = temProblema ? Color.Orange : (atrasada ? Color.Red : Color.LightGray);
+
+                    // Altura ajustável
+                    int alturaBase = 120;
+                    if (atrasada) alturaBase += 20;
+                    if (temProblema) alturaBase += 10;
+                    if (temArquivo) alturaBase += 10;
 
                     Panel painelTarefa = new Panel
                     {
                         Width = panelAvaliacaoEquipes.Width - 40,
-                        Height = alturaPainel,
+                        Height = alturaBase,
                         Top = top,
                         Left = 10,
                         BorderStyle = BorderStyle.FixedSingle,
+                        BackColor = corFundo,
                         Tag = idTarefa,
-                        Cursor = Cursors.Default,
-                        BackColor = temProblema ? Color.LightYellow : SystemColors.Control
+                        Cursor = Cursors.Default
                     };
 
-                    // Labels básicos da tarefa
-                    Label lblNome = new Label
+                    // Título com fundo colorido
+                    Label lblTitulo = new Label
                     {
-                        Text = "Tarefa: " + nomeTarefa,
+                        Text = nomeTarefa,
                         Font = new Font("Segoe UI", 10, FontStyle.Bold),
-                        Left = 10,
-                        Top = 10,
-                        AutoSize = true
+                        BackColor = Color.SteelBlue,
+                        ForeColor = Color.White,
+                        Left = 0,
+                        Top = 0,
+                        Width = painelTarefa.Width,
+                        Height = 25,
+                        TextAlign = ContentAlignment.MiddleLeft,
+                        Padding = new Padding(10, 0, 0, 0)
                     };
-                    painelTarefa.Controls.Add(lblNome);
+                    painelTarefa.Controls.Add(lblTitulo);
 
+                    int infoTop = 30;
+
+                    // Informações básicas
                     Label lblEquipe = new Label
                     {
                         Text = "Equipe: " + nomeEquipe,
                         Font = new Font("Segoe UI", 9, FontStyle.Regular),
                         Left = 10,
-                        Top = 35,
+                        Top = infoTop,
                         AutoSize = true
                     };
                     painelTarefa.Controls.Add(lblEquipe);
@@ -91,12 +110,12 @@ namespace Dev4Tech
                         Text = "Dificuldade: " + dificuldade,
                         Font = new Font("Segoe UI", 9, FontStyle.Italic),
                         Left = 10,
-                        Top = 60,
+                        Top = infoTop + 20,
                         AutoSize = true
                     };
                     painelTarefa.Controls.Add(lblDificuldade);
 
-                    // Informação do funcionário que entregou
+                    // Funcionário que entregou
                     if (!string.IsNullOrEmpty(nomeFuncionario))
                     {
                         Label lblFuncionario = new Label
@@ -104,21 +123,24 @@ namespace Dev4Tech
                             Text = "Entregue por: " + nomeFuncionario,
                             Font = new Font("Segoe UI", 8, FontStyle.Italic),
                             Left = 200,
-                            Top = 35,
+                            Top = infoTop,
                             AutoSize = true,
                             ForeColor = Color.Gray
                         };
                         painelTarefa.Controls.Add(lblFuncionario);
                     }
 
-                    // RadioButtons para avaliação
+                    int controlesTop = infoTop + 45;
+
+                    // RadioButtons com melhor espaçamento
                     RadioButton rbAceita = new RadioButton
                     {
-                        Text = "Aceita",
+                        Text = "✅ Aceita",
                         Left = 10,
-                        Top = 85,
+                        Top = controlesTop,
                         AutoSize = true,
-                        Name = "rbAceita_" + idTarefa
+                        Name = "rbAceita_" + idTarefa,
+                        Font = new Font("Segoe UI", 9, FontStyle.Regular)
                     };
                     rbAceita.CheckedChanged += (s, e) =>
                     {
@@ -128,11 +150,12 @@ namespace Dev4Tech
 
                     RadioButton rbNegada = new RadioButton
                     {
-                        Text = "Negada",
-                        Left = 80,
-                        Top = 85,
+                        Text = "❌ Negada",
+                        Left = 90,
+                        Top = controlesTop,
                         AutoSize = true,
-                        Name = "rbNegada_" + idTarefa
+                        Name = "rbNegada_" + idTarefa,
+                        Font = new Font("Segoe UI", 9, FontStyle.Regular)
                     };
                     rbNegada.CheckedChanged += (s, e) =>
                     {
@@ -143,58 +166,49 @@ namespace Dev4Tech
                     painelTarefa.Controls.Add(rbAceita);
                     painelTarefa.Controls.Add(rbNegada);
 
-                    // --- BOTÃO PARA ARQUIVO ENTREGUE --- 
-                    // Este botão deve ser criado SEMPRE que houver um arquivo
+                    int leftPosition = 180;
+
+                    // Botão do arquivo - SEMPRE que houver arquivo
                     if (temArquivo)
                     {
                         Button btnArquivo = new Button
                         {
-                            Text = arquivoSalvoComoBlob ? "📥 " + nomeArquivo : "📄 " + nomeArquivo,
-                            Left = 160, // Posição inicial
-                            Top = 85,
-                            Width = 180,
+                            Text = arquivoSalvoComoBlob ? "📥 Baixar Arquivo" : "📄 Abrir Arquivo",
+                            Left = leftPosition,
+                            Top = controlesTop,
+                            Width = 130,
                             Height = 25,
                             BackColor = arquivoSalvoComoBlob ? Color.LightGreen : Color.LightBlue,
                             ForeColor = Color.Black,
                             Font = new Font("Segoe UI", 8, FontStyle.Bold),
                             Name = "btnArquivo_" + idTarefa,
                             Cursor = Cursors.Hand,
-                            TextAlign = ContentAlignment.MiddleLeft,
-                            Tag = new
-                            {
-                                IdTarefa = idTarefa,
-                                IdEquipe = idEquipe
-                            }
+                            Tag = new { IdTarefa = idTarefa, IdEquipe = idEquipe }
                         };
 
                         btnArquivo.Click += (s, e) =>
                         {
-                            Button botaoClicado = s as Button;
-                            var infoArquivo = botaoClicado?.Tag as dynamic;
-                            if (infoArquivo != null)
+                            Button botao = s as Button;
+                            var info = botao?.Tag as dynamic;
+                            if (info != null)
                             {
                                 AvaliacaoTarefa avTarefa = new AvaliacaoTarefa();
-                                avTarefa.CarregarArquivoTarefa(infoArquivo.IdTarefa, infoArquivo.IdEquipe);
+                                avTarefa.CarregarArquivoTarefa(info.IdTarefa, info.IdEquipe);
                             }
                         };
                         painelTarefa.Controls.Add(btnArquivo);
+                        leftPosition += 140;
                     }
 
-                    // --- BOTÃO PARA VER PROBLEMA --- 
-                    // Este botão é criado APENAS se houver um relato de problema
+                    // Botão do problema - APENAS se houver problema
                     if (temProblema)
                     {
-                        // Calcula a posição horizontal dinamicamente:
-                        // Se houver arquivo, o botão de problema começa após o botão de arquivo (160 + 180 + 10 = 350)
-                        // Se não houver arquivo, o botão de problema começa na posição 160
-                        int posicaoEsquerdaProblema = temArquivo ? 350 : 160;
-
                         Button btnVerProblema = new Button
                         {
-                            Text = "Ver Problema",
-                            Left = posicaoEsquerdaProblema,
-                            Top = 85,
-                            Width = 100,
+                            Text = "⚠ Ver Problema",
+                            Left = leftPosition,
+                            Top = controlesTop,
+                            Width = 110,
                             Height = 25,
                             BackColor = Color.Orange,
                             ForeColor = Color.White,
@@ -207,34 +221,20 @@ namespace Dev4Tech
                         {
                             MostrarRelatoProblema(idTarefa, nomeTarefa, relatoProblema);
                         };
-
                         painelTarefa.Controls.Add(btnVerProblema);
-
-                        // ADICIONAR INDICADOR VISUAL DE QUE TEM PROBLEMA
-                        // Posiciona o label à direita do botão
-                        Label lblTemProblema = new Label
-                        {
-                            Text = "⚠ Tem problema relatado",
-                            Font = new Font("Segoe UI", 8, FontStyle.Bold),
-                            ForeColor = Color.Red,
-                            Left = posicaoEsquerdaProblema + 110, // À direita do botão
-                            Top = 90,
-                            AutoSize = true
-                        };
-                        painelTarefa.Controls.Add(lblTemProblema);
                     }
 
-                    // Checkbox para atraso justificado (se atrasada)
-                    CheckBox cbJustificado = null;
+                    // Checkbox de atraso justificado
                     if (atrasada)
                     {
-                        cbJustificado = new CheckBox
+                        CheckBox cbJustificado = new CheckBox
                         {
                             Text = "Atraso justificado",
                             Left = 10,
-                            Top = 110,
+                            Top = controlesTop + 30,
                             AutoSize = true,
-                            Name = "cbJustificado_" + idTarefa
+                            Name = "cbJustificado_" + idTarefa,
+                            Font = new Font("Segoe UI", 8, FontStyle.Regular)
                         };
                         cbJustificado.CheckedChanged += (s, e) =>
                         {
@@ -245,16 +245,36 @@ namespace Dev4Tech
 
                     panelAvaliacaoEquipes.Controls.Add(painelTarefa);
 
-                    // Inicializa estado da avaliação para essa tarefa
+                    // Inicializa estado da avaliação
                     avaliacoes[idTarefa] = new AvaliacaoInfo
                     {
                         Aceita = null,
-                        AtrasoJustificado = cbJustificado != null ? (bool?)false : null
+                        AtrasoJustificado = atrasada ? (bool?)false : null
                     };
 
                     top += painelTarefa.Height + 10;
                 }
             }
+
+            // Mensagem quando não há tarefas
+            if (!temTarefas)
+            {
+                Label lblMensagem = new Label
+                {
+                    Text = "Não há tarefas pendentes para avaliação no momento.",
+                    Font = new Font("Segoe UI", 11, FontStyle.Bold),
+                    ForeColor = Color.Gray,
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    Width = panelAvaliacaoEquipes.Width - 40,
+                    Height = 50,
+                    Top = 50,
+                    Left = 20
+                };
+                panelAvaliacaoEquipes.Controls.Add(lblMensagem);
+            }
+
+            // Atualiza visibilidade do botão de confirmar
+            btnSalvarAvaliacoes.Visible = temTarefas;
         }
 
         private void MostrarRelatoProblema(int idTarefa, string nomeTarefa, DataRow relatoProblema)
@@ -385,7 +405,7 @@ namespace Dev4Tech
                     var result = MessageBox.Show(
                         $"A equipe '{nomeEquipe}' relatou um problema nesta tarefa.\n\n" +
                         $"Problema: {descricaoProblema}\n\n" +
-                        "Deseja considerar o atraso como justificado devido a este problema?",
+                        "Deseja considerar a entrega mesmo assim?",
                         "Problema Relatado",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question);
@@ -406,7 +426,7 @@ namespace Dev4Tech
             }
 
             MessageBox.Show("Avaliações salvas com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            CarregarTarefasNaoAvaliadas();
+            CarregarTarefasNaoAvaliadas(); // Recarrega a lista (e atualiza visibilidade do botão)
         }
 
         private void AvancarPontuacaoFuncionarios(int idTarefa)
