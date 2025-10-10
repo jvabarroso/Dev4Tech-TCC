@@ -73,7 +73,6 @@ export default function EquipesTarefasAdm({ navigation, route }) {
     listarDados();
   }, [usuarioState?.id]);
 
-
   //Post para avaliar tarefa
   async function avaliar(item) {  
     try {
@@ -104,6 +103,8 @@ export default function EquipesTarefasAdm({ navigation, route }) {
           duration: 2000,             
       });
 
+      setDados(prev => prev.filter(tarefa => tarefa.id_entrega !== item.id_entrega));
+
       } else {
           showMessage({
             message: 'Erro.',
@@ -132,16 +133,18 @@ export default function EquipesTarefasAdm({ navigation, route }) {
 
   try {
     const fileUrl = `${url}/dev4tech/arquivos/${encodeURIComponent(nome_arquivo)}`;
-    console.log("Baixando arquivo:", fileUrl);
 
     const localPath = `${FileSystem.cacheDirectory}${nome_arquivo}`;
-
     const { uri } = await FileSystem.downloadAsync(fileUrl, localPath);
-    console.log("Arquivo salvo em:", uri);
-    
+
+    const nomeLimpo = nome_arquivo
+      .replace(/^[\d\-_]+/, '') 
+      .replace(/_/g, ' ')      
+      .trim();
+  
     const available = await Sharing.isAvailableAsync();
     if (available) {
-      await Sharing.shareAsync(uri, { dialogTitle: nome_arquivo });
+      await Sharing.shareAsync(uri, { dialogTitle: nomeLimpo });
     } else {
       showMessage({
         message: 'Não foi possível abrir o arquivo',

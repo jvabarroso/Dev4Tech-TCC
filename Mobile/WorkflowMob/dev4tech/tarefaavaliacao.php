@@ -26,6 +26,7 @@ try {
         t.dificuldade,
         t.id_tarefa,
         et.nome_arquivo,
+        et.id_entrega,
         DATE_FORMAT(t.data_entrega, '%Y-%m-%d') AS data_entrega,
         DATE_FORMAT(t.data_criacao, '%Y-%m-%d') AS data_criacao
         FROM Funcionarios f
