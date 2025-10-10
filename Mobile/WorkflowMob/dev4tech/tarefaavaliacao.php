@@ -27,7 +27,8 @@ try {
         t.id_tarefa,
         et.nome_arquivo,
         et.id_entrega,
-        DATE_FORMAT(t.data_entrega, '%Y-%m-%d') AS data_entrega,
+        DATE_FORMAT(t.data_entrega, '%Y-%m-%d') AS data_limite_entrega,
+        DATE_FORMAT(et.data_entrega, '%Y-%m-%d') AS data_envio_entrega,
         DATE_FORMAT(t.data_criacao, '%Y-%m-%d') AS data_criacao
         FROM Funcionarios f
         JOIN entregastarefa et ON f.FuncionarioId = et.FuncionarioId
@@ -36,21 +37,37 @@ try {
         WHERE e.AdminId = :AdminId
         AND et.entregue = 0
         ORDER BY t.data_entrega ASC");
-        
-    error_log("Consulta preparada com sucesso");
     
     $query->bindValue(':AdminId', $AdminId, PDO::PARAM_INT);
     $query->execute();
-    error_log("Consulta executada com sucesso");
-    
     $tarefas = $query->fetchAll(PDO::FETCH_ASSOC);
+    $tarefasComProblemas = [];
+
+    foreach ($tarefas as $tarefa) {
+        $id_tarefa = $tarefa['id_tarefa'];
+        
+        $queryProblemas = $pdo->prepare("SELECT 
+            descricao, idProblema
+            FROM RelatoProblema 
+            WHERE id_tarefa = :id_tarefa
+            ORDER BY idProblema ASC");
+            
+        $queryProblemas->bindValue(':id_tarefa', $id_tarefa, PDO::PARAM_INT);
+        $queryProblemas->execute();
+        $problemas = $queryProblemas->fetchAll(PDO::FETCH_ASSOC);
+        
+        $tarefa['problemas'] = $problemas;
+        $tarefa['problema_relatado'] = !empty($problemas);
+        
+        $tarefasComProblemas[] = $tarefa;
+    }
 
     error_log("Tarefas retornadas: " . print_r($tarefas, true));
 
 
     echo json_encode([
         'success' => true,
-        'result' => $tarefas
+        'result' => $tarefasComProblemas
     ]);
     
 

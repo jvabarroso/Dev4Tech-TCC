@@ -16,49 +16,46 @@ $id_entrega = $postjson['id_entrega'] ?? null;
 $statusAvaliacao = $postjson['statusAvaliacao'] ?? null;
 $dificuldade = $postjson['dificuldade'] ?? null;
 $id_funcionario = $postjson['id_funcionario'] ?? null;
-
+$pontos = $postjson['pontos'] ?? 0;
+$atraso_justificado = $postjson['atraso_justificado'] ?? false;
 
 try {
 
     $pdo->beginTransaction(); 
+
+    $sqlTarefa = "SELECT id_tarefa FROM EntregasTarefa WHERE id_entrega = :id_entrega";
+    $stmtTarefa = $pdo->prepare($sqlTarefa);
+    $stmtTarefa->bindValue(':id_entrega', $id_entrega);
+    $stmtTarefa->execute();
+    $entrega = $stmtTarefa->fetch(PDO::FETCH_ASSOC);
+    
+    if (!$entrega) {
+        throw new Exception('Entrega não encontrada');
+    }
+
+    $id_tarefa = $entrega['id_tarefa'];
 
     $sqlUpdate = "UPDATE $tabela SET entregue = 1 WHERE id_entrega = :id_entrega";
     $stmt = $pdo->prepare($sqlUpdate);
     $stmt->bindValue(':id_entrega', $id_entrega);  
     $stmt->execute();
 
-    if($statusAvaliacao === "aceito"){    
-        if($dificuldade === "Fácil"){
-            $res = $pdo->prepare("INSERT INTO pontuacaofuncionario SET 
-                id_funcionario = :id_funcionario,
-                pontos = 2");	
+    $sqlAvaliacao = "INSERT INTO AvaliacaoTarefa 
+                    (id_tarefa, aceita, atraso_justificado) 
+                    VALUES (:id_tarefa, :aceita, :atraso_justificado)";
+    $stmtAvaliacao = $pdo->prepare($sqlAvaliacao);
+    $stmtAvaliacao->bindValue(':id_tarefa', $id_tarefa);
+    $stmtAvaliacao->bindValue(':aceita', $statusAvaliacao === 'aceito' ? 1 : 0);
+    $stmtAvaliacao->bindValue(':atraso_justificado', $atraso_justificado ? 1 : 0);
+    $stmtAvaliacao->execute();
 
-            $res->bindValue(":id_funcionario", "$id_funcionario");
-            $res->execute();
-        }
-        elseif($dificuldade === "Médio"){
-            $res = $pdo->prepare("INSERT INTO pontuacaofuncionario SET 
-                id_funcionario = :id_funcionario,
-                pontos = 4");	
-
-            $res->bindValue(":id_funcionario", "$id_funcionario");
-            $res->execute();
-        }
-        elseif($dificuldade === "Difícil"){
-            $res = $pdo->prepare("INSERT INTO pontuacaofuncionario SET 
-                id_funcionario = :id_funcionario,
-                pontos = 6");	
-
-            $res->bindValue(":id_funcionario", "$id_funcionario");
-            $res->execute();
-        }
-    }
-    elseif($statusAvaliacao === "negado"){
+    if ($pontos != 0) {
         $res = $pdo->prepare("INSERT INTO pontuacaofuncionario SET 
             id_funcionario = :id_funcionario,
-            pontos = -3");	
+            pontos = :pontos");	
 
-        $res->bindValue(":id_funcionario", "$id_funcionario");
+        $res->bindValue(":id_funcionario", $id_funcionario);
+        $res->bindValue(":pontos", $pontos);
         $res->execute();
     }
 
@@ -67,6 +64,7 @@ try {
     echo json_encode([
         'success' => true,
         'message' => 'Tarefa avaliada com sucesso',
+        'pontos_atribuidos' => $pontos
     ]);
     exit;
 

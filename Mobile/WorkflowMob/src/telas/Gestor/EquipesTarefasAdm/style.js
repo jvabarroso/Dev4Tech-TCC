@@ -151,4 +151,75 @@ export const getStyles = (theme) => StyleSheet.create({
     gap:5,
     bottom:3
   },
+
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: theme.background,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalContent: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+    width: '85%',
+    maxHeight: '80%',
+  },
+  modalTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 15,
+    textAlign: 'center',
+  },
+  problemaTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    color: '#333',
+  },
+  problemasScroll: {
+    maxHeight: 200,
+    marginBottom: 15,
+  },
+  problemaContainer: {
+    backgroundColor: '#FFF3E0',
+    padding: 12,
+    borderRadius: 8,
+    borderLeftWidth: 4,
+    borderLeftColor: '#FF9800',
+    marginBottom: 10,
+  },
+  problemaIndex: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    marginBottom: 5,
+    color: '#E65100',
+  },
+  problemaText: {
+    fontSize: 14,
+    lineHeight: 18,
+    color: '#333',
+  },
+  instrucoesText: {
+    fontSize: 14,
+    color: '#666',
+    marginBottom: 20,
+    lineHeight: 20,
+    textAlign: 'center',
+  },
+  modalButtons: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10,
+  },
+  modalButton: {
+    padding: 12,
+    borderRadius: 5,
+    minWidth: 120,
+    alignItems: 'center',
+  },
+  modalButtonText: {
+    fontWeight: 'bold',
+    fontSize: 14,
+  },
 });

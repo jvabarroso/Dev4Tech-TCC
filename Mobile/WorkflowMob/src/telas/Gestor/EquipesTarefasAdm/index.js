@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, TouchableOpacity, Image, ScrollView} from 'react-native';
+import { Text, View, TouchableOpacity, Image, ScrollView, Modal, TextInput } from 'react-native';
 import { showMessage } from "react-native-flash-message";
 import * as FileSystem from 'expo-file-system/legacy'; 
 import * as Sharing from 'expo-sharing';
@@ -19,6 +19,8 @@ export default function EquipesTarefasAdm({ navigation, route }) {
   const usuario = route.params?.usuario;
   const [dados, setDados] = useState([]);
   const [usuarioState, setusuarioState] = useState(usuario);
+  const [modalJustificativa, setModalJustificativa] = useState(false);
+  const [tarefaSelecionada, setTarefaSelecionada] = useState(null);
 
   console.log("Dados do usuario: ",usuario)
 
@@ -33,6 +35,27 @@ export default function EquipesTarefasAdm({ navigation, route }) {
       setusuarioState(route.params.usuario);
     }
   }, [route.params?.usuario]);
+
+
+  // Verifica se a tarefa está atrasada
+  function verificarAtraso(item) {
+    if (!item.data_limite_entrega || !item.data_envio_entrega) return false;
+    
+    const dataLimite = new Date(item.data_limite_entrega);
+    const dataEnvio = new Date(item.data_envio_entrega);
+    
+    return dataEnvio > dataLimite;
+  }
+
+  // Verifica se tem problema relatado
+  function temProblemaRelatado(item) {
+    return item.problema_relatado && item.problemas && item.problemas.length > 0;
+  }
+  
+  // Conta quantos problemas a tarefa tem
+  function contarProblemas(item) {
+    return item.problemas ? item.problemas.length : 0;
+  }
 
   //Listar tarefas enviadas para avaliação
   async function listarDados() {
@@ -50,11 +73,11 @@ export default function EquipesTarefasAdm({ navigation, route }) {
       console.log('Dados:', JSON.stringify(res.data, null, 2)); 
 
       if (res.data.success) {
-
         const tarefasComStatus = res.data.result.map(tarefa => {
           return {
             ...tarefa,
-            statusAvaliacao: null
+            statusAvaliacao: null,
+            atrasoJustificado: false
           };
         });
         
@@ -73,17 +96,56 @@ export default function EquipesTarefasAdm({ navigation, route }) {
     listarDados();
   }, [usuarioState?.id]);
 
+  // Abrir modal de justificativa
+  function abrirModalJustificativa(item, index) {
+    setTarefaSelecionada({ item, index });
+    setModalJustificativa(true);
+  }
+
+  // Confirmar justificativa
+  function confirmarJustificativa() {
+    if (!tarefaSelecionada) return;
+
+    const novosDados = [...dados];
+    novosDados[tarefaSelecionada.index].atrasoJustificado = true;
+    
+    setDados(novosDados);
+    setModalJustificativa(false);
+    setTarefaSelecionada(null);
+  }
+
+
   //Post para avaliar tarefa
   async function avaliar(item) {  
     try {
+      const estaAtrasado = verificarAtraso(item);
+      
+      let pontos = 0;
+      
+      if (item.statusAvaliacao === 'aceito') {
+        if (!estaAtrasado || item.atrasoJustificado) {
+          switch(item.dificuldade) {
+            case 'Fácil': pontos = 2; break;
+            case 'Médio': pontos = 4; break;
+            case 'Difícil': pontos = 6; break;
+          }
+        } else {
+          pontos = -5;
+        }
+      } else if (item.statusAvaliacao === 'negado') {
+        pontos = -3;
+      }
+
       const obj = {
         id_entrega: item.id_entrega,
         statusAvaliacao: item.statusAvaliacao,
         dificuldade: item.dificuldade,
         id_funcionario: item.FuncionarioId,
+        pontos: pontos,
+        atraso_justificado: item.atrasoJustificado,
       };
 
-      console.log('Dados enviados para edição:', obj); // Log para debug
+      console.log('Dados enviados para edição:', obj);
 
       const res = await api.post('dev4tech/tarefaconfirmacao.php', obj, {
         headers: {
@@ -91,7 +153,7 @@ export default function EquipesTarefasAdm({ navigation, route }) {
         }
       });
 
-      console.log('Resposta da API:', res.data); // Log para 
+      console.log('Resposta da API:', res.data); 
          
       if (res.data.success) {
         showMessage({
@@ -195,7 +257,11 @@ export default function EquipesTarefasAdm({ navigation, route }) {
           <Text style={styles.titulo}>Tarefas</Text>
           <Text style={styles.subtitulo}>Últimas tarefas</Text>
           
-          {dados.map((item, index) => (
+          {dados.map((item, index) => {
+            const estaAtrasado = verificarAtraso(item);
+            const temProblema = temProblemaRelatado(item);
+
+            return(
             <View key={index} style={styles.containertarefas}>
 
                 <View style={styles.linhaTarefa}>
@@ -206,6 +272,11 @@ export default function EquipesTarefasAdm({ navigation, route }) {
                   <View style={styles.textosTarefa}>
                       <Text style={styles.textolistatitulo}>Tarefa: {item.nomeTarefa}</Text>
                       <Text style={styles.textolista}>Equipe: {item.nome_equipe}</Text>
+                      {temProblema && (
+                        <Text style={[styles.textolista, { color: '#f11919ff' }]}>
+                          ⚠️ Tem problema relatado
+                        </Text>
+                      )}
                   </View>
                 </View>
 
@@ -253,6 +324,26 @@ export default function EquipesTarefasAdm({ navigation, route }) {
                   </View>
                 </View>
 
+                {estaAtrasado && (
+                  <View style={styles.linhaInfo}>
+                    <Text style={styles.textolistacargo}>Status do Atraso: </Text>
+                    {item.atrasoJustificado ? (
+                      <Text style={[styles.textolistacargo, { color: '#4CAF50' }]}>
+                        Justificado ✓
+                      </Text>
+                    ) : (
+                      <TouchableOpacity 
+                        onPress={() => abrirModalJustificativa(item, index)}
+                        style={[styles.botao, { backgroundColor: '#FF9800' }]}
+                      >
+                        <Text style={[styles.textoBotao, { color: '#fff' }]}>
+                          {temProblema ? 'Ver Problema' : 'Justificar Atraso'}
+                        </Text>
+                      </TouchableOpacity>
+                    )}
+                  </View>
+                )}
+
                 <View style={styles.linhaInfo}>
                 <Text style={styles.textolistacargo}>Arquivo: </Text>
                 <TouchableOpacity onPress={() => abrirArquivo(item.nome_arquivo)}>
@@ -268,11 +359,71 @@ export default function EquipesTarefasAdm({ navigation, route }) {
                     <Text style={[styles.textoBotao,{ color:'#000000ff' }]}> Confirmar</Text>
                   </TouchableOpacity>
                 </View>
-
-            </View>
-          ))}
+            </View>)
+          })}
         </View>
       </ScrollView>
+      <Modal
+        visible={modalJustificativa}
+        animationType="slide"
+        transparent={true}
+        onRequestClose={() => setModalJustificativa(false)}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalTitle}>
+              {tarefaSelecionada?.item?.problema_relatado ? 'Problemas Relatados' : 'Justificar Atraso'}
+            </Text>
+            
+            {tarefaSelecionada?.item?.problema_relatado ? (
+              <View>
+                <Text style={styles.problemaTitle}>
+                  {tarefaSelecionada.item.problemas.length} problema(s) relatado(s) pela equipe:
+                </Text>
+                
+                <ScrollView style={styles.problemasScroll} showsVerticalScrollIndicator={true}>
+                  {tarefaSelecionada.item.problemas.map((problema, index) => (
+                    <View key={problema.idProblema} style={styles.problemaContainer}>
+                      <Text style={styles.problemaIndex}>Problema {index + 1}:</Text>
+                      <Text style={styles.problemaText}>
+                        {problema.descricao}
+                      </Text>
+                    </View>
+                  ))}
+                </ScrollView>
+                
+                <Text style={styles.instrucoesText}>
+                  Se estes problemas justificam o atraso, clique em "Aceitar Justificativa" para que o funcionário não perca pontos.
+                </Text>
+              </View>
+            ) : (
+              <Text style={styles.instrucoesText}>
+                Não há problemas relatados para esta tarefa. Você pode justificar o atraso manualmente se necessário.
+              </Text>
+            )}
+
+            <View style={styles.modalButtons}>
+              <TouchableOpacity 
+                style={[styles.modalButton, { backgroundColor: '#E0E0E0' }]}
+                onPress={() => setModalJustificativa(false)}
+              >
+                <Text style={styles.modalButtonText}>Fechar</Text>
+              </TouchableOpacity>
+              
+              {tarefaSelecionada?.item?.problema_relatado && (
+                <TouchableOpacity 
+                  style={[styles.modalButton, { backgroundColor: '#4CAF50' }]}
+                  onPress={confirmarJustificativa}
+                >
+                  <Text style={[styles.modalButtonText, { color: '#fff' }]}>
+                    Aceitar Justificativa
+                  </Text>
+                </TouchableOpacity>
+              )}
+            </View>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
