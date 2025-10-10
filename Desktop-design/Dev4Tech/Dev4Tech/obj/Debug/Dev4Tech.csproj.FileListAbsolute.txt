@@ -1,0 +1,935 @@
+C:\Users\ds-mtec-3\Desktop\TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe.config
+F:\2025-3° Ano\TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe.config
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe.config
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.pdb
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csprojResolveAssemblyReference.cache
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa_admin.resources
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa.resources
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.cadastro_funcionário.resources
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Form1.resources
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Home.resources
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.login.resources
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Properties.Resources.resources
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.GenerateResource.Cache
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.exe
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.pdb
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.dll
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MySql.Data.dll
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Buffers.dll
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.dll
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\ZstdNet.dll
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\BouncyCastle.Crypto.xml
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.pdb
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.xml
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.xml
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.Streams.xml
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Hash.xxHash.xml
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MySql.Data.xml
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Buffers.xml
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.xml
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.pesquisaEquipes.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe.config
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.exe
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.pdb
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Chat_geral_equipes.resources
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Ranking_Equipes.resources
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Relato_Problema.resources
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Atrasadas.resources
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Completadas.resources
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Pendentes.resources
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefa_Enviada.resources
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_Tarefa.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.pdb
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MySql.Data.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Buffers.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\ZstdNet.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\BouncyCastle.Crypto.xml
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.pdb
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.xml
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.xml
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.Streams.xml
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Hash.xxHash.xml
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MySql.Data.xml
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Buffers.xml
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.xml
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csprojResolveAssemblyReference.cache
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa_admin.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.cadastro_funcionário.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Chat_geral_equipes.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Equipes_Estatisticas.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.PesquisaEquipes.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Form1.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Home.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Login.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Properties.Resources.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Ranking_Equipes.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Relato_Problema.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Atrasadas.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Completadas.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Pendentes.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefa_Enviada.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_Tarefa.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.GenerateResource.Cache
+<<<<<<< HEAD
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe.config
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.exe
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.pdb
+=======
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Equipes_Estatisticas.resources
+>>>>>>> db25e7f930c44e2e855566995f8f9239d88fa328
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Configuracoes.resources
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Integrantes_Equipe.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Configuracoes.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Github TCC\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Integrantes_Equipe.resources
+>>>>>>> d7e4b7cac9d95fca2c7419bcad2738b99344b662
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AdicionarEquipes.resources
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.CriarTarefas.resources
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.HomeAdm.resources
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Planejamento.resources
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_funcionario.resources
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.conexao.resources
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.pdb
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.dll
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MySql.Data.dll
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Buffers.dll
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.dll
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\ZstdNet.dll
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\BouncyCastle.Crypto.xml
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.pdb
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.xml
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.xml
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.Streams.xml
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Hash.xxHash.xml
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MySql.Data.xml
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Buffers.xml
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.xml
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csprojResolveAssemblyReference.cache
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AdicionarEquipes.resources
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa_admin.resources
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa.resources
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.cadastro_funcionário.resources
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Chat_geral_equipes.resources
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Configuracoes.resources
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.CriarTarefas.resources
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Equipes_Estatisticas.resources
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.HomeAdm.resources
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Integrantes_Equipe.resources
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.PesquisaEquipes.resources
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Form1.resources
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Home.resources
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Login.resources
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Planejamento.resources
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Properties.Resources.resources
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Ranking_Equipes.resources
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Relato_Problema.resources
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Atrasadas.resources
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Completadas.resources
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Pendentes.resources
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefa_Enviada.resources
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_Tarefa.resources
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.GenerateResource.Cache
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe.config
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.pdb
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MySql.Data.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Buffers.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\ZstdNet.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\BouncyCastle.Crypto.xml
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.pdb
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.xml
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.xml
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.Streams.xml
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Hash.xxHash.xml
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MySql.Data.xml
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Buffers.xml
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.xml
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csprojResolveAssemblyReference.cache
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AdicionarEquipes.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa_admin.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.cadastro_funcionário.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Chat_geral_equipes.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Configuracoes.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.CriarTarefas.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Equipes_Estatisticas.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.HomeAdm.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Integrantes_Equipe.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.PesquisaEquipes.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Form1.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Home.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Login.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Planejamento.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Properties.Resources.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Ranking_Equipes.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Relato_Problema.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Atrasadas.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Completadas.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Pendentes.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefa_Enviada.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_Tarefa.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.GenerateResource.Cache
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.exe
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.pdb
+>>>>>>> 84c1efa37aa2833043764843579cbc8d64b56f55
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AdicionarTarefa.resources
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AdicionarTarefa.resources
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe.config
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.exe
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.pdb
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.pdb
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.dll
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MySql.Data.dll
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Buffers.dll
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.dll
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\ZstdNet.dll
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\BouncyCastle.Crypto.xml
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.pdb
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.xml
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.xml
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.Streams.xml
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Hash.xxHash.xml
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MySql.Data.xml
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Buffers.xml
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.xml
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csprojResolveAssemblyReference.cache
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AdicionarEquipes.resources
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa_admin.resources
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa.resources
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.cadastro_funcionário.resources
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Chat_geral_equipes.resources
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Configuracoes.resources
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AdicionarTarefa.resources
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Equipes_Estatisticas.resources
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.HomeAdm.resources
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Integrantes_Equipe.resources
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.PesquisaEquipes.resources
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Form1.resources
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Home.resources
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Login.resources
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Planejamento.resources
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Properties.Resources.resources
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Ranking_Equipes.resources
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Relato_Problema.resources
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Atrasadas.resources
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Completadas.resources
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Pendentes.resources
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefa_Enviada.resources
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_Tarefa.resources
+C:\Users\ds-mtec-3\Desktop\Nova pasta\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.GenerateResource.Cache
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AvaliaçãoTarefaAdmin.resources
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_TarefasAdmin.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe.config
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.exe
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.pdb
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.pdb
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.dll
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MySql.Data.dll
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Buffers.dll
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.dll
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\ZstdNet.dll
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\BouncyCastle.Crypto.xml
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.pdb
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.xml
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.xml
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.Streams.xml
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Hash.xxHash.xml
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MySql.Data.xml
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Buffers.xml
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.xml
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csprojResolveAssemblyReference.cache
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AdicionarEquipes.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AvaliaçãoTarefaAdmin.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa_admin.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.cadastro_funcionário.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Chat_geral_equipes.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Configuracoes.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AdicionarTarefa.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Equipes_Estatisticas.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.HomeAdm.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Integrantes_Equipe.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.PesquisaEquipes.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Form1.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Home.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Login.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Planejamento.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Properties.Resources.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Ranking_Equipes.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Relato_Problema.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Atrasadas.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Completadas.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Pendentes.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefa_Enviada.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_Tarefa.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_TarefasAdmin.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.GenerateResource.Cache
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AvaliaçãoTarefaAdmin.resources
+C:\Users\ds-mtec-3\Desktop\TCC\Github\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_TarefasAdmin.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe.config
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.exe
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.pdb
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csprojResolveAssemblyReference.cache
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AdicionarEquipes.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AvaliaçãoTarefaAdmin.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa_admin.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.cadastro_funcionário.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Chat_geral_equipes.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Configuracoes.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AdicionarTarefa.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Equipes_Estatisticas.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.HomeAdm.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Integrantes_Equipe.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.PesquisaEquipes.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Form1.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Home.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Login.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Planejamento.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Properties.Resources.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Ranking_Equipes.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Relato_Problema.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Atrasadas.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Completadas.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Pendentes.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefa_Enviada.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_Tarefa.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_TarefasAdmin.resources
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.GenerateResource.Cache
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.pdb
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.dll
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MySql.Data.dll
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Buffers.dll
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.dll
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\bin\Debug\ZstdNet.dll
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\bin\Debug\BouncyCastle.Crypto.xml
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.pdb
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.xml
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.xml
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.Streams.xml
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Hash.xxHash.xml
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MySql.Data.xml
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Buffers.xml
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.xml
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Workflow-Gui\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe.config
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Workflow-Gui\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.exe
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Workflow-Gui\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.pdb
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AvaliaçãoTarefaAdmin.resources
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AdicionarTarefa.resources
+C:\Users\ds-mtec-3\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_TarefasAdmin.resources
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe.config
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.exe
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.pdb
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.pdb
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.dll
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MySql.Data.dll
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Buffers.dll
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.dll
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\ZstdNet.dll
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\BouncyCastle.Crypto.xml
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.pdb
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.xml
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.xml
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.Streams.xml
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Hash.xxHash.xml
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MySql.Data.xml
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Buffers.xml
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.xml
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csprojResolveAssemblyReference.cache
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AdicionarEquipes.resources
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AvaliaçãoTarefaAdmin.resources
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa_admin.resources
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa.resources
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.cadastro_funcionário.resources
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Chat_geral_equipes.resources
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Configuracoes.resources
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AdicionarTarefa.resources
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Equipes_Estatisticas.resources
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.HomeAdm.resources
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Integrantes_Equipe.resources
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.PesquisaEquipes.resources
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Form1.resources
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Home.resources
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Login.resources
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Planejamento.resources
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Properties.Resources.resources
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Ranking_Equipes.resources
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Relato_Problema.resources
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Atrasadas.resources
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Completadas.resources
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Pendentes.resources
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefa_Enviada.resources
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_Tarefa.resources
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_TarefasAdmin.resources
+C:\Users\aluno.etec\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.GenerateResource.Cache
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe.config
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.exe
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.pdb
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.pdb
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.dll
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MySql.Data.dll
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Buffers.dll
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.dll
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\ZstdNet.dll
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\BouncyCastle.Crypto.xml
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.pdb
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.xml
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.xml
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.Streams.xml
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Hash.xxHash.xml
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MySql.Data.xml
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Buffers.xml
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.xml
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csprojResolveAssemblyReference.cache
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AdicionarEquipes.resources
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AvaliaçãoTarefaAdmin.resources
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa_admin.resources
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa.resources
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.cadastro_funcionário.resources
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Chat_geral_equipes.resources
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Configuracoes.resources
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AdicionarTarefa.resources
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Equipes_Estatisticas.resources
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.HomeAdm.resources
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Integrantes_Equipe.resources
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.PesquisaEquipes.resources
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Form1.resources
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Home.resources
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Login.resources
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Planejamento.resources
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Properties.Resources.resources
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Ranking_Equipes.resources
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Relato_Problema.resources
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Atrasadas.resources
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Completadas.resources
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Pendentes.resources
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefa_Enviada.resources
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_Tarefa.resources
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_TarefasAdmin.resources
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.GenerateResource.Cache
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe.config
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.exe
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.pdb
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.pdb
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.dll
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MySql.Data.dll
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Buffers.dll
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.dll
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\ZstdNet.dll
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\BouncyCastle.Crypto.xml
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.pdb
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.xml
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.xml
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.Streams.xml
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Hash.xxHash.xml
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MySql.Data.xml
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Buffers.xml
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.xml
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csprojResolveAssemblyReference.cache
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AdicionarEquipes.resources
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AvaliaçãoTarefaAdmin.resources
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa_admin.resources
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa.resources
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.cadastro_funcionário.resources
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Chat_geral_equipes.resources
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Configuracoes.resources
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AdicionarTarefa.resources
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Equipes_Estatisticas.resources
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.HomeAdm.resources
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Integrantes_Equipe.resources
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.PesquisaEquipes.resources
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Form1.resources
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Home.resources
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Login.resources
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Planejamento.resources
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Properties.Resources.resources
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Ranking_Equipes.resources
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Relato_Problema.resources
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Atrasadas.resources
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Completadas.resources
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Pendentes.resources
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefa_Enviada.resources
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_Tarefa.resources
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_TarefasAdmin.resources
+C:\Users\guilherme.robles\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.GenerateResource.Cache
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.AssemblyReference.cache
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.exe.config
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.CoreCompileInputs.cache
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.Up2Date
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.AssemblyReference.cache
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.exe.config
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.CoreCompileInputs.cache
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.Up2Date
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.DocumentObjectModel.dll
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.Rendering.dll
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.RtfRendering.dll
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.Charting.dll
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.dll
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.DocumentObjectModel.xml
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.Rendering.xml
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.RtfRendering.xml
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.xml
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.Charting.xml
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\MigraDoc.DocumentObjectModel.resources.dll
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\MigraDoc.Rendering.resources.dll
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\MigraDoc.RtfRendering.resources.dll
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\PdfSharp.resources.dll
+C:\Users\joao.barroso\Desktop\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\PdfSharp.Charting.resources.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.DocumentObjectModel.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.Rendering.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.RtfRendering.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.Charting.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.DocumentObjectModel.xml
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.Rendering.xml
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.RtfRendering.xml
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.xml
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.Charting.xml
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\MigraDoc.DocumentObjectModel.resources.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\MigraDoc.Rendering.resources.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\MigraDoc.RtfRendering.resources.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\PdfSharp.resources.dll
+C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\PdfSharp.Charting.resources.dll
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe.config
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.pdb
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.dll
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.DocumentObjectModel.dll
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.Rendering.dll
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.RtfRendering.dll
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MySql.Data.dll
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.Charting.dll
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.dll
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Buffers.dll
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.dll
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\ZstdNet.dll
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\BouncyCastle.Crypto.xml
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.pdb
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.xml
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.xml
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.Streams.xml
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Hash.xxHash.xml
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.DocumentObjectModel.xml
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.Rendering.xml
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.RtfRendering.xml
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MySql.Data.xml
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.xml
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.Charting.xml
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Buffers.xml
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.xml
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\MigraDoc.DocumentObjectModel.resources.dll
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\MigraDoc.Rendering.resources.dll
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\MigraDoc.RtfRendering.resources.dll
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\PdfSharp.resources.dll
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\PdfSharp.Charting.resources.dll
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.AssemblyReference.cache
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.exe.config
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AdicionarEquipes.resources
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AvaliaçãoTarefaAdmin.resources
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa_admin.resources
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa.resources
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.cadastro_funcionário.resources
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Chat_geral_equipes.resources
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Configuracoes.resources
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AdicionarTarefa.resources
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Equipes_Estatisticas.resources
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.HomeAdm.resources
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Integrantes_Equipe.resources
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.PesquisaEquipes.resources
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Form1.resources
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Home.resources
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Login.resources
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Planejamento.resources
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Properties.Resources.resources
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Ranking_Equipes.resources
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Relato_Problema.resources
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Atrasadas.resources
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Completadas.resources
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Pendentes.resources
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefa_Enviada.resources
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_Tarefa.resources
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_TarefasAdmin.resources
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.GenerateResource.cache
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.CoreCompileInputs.cache
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.Up2Date
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.exe
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.pdb
+C:\Users\igor.felix\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Guna.UI2.dll
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe.config
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.pdb
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.dll
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Guna.UI2.dll
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.DocumentObjectModel.dll
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.Rendering.dll
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.RtfRendering.dll
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MySql.Data.dll
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.Charting.dll
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.dll
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Buffers.dll
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.dll
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\ZstdNet.dll
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\BouncyCastle.Crypto.xml
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.pdb
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.xml
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.xml
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.Streams.xml
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Hash.xxHash.xml
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.DocumentObjectModel.xml
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.Rendering.xml
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.RtfRendering.xml
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MySql.Data.xml
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.xml
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.Charting.xml
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Buffers.xml
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.xml
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\MigraDoc.DocumentObjectModel.resources.dll
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\MigraDoc.Rendering.resources.dll
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\MigraDoc.RtfRendering.resources.dll
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\PdfSharp.resources.dll
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\PdfSharp.Charting.resources.dll
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.AssemblyReference.cache
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AdicionarEquipes.resources
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AvaliaçãoTarefaAdmin.resources
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa_admin.resources
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa.resources
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.cadastro_funcionário.resources
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Chat_geral_equipes.resources
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Configuracoes.resources
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AdicionarTarefa.resources
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Equipes_Estatisticas.resources
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.HomeAdm.resources
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Integrantes_Equipe.resources
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.PesquisaEquipes.resources
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Form1.resources
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Home.resources
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Login.resources
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Planejamento.resources
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Properties.Resources.resources
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Ranking_Equipes.resources
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Relato_Problema.resources
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Atrasadas.resources
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Completadas.resources
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Pendentes.resources
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefa_Enviada.resources
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_Tarefa.resources
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_TarefasAdmin.resources
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.GenerateResource.cache
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.CoreCompileInputs.cache
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.Up2Date
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.exe
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.pdb
+C:\Users\igorf\Desktop\tcc\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.exe.config
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe.config
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.pdb
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.dll
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Guna.UI2.dll
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.DocumentObjectModel.dll
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.Rendering.dll
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.RtfRendering.dll
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MySql.Data.dll
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.Charting.dll
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.dll
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Buffers.dll
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.dll
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\ZstdNet.dll
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\BouncyCastle.Crypto.xml
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.pdb
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.xml
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.xml
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.Streams.xml
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Hash.xxHash.xml
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.DocumentObjectModel.xml
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.Rendering.xml
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.RtfRendering.xml
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MySql.Data.xml
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.xml
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.Charting.xml
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Buffers.xml
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.xml
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\MigraDoc.DocumentObjectModel.resources.dll
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\MigraDoc.Rendering.resources.dll
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\MigraDoc.RtfRendering.resources.dll
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\PdfSharp.resources.dll
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\PdfSharp.Charting.resources.dll
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.AssemblyReference.cache
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.exe.config
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AdicionarEquipes.resources
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AvaliaçãoTarefaAdmin.resources
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa_admin.resources
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa.resources
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.cadastro_funcionário.resources
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Chat_geral_equipes.resources
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Configuracoes.resources
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AdicionarTarefa.resources
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Equipes_Estatisticas.resources
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.HomeAdm.resources
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Integrantes_Equipe.resources
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.PesquisaEquipes.resources
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Form1.resources
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Home.resources
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Login.resources
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Planejamento.resources
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Properties.Resources.resources
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Ranking_Equipes.resources
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Relato_Problema.resources
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Atrasadas.resources
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Completadas.resources
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Pendentes.resources
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefa_Enviada.resources
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_Tarefa.resources
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_TarefasAdmin.resources
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.GenerateResource.cache
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.CoreCompileInputs.cache
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.Up2Date
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.exe
+C:\Users\igorf\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.pdb
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe.config
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.pdb
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.dll
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Guna.UI2.dll
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.DocumentObjectModel.dll
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.Rendering.dll
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.RtfRendering.dll
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MySql.Data.dll
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.Charting.dll
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.dll
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Buffers.dll
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.dll
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\ZstdNet.dll
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\BouncyCastle.Crypto.xml
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.pdb
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.xml
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.xml
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.Streams.xml
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Hash.xxHash.xml
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.DocumentObjectModel.xml
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.Rendering.xml
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.RtfRendering.xml
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MySql.Data.xml
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.xml
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.Charting.xml
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Buffers.xml
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.xml
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\MigraDoc.DocumentObjectModel.resources.dll
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\MigraDoc.Rendering.resources.dll
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\MigraDoc.RtfRendering.resources.dll
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\PdfSharp.resources.dll
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\PdfSharp.Charting.resources.dll
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.AssemblyReference.cache
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.exe.config
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AdicionarEquipes.resources
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AvaliaçãoTarefaAdmin.resources
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa_admin.resources
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa.resources
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.cadastro_funcionário.resources
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Chat_geral_equipes.resources
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Configuracoes.resources
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AdicionarTarefa.resources
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Equipes_Estatisticas.resources
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.HomeAdm.resources
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Integrantes_Equipe.resources
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.PesquisaEquipes.resources
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Form1.resources
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Home.resources
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Login.resources
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Planejamento.resources
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Properties.Resources.resources
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Ranking_Equipes.resources
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Relato_Problema.resources
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Atrasadas.resources
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Completadas.resources
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Pendentes.resources
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefa_Enviada.resources
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_Tarefa.resources
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_TarefasAdmin.resources
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.GenerateResource.cache
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.CoreCompileInputs.cache
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.Up2Date
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.exe
+C:\Users\igor.felix\Desktop\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.pdb
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe.config
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.exe
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Dev4Tech.pdb
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\BouncyCastle.Crypto.dll
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.dll
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Guna.UI2.dll
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.dll
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.Streams.dll
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Hash.xxHash.dll
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.DocumentObjectModel.dll
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.Rendering.dll
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.RtfRendering.dll
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MySql.Data.dll
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.Charting.dll
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.dll
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Buffers.dll
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.dll
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Ubiety.Dns.Core.dll
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\ZstdNet.dll
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\BouncyCastle.Crypto.xml
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.pdb
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\Google.Protobuf.xml
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.xml
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Compression.LZ4.Streams.xml
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\K4os.Hash.xxHash.xml
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.DocumentObjectModel.xml
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.Rendering.xml
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MigraDoc.RtfRendering.xml
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\MySql.Data.xml
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.xml
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\PdfSharp.Charting.xml
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Buffers.xml
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Memory.xml
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\MigraDoc.DocumentObjectModel.resources.dll
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\MigraDoc.Rendering.resources.dll
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\MigraDoc.RtfRendering.resources.dll
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\PdfSharp.resources.dll
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\bin\Debug\de\PdfSharp.Charting.resources.dll
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.AssemblyReference.cache
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.exe.config
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AdicionarEquipes.resources
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AvaliaçãoTarefaAdmin.resources
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa_admin.resources
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Cadastro_empresa.resources
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.cadastro_funcionário.resources
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Chat_geral_equipes.resources
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Configuracoes.resources
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.AdicionarTarefa.resources
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Equipes_Estatisticas.resources
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.HomeAdm.resources
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Integrantes_Equipe.resources
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.PesquisaEquipes.resources
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Form1.resources
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Home.resources
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Login.resources
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Planejamento.resources
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Properties.Resources.resources
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Ranking_Equipes.resources
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Relato_Problema.resources
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Atrasadas.resources
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Completadas.resources
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefas_Pendentes.resources
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tarefa_Enviada.resources
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_Tarefa.resources
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.Tela_TarefasAdmin.resources
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.GenerateResource.cache
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.CoreCompileInputs.cache
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.csproj.Up2Date
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.exe
+D:\tcc [OFICIAL]\Dev4Tech-TCC\Desktop\Dev4Tech\Dev4Tech\obj\Debug\Dev4Tech.pdb
