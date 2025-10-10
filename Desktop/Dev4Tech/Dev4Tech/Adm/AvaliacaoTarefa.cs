@@ -1,6 +1,8 @@
-﻿using System;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Data;
+using System.IO;
+using System.Windows.Forms;
 
 namespace Dev4Tech
 {
@@ -209,16 +211,26 @@ namespace Dev4Tech
         {
             DataTable dt = new DataTable();
             string query = @"
-            SELECT DISTINCT t.id_tarefa, t.nomeTarefa, t.dificuldade, e.nome_equipe, t.data_entrega
-            FROM Tarefas t
-            INNER JOIN Equipes e ON t.id_equipe = e.id_equipe
-            INNER JOIN EntregasTarefa et ON et.id_tarefa = t.id_tarefa
-            WHERE t.id_equipe = @idEquipe 
-            AND (et.entregue IS NULL OR et.entregue = FALSE)
-            AND NOT EXISTS (
-                SELECT 1 FROM AvaliacaoTarefa av 
-                WHERE av.id_tarefa = t.id_tarefa
-            )";
+        SELECT DISTINCT 
+            t.id_tarefa, 
+            t.nomeTarefa, 
+            t.dificuldade, 
+            e.nome_equipe, 
+            t.data_entrega,
+            et.nome_arquivo,
+            et.arquivo_blob,
+            et.FuncionarioId,
+            f.Nome as nome_funcionario
+        FROM Tarefas t
+        INNER JOIN Equipes e ON t.id_equipe = e.id_equipe
+        INNER JOIN EntregasTarefa et ON et.id_tarefa = t.id_tarefa
+        INNER JOIN Funcionarios f ON et.FuncionarioId = f.FuncionarioId
+        WHERE t.id_equipe = @idEquipe 
+        AND (et.entregue IS NULL OR et.entregue = FALSE)
+        AND NOT EXISTS (
+            SELECT 1 FROM AvaliacaoTarefa av 
+            WHERE av.id_tarefa = t.id_tarefa
+        )";
 
             if (abrirConexao())
             {
@@ -312,6 +324,92 @@ namespace Dev4Tech
             }
 
             return dt.Rows.Count > 0 ? dt.Rows[0] : null;
+        }
+        public void CarregarArquivoTarefa(int idTarefa, int idEquipe)
+        {
+            try
+            {
+                string query = @"
+            SELECT nome_arquivo, arquivo_blob 
+            FROM EntregasTarefa 
+            WHERE id_tarefa = @idTarefa AND id_equipe = @idEquipe";
+
+                if (abrirConexao())
+                {
+                    try
+                    {
+                        using (MySqlCommand cmd = new MySqlCommand(query, conectar))
+                        {
+                            cmd.Parameters.AddWithValue("@idTarefa", idTarefa);
+                            cmd.Parameters.AddWithValue("@idEquipe", idEquipe);
+
+                            using (var reader = cmd.ExecuteReader())
+                            {
+                                if (reader.Read())
+                                {
+                                    string nomeArquivo = reader["nome_arquivo"]?.ToString();
+                                    byte[] arquivoBlob = reader["arquivo_blob"] != DBNull.Value
+                                        ? (byte[])reader["arquivo_blob"]
+                                        : null;
+
+                                    bool temBlob = (arquivoBlob != null && arquivoBlob.Length > 0);
+
+                                    if (temBlob)
+                                    {
+                                        // Cria um arquivo temporário e abre
+                                        string tempPath = Path.Combine(Path.GetTempPath(), nomeArquivo);
+                                        File.WriteAllBytes(tempPath, arquivoBlob);
+
+                                        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
+                                        {
+                                            FileName = tempPath,
+                                            UseShellExecute = true
+                                        });
+                                    }
+                                    else if (!string.IsNullOrEmpty(nomeArquivo))
+                                    {
+                                        // Abre arquivo da pasta externa
+                                        string caminhoBase = @"C:\xampp\htdocs\dev4tech\arquivos\";
+                                        string caminhoCompleto = Path.Combine(caminhoBase, nomeArquivo);
+
+                                        if (!File.Exists(caminhoCompleto))
+                                        {
+                                            MessageBox.Show($"Arquivo não encontrado no caminho: {caminhoCompleto}",
+                                                "Arquivo não encontrado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                            return;
+                                        }
+
+                                        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
+                                        {
+                                            FileName = caminhoCompleto,
+                                            UseShellExecute = true
+                                        });
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Nenhum arquivo encontrado para esta tarefa.",
+                                            "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Nenhum registro encontrado para esta tarefa.",
+                                        "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                            }
+                        }
+                    }
+                    finally
+                    {
+                        fecharConexao();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar arquivo: {ex.Message}",
+                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

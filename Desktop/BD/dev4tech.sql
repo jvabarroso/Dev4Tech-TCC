@@ -184,3 +184,43 @@ CREATE TABLE RelatoProblema (
 
 ALTER TABLE RelatoProblema ADD COLUMN id_empresa int;
 ALTER TABLE RelatoProblema ADD FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa);
+
+-- Tabela para rastrear páginas visualizadas individualmente
+CREATE TABLE TarefaPaginasVisualizadas (
+    id_visualizacao INT PRIMARY KEY AUTO_INCREMENT,
+    id_tarefa INT NOT NULL,
+    id_funcionario INT NOT NULL,
+    numero_pagina INT NOT NULL,
+    data_visualizacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    tempo_visualizacao INT DEFAULT 0,
+    FOREIGN KEY (id_tarefa) REFERENCES Tarefas(id_tarefa),
+    FOREIGN KEY (id_funcionario) REFERENCES Funcionarios(FuncionarioId),
+    UNIQUE KEY unique_visualizacao (id_tarefa, id_funcionario, numero_pagina)
+);
+
+-- Tabela de progresso agregado
+CREATE TABLE TarefaProgressoLeitura (
+    id_progresso INT PRIMARY KEY AUTO_INCREMENT,
+    id_tarefa INT NOT NULL,
+    id_funcionario INT NOT NULL,
+    total_paginas_visualizadas INT DEFAULT 0,
+    total_paginas INT NOT NULL,
+    percentual_concluido DECIMAL(5,2) DEFAULT 0,
+    data_ultima_atualizacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    concluida BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (id_tarefa) REFERENCES Tarefas(id_tarefa),
+    FOREIGN KEY (id_funcionario) REFERENCES Funcionarios(FuncionarioId),
+    UNIQUE KEY unique_progresso (id_tarefa, id_funcionario)
+);
+
+-- Tabela para metadados do PDF
+CREATE TABLE TarefaPdfMetadata (
+    id_metadata INT PRIMARY KEY AUTO_INCREMENT,
+    id_tarefa INT NOT NULL,
+    nome_arquivo VARCHAR(255) NOT NULL,
+    total_paginas INT NOT NULL,
+    hash_arquivo VARCHAR(64),
+    data_processamento DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_tarefa) REFERENCES Tarefas(id_tarefa),
+    UNIQUE KEY unique_tarefa_metadata (id_tarefa)
+);
