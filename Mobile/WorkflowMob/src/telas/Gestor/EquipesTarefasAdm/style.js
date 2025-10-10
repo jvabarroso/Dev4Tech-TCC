@@ -34,18 +34,6 @@ export const getStyles = (theme) => StyleSheet.create({
     alignContent:"space-around"
     
   },
-  botao: {
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    marginHorizontal: 8,
-    borderRadius: 15,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  textobotao: {
-    fontSize: 13,
-    fontFamily: fonts.text,
-  },
   navinput: {
     width: '100%',
     padding: 10,
@@ -148,7 +136,8 @@ export const getStyles = (theme) => StyleSheet.create({
     paddingHorizontal: 10,
     borderRadius: 8,
     borderWidth: 2,
-    borderColor: theme.border
+    borderColor: theme.border,
+    backgroundColor: '#E0E0E0' 
   },
   textoBotao: {
     color: '#eeeeeeff',

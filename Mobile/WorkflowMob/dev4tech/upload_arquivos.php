@@ -12,7 +12,7 @@ try {
         $random_name = preg_replace('/s+/', '-', $random_name);
 
         // Caminho de upload (na pasta img/)
-        $upload_path = __DIR__ . "/arquivos/" . $file_name;
+        $upload_path = __DIR__ . "/arquivos/" . $random_name;
 
         // Tenta mover o arquivo
         if (move_uploaded_file($file_tmp_name, $upload_path)) {
