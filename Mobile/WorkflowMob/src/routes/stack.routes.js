@@ -33,6 +33,7 @@ import EquipesAdm from '../../src/telas/Gestor/EquipesAdm';
 import EditEquipe from '../../src/telas/Gestor/EditEquipe';
 import Chatadm from '../../src/telas/Gestor/Chatadm';
 import EquipesTarefasAdm from '../../src/telas/Gestor/EquipesTarefasAdm';
+import EquipeFuncionarioAdm from '../../src/telas/Gestor/EquipeFuncionarioAdm';
 
 import fonts from '../styles/fonts';
 import {Ionicons} from '@expo/vector-icons';
@@ -249,6 +250,11 @@ export default function App() {
         <Stack.Screen
           name="EquipesTarefasAdm"
           component={EquipesTarefasAdm} 
+          options={{ headerShown: false }}
+        />     
+        <Stack.Screen
+          name="EquipeFuncionarioAdm"
+          component={EquipeFuncionarioAdm} 
           options={{ headerShown: false }}
         />     
     

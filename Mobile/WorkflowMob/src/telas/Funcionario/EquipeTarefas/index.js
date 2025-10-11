@@ -44,7 +44,10 @@ export default function EquipeTarefas({ navigation, route }) {
     try {
       setErrorMessage(null);
       const res = await api.get(`dev4tech/tarefaadm.php`, {
-        params: { id_equipe: equipe.id_equipe }
+        params: { 
+          id_equipe: equipe.id_equipe,
+          id_funcionario: usuario.FuncionarioId 
+        }
       });
 
       console.log('Resposta bruta:', res);

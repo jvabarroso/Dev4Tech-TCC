@@ -3,6 +3,7 @@ include_once('conexao.php');
 
 // Obter o ID do funcionário
 $id_equipe = $_GET['id_equipe'] ?? null;
+$id_funcionario = $_GET['id_funcionario'] ?? null;
 error_log("ID da equipe recebido: " . var_export($id_equipe, true));
 
 if (empty($id_equipe)) {
@@ -26,10 +27,11 @@ try {
             t.dificuldade,
             DATE_FORMAT(t.data_entrega, '%Y-%m-%d') AS data_entrega,
             EXISTS (
-                SELECT *
+                SELECT 1
                 FROM EntregasTarefa et
+                JOIN AvaliacaoTarefa av ON et.id_tarefa = av.id_tarefa
                 WHERE et.id_tarefa = t.id_tarefa
-                    AND et.id_equipe = t.id_equipe
+                AND et.FuncionarioId = :id_funcionario
             ) AS entregue
         FROM Tarefas t
         WHERE t.id_equipe= :id_equipe
@@ -38,6 +40,7 @@ try {
     error_log("Consulta preparada com sucesso");
     
     $query->bindValue(':id_equipe', $id_equipe, PDO::PARAM_INT);
+    $query->bindValue(':id_funcionario', $id_funcionario, PDO::PARAM_INT);
     $query->execute();
     error_log("Consulta executada com sucesso");
     

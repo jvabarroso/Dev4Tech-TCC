@@ -6,6 +6,8 @@ import { LayoutAnimation, UIManager, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import FlashMessage, { showMessage } from "react-native-flash-message";
 import * as DocumentPicker from 'expo-document-picker';
+import * as FileSystem from 'expo-file-system/legacy'; 
+import * as Sharing from 'expo-sharing';
 
 import url from '../../../../services/url';
 import api from '../../../../services/api';
@@ -327,6 +329,50 @@ export default function TarefaEnvio({ navigation, route }) {
         
     }   
 
+    //Abre o arquivo
+    async function abrirArquivo(nome_arquivo) {
+        try {
+        const fileUrl = `${url}/dev4tech/arquivos/${encodeURIComponent(nome_arquivo)}`;
+
+        const localPath = `${FileSystem.cacheDirectory}${nome_arquivo}`;
+        const { uri } = await FileSystem.downloadAsync(fileUrl, localPath);
+
+        const nomeLimpo = nome_arquivo
+            .replace(/^[\d\-_]+/, '') 
+            .replace(/_/g, ' ')      
+            .trim();
+        
+        const available = await Sharing.isAvailableAsync();
+        if (available) {
+            await Sharing.shareAsync(uri, { dialogTitle: nomeLimpo });
+        } else {
+            showMessage({
+            message: 'Não foi possível abrir o arquivo',
+            description: 'Compartilhamento não disponível neste dispositivo',
+            statusBarHeight: 70,
+            type: 'danger',
+            floating: true,
+            duration: 2000,    
+            });
+        }
+        } catch (error) {
+        console.log('Erro ao abrir arquivo:', error);
+        showMessage({
+            message: 'Erro ao abrir arquivo',
+            description: 'Verifique se o arquivo existe no servidor ou tente novamente.',
+            statusBarHeight: 70,
+            type: 'danger',
+            floating: true,
+            duration: 2000,           
+        });
+        }
+    }
+
+
+    function limitarTexto(texto, limite) {
+        return texto.length > limite ? texto.substring(0, limite) + '...' : texto;
+    }
+
     return (
         <View style={styles.container}>
             <ScrollView 
@@ -390,6 +436,11 @@ export default function TarefaEnvio({ navigation, route }) {
                                 </Text>
                             </TouchableOpacity>
                         )}
+                        <TouchableOpacity onPress={() => abrirArquivo(item.nome_arquivo)}>
+                        <Text style={[styles.textolistacargo, { color: '#1C58F2' }]}>
+                            {limitarTexto(tarefa.nome_arquivo, 22)}
+                        </Text>
+                        </TouchableOpacity>
                     </View>
 
                     <View style={styles.linha2}>
@@ -420,7 +471,7 @@ export default function TarefaEnvio({ navigation, route }) {
                         {/* Esse para Anexar Arquivo */}
                         {filtroAtivo === "concluido" ? (                        
                             <View style={styles.botaomostrar}>
-                                <Text style={styles.textoadd}>{file?.name || ''}</Text>
+                                <Text style={styles.textoadd}>{limitarTexto(file?.name || '', 22)}</Text>
                             </View>
 
                         ):
@@ -428,7 +479,7 @@ export default function TarefaEnvio({ navigation, route }) {
                                 style={styles.botaomostrar}
                                 onPress={pickDocument}
                             >
-                                <Text style={styles.textoadd}>{file ? file.name : "Anexar um arquivo"}</Text>
+                                <Text style={styles.textoadd}>{limitarTexto(file ? file.name : "Anexar um arquivo", 22)}</Text>
                             </TouchableOpacity>
                         }
 

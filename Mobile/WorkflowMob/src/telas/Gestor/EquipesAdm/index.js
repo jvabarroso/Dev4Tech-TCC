@@ -183,7 +183,11 @@ export default function EquipesAdm({ route, navigation }) {
 
                   </TouchableOpacity>
 
-                  <TouchableOpacity>
+                  <TouchableOpacity
+                      onPress={() => navigation.navigate('EquipeFuncionarioAdm', { 
+                      equipe: item, 
+                      usuario: usuarioState  
+                    })}>
 
                     <Card style={styles.cardtarequi}>
                       <Card.Cover source={require('../../../../assets/img/equipes.png')} style={styles.imagemcard} />
@@ -195,7 +199,6 @@ export default function EquipesAdm({ route, navigation }) {
                   </TouchableOpacity>
 
                   <TouchableOpacity>
-
                     <Card style={styles.cardtarequi}>
                       <Card.Cover source={require('../../../../assets/img/kanban.webp')} style={styles.imagemcard} />
                       <Card.Content style={styles.cardinferior}>

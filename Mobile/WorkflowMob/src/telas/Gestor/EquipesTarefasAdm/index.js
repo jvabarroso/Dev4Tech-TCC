@@ -192,43 +192,42 @@ export default function EquipesTarefasAdm({ navigation, route }) {
 
   //Abre o arquivo
   async function abrirArquivo(nome_arquivo) {
+    try {
+      const fileUrl = `${url}/dev4tech/arquivos/${encodeURIComponent(nome_arquivo)}`;
 
-  try {
-    const fileUrl = `${url}/dev4tech/arquivos/${encodeURIComponent(nome_arquivo)}`;
+      const localPath = `${FileSystem.cacheDirectory}${nome_arquivo}`;
+      const { uri } = await FileSystem.downloadAsync(fileUrl, localPath);
 
-    const localPath = `${FileSystem.cacheDirectory}${nome_arquivo}`;
-    const { uri } = await FileSystem.downloadAsync(fileUrl, localPath);
-
-    const nomeLimpo = nome_arquivo
-      .replace(/^[\d\-_]+/, '') 
-      .replace(/_/g, ' ')      
-      .trim();
-  
-    const available = await Sharing.isAvailableAsync();
-    if (available) {
-      await Sharing.shareAsync(uri, { dialogTitle: nomeLimpo });
-    } else {
+      const nomeLimpo = nome_arquivo
+        .replace(/^[\d\-_]+/, '') 
+        .replace(/_/g, ' ')      
+        .trim();
+    
+      const available = await Sharing.isAvailableAsync();
+      if (available) {
+        await Sharing.shareAsync(uri, { dialogTitle: nomeLimpo });
+      } else {
+        showMessage({
+          message: 'Não foi possível abrir o arquivo',
+          description: 'Compartilhamento não disponível neste dispositivo',
+          statusBarHeight: 70,
+          type: 'danger',
+          floating: true,
+          duration: 2000,    
+        });
+      }
+    } catch (error) {
+      console.log('Erro ao abrir arquivo:', error);
       showMessage({
-        message: 'Não foi possível abrir o arquivo',
-        description: 'Compartilhamento não disponível neste dispositivo',
+        message: 'Erro ao abrir arquivo',
+        description: 'Verifique se o arquivo existe no servidor ou tente novamente.',
         statusBarHeight: 70,
         type: 'danger',
         floating: true,
-        duration: 2000,    
+        duration: 2000,           
       });
     }
-  } catch (error) {
-    console.log('Erro ao abrir arquivo:', error);
-    showMessage({
-      message: 'Erro ao abrir arquivo',
-      description: 'Verifique se o arquivo existe no servidor ou tente novamente.',
-      statusBarHeight: 70,
-      type: 'danger',
-      floating: true,
-      duration: 2000,           
-    });
   }
-}
 
 
   function limitarTexto(texto, limite) {

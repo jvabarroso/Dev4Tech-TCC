@@ -49,11 +49,12 @@ export default function Tarefas({ navigation, route }) {
       if (res.data.success) {
         // Calcular o status com base na data de entrega
         const tarefasComStatus = res.data.result.map(tarefa => {
-          const entregue = +tarefa.entregue;
+          const entregue = +tarefa.avaliada;
           const dataEntrega = new Date(tarefa.data_entrega);
           const hoje = new Date();
 
           let status = 'pendente';
+
           if (entregue) {
             status = 'concluido';
           } else if (dataEntrega < hoje) {
@@ -146,11 +147,11 @@ export default function Tarefas({ navigation, route }) {
             <Text style={styles.textolista}>{limitarTexto(item.instrucoes, 20)}</Text>
           </View>
 
-          {item.entregue === 1 && (
+          {filtroAtivo === 'concluido'? 
             <View style={[styles.containerfiltro, { backgroundColor: '#4CAF50' }]}>
               <Text style={styles.textofiltro}>Entregue</Text>
-            </View>
-          )}
+            </View>: null
+          }
           {item.entregue ? 
             null : 
             <View style={[styles.containerfiltro, {backgroundColor:'#FFC107'}]}>
@@ -177,7 +178,7 @@ export default function Tarefas({ navigation, route }) {
             <Text style={[styles.textolistadata, {color:"#F44336"}]}>Prazo expirado em {formatarData(item.data_entrega)}</Text>
             : null
           }
-          {item.entregue ? (  
+          {filtroAtivo === 'concluido'?  (  
             <Text style={styles.textolistadata}>Conclusão em {formatarData(item.data_entrega)}</Text>)
             : null
           }

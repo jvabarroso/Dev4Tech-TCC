@@ -23,6 +23,7 @@ try {
         t.id_tarefa,
         t.nomeTarefa,
         t.instrucoes,
+        t.nome_arquivo,
         e.nome_equipe,
         e.id_equipe,
         t.dificuldade,
@@ -31,8 +32,14 @@ try {
         EXISTS (
             SELECT 1
             FROM EntregasTarefa et
+            JOIN AvaliacaoTarefa av ON et.id_tarefa = av.id_tarefa
             WHERE et.id_tarefa = t.id_tarefa
-            AND et.FuncionarioId = :id_funcionario_exist
+            AND et.FuncionarioId = :id_funcionario
+        ) AS avaliada,
+        EXISTS (
+            SELECT 1
+            FROM EntregasTarefa et
+            WHERE et.id_tarefa = t.id_tarefa
         ) AS entregue
         FROM Tarefas t
         JOIN Equipes e ON t.id_equipe = e.id_equipe
@@ -43,7 +50,7 @@ try {
     error_log("Consulta preparada com sucesso");
     
     $query->bindValue(':id_funcionario', $id_funcionario, PDO::PARAM_INT);
-    $query->bindValue(':id_funcionario_exist', $id_funcionario, PDO::PARAM_INT);
+    $query->bindValue(':id_funcionario_avaliacao', $id_funcionario, PDO::PARAM_INT);
     $query->execute();
     error_log("Consulta executada com sucesso");
     
