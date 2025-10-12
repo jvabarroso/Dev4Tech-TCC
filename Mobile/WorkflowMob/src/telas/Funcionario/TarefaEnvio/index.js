@@ -30,6 +30,8 @@ export default function TarefaEnvio({ navigation, route }) {
     const [tarefaLocal, setTarefaLocal] = useState({ ...tarefa  });
     const [file, setFile] = useState(null);
     const [sucess, setSucess] = useState(false);
+    const [entregue, setEntregue] = useState(!!tarefa.entregue);
+    const [avaliada, setAvaliada] = useState(false);
 
     if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
         UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -46,6 +48,30 @@ export default function TarefaEnvio({ navigation, route }) {
     const partes = data.split("-"); // ["0000","00","00"]
     if (partes.length !== 3) return data;
     return `${partes[2]}/${partes[1]}/${partes[0]}`;
+    }
+
+    // 🔹 Recarrega a entrega ao abrir a tela
+    useEffect(() => {
+        verificarEntrega();
+        carregarProblemasExistentes();
+        carregartarefa();
+    }, []);
+    
+    async function verificarEntrega() {
+        try {
+            const res = await api.get('dev4tech/verificarentrega.php', {
+                params: { id_tarefa: tarefa.id_tarefa, FuncionarioId: usuario.FuncionarioId }
+            });
+            if (res.data.sucesso) {
+                setEntregue(res.data.entregue === true);
+                setAvaliada(res.data.avaliada === true); 
+                if (res.data.descricao) setDescricao(res.data.descricao);
+                if (res.data.nome_arquivo)
+                    setFile({ name: res.data.nome_arquivo, uri: '', mimeType: '' });
+            }
+        } catch (error) {
+            console.log("Erro ao verificar entrega:", error);
+        }
     }
 
     //Seleciona o Arquivo
@@ -72,7 +98,7 @@ export default function TarefaEnvio({ navigation, route }) {
     async function uploadFile() {
         if (!file) {
             showMessage({
-            message: 'Nenhuma arquivo selecionada.',
+            message: 'Nenhum arquivo selecionada.',
             description: 'Por favor, selecione um arquivo primeiro.',
             floating: true,
             statusBarHeight: 70,
@@ -175,10 +201,6 @@ export default function TarefaEnvio({ navigation, route }) {
     };
 
     //Carrega os problemas
-    useEffect(() => {
-        carregarProblemasExistentes();
-    }, []);
-
     async function carregarProblemasExistentes() {
         try {
             if (tarefa.id_tarefa) {
@@ -197,10 +219,6 @@ export default function TarefaEnvio({ navigation, route }) {
     }
 
     //Carrega a tarefa, caso estiver concluida
-    useEffect(() => {
-        carregartarefa();
-    }, []);
-
     async function carregartarefa() {
         try {
             if (tarefa.id_tarefa) {
@@ -238,6 +256,9 @@ export default function TarefaEnvio({ navigation, route }) {
         console.log(res.data);
 
         if (res.data && res.data.success) {
+            setEntregue(false); // 🔹 volta ao estado "não entregue"
+            setDescricao("");
+            setFile(null);
             showMessage({
                 message: 'Desfeita a entrega.',
                 floating: true,
@@ -298,6 +319,7 @@ export default function TarefaEnvio({ navigation, route }) {
             }
 
             setSucess(true);
+                setEntregue(true);
                 showMessage({
                 message: "Entregado com Sucesso",
                 description: "Tarefa entregado",
@@ -436,7 +458,7 @@ export default function TarefaEnvio({ navigation, route }) {
                                 </Text>
                             </TouchableOpacity>
                         )}
-                        <TouchableOpacity onPress={() => abrirArquivo(item.nome_arquivo)}>
+                        <TouchableOpacity onPress={() => abrirArquivo(tarefa.nome_arquivo)}>
                         <Text style={[styles.textolistacargo, { color: '#1C58F2' }]}>
                             {limitarTexto(tarefa.nome_arquivo, 22)}
                         </Text>
@@ -446,17 +468,14 @@ export default function TarefaEnvio({ navigation, route }) {
                     <View style={styles.linha2}>
                         <Text style={styles.subtitulos}>MEU TRABALHO</Text>
 
+                        <Text style={styles.texto}>Comentário</Text>
                         {/* So para não ficar confuso, esse mostra a descrição */}
-                        {filtroAtivo === "concluido" ? (  
-                            <View>
-                                <Text style={styles.texto}>Comentário</Text>
-                                <View style={[styles.inputinstrucoes, { padding: 8, minHeight: 100 }]}>
-                                    <Text style={{ color: theme.text }}>{descricao}</Text>
-                                </View>
+                        {entregue ? (  
+                            <View style={[styles.inputinstrucoes, { padding: 8, minHeight: 100 }]}>
+                                <Text style={{ color: theme.text }}>{descricao}</Text>
                             </View>
                         ):  
                             <View>
-                                <Text style={styles.texto}>Comentário</Text>
                                 <TextInput
                                     style={styles.inputinstrucoes}
                                     multiline
@@ -469,7 +488,7 @@ export default function TarefaEnvio({ navigation, route }) {
                         }
 
                         {/* Esse para Anexar Arquivo */}
-                        {filtroAtivo === "concluido" ? (                        
+                        {entregue ? (                        
                             <View style={styles.botaomostrar}>
                                 <Text style={styles.textoadd}>{limitarTexto(file?.name || '', 22)}</Text>
                             </View>
@@ -484,7 +503,7 @@ export default function TarefaEnvio({ navigation, route }) {
                         }
 
                         {/* Esse para relatar problema*/}
-                        {filtroAtivo !== "concluido" && (
+                        {!entregue && !avaliada && (
                         <TouchableOpacity
                             style={styles.botaomostrar}
                             onPress={() => setModalVisivel(true)}
@@ -495,22 +514,27 @@ export default function TarefaEnvio({ navigation, route }) {
                     </View>
                     
                     {/* Esse para relatar Enviar ou desfazer entrega*/}
-                    {filtroAtivo === "concluido" ? (                        
+                    {avaliada ? (
+                        <View style={{ marginTop: 10, padding: 10, backgroundColor: '#d1f7c4', borderRadius: 8 }}>
+                            <Text style={{ color: '#2e7d32', fontWeight: 'bold', textAlign: 'center' }}>
+                                Tarefa já avaliada
+                            </Text>
+                        </View>
+                    ) : entregue ? (                        
                         <TouchableOpacity
                             style={[styles.botaoenviar, { backgroundColor: "#FF4444" }]}
                             onPress={desfazerTarefas}
                         >
                             <Text style={styles.textoenvio}>Desfazer Entrega</Text>
                         </TouchableOpacity>
-
-                    ):
+                    ) : (
                         <TouchableOpacity 
                             style={styles.botaoenviar}
                             onPress={entrega}
                         >
                             <Text style={styles.textoenvio}>Enviar</Text>
                         </TouchableOpacity>
-                    }
+                    )}
                 </View>
             </ScrollView> 
 

@@ -34,12 +34,13 @@ try {
             FROM EntregasTarefa et
             JOIN AvaliacaoTarefa av ON et.id_tarefa = av.id_tarefa
             WHERE et.id_tarefa = t.id_tarefa
-            AND et.FuncionarioId = :id_funcionario
+            AND et.FuncionarioId = :id_funcionario_avaliacao
         ) AS avaliada,
         EXISTS (
             SELECT 1
             FROM EntregasTarefa et
             WHERE et.id_tarefa = t.id_tarefa
+            AND et.FuncionarioId = :id_funcionario_entrega  
         ) AS entregue
         FROM Tarefas t
         JOIN Equipes e ON t.id_equipe = e.id_equipe
@@ -51,6 +52,7 @@ try {
     
     $query->bindValue(':id_funcionario', $id_funcionario, PDO::PARAM_INT);
     $query->bindValue(':id_funcionario_avaliacao', $id_funcionario, PDO::PARAM_INT);
+    $query->bindValue(':id_funcionario_entrega', $id_funcionario, PDO::PARAM_INT);
     $query->execute();
     error_log("Consulta executada com sucesso");
     
