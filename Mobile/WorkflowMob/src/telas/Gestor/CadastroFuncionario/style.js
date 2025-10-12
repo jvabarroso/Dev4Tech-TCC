@@ -10,6 +10,7 @@ export const getStyles = (theme) => StyleSheet.create({
   },
   scrollContent: {
     padding: 16,
+    paddingBottom: 60,
   },
   titulo: {
     fontSize: 25,
@@ -130,7 +131,7 @@ export const getStyles = (theme) => StyleSheet.create({
     gap:40
   },
   botaocriar: {
-    width: 200,
+    width: 270,
     backgroundColor: '#5BB14F',
     paddingVertical: 12,
     paddingHorizontal: 30,
@@ -144,5 +145,10 @@ export const getStyles = (theme) => StyleSheet.create({
     fontSize: 14,
     fontFamily: fonts.text,
     fontWeight: 'bold',
+  },
+  databotao:{
+    backgroundColor: theme.inputBackground2,
+    padding: 10,
+    borderRadius: 10,
   },
 })

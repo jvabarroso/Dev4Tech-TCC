@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, TouchableOpacity, Image, ScrollView, TextInput, Alert,} from 'react-native';
 import { showMessage } from "react-native-flash-message";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
 import { Ionicons } from '@expo/vector-icons';
@@ -18,6 +19,7 @@ export default function CadastroFuncionario({navigation, route}){
     const [senha, setSenha] = useState('');
     const [email, setEmail] = useState('');
     const [dataNascimento, setDataNascimento] = useState('');
+    const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
     const [cargo, setCargo] = useState('');
     const [cpf, setCpf] = useState('');
     const [telefone, setTelefone] = useState('');
@@ -36,8 +38,15 @@ export default function CadastroFuncionario({navigation, route}){
         numero
     };
 
-    //const [equipes, setequipes] = useState(true);
-    //const [equipeselecionada, setEquipeselecionada] = useState(null);
+    const showDatePicker = () => setDatePickerVisibility(true);
+    const hideDatePicker = () => setDatePickerVisibility(false);
+
+    // Função chamada quando o usuário escolhe a data
+    const handleConfirm = (date) => {
+        const formatada = date.toLocaleDateString("pt-BR");
+        setDataNascimento(formatada);
+        hideDatePicker();
+    };
 
     function limparCampos(){
         setNome('');
@@ -105,7 +114,7 @@ export default function CadastroFuncionario({navigation, route}){
                 type: "success",
                 duration: 2000,             
             });         
-
+            limparCampos();  
             } 
         catch (error) {
             console.log("ERRO NO CADASTRO:", error.message);
@@ -193,7 +202,7 @@ export default function CadastroFuncionario({navigation, route}){
                             style={styles.input}
                             value={nome}
                             placeholder="Gabriel Kenzo" //depois mudar, mensagem para mim mesmo dnv :D
-                            placeholderTextColor={theme.text}
+                            placeholderTextColor={theme.text3}
                             onChangeText={(text) => setNome(text)}
                         />
                         <Text style={styles.texto}>Senha</Text>
@@ -201,23 +210,45 @@ export default function CadastroFuncionario({navigation, route}){
                             style={styles.input}
                             value={senha}
                             placeholder="1234"
-                            placeholderTextColor={theme.text}
+                            placeholderTextColor={theme.text3}
                             onChangeText={(text) => setSenha(text)}
                         />
                         <Text style={styles.texto}>Data de Nascimento</Text>
-                        <TextInput
-                            style={styles.input}
-                            value={dataNascimento}
-                            placeholder="25/25/2525"
-                            placeholderTextColor={theme.text}
-                            onChangeText={(text) => setDataNascimento(formatarDataInput(text))}
+                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            <TextInput
+                                style={[styles.input, { marginRight: 5, width: '77%' }]}
+                                placeholder="00/00/0000"
+                                placeholderTextColor={theme.text3}
+                                keyboardType="numeric"
+                                value={dataNascimento}
+                                onChangeText={(text) => setDataNascimento(formatarDataInput(text))}
+                                maxLength={10}
+                            />
+                            <TouchableOpacity
+                                onPress={showDatePicker}
+                                style={ styles.databotao}
+                            >
+                                <Ionicons name="calendar-outline" size={22} color={theme.text} />
+                            </TouchableOpacity>
+                        </View>
+
+                        <DateTimePickerModal
+                            isVisible={isDatePickerVisible}
+                            mode="date"
+                            display="default"
+                            themeVariant={theme.mode === 'dark' ? 'dark' : 'light'}
+                            onConfirm={handleConfirm}
+                            onCancel={hideDatePicker}
+                            locale="pt-BR"
+                            confirmTextIOS="Confirmar"
+                            cancelTextIOS="Cancelar"
                         />
                         <Text style={styles.texto}>Email</Text>
                         <TextInput
                             style={styles.input}
                             value={email}
                             placeholder="joaovitinhocraft@gmail.com"
-                            placeholderTextColor={theme.text}
+                            placeholderTextColor={theme.text3}
                             onChangeText={(text) => setEmail(text)}
                         />
                         <Text style={styles.texto}>Telefone</Text>
@@ -225,7 +256,7 @@ export default function CadastroFuncionario({navigation, route}){
                             style={styles.input}
                             value={telefone}
                             placeholder="(13) 99899989"
-                            placeholderTextColor={theme.text}
+                            placeholderTextColor={theme.text3}
                             onChangeText={(text) => setTelefone(formatarTelefoneInput(text))}
                         />
                         <Text style={styles.texto}>CPF</Text>
@@ -233,7 +264,7 @@ export default function CadastroFuncionario({navigation, route}){
                             style={styles.input}
                             value={cpf}
                             placeholder="123.456.789-09"
-                            placeholderTextColor={theme.text}
+                            placeholderTextColor={theme.text3}
                             onChangeText={(text) => setCpf(formatarCpfInput(text))}
                         />
                         <View style={styles.linha}>
@@ -245,14 +276,14 @@ export default function CadastroFuncionario({navigation, route}){
                                 style={styles.inputendereco}
                                 value={endereco}
                                 placeholder="Rua João da Fonseca, Jardim Mato Grosso, Cananeia senha"
-                                placeholderTextColor={theme.text}
+                                placeholderTextColor={theme.text3}
                                 onChangeText={(text) => setEndereco(text)}
                             />   
                             <TextInput
                                 style={styles.inputnum}
                                 value={numero}
                                 placeholder="123"
-                                placeholderTextColor={theme.text}
+                                placeholderTextColor={theme.text3}
                                 onChangeText={(text) => setNumero(text)}
                             />   
                         </View>
@@ -262,7 +293,7 @@ export default function CadastroFuncionario({navigation, route}){
                             style={styles.input}
                             value={cargo}
                             placeholder="Analista"
-                            placeholderTextColor={theme.text}
+                            placeholderTextColor={theme.text3}
                             onChangeText={(text) => setCargo(text)}
                         />
                     </View>

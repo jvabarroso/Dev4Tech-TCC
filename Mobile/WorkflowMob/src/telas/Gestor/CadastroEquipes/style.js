@@ -10,6 +10,7 @@ export const getStyles = (theme) => StyleSheet.create({
   },
   scrollContent: {
     padding: 16,
+    paddingBottom: 60,
   },
   titulo: {
     fontSize: 25,
@@ -126,6 +127,7 @@ export const getStyles = (theme) => StyleSheet.create({
   textolistacargo: {
     color: theme.text,
     fontSize: 15,
+    fontWeight: 'bold',
     fontFamily: fonts.text,
   },
   textobotao: {
@@ -149,7 +151,7 @@ export const getStyles = (theme) => StyleSheet.create({
     alignSelf:"flex-start",
   },
   botaocriar: {
-    width: 200,
+    width: 270,
     backgroundColor: '#5BB14F',
     paddingVertical: 12,
     paddingHorizontal: 30,

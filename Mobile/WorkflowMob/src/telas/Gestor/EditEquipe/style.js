@@ -29,6 +29,7 @@ export const getStyles = (theme) => StyleSheet.create({
         width: 40,
         height: 40,
         justifyContent: 'center',
+        marginTop: 10,
     },
     titulo: {
         fontSize: 18,
@@ -255,5 +256,23 @@ export const getStyles = (theme) => StyleSheet.create({
         color: theme.text,
         fontSize: 12,
         fontFamily: fonts.text,
-    }
+    },
+    tituloi: {
+        width:150,
+        height:50,
+    },
+    containerfuncionarios: {
+        backgroundColor: theme.inputBackground,
+        borderRadius: 10,
+        padding: 10,
+        marginBottom: 20,
+        flexDirection: 'row',
+        alignItems: 'center',
+        width:300,
+    },
+    imag: {
+        width: 35,
+        height: 35,
+        marginLeft: 10,
+    },
 });

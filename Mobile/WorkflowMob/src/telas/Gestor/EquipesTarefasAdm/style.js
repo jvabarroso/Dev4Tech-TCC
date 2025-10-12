@@ -121,6 +121,9 @@ export const getStyles = (theme) => StyleSheet.create({
     marginBottom: 10,
     marginTop:15,
   },
+  espacoHeader: { 
+    width: 40 
+  }, 
   botaodevoltar: {
     width: 40,
     height: 40,

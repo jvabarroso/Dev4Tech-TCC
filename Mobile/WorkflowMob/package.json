@@ -11,6 +11,7 @@
   "dependencies": {
     "@expo-google-fonts/poppins": "^0.3.1",
     "@expo/metro-runtime": "~6.1.2",
+    "@react-native-community/datetimepicker": "^8.4.5",
     "@react-native-picker/picker": "2.11.1",
     "@react-navigation/bottom-tabs": "^7.3.9",
     "@react-navigation/drawer": "^7.5.8",
@@ -36,6 +37,7 @@
     "react-native-file-viewer": "^2.1.5",
     "react-native-flash-message": "^0.4.2",
     "react-native-gifted-charts": "^1.4.64",
+    "react-native-modal-datetime-picker": "^18.0.0",
     "react-native-network-info": "^5.2.1",
     "react-native-paper": "^5.14.5",
     "react-native-reanimated": "^4.1.2",

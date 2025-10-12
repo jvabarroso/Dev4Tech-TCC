@@ -6,7 +6,7 @@ export const lightTheme = {
   text3:'#5e5e5e',
   text4: '#FFFFFF',
   inputBackground: '#F0F0F0',
-  inputBackground2: '#F2F2F2',
+  inputBackground2: '#ddddddff',
   inputBackground3: '#FFFFFF',
   inputBackground4: '#C0C0C0',
   border: '#CCCCCC',

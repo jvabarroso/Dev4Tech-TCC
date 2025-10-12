@@ -15,7 +15,7 @@ if ($postjson === null) {
 $id = $postjson['id'] ?? null;
 $nome_equipe = $postjson['nome_equipe'] ?? null;
 $id_categoria = $postjson['id_categoria'] ?? null;
-$foto_equipe = $postjson['foto_equipe'] ?? null; // pode ser URL ou nome de arquivo
+$foto_equipe = $postjson['foto_equipe'] ?? null; 
 $funcionarios = $postjson['funcionarios'] ?? [];
 
 if (empty($id) || empty($nome_equipe) || empty($id_categoria)) {
@@ -41,22 +41,14 @@ try {
     $stmt->execute();
 
     if (!empty($funcionarios) && is_array($funcionarios)) {
-        $insertStmt = $pdo->prepare("INSERT INTO equipes_membros (id_equipe, FuncionarioId) VALUES (:id_equipe, :fid)");
-        foreach ($funcionarios as $f) {
-            // suporte a objetos/arrays com chave FuncionarioId
-            $fid = null;
-            if (is_array($f) && isset($f['FuncionarioId'])) {
-                $fid = $f['FuncionarioId'];
-            } elseif (is_object($f) && isset($f->FuncionarioId)) {
-                $fid = $f->FuncionarioId;
-            } elseif (is_numeric($f)) {
-                // caso o cliente envie só um array de ids
-                $fid = $f;
-            }
-            if (empty($fid)) continue;
-            $insertStmt->bindValue(':id_equipe', $id);
-            $insertStmt->bindValue(':fid', $fid);
-            $insertStmt->execute();
+        foreach ($postjson['funcionarios'] as $funcId) {
+            $res2 = $pdo->prepare("INSERT INTO equipes_membros SET 
+                FuncionarioId = :FuncionarioId,
+                id_equipe = :id_equipe
+            ");
+            $res2->bindValue(":FuncionarioId", $funcId);
+            $res2->bindValue(":id_equipe", $id);
+            $res2->execute();
         }
     }
 

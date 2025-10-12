@@ -43,22 +43,50 @@ export default function EditEquipe({ navigation, route }) {
         setCategoriaEquipe(equipe.nome_categoria || '');
     }, [equipe]);
 
-    //Adicionar funcionario na equipe
+//Adicionar funcionario na equipe
     function adicionarFuncionario() {
         if (funcionarioSelecionada) {
-            // Evita adicionar duplicados
             const jaExiste = funcionariosEquipeArray.some(
                 f => f.FuncionarioId === funcionarioSelecionada
             );
 
             if (!jaExiste) {
+                const funcionarioCompleto = dadosFuncionario.find(
+                    f => f.FuncionarioId === funcionarioSelecionada
+                );
+
+            if (funcionarioCompleto) {
                 setFuncionariosEquipeArray(prev => [
                     ...prev, 
-                    { FuncionarioId: funcionarioSelecionada, nome: funcionarioEquipe }
+                    {
+                        FuncionarioId: funcionarioCompleto.FuncionarioId,
+                        nome: funcionarioCompleto.nome,
+                        cargo: funcionarioCompleto.cargo || 'Cargo não informado',
+                        foto_url: funcionarioCompleto.foto_url || null
+                    }
                 ]);
+                
+                setFuncionarioSelecionada(null);
+                setFuncionarioEquipe('');
             }
+            } 
         }
     }
+
+    // Filtra os Funcionários
+    const funcionariosDisponiveis = dadosFuncionario.filter(
+        funcionario => !funcionariosEquipeArray.some(
+            added => added.FuncionarioId === funcionario.FuncionarioId
+        )
+    );
+
+    // Remove Funcionário da Lista
+    function removerFuncionario(index) {
+        setFuncionariosEquipeArray(prev => 
+            prev.filter((_, i) => i !== index)
+        );
+    }
+
     //Lista apenas os funcionarios que não estão na equipe
     async function listarFuncionarios() {
         try {
@@ -231,15 +259,15 @@ export default function EditEquipe({ navigation, route }) {
           nome_equipe: nome_equipe,
           id_categoria: categoriaSelecionada,
           foto_equipe: foto_equipe,
-          funcionarios: funcionariosEquipeArray
+          funcionarios: funcionariosEquipeArray.map(f => f.FuncionarioId)
         };
 
          console.log('Dados enviados para edição:', obj); // Log para debug
 
-          const res = await api.post('dev4tech/editarequipe.php', obj, {
+        const res = await api.post('dev4tech/editarequipe.php', obj, {
             headers: {
               'Content-Type': 'application/json',
-            }
+        }
           });
 
          console.log('Resposta da API:', res.data); // Log para 
@@ -253,6 +281,7 @@ export default function EditEquipe({ navigation, route }) {
                 type: "success",
                 duration: 2000,             
             });
+            setFuncionariosEquipeArray([]);
 
             setImagemEquipe(prev => ({
             ...prev,
@@ -289,12 +318,15 @@ export default function EditEquipe({ navigation, route }) {
             >
                 <View style={styles.nav}>
                     <TouchableOpacity 
-                        style={styles.botaodevoltar}
-                        onPress={() => navigation.goBack()}
+                    style={styles.botaodevoltar}
+                    onPress={() => navigation.goBack()}
                     >
-                        <Ionicons name="arrow-back" size={24} color={theme.text} />
+                    <Ionicons name="arrow-back" size={25} color={theme.text} />
                     </TouchableOpacity>
-                    <Text style={styles.titulo}>WORKFLOW</Text>
+                    <Image 
+                    style={styles.tituloi}
+                    source={theme.logo} >
+                    </Image>
                     <View style={styles.espacoHeader} />
                 </View>
 
@@ -329,7 +361,7 @@ export default function EditEquipe({ navigation, route }) {
                     <Text style={styles.texto}>Categoria</Text>
                     <Dropdown
                         style={styles.dropdown}
-                        data={dados}
+                        data={funcionariosDisponiveis}
                         labelField="nome_categoria" 
                         valueField="id_categoria"
                         placeholder={categoriaEquipe || "Escolha a categoria da equipe"}
@@ -394,6 +426,22 @@ export default function EditEquipe({ navigation, route }) {
                             <Ionicons name="add" size={24} color="#FFFFFF" /> 
                         </TouchableOpacity>  
                     </View>
+                    {funcionariosEquipeArray.map((item, index) =>{
+                        return(
+                            <View key={index} style={styles.containerfuncionarios}>
+                                <Image 
+                                    source={item.foto_url ? { uri: item.foto_url } : require('../../../../assets/img/image.png')} 
+                                    style={styles.imag} 
+                                />
+                                <View style={styles.textos}>
+                                    <Text style={styles.textolistatitulo}>{item.nome}</Text>
+                                    <Text style={styles.textolistacargo}>{item.cargo}</Text>
+                                </View>
+                                <TouchableOpacity onPress={() => removerFuncionario(index)} >
+                                    <Ionicons name="close" size={30} color="#FF0000" />
+                                </TouchableOpacity>
+                            </View>
+                    )})}
 
                     <TouchableOpacity 
                         style={styles.botaoeditar}

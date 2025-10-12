@@ -79,8 +79,13 @@ export const getStyles = (theme) => StyleSheet.create({
     width: 40,
     height: 40,
     justifyContent: 'center',
+    marginTop: 10,
   },
   espacoHeader: {
         width: 40,
+  },
+  tituloi: {
+    width:150,
+    height:50,
   },
 });

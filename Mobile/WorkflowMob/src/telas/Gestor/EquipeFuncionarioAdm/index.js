@@ -66,16 +66,19 @@ export default function EquipeFuncionarioAdm({ navigation, route }) {
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
 
-        <View style={styles.nav}>
-          <TouchableOpacity 
-            style={styles.botaodevoltar}
-            onPress={() => navigation.goBack()}
-          >
-            <Ionicons name="arrow-back" size={24} color={theme.text} />
-          </TouchableOpacity>
-            <Text style={styles.titulo}>WORKFLOW</Text>
+          <View style={styles.nav}>
+            <TouchableOpacity 
+              style={styles.botaodevoltar}
+              onPress={() => navigation.goBack()}
+            >
+              <Ionicons name="arrow-back" size={25} color={theme.text} />
+            </TouchableOpacity>
+            <Image 
+              style={styles.tituloi}
+              source={theme.logo} >
+            </Image>
             <View style={styles.espacoHeader} />
-        </View>
+          </View>
 
         <View style={styles.containertarefas}>
           <Image 

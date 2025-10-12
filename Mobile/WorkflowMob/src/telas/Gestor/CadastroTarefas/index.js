@@ -1,10 +1,11 @@
 import React, { useState, useEffect} from 'react';
 import { Text, View, TouchableOpacity, Image, ScrollView, TextInput} from 'react-native';
+import { getStyles } from './style';
+import { useTheme } from '../../../styles/themecontext'
 import { Dropdown } from 'react-native-element-dropdown';
 import { showMessage } from "react-native-flash-message";
 import * as DocumentPicker from 'expo-document-picker';
-import { getStyles } from './style';
-import { useTheme } from '../../../styles/themecontext'
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Ionicons } from '@expo/vector-icons';
 
 import url from '../../../../services/url';
@@ -21,18 +22,45 @@ export default function CadastroTarefas({ route, navigation }){
     const [nomeTarefa, setNomeTarefa] = useState('');
     const [instrucoes, setInstrucoes] = useState('');
     const [data, setData] = useState('');
-    const [dados, setDados] = useState([]);
+    const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
     const [equipe, setEquipe] = useState(null);
     const [equipeselecionada, setEquipeSelecionada] = useState(null);
     const [dificuldadeselecionada, setDificuldadeSelecionada] = useState(null);
+    
+    const [dados, setDados] = useState([]);
     const [file, setFile] = useState(null);
 
+    const showDatePicker = () => setDatePickerVisibility(true);
+    const hideDatePicker = () => setDatePickerVisibility(false);
 
     const dificuldadeOptions = [
     { label: "Fácil", value: "facil" },
     { label: "Médio", value: "medio" },
     { label: "Difícil", value: "dificil" },
     ];
+
+    // Função chamada quando o usuário escolhe a data
+    const handleConfirm = (date) => {
+        const hoje = new Date();
+        if (date <= hoje) {
+        showMessage({
+            message: "Data inválida",
+            description: "Escolha uma data futura para entrega.",
+            type: "warning",
+            floating: true,
+            duration: 2000,   
+            statusBarHeight: 70,
+        });
+        hideDatePicker();
+        return;
+        }  
+
+        const formatada = date.toLocaleDateString("pt-BR");
+        setData(formatada);
+        hideDatePicker();
+    };
+
 
     //Formata a Data para o Banco
     function formatarDataParaBanco(data) {
@@ -221,7 +249,7 @@ export default function CadastroTarefas({ route, navigation }){
                 type: "success",
                 duration: 2000,             
             });         
-
+            limparCampos()
             } 
         catch (error) {
             console.log("Erro no Envio:", error.message);
@@ -244,6 +272,16 @@ export default function CadastroTarefas({ route, navigation }){
         
     }   
 
+    function limparCampos(){
+        setNomeTarefa('');
+        setInstrucoes('');
+        setData('');
+        setEquipe(null);         
+        setEquipeSelecionada(null); 
+        setDificuldadeSelecionada(null);
+        setFile(null);
+    }
+
     return(
         <View style={styles.container}>
             <ScrollView contentContainerStyle={styles.scrollContent}>
@@ -254,6 +292,7 @@ export default function CadastroTarefas({ route, navigation }){
                         style={styles.input}
                         placeholder="Desenvolver o App"
                         placeholderTextColor={theme.text3}
+                        value={nomeTarefa}  
                         onChangeText={(text) => setNomeTarefa(text)}
                     />
                     <Text style={styles.texto}>Instruções</Text>
@@ -264,12 +303,13 @@ export default function CadastroTarefas({ route, navigation }){
                         placeholder="Alteração nos valores contratuais."
                         placeholderTextColor={theme.text3}
                         textAlignVertical="top"
+                        value={instrucoes}
                         onChangeText={(text) => setInstrucoes(text)}
                         maxLength={250}
                     />
                     <Text style={styles.texto}>Equipes</Text>
                     <Dropdown
-                        style={styles.input}
+                        style={[styles.input,{borderColor: '#D6D3D1',borderWidth: 1,borderRadius: 6,}]}
                         data={dados}
                         labelField="nome_equipe" 
                         valueField="id_equipe"
@@ -298,7 +338,7 @@ export default function CadastroTarefas({ route, navigation }){
                     />
                     <Text style={styles.texto}>Dificuldade</Text>
                     <Dropdown
-                        style={styles.input}
+                        style={[styles.input,{borderColor: '#D6D3D1',borderWidth: 1,borderRadius: 6,}]}
                         data={dificuldadeOptions}
                         labelField="label" 
                         valueField="value"
@@ -310,6 +350,9 @@ export default function CadastroTarefas({ route, navigation }){
                             setDificuldadeSelecionada(item.label);
                         }}
                         containerStyle={{
+                            backgroundColor: theme.inputBackground,
+                        }}
+                        itemContainerStyle={{
                             backgroundColor: theme.inputBackground,
                         }}
                         itemTextStyle={{
@@ -325,13 +368,38 @@ export default function CadastroTarefas({ route, navigation }){
                         activeColor={theme.inputBackground} 
                     />
                     <Text style={styles.texto}>Data de entrega</Text>
-                    <TextInput
-                        style={styles.input}
-                        value={data}
-                        placeholder="xx/xx/xxxx"
-                        placeholderTextColor={theme.text3}
-                        onChangeText={(text) => setData(formatarDataInput(text))}
+
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                        <TextInput
+                            style={[styles.input, { marginRight: 5, width: '77%' }]}
+                            placeholder="00/00/0000"
+                            placeholderTextColor={theme.text3}
+                            keyboardType="numeric"
+                            value={data}
+                            onChangeText={(text) => setData(formatarDataInput(text))}
+                            maxLength={10}
+                        />
+                        <TouchableOpacity
+                            onPress={showDatePicker}
+                            style={ styles.databotao}
+                        >
+                            <Ionicons name="calendar-outline" size={22} color={theme.text} />
+                        </TouchableOpacity>
+                    </View>
+
+                    <DateTimePickerModal
+                        isVisible={isDatePickerVisible}
+                        mode="date"
+                        display="default"
+                        themeVariant={theme.mode === 'dark' ? 'dark' : 'light'}
+                        onConfirm={handleConfirm}
+                        onCancel={hideDatePicker}
+                        minimumDate={new Date()}
+                        locale="pt-BR"
+                        confirmTextIOS="Confirmar"
+                        cancelTextIOS="Cancelar"
                     />
+
                     <TouchableOpacity
                         style={[styles.botaoanexo,styles.linha]}
                         onPress={pickDocument}
