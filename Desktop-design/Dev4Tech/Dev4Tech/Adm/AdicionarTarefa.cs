@@ -196,6 +196,8 @@ namespace Dev4Tech
 
         private void btnConfig_Click(object sender, EventArgs e)
         {
+
+            var admin = Sessao.AdminLogado;
             var funcionario = Sessao.FuncionarioLogado;
 
             if (funcionario != null)
@@ -204,9 +206,14 @@ namespace Dev4Tech
                 config.Show();
                 this.Hide();
             }
-            else
+            else if (admin != null)
             {
-                MessageBox.Show("Nenhum funcionário logado.");
+                Configuracoes config = new Configuracoes(admin);
+                config.Show();
+                this.Hide();
+                {
+                    MessageBox.Show("Nenhum funcionário logado.");
+                }
             }
         }
 
@@ -239,7 +246,7 @@ namespace Dev4Tech
 
         private void btnCalendar_Click(object sender, EventArgs e)
         {
-            Planejamento  t_completadas = new Planejamento();
+            AdicionarTarefa  t_completadas = new AdicionarTarefa();
             t_completadas.Show();
             this.Hide();
         }
@@ -268,6 +275,11 @@ namespace Dev4Tech
             {
                 MessageBox.Show("Essa equipe já foi selecionada.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void pictureBox9_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

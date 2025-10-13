@@ -548,23 +548,34 @@ namespace Dev4Tech
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;
 
-            if (funcionario != null)
+            if (Sessao.IdEquipeSelecionada != 0)
             {
-                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
-                Planejamento t_equipe = new Planejamento();
-                t_equipe.Show();
-                this.Hide();
-            }
-            else if (admin != null)
-            {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
-                Planejamento t_equipeAdmin = new Planejamento();
-                t_equipeAdmin.Show();
-                this.Hide();
+                int idEquipe = Sessao.IdEquipeSelecionada;
+
+                if (funcionario != null)
+                {
+                    Planejamento t_equipe = new Planejamento();
+                    t_equipe.Show();
+                    this.Hide();
+                }
+                else if (admin != null)
+                {
+                    MessageBox.Show("Tela voltada para tarefas dos funcionários.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Equipes_Estatisticas t_equipeAdmin = new Equipes_Estatisticas();
+                    t_equipeAdmin.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             else
             {
-                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Nenhuma equipe selecionada.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Ranking_Equipes rank = new Ranking_Equipes();
+                rank.Show();
+                this.Hide();
             }
         }
 

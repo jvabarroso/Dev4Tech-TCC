@@ -74,9 +74,10 @@
             btnVoltar.FillColor2 = System.Drawing.Color.Transparent;
             btnVoltar.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             btnVoltar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(88)))), ((int)(((byte)(242)))));
-            btnVoltar.Location = new System.Drawing.Point(488, 502);
+            btnVoltar.Location = new System.Drawing.Point(646, 684);
+            btnVoltar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             btnVoltar.Name = "btnVoltar";
-            btnVoltar.Size = new System.Drawing.Size(293, 45);
+            btnVoltar.Size = new System.Drawing.Size(440, 69);
             btnVoltar.TabIndex = 168;
             btnVoltar.Text = "Voltar";
             btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
@@ -93,9 +94,10 @@
             btnCadastrar.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(88)))), ((int)(((byte)(242)))));
             btnCadastrar.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             btnCadastrar.ForeColor = System.Drawing.Color.White;
-            btnCadastrar.Location = new System.Drawing.Point(488, 438);
+            btnCadastrar.Location = new System.Drawing.Point(646, 586);
+            btnCadastrar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             btnCadastrar.Name = "btnCadastrar";
-            btnCadastrar.Size = new System.Drawing.Size(293, 45);
+            btnCadastrar.Size = new System.Drawing.Size(440, 69);
             btnCadastrar.TabIndex = 167;
             btnCadastrar.Text = "Cadastrar";
             btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
@@ -111,21 +113,22 @@
             this.txtNomeEmpresa.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtNomeEmpresa.Font = new System.Drawing.Font("Poppins", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNomeEmpresa.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtNomeEmpresa.Location = new System.Drawing.Point(123, 228);
-            this.txtNomeEmpresa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtNomeEmpresa.Location = new System.Drawing.Point(98, 263);
+            this.txtNomeEmpresa.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.txtNomeEmpresa.Name = "txtNomeEmpresa";
             this.txtNomeEmpresa.PlaceholderText = "Digite o nome da empresa";
             this.txtNomeEmpresa.SelectedText = "";
-            this.txtNomeEmpresa.Size = new System.Drawing.Size(293, 36);
+            this.txtNomeEmpresa.Size = new System.Drawing.Size(440, 55);
             this.txtNomeEmpresa.TabIndex = 177;
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(823, 178);
+            this.pictureBox1.Location = new System.Drawing.Point(1148, 186);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(441, 505);
+            this.pictureBox1.Size = new System.Drawing.Size(662, 777);
             this.pictureBox1.TabIndex = 176;
             this.pictureBox1.TabStop = false;
             // 
@@ -133,9 +136,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Poppins SemiBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(35, 38);
+            this.label1.Location = new System.Drawing.Point(38, 46);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(127, 34);
+            this.label1.Size = new System.Drawing.Size(194, 51);
             this.label1.TabIndex = 175;
             this.label1.Text = "WORKFLOW";
             // 
@@ -144,9 +148,10 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            this.label2.Location = new System.Drawing.Point(119, 164);
+            this.label2.Location = new System.Drawing.Point(92, 164);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(278, 28);
+            this.label2.Size = new System.Drawing.Size(416, 42);
             this.label2.TabIndex = 174;
             this.label2.Text = "Faça o cadastro da sua empresa";
             // 
@@ -154,9 +159,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Poppins SemiBold", 15.75F);
-            this.label3.Location = new System.Drawing.Point(112, 127);
+            this.label3.Location = new System.Drawing.Point(82, 107);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(247, 37);
+            this.label3.Size = new System.Drawing.Size(383, 56);
             this.label3.TabIndex = 173;
             this.label3.Text = "Cadastro de empresa";
             // 
@@ -171,19 +177,20 @@
             this.txtCNPJEmpresa.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtCNPJEmpresa.Font = new System.Drawing.Font("Poppins", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCNPJEmpresa.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtCNPJEmpresa.Location = new System.Drawing.Point(122, 298);
-            this.txtCNPJEmpresa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtCNPJEmpresa.Location = new System.Drawing.Point(97, 370);
+            this.txtCNPJEmpresa.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.txtCNPJEmpresa.Name = "txtCNPJEmpresa";
             this.txtCNPJEmpresa.PlaceholderText = "XX. XXX. XXX/0001-XX";
             this.txtCNPJEmpresa.SelectedText = "";
-            this.txtCNPJEmpresa.Size = new System.Drawing.Size(292, 36);
+            this.txtCNPJEmpresa.Size = new System.Drawing.Size(438, 55);
             this.txtCNPJEmpresa.TabIndex = 172;
             // 
             // guna2VSeparator1
             // 
-            this.guna2VSeparator1.Location = new System.Drawing.Point(443, 228);
+            this.guna2VSeparator1.Location = new System.Drawing.Point(578, 263);
+            this.guna2VSeparator1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.guna2VSeparator1.Name = "guna2VSeparator1";
-            this.guna2VSeparator1.Size = new System.Drawing.Size(10, 392);
+            this.guna2VSeparator1.Size = new System.Drawing.Size(15, 603);
             this.guna2VSeparator1.TabIndex = 171;
             // 
             // lblLogin
@@ -191,9 +198,10 @@
             this.lblLogin.AutoSize = true;
             this.lblLogin.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(88)))), ((int)(((byte)(242)))));
-            this.lblLogin.Location = new System.Drawing.Point(554, 646);
+            this.lblLogin.Location = new System.Drawing.Point(741, 921);
+            this.lblLogin.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLogin.Name = "lblLogin";
-            this.lblLogin.Size = new System.Drawing.Size(222, 28);
+            this.lblLogin.Size = new System.Drawing.Size(333, 42);
             this.lblLogin.TabIndex = 170;
             this.lblLogin.Text = "Login como administrador";
             this.lblLogin.Click += new System.EventHandler(this.label15_Click);
@@ -203,9 +211,10 @@
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            this.label16.Location = new System.Drawing.Point(134, 646);
+            this.label16.Location = new System.Drawing.Point(111, 921);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(428, 28);
+            this.label16.Size = new System.Drawing.Size(642, 42);
             this.label16.TabIndex = 169;
             this.label16.Text = "Se você ja cadastrou sua empresa, voce pode fazer ";
             // 
@@ -214,9 +223,10 @@
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            this.label18.Location = new System.Drawing.Point(116, 411);
+            this.label18.Location = new System.Drawing.Point(88, 544);
+            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(146, 23);
+            this.label18.Size = new System.Drawing.Size(226, 36);
             this.label18.TabIndex = 166;
             this.label18.Text = "Telefone empresarial";
             // 
@@ -225,9 +235,10 @@
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            this.label19.Location = new System.Drawing.Point(484, 344);
+            this.label19.Location = new System.Drawing.Point(640, 441);
+            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(126, 23);
+            this.label19.Size = new System.Drawing.Size(197, 36);
             this.label19.TabIndex = 164;
             this.label19.Text = "Email institucional";
             // 
@@ -236,9 +247,10 @@
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            this.label20.Location = new System.Drawing.Point(484, 271);
+            this.label20.Location = new System.Drawing.Point(640, 329);
+            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(103, 23);
+            this.label20.Size = new System.Drawing.Size(161, 36);
             this.label20.TabIndex = 162;
             this.label20.Text = "Complemento";
             // 
@@ -247,9 +259,10 @@
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            this.label21.Location = new System.Drawing.Point(483, 203);
+            this.label21.Location = new System.Drawing.Point(638, 224);
+            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(48, 23);
+            this.label21.Size = new System.Drawing.Size(73, 36);
             this.label21.TabIndex = 160;
             this.label21.Text = "Bairro";
             // 
@@ -258,9 +271,10 @@
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            this.label22.Location = new System.Drawing.Point(119, 557);
+            this.label22.Location = new System.Drawing.Point(92, 769);
+            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(152, 23);
+            this.label22.Size = new System.Drawing.Size(235, 36);
             this.label22.TabIndex = 158;
             this.label22.Text = "Número de residência";
             // 
@@ -269,9 +283,10 @@
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            this.label23.Location = new System.Drawing.Point(116, 488);
+            this.label23.Location = new System.Drawing.Point(88, 663);
+            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(85, 23);
+            this.label23.Size = new System.Drawing.Size(132, 36);
             this.label23.TabIndex = 155;
             this.label23.Text = "Logradouro";
             // 
@@ -280,9 +295,10 @@
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            this.label24.Location = new System.Drawing.Point(118, 344);
+            this.label24.Location = new System.Drawing.Point(91, 441);
+            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(126, 23);
+            this.label24.Size = new System.Drawing.Size(192, 36);
             this.label24.TabIndex = 154;
             this.label24.Text = "Setor empresarial";
             // 
@@ -291,9 +307,10 @@
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            this.label25.Location = new System.Drawing.Point(118, 271);
+            this.label25.Location = new System.Drawing.Point(91, 329);
+            this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(44, 23);
+            this.label25.Size = new System.Drawing.Size(67, 36);
             this.label25.TabIndex = 152;
             this.label25.Text = "CNPJ";
             // 
@@ -302,9 +319,10 @@
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            this.label26.Location = new System.Drawing.Point(118, 201);
+            this.label26.Location = new System.Drawing.Point(91, 221);
+            this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(131, 23);
+            this.label26.Size = new System.Drawing.Size(203, 36);
             this.label26.TabIndex = 151;
             this.label26.Text = "Nome da empresa";
             // 
@@ -319,12 +337,12 @@
             this.txtSetorEmpresa.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtSetorEmpresa.Font = new System.Drawing.Font("Poppins", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSetorEmpresa.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtSetorEmpresa.Location = new System.Drawing.Point(122, 368);
-            this.txtSetorEmpresa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtSetorEmpresa.Location = new System.Drawing.Point(97, 478);
+            this.txtSetorEmpresa.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.txtSetorEmpresa.Name = "txtSetorEmpresa";
             this.txtSetorEmpresa.PlaceholderText = "Digite o setor empresarial";
             this.txtSetorEmpresa.SelectedText = "";
-            this.txtSetorEmpresa.Size = new System.Drawing.Size(292, 36);
+            this.txtSetorEmpresa.Size = new System.Drawing.Size(438, 55);
             this.txtSetorEmpresa.TabIndex = 178;
             // 
             // txtLogradouroEmpresa
@@ -338,12 +356,12 @@
             this.txtLogradouroEmpresa.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtLogradouroEmpresa.Font = new System.Drawing.Font("Poppins", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLogradouroEmpresa.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtLogradouroEmpresa.Location = new System.Drawing.Point(122, 511);
-            this.txtLogradouroEmpresa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtLogradouroEmpresa.Location = new System.Drawing.Point(97, 698);
+            this.txtLogradouroEmpresa.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.txtLogradouroEmpresa.Name = "txtLogradouroEmpresa";
             this.txtLogradouroEmpresa.PlaceholderText = "Rua, Viela, Avenidas, Travessas,  Alamedas";
             this.txtLogradouroEmpresa.SelectedText = "";
-            this.txtLogradouroEmpresa.Size = new System.Drawing.Size(292, 36);
+            this.txtLogradouroEmpresa.Size = new System.Drawing.Size(438, 55);
             this.txtLogradouroEmpresa.TabIndex = 179;
             // 
             // txtNumResidencia
@@ -357,12 +375,12 @@
             this.txtNumResidencia.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtNumResidencia.Font = new System.Drawing.Font("Poppins", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNumResidencia.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtNumResidencia.Location = new System.Drawing.Point(124, 584);
-            this.txtNumResidencia.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtNumResidencia.Location = new System.Drawing.Point(100, 810);
+            this.txtNumResidencia.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.txtNumResidencia.Name = "txtNumResidencia";
             this.txtNumResidencia.PlaceholderText = "Nº XXX";
             this.txtNumResidencia.SelectedText = "";
-            this.txtNumResidencia.Size = new System.Drawing.Size(292, 36);
+            this.txtNumResidencia.Size = new System.Drawing.Size(438, 55);
             this.txtNumResidencia.TabIndex = 180;
             // 
             // txtBairroEmpresa
@@ -376,12 +394,12 @@
             this.txtBairroEmpresa.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtBairroEmpresa.Font = new System.Drawing.Font("Poppins", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBairroEmpresa.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtBairroEmpresa.Location = new System.Drawing.Point(487, 228);
-            this.txtBairroEmpresa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtBairroEmpresa.Location = new System.Drawing.Point(644, 263);
+            this.txtBairroEmpresa.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.txtBairroEmpresa.Name = "txtBairroEmpresa";
             this.txtBairroEmpresa.PlaceholderText = "Bairro XXXX";
             this.txtBairroEmpresa.SelectedText = "";
-            this.txtBairroEmpresa.Size = new System.Drawing.Size(292, 36);
+            this.txtBairroEmpresa.Size = new System.Drawing.Size(438, 55);
             this.txtBairroEmpresa.TabIndex = 181;
             // 
             // txtTelefoneEmpresa
@@ -395,12 +413,12 @@
             this.txtTelefoneEmpresa.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtTelefoneEmpresa.Font = new System.Drawing.Font("Poppins", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTelefoneEmpresa.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtTelefoneEmpresa.Location = new System.Drawing.Point(122, 438);
-            this.txtTelefoneEmpresa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtTelefoneEmpresa.Location = new System.Drawing.Point(97, 586);
+            this.txtTelefoneEmpresa.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.txtTelefoneEmpresa.Name = "txtTelefoneEmpresa";
             this.txtTelefoneEmpresa.PlaceholderText = "11 98877-6655";
             this.txtTelefoneEmpresa.SelectedText = "";
-            this.txtTelefoneEmpresa.Size = new System.Drawing.Size(292, 36);
+            this.txtTelefoneEmpresa.Size = new System.Drawing.Size(438, 55);
             this.txtTelefoneEmpresa.TabIndex = 182;
             // 
             // txtEmailEmpresa
@@ -414,12 +432,12 @@
             this.txtEmailEmpresa.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtEmailEmpresa.Font = new System.Drawing.Font("Poppins", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmailEmpresa.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtEmailEmpresa.Location = new System.Drawing.Point(487, 371);
-            this.txtEmailEmpresa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtEmailEmpresa.Location = new System.Drawing.Point(644, 483);
+            this.txtEmailEmpresa.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.txtEmailEmpresa.Name = "txtEmailEmpresa";
             this.txtEmailEmpresa.PlaceholderText = "nome_do_usuário@nome_instituição.com";
             this.txtEmailEmpresa.SelectedText = "";
-            this.txtEmailEmpresa.Size = new System.Drawing.Size(292, 36);
+            this.txtEmailEmpresa.Size = new System.Drawing.Size(438, 55);
             this.txtEmailEmpresa.TabIndex = 183;
             // 
             // txtComplementoEmpresa
@@ -433,19 +451,19 @@
             this.txtComplementoEmpresa.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtComplementoEmpresa.Font = new System.Drawing.Font("Poppins", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtComplementoEmpresa.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtComplementoEmpresa.Location = new System.Drawing.Point(487, 298);
-            this.txtComplementoEmpresa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtComplementoEmpresa.Location = new System.Drawing.Point(644, 370);
+            this.txtComplementoEmpresa.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.txtComplementoEmpresa.Name = "txtComplementoEmpresa";
             this.txtComplementoEmpresa.PlaceholderText = "Bloco, Nº do apartamento, ponto de referência...";
             this.txtComplementoEmpresa.SelectedText = "";
-            this.txtComplementoEmpresa.Size = new System.Drawing.Size(292, 36);
+            this.txtComplementoEmpresa.Size = new System.Drawing.Size(438, 55);
             this.txtComplementoEmpresa.TabIndex = 184;
             // 
             // Cadastro_empresa
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1342, 776);
+            this.ClientSize = new System.Drawing.Size(1898, 1024);
             this.Controls.Add(this.txtComplementoEmpresa);
             this.Controls.Add(this.txtEmailEmpresa);
             this.Controls.Add(this.txtTelefoneEmpresa);
@@ -473,8 +491,10 @@
             this.Controls.Add(this.label24);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.label26);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Cadastro_empresa";
             this.Text = "Cadastro_empresa";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Cadastro_empresa_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

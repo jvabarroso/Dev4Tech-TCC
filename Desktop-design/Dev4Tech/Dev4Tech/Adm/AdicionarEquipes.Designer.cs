@@ -40,7 +40,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.picBoxFtEquipe = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnAddMembro = new Guna.UI2.WinForms.Guna2GradientButton();
@@ -77,9 +76,10 @@
             guna2GradientButton1.FillColor2 = System.Drawing.Color.White;
             guna2GradientButton1.Font = new System.Drawing.Font("Poppins", 9.75F);
             guna2GradientButton1.ForeColor = System.Drawing.Color.DimGray;
-            guna2GradientButton1.Location = new System.Drawing.Point(666, 651);
+            guna2GradientButton1.Location = new System.Drawing.Point(938, 889);
+            guna2GradientButton1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             guna2GradientButton1.Name = "guna2GradientButton1";
-            guna2GradientButton1.Size = new System.Drawing.Size(169, 45);
+            guna2GradientButton1.Size = new System.Drawing.Size(254, 69);
             guna2GradientButton1.TabIndex = 226;
             guna2GradientButton1.Text = "Cancelar";
             guna2GradientButton1.Click += new System.EventHandler(this.btnHome_Click_1);
@@ -89,10 +89,10 @@
             this.picPerfil.BackColor = System.Drawing.Color.Blue;
             this.picPerfil.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
             this.picPerfil.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picPerfil.Location = new System.Drawing.Point(13, 722);
-            this.picPerfil.Margin = new System.Windows.Forms.Padding(4);
+            this.picPerfil.Location = new System.Drawing.Point(20, 936);
+            this.picPerfil.Margin = new System.Windows.Forms.Padding(6);
             this.picPerfil.Name = "picPerfil";
-            this.picPerfil.Size = new System.Drawing.Size(24, 23);
+            this.picPerfil.Size = new System.Drawing.Size(36, 35);
             this.picPerfil.TabIndex = 44;
             this.picPerfil.TabStop = false;
             // 
@@ -100,10 +100,11 @@
             // 
             this.btnEquipes.BackColor = System.Drawing.Color.Blue;
             this.btnEquipes.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_equip;
-            this.btnEquipes.Location = new System.Drawing.Point(13, 48);
-            this.btnEquipes.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEquipes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnEquipes.Location = new System.Drawing.Point(20, 74);
+            this.btnEquipes.Margin = new System.Windows.Forms.Padding(6);
             this.btnEquipes.Name = "btnEquipes";
-            this.btnEquipes.Size = new System.Drawing.Size(24, 23);
+            this.btnEquipes.Size = new System.Drawing.Size(36, 35);
             this.btnEquipes.TabIndex = 43;
             this.btnEquipes.TabStop = false;
             this.btnEquipes.Click += new System.EventHandler(this.btnEquipes_Click_1);
@@ -113,10 +114,10 @@
             this.btnCalendar.BackColor = System.Drawing.Color.Blue;
             this.btnCalendar.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_calendar;
             this.btnCalendar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnCalendar.Location = new System.Drawing.Point(13, 87);
-            this.btnCalendar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCalendar.Location = new System.Drawing.Point(20, 134);
+            this.btnCalendar.Margin = new System.Windows.Forms.Padding(6);
             this.btnCalendar.Name = "btnCalendar";
-            this.btnCalendar.Size = new System.Drawing.Size(24, 23);
+            this.btnCalendar.Size = new System.Drawing.Size(36, 35);
             this.btnCalendar.TabIndex = 42;
             this.btnCalendar.TabStop = false;
             this.btnCalendar.Click += new System.EventHandler(this.btnCalendar_Click);
@@ -126,10 +127,10 @@
             this.btnRanking.BackColor = System.Drawing.Color.Blue;
             this.btnRanking.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_ranking;
             this.btnRanking.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnRanking.Location = new System.Drawing.Point(13, 129);
-            this.btnRanking.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRanking.Location = new System.Drawing.Point(20, 198);
+            this.btnRanking.Margin = new System.Windows.Forms.Padding(6);
             this.btnRanking.Name = "btnRanking";
-            this.btnRanking.Size = new System.Drawing.Size(24, 23);
+            this.btnRanking.Size = new System.Drawing.Size(36, 35);
             this.btnRanking.TabIndex = 41;
             this.btnRanking.TabStop = false;
             this.btnRanking.Click += new System.EventHandler(this.btnRanking_Click_1);
@@ -139,10 +140,10 @@
             this.btnLogout.BackColor = System.Drawing.Color.Blue;
             this.btnLogout.BackgroundImage = global::Dev4Tech.Properties.Resources.Nav_Icon_Item;
             this.btnLogout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnLogout.Location = new System.Drawing.Point(13, 679);
-            this.btnLogout.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLogout.Location = new System.Drawing.Point(20, 870);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(6);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(24, 23);
+            this.btnLogout.Size = new System.Drawing.Size(36, 35);
             this.btnLogout.TabIndex = 40;
             this.btnLogout.TabStop = false;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click_1);
@@ -152,10 +153,10 @@
             this.btnConfig.BackColor = System.Drawing.Color.Blue;
             this.btnConfig.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_config;
             this.btnConfig.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnConfig.Location = new System.Drawing.Point(13, 651);
-            this.btnConfig.Margin = new System.Windows.Forms.Padding(4);
+            this.btnConfig.Location = new System.Drawing.Point(20, 827);
+            this.btnConfig.Margin = new System.Windows.Forms.Padding(6);
             this.btnConfig.Name = "btnConfig";
-            this.btnConfig.Size = new System.Drawing.Size(24, 23);
+            this.btnConfig.Size = new System.Drawing.Size(36, 35);
             this.btnConfig.TabIndex = 39;
             this.btnConfig.TabStop = false;
             this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
@@ -165,10 +166,10 @@
             this.btnHome.BackColor = System.Drawing.Color.Blue;
             this.btnHome.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_Home;
             this.btnHome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnHome.Location = new System.Drawing.Point(13, 9);
-            this.btnHome.Margin = new System.Windows.Forms.Padding(4);
+            this.btnHome.Location = new System.Drawing.Point(20, 14);
+            this.btnHome.Margin = new System.Windows.Forms.Padding(6);
             this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(24, 23);
+            this.btnHome.Size = new System.Drawing.Size(36, 35);
             this.btnHome.TabIndex = 38;
             this.btnHome.TabStop = false;
             this.btnHome.Click += new System.EventHandler(this.btnHome_Click_1);
@@ -176,10 +177,10 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Blue;
-            this.pictureBox1.Location = new System.Drawing.Point(-2, -3);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox1.Location = new System.Drawing.Point(-3, -5);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(54, 780);
+            this.pictureBox1.Size = new System.Drawing.Size(81, 1200);
             this.pictureBox1.TabIndex = 37;
             this.pictureBox1.TabStop = false;
             // 
@@ -188,9 +189,10 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            this.label6.Location = new System.Drawing.Point(256, 401);
+            this.label6.Location = new System.Drawing.Point(277, 502);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(107, 23);
+            this.label6.Size = new System.Drawing.Size(166, 36);
             this.label6.TabIndex = 228;
             this.label6.Text = "Foto da equipe";
             // 
@@ -200,32 +202,23 @@
             this.picBoxFtEquipe.BorderRadius = 100;
             this.picBoxFtEquipe.ImageRotate = 0F;
             this.picBoxFtEquipe.InitialImage = ((System.Drawing.Image)(resources.GetObject("picBoxFtEquipe.InitialImage")));
-            this.picBoxFtEquipe.Location = new System.Drawing.Point(211, 183);
+            this.picBoxFtEquipe.Location = new System.Drawing.Point(211, 187);
+            this.picBoxFtEquipe.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.picBoxFtEquipe.Name = "picBoxFtEquipe";
-            this.picBoxFtEquipe.Size = new System.Drawing.Size(200, 200);
+            this.picBoxFtEquipe.Size = new System.Drawing.Size(300, 301);
             this.picBoxFtEquipe.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picBoxFtEquipe.TabIndex = 227;
             this.picBoxFtEquipe.TabStop = false;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            this.label5.Location = new System.Drawing.Point(288, 367);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(38, 23);
-            this.label5.TabIndex = 225;
-            this.label5.Text = "Foto";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            this.label4.Location = new System.Drawing.Point(555, 423);
+            this.label4.Location = new System.Drawing.Point(727, 556);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(71, 23);
+            this.label4.Size = new System.Drawing.Size(109, 36);
             this.label4.TabIndex = 223;
             this.label4.Text = "Membros";
             // 
@@ -234,9 +227,10 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            this.label3.Location = new System.Drawing.Point(553, 343);
+            this.label3.Location = new System.Drawing.Point(725, 433);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(131, 23);
+            this.label3.Size = new System.Drawing.Size(204, 36);
             this.label3.TabIndex = 221;
             this.label3.Text = "Adicionar membro";
             // 
@@ -252,9 +246,10 @@
             this.btnAddMembro.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(88)))), ((int)(((byte)(242)))));
             this.btnAddMembro.Font = new System.Drawing.Font("Poppins", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddMembro.ForeColor = System.Drawing.Color.White;
-            this.btnAddMembro.Location = new System.Drawing.Point(1212, 423);
+            this.btnAddMembro.Location = new System.Drawing.Point(1713, 556);
+            this.btnAddMembro.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAddMembro.Name = "btnAddMembro";
-            this.btnAddMembro.Size = new System.Drawing.Size(46, 36);
+            this.btnAddMembro.Size = new System.Drawing.Size(69, 48);
             this.btnAddMembro.TabIndex = 220;
             this.btnAddMembro.Text = "+";
             this.btnAddMembro.Click += new System.EventHandler(this.btnAddMembro_Click);
@@ -266,12 +261,13 @@
             this.cbmEmailMembro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbmEmailMembro.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cbmEmailMembro.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbmEmailMembro.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cbmEmailMembro.Font = new System.Drawing.Font("Poppins", 9F);
             this.cbmEmailMembro.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.cbmEmailMembro.ItemHeight = 30;
-            this.cbmEmailMembro.Location = new System.Drawing.Point(557, 369);
+            this.cbmEmailMembro.Location = new System.Drawing.Point(731, 473);
+            this.cbmEmailMembro.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbmEmailMembro.Name = "cbmEmailMembro";
-            this.cbmEmailMembro.Size = new System.Drawing.Size(618, 36);
+            this.cbmEmailMembro.Size = new System.Drawing.Size(925, 36);
             this.cbmEmailMembro.TabIndex = 219;
             // 
             // cmbCategoriaEquipe
@@ -281,12 +277,13 @@
             this.cmbCategoriaEquipe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCategoriaEquipe.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cmbCategoriaEquipe.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbCategoriaEquipe.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbCategoriaEquipe.Font = new System.Drawing.Font("Poppins", 9F);
             this.cmbCategoriaEquipe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.cmbCategoriaEquipe.ItemHeight = 30;
-            this.cmbCategoriaEquipe.Location = new System.Drawing.Point(557, 291);
+            this.cmbCategoriaEquipe.Location = new System.Drawing.Point(731, 353);
+            this.cmbCategoriaEquipe.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbCategoriaEquipe.Name = "cmbCategoriaEquipe";
-            this.cmbCategoriaEquipe.Size = new System.Drawing.Size(618, 36);
+            this.cmbCategoriaEquipe.Size = new System.Drawing.Size(925, 36);
             this.cmbCategoriaEquipe.TabIndex = 218;
             this.cmbCategoriaEquipe.SelectedIndexChanged += new System.EventHandler(this.cmbCategoriaEquipe_SelectedIndexChanged_1);
             // 
@@ -295,9 +292,10 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            this.label2.Location = new System.Drawing.Point(555, 265);
+            this.label2.Location = new System.Drawing.Point(727, 313);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(145, 23);
+            this.label2.Size = new System.Drawing.Size(224, 36);
             this.label2.TabIndex = 217;
             this.label2.Text = "Categoria da equipe";
             // 
@@ -306,9 +304,10 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            this.label1.Location = new System.Drawing.Point(554, 183);
+            this.label1.Location = new System.Drawing.Point(726, 187);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(117, 23);
+            this.label1.Size = new System.Drawing.Size(183, 36);
             this.label1.TabIndex = 216;
             this.label1.Text = "Nome da equipe";
             // 
@@ -323,29 +322,31 @@
             this.txtNomeEquipe.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtNomeEquipe.Font = new System.Drawing.Font("Poppins", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNomeEquipe.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtNomeEquipe.Location = new System.Drawing.Point(557, 210);
-            this.txtNomeEquipe.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtNomeEquipe.Location = new System.Drawing.Point(731, 228);
+            this.txtNomeEquipe.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.txtNomeEquipe.Name = "txtNomeEquipe";
             this.txtNomeEquipe.PlaceholderText = "Digite o nome da equipe";
             this.txtNomeEquipe.SelectedText = "";
-            this.txtNomeEquipe.Size = new System.Drawing.Size(620, 36);
+            this.txtNomeEquipe.Size = new System.Drawing.Size(930, 48);
             this.txtNomeEquipe.TabIndex = 215;
             // 
             // label15
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Poppins", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(119, 59);
+            this.label15.Location = new System.Drawing.Point(729, 91);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(333, 51);
+            this.label15.Size = new System.Drawing.Size(504, 78);
             this.label15.TabIndex = 214;
             this.label15.Text = "Cadastro de equipes";
             // 
             // panelDadosFunc
             // 
-            this.panelDadosFunc.Location = new System.Drawing.Point(557, 449);
+            this.panelDadosFunc.Location = new System.Drawing.Point(731, 596);
+            this.panelDadosFunc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelDadosFunc.Name = "panelDadosFunc";
-            this.panelDadosFunc.Size = new System.Drawing.Size(620, 152);
+            this.panelDadosFunc.Size = new System.Drawing.Size(930, 227);
             this.panelDadosFunc.TabIndex = 213;
             // 
             // btnCriarEquipe
@@ -358,9 +359,10 @@
             this.btnCriarEquipe.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(88)))), ((int)(((byte)(242)))));
             this.btnCriarEquipe.Font = new System.Drawing.Font("Poppins", 9.75F);
             this.btnCriarEquipe.ForeColor = System.Drawing.Color.White;
-            this.btnCriarEquipe.Location = new System.Drawing.Point(871, 651);
+            this.btnCriarEquipe.Location = new System.Drawing.Point(1245, 889);
+            this.btnCriarEquipe.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCriarEquipe.Name = "btnCriarEquipe";
-            this.btnCriarEquipe.Size = new System.Drawing.Size(167, 45);
+            this.btnCriarEquipe.Size = new System.Drawing.Size(250, 69);
             this.btnCriarEquipe.TabIndex = 230;
             this.btnCriarEquipe.Text = "Criar Equipe ➕";
             this.btnCriarEquipe.Click += new System.EventHandler(this.btnCriarEquipe_Click);
@@ -377,25 +379,25 @@
             this.btnFtEquipe.Font = new System.Drawing.Font("Poppins", 9.75F);
             this.btnFtEquipe.ForeColor = System.Drawing.Color.White;
             this.btnFtEquipe.Image = ((System.Drawing.Image)(resources.GetObject("btnFtEquipe.Image")));
-            this.btnFtEquipe.Location = new System.Drawing.Point(211, 438);
+            this.btnFtEquipe.Location = new System.Drawing.Point(211, 556);
+            this.btnFtEquipe.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnFtEquipe.Name = "btnFtEquipe";
-            this.btnFtEquipe.Size = new System.Drawing.Size(200, 45);
+            this.btnFtEquipe.Size = new System.Drawing.Size(300, 62);
             this.btnFtEquipe.TabIndex = 232;
             this.btnFtEquipe.Text = "Carregar Foto";
             this.btnFtEquipe.Click += new System.EventHandler(this.btnFtEquipe_Click);
             // 
             // AdicionarEquipes
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1342, 776);
+            this.ClientSize = new System.Drawing.Size(1898, 1024);
             this.Controls.Add(this.btnFtEquipe);
             this.Controls.Add(this.btnCriarEquipe);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.picBoxFtEquipe);
             this.Controls.Add(guna2GradientButton1);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnAddMembro);
@@ -414,9 +416,10 @@
             this.Controls.Add(this.btnConfig);
             this.Controls.Add(this.btnHome);
             this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "AdicionarEquipes";
             this.Text = "AdicionarEquipes";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.AdicionarEquipes_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.picPerfil)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEquipes)).EndInit();
@@ -444,7 +447,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label6;
         private Guna.UI2.WinForms.Guna2PictureBox picBoxFtEquipe;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private Guna.UI2.WinForms.Guna2GradientButton btnAddMembro;
