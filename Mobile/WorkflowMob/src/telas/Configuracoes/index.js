@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import { Text, TextInput, View, TouchableOpacity, Image, ScrollView, Alert, ActivityIndicator, Modal} from 'react-native';
+import { Text, TextInput, View, TouchableOpacity, Image, ScrollView, Alert, Pressable, Modal} from 'react-native';
 import { getStyles } from './style';
 import { useTheme } from '../../styles/themecontext'
 import {Ionicons} from '@expo/vector-icons';
@@ -317,11 +317,18 @@ export default function Configuracoes({navigation, route}){
             </View>
 
             <View style={styles.containerfuncionario}>
-              <TouchableOpacity onPress={() => setModalVisivel(true)}>
-                <Image 
-                  source={usuarioState.imagem ? { uri: usuarioState.imagem } :require('../../../assets/img/fotoexemplo.png')} 
-                  style={styles.imagemfuncionario} />
-              </TouchableOpacity>
+            <Pressable 
+              onPress={() => setModalVisivel(true)}
+              style={({ pressed }) => [
+                styles.imagemContainer,
+                pressed && { opacity: 0.6 } // efeito de escurecer levemente
+              ]}
+            >
+              <Image 
+                source={usuarioState.imagem ? { uri: usuarioState.imagem } : require('../../../assets/img/fotoexemplo.png')} 
+                style={styles.imagemfuncionario} 
+              />
+            </Pressable>
 
               <View style={styles.textos}>
                 <Text style={styles.textofuncionario}>{usuarioState.nome}</Text>

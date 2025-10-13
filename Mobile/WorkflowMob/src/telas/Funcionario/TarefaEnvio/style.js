@@ -59,7 +59,6 @@ export const getStyles = (theme) => StyleSheet.create({
     espacoHeader: {
         width: 40,
     },
-    
     areadetalhes: {
         flex: 1,
     },
@@ -82,7 +81,6 @@ export const getStyles = (theme) => StyleSheet.create({
         color: theme.text2,
         marginBottom: 20,
     },
-    
     linha: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -108,21 +106,18 @@ export const getStyles = (theme) => StyleSheet.create({
         color: theme.text,
     },
     cargos: {
-        backgroundColor: theme.inputBackground,
         borderRadius: 20,
         paddingHorizontal: 12,
         paddingVertical: 5,
-        alignSelf: 'flex-start',
     },
     textoCargo: {
         fontSize: 14,
         fontFamily: fonts.text,
         color: theme.text,
     },
-    
     linha2: {
         flexDirection: 'column',
-        marginBottom: 25,
+        marginBottom: 5,
     },
     titulodescricao: {
         fontSize: 14,
@@ -132,20 +127,31 @@ export const getStyles = (theme) => StyleSheet.create({
         marginBottom: 10,
     },
     descricao2: {
-        fontSize: 14,
+        fontSize: 15,
         fontFamily: fonts.text,
         color: theme.text2,
         marginBottom: 5,
         lineHeight: 20,
         width:300,
+        textAlign:"left",
+        paddingLeft:30,
+        paddingRight:50,
+        paddingVertical:5,
     },
+    containerdescricao:{
+        width:280,
+        height:100,
+        backgroundColor: theme.inputBackground,
+        borderRadius: 6,
+        borderWidth: 1,
+        borderColor: '#D6D3D1',
+    }, ///
     textodescr: {
         fontSize: 14,
         fontFamily: fonts.text,
         color: '#1C58F2',
         fontWeight: 'bold',
     },
-    
     botaomostrar: {
         paddingVertical: 8,
     },
@@ -163,7 +169,6 @@ export const getStyles = (theme) => StyleSheet.create({
         flexDirection:"row",
         alignItems: 'center'
     },
-    
     botaoenviar: {
         backgroundColor: '#1C58F2',
         paddingVertical: 12,
@@ -172,41 +177,13 @@ export const getStyles = (theme) => StyleSheet.create({
         alignItems: 'center',
         alignSelf: 'center',
         marginTop: 20,
+        width:200,
     },
     textoenvio: {
         color: '#fff',
         fontSize: 16,
         fontFamily: fonts.text,
         fontWeight: 'bold',
-    },
-    modalContainer: {
-        flex: 1,
-        backgroundColor: theme.background
-    },
-    modalContent: {
-        flex: 1,
-        padding: 20,     
-    },
-    modalMainContent: {
-        flex: 1,
-        justifyContent: 'flex-start', 
-    },
-    containermensagem:{
-        marginTop: 5,
-        justifyContent: 'center',
-    },
-    mensagem:{
-        padding:20,
-        backgroundColor: theme.inputBackground,
-        borderRadius:30,
-        borderBottomLeftRadius:1,
-        maxWidth: '80%',
-        zIndex: 2
-    },
-    modeltexto:{
-        fontSize:16,
-        fontFamily: fonts.text,
-        color: theme.text
     },
     espacoInput: {
         flex: 1, 
@@ -250,11 +227,11 @@ export const getStyles = (theme) => StyleSheet.create({
     },
     problem:{
         paddingVertical:10,
-        bottom:23,
+        bottom:15,
     },
     inputinstrucoes: {
         width:"80%",
-        height: 160,
+        height: 100,
         fontSize: 16,
         borderRadius: 6,
         borderWidth: 1,
@@ -281,9 +258,126 @@ export const getStyles = (theme) => StyleSheet.create({
         color: theme.text,
         fontSize: 13,
         fontFamily: fonts.text,
-        backgroundColor: theme.inputBackground2,
         borderRadius: 15,
         paddingHorizontal: 5,
         paddingVertical: 3,
+    },
+    areaanexo:{
+        padding:5
+    },
+    scrollDescricao: {
+        maxHeight: 200,
+    },
+
+
+
+    modalOverlay: {
+        flex: 1,
+        backgroundColor: 'rgba(0,0,0,0.5)',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 20,
+    },
+    modalContent: {
+        backgroundColor: theme.inputBackground3,
+        padding: 20,
+        borderRadius: 12,
+        width: '90%',
+        maxHeight: '80%',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+    },
+    modalTitle: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        fontFamily: fonts.text,
+        marginBottom: 15,
+        textAlign: 'center',
+        color: theme.text,
+    },
+    problemaTitle: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        fontFamily: fonts.text,
+        marginBottom: 10,
+        color: theme.text,
+    },
+    problemasScroll: {
+        maxHeight: 200,
+        marginBottom: 15,
+    },
+    problemaContainer: {
+        backgroundColor: theme.mode === 'light' ? '#FFF3E0' : '#4E342E',
+        padding: 12,
+        borderRadius: 8,
+        borderLeftWidth: 4,
+        borderLeftColor: theme.mode === 'light' ? '#FF9800' : '#FFB74D',
+        marginBottom: 10,
+    },
+    problemaIndex: {
+        fontSize: 14,
+        fontWeight: 'bold',
+        fontFamily: fonts.text,
+        marginBottom: 5,
+        color: theme.mode === 'light' ? '#E65100' : '#FFCC80',
+    },
+    problemaText: {
+        fontSize: 14,
+        fontFamily: fonts.text,
+        lineHeight: 18,
+        color: theme.text,
+    },
+    instrucoesText: {
+        fontSize: 14,
+        fontFamily: fonts.text,
+        color: theme.text2,
+        marginBottom: 15,
+        lineHeight: 20,
+        textAlign: 'center',
+    },
+    textInput: {
+        borderWidth: 1,
+        borderColor: theme.border,
+        borderRadius: 8,
+        padding: 12,
+        marginBottom: 15,
+        textAlignVertical: 'top',
+        minHeight: 100,
+        fontSize: 14,
+        fontFamily: fonts.text,
+        backgroundColor: theme.inputBackground,
+        color: theme.text,
+    },
+    modalButtons: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 10,
+    },
+    modalButton: {
+        padding: 12,
+        borderRadius: 6,
+        minWidth: 120,
+        alignItems: 'center',
+    },
+    modalButtonCancel: {
+        backgroundColor: theme.inputBackground2,
+    },
+    modalButtonConfirm: {
+        backgroundColor: theme.primary,
+    },
+    modalButtonTextCancel: {
+        fontWeight: 'bold',
+        fontSize: 14,
+        fontFamily: fonts.text,
+        color: theme.text,
+    },
+    modalButtonTextConfirm: {
+        fontWeight: 'bold',
+        fontSize: 14,
+        fontFamily: fonts.text,
+        color: "#ffff",
     },
 });

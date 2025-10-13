@@ -15,8 +15,7 @@ export const getStyles = (theme) => StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingVertical: 15,
-    marginTop:15,
+    paddingVertical: 1,
   },
   botaodevoltar:{
     width:30,
@@ -88,6 +87,10 @@ export const getStyles = (theme) => StyleSheet.create({
     height: 90,
     marginLeft: 10,
     borderRadius:12,
+  },
+  imagemContainer: {
+    borderRadius: 12,
+    overflow: 'hidden', 
   },
   textos: {
     marginLeft: 15,
@@ -233,7 +236,7 @@ export const getStyles = (theme) => StyleSheet.create({
   },  
   modalContainer: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.5)', // fundo escuro transparente
+    backgroundColor: '#00000080', 
     justifyContent: 'center',
     alignItems: 'center'
   },

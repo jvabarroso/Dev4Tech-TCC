@@ -436,30 +436,26 @@ export default function TarefaEnvio({ navigation, route }) {
 
                         <View style={styles.colunaEquipe}>
                             <Text style={styles.subtitulos}>EQUIPE</Text>
-                            <View style={styles.cargos}>
-                                <Text style={styles.textoCargo}>{tarefa.nome_equipe}</Text>
-                            </View>
+                            <Text style={styles.textoCargo}>{tarefa.nome_equipe}</Text>
                         </View>
                     </View>
 
                     <View style={styles.linha2}>
-                        <Text style={styles.titulodescricao}>DESCRIÇÃO DA TAREFA</Text>
-                        <Text style={styles.descricao2}>
-                            {descricaoExpandida 
-                                ? (tarefa.instrucoes || "Sem instruções disponíveis")
-                                : tarefa.instrucoes
-                                    ? `${tarefa.instrucoes.slice(0, 100)}${tarefa.instrucoes.length > 100 ? '...' : ''}`
-                                    : "Sem instruções disponíveis"}
-                        </Text>
-                        {tarefa.instrucoes.length > 100 && (
-                            <TouchableOpacity onPress={alternarDescricao}>
-                                <Text style={styles.textodescr}>
-                                    {descricaoExpandida ? 'Ver menos' : 'Ver mais'}
+                        <Text style={styles.titulodescricao}>DESCRIÇÃO DA TAREFA:</Text>
+                        <View style={styles.containerdescricao}>
+                            <ScrollView
+                                style={styles.scrollDescricao}
+                                howsVerticalScrollIndicator={true}
+                            >
+                                <Text style={styles.descricao2}>
+                                    {descricaoExpandida 
+                                        ? (tarefa.instrucoes || "Sem instruções disponíveis"): tarefa.instrucoes
+                                    }
                                 </Text>
-                            </TouchableOpacity>
-                        )}
+                            </ScrollView>
+                        </View>
                         <TouchableOpacity onPress={() => abrirArquivo(tarefa.nome_arquivo)}>
-                        <Text style={[styles.textolistacargo, { color: '#1C58F2' }]}>
+                        <Text style={[styles.textolistacargo, { color: '#1C58F2', right: 4 }]}>
                             {limitarTexto(tarefa.nome_arquivo, 22)}
                         </Text>
                         </TouchableOpacity>
@@ -468,7 +464,6 @@ export default function TarefaEnvio({ navigation, route }) {
                     <View style={styles.linha2}>
                         <Text style={styles.subtitulos}>MEU TRABALHO</Text>
 
-                        <Text style={styles.texto}>Comentário</Text>
                         {/* So para não ficar confuso, esse mostra a descrição */}
                         {entregue ? (  
                             <View style={[styles.inputinstrucoes, { padding: 8, minHeight: 100 }]}>
@@ -481,36 +476,37 @@ export default function TarefaEnvio({ navigation, route }) {
                                     multiline
                                     numberOfLines={7}
                                     placeholder="Digite um comentário..."
-                                    placeholderTextColor={theme.text}
+                                    placeholderTextColor={theme.text3}
                                     onChangeText={setDescricao}
                                 />
                             </View>
                         }
+                        <View style={styles.areaanexo}>
+                            {/* Esse para Anexar Arquivo */}
+                            {entregue ? (                        
+                                <View style={styles.botaomostrar}>
+                                    <Text style={styles.textoadd}>{limitarTexto(file?.name || '', 22)}</Text>
+                                </View>
 
-                        {/* Esse para Anexar Arquivo */}
-                        {entregue ? (                        
-                            <View style={styles.botaomostrar}>
-                                <Text style={styles.textoadd}>{limitarTexto(file?.name || '', 22)}</Text>
-                            </View>
+                            ):
+                                <TouchableOpacity 
+                                    style={styles.botaomostrar}
+                                    onPress={pickDocument}
+                                >
+                                    <Text style={styles.textoadd}>{limitarTexto(file ? file.name : "Anexar um arquivo", 22)}</Text>
+                                </TouchableOpacity>
+                            }
 
-                        ):
-                            <TouchableOpacity 
+                            {/* Esse para relatar problema*/}
+                            {!entregue && !avaliada && (
+                            <TouchableOpacity
                                 style={styles.botaomostrar}
-                                onPress={pickDocument}
+                                onPress={() => setModalVisivel(true)}
                             >
-                                <Text style={styles.textoadd}>{limitarTexto(file ? file.name : "Anexar um arquivo", 22)}</Text>
+                                <Text style={styles.textoproblem}>Relatar problema</Text>
                             </TouchableOpacity>
-                        }
-
-                        {/* Esse para relatar problema*/}
-                        {!entregue && !avaliada && (
-                        <TouchableOpacity
-                            style={styles.botaomostrar}
-                            onPress={() => setModalVisivel(true)}
-                        >
-                            <Text style={styles.textoproblem}>Relatar problema</Text>
-                        </TouchableOpacity>
-                        )}
+                            )}
+                        </View>
                     </View>
                     
                     {/* Esse para relatar Enviar ou desfazer entrega*/}
@@ -540,63 +536,69 @@ export default function TarefaEnvio({ navigation, route }) {
 
             <Modal
                 animationType="slide"
-                transparent={false}
+                transparent={true}
                 visible={modalVisivel}
                 onRequestClose={() => setModalVisivel(false)}
-            >   
-                <View style={styles.modalContainer}>
+            >
+                <View style={styles.modalOverlay}>
                     <View style={styles.modalContent}>
-                        <View style={styles.nav2}>
+                        <ScrollView 
+                            style={styles.modalScroll}
+                            contentContainerStyle={styles.modalScrollContent}
+                            keyboardShouldPersistTaps="handled"
+                            showsVerticalScrollIndicator={false}
+                        >
+                            <Text style={styles.modalTitle}>Relatar Problema</Text>
+                            <Text style={styles.instrucoesText}>Descreva o problema que você está enfrentando nesta tarefa.</Text>
+                            
+                            <TextInput
+                                style={styles.textInput}
+                                multiline
+                                numberOfLines={4}
+                                placeholder="......."
+                                placeholderTextColor="#999"
+                                value={problema}
+                                onChangeText={setProblema}
+                                underlineColorAndroid="transparent"
+                            />
+                            
+                            {tarefaLocal.selproblema && (
+                                <View>
+                                    <Text style={styles.problemaTitle}>
+                                        {problemasEnviados.length} problema(s) relatado(s):
+                                    </Text>
+                                    
+                                    <View style={styles.problemasContainer}>
+                                        {problemasEnviados.map((problemaItem, index) => (
+                                            <View key={index} style={styles.problemaContainer}>
+                                                <Text style={styles.problemaIndex}>Problema {index + 1}:</Text>
+                                                <Text style={styles.problemaText}>
+                                                    {problemaItem}
+                                                </Text>
+                                            </View>
+                                        ))}
+                                    </View>
+                                </View>
+                            )}
+                        </ScrollView>
+
+                        <View style={styles.modalButtons}>
                             <TouchableOpacity 
-                                style={styles.botaodevoltar2}
+                                style={[styles.modalButton, styles.modalButtonCancel]}
                                 onPress={() => setModalVisivel(false)}
                             >
-                                <Ionicons name="arrow-back" size={28} color="black" />
+                                <Text style={styles.modalButtonTextCancel}>Fechar</Text>
                             </TouchableOpacity>
-                            <Text style={styles.titulo2}>WORKFLOW</Text>
-                            <View style={styles.espacoHeader} />
-                        </View>
-                        <View style={styles.modalMainContent}>
-                            <View style={styles.containermensagem}>
-                                <View style={styles.mensagem}>
-                                    <Text style={styles.modeltexto}>Qual é o problema?</Text>
-                                </View>
 
-                                {problemasEnviados.map((item, index) => (
-                                    <View key={index} style={[styles.mensagem, styles.mensagemEnviada, {marginTop: 10}]}>
-                                        <Text style={styles.modeltexto}>{item}</Text>
-                                    </View>
-                                    ))}
-                                </View>
-
-                            <View style={styles.imagemfundo}>
-                                <Ionicons name="warning-outline" size={200} color="#999999" />                     
-                            </View>
-
-                            <View style={styles.espacoInput} />
-
-                            <View style={styles.containerinput}>
-                                <TextInput
-                                    style={styles.textInput}
-                                    multiline
-                                    numberOfLines={4}
-                                    placeholder="Reporte seu problema"
-                                    placeholderTextColor={theme.text}
-                                    value={problema}
-                                    onChangeText={setProblema}
-                                    underlineColorAndroid="transparent"
-                                />
-                                <TouchableOpacity 
-                                    style={styles.botaoenviar}
-                                    onPress={enviarProblema}
-                                >
-                                    <Ionicons name="paper-plane-outline" size={24} color="#1C58F2" style={styles.iconSobreposto} /> 
-                                    
-                                </TouchableOpacity>
-                            </View>
+                            <TouchableOpacity 
+                                style={[styles.modalButton, styles.modalButtonConfirm]}
+                                onPress={enviarProblema}
+                                disabled={!problema.trim()}
+                            >
+                                <Text style={styles.modalButtonTextConfirm}>Enviar Problema</Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
-                <FlashMessage position="top" />
                 </View>
             </Modal>
         </View>
