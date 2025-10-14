@@ -89,7 +89,6 @@ export const getStyles = (theme) => StyleSheet.create({
     color: theme.text,
     fontSize: 13,
     fontFamily: fonts.text,
-    backgroundColor: theme.inputBackground2,
     borderRadius: 15,
     paddingHorizontal: 5,
     paddingVertical: 3,

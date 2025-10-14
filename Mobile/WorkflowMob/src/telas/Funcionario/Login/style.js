@@ -50,7 +50,7 @@ export const  getStyles = (theme) => StyleSheet.create({
     fontSize: 16,
     borderRadius: 10,
     borderBottomWidth: 1.4,
-    borderBottomColor: '#000',
+    borderBottomColor: theme.text,
     marginBottom: 15,    
     alignSelf: 'center',
   },

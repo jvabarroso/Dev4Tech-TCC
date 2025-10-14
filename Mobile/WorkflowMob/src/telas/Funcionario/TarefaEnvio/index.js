@@ -96,17 +96,7 @@ export default function TarefaEnvio({ navigation, route }) {
 
     //Envia o Arquivo
     async function uploadFile() {
-        if (!file) {
-            showMessage({
-            message: 'Nenhum arquivo selecionada.',
-            description: 'Por favor, selecione um arquivo primeiro.',
-            floating: true,
-            statusBarHeight: 70,
-            type: "danger",
-            duration: 2000,             
-            });
-            return false;
-        };
+        if (!file) return null;
 
         let filename = file.name;
         let type = file.mimeType || "application/octet-stream";
@@ -291,9 +281,13 @@ export default function TarefaEnvio({ navigation, route }) {
     }
 
     //Entrega a Tarefa
-    async function entrega() {      
-        const arquivo = await uploadFile();
-        if (!arquivo) return;  
+        async function entrega() {      
+        let arquivo = null;
+
+        if (file) {
+            arquivo = await uploadFile();
+            if (!arquivo) return; 
+        }
 
         try {
             const res = await api.post('dev4tech/enviotarefas.php', {
@@ -454,16 +448,23 @@ export default function TarefaEnvio({ navigation, route }) {
                                 </Text>
                             </ScrollView>
                         </View>
+                        {tarefa.nome_arquivo ? (
                         <TouchableOpacity onPress={() => abrirArquivo(tarefa.nome_arquivo)}>
-                        <Text style={[styles.textolistacargo, { color: '#1C58F2', right: 4 }]}>
+                            <Text style={[styles.textolistacargo, { color: '#1C58F2', right: 4 }]}>
                             {limitarTexto(tarefa.nome_arquivo, 22)}
-                        </Text>
+                            </Text>
                         </TouchableOpacity>
+                        ) : (
+                        <View style={{ marginTop: 6 }}>
+                            <Text style={[styles.textolistacargo, { color: theme.text3 }]}>
+                            Nenhum arquivo enviado
+                            </Text>
+                        </View>
+                        )}
                     </View>
 
                     <View style={styles.linha2}>
                         <Text style={styles.subtitulos}>MEU TRABALHO</Text>
-
                         {/* So para não ficar confuso, esse mostra a descrição */}
                         {entregue ? (  
                             <View style={[styles.inputinstrucoes, { padding: 8, minHeight: 100 }]}>

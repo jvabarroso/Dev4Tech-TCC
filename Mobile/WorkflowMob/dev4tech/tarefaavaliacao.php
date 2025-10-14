@@ -3,6 +3,7 @@ include_once('conexao.php');
 
 // Obter o ID do funcionário
 $AdminId = $_GET['AdminId'] ?? null;
+$id_equipe = $_GET['id_equipe'] ?? null;
 error_log("ID do admiministrador recebido: " . var_export($AdminId, true));
 
 if (empty($AdminId)) {
@@ -36,9 +37,11 @@ try {
         JOIN equipes e ON t.id_equipe = e.id_equipe
         WHERE e.AdminId = :AdminId
         AND et.entregue = 0
+        AND e.id_equipe = :id_equipe
         ORDER BY t.data_entrega ASC");
     
     $query->bindValue(':AdminId', $AdminId, PDO::PARAM_INT);
+    $query->bindValue(':id_equipe', $id_equipe, PDO::PARAM_INT);
     $query->execute();
     $tarefas = $query->fetchAll(PDO::FETCH_ASSOC);
     $tarefasComProblemas = [];

@@ -8,7 +8,7 @@ export const getStyles = (theme) => StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#f8f8f8ff",
+    backgroundColor: theme.backgroundColor,
     padding: 20,
   },
   botaoTexto: {
@@ -18,7 +18,7 @@ export const getStyles = (theme) => StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "#f6f5f5ff",
+    backgroundColor: theme.background,
     padding: 10,
     paddingTop: 40,
   },

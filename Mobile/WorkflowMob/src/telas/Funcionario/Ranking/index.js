@@ -163,7 +163,7 @@ export default function Ranking({route, navigation}){
                   setCategoriaSelecionada('');
                 }}
               >
-                <Text style={[styles.textobotao, { color: filtroAtivo === 'todas' ? theme.text4 : theme.text }]}>Total</Text>
+                <Text style={[styles.textobotao, { color: "#fff" }]}>Total</Text>
               </TouchableOpacity>
               <Dropdown
                 style={[styles.botao, { backgroundColor: filtroAtivo === 'categoria' ? '#1A5CFF' : theme.inputBackground }]}
@@ -183,7 +183,7 @@ export default function Ranking({route, navigation}){
                   fontFamily: fonts.text, 
                 }}
                 selectedTextStyle={{ 
-                  color: filtroAtivo === 'categoria' ? theme.text4 : theme.text, 
+                  color: "#fff", 
                   fontSize: 15, 
                   fontFamily: fonts.text, 
                 }}  

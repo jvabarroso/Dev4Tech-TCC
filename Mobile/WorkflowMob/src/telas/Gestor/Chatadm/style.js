@@ -18,7 +18,7 @@ export const getStyles = (theme) => StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "#f6f5f5ff",
+    backgroundColor: theme.background,
     padding: 10,
     paddingTop: 40,
   },

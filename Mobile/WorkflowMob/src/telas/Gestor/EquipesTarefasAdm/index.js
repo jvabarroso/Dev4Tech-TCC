@@ -16,7 +16,9 @@ export default function EquipesTarefasAdm({ navigation, route }) {
   const { theme } = useTheme();
   const styles = getStyles(theme);
 
+  const equipe = route.params?.equipe || {}; 
   const usuario = route.params?.usuario;
+
   const [dados, setDados] = useState([]);
   const [usuarioState, setusuarioState] = useState(usuario);
   const [modalJustificativa, setModalJustificativa] = useState(false);
@@ -66,7 +68,10 @@ export default function EquipesTarefasAdm({ navigation, route }) {
     
     try {
       const res = await api.get(`dev4tech/tarefaavaliacao.php`, {
-        params: { AdminId: usuario.AdminId }
+        params: { 
+          AdminId: usuario.AdminId,
+          id_equipe: equipe.id_equipe
+        }
       });
 
       console.log('Resposta bruta:', res);
@@ -255,73 +260,76 @@ export default function EquipesTarefasAdm({ navigation, route }) {
 
           <Text style={styles.titulo}>Tarefas</Text>
           <Text style={styles.subtitulo}>Últimas tarefas</Text>
-          
-          {dados.map((item, index) => {
-            const estaAtrasado = verificarAtraso(item);
-            const temProblema = temProblemaRelatado(item);
+          {dados.length === 0 ? (
+            <View style={{ alignItems: 'center', marginTop: 40 }}>
+              <Text style={[styles.textolistacargo, { textAlign: 'center', color: '#888' }]}>
+                Nenhuma tarefa a ser avaliada no momento.
+              </Text>
+            </View>
+          ) : dados.map((item, index) => {
+              const estaAtrasado = verificarAtraso(item);
+              const temProblema = temProblemaRelatado(item);
 
-            return(
-            <View key={index} style={styles.containertarefas}>
-
-                <View style={styles.linhaTarefa}>
-                  <Image 
+              return (
+                <View key={index} style={styles.containertarefas}>
+                  <View style={styles.linhaTarefa}>
+                    <Image 
                       source={require('../../../../assets/img/image.png')} 
                       style={styles.imag} 
-                  />
-                  <View style={styles.textosTarefa}>
+                    />
+                    <View style={styles.textosTarefa}>
                       <Text style={styles.textolistatitulo}>Tarefa: {item.nomeTarefa}</Text>
-                      <Text style={styles.textolista}>Equipe: {item.nome_equipe}</Text>
+                      <Text style={styles.textolista}>{item.nome_equipe}</Text>
                       {temProblema && (
                         <Text style={[styles.textolista, { color: '#f11919ff' }]}>
                           ⚠️ Tem problema relatado
                         </Text>
                       )}
+                    </View>
                   </View>
-                </View>
+                  <View style={styles.linhaInfo}>
+                    <Text style={styles.textolistacargo}>Dificuldade: {item.dificuldade}</Text>
+                    
+                    <View style={styles.linhaBotoes}>
+                      <TouchableOpacity
+                        style={[
+                          styles.botao,
+                          item.statusAvaliacao === 'aceito'
+                            ? { backgroundColor: '#4CAF50' }
+                            : { backgroundColor: '#E0E0E0' }
+                        ]}
+                        onPress={() => {
+                          const novos = [...dados];
+                          novos[index].statusAvaliacao =
+                            item.statusAvaliacao === 'aceito' ? null : 'aceito';
+                          setDados(novos);
+                        }}
+                        >
+                        <Text style={[styles.textoBotao,{ color: item.statusAvaliacao === 'aceito' ? '#fff' : '#000' }]}>
+                          Aceitar
+                        </Text>
+                      </TouchableOpacity>
 
-                <View style={styles.linhaInfo}>
-                  <Text style={styles.textolistacargo}>Dificuldade: {item.dificuldade}</Text>
-                  
-                  <View style={styles.linhaBotoes}>
-                    <TouchableOpacity
-                      style={[
-                        styles.botao,
-                        item.statusAvaliacao === 'aceito'
-                          ? { backgroundColor: '#4CAF50' }
-                          : { backgroundColor: '#E0E0E0' }
-                      ]}
-                      onPress={() => {
-                        const novos = [...dados];
-                        novos[index].statusAvaliacao =
-                          item.statusAvaliacao === 'aceito' ? null : 'aceito';
-                        setDados(novos);
-                      }}
+                      <TouchableOpacity
+                        style={[
+                          styles.botao,
+                          item.statusAvaliacao === 'negado'
+                            ? { backgroundColor: '#E53935' }
+                            : { backgroundColor: '#E0E0E0' }
+                        ]}
+                        onPress={() => {
+                          const novos = [...dados];
+                          novos[index].statusAvaliacao =
+                            item.statusAvaliacao === 'negado' ? null : 'negado';
+                          setDados(novos);
+                        }}
                       >
-                      <Text style={[styles.textoBotao,{ color: item.statusAvaliacao === 'aceito' ? '#fff' : '#000' }]}>
-                        Aceitar
-                      </Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={[
-                        styles.botao,
-                        item.statusAvaliacao === 'negado'
-                          ? { backgroundColor: '#E53935' }
-                          : { backgroundColor: '#E0E0E0' }
-                      ]}
-                      onPress={() => {
-                        const novos = [...dados];
-                        novos[index].statusAvaliacao =
-                          item.statusAvaliacao === 'negado' ? null : 'negado';
-                        setDados(novos);
-                      }}
-                    >
-                      <Text style={[styles.textoBotao,{ color: item.statusAvaliacao === 'negado' ? '#fff' : '#000' }]}>
-                        Negar
-                      </Text>
-                    </TouchableOpacity>
+                        <Text style={[styles.textoBotao,{ color: item.statusAvaliacao === 'negado' ? '#fff' : '#000' }]}>
+                          Negar
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
                   </View>
-                </View>
 
                 {estaAtrasado && (
                   <View style={styles.linhaInfo}>
@@ -344,12 +352,14 @@ export default function EquipesTarefasAdm({ navigation, route }) {
                 )}
 
                 <View style={styles.linhaInfo}>
-                <Text style={styles.textolistacargo}>Arquivo: </Text>
-                <TouchableOpacity onPress={() => abrirArquivo(item.nome_arquivo)}>
-                  <Text style={[styles.textolistacargo, { color: '#1C58F2' }]}>
-                    {limitarTexto(item.nome_arquivo, 12)}
-                  </Text>
-                </TouchableOpacity>
+                  <Text style={styles.textolistacargo}>Arquivo: </Text>
+                  <TouchableOpacity 
+                    onPress={() => item.nome_arquivo ? abrirArquivo(item.nome_arquivo) : null}
+                  >
+                    <Text style={[styles.textolistacargo, { color: '#1C58F2', right:10 }]}>
+                      {item.nome_arquivo ? limitarTexto(item.nome_arquivo, 20) : 'Nenhum arquivo enviado'}
+                    </Text>
+                  </TouchableOpacity>
 
                   <TouchableOpacity
                     style={styles.botao}
@@ -358,8 +368,9 @@ export default function EquipesTarefasAdm({ navigation, route }) {
                     <Text style={[styles.textoBotao,{ color:'#000000ff' }]}> Confirmar</Text>
                   </TouchableOpacity>
                 </View>
-            </View>)
-          })}
+            </View>
+            );
+        })}
         </View>
       </ScrollView>
       <Modal

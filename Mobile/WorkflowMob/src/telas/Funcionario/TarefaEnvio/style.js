@@ -231,6 +231,7 @@ export const getStyles = (theme) => StyleSheet.create({
     },
     inputinstrucoes: {
         width:"80%",
+        color:theme.text,
         height: 100,
         fontSize: 16,
         borderRadius: 6,
