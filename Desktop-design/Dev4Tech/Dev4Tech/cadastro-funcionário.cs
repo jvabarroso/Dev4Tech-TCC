@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using Dev4Tech.Utils;
 
 namespace Dev4Tech
 {
@@ -16,6 +17,10 @@ namespace Dev4Tech
 
             this.idAdminLogado = adminId;
             this.idEmpresaAdmin = empresaId;
+
+            InputMask.MaskCPF(txtCadFuncCPF);
+            InputMask.MaskTelefone(txtCadFuncTelefone);
+            InputMask.MaskData(txtCadFuncDataNasc);
         }
 
         private void lblLogin_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -242,3 +247,5 @@ namespace Dev4Tech
         }
     }
 }
+
+

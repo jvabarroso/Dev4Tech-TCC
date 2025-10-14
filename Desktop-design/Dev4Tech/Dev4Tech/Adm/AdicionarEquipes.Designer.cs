@@ -43,15 +43,16 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnAddMembro = new Guna.UI2.WinForms.Guna2GradientButton();
-            this.cbmEmailMembro = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.cmbCategoriaEquipe = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtNomeEquipe = new Guna.UI2.WinForms.Guna2TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.panelDadosFunc = new System.Windows.Forms.Panel();
             this.btnCriarEquipe = new Guna.UI2.WinForms.Guna2Button();
             this.btnFtEquipe = new Guna.UI2.WinForms.Guna2Button();
+            this.txtNomeEquipe = new Guna.UI2.WinForms.Guna2TextBox();
+            this.customInstaller1 = new MySql.Data.MySqlClient.CustomInstaller();
+            this.cmbCategoriaEquipe = new System.Windows.Forms.ComboBox();
+            this.cbmEmailMembro = new System.Windows.Forms.ComboBox();
             guna2GradientButton1 = new Guna.UI2.WinForms.Guna2GradientButton();
             ((System.ComponentModel.ISupportInitialize)(this.picPerfil)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEquipes)).BeginInit();
@@ -246,46 +247,13 @@
             this.btnAddMembro.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(88)))), ((int)(((byte)(242)))));
             this.btnAddMembro.Font = new System.Drawing.Font("Poppins", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddMembro.ForeColor = System.Drawing.Color.White;
-            this.btnAddMembro.Location = new System.Drawing.Point(1713, 556);
+            this.btnAddMembro.Location = new System.Drawing.Point(1695, 472);
             this.btnAddMembro.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAddMembro.Name = "btnAddMembro";
             this.btnAddMembro.Size = new System.Drawing.Size(69, 48);
             this.btnAddMembro.TabIndex = 220;
             this.btnAddMembro.Text = "+";
             this.btnAddMembro.Click += new System.EventHandler(this.btnAddMembro_Click);
-            // 
-            // cbmEmailMembro
-            // 
-            this.cbmEmailMembro.BackColor = System.Drawing.Color.Transparent;
-            this.cbmEmailMembro.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cbmEmailMembro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbmEmailMembro.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbmEmailMembro.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbmEmailMembro.Font = new System.Drawing.Font("Poppins", 9F);
-            this.cbmEmailMembro.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.cbmEmailMembro.ItemHeight = 30;
-            this.cbmEmailMembro.Location = new System.Drawing.Point(731, 473);
-            this.cbmEmailMembro.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cbmEmailMembro.Name = "cbmEmailMembro";
-            this.cbmEmailMembro.Size = new System.Drawing.Size(925, 36);
-            this.cbmEmailMembro.TabIndex = 219;
-            // 
-            // cmbCategoriaEquipe
-            // 
-            this.cmbCategoriaEquipe.BackColor = System.Drawing.Color.Transparent;
-            this.cmbCategoriaEquipe.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbCategoriaEquipe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbCategoriaEquipe.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbCategoriaEquipe.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbCategoriaEquipe.Font = new System.Drawing.Font("Poppins", 9F);
-            this.cmbCategoriaEquipe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.cmbCategoriaEquipe.ItemHeight = 30;
-            this.cmbCategoriaEquipe.Location = new System.Drawing.Point(731, 353);
-            this.cmbCategoriaEquipe.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cmbCategoriaEquipe.Name = "cmbCategoriaEquipe";
-            this.cmbCategoriaEquipe.Size = new System.Drawing.Size(925, 36);
-            this.cmbCategoriaEquipe.TabIndex = 218;
-            this.cmbCategoriaEquipe.SelectedIndexChanged += new System.EventHandler(this.cmbCategoriaEquipe_SelectedIndexChanged_1);
             // 
             // label2
             // 
@@ -311,30 +279,11 @@
             this.label1.TabIndex = 216;
             this.label1.Text = "Nome da equipe";
             // 
-            // txtNomeEquipe
-            // 
-            this.txtNomeEquipe.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtNomeEquipe.DefaultText = "";
-            this.txtNomeEquipe.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtNomeEquipe.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtNomeEquipe.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtNomeEquipe.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtNomeEquipe.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtNomeEquipe.Font = new System.Drawing.Font("Poppins", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNomeEquipe.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtNomeEquipe.Location = new System.Drawing.Point(731, 228);
-            this.txtNomeEquipe.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.txtNomeEquipe.Name = "txtNomeEquipe";
-            this.txtNomeEquipe.PlaceholderText = "Digite o nome da equipe";
-            this.txtNomeEquipe.SelectedText = "";
-            this.txtNomeEquipe.Size = new System.Drawing.Size(930, 48);
-            this.txtNomeEquipe.TabIndex = 215;
-            // 
             // label15
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Poppins", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(729, 91);
+            this.label15.Location = new System.Drawing.Point(718, 91);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(504, 78);
@@ -387,12 +336,53 @@
             this.btnFtEquipe.Text = "Carregar Foto";
             this.btnFtEquipe.Click += new System.EventHandler(this.btnFtEquipe_Click);
             // 
+            // txtNomeEquipe
+            // 
+            this.txtNomeEquipe.BorderColor = System.Drawing.Color.Black;
+            this.txtNomeEquipe.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtNomeEquipe.DefaultText = "";
+            this.txtNomeEquipe.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtNomeEquipe.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtNomeEquipe.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtNomeEquipe.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtNomeEquipe.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtNomeEquipe.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtNomeEquipe.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtNomeEquipe.Location = new System.Drawing.Point(731, 228);
+            this.txtNomeEquipe.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtNomeEquipe.Name = "txtNomeEquipe";
+            this.txtNomeEquipe.PlaceholderText = "Digite o nome da equipe";
+            this.txtNomeEquipe.SelectedText = "";
+            this.txtNomeEquipe.Size = new System.Drawing.Size(925, 60);
+            this.txtNomeEquipe.TabIndex = 233;
+            // 
+            // cmbCategoriaEquipe
+            // 
+            this.cmbCategoriaEquipe.Font = new System.Drawing.Font("Poppins", 9F);
+            this.cmbCategoriaEquipe.FormattingEnabled = true;
+            this.cmbCategoriaEquipe.Location = new System.Drawing.Point(733, 352);
+            this.cmbCategoriaEquipe.Name = "cmbCategoriaEquipe";
+            this.cmbCategoriaEquipe.Size = new System.Drawing.Size(923, 39);
+            this.cmbCategoriaEquipe.TabIndex = 234;
+            // 
+            // cbmEmailMembro
+            // 
+            this.cbmEmailMembro.Font = new System.Drawing.Font("Poppins", 9F);
+            this.cbmEmailMembro.FormattingEnabled = true;
+            this.cbmEmailMembro.Location = new System.Drawing.Point(733, 472);
+            this.cbmEmailMembro.Name = "cbmEmailMembro";
+            this.cbmEmailMembro.Size = new System.Drawing.Size(923, 39);
+            this.cbmEmailMembro.TabIndex = 235;
+            // 
             // AdicionarEquipes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1898, 1024);
+            this.Controls.Add(this.cbmEmailMembro);
+            this.Controls.Add(this.cmbCategoriaEquipe);
+            this.Controls.Add(this.txtNomeEquipe);
             this.Controls.Add(this.btnFtEquipe);
             this.Controls.Add(this.btnCriarEquipe);
             this.Controls.Add(this.label6);
@@ -401,11 +391,8 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnAddMembro);
-            this.Controls.Add(this.cbmEmailMembro);
-            this.Controls.Add(this.cmbCategoriaEquipe);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtNomeEquipe);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.panelDadosFunc);
             this.Controls.Add(this.picPerfil);
@@ -450,15 +437,16 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private Guna.UI2.WinForms.Guna2GradientButton btnAddMembro;
-        private Guna.UI2.WinForms.Guna2ComboBox cbmEmailMembro;
-        private Guna.UI2.WinForms.Guna2ComboBox cmbCategoriaEquipe;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private Guna.UI2.WinForms.Guna2TextBox txtNomeEquipe;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Panel panelDadosFunc;
         private Guna.UI2.WinForms.Guna2Button btnCriarEquipe;
         private Guna.UI2.WinForms.Guna2Button btnFtEquipe;
+        private Guna.UI2.WinForms.Guna2TextBox txtNomeEquipe;
+        private MySql.Data.MySqlClient.CustomInstaller customInstaller1;
+        private System.Windows.Forms.ComboBox cmbCategoriaEquipe;
+        private System.Windows.Forms.ComboBox cbmEmailMembro;
         //private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
