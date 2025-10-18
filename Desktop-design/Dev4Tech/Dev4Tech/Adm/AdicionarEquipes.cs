@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Dev4Tech
@@ -93,14 +94,18 @@ namespace Dev4Tech
         {
             panelDadosFunc.Controls.Clear();
             int posY = 10;
+            string basePath = @"C:\xampp\htdocs\dev4tech\img\";
+
             foreach (string email in funcionariosSelecionados)
             {
                 empresaCadFuncionario func = BuscarFuncionarioPorEmail(email);
                 if (func == null)
                     continue;
+
                 pontuacaoUsuarios ptFunc = new pontuacaoUsuarios();
                 int idFunc = int.Parse(func.getFuncionarioId());
                 int pontos = ptFunc.ObterPontos(idFunc);
+
                 Panel funcPanel = new Panel
                 {
                     Width = panelDadosFunc.Width - 20,
@@ -110,6 +115,7 @@ namespace Dev4Tech
                     Left = 10,
                     Top = posY
                 };
+
                 PictureBox picFuncionario = new PictureBox
                 {
                     SizeMode = PictureBoxSizeMode.StretchImage,
@@ -119,19 +125,48 @@ namespace Dev4Tech
                     Top = 10,
                     BorderStyle = BorderStyle.FixedSingle
                 };
-                byte[] fotoBytes = func.getFotoPerfilBytes();
-                if (fotoBytes != null && fotoBytes.Length > 0)
+
+                // CARREGAMENTO CORRETO DA FOTO DO ARQUIVO
+                try
                 {
-                    using (var ms = new System.IO.MemoryStream(fotoBytes))
+                    byte[] fotoBytes = func.getFotoPerfilBytes();
+                    string nomeArquivo = null;
+
+                    if (fotoBytes != null && fotoBytes.Length > 0)
                     {
-                        picFuncionario.Image = Image.FromStream(ms);
+                        // Converte os bytes para string usando UTF-8
+                        nomeArquivo = System.Text.Encoding.UTF8.GetString(fotoBytes);
+
+                        // Limpa o nome do arquivo de caracteres inválidos
+                        nomeArquivo = new string(nomeArquivo.Where(c => !Path.GetInvalidFileNameChars().Contains(c)).ToArray());
+
+                        string caminhoCompleto = Path.Combine(basePath, nomeArquivo);
+                        if (File.Exists(caminhoCompleto))
+                        {
+                            using (var imgTemp = Image.FromFile(caminhoCompleto))
+                            {
+                                picFuncionario.Image = new Bitmap(imgTemp);
+                            }
+                        }
+                        else
+                        {
+                            picFuncionario.Image = Properties.Resources.icon_perfil;
+                            Console.WriteLine($"Arquivo não encontrado: {caminhoCompleto}");
+                        }
+                    }
+                    else
+                    {
+                        picFuncionario.Image = Properties.Resources.icon_perfil;
                     }
                 }
-                else
+                catch (Exception ex)
                 {
+                    Console.WriteLine($"Erro ao carregar foto: {ex.Message}");
                     picFuncionario.Image = Properties.Resources.icon_perfil;
                 }
+
                 funcPanel.Controls.Add(picFuncionario);
+
                 Label lblNome = new Label
                 {
                     Text = func.getNome(),
@@ -141,6 +176,7 @@ namespace Dev4Tech
                     AutoSize = true
                 };
                 funcPanel.Controls.Add(lblNome);
+
                 Label lblCargo = new Label
                 {
                     Text = func.getCargo(),
@@ -150,6 +186,7 @@ namespace Dev4Tech
                     AutoSize = true
                 };
                 funcPanel.Controls.Add(lblCargo);
+
                 Label lblPontos = new Label
                 {
                     Text = $"Pontos: {pontos}",
@@ -159,11 +196,11 @@ namespace Dev4Tech
                     AutoSize = true
                 };
                 funcPanel.Controls.Add(lblPontos);
+
                 panelDadosFunc.Controls.Add(funcPanel);
                 posY += funcPanel.Height + 10;
             }
         }
-
         private empresaCadFuncionario BuscarFuncionarioPorEmail(string email)
         {
             empresaCadFuncionario func = new empresaCadFuncionario();
