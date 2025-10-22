@@ -235,21 +235,27 @@ export default function Tarefas({ navigation, route }) {
               style={[styles.botao, { backgroundColor: filtroAtivo === 'pendente' ? '#1A5CFF' : theme.inputBackground }]}
               onPress={() => setFiltroAtivo('pendente')}
             >
-              <Text style={[styles.textobotao, { color: "#fff" }]}>Pendente</Text>
+              <Text style={[styles.textobotao, { color: filtroAtivo === 'pendente' ? '#fff' : theme.text3 }]}>
+                Pendente
+              </Text>
             </TouchableOpacity>
 
             <TouchableOpacity
               style={[styles.botao, { backgroundColor: filtroAtivo === 'atrasada' ? '#1A5CFF' : theme.inputBackground }]}
               onPress={() => setFiltroAtivo('atrasada')}
             >
-              <Text style={[styles.textobotao, { color: "#fff" }]}>Atrasados</Text>
+              <Text style={[styles.textobotao, { color: filtroAtivo === 'atrasada' ? '#fff' : theme.text3 }]}>
+                Atrasados
+              </Text>
             </TouchableOpacity>
 
             <TouchableOpacity
               style={[styles.botao, { backgroundColor: filtroAtivo === 'concluido' ? '#1A5CFF' : theme.inputBackground }]}
               onPress={() => setFiltroAtivo('concluido')}
             >
-              <Text style={[styles.textobotao, { color: "#fff" }]}>Concluídos</Text>
+              <Text style={[styles.textobotao, { color: filtroAtivo === 'concluido' ? '#fff' : theme.text3 }]}>
+                Concluídos
+              </Text>
             </TouchableOpacity>
           </View>
 

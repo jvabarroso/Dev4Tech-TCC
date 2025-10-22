@@ -86,6 +86,7 @@ export const getStyles = (theme) => StyleSheet.create({
   imag: {
     width: 45,
     height: 45,
+    borderRadius:12,
   },
   textos: {
     marginLeft: 15,

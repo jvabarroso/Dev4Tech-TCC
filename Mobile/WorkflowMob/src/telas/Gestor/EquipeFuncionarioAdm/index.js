@@ -82,7 +82,7 @@ export default function EquipeFuncionarioAdm({ navigation, route }) {
 
         <View style={styles.containertarefas}>
           <Image 
-            source={equipe.foto_equipe ? { uri: equipe.foto_equipe } : require('../../../../assets/img/image.png')} 
+            source={equipe.foto_url ? { uri: equipe.foto_url } : require('../../../../assets/img/image.png')} 
             style={styles.imag} 
           />
           <View style={styles.textos}>

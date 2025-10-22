@@ -273,10 +273,6 @@ export default function EquipesTarefasAdm({ navigation, route }) {
               return (
                 <View key={index} style={styles.containertarefas}>
                   <View style={styles.linhaTarefa}>
-                    <Image 
-                      source={require('../../../../assets/img/image.png')} 
-                      style={styles.imag} 
-                    />
                     <View style={styles.textosTarefa}>
                       <Text style={styles.textolistatitulo}>Tarefa: {item.nomeTarefa}</Text>
                       <Text style={styles.textolista}>{item.nome_equipe}</Text>

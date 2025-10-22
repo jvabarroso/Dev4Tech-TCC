@@ -128,7 +128,9 @@ export default function EquipesAdm({ route, navigation }) {
                     </View>
                     <TouchableOpacity
                         style={styles.botaoeditar}
-                        onPress={() => navigation.navigate('EditEquipe', { equipe: { ...item, id_empresa: item.id_empresa || usuario.id_empresa } })}
+                        onPress={() => navigation.navigate('EditEquipe', { 
+                          equipe: { ...item, id_empresa: item.id_empresa || usuario.id_empresa } 
+                        })}
                     >
                         <Ionicons name="create-outline" size={35} color={theme.text}/>
                     </TouchableOpacity>                    

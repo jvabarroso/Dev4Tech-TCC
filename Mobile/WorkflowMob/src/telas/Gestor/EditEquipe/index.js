@@ -35,8 +35,8 @@ export default function EditEquipe({ navigation, route }) {
 
     //Mostra os dados atuais da equipe
     useEffect(() => {
-        if (equipe?.foto_equipe) {
-            setImage(equipe.foto_equipe);
+        if (equipe?.foto_url) {
+            setImage(equipe.foto_url);
         }
         setNomeEquipe(equipe.nome_equipe || '');
         setCategoriaSelecionada(equipe.id_categoria || '');
@@ -324,8 +324,8 @@ export default function EditEquipe({ navigation, route }) {
                     <Ionicons name="arrow-back" size={25} color={theme.text} />
                     </TouchableOpacity>
                     <Image 
-                    style={styles.tituloi}
-                    source={theme.logo} >
+                        style={styles.tituloi}
+                        source={theme.logo} >
                     </Image>
                     <View style={styles.espacoHeader} />
                 </View>
