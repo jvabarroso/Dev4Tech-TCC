@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Windows.Forms;
+using OfficeConverter;
+using OfficeConverter;
 
 namespace Dev4Tech
 {
@@ -45,7 +47,14 @@ namespace Dev4Tech
         {
             OpenFileDialog ofd = new OpenFileDialog
             {
-                Filter = "Todos os arquivos (*.*)|*.*"
+                Filter = "Todos os arquivos suportados (*.pdf;*.doc;*.docx;*.xls;*.xlsx;*.ppt;*.pptx)|*.pdf;*.doc;*.docx;*.xls;*.xlsx;*.ppt;*.pptx|" +
+                         "Arquivos PDF (*.pdf)|*.pdf|" +
+                         "Documentos Word (*.doc, *.docx)|*.doc;*.docx|" +
+                         "Planilhas Excel (*.xls, *.xlsx)|*.xls;*.xlsx|" +
+                         "Apresentações PowerPoint (*.ppt, *.pptx)|*.ppt;*.pptx|" +
+                         "Todos os arquivos (*.*)|*.*",
+                Title = "Selecione o arquivo para anexar",
+                Multiselect = false
             };
 
             if (ofd.ShowDialog() == DialogResult.OK)
@@ -91,7 +100,8 @@ namespace Dev4Tech
             string dificuldade = cmbDificuldade.SelectedItem.ToString();
             DateTime dataEntrega = dtpDataDeEntrega.Value.Date;
 
-            string pastaArquivos = @"C:\Dev4Tech\ArquivosTarefas";
+            // Define a pasta de arquivos correta
+            string pastaArquivos = @"C:\xampp\htdocs\dev4tech\arquivos";
             if (!Directory.Exists(pastaArquivos))
                 Directory.CreateDirectory(pastaArquivos);
 
@@ -102,14 +112,32 @@ namespace Dev4Tech
             {
                 try
                 {
-                    string extensao = Path.GetExtension(caminhoArquivoSelecionado);
-                    nomeArquivo = Guid.NewGuid().ToString() + extensao;
-                    string caminhoCompleto = Path.Combine(pastaArquivos, nomeArquivo);
-                    File.Copy(caminhoArquivoSelecionado, caminhoCompleto, overwrite: true);
+                    string extensao = Path.GetExtension(caminhoArquivoSelecionado).ToLower();
+                    string nomeArquivoUnico = Guid.NewGuid().ToString();
+
+                    // Se for PDF, copia diretamente
+                    if (extensao == ".pdf")
+                    {
+                        nomeArquivo = nomeArquivoUnico + ".pdf";
+                        string caminhoCompleto = Path.Combine(pastaArquivos, nomeArquivo);
+                        File.Copy(caminhoArquivoSelecionado, caminhoCompleto, overwrite: true);
+                    }
+                    else
+                    {
+                        // Para outros formatos (Word, Excel, etc.), converte para PDF
+                        nomeArquivo = nomeArquivoUnico + ".pdf";
+                        string caminhoCompleto = Path.Combine(pastaArquivos, nomeArquivo);
+
+                        // Usa OfficeConverter para converter o arquivo
+                        using (var converter = new Converter())
+                        {
+                            converter.Convert(caminhoArquivoSelecionado, caminhoCompleto);
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Erro ao salvar arquivo: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Erro ao processar arquivo: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
@@ -226,17 +254,6 @@ namespace Dev4Tech
             Form1 t_incial = new Form1();
             t_incial.Show();
             this.Hide();
-        }
-
-        private void btnAddTarefas_Click_1(object sender, EventArgs e)
-        {
-            // Pode deixar vazio ou implementar o que for necessário
-        }
-
-        private void txtNomeTarefa_TextChanged(object sender, EventArgs e)
-        {
-
-            // Pode deixar vazio ou implementar o que for necessário
         }
 
         private void AdicionarTarefa_Load(object sender, EventArgs e)

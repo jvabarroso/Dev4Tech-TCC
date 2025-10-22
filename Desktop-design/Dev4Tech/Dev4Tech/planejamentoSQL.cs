@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using OfficeConverter;
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
 using System;
@@ -76,7 +77,15 @@ namespace Dev4Tech
                         cmd.Parameters.AddWithValue("@idTarefa", idTarefa);
                         var resultado = cmd.ExecuteScalar();
                         if (resultado != null && resultado != DBNull.Value)
+                        {
                             nomeArquivo = resultado.ToString();
+                            // Verificar se o arquivo existe fisicamente
+                            if (!VerificarArquivoExiste(nomeArquivo))
+                            {
+                                MessageBox.Show($"Arquivo '{nomeArquivo}' não encontrado no servidor.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return null;
+                            }
+                        }
                     }
                 }
                 finally
@@ -251,8 +260,22 @@ namespace Dev4Tech
 
             try
             {
+                // Verificar se o arquivo não está corrompido
+                FileInfo fileInfo = new FileInfo(caminhoArquivoEntrada);
+                if (fileInfo.Length == 0)
+                {
+                    MessageBox.Show("O arquivo PDF está vazio ou corrompido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return arquivosPaginas;
+                }
+
                 PdfDocument documento = PdfReader.Open(caminhoArquivoEntrada, PdfDocumentOpenMode.Import);
                 int totalPaginas = documento.PageCount;
+
+                if (totalPaginas == 0)
+                {
+                    MessageBox.Show("O PDF não contém páginas.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return arquivosPaginas;
+                }
 
                 if (!Directory.Exists(pastaSaida))
                     Directory.CreateDirectory(pastaSaida);
@@ -268,6 +291,8 @@ namespace Dev4Tech
                     novoDocumento.Save(caminhoNovoArquivo);
                     arquivosPaginas.Add(caminhoNovoArquivo);
                 }
+
+                MessageBox.Show($"PDF dividido com sucesso em {totalPaginas} páginas.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -277,14 +302,68 @@ namespace Dev4Tech
             return arquivosPaginas;
         }
 
+        public string ConverterParaPdf(string caminhoArquivoOriginal, string pastaDestino)
+        {
+            try
+            {
+                string extensao = Path.GetExtension(caminhoArquivoOriginal).ToLower();
+                string nomeArquivoUnico = Guid.NewGuid().ToString() + ".pdf";
+                string caminhoCompleto = Path.Combine(pastaDestino, nomeArquivoUnico);
+
+                // Se já for PDF, apenas copia
+                if (extensao == ".pdf")
+                {
+                    File.Copy(caminhoArquivoOriginal, caminhoCompleto, true);
+                    return nomeArquivoUnico;
+                }
+
+                // Para arquivos Office, converte usando OfficeConverter
+                using (var converter = new Converter())
+                {
+                    converter.Convert(caminhoArquivoOriginal, caminhoCompleto);
+                }
+
+                return nomeArquivoUnico;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao converter arquivo para PDF: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+
         public string ObterCaminhoCompletoPdf(string nomeArquivo)
         {
+            if (string.IsNullOrEmpty(nomeArquivo))
+                return null;
+
             return Path.Combine(PastaBaseArquivos, nomeArquivo);
+        }
+
+        public bool VerificarArquivoExiste(string nomeArquivo)
+        {
+            if (string.IsNullOrEmpty(nomeArquivo))
+                return false;
+
+            string caminhoCompleto = ObterCaminhoCompletoPdf(nomeArquivo);
+            return File.Exists(caminhoCompleto);
         }
 
         public bool VerificarPastaArquivos()
         {
-            return Directory.Exists(PastaBaseArquivos);
+            try
+            {
+                if (!Directory.Exists(PastaBaseArquivos))
+                {
+                    Directory.CreateDirectory(PastaBaseArquivos);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao acessar pasta de arquivos: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
 
         public void RegistrarVisualizacaoPagina(int idTarefa, int idFuncionario, int numeroPagina)
