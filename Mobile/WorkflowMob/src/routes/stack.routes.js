@@ -22,6 +22,7 @@ import Ranking from '../../src/telas/Funcionario/Ranking';
 import TarefaEnvio from '../../src/telas/Funcionario/TarefaEnvio';
 import Configuracoes from '../../src/telas/Configuracoes'
 import Chat from '../../src/telas/Funcionario/Chat';
+import Planejamento from '../../src/telas/Funcionario/Planejamento';
 
 import HomeAdm from '../../src/telas/Gestor/HomeAdm';
 import CadastroEquipes from '../../src/telas/Gestor/CadastroEquipes';
@@ -78,9 +79,11 @@ function Tabs({route}){
             iconName = 'list';
           } else if (route.name === 'Equipes') {
             iconName = 'people';
+          } else if (route.name === 'Planejamento') {
+            iconName = 'file-tray-outline';
           } else if (route.name === 'Ranking') {
             iconName = 'person';
-          }
+          } 
           const iconColor = focused
             ? theme.primary   
             : theme.text; 
@@ -100,6 +103,7 @@ function Tabs({route}){
       <Tab.Screen name="Tarefas" component={Tarefas} initialParams={{ usuario }}  />
       <Tab.Screen name="Equipes" component={Equipes} initialParams={{ usuario }}  />
       <Tab.Screen name="Ranking" component={Ranking} initialParams={{ usuario }}  />
+      <Tab.Screen name="Planejamento" component={Planejamento} initialParams={{ usuario }}  />
     </Tab.Navigator>
   );
 }

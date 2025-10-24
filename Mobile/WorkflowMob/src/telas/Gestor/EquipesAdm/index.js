@@ -200,16 +200,6 @@ export default function EquipesAdm({ route, navigation }) {
                     </Card>
                   </TouchableOpacity>
 
-                  <TouchableOpacity>
-                    <Card style={styles.cardtarequi}>
-                      <Card.Cover source={require('../../../../assets/img/kanban.webp')} style={styles.imagemcard} />
-                      <Card.Content style={styles.cardinferior}>
-                        <Title style={styles.titulocard}>Planejamento</Title>
-                        <Paragraph style={styles.paragraph}>KanBan e Scrum</Paragraph>
-                      </Card.Content>
-                    </Card>
-                  </TouchableOpacity>
-
                 </View>
               )}
             </View>
