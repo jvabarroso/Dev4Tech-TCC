@@ -131,13 +131,14 @@ namespace Dev4Tech
                 string instrucoes = txtInstruções.Text.Trim();
                 string dificuldade = cmbDificuldade.SelectedItem.ToString();
                 DateTime dataEntrega = dtpDataDeEntrega.Value.Date;
+                int idEmpresa = Convert.ToInt32(Sessao.AdminLogado.getIdEmpresa());
 
                 // Define a pasta de arquivos correta
                 string pastaArquivos = @"C:\xampp\htdocs\dev4tech\arquivos";
                 if (!Directory.Exists(pastaArquivos))
                     Directory.CreateDirectory(pastaArquivos);
 
-                string nomeArquivo = "";
+                string nomeArquivoComHash = ""; // ✅ Variável para armazenar o nome com hash
 
                 // Processar arquivo anexado
                 if (!string.IsNullOrEmpty(caminhoArquivoSelecionado))
@@ -147,44 +148,36 @@ namespace Dev4Tech
                         // Mostrar progresso
                         lblArquivosSelecionado.Text = "🔄 Convertendo arquivo...";
                         lblArquivosSelecionado.ForeColor = Color.Blue;
-                        Application.DoEvents(); // Atualizar a UI
+                        Application.DoEvents();
 
-                        // Verificar se a API Python está rodando
                         var conversorPython = new PythonExecutor();
 
                         if (!conversorPython.VerificarPython())
                         {
                             var resultado = MessageBox.Show(
-                                "API de conversão não está disponível.\n\n" +
-                                "Certifique-se de que:\n" +
-                                "1. O servidor Python está rodando (python api.py)\n" +
-                                "2. A porta 8000 está livre\n" +
-                                "3. Todas as dependências estão instaladas\n\n" +
-                                "Deseja continuar sem converter o arquivo?",
+                                "API de conversão não está disponível.\n\nDeseja continuar sem converter o arquivo?",
                                 "API Não Disponível",
                                 MessageBoxButtons.YesNo,
                                 MessageBoxIcon.Warning);
 
                             if (resultado == DialogResult.Yes)
                             {
-                                nomeArquivo = ""; // Continuar sem arquivo
+                                nomeArquivoComHash = ""; // Continuar sem arquivo
                             }
                             else
                             {
-                                return; // Cancelar operação
+                                return;
                             }
                         }
                         else
                         {
-                            // API disponível, fazer conversão
-                            nomeArquivo = await conversorPython.ConverterParaPdfAsync(caminhoArquivoSelecionado, pastaArquivos);
+                            // ✅ O PythonExecutor agora SEMPRE gera hash automaticamente
+                            nomeArquivoComHash = await conversorPython.ConverterParaPdfAsync(caminhoArquivoSelecionado, pastaArquivos);
 
-                            if (!string.IsNullOrEmpty(nomeArquivo))
+                            if (!string.IsNullOrEmpty(nomeArquivoComHash))
                             {
                                 lblArquivosSelecionado.Text = "✅ Arquivo convertido!";
                                 lblArquivosSelecionado.ForeColor = Color.Green;
-
-                                // Pequeno delay para mostrar o sucesso
                                 await Task.Delay(500);
                             }
                             else
@@ -208,66 +201,38 @@ namespace Dev4Tech
                         {
                             return;
                         }
-                        // Se escolher continuar, nomeArquivo permanece vazio
-                        nomeArquivo = "";
+                        nomeArquivoComHash = "";
                     }
                 }
 
-                // Insere tarefa para cada equipe selecionada
-                int tarefasAdicionadas = 0;
-                bool algumErro = false;
-                string mensagemErro = "";
-
-                foreach (int idEquipe in equipesSelecionadas)
-                {
-                    try
-                    {
-                        AddTarefas tarefa = new AddTarefas
-                        {
-                            NomeTarefa = nomeTarefa,
-                            Instrucoes = instrucoes,
-                            Dificuldade = dificuldade,
-                            IdEquipe = idEquipe,
-                            DataEntrega = dataEntrega,
-                            NomeArquivo = nomeArquivo,
-                            ArquivoBlob = null
-                        };
-
-                        tarefa.IdEmpresa = Convert.ToInt32(Sessao.AdminLogado.getIdEmpresa());
-                        tarefa.Inserir();
-                        tarefasAdicionadas++;
-                    }
-                    catch (Exception ex)
-                    {
-                        algumErro = true;
-                        mensagemErro += $"Erro na equipe {idEquipe}: {ex.Message}\n";
-                    }
-                }
+                // ✅ INSERIR TAREFAS EM LOTE (CORRIGINDO DUPLICAÇÃO)
+                AddTarefas tarefaManager = new AddTarefas();
+                bool sucesso = tarefaManager.InserirTarefasEmLote(
+                    new List<int>(equipesSelecionadas),
+                    nomeTarefa,
+                    instrucoes,
+                    dificuldade,
+                    dataEntrega,
+                    nomeArquivoComHash, // ✅ Agora com hash no nome do arquivo
+                    idEmpresa
+                );
 
                 // Mostrar resultado final
-                if (tarefasAdicionadas > 0)
+                if (sucesso)
                 {
-                    string mensagemSucesso = $"{tarefasAdicionadas} tarefa(s) adicionada(s) com sucesso!";
+                    string mensagemSucesso = $"{equipesSelecionadas.Count} tarefa(s) adicionada(s) com sucesso!";
 
-                    if (algumErro)
+                    if (!string.IsNullOrEmpty(nomeArquivoComHash))
                     {
-                        mensagemSucesso += $"\n\nAlguns erros ocorreram:\n{mensagemErro}";
-                        MessageBox.Show(mensagemSucesso, "Sucesso com Avisos",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        mensagemSucesso += $"\n\nArquivo salvo com nome seguro: {nomeArquivoComHash}";
                     }
-                    else
-                    {
-                        MessageBox.Show(mensagemSucesso, "Sucesso",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+
+                    MessageBox.Show(mensagemSucesso, "Sucesso",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     LimparFormulario();
                 }
-                else
-                {
-                    MessageBox.Show($"Nenhuma tarefa pôde ser adicionada:\n{mensagemErro}",
-                        "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                
             }
             catch (Exception ex)
             {
@@ -295,19 +260,16 @@ namespace Dev4Tech
                 txtNomeTarefa.Clear();
                 equipesSelecionadas.Clear();
                 cmbAddEquipe.SelectedIndex = -1;
-                cmbDificuldade.SelectedIndex = 1; // Voltar para "Média"
+                cmbDificuldade.SelectedIndex = 1;
                 dtpDataDeEntrega.Value = DateTime.Today;
                 caminhoArquivoSelecionado = "";
                 lblArquivosSelecionado.Text = "Nenhum arquivo selecionado";
                 lblArquivosSelecionado.ForeColor = Color.Black;
 
-                // Limpar possível seleção no ComboBox de equipes
                 if (cmbAddEquipe.Items.Count > 0)
                 {
                     cmbAddEquipe.SelectedIndex = -1;
                 }
-
-                // Limpar lista de equipes selecionadas na interface se existir
             }
             catch (Exception ex)
             {

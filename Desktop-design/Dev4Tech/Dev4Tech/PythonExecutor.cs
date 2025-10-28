@@ -13,7 +13,6 @@ public class PythonExecutor
     public PythonExecutor()
     {
         client = new HttpClient();
-        // Timeout aumentado para conversões maiores
         client.Timeout = TimeSpan.FromMinutes(5);
     }
 
@@ -31,12 +30,17 @@ public class PythonExecutor
         }
     }
 
+    // ✅ MÉTODO PRINCIPAL: Sempre gera hash para o nome do arquivo
     public async Task<string> ConverterParaPdfAsync(string caminhoArquivo, string pastaDestino)
     {
         try
         {
             if (!File.Exists(caminhoArquivo))
                 throw new FileNotFoundException("Arquivo não encontrado.", caminhoArquivo);
+
+            // ✅ SEMPRE gerar hash aleatório para o nome do arquivo PDF
+            string hashArquivo = Guid.NewGuid().ToString() + ".pdf";
+            string caminhoDestinoFinal = Path.Combine(pastaDestino, hashArquivo);
 
             using (var form = new MultipartFormDataContent())
             {
@@ -58,7 +62,6 @@ public class PythonExecutor
 
                     var json = JObject.Parse(responseString);
 
-                    // Verifica se a conversão foi bem sucedida
                     bool sucesso = json["sucesso"]?.ToObject<bool>() ?? false;
                     if (!sucesso)
                     {
@@ -79,19 +82,15 @@ public class PythonExecutor
                     if (!downloadResponse.IsSuccessStatusCode)
                         throw new Exception($"Erro ao baixar arquivo convertido: {downloadResponse.StatusCode}");
 
-                    // Define o caminho final do arquivo
-                    string nomeArquivo = Path.GetFileNameWithoutExtension(caminhoArquivo) + ".pdf";
-                    string caminhoDestino = Path.Combine(pastaDestino, nomeArquivo);
-
-                    // Salva o arquivo
+                    // ✅ Salvar com o nome do hash
                     using (var pdfStream = await downloadResponse.Content.ReadAsStreamAsync())
-                    using (var fileDestino = new FileStream(caminhoDestino, FileMode.Create, FileAccess.Write))
+                    using (var fileDestino = new FileStream(caminhoDestinoFinal, FileMode.Create, FileAccess.Write))
                     {
                         await pdfStream.CopyToAsync(fileDestino);
                     }
 
-                    Console.WriteLine($"Arquivo salvo em: {caminhoDestino}");
-                    return nomeArquivo;
+                    Console.WriteLine($"Arquivo salvo com hash: {hashArquivo}");
+                    return hashArquivo; // ✅ Retorna apenas o nome com hash
                 }
             }
         }
