@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using OfficeConverter;
 using OfficeConverter;
 
 namespace Dev4Tech
@@ -47,11 +48,14 @@ namespace Dev4Tech
         {
             OpenFileDialog ofd = new OpenFileDialog
             {
-                Filter = "Todos os arquivos suportados (*.pdf;*.doc;*.docx;*.xls;*.xlsx;*.ppt;*.pptx)|*.pdf;*.doc;*.docx;*.xls;*.xlsx;*.ppt;*.pptx|" +
+                Filter = "Todos os arquivos suportados (*.pdf;*.doc;*.docx;*.xls;*.xlsx;*.ppt;*.pptx;*.txt;*.jpg;*.png)|" +
+                         "*.pdf;*.doc;*.docx;*.xls;*.xlsx;*.ppt;*.pptx;*.txt;*.jpg;*.jpeg;*.png;*.bmp|" +
                          "Arquivos PDF (*.pdf)|*.pdf|" +
                          "Documentos Word (*.doc, *.docx)|*.doc;*.docx|" +
                          "Planilhas Excel (*.xls, *.xlsx)|*.xls;*.xlsx|" +
-                         "Apresentações PowerPoint (*.ppt, *.pptx)|*.ppt;*.pptx|" +
+                         "Apresentações (*.ppt, *.pptx)|*.ppt;*.pptx|" +
+                         "Arquivos de Texto (*.txt)|*.txt|" +
+                         "Imagens (*.jpg, *.png, *.bmp)|*.jpg;*.jpeg;*.png;*.bmp|" +
                          "Todos os arquivos (*.*)|*.*",
                 Title = "Selecione o arquivo para anexar",
                 Multiselect = false
@@ -61,126 +65,254 @@ namespace Dev4Tech
             {
                 caminhoArquivoSelecionado = ofd.FileName;
                 lblArquivosSelecionado.Text = Path.GetFileName(caminhoArquivoSelecionado);
+
+                // Validação de tamanho de arquivo
+                FileInfo fileInfo = new FileInfo(caminhoArquivoSelecionado);
+                if (fileInfo.Length > 100 * 1024 * 1024) // 100MB
+                {
+                    MessageBox.Show("O arquivo é muito grande. Por favor, selecione um arquivo menor que 100MB.",
+                        "Arquivo Grande", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    caminhoArquivoSelecionado = "";
+                    lblArquivosSelecionado.Text = "Nenhum arquivo selecionado";
+                }
+                else
+                {
+                    // Mostrar informações do arquivo
+                    string extensao = Path.GetExtension(caminhoArquivoSelecionado).ToLower();
+                    string[] formatosSuportados = { ".pdf", ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx", ".txt", ".jpg", ".jpeg", ".png", ".bmp" };
+
+                    if (Array.IndexOf(formatosSuportados, extensao) == -1)
+                    {
+                        MessageBox.Show($"O formato {extensao} pode não ser suportado.\n\nFormatos suportados: PDF, Word, Excel, PowerPoint, Texto, Imagens",
+                            "Formato Não Testado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
             }
         }
 
         // Evento para adicionar tarefa no banco para todas as equipes selecionadas
-        private void BtnAddTarefas_Click(object sender, EventArgs e)
+        private async void BtnAddTarefas_Click(object sender, EventArgs e)
         {
-            // Validações básicas
-            if (string.IsNullOrWhiteSpace(txtInstruções.Text))
-            {
-                MessageBox.Show("Por favor, preencha as instruções da tarefa.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(txtNomeTarefa.Text))
-            {
-                MessageBox.Show("Por favor, preencha o nome da tarefa.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (equipesSelecionadas.Count == 0)
-            {
-                MessageBox.Show("Adicione pelo menos uma equipe.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (dtpDataDeEntrega.Value.Date < DateTime.Today)
-            {
-                MessageBox.Show("A data de entrega deve ser hoje ou uma data futura.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (cmbDificuldade.SelectedIndex < 0)
-            {
-                MessageBox.Show("Selecione a dificuldade da tarefa.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            // Mostrar cursor de espera
+            this.Cursor = Cursors.WaitCursor;
+            btnAddTarefas.Enabled = false;
 
-            // Dados coletados do formulário
-            string nomeTarefa = txtNomeTarefa.Text.Trim();
-            string instrucoes = txtInstruções.Text.Trim();
-            string dificuldade = cmbDificuldade.SelectedItem.ToString();
-            DateTime dataEntrega = dtpDataDeEntrega.Value.Date;
-
-            // Define a pasta de arquivos correta
-            string pastaArquivos = @"C:\xampp\htdocs\dev4tech\arquivos";
-            if (!Directory.Exists(pastaArquivos))
-                Directory.CreateDirectory(pastaArquivos);
-
-            string nomeArquivo = "";
-
-            // Salvar arquivo PDF na pasta e pegar nome único
-            if (!string.IsNullOrEmpty(caminhoArquivoSelecionado))
+            try
             {
-                try
+                // Validações básicas
+                if (string.IsNullOrWhiteSpace(txtInstruções.Text))
                 {
-                    string extensao = Path.GetExtension(caminhoArquivoSelecionado).ToLower();
-                    string nomeArquivoUnico = Guid.NewGuid().ToString();
+                    MessageBox.Show("Por favor, preencha as instruções da tarefa.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(txtNomeTarefa.Text))
+                {
+                    MessageBox.Show("Por favor, preencha o nome da tarefa.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (equipesSelecionadas.Count == 0)
+                {
+                    MessageBox.Show("Adicione pelo menos uma equipe.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (dtpDataDeEntrega.Value.Date < DateTime.Today)
+                {
+                    MessageBox.Show("A data de entrega deve ser hoje ou uma data futura.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (cmbDificuldade.SelectedIndex < 0)
+                {
+                    MessageBox.Show("Selecione a dificuldade da tarefa.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-                    // Se for PDF, copia diretamente
-                    if (extensao == ".pdf")
+                // Dados coletados do formulário
+                string nomeTarefa = txtNomeTarefa.Text.Trim();
+                string instrucoes = txtInstruções.Text.Trim();
+                string dificuldade = cmbDificuldade.SelectedItem.ToString();
+                DateTime dataEntrega = dtpDataDeEntrega.Value.Date;
+
+                // Define a pasta de arquivos correta
+                string pastaArquivos = @"C:\xampp\htdocs\dev4tech\arquivos";
+                if (!Directory.Exists(pastaArquivos))
+                    Directory.CreateDirectory(pastaArquivos);
+
+                string nomeArquivo = "";
+
+                // Processar arquivo anexado
+                if (!string.IsNullOrEmpty(caminhoArquivoSelecionado))
+                {
+                    try
                     {
-                        nomeArquivo = nomeArquivoUnico + ".pdf";
-                        string caminhoCompleto = Path.Combine(pastaArquivos, nomeArquivo);
-                        File.Copy(caminhoArquivoSelecionado, caminhoCompleto, overwrite: true);
+                        // Mostrar progresso
+                        lblArquivosSelecionado.Text = "🔄 Convertendo arquivo...";
+                        lblArquivosSelecionado.ForeColor = Color.Blue;
+                        Application.DoEvents(); // Atualizar a UI
+
+                        // Verificar se a API Python está rodando
+                        var conversorPython = new PythonExecutor();
+
+                        if (!conversorPython.VerificarPython())
+                        {
+                            var resultado = MessageBox.Show(
+                                "API de conversão não está disponível.\n\n" +
+                                "Certifique-se de que:\n" +
+                                "1. O servidor Python está rodando (python api.py)\n" +
+                                "2. A porta 8000 está livre\n" +
+                                "3. Todas as dependências estão instaladas\n\n" +
+                                "Deseja continuar sem converter o arquivo?",
+                                "API Não Disponível",
+                                MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Warning);
+
+                            if (resultado == DialogResult.Yes)
+                            {
+                                nomeArquivo = ""; // Continuar sem arquivo
+                            }
+                            else
+                            {
+                                return; // Cancelar operação
+                            }
+                        }
+                        else
+                        {
+                            // API disponível, fazer conversão
+                            nomeArquivo = await conversorPython.ConverterParaPdfAsync(caminhoArquivoSelecionado, pastaArquivos);
+
+                            if (!string.IsNullOrEmpty(nomeArquivo))
+                            {
+                                lblArquivosSelecionado.Text = "✅ Arquivo convertido!";
+                                lblArquivosSelecionado.ForeColor = Color.Green;
+
+                                // Pequeno delay para mostrar o sucesso
+                                await Task.Delay(500);
+                            }
+                            else
+                            {
+                                throw new Exception("Conversão retornou nome vazio");
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        lblArquivosSelecionado.Text = "❌ Erro na conversão";
+                        lblArquivosSelecionado.ForeColor = Color.Red;
+
+                        DialogResult resultado = MessageBox.Show(
+                            $"Erro ao converter arquivo: {ex.Message}\n\nDeseja continuar sem anexar o arquivo?",
+                            "Erro de Conversão",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Warning);
+
+                        if (resultado == DialogResult.No)
+                        {
+                            return;
+                        }
+                        // Se escolher continuar, nomeArquivo permanece vazio
+                        nomeArquivo = "";
+                    }
+                }
+
+                // Insere tarefa para cada equipe selecionada
+                int tarefasAdicionadas = 0;
+                bool algumErro = false;
+                string mensagemErro = "";
+
+                foreach (int idEquipe in equipesSelecionadas)
+                {
+                    try
+                    {
+                        AddTarefas tarefa = new AddTarefas
+                        {
+                            NomeTarefa = nomeTarefa,
+                            Instrucoes = instrucoes,
+                            Dificuldade = dificuldade,
+                            IdEquipe = idEquipe,
+                            DataEntrega = dataEntrega,
+                            NomeArquivo = nomeArquivo,
+                            ArquivoBlob = null
+                        };
+
+                        tarefa.IdEmpresa = Convert.ToInt32(Sessao.AdminLogado.getIdEmpresa());
+                        tarefa.Inserir();
+                        tarefasAdicionadas++;
+                    }
+                    catch (Exception ex)
+                    {
+                        algumErro = true;
+                        mensagemErro += $"Erro na equipe {idEquipe}: {ex.Message}\n";
+                    }
+                }
+
+                // Mostrar resultado final
+                if (tarefasAdicionadas > 0)
+                {
+                    string mensagemSucesso = $"{tarefasAdicionadas} tarefa(s) adicionada(s) com sucesso!";
+
+                    if (algumErro)
+                    {
+                        mensagemSucesso += $"\n\nAlguns erros ocorreram:\n{mensagemErro}";
+                        MessageBox.Show(mensagemSucesso, "Sucesso com Avisos",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        // Para outros formatos (Word, Excel, etc.), converte para PDF
-                        nomeArquivo = nomeArquivoUnico + ".pdf";
-                        string caminhoCompleto = Path.Combine(pastaArquivos, nomeArquivo);
-
-                        // Usa OfficeConverter para converter o arquivo
-                        using (var converter = new Converter())
-                        {
-                            converter.Convert(caminhoArquivoSelecionado, caminhoCompleto);
-                        }
+                        MessageBox.Show(mensagemSucesso, "Sucesso",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro ao processar arquivo: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-            }
 
-            // Insere tarefa para cada equipe selecionada
-            foreach (int idEquipe in equipesSelecionadas)
-            {
-                AddTarefas tarefa = new AddTarefas
-                {
-                    NomeTarefa = nomeTarefa,
-                    Instrucoes = instrucoes,
-                    Dificuldade = dificuldade,
-                    IdEquipe = idEquipe,
-                    DataEntrega = dataEntrega,
-                    NomeArquivo = nomeArquivo,
-                    ArquivoBlob = null // não salva blob, arquivo fica na pasta
-                };
-                try
-                {
-                    tarefa.IdEmpresa = Convert.ToInt32(Sessao.AdminLogado.getIdEmpresa());
-                    tarefa.Inserir();
+                    LimparFormulario();
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show($"Erro ao adicionar tarefa para equipe ID {idEquipe}: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Nenhuma tarefa pôde ser adicionada:\n{mensagemErro}",
+                        "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            MessageBox.Show("Tarefas adicionadas com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            LimparFormulario();
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro inesperado: {ex.Message}", "Erro",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                // Restaurar cursor e botão
+                this.Cursor = Cursors.Default;
+                btnAddTarefas.Enabled = true;
+                lblArquivosSelecionado.Text = string.IsNullOrEmpty(caminhoArquivoSelecionado) ?
+                    "Nenhum arquivo selecionado" : Path.GetFileName(caminhoArquivoSelecionado);
+                lblArquivosSelecionado.ForeColor = Color.Black;
+            }
         }
 
 
         // Limpa campos após inserção
         private void LimparFormulario()
         {
-            txtInstruções.Clear();
-            txtNomeTarefa.Clear();
-            equipesSelecionadas.Clear();
-            cmbAddEquipe.SelectedIndex = -1;
-            cmbDificuldade.SelectedIndex = 1;
-            dtpDataDeEntrega.Value = DateTime.Today;
-            caminhoArquivoSelecionado = "";
-            lblArquivosSelecionado.Text = "Nenhum arquivo selecionado";
+            try
+            {
+                txtInstruções.Clear();
+                txtNomeTarefa.Clear();
+                equipesSelecionadas.Clear();
+                cmbAddEquipe.SelectedIndex = -1;
+                cmbDificuldade.SelectedIndex = 1; // Voltar para "Média"
+                dtpDataDeEntrega.Value = DateTime.Today;
+                caminhoArquivoSelecionado = "";
+                lblArquivosSelecionado.Text = "Nenhum arquivo selecionado";
+                lblArquivosSelecionado.ForeColor = Color.Black;
+
+                // Limpar possível seleção no ComboBox de equipes
+                if (cmbAddEquipe.Items.Count > 0)
+                {
+                    cmbAddEquipe.SelectedIndex = -1;
+                }
+
+                // Limpar lista de equipes selecionadas na interface se existir
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao limpar formulário: {ex.Message}");
+            }
         }
 
         // Eventos mantidos

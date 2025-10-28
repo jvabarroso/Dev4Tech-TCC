@@ -316,6 +316,7 @@
     <Compile Include="pontuacaoUsuarios.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PythonExecutor.cs" />
     <Compile Include="Ranking_Equipes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -581,6 +582,9 @@
     <Content Include="CLI\x86\cli_oootypes.dll" />
     <Content Include="CLI\x86\cli_ure.dll" />
     <Content Include="CLI\x86\cli_uretypes.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
