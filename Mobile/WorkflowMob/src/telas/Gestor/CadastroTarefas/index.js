@@ -15,6 +15,7 @@ import fonts from "../../../styles/fonts";
 export default function CadastroTarefas({ route, navigation }){
     const { theme } = useTheme();
     const styles = getStyles(theme);
+    const fastApiUrl = "http://10.239.0.125:8000/converter/pdf";
 
     const usuario = route.params?.usuario;
     const [sucess, setSucess] = useState(false); 
@@ -141,15 +142,15 @@ export default function CadastroTarefas({ route, navigation }){
     async function uploadFile() {
         if (!file) {
             showMessage({
-            message: 'Nenhuma arquivo selecionada.',
-            description: 'Por favor, selecione ou tire uma foto primeiro.',
-            floating: true,
-            statusBarHeight: 70,
-            type: "danger",
-            duration: 2000,             
+                message: 'Nenhum arquivo selecionado.',
+                description: 'Por favor, selecione um arquivo.',
+                floating: true,
+                statusBarHeight: 70,
+                type: "danger",
+                duration: 2000,             
             });
             return false;
-        };
+        }
 
         let filename = file.name;
         let type = file.mimeType || "application/octet-stream";
@@ -158,62 +159,57 @@ export default function CadastroTarefas({ route, navigation }){
         formData.append("file", { uri: file.uri, name: filename, type });
 
         try {
-            const response = await fetch(`${url}/dev4tech//upload_arquivos.php`, {
+            const response = await fetch(fastApiUrl, {
                 method: "POST",
                 body: formData
             });
 
-            const text = await response.text();
-            let resJson;
-            console.log("Resposta do servidor:", text);
-            
-            try {
-                resJson = JSON.parse(text);
-            } catch (e) {
-                console.error("Erro ao converter JSON:", e);
-            }
+            const data = await response.json();
+            console.log("Resposta do FastAPI:", data);
 
-            if (response.ok && resJson.success) {        
+            if (response.ok && data.sucesso) {
+                // Retorna a URL de download do PDF gerado
+                const downloadUrl = `http://10.239.0.125:8000/download/${data.arquivo_id}`;
                 showMessage({
-                    message: 'Sucesso.',
-                    description: 'Tarefa enviada com sucesso!',
+                    message: 'Arquivo convertido com sucesso.',
+                    description: 'PDF disponível para download.',
                     floating: true,
                     statusBarHeight: 70,
                     type: "success",
                     duration: 2000,             
-            });
-            return resJson.file;
-            
+                });
+                return downloadUrl; // retorna a URL do PDF
             } else {
                 showMessage({
-                message: 'Erro.',
-                description: resJson.message || "Falha ao enviar Tarefa.",
-                floating: true,
-                statusBarHeight: 70,
-                type: "warning",
-                duration: 2000,             
+                    message: 'Erro na conversão',
+                    description: data.mensagem || "Falha ao converter arquivo.",
+                    floating: true,
+                    statusBarHeight: 70,
+                    type: "warning",
+                    duration: 2000,             
                 });
                 return false;
             }
         } catch (error) {
-            console.error(error);
+            console.error("Erro ao enviar arquivo:", error);
             showMessage({
-                message: 'Erro.',
-                description: "Ocorreu um erro ao tentar enviar a imagem.",
+                message: 'Erro',
+                description: "Não foi possível enviar o arquivo.",
                 floating: true,
                 statusBarHeight: 70,
-                type: "warning",
+                type: "danger",
                 duration: 2000,             
             });
             return false;
-            }
+        }
     }
+
     useEffect(() => {
     }, []);
     //Cadastra a Tarefa
     async function cadastra() {      
-        const arquivo = await uploadFile();
-        if (!arquivo) return;  
+    const arquivoPDF = await uploadFile();
+    if (!arquivoPDF) return;
 
         try {
             const res = await api.post('dev4tech/cadastrotarefas.php', {
@@ -221,7 +217,7 @@ export default function CadastroTarefas({ route, navigation }){
                 instrucoes : instrucoes,
                 id_equipe : equipe, 
                 data_entrega: formatarDataParaBanco(data),
-                nome_arquivo: arquivo,
+                nome_arquivo: arquivoPDF,
                 dificuldade: dificuldadeselecionada,
                 id_empresa: usuario.id_empresa,
             });
