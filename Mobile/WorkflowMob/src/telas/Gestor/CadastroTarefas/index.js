@@ -161,7 +161,10 @@ export default function CadastroTarefas({ route, navigation }){
         try {
             const response = await fetch(fastApiUrl, {
                 method: "POST",
-                body: formData
+                body: formData,
+                headers: {
+                    "Accept": "application/json",
+                },
             });
 
             const data = await response.json();
@@ -169,7 +172,6 @@ export default function CadastroTarefas({ route, navigation }){
 
             if (response.ok && data.sucesso) {
                 // Retorna a URL de download do PDF gerado
-                const downloadUrl = `http://10.239.0.125:8000/download/${data.arquivo_id}`;
                 showMessage({
                     message: 'Arquivo convertido com sucesso.',
                     description: 'PDF disponível para download.',
@@ -178,7 +180,7 @@ export default function CadastroTarefas({ route, navigation }){
                     type: "success",
                     duration: 2000,             
                 });
-                return downloadUrl; // retorna a URL do PDF
+                return data.arquivo_id; 
             } else {
                 showMessage({
                     message: 'Erro na conversão',
@@ -208,66 +210,63 @@ export default function CadastroTarefas({ route, navigation }){
     }, []);
     //Cadastra a Tarefa
     async function cadastra() {      
-    const arquivoPDF = await uploadFile();
-    if (!arquivoPDF) return;
+        const arquivoPDF = await uploadFile();
+        if (!arquivoPDF) return;
+            try {
+                const res = await api.post('dev4tech/cadastrotarefas.php', {
+                    nomeTarefa : nomeTarefa,
+                    instrucoes : instrucoes,
+                    id_equipe : equipe, 
+                    data_entrega: formatarDataParaBanco(data),
+                    nome_arquivo: arquivoPDF,
+                    dificuldade: dificuldadeselecionada,
+                    id_empresa: usuario.id_empresa,
+                });
 
-        try {
-            const res = await api.post('dev4tech/cadastrotarefas.php', {
-                nomeTarefa : nomeTarefa,
-                instrucoes : instrucoes,
-                id_equipe : equipe, 
-                data_entrega: formatarDataParaBanco(data),
-                nome_arquivo: arquivoPDF,
-                dificuldade: dificuldadeselecionada,
-                id_empresa: usuario.id_empresa,
-            });
+                if (res.data.sucesso === false) {
 
-            if (res.data.sucesso === false) {
-
-            showMessage({
-                message: "Erro ao cadastrar Tarefa",
-                description: res.data.mensagem,
-                floating: true,
-                statusBarHeight: 70,
-                type: "warning",
-                duration: 3000,                    
-            });      
-            console.log(res.data.mensagem)       
-            return;
-            }
-
-            setSucess(true);
                 showMessage({
-                message: "Cadastrado com Sucesso",
-                description: "Tarefa cadastrada",
-                floating: true,
-                statusBarHeight: 70,
-                type: "success",
-                duration: 2000,             
-            });         
-            limparCampos()
-            } 
-        catch (error) {
-            console.log("Erro no Envio:", error.message);
-            if (error.response) {
-                console.log("Resposta do Servidor:", error.response.data);
-            }
-            if (error.request) {
-                console.log("Sem resposta, request:", error.request);
-            }
-            setSucess(false);
-            showMessage({
-                message: "Alguma coisa deu errado, tente novamente.",
-                description: res.data.mensagem,
-                floating: true,
-                statusBarHeight: 70,
-                type: "warning",
-                duration: 3000,                    
-            });  
-        }
-        
-    }   
+                    message: "Erro ao cadastrar Tarefa",
+                    description: res.data.mensagem,
+                    floating: true,
+                    statusBarHeight: 70,
+                    type: "warning",
+                    duration: 3000,                    
+                });      
+                console.log(res.data.mensagem)       
+                return;
+                }
 
+                setSucess(true);
+                    showMessage({
+                    message: "Cadastrado com Sucesso",
+                    description: "Tarefa cadastrada",
+                    floating: true,
+                    statusBarHeight: 70,
+                    type: "success",
+                    duration: 2000,             
+                });         
+                limparCampos()
+                } 
+            catch (error) {
+                console.log("Erro no Envio:", error.message);
+                if (error.response) {
+                    console.log("Resposta do Servidor:", error.response.data);
+                }
+                if (error.request) {
+                    console.log("Sem resposta, request:", error.request);
+                }
+                setSucess(false);
+                showMessage({
+                    message: "Alguma coisa deu errado, tente novamente.",
+                    description: res.data.mensagem,
+                    floating: true,
+                    statusBarHeight: 70,
+                    type: "warning",
+                    duration: 3000,                    
+                });  
+            }
+    }   
     function limparCampos(){
         setNomeTarefa('');
         setInstrucoes('');

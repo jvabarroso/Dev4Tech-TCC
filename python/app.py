@@ -17,11 +17,11 @@ import pythoncom
 
 app = FastAPI(title="API para conversão de arquivos para PDF", version="1.0.0")
 
+BASE_DIR = r"C:\xampp\htdocs\dev4tech\arquivos"
 # Diretórios
-Upload_Dir = "uploads"
-Download_Dir = "outputs"
-os.makedirs(Upload_Dir, exist_ok=True)
-os.makedirs(Download_Dir, exist_ok=True)
+Upload_Dir = BASE_DIR
+Download_Dir = BASE_DIR
+os.makedirs(BASE_DIR, exist_ok=True)
 
 @app.get("/")
 async def root():
