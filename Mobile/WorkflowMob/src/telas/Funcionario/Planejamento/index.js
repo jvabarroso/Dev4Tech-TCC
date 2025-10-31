@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, TouchableOpacity, Image, TextInput, ScrollView, ActivityIndicator } from 'react-native';
+import { showMessage } from "react-native-flash-message";
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
 import { useFocusEffect } from '@react-navigation/native';
@@ -16,6 +17,7 @@ export default function Planejamento({ navigation, route }) {
   const [filtroAtivo, setFiltroAtivo] = useState('pendente');
   const [termoBusca, setTermoBusca] = useState('');
   const [usuarioState, setusuarioState] = useState(usuario);
+  const [sucess, setSucess] = useState(false);
 
   console.log("Dados do usuario: ",usuario)
 
@@ -26,10 +28,69 @@ export default function Planejamento({ navigation, route }) {
 );
 
   useEffect(() => {
-  if (route.params?.usuario) {
-    setusuarioState(route.params.usuario);
-  }
-}, [route.params?.usuario]);
+    if (route.params?.usuario) {
+      setusuarioState(route.params.usuario);
+    }
+  }, [route.params?.usuario]);
+
+
+  async function contarpaginas(tarefa) {   
+    if (tarefa.total_paginas && tarefa.total_paginas > 0) {
+      console.log("Tarefa já processada, redirecionando para leitura...");
+      navigation.navigate('ArquivosPdf', {
+        tarefa: tarefa,
+        usuario: usuario
+      });
+      return;
+    }
+    try {
+      const resContagem = await api.post('dev4tech/contar_paginas.php', {
+        caminho_arquivo: 'C:/xampp/htdocs/dev4tech/' + tarefa.nome_arquivo
+      });
+
+      if (!resContagem.data.success) {
+        console.log("ERRO NA CONTAGEM DE PÁGINAS:", resContagem.data.message);
+        return;
+      }
+
+      const totalPaginas = resContagem.data.total_paginas;
+
+      const res = await api.post('dev4tech/cadastrofunc.php', {
+        id_tarefa : tarefa.id_tarefa, 
+        nome_arquivo :tarefa.nome_arquivo, 
+        total_paginas : totalPaginas, 
+        hash_arquivo : tarefa.nome_arquivo, 
+      });
+      setSucess(true);
+      listarDados();
+      showMessage({
+        message: 'Sucesso.',
+        description: `PDF processado com ${totalPaginas} páginas`,
+        floating: true,
+        statusBarHeight: 70,
+        type: "success",
+        duration: 2000,             
+      })
+    } 
+    catch (error) {
+      console.log("ERRO NA VISUALIZAÇÃO DAS PÁGINAS:", error.message);
+      if (error.response) {
+        console.log("RESPOSTA DO SERVIDOR:", error.response.data);
+      }
+      if (error.request) {
+        console.log("SEM RESPOSTA, REQUEST:", error.request);
+      }
+      setSucess(false);
+      showMessage({
+        message: 'Erro.',
+        description: 'Falha ao processar o PDF',
+        floating: true,
+        statusBarHeight: 70,
+        type: "success",
+        duration: 2000,             
+      })
+    }
+  }   
 
   async function listarDados() {
     if (!usuario?.FuncionarioId) {
@@ -39,7 +100,7 @@ export default function Planejamento({ navigation, route }) {
     
     try {
       setErrorMessage(null);
-      const res = await api.get(`dev4tech/tarefaplane.php`, {
+      const res = await api.get(`dev4tech/tarefa.php`, {
         params: { id_funcionario: usuario.FuncionarioId }
       });
 
@@ -124,6 +185,7 @@ export default function Planejamento({ navigation, route }) {
       <TouchableOpacity
         key={`${item.id_tarefa}-${index}`} 
         style={styles.containertarefas}
+        onPress={() => contarpaginas(item)}
       >
         <View style={styles.linhaTarefa}>
           <Image 
