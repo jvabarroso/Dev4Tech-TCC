@@ -180,5 +180,5 @@ async def converter_imagem_para_pdf(entrada, saida):
 if __name__ == "__main__":
     import uvicorn
     print("Iniciando servidor de conversão de arquivos...")
-    print("Disponível em: http://127.0.0.1:8000")
-    uvicorn.run(app, host="127.0.0.1", port=8000, log_level="info")
+    print("Disponível em: http://0.0.0.0:8000")
+    uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info")
