@@ -1,3 +1,5 @@
+
+
 CREATE DATABASE Dev4Tech;
 USE Dev4Tech;
 -- Tabela de Empresas

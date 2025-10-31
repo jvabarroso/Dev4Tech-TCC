@@ -82,22 +82,22 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Poppins", 9.75F);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
             this.label4.Location = new System.Drawing.Point(111, 429);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(229, 36);
+            this.label4.Size = new System.Drawing.Size(131, 16);
             this.label4.TabIndex = 218;
             this.label4.Text = "Dificuldade da tarefa";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Poppins", 9.75F);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
             this.label5.Location = new System.Drawing.Point(112, 249);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(117, 36);
+            this.label5.Size = new System.Drawing.Size(68, 16);
             this.label5.TabIndex = 216;
             this.label5.Text = "Instruções";
             // 
@@ -111,7 +111,7 @@
             this.txtInstruções.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtInstruções.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtInstruções.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtInstruções.Font = new System.Drawing.Font("Poppins", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtInstruções.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtInstruções.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtInstruções.Location = new System.Drawing.Point(115, 289);
             this.txtInstruções.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -124,11 +124,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
             this.label1.Location = new System.Drawing.Point(393, 428);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(179, 36);
+            this.label1.Size = new System.Drawing.Size(104, 16);
             this.label1.TabIndex = 214;
             this.label1.Text = "Data de entrega";
             // 
@@ -145,16 +145,16 @@
             this.dtpDataDeEntrega.Name = "dtpDataDeEntrega";
             this.dtpDataDeEntrega.Size = new System.Drawing.Size(416, 36);
             this.dtpDataDeEntrega.TabIndex = 213;
-            this.dtpDataDeEntrega.Value = new System.DateTime(2025, 9, 15, 15, 8, 8, 505);
+            this.dtpDataDeEntrega.Value = new System.DateTime(2025, 10, 31, 0, 0, 0, 0);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Poppins", 9.75F);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
             this.label3.Location = new System.Drawing.Point(112, 141);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(174, 36);
+            this.label3.Size = new System.Drawing.Size(100, 16);
             this.label3.TabIndex = 212;
             this.label3.Text = "Nome da tarefa";
             // 
@@ -167,7 +167,7 @@
             this.txtNomeTarefa.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtNomeTarefa.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtNomeTarefa.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtNomeTarefa.Font = new System.Drawing.Font("Poppins", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNomeTarefa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNomeTarefa.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtNomeTarefa.Location = new System.Drawing.Point(115, 181);
             this.txtNomeTarefa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -221,7 +221,7 @@
             this.pictureBox6.BackColor = System.Drawing.Color.Blue;
             this.pictureBox6.BackgroundImage = global::Dev4Tech.Properties.Resources.Nav_Icon_Item;
             this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox6.Location = new System.Drawing.Point(13, 550);
+            this.pictureBox6.Location = new System.Drawing.Point(13, 740);
             this.pictureBox6.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(36, 35);
@@ -234,7 +234,7 @@
             this.pictureBox7.BackColor = System.Drawing.Color.Blue;
             this.pictureBox7.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_config;
             this.pictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox7.Location = new System.Drawing.Point(13, 507);
+            this.pictureBox7.Location = new System.Drawing.Point(13, 697);
             this.pictureBox7.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(36, 35);
@@ -271,7 +271,7 @@
             this.pictureBox1.BackColor = System.Drawing.Color.Blue;
             this.pictureBox1.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox1.Location = new System.Drawing.Point(13, 593);
+            this.pictureBox1.Location = new System.Drawing.Point(13, 783);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(36, 35);
@@ -296,11 +296,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
             this.label2.Location = new System.Drawing.Point(843, 430);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 36);
+            this.label2.Size = new System.Drawing.Size(57, 16);
             this.label2.TabIndex = 228;
             this.label2.Text = "Equipes";
             // 
@@ -312,7 +312,7 @@
             this.btnAddTarefas.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnAddTarefas.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnAddTarefas.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(153)))), ((int)(((byte)(42)))));
-            this.btnAddTarefas.Font = new System.Drawing.Font("Poppins", 9F);
+            this.btnAddTarefas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnAddTarefas.ForeColor = System.Drawing.Color.White;
             this.btnAddTarefas.Image = ((System.Drawing.Image)(resources.GetObject("btnAddTarefas.Image")));
             this.btnAddTarefas.Location = new System.Drawing.Point(915, 594);
@@ -330,7 +330,7 @@
             this.btnAddEquipe.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnAddEquipe.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnAddEquipe.FillColor = System.Drawing.Color.White;
-            this.btnAddEquipe.Font = new System.Drawing.Font("Poppins Medium", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddEquipe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddEquipe.ForeColor = System.Drawing.Color.Black;
             this.btnAddEquipe.Image = ((System.Drawing.Image)(resources.GetObject("btnAddEquipe.Image")));
             this.btnAddEquipe.Location = new System.Drawing.Point(1088, 467);
@@ -347,7 +347,7 @@
             this.btnAnexarArquivos.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnAnexarArquivos.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnAnexarArquivos.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(88)))), ((int)(((byte)(242)))));
-            this.btnAnexarArquivos.Font = new System.Drawing.Font("Poppins", 9F);
+            this.btnAnexarArquivos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnAnexarArquivos.ForeColor = System.Drawing.Color.White;
             this.btnAnexarArquivos.Image = ((System.Drawing.Image)(resources.GetObject("btnAnexarArquivos.Image")));
             this.btnAnexarArquivos.Location = new System.Drawing.Point(118, 594);
@@ -372,11 +372,11 @@
             // lblArquivosSelecionado
             // 
             this.lblArquivosSelecionado.AutoSize = true;
-            this.lblArquivosSelecionado.Font = new System.Drawing.Font("Poppins", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblArquivosSelecionado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblArquivosSelecionado.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(88)))), ((int)(((byte)(242)))));
             this.lblArquivosSelecionado.Location = new System.Drawing.Point(156, 536);
             this.lblArquivosSelecionado.Name = "lblArquivosSelecionado";
-            this.lblArquivosSelecionado.Size = new System.Drawing.Size(215, 31);
+            this.lblArquivosSelecionado.Size = new System.Drawing.Size(129, 15);
             this.lblArquivosSelecionado.TabIndex = 234;
             this.lblArquivosSelecionado.TabStop = true;
             this.lblArquivosSelecionado.Text = "lblArquivoSelecionado";
@@ -384,18 +384,18 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Poppins", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.Location = new System.Drawing.Point(102, 18);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(450, 84);
+            this.label15.Size = new System.Drawing.Size(266, 37);
             this.label15.TabIndex = 217;
             this.label15.Text = "Criar uma tarefa";
             // 
             // AdicionarTarefa
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 36F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1898, 688);
+            this.ClientSize = new System.Drawing.Size(1424, 861);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.lblArquivosSelecionado);
             this.Controls.Add(this.btnAnexarArquivos);
@@ -420,7 +420,7 @@
             this.Controls.Add(this.dtpDataDeEntrega);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtNomeTarefa);
-            this.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "AdicionarTarefa";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.AdicionarTarefa_Load);

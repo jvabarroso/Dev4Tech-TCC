@@ -73,8 +73,20 @@ namespace Dev4Tech
 
                     card.Click += (senderCard, eCard) =>
                     {
-                        int idTarefa = (int)((Panel)senderCard).Tag;
-                        CarregarPdfDaTarefa(idTarefa);
+                        var panel = senderCard as Panel;
+                        if (panel == null)
+                        {
+                            // Caso o sender não seja o painel, procuramos o painel no sender
+                            Control ctrl = senderCard as Control;
+                            while (ctrl != null && !(ctrl is Panel))
+                                ctrl = ctrl.Parent;
+                            if (ctrl is Panel)
+                                panel = (Panel)ctrl;
+                        }
+                        if (panel != null && panel.Tag is int idTarefa)
+                        {
+                            CarregarPdfDaTarefa(idTarefa);
+                        }
                     };
 
                     // Adicionar ao painel correto

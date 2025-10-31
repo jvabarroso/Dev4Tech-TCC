@@ -572,6 +572,9 @@
     <None Include="Resources\CadFunc3.png" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="CLI\x64\cli_basetypes.dll" />
     <Content Include="CLI\x64\cli_cppuhelper.dll" />
     <Content Include="CLI\x64\cli_oootypes.dll" />
@@ -582,9 +585,6 @@
     <Content Include="CLI\x86\cli_oootypes.dll" />
     <Content Include="CLI\x86\cli_ure.dll" />
     <Content Include="CLI\x86\cli_uretypes.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

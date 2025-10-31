@@ -21,12 +21,10 @@ namespace Dev4Tech
             cmbCategoriaEquipe.DropDownStyle = ComboBoxStyle.DropDown;
             panelDadosFunc.AutoScroll = true; // Habilita o scroll automático
             this.Load += AdicionarEquipes_Load;
-            btnAddMembro.Click += btnAddMembro_Click;
-            btnCriarEquipe.Click += btnCriarEquipe_Click;
             cbmEmailMembro.SelectedIndexChanged += cbmEmailMembro_SelectedIndexChanged;
             cmbCategoriaEquipe.SelectedIndexChanged += cmbCategoriaEquipe_SelectedIndexChanged;
             txtNomeEquipe.TextChanged += txtNomeEquipe_TextChanged;
-            btnFtEquipe.Click += btnFtEquipe_Click;
+            
         }
 
         private void AdicionarEquipes_Load(object sender, EventArgs e)

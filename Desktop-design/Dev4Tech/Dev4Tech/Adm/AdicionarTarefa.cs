@@ -13,6 +13,7 @@ namespace Dev4Tech
     {
         private string caminhoArquivoSelecionado = "";
         private List<int> equipesSelecionadas = new List<int>(); // Lista interna para armazenar equipes selecionadas
+        private Timer timerAtualizaData;
 
         public AdicionarTarefa()
         {
@@ -21,10 +22,16 @@ namespace Dev4Tech
             // Carrega equipes no ComboBox
             CarregarEquipes();
 
+
+            timerAtualizaData = new Timer();
+            timerAtualizaData.Interval = 60000; // 60.000 milissegundos (1 minuto)
+            timerAtualizaData.Tick += TimerAtualizaData_Tick;
+            timerAtualizaData.Start();
+
+
             // Configura eventos dos botões
-            btnAnexarArquivos.Click += BtnAnexarArquivos_Click;
-            btnAddTarefas.Click += BtnAddTarefas_Click;
-            btnAddEquipe.Click += btnAddEquipe_Click;
+            
+            
 
             // Inicializa comboBox de dificuldade
             cmbDificuldade.Items.AddRange(new string[] { "Fácil", "Média", "Difícil" });
@@ -88,6 +95,11 @@ namespace Dev4Tech
                     }
                 }
             }
+        }
+        private void TimerAtualizaData_Tick(object sender, EventArgs e)
+        {
+            // Atualizar o DateTimePicker para a data e hora atual do sistema
+            dtpDataDeEntrega.Value = DateTime.Now;
         }
 
         // Evento para adicionar tarefa no banco para todas as equipes selecionadas
@@ -369,25 +381,33 @@ namespace Dev4Tech
 
         private void btnAddEquipe_Click(object sender, EventArgs e)
         {
-            if (cmbAddEquipe.SelectedIndex < 0)
-            {
-                MessageBox.Show("Selecione uma equipe para adicionar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            btnAddEquipe.Enabled = false; // bloqueia clique repetido enquanto executa
 
-            int idEquipe = Convert.ToInt32(cmbAddEquipe.SelectedValue);
+            try
+            {
+                if (cmbAddEquipe.SelectedIndex < 0)
+                {
+                    MessageBox.Show("Selecione uma equipe para adicionar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-            if (!equipesSelecionadas.Contains(idEquipe))
-            {
-                equipesSelecionadas.Add(idEquipe);
-                MessageBox.Show("Equipe selecionada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                int idEquipe = Convert.ToInt32(cmbAddEquipe.SelectedValue);
+
+                if (!equipesSelecionadas.Contains(idEquipe))
+                {
+                    equipesSelecionadas.Add(idEquipe);
+                    MessageBox.Show("Equipe selecionada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Essa equipe já foi selecionada.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            else
+            finally
             {
-                MessageBox.Show("Essa equipe já foi selecionada.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnAddEquipe.Enabled = true; // reabilita o botão
             }
         }
-
         private void pictureBox9_Click(object sender, EventArgs e)
         {
 
