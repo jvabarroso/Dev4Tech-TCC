@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Dev4Tech.Utils;
+using MySql.Data.MySqlClient;
+using System;
 using System.Windows.Forms;
-using Dev4Tech.Utils;
 
 namespace Dev4Tech
 {
@@ -10,7 +11,10 @@ namespace Dev4Tech
 
         private readonly string idAdminLogado;
         private readonly string idEmpresaAdmin;
-
+        private void cadastro_funcionário_Load(object sender, EventArgs e)
+        {
+            CarregarCargos();
+        }
         public cadastro_funcionário(string adminId, string empresaId)
         {
             InitializeComponent();
@@ -58,7 +62,7 @@ namespace Dev4Tech
                 emCadFunc.setData_cadFunc(DateTime.Now);
                 emCadFunc.setEndereco(txtEndereço.Text);
                 emCadFunc.setNumero(txtEndereçoNum.Text);
-
+                emCadFunc.setCargo(cbBoxCargoFunc.Text);
                 emCadFunc.setIdEmpresa(idEmpresaAdmin);
                 emCadFunc.setAdminId(idAdminLogado);
 
@@ -79,7 +83,36 @@ namespace Dev4Tech
                 MessageBox.Show("Erro ao cadastrar funcionário: " + ex.Message);
             }
         }
+        private void CarregarCargos()
+        {
+            string connectionString = "server=localhost;database=Dev4Tech;uid=root;pwd=";
+            string query = "SELECT DISTINCT Cargo FROM Funcionarios WHERE id_empresa = @idEmpresa ORDER BY Cargo";
 
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@idEmpresa", idEmpresaAdmin); // idEmpresaAdmin conforme seu contexto
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            cbBoxCargoFunc.Items.Clear();
+                            while (reader.Read())
+                            {
+                                cbBoxCargoFunc.Items.Add(reader["Cargo"].ToString());
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao carregar cargos: " + ex.Message);
+                }
+            }
+        }
         private void btnVoltar_Click(object sender, EventArgs e)
         {
             HomeAdm homeAdm = new HomeAdm();
@@ -109,13 +142,9 @@ namespace Dev4Tech
 
         private void cbBoxCargo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Pode deixar vazio ou implementar lógica adicional
+
         }
 
-        private void cadastro_funcionário_Load(object sender, EventArgs e)
-        {
-            // Pode deixar vazio ou implementar lógica adicional
-        }
 
         private void txtCadFuncNome_TextChanged(object sender, EventArgs e)
         {
@@ -244,6 +273,11 @@ namespace Dev4Tech
             senhaVisivel = !senhaVisivel;
             txtCadFuncConfirmSenha.UseSystemPasswordChar = !senhaVisivel;
             btnMostrarSenha.Text = senhaVisivel ? "" : "";
+        }
+
+        private void cbBoxCargoFunc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

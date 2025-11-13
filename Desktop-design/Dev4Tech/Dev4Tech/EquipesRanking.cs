@@ -13,6 +13,7 @@ namespace Dev4Tech
         public string Nome { get; set; }
         public Image FotoPerfil { get; set; }
         public string Cargo { get; set; }
+        public int Pontos { get; internal set; }
     }
 
     public class EquipesRanking : conexao
@@ -23,15 +24,18 @@ namespace Dev4Tech
         public DataTable BuscarEquipesComPontuacao()
         {
             DataTable dt = new DataTable();
-            string query = @"
-                    SELECT e.id_equipe, e.nome_equipe, 
-                           IFNULL(SUM(pf.pontos),0) AS pontos
-                    FROM Equipes e
-                    LEFT JOIN Equipes_Membros em ON em.id_equipe = e.id_equipe
-                    LEFT JOIN PontuacaoFuncionario pf ON pf.id_funcionario = em.FuncionarioId
-                    GROUP BY e.id_equipe, e.nome_equipe
-                    ORDER BY pontos DESC, e.data_criacao ASC
-                ";
+            string query = @"SELECT e.id_equipe, e.nome_equipe, COALESCE(SUM(pf.total_pontos), 0) AS pontos
+                            FROM equipes e
+                            LEFT JOIN equipes_membros em ON em.id_equipe = e.id_equipe
+                            LEFT JOIN (
+                            SELECT et.FuncionarioId, et.id_equipe, SUM(pf2.pontos) AS total_pontos
+                            FROM entregastarefa et
+                            JOIN pontuacaofuncionario pf2 ON et.FuncionarioId = pf2.id_funcionario
+                            WHERE et.entregue = 1
+                            GROUP BY et.FuncionarioId, et.id_equipe
+                            ) pf ON pf.FuncionarioId = em.FuncionarioId AND pf.id_equipe = em.id_equipe
+                            GROUP BY e.id_equipe, e.nome_equipe
+                            ORDER BY pontos DESC;";
             using (var conn = new MySqlConnection(conexaoString))
             {
                 conn.Open();
@@ -46,13 +50,15 @@ namespace Dev4Tech
         {
             DataTable dt = new DataTable();
             string query = @"
-                    SELECT e.id_equipe, e.nome_equipe, 
-                           IFNULL(SUM(pf.pontos),0) AS pontos
-                    FROM Equipes e
-                    LEFT JOIN Equipes_Membros em ON em.id_equipe = e.id_equipe
-                    LEFT JOIN PontuacaoFuncionario pf ON pf.id_funcionario = em.FuncionarioId
-                    WHERE e.id_equipe = @idEquipe
-                    GROUP BY e.id_equipe, e.nome_equipe";
+            SELECT e.id_equipe, e.nome_equipe,
+                   (SELECT COALESCE(SUM(pf.pontos), 0)
+                    FROM equipes_membros em
+                    JOIN pontuacaofuncionario pf ON em.FuncionarioId = pf.id_funcionario
+                    JOIN entregastarefa et ON em.FuncionarioId = et.FuncionarioId AND em.id_equipe = et.id_equipe AND et.entregue = 1
+                    WHERE em.id_equipe = e.id_equipe) AS pontos
+            FROM Equipes e
+            WHERE e.id_equipe = @idEquipe;
+            ";
             using (var conn = new MySqlConnection(conexaoString))
             {
                 conn.Open();
@@ -63,6 +69,7 @@ namespace Dev4Tech
             }
             return dt;
         }
+
 
         public List<MembroEquipe> BuscarMembrosEquipe(int idEquipe)
         {

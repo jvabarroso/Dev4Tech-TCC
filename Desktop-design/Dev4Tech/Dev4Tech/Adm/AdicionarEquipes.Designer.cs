@@ -90,7 +90,7 @@
             this.picPerfil.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
             this.picPerfil.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.picPerfil.Location = new System.Drawing.Point(13, 608);
-            this.picPerfil.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.picPerfil.Margin = new System.Windows.Forms.Padding(4);
             this.picPerfil.Name = "picPerfil";
             this.picPerfil.Size = new System.Drawing.Size(24, 23);
             this.picPerfil.TabIndex = 44;
@@ -102,7 +102,7 @@
             this.btnEquipes.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_equip;
             this.btnEquipes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnEquipes.Location = new System.Drawing.Point(13, 48);
-            this.btnEquipes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEquipes.Margin = new System.Windows.Forms.Padding(4);
             this.btnEquipes.Name = "btnEquipes";
             this.btnEquipes.Size = new System.Drawing.Size(24, 23);
             this.btnEquipes.TabIndex = 43;
@@ -115,7 +115,7 @@
             this.btnCalendar.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_calendar;
             this.btnCalendar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnCalendar.Location = new System.Drawing.Point(13, 87);
-            this.btnCalendar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCalendar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCalendar.Name = "btnCalendar";
             this.btnCalendar.Size = new System.Drawing.Size(24, 23);
             this.btnCalendar.TabIndex = 42;
@@ -128,7 +128,7 @@
             this.btnRanking.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_ranking;
             this.btnRanking.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRanking.Location = new System.Drawing.Point(13, 129);
-            this.btnRanking.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRanking.Margin = new System.Windows.Forms.Padding(4);
             this.btnRanking.Name = "btnRanking";
             this.btnRanking.Size = new System.Drawing.Size(24, 23);
             this.btnRanking.TabIndex = 41;
@@ -141,7 +141,7 @@
             this.btnLogout.BackgroundImage = global::Dev4Tech.Properties.Resources.Nav_Icon_Item;
             this.btnLogout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnLogout.Location = new System.Drawing.Point(13, 566);
-            this.btnLogout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(24, 23);
             this.btnLogout.TabIndex = 40;
@@ -154,7 +154,7 @@
             this.btnConfig.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_config;
             this.btnConfig.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnConfig.Location = new System.Drawing.Point(13, 538);
-            this.btnConfig.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnConfig.Margin = new System.Windows.Forms.Padding(4);
             this.btnConfig.Name = "btnConfig";
             this.btnConfig.Size = new System.Drawing.Size(24, 23);
             this.btnConfig.TabIndex = 39;
@@ -167,7 +167,7 @@
             this.btnHome.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_Home;
             this.btnHome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnHome.Location = new System.Drawing.Point(13, 9);
-            this.btnHome.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnHome.Margin = new System.Windows.Forms.Padding(4);
             this.btnHome.Name = "btnHome";
             this.btnHome.Size = new System.Drawing.Size(24, 23);
             this.btnHome.TabIndex = 38;
@@ -178,7 +178,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Blue;
             this.pictureBox1.Location = new System.Drawing.Point(-2, -3);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(54, 780);
             this.pictureBox1.TabIndex = 37;
@@ -348,17 +348,18 @@
             this.cmbCategoriaEquipe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.cmbCategoriaEquipe.FormattingEnabled = true;
             this.cmbCategoriaEquipe.Location = new System.Drawing.Point(489, 229);
-            this.cmbCategoriaEquipe.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbCategoriaEquipe.Margin = new System.Windows.Forms.Padding(2);
             this.cmbCategoriaEquipe.Name = "cmbCategoriaEquipe";
             this.cmbCategoriaEquipe.Size = new System.Drawing.Size(617, 23);
             this.cmbCategoriaEquipe.TabIndex = 234;
+            this.cmbCategoriaEquipe.SelectedIndexChanged += new System.EventHandler(this.cmbCategoriaEquipe_SelectedIndexChanged_2);
             // 
             // cbmEmailMembro
             // 
             this.cbmEmailMembro.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.cbmEmailMembro.FormattingEnabled = true;
             this.cbmEmailMembro.Location = new System.Drawing.Point(489, 307);
-            this.cbmEmailMembro.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbmEmailMembro.Margin = new System.Windows.Forms.Padding(2);
             this.cbmEmailMembro.Name = "cbmEmailMembro";
             this.cbmEmailMembro.Size = new System.Drawing.Size(617, 23);
             this.cbmEmailMembro.TabIndex = 235;
@@ -392,7 +393,7 @@
             this.Controls.Add(this.btnConfig);
             this.Controls.Add(this.btnHome);
             this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AdicionarEquipes";
             this.Text = "AdicionarEquipes";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

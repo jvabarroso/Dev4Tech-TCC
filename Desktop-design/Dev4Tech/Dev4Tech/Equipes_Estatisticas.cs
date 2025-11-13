@@ -193,13 +193,24 @@ namespace Dev4Tech
                 MySqlCommand comandos = con.CreateCommand();
                 con.Open();
                 comandos.Parameters.AddWithValue("@id_equipe", idEquipe);
-                comandos.CommandText = @"SELECT f.funcionarioId, f.nome, COALESCE(SUM(pf.pontos), 0) AS pontos
-                                FROM equipes_membros em
-                                INNER JOIN funcionarios f ON f.funcionarioId = em.funcionarioId
-                                LEFT JOIN pontuacaofuncionario pf ON f.funcionarioId = pf.id_funcionario
-                                WHERE em.id_equipe = @id_equipe
-                                GROUP BY f.funcionarioId, f.nome
-                                ORDER BY pontos DESC;";
+                comandos.CommandText = @"SELECT 
+    f.funcionarioId, 
+    f.nome, 
+    COALESCE(pf.total_pontos, 0) AS pontos
+FROM equipes_membros em
+INNER JOIN funcionarios f ON f.funcionarioId = em.funcionarioId
+LEFT JOIN (
+    SELECT 
+        et.FuncionarioId, 
+        et.id_equipe, 
+        SUM(pf2.pontos) AS total_pontos
+    FROM entregastarefa et
+    JOIN pontuacaofuncionario pf2 ON et.FuncionarioId = pf2.id_funcionario
+    WHERE et.entregue = 1
+    GROUP BY et.FuncionarioId, et.id_equipe
+) pf ON pf.FuncionarioId = f.funcionarioId AND pf.id_equipe = em.id_equipe
+WHERE em.id_equipe = @id_equipe
+ORDER BY pontos DESC;";
 
                 using (MySqlDataReader resultado = comandos.ExecuteReader())
                 {

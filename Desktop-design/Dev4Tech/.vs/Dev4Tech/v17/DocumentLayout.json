@@ -3,24 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|c:\\users\\guilherme.robles\\desktop\\dev4tech-tcc\\desktop-design\\dev4tech\\dev4tech\\adm\\adicionarequipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\adm\\adicionarequipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|c:\\users\\guilherme.robles\\desktop\\dev4tech-tcc\\desktop-design\\dev4tech\\dev4tech\\tarefas_pendentes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\tarefas_pendentes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|c:\\users\\guilherme.robles\\desktop\\dev4tech-tcc\\desktop-design\\dev4tech\\dev4tech\\adm\\adicionarequipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\adm\\adicionarequipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\dev4tech\\tarefas_pendentes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\tarefas_pendentes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|c:\\users\\guilherme.robles\\desktop\\dev4tech-tcc\\desktop-design\\dev4tech\\dev4tech\\adm\\adicionartarefa.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\adm\\adicionartarefa.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\dev4tech\\adm\\avalia\u00E7\u00E3otarefaadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\adm\\avalia\u00E7\u00E3otarefaadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|c:\\users\\guilherme.robles\\desktop\\dev4tech-tcc\\desktop-design\\dev4tech\\dev4tech\\adm\\adicionartarefa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\adm\\adicionartarefa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\dev4tech\\equipes_estatisticas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\equipes_estatisticas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|c:\\users\\guilherme.robles\\desktop\\dev4tech-tcc\\desktop-design\\dev4tech\\dev4tech\\adm\\adicionartarefa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\adm\\adicionartarefa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\dev4tech\\equipes_estatisticas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\equipes_estatisticas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\dev4tech\\equipesranking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\equipesranking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -35,65 +39,73 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AdicionarEquipes.cs",
-              "DocumentMoniker": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Adm\\AdicionarEquipes.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\Adm\\AdicionarEquipes.cs",
-              "ToolTip": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Adm\\AdicionarEquipes.cs",
-              "RelativeToolTip": "Dev4Tech\\Adm\\AdicionarEquipes.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAADwvxoAAAAMAAAAAAAAAA==",
+              "Title": "Tarefas_Pendentes.cs",
+              "DocumentMoniker": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Tarefas_Pendentes.cs",
+              "RelativeDocumentMoniker": "Dev4Tech\\Tarefas_Pendentes.cs",
+              "ToolTip": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Tarefas_Pendentes.cs",
+              "RelativeToolTip": "Dev4Tech\\Tarefas_Pendentes.cs",
+              "ViewState": "AgIAAGEAAAAAAAAAAAAYwLwCAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T16:40:25.162Z",
+              "WhenOpened": "2025-11-03T18:26:59.956Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AdicionarTarefa.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Adm\\AdicionarTarefa.Designer.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\Adm\\AdicionarTarefa.Designer.cs",
-              "ToolTip": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Adm\\AdicionarTarefa.Designer.cs",
-              "RelativeToolTip": "Dev4Tech\\Adm\\AdicionarTarefa.Designer.cs",
-              "ViewState": "AgIAALABAAAAAAAAAAAIwNIBAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T16:34:39.177Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AdicionarTarefa.cs",
-              "DocumentMoniker": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Adm\\AdicionarTarefa.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\Adm\\AdicionarTarefa.cs",
-              "ToolTip": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Adm\\AdicionarTarefa.cs",
-              "RelativeToolTip": "Dev4Tech\\Adm\\AdicionarTarefa.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAswCAAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T16:16:58.811Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AdicionarTarefa.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Adm\\AdicionarTarefa.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\Adm\\AdicionarTarefa.cs",
-              "ToolTip": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Adm\\AdicionarTarefa.cs [Design]",
-              "RelativeToolTip": "Dev4Tech\\Adm\\AdicionarTarefa.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T16:14:40.813Z",
-              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "AdicionarEquipes.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Adm\\AdicionarEquipes.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\Adm\\AdicionarEquipes.cs",
-              "ToolTip": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Adm\\AdicionarEquipes.cs [Design]",
-              "RelativeToolTip": "Dev4Tech\\Adm\\AdicionarEquipes.cs [Design]",
+              "Title": "Tarefas_Pendentes.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Tarefas_Pendentes.cs",
+              "RelativeDocumentMoniker": "Dev4Tech\\Tarefas_Pendentes.cs",
+              "ToolTip": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Tarefas_Pendentes.cs [Design]",
+              "RelativeToolTip": "Dev4Tech\\Tarefas_Pendentes.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T16:14:36.407Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-11-03T18:26:56.626Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Equipes_Estatisticas.cs",
+              "DocumentMoniker": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Equipes_Estatisticas.cs",
+              "RelativeDocumentMoniker": "Dev4Tech\\Equipes_Estatisticas.cs",
+              "ToolTip": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Equipes_Estatisticas.cs",
+              "RelativeToolTip": "Dev4Tech\\Equipes_Estatisticas.cs",
+              "ViewState": "AgIAAJQAAAAAAAAAAADwv8oAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-03T14:23:24.809Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Equipes_Estatisticas.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Equipes_Estatisticas.cs",
+              "RelativeDocumentMoniker": "Dev4Tech\\Equipes_Estatisticas.cs",
+              "ToolTip": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Equipes_Estatisticas.cs [Design]",
+              "RelativeToolTip": "Dev4Tech\\Equipes_Estatisticas.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-03T17:40:16.137Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Avalia\u00E7\u00E3oTarefaAdmin.cs",
+              "DocumentMoniker": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Adm\\Avalia\u00E7\u00E3oTarefaAdmin.cs",
+              "RelativeDocumentMoniker": "Dev4Tech\\Adm\\Avalia\u00E7\u00E3oTarefaAdmin.cs",
+              "ToolTip": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Adm\\Avalia\u00E7\u00E3oTarefaAdmin.cs",
+              "RelativeToolTip": "Dev4Tech\\Adm\\Avalia\u00E7\u00E3oTarefaAdmin.cs",
+              "ViewState": "AgIAAHcCAAAAAAAAAAA7wIwCAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-03T17:39:50.846Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EquipesRanking.cs",
+              "DocumentMoniker": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\EquipesRanking.cs",
+              "RelativeDocumentMoniker": "Dev4Tech\\EquipesRanking.cs",
+              "ToolTip": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\EquipesRanking.cs",
+              "RelativeToolTip": "Dev4Tech\\EquipesRanking.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAiwBgAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-03T14:40:50.451Z"
             }
           ]
         }

@@ -1,4 +1,5 @@
 ﻿// AdicionarEquipes.cs
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -277,7 +278,6 @@ namespace Dev4Tech
                 }
                 equipe.setAdminId(adminId);
 
-                // CORREÇÃO: Usar a variável correta (fotoEquipe) em vez de fotoEquipeBytes
                 equipe.setFotoEquipe(fotoEquipe);
 
                 string idEmpresa = "0";
@@ -295,12 +295,50 @@ namespace Dev4Tech
                 }
 
                 MessageBox.Show("Equipe cadastrada com sucesso!");
+
+                // Atualiza categorias para refletir a nova categoria inserida (se for nova)
+                CarregarCategoriasEquipe();
+
                 LimparFormulario();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao cadastrar equipe: " + ex.Message);
             }
+        }
+
+        private void CarregarCategoriasEquipe()
+        {
+            string connectionString = "server=localhost;database=Dev4Tech;uid=root;pwd=";
+            string query = "SELECT DISTINCT nome_categoria FROM Categorias ORDER BY nome_categoria;";
+
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            cmbCategoriaEquipe.Items.Clear();
+                            while (reader.Read())
+                            {
+                                cmbCategoriaEquipe.Items.Add(reader["nome_categoria"].ToString());
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao carregar categorias: " + ex.Message);
+                }
+            }
+        }
+
+        private void Form_Load(object sender, EventArgs e)
+        {
+            CarregarCategoriasEquipe();
         }
 
         private void LimparFormulario()
@@ -456,6 +494,11 @@ namespace Dev4Tech
         }
 
         private void guna2TextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbCategoriaEquipe_SelectedIndexChanged_2(object sender, EventArgs e)
         {
 
         }
