@@ -194,23 +194,28 @@ namespace Dev4Tech
                 con.Open();
                 comandos.Parameters.AddWithValue("@id_equipe", idEquipe);
                 comandos.CommandText = @"SELECT 
-    f.funcionarioId, 
-    f.nome, 
-    COALESCE(pf.total_pontos, 0) AS pontos
-FROM equipes_membros em
-INNER JOIN funcionarios f ON f.funcionarioId = em.funcionarioId
+    f.FuncionarioId, 
+    f.Nome,
+    COALESCE(pontos_soma, 0) AS pontos
+FROM Equipes_Membros em
+INNER JOIN Funcionarios f ON em.FuncionarioId = f.FuncionarioId
 LEFT JOIN (
     SELECT 
         et.FuncionarioId, 
-        et.id_equipe, 
-        SUM(pf2.pontos) AS total_pontos
-    FROM entregastarefa et
-    JOIN pontuacaofuncionario pf2 ON et.FuncionarioId = pf2.id_funcionario
-    WHERE et.entregue = 1
-    GROUP BY et.FuncionarioId, et.id_equipe
-) pf ON pf.FuncionarioId = f.funcionarioId AND pf.id_equipe = em.id_equipe
+        SUM(CASE 
+            WHEN t.dificuldade = 'Fácil' THEN 10
+            WHEN t.dificuldade = 'Média' THEN 20
+            WHEN t.dificuldade = 'Difícil' THEN 30
+            ELSE 0
+        END) AS pontos_soma
+    FROM EntregasTarefa et
+    INNER JOIN Tarefas t ON et.id_tarefa = t.id_tarefa
+    WHERE et.id_equipe = @id_equipe AND et.entregue = 1
+    GROUP BY et.FuncionarioId
+) AS pontuacoes ON f.FuncionarioId = pontuacoes.FuncionarioId
 WHERE em.id_equipe = @id_equipe
-ORDER BY pontos DESC;";
+ORDER BY pontos DESC;
+";
 
                 using (MySqlDataReader resultado = comandos.ExecuteReader())
                 {
@@ -603,7 +608,7 @@ ORDER BY pontos DESC;";
             if (funcionario != null)
             {
                 // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
-                Tarefas_Pendentes t_equipe = new Tarefas_Pendentes();
+                Ranking_Equipes t_equipe = new Ranking_Equipes();
                 t_equipe.Show();
                 this.Hide();
             }
@@ -692,13 +697,17 @@ ORDER BY pontos DESC;";
             using (MySqlConnection con = new MySqlConnection(connectionString))
             {
                 con.Open();
-                string query = @"SELECT f.funcionarioId, COALESCE(SUM(pf.pontos), 0) AS pontos
-                        FROM funcionarios f
-                        LEFT JOIN pontuacaofuncionario pf ON f.funcionarioId = pf.id_funcionario
-                        WHERE f.funcionarioId IN (
-                            SELECT funcionarioId FROM equipes_membros WHERE id_equipe = @id_equipe
-                        )
-                        GROUP BY f.funcionarioId";
+                string query = @"
+    SELECT f.FuncionarioId, COALESCE(SUM(pf.pontos), 0) AS pontos
+    FROM Funcionarios f
+    LEFT JOIN PontuacaoFuncionario pf ON pf.id_funcionario = f.FuncionarioId
+    WHERE f.FuncionarioId IN (
+        SELECT FuncionarioId 
+        FROM EntregasTarefa 
+        WHERE id_equipe = @id_equipe AND entregue = 1
+    )
+    GROUP BY f.FuncionarioId
+";
 
                 MySqlCommand cmd = new MySqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@id_equipe", idEquipe);

@@ -145,7 +145,8 @@
             this.dtpDataDeEntrega.Name = "dtpDataDeEntrega";
             this.dtpDataDeEntrega.Size = new System.Drawing.Size(416, 36);
             this.dtpDataDeEntrega.TabIndex = 213;
-            this.dtpDataDeEntrega.Value = new System.DateTime(2025, 10, 31, 0, 0, 0, 0);
+            this.dtpDataDeEntrega.Value = new System.DateTime(2025, 11, 14, 0, 0, 0, 0);
+            this.dtpDataDeEntrega.ValueChanged += new System.EventHandler(this.dtpDataDeEntrega_ValueChanged);
             // 
             // label3
             // 

@@ -99,7 +99,7 @@ namespace Dev4Tech
         private void TimerAtualizaData_Tick(object sender, EventArgs e)
         {
             // Atualizar o DateTimePicker para a data e hora atual do sistema
-            dtpDataDeEntrega.Value = DateTime.Now;
+            dtpDataDeEntrega.Value = DateTime.Today;
         }
 
         // Evento para adicionar tarefa no banco para todas as equipes selecionadas
@@ -409,6 +409,11 @@ namespace Dev4Tech
             }
         }
         private void pictureBox9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtpDataDeEntrega_ValueChanged(object sender, EventArgs e)
         {
 
         }
