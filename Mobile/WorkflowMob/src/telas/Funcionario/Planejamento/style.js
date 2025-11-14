@@ -117,4 +117,232 @@ export const getStyles = (theme) => StyleSheet.create({
     fontFamily: fonts.text,
     padding:5,
   },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    padding: 20,
+  },
+  modalContent: {
+    backgroundColor: theme.background,
+    borderRadius: 15,
+    padding: 20,
+    width: '90%',
+    maxHeight: '80%',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  modalTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: theme.text,
+    marginBottom: 15,
+    textAlign: 'center',
+  },
+  
+  // Progress Bar Styles
+  progressContainer: {
+    marginBottom: 20,
+    padding: 10,
+    backgroundColor: theme.inputBackground,
+    borderRadius: 10,
+  },
+  progressBar: {
+    height: 12,
+    backgroundColor: '#e0e0e0',
+    borderRadius: 6,
+    overflow: 'hidden',
+    marginBottom: 5,
+  },
+  progressFill: {
+    height: '100%',
+    borderRadius: 6,
+    transition: 'width 0.3s ease',
+  },
+  progressText: {
+    fontSize: 12,
+    color: theme.text,
+    textAlign: 'center',
+  },
+  
+  // Pages List Styles
+  pagesList: {
+    maxHeight: 300,
+    marginBottom: 15,
+  },
+  pageItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: theme.inputBackground,
+    borderRadius: 8,
+    marginBottom: 5,
+    backgroundColor: theme.cardBackground,
+  },
+  pageItemRead: {
+    backgroundColor: 'rgba(76, 175, 80, 0.1)',
+    borderLeftWidth: 4,
+    borderLeftColor: '#4CAF50',
+  },
+  pageText: {
+    color: theme.text,
+    fontSize: 14,
+    fontWeight: '500',
+  },
+  pageStatus: {
+    color: '#4CAF50',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  
+  // Close Button
+  closeButton: {
+    backgroundColor: theme.primary,
+    padding: 15,
+    borderRadius: 8,
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  closeButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  
+  // PDF Modal Styles
+  pdfModalContent: {
+    backgroundColor: theme.background,
+    borderRadius: 15,
+    width: '95%',
+    height: '90%',
+    overflow: 'hidden',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  pdfHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: theme.inputBackground,
+    backgroundColor: theme.cardBackground,
+  },
+  pdfTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: theme.text,
+    flex: 1,
+  },
+  closePdfButton: {
+    padding: 8,
+    borderRadius: 20,
+    backgroundColor: '#ff4444',
+    width: 30,
+    height: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  closePdfButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 14,
+  },
+  pdfContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 10,
+  },
+  pdfWrapper: {
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  pdfPlaceholder: {
+    fontSize: 18,
+    color: theme.text,
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  pdfUrl: {
+    fontSize: 12,
+    color: theme.text3,
+    textAlign: 'center',
+    marginBottom: 30,
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loadingText: {
+    fontSize: 16,
+    color: theme.text,
+  },
+  
+  // Navigation Controls
+  navigationControls: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+    paddingHorizontal: 20,
+    position: 'absolute',
+    bottom: 20,
+  },
+  navButton: {
+    backgroundColor: theme.primary,
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+    borderRadius: 8,
+    minWidth: 120,
+    alignItems: 'center',
+  },
+  navButtonDisabled: {
+    backgroundColor: '#cccccc',
+  },
+  navButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 14,
+  },
+  
+  // PDF Footer
+  pdfFooter: {
+    padding: 15,
+    borderTopWidth: 1,
+    borderTopColor: theme.inputBackground,
+    backgroundColor: theme.cardBackground,
+  },
+  footerProgress: {
+    alignItems: 'center',
+  },
+  footerProgressText: {
+    fontSize: 14,
+    color: theme.text,
+    marginBottom: 5,
+  },
+  footerProgressBar: {
+    height: 6,
+    backgroundColor: '#e0e0e0',
+    borderRadius: 3,
+    width: '100%',
+    overflow: 'hidden',
+  },
+  footerProgressFill: {
+    height: '100%',
+    backgroundColor: '#4CAF50',
+    borderRadius: 3,
+    transition: 'width 0.3s ease',
+  },
 });

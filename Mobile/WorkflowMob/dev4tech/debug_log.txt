@@ -1,0 +1,21 @@
+2025-11-14 15:28:09 - Recebida requisição para processar PDF
+2025-11-14 15:28:09 - Dados recebidos - id_tarefa: 9, nome_arquivo: 195192ee-1d4b-4988-9941-2c00107fa020, total_paginas: 1
+2025-11-14 15:28:59 - Recebida requisição para processar PDF
+2025-11-14 15:28:59 - Dados recebidos - id_tarefa: 9, nome_arquivo: 195192ee-1d4b-4988-9941-2c00107fa020, total_paginas: 1
+2025-11-14 15:29:01 - Recebida requisição para processar PDF
+2025-11-14 15:29:01 - Dados recebidos - id_tarefa: 9, nome_arquivo: 195192ee-1d4b-4988-9941-2c00107fa020, total_paginas: 1
+2025-11-14 15:33:22 - Recebida requisição para processar PDF
+2025-11-14 15:33:22 - Dados recebidos - id_tarefa: 9, nome_arquivo: 195192ee-1d4b-4988-9941-2c00107fa020, total_paginas: 1
+2025-11-14 15:33:22 - Conexão com banco estabelecida
+2025-11-14 15:33:22 - Tarefa 9 encontrada
+2025-11-14 15:33:22 - Tabela TarefaPdfMetadata atualizada com sucesso
+2025-11-14 15:33:25 - Recebida requisição para processar PDF
+2025-11-14 15:33:25 - Dados recebidos - id_tarefa: 9, nome_arquivo: 195192ee-1d4b-4988-9941-2c00107fa020, total_paginas: 1
+2025-11-14 15:33:25 - Conexão com banco estabelecida
+2025-11-14 15:33:25 - Tarefa 9 encontrada
+2025-11-14 15:33:25 - Tabela TarefaPdfMetadata atualizada com sucesso
+2025-11-14 15:33:33 - Recebida requisição para processar PDF
+2025-11-14 15:33:33 - Dados recebidos - id_tarefa: 9, nome_arquivo: 195192ee-1d4b-4988-9941-2c00107fa020, total_paginas: 1
+2025-11-14 15:33:33 - Conexão com banco estabelecida
+2025-11-14 15:33:33 - Tarefa 9 encontrada
+2025-11-14 15:33:33 - Tabela TarefaPdfMetadata atualizada com sucesso

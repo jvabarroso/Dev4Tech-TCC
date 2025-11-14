@@ -19,7 +19,7 @@ $usuario = 'root';
 $senha = '';
 $host = 'localhost';
 $banco = 'Dev4Tech';
-$SERVER_IP = '10.239.0.125';
+$SERVER_IP = '10.239.0.124';
 
 try {
 	$pdo = new PDO("mysql:host=$host;dbname=$banco;charset=utf8mb4", $usuario, $senha, [
