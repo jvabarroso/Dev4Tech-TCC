@@ -25,20 +25,23 @@ namespace Dev4Tech
         {
             DataTable dt = new DataTable();
             string query = @"SELECT 
-                            e.id_equipe,
-                            e.nome_equipe,
-                            COALESCE(SUM(pf.pontos), 0) AS pontos
-                        FROM equipes e
-                        LEFT JOIN equipes_membros em ON em.id_equipe = e.id_equipe
-                        LEFT JOIN pontuacaofuncionario pf ON pf.id_funcionario = em.funcionarioId
-                        WHERE EXISTS (
-                            SELECT 1 FROM entregastarefa et
-                            WHERE et.FuncionarioId = em.FuncionarioId 
-                              AND et.id_equipe = em.id_equipe 
-                              AND et.entregue = 1
-                        )
-                        GROUP BY e.id_equipe, e.nome_equipe
-                        ORDER BY pontos DESC;
+    e.id_equipe,
+    e.nome_equipe,
+    COALESCE(SUM(
+        CASE t.dificuldade
+            WHEN 'Fácil' THEN 10
+            WHEN 'Média' THEN 20
+            WHEN 'Difícil' THEN 30
+            ELSE 0
+        END
+    ), 0) AS pontos
+FROM equipes e
+LEFT JOIN equipes_membros em ON em.id_equipe = e.id_equipe
+LEFT JOIN entregastarefa et ON et.FuncionarioId = em.FuncionarioId AND et.id_equipe = em.id_equipe AND et.entregue = 1
+LEFT JOIN tarefas t ON et.id_tarefa = t.id_tarefa
+GROUP BY e.id_equipe, e.nome_equipe
+ORDER BY pontos DESC;
+
                         ";
             using (var conn = new MySqlConnection(conexaoString))
             {

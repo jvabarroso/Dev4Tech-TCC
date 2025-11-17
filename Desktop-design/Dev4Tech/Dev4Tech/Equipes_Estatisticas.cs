@@ -78,7 +78,39 @@ namespace Dev4Tech
             if (dt.Rows.Count == 0) return;
             DataRow row = dt.Rows[0];
             string nomeEquipe = row["nome_equipe"].ToString();
-            int pontosEquipe = Convert.ToInt32(row["pontos"]);
+
+            // Calcular pontos da equipe somando os pontos dos membros
+            int pontosEquipe = 0;
+            string connectionString = "SERVER=localhost;DATABASE=dev4tech;UID=root;PASSWORD=";
+            using (MySqlConnection con = new MySqlConnection(connectionString))
+            {
+                con.Open();
+                string query = @"
+            SELECT COALESCE(SUM(
+                CASE t.dificuldade
+                    WHEN 'Fácil' THEN 10
+                    WHEN 'Média' THEN 20
+                    WHEN 'Difícil' THEN 30
+                    ELSE 0
+                END
+            ), 0) AS pontos
+            FROM Equipes_Membros em
+            JOIN Funcionarios f ON em.FuncionarioId = f.FuncionarioId
+            LEFT JOIN EntregasTarefa et ON et.FuncionarioId = f.FuncionarioId AND et.id_equipe = em.id_equipe AND et.entregue = 1
+            LEFT JOIN Tarefas t ON et.id_tarefa = t.id_tarefa
+            WHERE em.id_equipe = @id_equipe
+            GROUP BY f.FuncionarioId";
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@id_equipe", idEquipe);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        pontosEquipe += reader.GetInt32("pontos");
+                    }
+                }
+            }
+
             List<MembroEquipe> membros = dao.BuscarMembrosEquipe(idEquipe);
 
             int alturaPainel = 90;
@@ -111,7 +143,7 @@ namespace Dev4Tech
             else if (rank == 3)
                 picIcone.Image = Properties.Resources.icon_ranking_3;
             else
-                picIcone.Image = null; // or default icon
+                picIcone.Image = null;
 
             equipePanel.Controls.Add(picIcone);
 
@@ -170,6 +202,7 @@ namespace Dev4Tech
             panelEquipe.Controls.Add(equipePanel);
             panelEquipe.Refresh();
         }
+
 
 
         public void CarregarGrafico()
@@ -698,15 +731,25 @@ ORDER BY pontos DESC;
             {
                 con.Open();
                 string query = @"
-    SELECT f.FuncionarioId, COALESCE(SUM(pf.pontos), 0) AS pontos
-    FROM Funcionarios f
-    LEFT JOIN PontuacaoFuncionario pf ON pf.id_funcionario = f.FuncionarioId
-    WHERE f.FuncionarioId IN (
-        SELECT FuncionarioId 
-        FROM EntregasTarefa 
-        WHERE id_equipe = @id_equipe AND entregue = 1
-    )
-    GROUP BY f.FuncionarioId
+    SELECT
+    f.FuncionarioId,
+    f.Nome,
+    COALESCE(SUM(
+        CASE t.dificuldade
+            WHEN 'Fácil' THEN 10
+            WHEN 'Média' THEN 20
+            WHEN 'Difícil' THEN 30
+            ELSE 0
+        END
+    ), 0) AS pontos
+FROM Equipes_Membros em
+JOIN Funcionarios f ON em.FuncionarioId = f.FuncionarioId
+LEFT JOIN EntregasTarefa et ON et.FuncionarioId = f.FuncionarioId AND et.id_equipe = em.id_equipe AND et.entregue = 1
+LEFT JOIN Tarefas t ON et.id_tarefa = t.id_tarefa
+WHERE em.id_equipe = @id_equipe
+GROUP BY f.FuncionarioId, f.Nome
+ORDER BY pontos DESC;
+
 ";
 
                 MySqlCommand cmd = new MySqlCommand(query, con);
