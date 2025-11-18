@@ -294,11 +294,11 @@ ORDER BY pontos DESC;
                 comandos.CommandText = "SELECT t.dificuldade FROM tarefas t JOIN entregastarefa e ON t.id_tarefa = e.id_tarefa WHERE e.id_equipe = @id_equipe AND e.entregue = 1";
 
                 Dictionary<string, double> dificuldadePontos = new Dictionary<string, double>()
-    {
-        {"Fácil", 0},
-        {"Média", 0},
-        {"Difícil", 0}
-    };
+                    {
+                        {"Fácil", 0},
+                        {"Média", 0},
+                        {"Difícil", 0}
+                    };
 
                 using (MySqlDataReader resultado = comandos.ExecuteReader())
                 {
@@ -334,6 +334,7 @@ ORDER BY pontos DESC;
                         int pointIndex = series.Points.AddY(item.Value);
                         series.Points[pointIndex].LegendText = $"{item.Key} ({(item.Value / total * 100):N1}%)";
                         series.Points[pointIndex].Label = "";
+
                     }
                 }
             }

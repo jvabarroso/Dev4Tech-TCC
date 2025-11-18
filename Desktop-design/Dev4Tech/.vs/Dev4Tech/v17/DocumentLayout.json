@@ -1,33 +1,45 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\grr20\\OneDrive - Academico - Secretaria do Estado da Educa\u00E7\u00E3o de S\u00E3o Paulo\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\",
+  "WorkspaceRootPath": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\grr20\\OneDrive - Academico - Secretaria do Estado da Educa\u00E7\u00E3o de S\u00E3o Paulo\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\dev4tech\\equipesranking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\equipesranking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|c:\\users\\guilherme.robles\\desktop\\dev4tech-tcc\\desktop-design\\dev4tech\\dev4tech\\configuracoes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\configuracoes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\grr20\\OneDrive - Academico - Secretaria do Estado da Educa\u00E7\u00E3o de S\u00E3o Paulo\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\dev4tech\\ranking_equipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\ranking_equipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|c:\\users\\guilherme.robles\\desktop\\dev4tech-tcc\\desktop-design\\dev4tech\\dev4tech\\pontuacaousuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\pontuacaousuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\grr20\\OneDrive - Academico - Secretaria do Estado da Educa\u00E7\u00E3o de S\u00E3o Paulo\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\dev4tech\\ranking_equipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\ranking_equipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|c:\\users\\grr20\\onedrive - academico - secretaria do estado da educa\u00E7\u00E3o de s\u00E3o paulo\\\u00E1rea de trabalho\\dev4tech-tcc\\desktop-design\\dev4tech\\dev4tech\\equipes_estatisticas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|c:\\users\\guilherme.robles\\desktop\\dev4tech-tcc\\desktop-design\\dev4tech\\dev4tech\\equipes_estatisticas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\equipes_estatisticas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\grr20\\OneDrive - Academico - Secretaria do Estado da Educa\u00E7\u00E3o de S\u00E3o Paulo\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\dev4tech\\equipes_estatisticas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\dev4tech\\equipes_estatisticas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\equipes_estatisticas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\grr20\\OneDrive - Academico - Secretaria do Estado da Educa\u00E7\u00E3o de S\u00E3o Paulo\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\dev4tech\\planejamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|c:\\users\\guilherme.robles\\desktop\\dev4tech-tcc\\desktop-design\\dev4tech\\dev4tech\\configuracoes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\configuracoes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\dev4tech\\ranking_equipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\ranking_equipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\dev4tech\\equipesranking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\equipesranking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\dev4tech\\ranking_equipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\ranking_equipes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\dev4tech\\planejamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\planejamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\grr20\\OneDrive - Academico - Secretaria do Estado da Educa\u00E7\u00E3o de S\u00E3o Paulo\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\dev4tech\\tarefas_completadas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\dev4tech\\tarefas_completadas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{39150AFB-B8AE-4ADE-8DAF-E26FC7F87C50}|Dev4Tech\\Dev4Tech.csproj|solutionrelative:dev4tech\\tarefas_completadas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -38,65 +50,89 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "EquipesRanking.cs",
-              "DocumentMoniker": "C:\\Users\\grr20\\OneDrive - Academico - Secretaria do Estado da Educa\u00E7\u00E3o de S\u00E3o Paulo\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\EquipesRanking.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\EquipesRanking.cs",
-              "ToolTip": "C:\\Users\\grr20\\OneDrive - Academico - Secretaria do Estado da Educa\u00E7\u00E3o de S\u00E3o Paulo\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\EquipesRanking.cs",
-              "RelativeToolTip": "Dev4Tech\\EquipesRanking.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAAACsAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "pontuacaoUsuarios.cs",
+              "DocumentMoniker": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\pontuacaoUsuarios.cs",
+              "RelativeDocumentMoniker": "Dev4Tech\\pontuacaoUsuarios.cs",
+              "ToolTip": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\pontuacaoUsuarios.cs",
+              "RelativeToolTip": "Dev4Tech\\pontuacaoUsuarios.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAAswFAAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T16:02:00.046Z",
+              "WhenOpened": "2025-11-18T16:58:43.303Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "Configuracoes.cs",
+              "DocumentMoniker": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Configuracoes.cs",
+              "RelativeDocumentMoniker": "Dev4Tech\\Configuracoes.cs",
+              "ToolTip": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Configuracoes.cs",
+              "RelativeToolTip": "Dev4Tech\\Configuracoes.cs",
+              "ViewState": "AgIAAL0BAAAAAAAAAAAUwNABAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-18T14:44:07.433Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Configuracoes.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Configuracoes.cs",
+              "RelativeDocumentMoniker": "Dev4Tech\\Configuracoes.cs",
+              "ToolTip": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Configuracoes.cs [Design]",
+              "RelativeToolTip": "Dev4Tech\\Configuracoes.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-18T14:44:05.786Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "Ranking_Equipes.cs",
-              "DocumentMoniker": "C:\\Users\\grr20\\OneDrive - Academico - Secretaria do Estado da Educa\u00E7\u00E3o de S\u00E3o Paulo\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Ranking_Equipes.cs",
+              "DocumentMoniker": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Ranking_Equipes.cs",
               "RelativeDocumentMoniker": "Dev4Tech\\Ranking_Equipes.cs",
-              "ToolTip": "C:\\Users\\grr20\\OneDrive - Academico - Secretaria do Estado da Educa\u00E7\u00E3o de S\u00E3o Paulo\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Ranking_Equipes.cs",
+              "ToolTip": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Ranking_Equipes.cs",
               "RelativeToolTip": "Dev4Tech\\Ranking_Equipes.cs",
               "ViewState": "AgIAAJUBAAAAAAAAAAAcwLoBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T15:50:31.379Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-14T15:50:31.379Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "Planejamento.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\grr20\\OneDrive - Academico - Secretaria do Estado da Educa\u00E7\u00E3o de S\u00E3o Paulo\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Planejamento.cs",
+              "DocumentMoniker": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Planejamento.cs",
               "RelativeDocumentMoniker": "Dev4Tech\\Planejamento.cs",
               "ToolTip": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Planejamento.cs [Design]",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Planejamento.cs [Design]",
+              "RelativeToolTip": "Dev4Tech\\Planejamento.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-14T15:29:04.324Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "Equipes_Estatisticas.cs",
-              "DocumentMoniker": "C:\\Users\\grr20\\OneDrive - Academico - Secretaria do Estado da Educa\u00E7\u00E3o de S\u00E3o Paulo\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Equipes_Estatisticas.cs",
+              "DocumentMoniker": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Equipes_Estatisticas.cs",
               "RelativeDocumentMoniker": "Dev4Tech\\Equipes_Estatisticas.cs",
-              "ToolTip": "C:\\Users\\grr20\\OneDrive - Academico - Secretaria do Estado da Educa\u00E7\u00E3o de S\u00E3o Paulo\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Equipes_Estatisticas.cs",
+              "ToolTip": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Equipes_Estatisticas.cs",
               "RelativeToolTip": "Dev4Tech\\Equipes_Estatisticas.cs",
-              "ViewState": "AgIAAI0AAAAAAAAAAAAuwMwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAHMDAAAAAAAAAADwv3UDAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-14T14:58:42.781Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "Equipes_Estatisticas.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\grr20\\OneDrive - Academico - Secretaria do Estado da Educa\u00E7\u00E3o de S\u00E3o Paulo\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Equipes_Estatisticas.cs",
+              "DocumentMoniker": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Equipes_Estatisticas.cs",
               "RelativeDocumentMoniker": "Dev4Tech\\Equipes_Estatisticas.cs",
-              "ToolTip": "C:\\Users\\grr20\\OneDrive - Academico - Secretaria do Estado da Educa\u00E7\u00E3o de S\u00E3o Paulo\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Equipes_Estatisticas.cs [Design]",
+              "ToolTip": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Equipes_Estatisticas.cs [Design]",
               "RelativeToolTip": "Dev4Tech\\Equipes_Estatisticas.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-14T14:58:38.881Z",
@@ -104,24 +140,35 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Ranking_Equipes.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\grr20\\OneDrive - Academico - Secretaria do Estado da Educa\u00E7\u00E3o de S\u00E3o Paulo\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Ranking_Equipes.cs",
-              "RelativeDocumentMoniker": "Dev4Tech\\Ranking_Equipes.cs",
-              "ToolTip": "C:\\Users\\grr20\\OneDrive - Academico - Secretaria do Estado da Educa\u00E7\u00E3o de S\u00E3o Paulo\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Ranking_Equipes.cs [Design]",
-              "RelativeToolTip": "Dev4Tech\\Ranking_Equipes.cs [Design]",
+              "DocumentIndex": 6,
+              "Title": "EquipesRanking.cs",
+              "DocumentMoniker": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\EquipesRanking.cs",
+              "RelativeDocumentMoniker": "Dev4Tech\\EquipesRanking.cs",
+              "ToolTip": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\EquipesRanking.cs",
+              "RelativeToolTip": "Dev4Tech\\EquipesRanking.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAgwB0AAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T14:58:33.971Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-11-14T16:02:00.046Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
+              "Title": "Ranking_Equipes.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Ranking_Equipes.cs",
+              "RelativeDocumentMoniker": "Dev4Tech\\Ranking_Equipes.cs",
+              "ToolTip": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Ranking_Equipes.cs [Design]",
+              "RelativeToolTip": "Dev4Tech\\Ranking_Equipes.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-14T14:58:33.971Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "Tarefas_Completadas.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\grr20\\OneDrive - Academico - Secretaria do Estado da Educa\u00E7\u00E3o de S\u00E3o Paulo\\\u00C1rea de Trabalho\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Tarefas_Completadas.cs",
+              "DocumentMoniker": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Tarefas_Completadas.cs",
               "RelativeDocumentMoniker": "Dev4Tech\\Tarefas_Completadas.cs",
               "ToolTip": "C:\\Users\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Tarefas_Completadas.cs [Design]",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\guilherme.robles\\Desktop\\Dev4Tech-TCC\\Desktop-design\\Dev4Tech\\Dev4Tech\\Tarefas_Completadas.cs [Design]",
+              "RelativeToolTip": "Dev4Tech\\Tarefas_Completadas.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-14T15:29:29.816Z"
             }

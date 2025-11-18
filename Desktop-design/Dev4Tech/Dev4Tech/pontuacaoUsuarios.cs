@@ -41,11 +41,23 @@ namespace Dev4Tech
             }
         }
 
-        // Novo método para obter a pontuação atual do funcionário
         public int ObterPontos(int idFuncionario)
         {
             int pontos = 0;
-            string query = "SELECT pontos FROM PontuacaoFuncionario WHERE id_funcionario = @idFuncionario";
+            string query = @"
+        SELECT 
+            COALESCE(SUM(
+                CASE t.dificuldade
+                    WHEN 'Fácil' THEN 10
+                    WHEN 'Média' THEN 20
+                    WHEN 'Difícil' THEN 30
+                    ELSE 0
+                END
+            ), 0) AS pontos
+        FROM EntregasTarefa et
+        JOIN Tarefas t ON et.id_tarefa = t.id_tarefa
+        WHERE et.FuncionarioId = @idFuncionario AND et.entregue = 1;
+    ";
 
             if (abrirConexao())
             {
