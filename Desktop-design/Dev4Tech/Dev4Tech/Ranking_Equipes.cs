@@ -255,13 +255,13 @@ namespace Dev4Tech
 
             if (funcionario != null)
             {
-                Planejamento t_equipe = new Planejamento();
+                Tarefas_Pendentes t_equipe = new Tarefas_Pendentes();
                 t_equipe.Show();
                 this.Hide();
             }
             else if (admin != null)
             {
-                AdicionarTarefa t_equipeAdmin = new AdicionarTarefa();
+                AvaliaçãoTarefaAdmin t_equipeAdmin = new AvaliaçãoTarefaAdmin();
                 t_equipeAdmin.Show();
                 this.Hide();
             }
@@ -274,16 +274,22 @@ namespace Dev4Tech
         private void pictureBox6_Click(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;
-
+            var admin = Sessao.AdminLogado;
             if (funcionario != null)
             {
                 Configuracoes config = new Configuracoes(funcionario);
                 config.Show();
                 this.Hide();
             }
+            else if (admin != null)
+            {
+                Configuracoes config = new Configuracoes(admin);
+                config.Show();
+                this.Hide();
+            }
             else
             {
-                MessageBox.Show("Nenhum funcionário logado.");
+                MessageBox.Show("Nenhum usuário logado.");
             }
         }
 

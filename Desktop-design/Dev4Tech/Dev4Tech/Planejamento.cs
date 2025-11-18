@@ -777,10 +777,19 @@ namespace Dev4Tech
         {
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;
-            if (funcionario != null || admin != null)
+
+            if (funcionario != null)
             {
+
                 Ranking_Equipes t_equipe = new Ranking_Equipes();
                 t_equipe.Show();
+                this.Hide();
+            }
+            else if (admin != null)
+            {
+
+                Ranking_Equipes t_equipeAdmin = new Ranking_Equipes();
+                t_equipeAdmin.Show();
                 this.Hide();
             }
             else
@@ -935,16 +944,17 @@ namespace Dev4Tech
         {
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;
+
             if (funcionario != null)
             {
-                Tarefas_Pendentes t_tarefas = new Tarefas_Pendentes();
-                t_tarefas.Show();
+                Tarefas_Pendentes t_equipe = new Tarefas_Pendentes();
+                t_equipe.Show();
                 this.Hide();
             }
             else if (admin != null)
             {
-                AdicionarTarefa t_adicionar = new AdicionarTarefa();
-                t_adicionar.Show();
+                AvaliaçãoTarefaAdmin t_equipeAdmin = new AvaliaçãoTarefaAdmin();
+                t_equipeAdmin.Show();
                 this.Hide();
             }
             else

@@ -595,7 +595,7 @@ namespace Dev4Tech
             }
             else if (admin != null)
             {
-                AdicionarTarefa t_equipeAdmin = new AdicionarTarefa();
+                AvaliaçãoTarefaAdmin t_equipeAdmin = new AvaliaçãoTarefaAdmin();
                 t_equipeAdmin.Show();
                 this.Hide();
             }

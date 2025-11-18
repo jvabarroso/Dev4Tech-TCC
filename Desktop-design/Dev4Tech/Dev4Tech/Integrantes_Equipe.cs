@@ -480,14 +480,17 @@ namespace Dev4Tech
         {
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;
+
             if (funcionario != null)
             {
+
                 Ranking_Equipes t_equipe = new Ranking_Equipes();
                 t_equipe.Show();
                 this.Hide();
             }
             else if (admin != null)
             {
+
                 Ranking_Equipes t_equipeAdmin = new Ranking_Equipes();
                 t_equipeAdmin.Show();
                 this.Hide();
@@ -526,6 +529,7 @@ namespace Dev4Tech
         {
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;
+
             if (funcionario != null)
             {
                 Tarefas_Pendentes t_equipe = new Tarefas_Pendentes();
@@ -534,7 +538,7 @@ namespace Dev4Tech
             }
             else if (admin != null)
             {
-                AdicionarTarefa t_equipeAdmin = new AdicionarTarefa();
+                AvaliaçãoTarefaAdmin t_equipeAdmin = new AvaliaçãoTarefaAdmin();
                 t_equipeAdmin.Show();
                 this.Hide();
             }
