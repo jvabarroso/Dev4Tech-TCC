@@ -26,7 +26,35 @@ namespace Dev4Tech
             btnRelatarProblema.Click -= btnRelatarProblema_Click;
             btnRelatarProblema.Click += btnRelatarProblema_Click;
         }
+        private int ObterPontuacaoPorDificuldade(int idTarefa)
+        {
+            int pontuacao = 0;
+            using (var conn = new MySqlConnection("server=localhost;database=Dev4Tech;uid=root;pwd=;"))
+            {
+                conn.Open();
+                var cmd = new MySqlCommand("SELECT dificuldade FROM Tarefas WHERE id_tarefa = @id", conn);
+                cmd.Parameters.AddWithValue("@id", idTarefa);
+                var result = cmd.ExecuteScalar();
 
+                if (result != null && result != DBNull.Value)
+                {
+                    string dificuldade = result.ToString();
+                    switch (dificuldade)
+                    {
+                        case "Fácil":
+                            pontuacao = 10;
+                            break;
+                        case "Média":
+                            pontuacao = 20;
+                            break;
+                        case "Difícil":
+                            pontuacao = 30;
+                            break;
+                    }
+                }
+            }
+            return pontuacao;
+        }
         // Carrega detalhes da tarefa selecionada e atualiza a interface
         public void CarregarDetalhesTarefa(int idTarefa)
         {
@@ -45,10 +73,16 @@ namespace Dev4Tech
 
                 lblInstrucoes.Text = tarefa["instrucoes"].ToString();
 
+
+                int pontuacao = ObterPontuacaoPorDificuldade(idTarefa);
+                label13.Text = $"{pontuacao}";
+
+
                 if (tarefa.Table.Columns.Contains("dificuldade") && tarefa["dificuldade"] != DBNull.Value)
                 {
                     lblDificuldade.Text = "Dificuldade: " + tarefa["dificuldade"].ToString();
                     lblDificuldade.Visible = true;
+
                 }
                 else
                 {
@@ -320,9 +354,25 @@ namespace Dev4Tech
 
         private void lblTarefas_Click(object sender, EventArgs e)
         {
-            Tarefas_Pendentes trf_pendente = new Tarefas_Pendentes();
-            trf_pendente.Show();
-            this.Hide();
+            var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
+
+            if (funcionario != null)
+            {
+                Tarefas_Pendentes t_equipe = new Tarefas_Pendentes();
+                t_equipe.Show();
+                this.Hide();
+            }
+            else if (admin != null)
+            {
+                AvaliaçãoTarefaAdmin t_equipeAdmin = new AvaliaçãoTarefaAdmin();
+                t_equipeAdmin.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void lblGeral_Click(object sender, EventArgs e)
@@ -364,12 +414,48 @@ namespace Dev4Tech
 
         private void lblMembros_Click(object sender, EventArgs e)
         {
-            Integrantes_Equipe t_integrantes = new Integrantes_Equipe();
-            t_integrantes.Show();
-            this.Hide();
+            var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
+
+            if (funcionario != null)
+            {
+                Integrantes_Equipe t_equipe = new Integrantes_Equipe();
+                t_equipe.Show();
+                this.Hide();
+            }
+            else if (admin != null)
+            {
+                AdicionarEquipes t_equipeAdmin = new AdicionarEquipes();
+                t_equipeAdmin.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
-        private void lblRanking_Click(object sender, EventArgs e) { }
+        private void lblRanking_Click(object sender, EventArgs e) {
+            var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
+
+            if (funcionario != null)
+            {
+                Ranking_Equipes t_equipe = new Ranking_Equipes();
+                t_equipe.Show();
+                this.Hide();
+            }
+            else if (admin != null)
+            {
+                Ranking_Equipes t_equipeAdmin = new Ranking_Equipes();
+                t_equipeAdmin.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
         private void btnRelatarProblema_Click(object sender, EventArgs e)
         {
             if (idTarefaExibida == 0 || idEquipeAtual == 0)
@@ -408,7 +494,27 @@ namespace Dev4Tech
                 MessageBox.Show("Nenhum usuário logado.");
             }
         }
-        private void lblPlanejamento_Click(object sender, EventArgs e) { }
+        private void lblPlanejamento_Click(object sender, EventArgs e) {
+            var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
+
+            if (funcionario != null)
+            {
+                Planejamento t_equipe = new Planejamento();
+                t_equipe.Show();
+                this.Hide();
+            }
+            else if (admin != null)
+            {
+                Planejamento t_equipeAdmin = new Planejamento();
+                t_equipeAdmin.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
 
         private void pictureBox9_Click(object sender, EventArgs e)
         {
@@ -495,6 +601,10 @@ namespace Dev4Tech
             }
         }
 
+        private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
