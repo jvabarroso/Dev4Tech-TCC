@@ -659,14 +659,14 @@ namespace Dev4Tech
 
             if (funcionario != null)
             {
-                Planejamento pl = new Planejamento();
-                pl.Show();
+                Tarefas_Pendentes t_equipe = new Tarefas_Pendentes();
+                t_equipe.Show();
                 this.Hide();
             }
             else if (admin != null)
             {
-                Equipes_Estatisticas t_equipeEstat = new Equipes_Estatisticas();
-                t_equipeEstat.Show();
+                AvaliaçãoTarefaAdmin t_equipeAdmin = new AvaliaçãoTarefaAdmin();
+                t_equipeAdmin.Show();
                 this.Hide();
             }
             else

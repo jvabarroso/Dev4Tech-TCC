@@ -1,6 +1,8 @@
+DROP DATABASE dev4tech
 
 
 CREATE DATABASE Dev4Tech;
+
 USE Dev4Tech;
 -- Tabela de Empresas
 CREATE TABLE Empresas (
@@ -226,3 +228,17 @@ CREATE TABLE TarefaPdfMetadata (
     FOREIGN KEY (id_tarefa) REFERENCES Tarefas(id_tarefa),
     UNIQUE KEY unique_tarefa_metadata (id_tarefa)
 );
+
+
+SELECT 
+    COALESCE(SUM(
+        CASE t.dificuldade
+            WHEN 'Fácil' THEN 10
+            WHEN 'Média' THEN 20
+            WHEN 'Difícil' THEN 30
+            ELSE 0
+        END
+    ), 0) AS pontos
+FROM EntregasTarefa et
+JOIN Tarefas t ON et.id_tarefa = t.id_tarefa
+WHERE et.FuncionarioId = 2 AND et.entregue = 1;

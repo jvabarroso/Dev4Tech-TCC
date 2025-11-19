@@ -99,7 +99,7 @@ namespace Dev4Tech
         private void TimerAtualizaData_Tick(object sender, EventArgs e)
         {
             // Atualizar o DateTimePicker para a data e hora atual do sistema
-            dtpDataDeEntrega.Value = DateTime.Now;
+            dtpDataDeEntrega.Value = DateTime.Today;
         }
 
         // Evento para adicionar tarefa no banco para todas as equipes selecionadas
@@ -323,17 +323,33 @@ namespace Dev4Tech
 
         private void btnRanking_Click(object sender, EventArgs e)
         {
-            Ranking_Equipes rk = new Ranking_Equipes();
-            rk.Show();
-            this.Hide();
+            var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
+
+            if (funcionario != null)
+            {
+                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
+                Ranking_Equipes t_equipe = new Ranking_Equipes();
+                t_equipe.Show();
+                this.Hide();
+            }
+            else if (admin != null)
+            {
+                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
+                Ranking_Equipes t_equipeAdmin = new Ranking_Equipes();
+                t_equipeAdmin.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnConfig_Click(object sender, EventArgs e)
         {
-
-            var admin = Sessao.AdminLogado;
             var funcionario = Sessao.FuncionarioLogado;
-
+            var admin = Sessao.AdminLogado;
             if (funcionario != null)
             {
                 Configuracoes config = new Configuracoes(funcionario);
@@ -345,9 +361,10 @@ namespace Dev4Tech
                 Configuracoes config = new Configuracoes(admin);
                 config.Show();
                 this.Hide();
-                {
-                    MessageBox.Show("Nenhum funcionário logado.");
-                }
+            }
+            else
+            {
+                MessageBox.Show("Nenhum usuário logado.");
             }
         }
 
@@ -369,9 +386,25 @@ namespace Dev4Tech
 
         private void btnCalendar_Click(object sender, EventArgs e)
         {
-            AdicionarTarefa  t_completadas = new AdicionarTarefa();
-            t_completadas.Show();
-            this.Hide();
+            var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
+
+            if (funcionario != null)
+            {
+                Tarefas_Pendentes t_equipe = new Tarefas_Pendentes();
+                t_equipe.Show();
+                this.Hide();
+            }
+            else if (admin != null)
+            {
+                AvaliaçãoTarefaAdmin t_equipeAdmin = new AvaliaçãoTarefaAdmin();
+                t_equipeAdmin.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnAnexarArquivos_Click_1(object sender, EventArgs e)
@@ -409,6 +442,11 @@ namespace Dev4Tech
             }
         }
         private void pictureBox9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtpDataDeEntrega_ValueChanged(object sender, EventArgs e)
         {
 
         }

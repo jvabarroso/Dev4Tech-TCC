@@ -683,13 +683,13 @@ namespace Dev4Tech
 
             if (funcionario != null)
             {
-                Planejamento t_equipe = new Planejamento();
+                Tarefas_Pendentes t_equipe = new Tarefas_Pendentes();
                 t_equipe.Show();
                 this.Hide();
             }
             else if (admin != null)
             {
-                AdicionarTarefa t_equipeAdmin = new AdicionarTarefa();
+                AvaliaçãoTarefaAdmin t_equipeAdmin = new AvaliaçãoTarefaAdmin();
                 t_equipeAdmin.Show();
                 this.Hide();
             }

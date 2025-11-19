@@ -99,11 +99,11 @@
             // 
             this.lblMembros.AutoSize = true;
             this.lblMembros.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lblMembros.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMembros.Location = new System.Drawing.Point(100, 235);
+            this.lblMembros.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblMembros.Location = new System.Drawing.Point(100, 242);
             this.lblMembros.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMembros.Name = "lblMembros";
-            this.lblMembros.Size = new System.Drawing.Size(55, 13);
+            this.lblMembros.Size = new System.Drawing.Size(75, 20);
             this.lblMembros.TabIndex = 132;
             this.lblMembros.Text = "Membros";
             this.lblMembros.Click += new System.EventHandler(this.lblMembros_Click);
@@ -112,11 +112,11 @@
             // 
             this.lblRanking.AutoSize = true;
             this.lblRanking.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lblRanking.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRanking.Location = new System.Drawing.Point(100, 213);
+            this.lblRanking.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblRanking.Location = new System.Drawing.Point(100, 220);
             this.lblRanking.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblRanking.Name = "lblRanking";
-            this.lblRanking.Size = new System.Drawing.Size(50, 13);
+            this.lblRanking.Size = new System.Drawing.Size(68, 20);
             this.lblRanking.TabIndex = 131;
             this.lblRanking.Text = "Ranking";
             this.lblRanking.Click += new System.EventHandler(this.lblRanking_Click);
@@ -125,11 +125,11 @@
             // 
             this.lblTarefas.AutoSize = true;
             this.lblTarefas.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lblTarefas.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTarefas.Location = new System.Drawing.Point(100, 192);
+            this.lblTarefas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblTarefas.Location = new System.Drawing.Point(100, 196);
             this.lblTarefas.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTarefas.Name = "lblTarefas";
-            this.lblTarefas.Size = new System.Drawing.Size(42, 13);
+            this.lblTarefas.Size = new System.Drawing.Size(63, 20);
             this.lblTarefas.TabIndex = 130;
             this.lblTarefas.Text = "Tarefas";
             this.lblTarefas.Click += new System.EventHandler(this.lblTarefas_Click);
@@ -138,11 +138,11 @@
             // 
             this.lblGeral.AutoSize = true;
             this.lblGeral.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lblGeral.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGeral.Location = new System.Drawing.Point(100, 170);
+            this.lblGeral.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblGeral.Location = new System.Drawing.Point(101, 171);
             this.lblGeral.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblGeral.Name = "lblGeral";
-            this.lblGeral.Size = new System.Drawing.Size(34, 13);
+            this.lblGeral.Size = new System.Drawing.Size(48, 20);
             this.lblGeral.TabIndex = 129;
             this.lblGeral.Text = "Geral";
             this.lblGeral.Click += new System.EventHandler(this.lblGeral_Click);
@@ -153,9 +153,9 @@
             this.groupBox1.Controls.Add(this.pictureBox3);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(79, 72);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(198, 81);
             this.groupBox1.TabIndex = 128;
             this.groupBox1.TabStop = false;
@@ -175,7 +175,7 @@
             this.pictureBox3.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox3.Location = new System.Drawing.Point(4, 17);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(38, 41);
             this.pictureBox3.TabIndex = 39;
@@ -195,7 +195,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.pictureBox2.Location = new System.Drawing.Point(52, -3);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(306, 688);
             this.pictureBox2.TabIndex = 127;
@@ -297,11 +297,11 @@
             // 
             this.lblPlanejamento.AutoSize = true;
             this.lblPlanejamento.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lblPlanejamento.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlanejamento.Location = new System.Drawing.Point(99, 255);
+            this.lblPlanejamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlanejamento.Location = new System.Drawing.Point(100, 267);
             this.lblPlanejamento.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPlanejamento.Name = "lblPlanejamento";
-            this.lblPlanejamento.Size = new System.Drawing.Size(93, 17);
+            this.lblPlanejamento.Size = new System.Drawing.Size(118, 20);
             this.lblPlanejamento.TabIndex = 133;
             this.lblPlanejamento.Text = "Planejamento";
             this.lblPlanejamento.Click += new System.EventHandler(this.lblPlanejamento_Click);
@@ -310,7 +310,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(423, 157);
+            this.label2.Location = new System.Drawing.Point(412, 23);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(262, 50);
             this.label2.TabIndex = 134;
@@ -320,7 +320,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(431, 210);
+            this.label5.Location = new System.Drawing.Point(418, 86);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(230, 17);
             this.label5.TabIndex = 135;
@@ -371,23 +371,23 @@
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Location = new System.Drawing.Point(422, 267);
+            this.pictureBox4.Location = new System.Drawing.Point(359, 201);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(241, 364);
+            this.pictureBox4.Size = new System.Drawing.Size(238, 364);
             this.pictureBox4.TabIndex = 139;
             this.pictureBox4.TabStop = false;
             // 
             // pictureBox12
             // 
-            this.pictureBox12.Location = new System.Drawing.Point(661, 267);
+            this.pictureBox12.Location = new System.Drawing.Point(599, 201);
             this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Size = new System.Drawing.Size(241, 364);
+            this.pictureBox12.Size = new System.Drawing.Size(239, 364);
             this.pictureBox12.TabIndex = 140;
             this.pictureBox12.TabStop = false;
             // 
             // pictureBox13
             // 
-            this.pictureBox13.Location = new System.Drawing.Point(902, 267);
+            this.pictureBox13.Location = new System.Drawing.Point(838, 201);
             this.pictureBox13.Name = "pictureBox13";
             this.pictureBox13.Size = new System.Drawing.Size(241, 364);
             this.pictureBox13.TabIndex = 141;
@@ -486,11 +486,10 @@
             // 
             // flpPDFs
             // 
-            this.flpPDFs.AutoScroll = true;
             this.flpPDFs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.flpPDFs.Location = new System.Drawing.Point(714, 30);
+            this.flpPDFs.Location = new System.Drawing.Point(1086, 123);
             this.flpPDFs.Name = "flpPDFs";
-            this.flpPDFs.Size = new System.Drawing.Size(455, 218);
+            this.flpPDFs.Size = new System.Drawing.Size(328, 466);
             this.flpPDFs.TabIndex = 151;
             this.flpPDFs.Paint += new System.Windows.Forms.PaintEventHandler(this.flpPDFs_Paint);
             // 
@@ -511,7 +510,7 @@
             this.panelKBS.Controls.Add(this.btnCompletadas);
             this.panelKBS.Controls.Add(this.btnEmAtraso);
             this.panelKBS.Controls.Add(this.btnPendentes);
-            this.panelKBS.Location = new System.Drawing.Point(423, 268);
+            this.panelKBS.Location = new System.Drawing.Point(359, 130);
             this.panelKBS.Name = "panelKBS";
             this.panelKBS.Size = new System.Drawing.Size(719, 362);
             this.panelKBS.TabIndex = 153;
@@ -521,7 +520,7 @@
             // 
             this.flpF.AutoScroll = true;
             this.flpF.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.flpF.Location = new System.Drawing.Point(238, 43);
+            this.flpF.Location = new System.Drawing.Point(238, 41);
             this.flpF.Name = "flpF";
             this.flpF.Size = new System.Drawing.Size(241, 362);
             this.flpF.TabIndex = 154;
@@ -531,9 +530,9 @@
             // 
             this.flpC.AutoScroll = true;
             this.flpC.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.flpC.Location = new System.Drawing.Point(479, 43);
+            this.flpC.Location = new System.Drawing.Point(479, 41);
             this.flpC.Name = "flpC";
-            this.flpC.Size = new System.Drawing.Size(241, 362);
+            this.flpC.Size = new System.Drawing.Size(237, 362);
             this.flpC.TabIndex = 153;
             this.flpC.Paint += new System.Windows.Forms.PaintEventHandler(this.flpC_Paint);
             // 
@@ -541,7 +540,7 @@
             // 
             this.flpP.AutoScroll = true;
             this.flpP.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.flpP.Location = new System.Drawing.Point(0, 43);
+            this.flpP.Location = new System.Drawing.Point(0, 41);
             this.flpP.Name = "flpP";
             this.flpP.Size = new System.Drawing.Size(241, 362);
             this.flpP.TabIndex = 152;
@@ -551,9 +550,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1424, 861);
-            this.Controls.Add(this.panelKBS);
             this.Controls.Add(this.flpPDFs);
+            this.Controls.Add(this.panelKBS);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblPlanejamento);

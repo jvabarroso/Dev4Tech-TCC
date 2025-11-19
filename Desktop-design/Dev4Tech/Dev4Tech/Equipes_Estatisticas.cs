@@ -78,7 +78,39 @@ namespace Dev4Tech
             if (dt.Rows.Count == 0) return;
             DataRow row = dt.Rows[0];
             string nomeEquipe = row["nome_equipe"].ToString();
-            int pontosEquipe = Convert.ToInt32(row["pontos"]);
+
+            // Calcular pontos da equipe somando os pontos dos membros
+            int pontosEquipe = 0;
+            string connectionString = "SERVER=localhost;DATABASE=dev4tech;UID=root;PASSWORD=";
+            using (MySqlConnection con = new MySqlConnection(connectionString))
+            {
+                con.Open();
+                string query = @"
+            SELECT COALESCE(SUM(
+                CASE t.dificuldade
+                    WHEN 'Fácil' THEN 10
+                    WHEN 'Média' THEN 20
+                    WHEN 'Difícil' THEN 30
+                    ELSE 0
+                END
+            ), 0) AS pontos
+            FROM Equipes_Membros em
+            JOIN Funcionarios f ON em.FuncionarioId = f.FuncionarioId
+            LEFT JOIN EntregasTarefa et ON et.FuncionarioId = f.FuncionarioId AND et.id_equipe = em.id_equipe AND et.entregue = 1
+            LEFT JOIN Tarefas t ON et.id_tarefa = t.id_tarefa
+            WHERE em.id_equipe = @id_equipe
+            GROUP BY f.FuncionarioId";
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@id_equipe", idEquipe);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        pontosEquipe += reader.GetInt32("pontos");
+                    }
+                }
+            }
+
             List<MembroEquipe> membros = dao.BuscarMembrosEquipe(idEquipe);
 
             int alturaPainel = 90;
@@ -111,7 +143,7 @@ namespace Dev4Tech
             else if (rank == 3)
                 picIcone.Image = Properties.Resources.icon_ranking_3;
             else
-                picIcone.Image = null; // or default icon
+                picIcone.Image = null;
 
             equipePanel.Controls.Add(picIcone);
 
@@ -172,6 +204,7 @@ namespace Dev4Tech
         }
 
 
+
         public void CarregarGrafico()
         {
             chartPontuacao.Series.Clear();
@@ -194,23 +227,28 @@ namespace Dev4Tech
                 con.Open();
                 comandos.Parameters.AddWithValue("@id_equipe", idEquipe);
                 comandos.CommandText = @"SELECT 
-    f.funcionarioId, 
-    f.nome, 
-    COALESCE(pf.total_pontos, 0) AS pontos
-FROM equipes_membros em
-INNER JOIN funcionarios f ON f.funcionarioId = em.funcionarioId
+    f.FuncionarioId, 
+    f.Nome,
+    COALESCE(pontos_soma, 0) AS pontos
+FROM Equipes_Membros em
+INNER JOIN Funcionarios f ON em.FuncionarioId = f.FuncionarioId
 LEFT JOIN (
     SELECT 
         et.FuncionarioId, 
-        et.id_equipe, 
-        SUM(pf2.pontos) AS total_pontos
-    FROM entregastarefa et
-    JOIN pontuacaofuncionario pf2 ON et.FuncionarioId = pf2.id_funcionario
-    WHERE et.entregue = 1
-    GROUP BY et.FuncionarioId, et.id_equipe
-) pf ON pf.FuncionarioId = f.funcionarioId AND pf.id_equipe = em.id_equipe
+        SUM(CASE 
+            WHEN t.dificuldade = 'Fácil' THEN 10
+            WHEN t.dificuldade = 'Média' THEN 20
+            WHEN t.dificuldade = 'Difícil' THEN 30
+            ELSE 0
+        END) AS pontos_soma
+    FROM EntregasTarefa et
+    INNER JOIN Tarefas t ON et.id_tarefa = t.id_tarefa
+    WHERE et.id_equipe = @id_equipe AND et.entregue = 1
+    GROUP BY et.FuncionarioId
+) AS pontuacoes ON f.FuncionarioId = pontuacoes.FuncionarioId
 WHERE em.id_equipe = @id_equipe
-ORDER BY pontos DESC;";
+ORDER BY pontos DESC;
+";
 
                 using (MySqlDataReader resultado = comandos.ExecuteReader())
                 {
@@ -256,11 +294,11 @@ ORDER BY pontos DESC;";
                 comandos.CommandText = "SELECT t.dificuldade FROM tarefas t JOIN entregastarefa e ON t.id_tarefa = e.id_tarefa WHERE e.id_equipe = @id_equipe AND e.entregue = 1";
 
                 Dictionary<string, double> dificuldadePontos = new Dictionary<string, double>()
-    {
-        {"Fácil", 0},
-        {"Média", 0},
-        {"Difícil", 0}
-    };
+                    {
+                        {"Fácil", 0},
+                        {"Média", 0},
+                        {"Difícil", 0}
+                    };
 
                 using (MySqlDataReader resultado = comandos.ExecuteReader())
                 {
@@ -296,6 +334,7 @@ ORDER BY pontos DESC;";
                         int pointIndex = series.Points.AddY(item.Value);
                         series.Points[pointIndex].LegendText = $"{item.Key} ({(item.Value / total * 100):N1}%)";
                         series.Points[pointIndex].Label = "";
+
                     }
                 }
             }
@@ -402,14 +441,14 @@ ORDER BY pontos DESC;";
 
             if (funcionario != null)
             {
-                // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
+               
                 Ranking_Equipes t_equipe = new Ranking_Equipes();
                 t_equipe.Show();
                 this.Hide();
             }
             else if (admin != null)
             {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
+    
                 Ranking_Equipes t_equipeAdmin = new Ranking_Equipes();
                 t_equipeAdmin.Show();
                 this.Hide();
@@ -456,9 +495,25 @@ ORDER BY pontos DESC;";
 
         private void pictureBox9_Click(object sender, EventArgs e)
         {
-            Tarefas_Pendentes t_pendente = new Tarefas_Pendentes();
-            t_pendente.Show();
-            this.Hide();
+            var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
+
+            if (funcionario != null)
+            {
+                Tarefas_Pendentes t_equipe = new Tarefas_Pendentes();
+                t_equipe.Show();
+                this.Hide();
+            }
+            else if (admin != null)
+            {
+                AvaliaçãoTarefaAdmin t_equipeAdmin = new AvaliaçãoTarefaAdmin();
+                t_equipeAdmin.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void lblGeral_Click(object sender, EventArgs e)
@@ -571,8 +626,9 @@ ORDER BY pontos DESC;";
                 }
                 else if (admin != null)
                 {
+
                     MessageBox.Show("Tela voltada para tarefas dos funcionários.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Equipes_Estatisticas t_equipeAdmin = new Equipes_Estatisticas();
+                    PesquisaEquipes t_equipeAdmin = new PesquisaEquipes();
                     t_equipeAdmin.Show();
                     this.Hide();
                 }
@@ -584,7 +640,7 @@ ORDER BY pontos DESC;";
             else
             {
                 MessageBox.Show("Nenhuma equipe selecionada.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Ranking_Equipes rank = new Ranking_Equipes();
+                PesquisaEquipes rank = new PesquisaEquipes();
                 rank.Show();
                 this.Hide();
             }
@@ -603,7 +659,7 @@ ORDER BY pontos DESC;";
             if (funcionario != null)
             {
                 // Se for funcionário, abre a tela de adicionar tarefa (exemplo)
-                Tarefas_Pendentes t_equipe = new Tarefas_Pendentes();
+                Ranking_Equipes t_equipe = new Ranking_Equipes();
                 t_equipe.Show();
                 this.Hide();
             }
@@ -692,13 +748,27 @@ ORDER BY pontos DESC;";
             using (MySqlConnection con = new MySqlConnection(connectionString))
             {
                 con.Open();
-                string query = @"SELECT f.funcionarioId, COALESCE(SUM(pf.pontos), 0) AS pontos
-                        FROM funcionarios f
-                        LEFT JOIN pontuacaofuncionario pf ON f.funcionarioId = pf.id_funcionario
-                        WHERE f.funcionarioId IN (
-                            SELECT funcionarioId FROM equipes_membros WHERE id_equipe = @id_equipe
-                        )
-                        GROUP BY f.funcionarioId";
+                string query = @"
+    SELECT
+    f.FuncionarioId,
+    f.Nome,
+    COALESCE(SUM(
+        CASE t.dificuldade
+            WHEN 'Fácil' THEN 10
+            WHEN 'Média' THEN 20
+            WHEN 'Difícil' THEN 30
+            ELSE 0
+        END
+    ), 0) AS pontos
+FROM Equipes_Membros em
+JOIN Funcionarios f ON em.FuncionarioId = f.FuncionarioId
+LEFT JOIN EntregasTarefa et ON et.FuncionarioId = f.FuncionarioId AND et.id_equipe = em.id_equipe AND et.entregue = 1
+LEFT JOIN Tarefas t ON et.id_tarefa = t.id_tarefa
+WHERE em.id_equipe = @id_equipe
+GROUP BY f.FuncionarioId, f.Nome
+ORDER BY pontos DESC;
+
+";
 
                 MySqlCommand cmd = new MySqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@id_equipe", idEquipe);
