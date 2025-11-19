@@ -345,4 +345,62 @@ export const getStyles = (theme) => StyleSheet.create({
     borderRadius: 3,
     transition: 'width 0.3s ease',
   },
+  pageItemContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 5,
+  },
+  downloadButton: {
+    backgroundColor: '#4CAF50',
+    padding: 10,
+    borderRadius: 5,
+    marginLeft: 10,
+  },
+  downloadButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 14,
+  },
+  pageItemWithActions: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  padding: 15,
+  borderBottomWidth: 1,
+  borderBottomColor: theme.inputBackground,
+  backgroundColor: theme.cardBackground,
+  borderRadius: 8,
+  marginBottom: 8,
+  },
+  pageInfo: {
+    flex: 1,
+  },
+  pageNumber: {
+    color: theme.text,
+    fontSize: 16,
+    fontWeight: '500',
+  },
+  pageStatus: {
+    color: '#4CAF50',
+    fontSize: 12,
+    marginTop: 4,
+  },
+  pageActions: {
+    flexDirection: 'row',
+    gap: 8,
+  },
+  actionButton: {
+    backgroundColor: '#1A5CFF',
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 6,
+  },
+  downloadAction: {
+    backgroundColor: '#4CAF50',
+  },
+  actionButtonText: {
+    color: '#fff',
+    fontSize: 12,
+    fontWeight: '500',
+  },
 });

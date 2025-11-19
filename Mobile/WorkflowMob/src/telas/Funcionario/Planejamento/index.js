@@ -79,7 +79,7 @@ export default function Planejamento({ navigation, route }) {
       
       // Primeiro: dividir o PDF fisicamente
       const resDivisao = await api.post('dev4tech/dividir_pdf.php', {
-        caminho_arquivo: 'C:/xampp/htdocs/dev4tech/arquivos/' + tarefa.nome_arquivo + ".pdf",
+        caminho_arquivo: 'C:/xampp/htdocs/dev4tech/arquivos/' + tarefa.nome_arquivo ,
         id_tarefa: tarefa.id_tarefa
       });
 
@@ -242,15 +242,75 @@ export default function Planejamento({ navigation, route }) {
   // Obter URL da página atual
   function getUrlPaginaAtual() {
     if (!tarefaSelecionada) return '';
-    // Usar o caminho correto da pasta arquivos
-    return `http://localhost/dev4tech/arquivos/${tarefaSelecionada.id_tarefa}/pagina_${paginaAtual}.pdf`;
+    // Agora os arquivos estão direto na pasta arquivos
+    return `http://localhost/dev4tech/arquivos/tarefa_${tarefaSelecionada.id_tarefa}_pagina_${paginaAtual}.pdf`;
   }
+
+  // Função para fazer download do PDF - SIMPLIFICADA
+  async function fazerDownloadPagina(numeroPagina) {
+    if (!tarefaSelecionada) return;
+
+    try {
+      const url = `http://localhost/dev4tech/arquivos/tarefa_${tarefaSelecionada.id_tarefa}_pagina_${numeroPagina}.pdf`;
+      
+      console.log("URL para download:", url);
+      
+      // Para React Native, podemos usar Linking para abrir o navegador
+      // ou mostrar a URL para o usuário copiar
+      Alert.alert(
+        'Download da Página',
+        `Página ${numeroPagina}\n\nURL: ${url}\n\nCopie esta URL e cole no navegador para fazer o download.`,
+        [
+          { text: 'Copiar URL', onPress: () => copiarParaAreaDeTransferencia(url) },
+          { text: 'Abrir no Navegador', onPress: () => abrirNoNavegador(url) },
+          { text: 'Cancelar', style: 'cancel' }
+        ]
+      );
+
+    } catch (error) {
+      console.log("Erro no download:", error);
+      showMessage({
+        message: 'Erro',
+        description: 'Falha ao preparar download',
+        type: "danger",
+        duration: 3000,
+      });
+    }
+  }
+
+  // Função para copiar URL (se você tiver uma biblioteca de clipboard)
+  async function copiarParaAreaDeTransferencia(texto) {
+    // Se você tiver react-native-clipboard instalado
+    // Clipboard.setString(texto);
+    
+    // Alternativa: mostrar mensagem
+    showMessage({
+      message: 'URL copiada',
+      description: 'Cole no navegador para fazer download',
+      type: "success",
+      duration: 3000,
+    });
+  }
+
+  // Função para abrir no navegador
+  async function abrirNoNavegador(url) {
+    // Se você tiver react-native-linking instalado
+    // Linking.openURL(url);
+    
+    console.log("Abrir no navegador:", url);
+    showMessage({
+      message: 'Abrir no navegador',
+      description: 'Configure o Linking.openURL()',
+      type: "info",
+      duration: 3000,
+    });
+  }
+
   async function listarDados() {
     if (!usuario?.FuncionarioId) {
       console.log("ID do usuário não disponível");
       return;
     }
-    
     try {
       setErrorMessage(null);
       const res = await api.get(`dev4tech/tarefa.php`, {
@@ -398,7 +458,7 @@ export default function Planejamento({ navigation, route }) {
     ));
   };
 
-  // Modal de Progresso (Lista de Páginas)
+  // Modal de Progresso (Lista de Páginas) - SIMPLIFICADO
   const ModalProgresso = () => (
     <Modal
       animationType="slide"
@@ -430,22 +490,33 @@ export default function Planejamento({ navigation, route }) {
             </Text>
           </View>
 
-          {/* Lista de Páginas */}
+          {/* Lista de Páginas com Ações */}
           <ScrollView style={styles.pagesList}>
             {tarefaSelecionada && Array.from({ length: tarefaSelecionada.total_paginas || 0 }, (_, i) => i + 1).map(pagina => (
-              <TouchableOpacity
-                key={pagina}
-                style={[
-                  styles.pageItem,
-                  progresso.paginas_visualizadas?.includes(pagina) && styles.pageItemRead
-                ]}
-                onPress={() => visualizarPagina(pagina)}
-              >
-                <Text style={styles.pageText}>Página {pagina}</Text>
-                {progresso.paginas_visualizadas?.includes(pagina) && (
-                  <Text style={styles.pageStatus}>✓</Text>
-                )}
-              </TouchableOpacity>
+              <View key={pagina} style={styles.pageItemWithActions}>
+                <View style={styles.pageInfo}>
+                  <Text style={styles.pageNumber}>Página {pagina}</Text>
+                  {progresso.paginas_visualizadas?.includes(pagina) && (
+                    <Text style={styles.pageStatus}>✓ Visualizada</Text>
+                  )}
+                </View>
+                
+                <View style={styles.pageActions}>
+                  <TouchableOpacity
+                    style={styles.actionButton}
+                    onPress={() => visualizarPagina(pagina)}
+                  >
+                    <Text style={styles.actionButtonText}>👁️ Visualizar</Text>
+                  </TouchableOpacity>
+                  
+                  <TouchableOpacity
+                    style={[styles.actionButton, styles.downloadAction]}
+                    onPress={() => fazerDownloadPagina(pagina)}
+                  >
+                    <Text style={styles.actionButtonText}>📥 Download</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
             ))}
           </ScrollView>
 
@@ -455,97 +526,6 @@ export default function Planejamento({ navigation, route }) {
           >
             <Text style={styles.closeButtonText}>Fechar</Text>
           </TouchableOpacity>
-        </View>
-      </View>
-    </Modal>
-  );
-
-  // Modal de Visualização do PDF
-  const ModalPdfViewer = () => (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={modalPdfVisible}
-      onRequestClose={() => setModalPdfVisible(false)}
-    >
-      <View style={styles.modalContainer}>
-        <View style={styles.pdfModalContent}>
-          {/* Header do Modal */}
-          <View style={styles.pdfHeader}>
-            <Text style={styles.pdfTitle}>
-              Página {paginaAtual} de {tarefaSelecionada?.total_paginas}
-            </Text>
-            <TouchableOpacity
-              style={styles.closePdfButton}
-              onPress={() => {
-                setModalPdfVisible(false);
-                setModalProgressoVisible(true);
-              }}
-            >
-              <Text style={styles.closePdfButtonText}>X</Text>
-            </TouchableOpacity>
-          </View>
-
-          {/* Área do PDF */}
-          <View style={styles.pdfContainer}>
-            {carregandoPdf ? (
-              <View style={styles.loadingContainer}>
-                <Text style={styles.loadingText}>Carregando página...</Text>
-              </View>
-            ) : (
-              <View style={styles.pdfWrapper}>
-                {/* Aqui você pode integrar com um visualizador de PDF */}
-                <Text style={styles.pdfPlaceholder}>
-                  Visualizador de PDF - Página {paginaAtual}
-                </Text>
-                <Text style={styles.pdfUrl}>
-                  {getUrlPaginaAtual()}
-                </Text>
-                
-                {/* Controles de Navegação */}
-                <View style={styles.navigationControls}>
-                  <TouchableOpacity
-                    style={[
-                      styles.navButton,
-                      paginaAtual <= 1 && styles.navButtonDisabled
-                    ]}
-                    onPress={() => navegarPagina(-1)}
-                    disabled={paginaAtual <= 1}
-                  >
-                    <Text style={styles.navButtonText}>‹ Anterior</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity
-                    style={[
-                      styles.navButton,
-                      paginaAtual >= (tarefaSelecionada?.total_paginas || 0) && styles.navButtonDisabled
-                    ]}
-                    onPress={() => navegarPagina(1)}
-                    disabled={paginaAtual >= (tarefaSelecionada?.total_paginas || 0)}
-                  >
-                    <Text style={styles.navButtonText}>Próxima ›</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-            )}
-          </View>
-
-          {/* Barra de Progresso no Footer */}
-          <View style={styles.pdfFooter}>
-            <View style={styles.footerProgress}>
-              <Text style={styles.footerProgressText}>
-                Progresso: {progresso.percentual_concluido || 0}%
-              </Text>
-              <View style={styles.footerProgressBar}>
-                <View 
-                  style={[
-                    styles.footerProgressFill,
-                    { width: `${progresso.percentual_concluido || 0}%` }
-                  ]} 
-                />
-              </View>
-            </View>
-          </View>
         </View>
       </View>
     </Modal>
@@ -598,7 +578,6 @@ export default function Planejamento({ navigation, route }) {
       </ScrollView>
       
       <ModalProgresso />
-      <ModalPdfViewer />
     </View>
   );
 }

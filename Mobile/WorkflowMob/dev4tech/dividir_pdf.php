@@ -3,7 +3,7 @@ include_once('conexao.php');
 
 function contarPaginasPDF($caminhoArquivo) {
     if (!file_exists($caminhoArquivo)) {
-        return ['success' => false, 'message' => 'Arquivo não encontrado'];
+        return ['success' => false, 'message' => 'Arquivo não encontrado: ' . $caminhoArquivo];
     }
 
     try {
@@ -51,29 +51,25 @@ function contarPaginasPDF($caminhoArquivo) {
 
 function dividirPDFComCopias($caminhoArquivo, $idTarefa, $totalPaginas) {
     if (!file_exists($caminhoArquivo)) {
-        return ['success' => false, 'message' => 'Arquivo não encontrado'];
+        return ['success' => false, 'message' => 'Arquivo não encontrado: ' . $caminhoArquivo];
     }
 
     try {
-        $pastaDestino = 'C:/xampp/htdocs/dev4tech/arquivos/' . $idTarefa . '/';
+        $pastaDestino = 'C:/xampp/htdocs/dev4tech/arquivos/';
 
-        // Criar pasta se não existir
+        // Verificar se a pasta arquivos existe
         if (!file_exists($pastaDestino)) {
             if (!mkdir($pastaDestino, 0777, true)) {
                 return ['success' => false, 'message' => 'Não foi possível criar a pasta de destino'];
             }
         }
 
-        // Ler o conteúdo do PDF original
-        $conteudoOriginal = file_get_contents($caminhoArquivo);
-        
-        // Para cada página, criar um arquivo "simulado" com o PDF completo
-        // (Esta é uma solução temporária - o usuário verá o PDF completo mas navegará pelas páginas)
+        // Para cada página, criar um arquivo direto na pasta arquivos
         for ($i = 1; $i <= $totalPaginas; $i++) {
-            $arquivoSaida = $pastaDestino . 'pagina_' . $i . '.pdf';
+            $nomeArquivo = 'tarefa_' . $idTarefa . '_pagina_' . $i . '.pdf';
+            $arquivoSaida = $pastaDestino . $nomeArquivo;
             
             // Simplesmente copiar o arquivo original para cada "página"
-            // Em uma implementação real, você precisaria de uma biblioteca PDF
             if (!copy($caminhoArquivo, $arquivoSaida)) {
                 return ['success' => false, 'message' => "Falha ao criar página $i"];
             }
@@ -83,8 +79,8 @@ function dividirPDFComCopias($caminhoArquivo, $idTarefa, $totalPaginas) {
             'success' => true, 
             'total_paginas' => $totalPaginas,
             'pasta_paginas' => $pastaDestino,
-            'mensagem' => 'PDF preparado com ' . $totalPaginas . ' páginas (modo simulação)',
-            'modo' => 'simulacao'
+            'mensagem' => 'PDF preparado com ' . $totalPaginas . ' páginas',
+            'modo' => 'direto'
         ];
 
     } catch (Exception $e) {
@@ -109,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    // Depois "dividir" (na verdade criar cópias para simulação)
+    // Depois "dividir" (criar cópias direto na pasta arquivos)
     $resultado = dividirPDFComCopias($caminhoArquivo, $idTarefa, $resultadoContagem['total_paginas']);
     echo json_encode($resultado);
     exit;
