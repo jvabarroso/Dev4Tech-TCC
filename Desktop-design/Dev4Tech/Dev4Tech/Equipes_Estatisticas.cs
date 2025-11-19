@@ -626,8 +626,9 @@ ORDER BY pontos DESC;
                 }
                 else if (admin != null)
                 {
+
                     MessageBox.Show("Tela voltada para tarefas dos funcionários.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Equipes_Estatisticas t_equipeAdmin = new Equipes_Estatisticas();
+                    PesquisaEquipes t_equipeAdmin = new PesquisaEquipes();
                     t_equipeAdmin.Show();
                     this.Hide();
                 }
@@ -639,7 +640,7 @@ ORDER BY pontos DESC;
             else
             {
                 MessageBox.Show("Nenhuma equipe selecionada.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Ranking_Equipes rank = new Ranking_Equipes();
+                PesquisaEquipes rank = new PesquisaEquipes();
                 rank.Show();
                 this.Hide();
             }

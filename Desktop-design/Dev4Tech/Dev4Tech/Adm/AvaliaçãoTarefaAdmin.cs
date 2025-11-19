@@ -665,9 +665,39 @@ namespace Dev4Tech
 
         private void lblPlanejamento_Click(object sender, EventArgs e)
         {
-            Planejamento t_pendentes = new Planejamento();
-            t_pendentes.Show();
-            this.Hide();
+            var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
+
+            if (Sessao.IdEquipeSelecionada != 0)
+            {
+                int idEquipe = Sessao.IdEquipeSelecionada;
+
+                if (funcionario != null)
+                {
+                    Planejamento t_equipe = new Planejamento();
+                    t_equipe.Show();
+                    this.Hide();
+                }
+                else if (admin != null)
+                {
+
+                    MessageBox.Show("Tela voltada para tarefas dos funcionários.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    PesquisaEquipes t_equipeAdmin = new PesquisaEquipes();
+                    t_equipeAdmin.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nenhuma equipe selecionada.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                PesquisaEquipes rank = new PesquisaEquipes();
+                rank.Show();
+                this.Hide();
+            }
         }
 
         private void lblMembros_Click(object sender, EventArgs e)

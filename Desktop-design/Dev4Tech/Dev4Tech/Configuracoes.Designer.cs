@@ -41,8 +41,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
             this.txtTelefone = new System.Windows.Forms.MaskedTextBox();
             this.txtCPF = new System.Windows.Forms.MaskedTextBox();
             this.panelDados = new System.Windows.Forms.Panel();
@@ -222,31 +220,11 @@
             this.label4.TabIndex = 140;
             this.label4.Text = "Equipes:";
             // 
-            // textBox5
-            // 
-            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(292, 898);
-            this.textBox5.Multiline = true;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(685, 37);
-            this.textBox5.TabIndex = 147;
-            this.textBox5.Text = "Analista de Desenvolvimento";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(293, 877);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(53, 18);
-            this.label16.TabIndex = 148;
-            this.label16.Text = "Cargo:";
-            // 
             // txtTelefone
             // 
             this.txtTelefone.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTelefone.Location = new System.Drawing.Point(227, 611);
-            this.txtTelefone.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtTelefone.Margin = new System.Windows.Forms.Padding(2);
             this.txtTelefone.Mask = "(99) 00000-0000";
             this.txtTelefone.Name = "txtTelefone";
             this.txtTelefone.Size = new System.Drawing.Size(420, 29);
@@ -257,7 +235,7 @@
             // 
             this.txtCPF.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCPF.Location = new System.Drawing.Point(226, 672);
-            this.txtCPF.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCPF.Margin = new System.Windows.Forms.Padding(2);
             this.txtCPF.Mask = "000.000.000-00";
             this.txtCPF.Name = "txtCPF";
             this.txtCPF.ReadOnly = true;
@@ -286,7 +264,7 @@
             this.panelDados.Controls.Add(this.label7);
             this.panelDados.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelDados.Location = new System.Drawing.Point(370, -3);
-            this.panelDados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelDados.Margin = new System.Windows.Forms.Padding(2);
             this.panelDados.Name = "panelDados";
             this.panelDados.Size = new System.Drawing.Size(895, 783);
             this.panelDados.TabIndex = 153;
@@ -380,7 +358,7 @@
             // pnlEquipe
             // 
             this.pnlEquipe.Location = new System.Drawing.Point(2, 2);
-            this.pnlEquipe.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlEquipe.Margin = new System.Windows.Forms.Padding(2);
             this.pnlEquipe.Name = "pnlEquipe";
             this.pnlEquipe.Size = new System.Drawing.Size(674, 112);
             this.pnlEquipe.TabIndex = 141;
@@ -400,7 +378,7 @@
             // 
             this.txtDataNascFunc.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDataNascFunc.Location = new System.Drawing.Point(224, 470);
-            this.txtDataNascFunc.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtDataNascFunc.Margin = new System.Windows.Forms.Padding(2);
             this.txtDataNascFunc.Mask = "00/00/0000";
             this.txtDataNascFunc.Name = "txtDataNascFunc";
             this.txtDataNascFunc.ReadOnly = true;
@@ -529,11 +507,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1230, 781);
+            this.ClientSize = new System.Drawing.Size(1424, 780);
             this.Controls.Add(btnTrocarFotoPerfil);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.label16);
-            this.Controls.Add(this.textBox5);
             this.Controls.Add(this.lblCargo);
             this.Controls.Add(this.lblNomeFunc);
             this.Controls.Add(this.IconFuncionario);
@@ -588,8 +564,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Label label16;
         private System.Windows.Forms.MaskedTextBox txtTelefone;
         private System.Windows.Forms.MaskedTextBox txtCPF;
         private System.Windows.Forms.Panel panelDados;
