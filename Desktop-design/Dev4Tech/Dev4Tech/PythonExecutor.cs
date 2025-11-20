@@ -30,17 +30,13 @@ public class PythonExecutor
         }
     }
 
-    // ✅ MÉTODO PRINCIPAL: Sempre gera hash para o nome do arquivo
+    // ✅ MÉTODO PRINCIPAL: Agora apenas obtém o file_id sem salvar novamente
     public async Task<string> ConverterParaPdfAsync(string caminhoArquivo, string pastaDestino)
     {
         try
         {
             if (!File.Exists(caminhoArquivo))
                 throw new FileNotFoundException("Arquivo não encontrado.", caminhoArquivo);
-
-            // ✅ SEMPRE gerar hash aleatório para o nome do arquivo PDF
-            string hashArquivo = Guid.NewGuid().ToString() + ".pdf";
-            string caminhoDestinoFinal = Path.Combine(pastaDestino, hashArquivo);
 
             using (var form = new MultipartFormDataContent())
             {
@@ -73,24 +69,12 @@ public class PythonExecutor
                     if (string.IsNullOrEmpty(fileId))
                         throw new Exception("ID do arquivo não retornado pela API");
 
-                    // Fazer download do arquivo convertido
-                    string downloadUrl = $"http://127.0.0.1:8000/download/{fileId}";
-                    Console.WriteLine($"Fazendo download do arquivo: {downloadUrl}");
+                    // ✅ AGORA: Apenas retornar o file_id para uso no banco de dados
+                    // A API já salvou o arquivo com nome {fileId}.pdf na pasta BASE_DIR
+                    // Não precisamos salvar novamente!
 
-                    var downloadResponse = await client.GetAsync(downloadUrl);
-
-                    if (!downloadResponse.IsSuccessStatusCode)
-                        throw new Exception($"Erro ao baixar arquivo convertido: {downloadResponse.StatusCode}");
-
-                    // ✅ Salvar com o nome do hash
-                    using (var pdfStream = await downloadResponse.Content.ReadAsStreamAsync())
-                    using (var fileDestino = new FileStream(caminhoDestinoFinal, FileMode.Create, FileAccess.Write))
-                    {
-                        await pdfStream.CopyToAsync(fileDestino);
-                    }
-
-                    Console.WriteLine($"Arquivo salvo com hash: {hashArquivo}");
-                    return hashArquivo; // ✅ Retorna apenas o nome com hash
+                    Console.WriteLine($"Arquivo processado pela API com ID: {fileId}");
+                    return fileId + ".pdf"; // ✅ Retorna o nome do arquivo que a API já salvou
                 }
             }
         }

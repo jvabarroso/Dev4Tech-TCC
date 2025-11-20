@@ -145,12 +145,12 @@ namespace Dev4Tech
                 DateTime dataEntrega = dtpDataDeEntrega.Value.Date;
                 int idEmpresa = Convert.ToInt32(Sessao.AdminLogado.getIdEmpresa());
 
-                // Define a pasta de arquivos correta
+                // Define a pasta de arquivos correta (a mesma que a API Python usa)
                 string pastaArquivos = @"C:\xampp\htdocs\dev4tech\arquivos";
                 if (!Directory.Exists(pastaArquivos))
                     Directory.CreateDirectory(pastaArquivos);
 
-                string nomeArquivoComHash = ""; // ✅ Variável para armazenar o nome com hash
+                string nomeArquivoComHash = ""; // ✅ Variável para armazenar o nome do arquivo
 
                 // Processar arquivo anexado
                 if (!string.IsNullOrEmpty(caminhoArquivoSelecionado))
@@ -183,18 +183,19 @@ namespace Dev4Tech
                         }
                         else
                         {
-                            // ✅ O PythonExecutor agora SEMPRE gera hash automaticamente
-                            nomeArquivoComHash = await conversorPython.ConverterParaPdfAsync(caminhoArquivoSelecionado, pastaArquivos);
+                            // ✅ O PythonExecutor agora retorna apenas o file_id, sem salvar duplicado
+                            string fileId = await conversorPython.ConverterParaPdfAsync(caminhoArquivoSelecionado, pastaArquivos);
 
-                            if (!string.IsNullOrEmpty(nomeArquivoComHash))
+                            if (!string.IsNullOrEmpty(fileId))
                             {
-                                lblArquivosSelecionado.Text = "✅ Arquivo convertido!";
+                                nomeArquivoComHash = fileId; // Já vem com a extensão .pdf
+                                lblArquivosSelecionado.Text = "✅ Arquivo processado!";
                                 lblArquivosSelecionado.ForeColor = Color.Green;
                                 await Task.Delay(500);
                             }
                             else
                             {
-                                throw new Exception("Conversão retornou nome vazio");
+                                throw new Exception("Conversão retornou ID vazio");
                             }
                         }
                     }
@@ -225,7 +226,7 @@ namespace Dev4Tech
                     instrucoes,
                     dificuldade,
                     dataEntrega,
-                    nomeArquivoComHash, // ✅ Agora com hash no nome do arquivo
+                    nomeArquivoComHash, // ✅ Agora contém apenas o file_id que a API já salvou
                     idEmpresa
                 );
 
@@ -236,7 +237,7 @@ namespace Dev4Tech
 
                     if (!string.IsNullOrEmpty(nomeArquivoComHash))
                     {
-                        mensagemSucesso += $"\n\nArquivo salvo com nome seguro: {nomeArquivoComHash}";
+                        mensagemSucesso += $"\n\nArquivo salvo com nome: {nomeArquivoComHash}";
                     }
 
                     MessageBox.Show(mensagemSucesso, "Sucesso",
@@ -244,7 +245,11 @@ namespace Dev4Tech
 
                     LimparFormulario();
                 }
-                
+                else
+                {
+                    MessageBox.Show("Erro ao adicionar tarefas.", "Erro",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {
@@ -262,8 +267,6 @@ namespace Dev4Tech
             }
         }
 
-
-        // Limpa campos após inserção
         private void LimparFormulario()
         {
             try
@@ -272,7 +275,7 @@ namespace Dev4Tech
                 txtNomeTarefa.Clear();
                 equipesSelecionadas.Clear();
                 cmbAddEquipe.SelectedIndex = -1;
-                cmbDificuldade.SelectedIndex = 1;
+                cmbDificuldade.SelectedIndex = 1; // Seleciona "Média" por padrão
                 dtpDataDeEntrega.Value = DateTime.Today;
                 caminhoArquivoSelecionado = "";
                 lblArquivosSelecionado.Text = "Nenhum arquivo selecionado";
@@ -289,7 +292,6 @@ namespace Dev4Tech
             }
         }
 
-        // Eventos mantidos
         private void btnHome_Click(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;
@@ -405,11 +407,6 @@ namespace Dev4Tech
             {
                 MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        }
-
-        private void btnAnexarArquivos_Click_1(object sender, EventArgs e)
-        {
-
         }
 
         private void btnAddEquipe_Click(object sender, EventArgs e)

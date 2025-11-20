@@ -1,4 +1,5 @@
-funcionariosCREATE DATABASE Dev4Tech;
+CREATE DATABASE Dev4Tech;
+
 USE Dev4Tech;
 -- Tabela de Empresas
 CREATE TABLE Empresas (
