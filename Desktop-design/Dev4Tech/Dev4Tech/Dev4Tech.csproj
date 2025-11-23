@@ -329,6 +329,7 @@
     <Compile Include="Relato_Problema.Designer.cs">
       <DependentUpon>Relato_Problema.cs</DependentUpon>
     </Compile>
+    <Compile Include="SenhasHash.cs" />
     <Compile Include="Sessao.cs" />
     <Compile Include="Tarefas_Atrasadas.cs">
       <SubType>Form</SubType>

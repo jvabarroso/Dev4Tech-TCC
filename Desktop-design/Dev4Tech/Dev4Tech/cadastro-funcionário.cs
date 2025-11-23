@@ -11,14 +11,15 @@ namespace Dev4Tech
 
         private readonly string idAdminLogado;
         private readonly string idEmpresaAdmin;
+
         private void cadastro_funcionário_Load(object sender, EventArgs e)
         {
             CarregarCargos();
         }
+
         public cadastro_funcionário(string adminId, string empresaId)
         {
             InitializeComponent();
-
             this.idAdminLogado = adminId;
             this.idEmpresaAdmin = empresaId;
 
@@ -44,12 +45,27 @@ namespace Dev4Tech
                     return;
                 }
 
+                if (txtCadFuncSenha.Text != txtCadFuncConfirmSenha.Text)
+                {
+                    MessageBox.Show("As senhas não coincidem!");
+                    return;
+                }
+
+                if (txtCadFuncSenha.Text.Length < 6)
+                {
+                    MessageBox.Show("A senha deve ter pelo menos 6 caracteres.");
+                    return;
+                }
+
                 emCadFunc.setNome(txtCadFuncNome.Text);
                 emCadFunc.setCargo(cbBoxCargoFunc.Text);
                 emCadFunc.setCPF(txtCadFuncCPF.Text);
                 emCadFunc.setEmail(txtCadFuncEmail.Text);
                 emCadFunc.setTelefone(txtCadFuncTelefone.Text);
-                emCadFunc.setSenha(txtCadFuncSenha.Text);
+
+                // ⭐⭐ APLICA HASH NA SENHA DO FUNCIONÁRIO ⭐⭐
+                string senhaHash = SenhasHash.HashPassword(txtCadFuncSenha.Text);
+                emCadFunc.setSenha(senhaHash);
 
                 DateTime dataNascimento;
                 if (!DateTime.TryParse(txtCadFuncDataNasc.Text, out dataNascimento))
@@ -70,7 +86,6 @@ namespace Dev4Tech
 
                 MessageBox.Show("Funcionário cadastrado com sucesso!");
 
-                // Opcional: limpar senha confirm para evitar confusão
                 txtCadFuncSenha.Text = "";
                 txtCadFuncConfirmSenha.Text = "";
 
@@ -83,6 +98,7 @@ namespace Dev4Tech
                 MessageBox.Show("Erro ao cadastrar funcionário: " + ex.Message);
             }
         }
+
         private void CarregarCargos()
         {
             string connectionString = "server=localhost;database=Dev4Tech;uid=root;pwd=";
@@ -95,8 +111,7 @@ namespace Dev4Tech
                     conn.Open();
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@idEmpresa", idEmpresaAdmin); // idEmpresaAdmin conforme seu contexto
-
+                        cmd.Parameters.AddWithValue("@idEmpresa", idEmpresaAdmin);
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             cbBoxCargoFunc.Items.Clear();
@@ -113,6 +128,7 @@ namespace Dev4Tech
                 }
             }
         }
+
         private void btnVoltar_Click(object sender, EventArgs e)
         {
             HomeAdm homeAdm = new HomeAdm();
@@ -120,92 +136,42 @@ namespace Dev4Tech
             this.Hide();
         }
 
-        private void txtCadFuncNome_Click(object sender, EventArgs e)
-        {
-            txtCadFuncNome.Text = "";
-        }
+        private void txtCadFuncNome_Click(object sender, EventArgs e) { txtCadFuncNome.Text = ""; }
+        private void txtCadFuncEmail_Click(object sender, EventArgs e) { txtCadFuncEmail.Text = ""; }
+        private void txtCadFuncSenha_Click(object sender, EventArgs e) { txtCadFuncSenha.Text = ""; }
+        private void txtCadFuncConfirmSenha_Click(object sender, EventArgs e) { txtCadFuncConfirmSenha.Text = ""; }
 
-        private void txtCadFuncEmail_Click(object sender, EventArgs e)
-        {
-            txtCadFuncEmail.Text = "";
-        }
+        private void cbBoxCargo_SelectedIndexChanged(object sender, EventArgs e) { }
 
-        private void txtCadFuncSenha_Click(object sender, EventArgs e)
-        {
-            txtCadFuncSenha.Text = "";
-        }
-
-        private void txtCadFuncConfirmSenha_Click(object sender, EventArgs e)
-        {
-            txtCadFuncConfirmSenha.Text = "";
-        }
-
-        private void cbBoxCargo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void txtCadFuncNome_TextChanged(object sender, EventArgs e)
-        {
-            // Pode deixar vazio ou implementar lógica adicional
-        }
-
-        private void txtCadFuncEmail_TextChanged(object sender, EventArgs e)
-        {
-            // Pode deixar vazio ou implementar lógica adicional
-        }
-
-        private void txtCadFuncSenha_TextChanged(object sender, EventArgs e)
-        {
-            // Pode deixar vazio ou implementar lógica adicional
-        }
-
-        private void txtCadFuncConfirmSenha_TextChanged(object sender, EventArgs e)
-        {
-            // Pode deixar vazio ou implementar lógica adicional
-        }
-
-        private void txtEndereço_TextChanged(object sender, EventArgs e)
-        {
-            // Pode deixar vazio ou implementar lógica adicional
-        }
-
-        private void txtEndereçoNum_TextChanged(object sender, EventArgs e)
-        {
-            // Pode deixar vazio ou implementar lógica adicional
-        }
+        private void txtCadFuncNome_TextChanged(object sender, EventArgs e) { }
+        private void txtCadFuncEmail_TextChanged(object sender, EventArgs e) { }
+        private void txtCadFuncSenha_TextChanged(object sender, EventArgs e) { }
+        private void txtCadFuncConfirmSenha_TextChanged(object sender, EventArgs e) { }
+        private void txtEndereço_TextChanged(object sender, EventArgs e) { }
+        private void txtEndereçoNum_TextChanged(object sender, EventArgs e) { }
 
         private void txtCadFuncNome_Enter(object sender, EventArgs e)
         {
             if (txtCadFuncNome.Text == "Digite o Nome do Funcionário")
-            {
                 txtCadFuncNome.Text = "";
-            }
         }
 
         private void txtCadFuncNome_Leave(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtCadFuncNome.Text))
-            {
                 txtCadFuncNome.Text = "Digite o Nome do Funcionário";
-            }
         }
 
         private void txtCadFuncEmail_Enter(object sender, EventArgs e)
         {
             if (txtCadFuncEmail.Text == "Digite o Email do Funcionário")
-            {
                 txtCadFuncEmail.Text = "";
-            }
         }
 
         private void txtCadFuncEmail_Leave(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtCadFuncEmail.Text))
-            {
                 txtCadFuncEmail.Text = "Digite o Email do Funcionário";
-            }
         }
 
         private void txtCadFuncSenha_Enter(object sender, EventArgs e)
@@ -247,17 +213,13 @@ namespace Dev4Tech
         private void txtEndereçoNum_Enter(object sender, EventArgs e)
         {
             if (txtEndereçoNum.Text == "Nº")
-            {
                 txtEndereçoNum.Text = "";
-            }
         }
 
         private void txtEndereçoNum_Leave(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtEndereçoNum.Text))
-            {
                 txtEndereçoNum.Text = "Nº";
-            }
         }
 
         private bool senhaVisivel = false;
@@ -265,21 +227,14 @@ namespace Dev4Tech
         {
             senhaVisivel = !senhaVisivel;
             txtCadFuncSenha.UseSystemPasswordChar = !senhaVisivel;
-            btnMostrarSenha.Text = senhaVisivel ? "" : "";
         }
 
         private void btnMostrarSenha2_Click(object sender, EventArgs e)
         {
             senhaVisivel = !senhaVisivel;
             txtCadFuncConfirmSenha.UseSystemPasswordChar = !senhaVisivel;
-            btnMostrarSenha.Text = senhaVisivel ? "" : "";
         }
 
-        private void cbBoxCargoFunc_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+        private void cbBoxCargoFunc_SelectedIndexChanged(object sender, EventArgs e) { }
     }
 }
-
-

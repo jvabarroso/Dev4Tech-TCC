@@ -8,17 +8,10 @@ namespace Dev4Tech
     {
         private string FuncionarioId, Email, Senha, Telefone, CPF, Cargo, Nome, endereco, numero, id_empresa, AdminId;
         private DateTime data_cadFunc, DataNascimento;
-
         private byte[] fotoPerfilBytes;
 
-        public void setFotoPerfilBytes(byte[] bytes)
-        {
-            fotoPerfilBytes = bytes;
-        }
-        public byte[] getFotoPerfilBytes()
-        {
-            return fotoPerfilBytes;
-        }
+        public void setFotoPerfilBytes(byte[] bytes) { fotoPerfilBytes = bytes; }
+        public byte[] getFotoPerfilBytes() { return fotoPerfilBytes; }
 
         public void setData_cadFunc(DateTime data_cadFunc) { this.data_cadFunc = data_cadFunc; }
         public void setNumero(string numero) { this.numero = numero; }
@@ -48,12 +41,11 @@ namespace Dev4Tech
         public string getIdEmpresa() { return this.id_empresa; }
         public string getAdminId() { return this.AdminId; }
 
-        public empresaCadFuncionario ObterFuncionarioPorEmailSenha(string email, string senha)
+        public empresaCadFuncionario ObterFuncionarioPorEmail(string email)
         {
             empresaCadFuncionario func = null;
-
             string query = @"SELECT FuncionarioId, Nome, Cargo, CPF, DataNascimento, Telefone, Email, endereco, numero, data_cadFunc, Senha, id_empresa, AdminId 
-                             FROM Funcionarios WHERE Email = @Email AND Senha = @Senha LIMIT 1";
+                             FROM Funcionarios WHERE Email = @Email LIMIT 1";
 
             if (!this.abrirConexao())
                 throw new Exception("Falha ao abrir conexão com o banco de dados.");
@@ -63,7 +55,6 @@ namespace Dev4Tech
                 using (MySqlCommand cmd = new MySqlCommand(query, conectar))
                 {
                     cmd.Parameters.AddWithValue("@Email", email?.Trim() ?? "");
-                    cmd.Parameters.AddWithValue("@Senha", senha); // Se usar hash, ajuste aqui
 
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -94,6 +85,11 @@ namespace Dev4Tech
             return func;
         }
 
+        public bool VerificarSenha(string senhaDigitada, string senhaHashArmazenada)
+        {
+            return SenhasHash.VerificarSenha(senhaDigitada, senhaHashArmazenada);
+        }
+
         public void inserir()
         {
             string query = @"INSERT INTO Funcionarios
@@ -113,7 +109,7 @@ namespace Dev4Tech
                     cmd.Parameters.AddWithValue("@DataNascimento", getDataNascimento());
                     cmd.Parameters.AddWithValue("@Telefone", getTelefone()?.Trim());
                     cmd.Parameters.AddWithValue("@Email", getEmail()?.Trim());
-                    cmd.Parameters.AddWithValue("@Senha", getSenha());
+                    cmd.Parameters.AddWithValue("@Senha", getSenha()); // Já vem com hash
                     cmd.Parameters.AddWithValue("@DataCadFunc", getData_cadFunc());
                     cmd.Parameters.AddWithValue("@Endereco", getEndereco()?.Trim());
                     cmd.Parameters.AddWithValue("@Numero", getNumero()?.Trim());

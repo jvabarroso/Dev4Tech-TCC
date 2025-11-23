@@ -35,11 +35,11 @@ namespace Dev4Tech
         public string getSenha() { return this.Senha; }
         public string getIdEmpresa() { return this.id_empresa; }
 
-        public empresaCadAdmin ObterAdminPorEmailSenha(string email, string senha)
+        public empresaCadAdmin ObterAdminPorEmail(string email)
         {
             empresaCadAdmin admin = null;
             string query = @"SELECT AdminId, Nome, Cargo, CPF, DataNascimento, Telefone, Email, endereco, num, data_cadAdmin, Senha, id_empresa 
-                             FROM Administradores WHERE Email = @Email AND Senha = @Senha LIMIT 1";
+                             FROM Administradores WHERE Email = @Email LIMIT 1";
 
             if (this.abrirConexao())
             {
@@ -48,7 +48,6 @@ namespace Dev4Tech
                     using (MySqlCommand cmd = new MySqlCommand(query, conectar))
                     {
                         cmd.Parameters.AddWithValue("@Email", email.Trim());
-                        cmd.Parameters.AddWithValue("@Senha", senha); // se usar hash, ajustar aqui
 
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
@@ -79,6 +78,11 @@ namespace Dev4Tech
             return admin;
         }
 
+        public bool VerificarSenha(string senhaDigitada, string senhaHashArmazenada)
+        {
+            return SenhasHash.VerificarSenha(senhaDigitada, senhaHashArmazenada);
+        }
+
         public void inserir()
         {
             string query = @"INSERT INTO Administradores 
@@ -97,7 +101,7 @@ namespace Dev4Tech
                         cmd.Parameters.AddWithValue("@DataNascimento", getDataNascimento());
                         cmd.Parameters.AddWithValue("@Telefone", getTelefone()?.Trim());
                         cmd.Parameters.AddWithValue("@Email", getEmail()?.Trim());
-                        cmd.Parameters.AddWithValue("@Senha", getSenha());
+                        cmd.Parameters.AddWithValue("@Senha", getSenha()); // Já vem com hash
                         cmd.Parameters.AddWithValue("@DataCad", getData_cadAdmin());
                         cmd.Parameters.AddWithValue("@Endereco", getEndereco()?.Trim());
                         cmd.Parameters.AddWithValue("@Num", getNum()?.Trim());

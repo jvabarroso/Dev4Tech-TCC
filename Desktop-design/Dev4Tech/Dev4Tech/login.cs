@@ -8,20 +8,20 @@ namespace Dev4Tech
         public Login()
         {
             InitializeComponent();
-
         }
 
         private void lblCadastrar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            // Supondo que "adminLogado" é o objeto que você tem após login
-            Sessao.AdminLogado.getAdminId();
-            Sessao.AdminLogado.getIdEmpresa();
+            if (Sessao.AdminLogado == null)
+            {
+                MessageBox.Show("Apenas administradores podem cadastrar funcionários. Faça login como administrador primeiro.");
+                return;
+            }
 
             cadastro_funcionário cadastroFunc = new cadastro_funcionário(
-    Sessao.AdminLogado.getAdminId(),
-    Sessao.AdminLogado.getIdEmpresa());
+                Sessao.AdminLogado.getAdminId(),
+                Sessao.AdminLogado.getIdEmpresa());
             cadastroFunc.Show();
-
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -36,12 +36,14 @@ namespace Dev4Tech
             }
 
             LoginVerify lv = new LoginVerify();
-            bool loginValidoFuncionario = lv.ValidarLogin(email, senha);
+
+            // Primeiro tenta como funcionário
+            bool loginValidoFuncionario = lv.ValidarLoginFuncionario(email, senha);
 
             if (loginValidoFuncionario)
             {
-                empresaCadFuncionario empresa = new empresaCadFuncionario();
-                var funcionario = empresa.ObterFuncionarioPorEmailSenha(email, senha);
+                empresaCadFuncionario empresaFunc = new empresaCadFuncionario();
+                var funcionario = empresaFunc.ObterFuncionarioPorEmail(email);
 
                 if (funcionario != null)
                 {
@@ -53,46 +55,43 @@ namespace Dev4Tech
                     this.Hide();
                     return;
                 }
-                else
-                {
-                    MessageBox.Show("Erro ao carregar dados do funcionário.");
-                    return;
-                }
             }
             else
             {
                 // Tenta login como administrador
-                empresaCadAdmin admin = new empresaCadAdmin();
-                var adminLogado = admin.ObterAdminPorEmailSenha(email, senha);
+                bool loginValidoAdmin = lv.ValidarLoginAdministrador(email, senha);
 
-                if (adminLogado != null)
+                if (loginValidoAdmin)
                 {
-                    Sessao.AdminLogado = adminLogado;
-                    Sessao.FuncionarioLogado = null;
+                    empresaCadAdmin adminDAO = new empresaCadAdmin();
+                    var adminLogado = adminDAO.ObterAdminPorEmail(email);
 
-                    // Abre a tela de configurações passando o admin logado
-                    HomeAdm hmAdm = new HomeAdm();
-                    hmAdm.Show();
-                    this.Hide();
-                    return;
-                }
-                else
-                {
-                    MessageBox.Show("Email ou senha incorretos.");
-                    return;
+                    if (adminLogado != null)
+                    {
+                        Sessao.AdminLogado = adminLogado;
+                        Sessao.FuncionarioLogado = null;
+
+                        HomeAdm hmAdm = new HomeAdm();
+                        hmAdm.Show();
+                        this.Hide();
+                        return;
+                    }
                 }
             }
+
+            // Se chegou aqui, login falhou
+            MessageBox.Show("Email ou senha incorretos.");
         }
 
-        //Texto dinâmico na txtEmail
         private void txtEmail_Enter(object sender, EventArgs e)
         {
-            if(txtEmail.Text == "Entre com seu endereço de Email")
+            if (txtEmail.Text == "Entre com seu endereço de Email")
             {
                 txtEmail.Text = "";
                 txtEmail.ForeColor = System.Drawing.Color.Black;
             }
         }
+
         private void txtEmail_Leave(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtEmail.Text))
@@ -101,11 +100,9 @@ namespace Dev4Tech
                 txtEmail.ForeColor = System.Drawing.Color.Black;
             }
         }
-        private void txtEmail_TextChanged(object sender, EventArgs e)
-        {
-        }
 
-        //Texto dinâmico na txtSenha
+        private void txtEmail_TextChanged(object sender, EventArgs e) { }
+
         private void txtSenha_TextChanged(object sender, EventArgs e) { }
 
         private void txtSenha_Enter(object sender, EventArgs e)
@@ -113,6 +110,7 @@ namespace Dev4Tech
             if (txtSenha.Text == "Digite sua senha")
             {
                 txtSenha.Text = "";
+                txtSenha.UseSystemPasswordChar = true;
             }
         }
 
@@ -121,6 +119,7 @@ namespace Dev4Tech
             if (string.IsNullOrWhiteSpace(txtSenha.Text))
             {
                 txtSenha.Text = "Digite sua senha";
+                txtSenha.UseSystemPasswordChar = false;
             }
         }
 
@@ -136,13 +135,8 @@ namespace Dev4Tech
         {
             senhaVisivel = !senhaVisivel;
             txtSenha.UseSystemPasswordChar = !senhaVisivel;
-            btnMostrarSenha.Text = senhaVisivel ? "" : "";
         }
 
-        private void txtEmail_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
+        private void txtEmail_TextChanged_1(object sender, EventArgs e) { }
     }
 }
-

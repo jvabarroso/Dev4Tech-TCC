@@ -1,6 +1,3 @@
-DROP DATABASE dev4tech
-
-
 CREATE DATABASE Dev4Tech;
 
 USE Dev4Tech;
@@ -11,13 +8,14 @@ CREATE TABLE Empresas (
     cnpj VARCHAR(14) UNIQUE NOT NULL,
     logradouro varchar(255),
     email VARCHAR(100) NOT NULL,
-    telefone VARCHAR(15),
+    telefone VARCHAR(15),administradoresgraficosetoresgraficosetores
     numResidencia VARCHAR(200),
     bairro varchar(255),
     complemento varchar(255),
     data_cadEm DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     setorEmpresarial VARCHAR(255)
 );
+ALTER TABLE empresas ADD COLUMN senha VARCHAR(255);
 -- Tabela de Administradores
 CREATE TABLE Administradores (
     AdminId INT PRIMARY KEY auto_increment,
@@ -228,17 +226,3 @@ CREATE TABLE TarefaPdfMetadata (
     FOREIGN KEY (id_tarefa) REFERENCES Tarefas(id_tarefa),
     UNIQUE KEY unique_tarefa_metadata (id_tarefa)
 );
-
-
-SELECT 
-    COALESCE(SUM(
-        CASE t.dificuldade
-            WHEN 'Fácil' THEN 10
-            WHEN 'Média' THEN 20
-            WHEN 'Difícil' THEN 30
-            ELSE 0
-        END
-    ), 0) AS pontos
-FROM EntregasTarefa et
-JOIN Tarefas t ON et.id_tarefa = t.id_tarefa
-WHERE et.FuncionarioId = 2 AND et.entregue = 1;

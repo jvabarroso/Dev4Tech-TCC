@@ -6,7 +6,7 @@ namespace Dev4Tech
 {
     class empresa : conexao
     {
-        private string nomeEmpresa, setorEmpresarial, logradouro, bairro, complemento, CNPJ, numResidencia, email, telefone;
+        private string nomeEmpresa, setorEmpresarial, logradouro, bairro, complemento, CNPJ, numResidencia, email, telefone, senhaEmail;
         private DateTime data_cadEm;
 
         public void setData_cadEm(DateTime data_cadEm) { this.data_cadEm = data_cadEm; }
@@ -19,6 +19,7 @@ namespace Dev4Tech
         public void setCNPJ(string CNPJ) { this.CNPJ = CNPJ; }
         public void setEmail(string email) { this.email = email; }
         public void setTelefone(string telefone) { this.telefone = telefone; }
+        public void setSenhaEmail(string senhaEmail) { this.senhaEmail = senhaEmail; }
 
         public DateTime getData_cadEm() { return this.data_cadEm; }
         public string getNomeEmpresa() { return this.nomeEmpresa; }
@@ -30,14 +31,15 @@ namespace Dev4Tech
         public string getCNPJ() { return this.CNPJ; }
         public string getEmail() { return this.email; }
         public string getTelefone() { return this.telefone; }
+        public string getSenhaEmail() { return this.senhaEmail; }
 
         public int inserirEObterId()
         {
             int idGerado = 0;
 
             string query = @"
-                INSERT INTO Empresas (nome_empresa, cnpj, logradouro, numResidencia, bairro, complemento, data_cadEm, email, telefone, setorEmpresarial) 
-                VALUES (@nome, @cnpj, @logradouro, @numResidencia, @bairro, @complemento, @dataCadastro, @email, @telefone, @setorEmpresarial)";
+                INSERT INTO Empresas (nome_empresa, cnpj, logradouro, numResidencia, bairro, complemento, data_cadEm, email, senha, telefone, setorEmpresarial) 
+                VALUES (@nome, @cnpj, @logradouro, @numResidencia, @bairro, @complemento, @dataCadastro, @email, @senha, @telefone, @setorEmpresarial)";
 
             if (this.abrirConexao())
             {
@@ -55,10 +57,10 @@ namespace Dev4Tech
                         cmd.Parameters.AddWithValue("@email", getEmail());
                         cmd.Parameters.AddWithValue("@telefone", getTelefone());
                         cmd.Parameters.AddWithValue("@setorEmpresarial", getSetorEmpresarial());
+                        cmd.Parameters.AddWithValue("@senha", getSenhaEmail()); // Já vem com hash
 
                         cmd.ExecuteNonQuery();
 
-                        // Captura o ID gerado e faz cast seguro para int
                         long lastId = cmd.LastInsertedId;
                         if (lastId > int.MaxValue || lastId < int.MinValue)
                             throw new OverflowException("ID gerado está fora do intervalo do tipo int.");

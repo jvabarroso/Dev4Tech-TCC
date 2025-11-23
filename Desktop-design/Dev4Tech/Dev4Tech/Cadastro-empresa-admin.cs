@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using Dev4Tech.Utils; // importa a classe InputMask
+using Dev4Tech.Utils;
 
 namespace Dev4Tech
 {
@@ -9,13 +9,11 @@ namespace Dev4Tech
         empresaCadAdmin emAdmin = new empresaCadAdmin();
         private readonly string idEmpresa;
 
-        // Construtor que recebe o idEmpresa para vincular no cadastro
         public Cadastro_empresa_admin(string idEmpresa)
         {
             InitializeComponent();
             this.idEmpresa = idEmpresa;
 
-            // --- APLICA AS MÁSCARAS AQUI ---
             InputMask.MaskCPF(txtCadAdmCPF);
             InputMask.MaskTelefone(txtCadAdmTelefone);
             InputMask.MaskData(txtCadAdmDataNasc);
@@ -28,6 +26,13 @@ namespace Dev4Tech
                 if (txtCadAdmSenha.Text != txtCadAdmConfirmSenha.Text)
                 {
                     MessageBox.Show("Erro! As duas senhas estão diferentes");
+                    return;
+                }
+
+                // Validação de força da senha
+                if (txtCadAdmSenha.Text.Length < 6)
+                {
+                    MessageBox.Show("A senha deve ter pelo menos 6 caracteres.");
                     return;
                 }
 
@@ -45,12 +50,14 @@ namespace Dev4Tech
 
                 emAdmin.setTelefone(txtCadAdmTelefone.Text);
                 emAdmin.setEmail(txtCadAdmEmail.Text);
-                emAdmin.setSenha(txtCadAdmSenha.Text);
+
+                // ⭐⭐ APLICA HASH NA SENHA DO ADMIN ⭐⭐
+                string senhaHash = SenhasHash.HashPassword(txtCadAdmSenha.Text);
+                emAdmin.setSenha(senhaHash);
+
                 emAdmin.setData_cadAdmin(DateTime.Now);
                 emAdmin.setEndereco(txtEndereco.Text);
                 emAdmin.setNum(txtNumEndereco.Text);
-
-                // ASSOCIA o idEmpresa recebido ao cadastro (essencial para a FK)
                 emAdmin.setIdEmpresa(idEmpresa);
 
                 emAdmin.inserir();
@@ -73,30 +80,11 @@ namespace Dev4Tech
             this.Hide();
         }
 
-        private void txtCadAdmNome_Click(object sender, EventArgs e)
-        {
-            txtCadAdmNome.Text = "";
-        }
-
-        private void txtCadAdmCPF_Click(object sender, EventArgs e)
-        {
-            txtCadAdmCPF.Text = "";
-        }
-
-        private void txtCadAdmEmail_Click(object sender, EventArgs e)
-        {
-            txtCadAdmEmail.Text = "";
-        }
-
-        private void txtCadAdmSenha_Click(object sender, EventArgs e)
-        {
-            txtCadAdmSenha.Text = "";
-        }
-
-        private void txtCadAdmConfirmSenha_Click(object sender, EventArgs e)
-        {
-            txtCadAdmConfirmSenha.Text = "";
-        }
+        private void txtCadAdmNome_Click(object sender, EventArgs e) { txtCadAdmNome.Text = ""; }
+        private void txtCadAdmCPF_Click(object sender, EventArgs e) { txtCadAdmCPF.Text = ""; }
+        private void txtCadAdmEmail_Click(object sender, EventArgs e) { txtCadAdmEmail.Text = ""; }
+        private void txtCadAdmSenha_Click(object sender, EventArgs e) { txtCadAdmSenha.Text = ""; }
+        private void txtCadAdmConfirmSenha_Click(object sender, EventArgs e) { txtCadAdmConfirmSenha.Text = ""; }
 
         private void lblLoginAdm_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -147,7 +135,7 @@ namespace Dev4Tech
             }
         }
 
-        private void txtCadAdmConfrmSenha_Enter(object sender, EventArgs e)
+        private void txtCadAdmConfirmSenha_Enter(object sender, EventArgs e)
         {
             if (txtCadAdmConfirmSenha.Text == "Confirmar Senha")
             {
