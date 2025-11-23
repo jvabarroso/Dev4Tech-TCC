@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Text, View, TouchableOpacity, Image, TextInput, ScrollView, 
-  Modal, Alert, Dimensions 
-} from 'react-native';
+import { Text, View, TouchableOpacity, Image, TextInput, ScrollView, Modal, Alert, Dimensions, Linking, Clipboard } from 'react-native';
 import { showMessage } from "react-native-flash-message";
 import { getStyles } from './style';
 import { useTheme } from '../../../styles/themecontext'
 import { useFocusEffect } from '@react-navigation/native';
 
 import api from '../../../../services/api';
+import SERVER_URL from '../../../../services/url';
 
 const { width, height } = Dimensions.get('window');
 
@@ -79,7 +77,7 @@ export default function Planejamento({ navigation, route }) {
       
       // Primeiro: dividir o PDF fisicamente
       const resDivisao = await api.post('dev4tech/dividir_pdf.php', {
-        caminho_arquivo: 'C:/xampp/htdocs/dev4tech/arquivos/' + tarefa.nome_arquivo ,
+        caminho_arquivo: 'C:/xampp/htdocs/dev4tech/arquivos/' + tarefa.nome_arquivo + ".pdf",
         id_tarefa: tarefa.id_tarefa
       });
 
@@ -243,27 +241,50 @@ export default function Planejamento({ navigation, route }) {
   function getUrlPaginaAtual() {
     if (!tarefaSelecionada) return '';
     // Agora os arquivos estão direto na pasta arquivos
-    return `http://localhost/dev4tech/arquivos/tarefa_${tarefaSelecionada.id_tarefa}_pagina_${paginaAtual}.pdf`;
+    return `${SERVER_URL}dev4tech/arquivos/tarefa_${tarefaSelecionada.id_tarefa}_pagina_${paginaAtual}.pdf`;
   }
 
-  // Função para fazer download do PDF - SIMPLIFICADA
+  // Função para fazer download do PDF - MELHORADA
   async function fazerDownloadPagina(numeroPagina) {
     if (!tarefaSelecionada) return;
 
     try {
-      const url = `http://localhost/dev4tech/arquivos/tarefa_${tarefaSelecionada.id_tarefa}_pagina_${numeroPagina}.pdf`;
+      const url = `${SERVER_URL}dev4tech/arquivos/tarefa_${tarefaSelecionada.id_tarefa}_pagina_${numeroPagina}.pdf`;
       
       console.log("URL para download:", url);
       
-      // Para React Native, podemos usar Linking para abrir o navegador
-      // ou mostrar a URL para o usuário copiar
+      // Testar se a URL é acessível
+      try {
+        const response = await fetch(url, { method: 'HEAD' });
+        if (!response.ok) {
+          throw new Error('Arquivo não encontrado no servidor');
+        }
+      } catch (error) {
+        console.log("Arquivo não acessível:", error);
+        Alert.alert(
+          'Arquivo Não Encontrado',
+          `O arquivo da página ${numeroPagina} não foi encontrado no servidor.`,
+          [{ text: 'OK' }]
+        );
+        return;
+      }
+
       Alert.alert(
         'Download da Página',
-        `Página ${numeroPagina}\n\nURL: ${url}\n\nCopie esta URL e cole no navegador para fazer o download.`,
+        `O que você deseja fazer com a Página ${numeroPagina}?`,
         [
-          { text: 'Copiar URL', onPress: () => copiarParaAreaDeTransferencia(url) },
-          { text: 'Abrir no Navegador', onPress: () => abrirNoNavegador(url) },
-          { text: 'Cancelar', style: 'cancel' }
+          { 
+            text: 'Abrir no Navegador', 
+            onPress: () => abrirNoNavegador(url) 
+          },
+          { 
+            text: 'Copiar URL', 
+            onPress: () => copiarParaAreaDeTransferencia(url) 
+          },
+          { 
+            text: 'Cancelar', 
+            style: 'cancel' 
+          }
         ]
       );
 
@@ -278,32 +299,46 @@ export default function Planejamento({ navigation, route }) {
     }
   }
 
-  // Função para copiar URL (se você tiver uma biblioteca de clipboard)
+  // Função para copiar URL para a área de transferência
   async function copiarParaAreaDeTransferencia(texto) {
-    // Se você tiver react-native-clipboard instalado
-    // Clipboard.setString(texto);
-    
-    // Alternativa: mostrar mensagem
-    showMessage({
-      message: 'URL copiada',
-      description: 'Cole no navegador para fazer download',
-      type: "success",
-      duration: 3000,
-    });
+    try {
+      await Clipboard.setString(texto);
+      showMessage({
+        message: 'URL copiada',
+        description: 'Cole no navegador para fazer download',
+        type: "success",
+        duration: 3000,
+      });
+    } catch (error) {
+      console.log("Erro ao copiar:", error);
+      showMessage({
+        message: 'Erro',
+        description: 'Falha ao copiar URL',
+        type: "danger",
+        duration: 3000,
+      });
+    }
   }
 
   // Função para abrir no navegador
   async function abrirNoNavegador(url) {
-    // Se você tiver react-native-linking instalado
-    // Linking.openURL(url);
-    
-    console.log("Abrir no navegador:", url);
-    showMessage({
-      message: 'Abrir no navegador',
-      description: 'Configure o Linking.openURL()',
-      type: "info",
-      duration: 3000,
-    });
+    try {
+      const canOpen = await Linking.canOpenURL(url);
+      
+      if (canOpen) {
+        await Linking.openURL(url);
+      } else {
+        throw new Error('Não foi possível abrir esta URL');
+      }
+    } catch (error) {
+      console.log("Erro ao abrir no navegador:", error);
+      showMessage({
+        message: 'Erro',
+        description: 'Não foi possível abrir no navegador. Use a opção "Copiar URL".',
+        type: "danger",
+        duration: 4000,
+      });
+    }
   }
 
   async function listarDados() {
@@ -506,14 +541,14 @@ export default function Planejamento({ navigation, route }) {
                     style={styles.actionButton}
                     onPress={() => visualizarPagina(pagina)}
                   >
-                    <Text style={styles.actionButtonText}>👁️ Visualizar</Text>
+                    <Text style={styles.actionButtonText}>Visualizar</Text>
                   </TouchableOpacity>
                   
                   <TouchableOpacity
                     style={[styles.actionButton, styles.downloadAction]}
                     onPress={() => fazerDownloadPagina(pagina)}
                   >
-                    <Text style={styles.actionButtonText}>📥 Download</Text>
+                    <Text style={styles.actionButtonText}>Download</Text>
                   </TouchableOpacity>
                 </View>
               </View>
