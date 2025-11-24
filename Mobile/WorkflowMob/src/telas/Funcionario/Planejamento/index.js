@@ -84,7 +84,6 @@ export default function Planejamento({ navigation, route }) {
       console.log("Resposta da divisão:", resDivisao.data);
 
       if (!resDivisao.data.success) {
-        console.log("nome:", 'C:/xampp/htdocs/dev4tech/arquivos/' + tarefa.nome_arquivo + ".pdf");
         console.log("ERRO NA DIVISÃO DO PDF:", resDivisao.data.message);
         showMessage({
           message: 'Erro',
@@ -93,6 +92,13 @@ export default function Planejamento({ navigation, route }) {
           duration: 3000,
         });
         return;
+      }
+
+      // Verificar o modo de divisão
+      if (resDivisao.data.modo === 'simulacao') {
+        console.log("⚠️ PDF dividido em modo simulação - todas as páginas são cópias do original");
+      } else {
+        console.log("✅ PDF dividido com sucesso - páginas individuais criadas");
       }
 
       // Segundo: salvar no banco de dados
