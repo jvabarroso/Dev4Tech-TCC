@@ -1,5 +1,6 @@
 <?php 
 include_once('conexao.php');
+include_once('senhasHash.php'); // Inclui as funções de hash
 
 $postjson = json_decode(file_get_contents('php://input'), true);
 
@@ -7,6 +8,7 @@ $Email = $postjson['Email'] ?? '';
 $Senha = $postjson['Senha'] ?? '';
 
 try {
+    // Busca primeiro no funcionário
     $query = $pdo->prepare("SELECT 
         f.FuncionarioId,
         f.Nome,
@@ -22,34 +24,51 @@ try {
         f.senha,
         'funcionario' AS role 
     FROM Funcionarios f 
-    WHERE f.Email = :email AND f.Senha = :senha");
+    WHERE f.Email = :email");
     
     $query->bindValue(':email', $Email);
-    $query->bindValue(':senha', $Senha);
     $query->execute();
     $userfuncionario = $query->fetch(PDO::FETCH_ASSOC);
 
-    $query2 = $pdo->prepare("SELECT 
-        a.AdminId,
-        a.Nome,
-        a.Cargo,
-        a.CPF,
-        a.DataNascimento,
-        a.Telefone,
-        a.Email,
-        a.endereco,
-        a.num,
-        a.foto_perfil,
-        a.id_empresa,
-        a.senha,
-        'administrador' AS role 
-    FROM Administradores a 
-    WHERE a.Email = :email AND a.Senha = :senha");
-    
-    $query2->bindValue(':email', $Email);
-    $query2->bindValue(':senha', $Senha);
-    $query2->execute();
-    $useradministrador = $query2->fetch(PDO::FETCH_ASSOC);
+    // Se encontrou funcionário, verifica a senha
+    if ($userfuncionario) {
+        $senhaValida = SenhasHash::verificarSenha($Senha, $userfuncionario['senha']);
+        if (!$senhaValida) {
+            $userfuncionario = false; // Invalida o usuário se senha não conferir
+        }
+    }
+
+    // Se não encontrou funcionário ou senha inválida, busca no administrador
+    if (!$userfuncionario) {
+        $query2 = $pdo->prepare("SELECT 
+            a.AdminId,
+            a.Nome,
+            a.Cargo,
+            a.CPF,
+            a.DataNascimento,
+            a.Telefone,
+            a.Email,
+            a.endereco,
+            a.num,
+            a.foto_perfil,
+            a.id_empresa,
+            a.senha,
+            'administrador' AS role 
+        FROM Administradores a 
+        WHERE a.Email = :email");
+        
+        $query2->bindValue(':email', $Email);
+        $query2->execute();
+        $useradministrador = $query2->fetch(PDO::FETCH_ASSOC);
+
+        // Verifica senha do administrador
+        if ($useradministrador) {
+            $senhaValida = SenhasHash::verificarSenha($Senha, $useradministrador['senha']);
+            if (!$senhaValida) {
+                $useradministrador = false;
+            }
+        }
+    }
 
 } catch (PDOException $e) {
     echo json_encode([
@@ -60,7 +79,7 @@ try {
 }
 
 $diretorioImg = 'http://10.239.20.68/dev4tec/img/';
-if ($userfuncionario) {
+if ($userfuncionario && $senhaValida) {
     $fotoUrl = $userfuncionario['foto_perfil'] 
                ? $diretorioImg . $userfuncionario['foto_perfil'] 
                : null;
@@ -84,7 +103,7 @@ if ($userfuncionario) {
         ],
         'message' => 'Login realizado com sucesso!'
     ];
-} else if ($useradministrador) {
+} else if ($useradministrador && $senhaValida) {
     $fotoUrl = $useradministrador['foto_perfil'] 
                ? $diretorioImg . $useradministrador['foto_perfil'] 
                : null;

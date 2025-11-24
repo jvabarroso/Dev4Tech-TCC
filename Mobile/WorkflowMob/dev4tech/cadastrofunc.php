@@ -1,5 +1,6 @@
 <?php 
 require_once("conexao.php");
+require_once("senhasHash.php"); // Inclui as funções de hash
 
 // Recebe os dados JSON
 $tabela = 'Funcionarios';
@@ -19,6 +20,9 @@ $id_empresa = $postjson['id_empresa'] ?? null;
 $numero = @$postjson['numero'];
 
 try{
+    // Gera o hash da senha antes de salvar
+    $senhaHash = SenhasHash::hashPassword($Senha);
+
     $res = $pdo->prepare("INSERT INTO $tabela SET 
     Nome = :Nome, 
     Cargo = :Cargo, 
@@ -39,7 +43,7 @@ try{
     $res->bindValue(":Telefone", "$Telefone");
     $res->bindValue(":Email", "$Email");
     $res->bindValue(":CPF", "$CPF");
-    $res->bindValue(":Senha", "$Senha");
+    $res->bindValue(":Senha", $senhaHash); // Usa o hash aqui
     $res->bindValue(":endereco", "$endereco");
     $res->bindValue(":numero", "$numero"); 
     $res->bindValue(":id_empresa", "$id_empresa"); 
@@ -56,5 +60,4 @@ try{
 }
 
 echo $result;
-
 ?>
