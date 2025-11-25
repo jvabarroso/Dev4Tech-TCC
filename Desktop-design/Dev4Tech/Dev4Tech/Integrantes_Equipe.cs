@@ -18,6 +18,13 @@ namespace Dev4Tech
             InitializeComponent();
             CarregarEquipes();
             CarregarFotoUsuario();
+
+            // Evento para busca ao digitar
+            txtPesquisarMembros.TextChanged += (s, e) =>
+            {
+                string filtro = txtPesquisarMembros.Text.Trim();
+                CarregarMembrosDaEquipe(filtro);
+            };
         }
 
         private void CarregarEquipes()
