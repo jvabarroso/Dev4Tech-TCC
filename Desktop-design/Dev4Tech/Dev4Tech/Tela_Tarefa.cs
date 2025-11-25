@@ -9,23 +9,43 @@ namespace Dev4Tech
 {
     public partial class Tela_Tarefa : Form
     {
-        private int idEquipeAtual = 0; // ID da equipe selecionada
-        private int idTarefaExibida = 0; // ID da tarefa atualmente exibida
-        private string caminhoArquivoEntrega = ""; // Caminho do arquivo para entrega
+        private int idEquipeAtual = 0;
+        private int idTarefaExibida = 0;
+        private string caminhoArquivoEntrega = "";
+        private int idFuncionarioAtual = 0;
+        private DataRow entregaAtual = null;
+        private string nomeArquivoEntrega = "";
+        private bool eventosConfigurados = false;
 
-        // Construtor que recebe o ID da equipe para carregar dados específicos
         public Tela_Tarefa(int idEquipe)
         {
             InitializeComponent();
             idEquipeAtual = idEquipe;
+            idFuncionarioAtual = Sessao.FuncionarioLogado != null ? int.Parse(Sessao.FuncionarioLogado.getFuncionarioId()) : 0;
             txtNomeEquipe.Text = BuscarNomeEquipe(idEquipeAtual);
 
-            lblArquivoEntregaTarefa.Click += LblArquivoEntregaTarefa_Click;
+            // Configurar eventos UMA ÚNICA VEZ
+            ConfigurarEventos();
 
-            // Remover registro anterior antes de adicionar
             btnRelatarProblema.Click -= btnRelatarProblema_Click;
             btnRelatarProblema.Click += btnRelatarProblema_Click;
         }
+
+        private void ConfigurarEventos()
+        {
+            if (!eventosConfigurados)
+            {
+                // Remover event handlers existentes para evitar duplicação
+                lblArquivoEntregaTarefa.Click -= LblArquivoEntregaTarefa_Click;
+                lblArquivoEntregaTarefa.Click -= LblArquivoEntregaVisualizar_Click;
+
+                // Adicionar event handler para anexar arquivo
+                lblArquivoEntregaTarefa.Click += LblArquivoEntregaTarefa_Click;
+
+                eventosConfigurados = true;
+            }
+        }
+
         private int ObterPontuacaoPorDificuldade(int idTarefa)
         {
             int pontuacao = 0;
@@ -55,7 +75,7 @@ namespace Dev4Tech
             }
             return pontuacao;
         }
-        // Carrega detalhes da tarefa selecionada e atualiza a interface
+
         public void CarregarDetalhesTarefa(int idTarefa)
         {
             EntregaTarefa entrTarefa = new EntregaTarefa();
@@ -73,16 +93,13 @@ namespace Dev4Tech
 
                 lblInstrucoes.Text = tarefa["instrucoes"].ToString();
 
-
                 int pontuacao = ObterPontuacaoPorDificuldade(idTarefa);
                 label13.Text = $"{pontuacao}";
-
 
                 if (tarefa.Table.Columns.Contains("dificuldade") && tarefa["dificuldade"] != DBNull.Value)
                 {
                     lblDificuldade.Text = "Dificuldade: " + tarefa["dificuldade"].ToString();
                     lblDificuldade.Visible = true;
-
                 }
                 else
                 {
@@ -107,6 +124,7 @@ namespace Dev4Tech
                 btnEnviar.Enabled = true;
                 LimparCamposEntrega();
 
+                CarregarEntregaFuncionario(idTarefa);
                 AtualizarEstadoEntrega();
             }
             else
@@ -115,8 +133,76 @@ namespace Dev4Tech
             }
         }
 
+        private void CarregarEntregaFuncionario(int idTarefa)
+        {
+            if (idFuncionarioAtual == 0) return;
 
-        // Limpa os detalhes da tarefa da tela
+            EntregaTarefa entrTarefa = new EntregaTarefa();
+            entregaAtual = entrTarefa.BuscarEntregaPorTarefaEFuncionario(idTarefa, idFuncionarioAtual);
+
+            // SEMPRE remover ambos os eventos primeiro para evitar conflitos
+            lblArquivoEntregaTarefa.Click -= LblArquivoEntregaTarefa_Click;
+            lblArquivoEntregaTarefa.Click -= LblArquivoEntregaVisualizar_Click;
+
+            if (entregaAtual != null)
+            {
+                txtDescrição.Text = entregaAtual["descricao"].ToString();
+
+                if (entregaAtual["nome_arquivo"] != DBNull.Value && !string.IsNullOrEmpty(entregaAtual["nome_arquivo"].ToString()))
+                {
+                    nomeArquivoEntrega = entregaAtual["nome_arquivo"].ToString();
+                    lblArquivoEntregaTarefa.Text = "Arquivo entregue: " + nomeArquivoEntrega;
+                    lblArquivoEntregaTarefa.ForeColor = Color.Blue;
+                    lblArquivoEntregaTarefa.Cursor = Cursors.Hand;
+
+                    // Adicionar APENAS o evento de visualização
+                    lblArquivoEntregaTarefa.Click += LblArquivoEntregaVisualizar_Click;
+                }
+                else
+                {
+                    lblArquivoEntregaTarefa.Text = "Nenhum arquivo foi anexado na entrega";
+                    lblArquivoEntregaTarefa.ForeColor = SystemColors.ControlText;
+                    lblArquivoEntregaTarefa.Cursor = Cursors.Default;
+                }
+
+                txtDescrição.Enabled = false;
+                btnEnviar.Enabled = false;
+            }
+            else
+            {
+                txtDescrição.Enabled = true;
+                btnEnviar.Enabled = true;
+
+                // Configurar para modo de anexar arquivo
+                lblArquivoEntregaTarefa.Text = "Clique para anexar arquivo";
+                lblArquivoEntregaTarefa.ForeColor = Color.Gray;
+                lblArquivoEntregaTarefa.Cursor = Cursors.Hand;
+
+                // Adicionar APENAS o evento de anexar arquivo
+                lblArquivoEntregaTarefa.Click += LblArquivoEntregaTarefa_Click;
+            }
+        }
+
+        private void LblArquivoEntregaVisualizar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(nomeArquivoEntrega)) return;
+
+            try
+            {
+                string pastaArquivos = @"C:\xampp\htdocs\dev4tech\arquivos";
+                string caminhoArquivo = Path.Combine(pastaArquivos, nomeArquivoEntrega);
+
+                if (File.Exists(caminhoArquivo))
+                    System.Diagnostics.Process.Start(caminhoArquivo);
+                else
+                    MessageBox.Show("Arquivo de entrega não encontrado no servidor.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao abrir o arquivo de entrega: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void LimparDetalhesTarefa()
         {
             idTarefaExibida = 0;
@@ -127,8 +213,6 @@ namespace Dev4Tech
             LimparCamposEntrega();
         }
 
-        // Evento para abrir o arquivo anexado à tarefa
-        // No método LblArquivoTarefa_Click, corrija o caminho:
         private void LblArquivoTarefa_Click(object sender, EventArgs e)
         {
             if (idTarefaExibida == 0) return;
@@ -141,7 +225,6 @@ namespace Dev4Tech
                 try
                 {
                     string nomeArquivo = tarefa["nome_arquivo"].ToString();
-                    // Use o mesmo caminho que está no planejamento
                     string pastaArquivos = @"C:\xampp\htdocs\dev4tech\arquivos";
                     string caminhoArquivo = Path.Combine(pastaArquivos, nomeArquivo);
 
@@ -161,7 +244,6 @@ namespace Dev4Tech
             }
         }
 
-        // Busca o nome da equipe pelo ID no banco
         private string BuscarNomeEquipe(int idEquipe)
         {
             string nome = "";
@@ -176,21 +258,39 @@ namespace Dev4Tech
             return nome;
         }
 
-        // Evento para anexar arquivo de entrega
         private void LblArquivoEntregaTarefa_Click(object sender, EventArgs e)
         {
+            // VERIFICAR SE JÁ EXISTE UMA JANELA ABERTA
+            if (Application.OpenForms.Count > 1) // Mais de 1 form aberto (incluindo este)
+            {
+                foreach (Form form in Application.OpenForms)
+                {
+                    if (form is FileDialog)
+                    {
+                        form.BringToFront();
+                        return; // Já existe uma janela de arquivo aberta
+                    }
+                    continue;
+                }
+            }
+
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "Todos os arquivos (*.*)|*.*";
-            if (ofd.ShowDialog() == DialogResult.OK)
+            ofd.Multiselect = false; // Garantir que só selecione um arquivo
+
+            // Configurar para evitar múltiplas instâncias
+            ofd.CheckFileExists = true;
+            ofd.CheckPathExists = true;
+
+            DialogResult result = ofd.ShowDialog();
+
+            if (result == DialogResult.OK)
             {
-                string pastaArquivos = @"C:\xampp\htdocs\dev4tech\arquivos";  // pasta onde vai salvar o arquivo
+                string pastaArquivos = @"C:\xampp\htdocs\dev4tech\arquivos";
                 if (!Directory.Exists(pastaArquivos))
                     Directory.CreateDirectory(pastaArquivos);
 
-                // Caminho do arquivo selecionado pelo usuário
                 string arquivoSelecionado = ofd.FileName;
-
-                // Gerar nome único para o arquivo para evitar sobrescrever
                 string extensao = Path.GetExtension(arquivoSelecionado);
                 string nomeArquivoUnico = Guid.NewGuid().ToString() + extensao;
 
@@ -199,7 +299,7 @@ namespace Dev4Tech
                 try
                 {
                     File.Copy(arquivoSelecionado, caminhoDestino, true);
-                    caminhoArquivoEntrega = caminhoDestino;  // atualizar para caminho do arquivo copiado
+                    caminhoArquivoEntrega = caminhoDestino;
                     lblArquivoEntregaTarefa.Text = Path.GetFileName(caminhoArquivoEntrega);
                     lblArquivoEntregaTarefa.ForeColor = Color.Blue;
                 }
@@ -209,8 +309,6 @@ namespace Dev4Tech
                 }
             }
         }
-
-
 
         private void btnEnviar_Click(object sender, EventArgs e)
         {
@@ -260,11 +358,11 @@ namespace Dev4Tech
 
             try
             {
-                // Registrar entrega, gravando nomeArquivo no banco, arquivoBlob = null
                 entrTarefa.RegistrarEntrega(idTarefaExibida, idEquipeAtual, idFuncionarioAtual, txtDescrição.Text, nomeArquivo, null);
 
                 MessageBox.Show("Entrega registrada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LimparCamposEntrega();
+
+                CarregarEntregaFuncionario(idTarefaExibida);
                 AtualizarEstadoEntrega();
             }
             catch (Exception ex)
@@ -273,18 +371,25 @@ namespace Dev4Tech
             }
         }
 
-
-
-        // Limpa campos após entrega
         private void LimparCamposEntrega()
         {
             txtDescrição.Clear();
+
+            // Remover eventos antes de modificar o texto
+            lblArquivoEntregaTarefa.Click -= LblArquivoEntregaTarefa_Click;
+            lblArquivoEntregaTarefa.Click -= LblArquivoEntregaVisualizar_Click;
+
             lblArquivoEntregaTarefa.Text = "Clique para anexar arquivo";
             lblArquivoEntregaTarefa.ForeColor = Color.Gray;
             caminhoArquivoEntrega = "";
+            nomeArquivoEntrega = "";
+            entregaAtual = null;
+
+            // Re-adicionar o evento padrão (anexar arquivo)
+            lblArquivoEntregaTarefa.Click += LblArquivoEntregaTarefa_Click;
         }
 
-        // Eventos e métodos adicionais (mantidos)
+        // ... OS MÉTODOS DE NAVEGAÇÃO PERMANECEM OS MESMOS ...
         private void btnHome_Click(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;
@@ -298,7 +403,6 @@ namespace Dev4Tech
             }
             else if (admin != null)
             {
-                // Se for administrador, abre a tela de adicionar tarefa para admin (exemplo)
                 HomeAdm t_equipeAdmin = new HomeAdm();
                 t_equipeAdmin.Show();
                 this.Hide();
@@ -323,14 +427,12 @@ namespace Dev4Tech
 
             if (funcionario != null)
             {
-
                 Ranking_Equipes t_equipe = new Ranking_Equipes();
                 t_equipe.Show();
                 this.Hide();
             }
             else if (admin != null)
             {
-
                 Ranking_Equipes t_equipeAdmin = new Ranking_Equipes();
                 t_equipeAdmin.Show();
                 this.Hide();
@@ -343,7 +445,6 @@ namespace Dev4Tech
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            // Limpa a sessão antes de voltar para a tela inicial
             Sessao.FuncionarioLogado = null;
             Sessao.AdminLogado = null;
 
@@ -383,8 +484,8 @@ namespace Dev4Tech
             if (Sessao.IdEquipeSelecionada != 0)
             {
                 int idEquipe = Sessao.IdEquipeSelecionada;
-                string nomeEquipe = "Nome da equipe"; // Ajuste para obter o nome real da equipe
-                string categoriaEquipe = "Categoria da equipe"; // Ajuste para obter a categoria real da equipe
+                string nomeEquipe = "Nome da equipe";
+                string categoriaEquipe = "Categoria da equipe";
 
                 if (funcionario != null)
                 {
@@ -435,7 +536,8 @@ namespace Dev4Tech
             }
         }
 
-        private void lblRanking_Click(object sender, EventArgs e) {
+        private void lblRanking_Click(object sender, EventArgs e)
+        {
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;
 
@@ -456,6 +558,7 @@ namespace Dev4Tech
                 MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
         private void btnRelatarProblema_Click(object sender, EventArgs e)
         {
             if (idTarefaExibida == 0 || idEquipeAtual == 0)
@@ -464,16 +567,25 @@ namespace Dev4Tech
                 return;
             }
 
+            // VERIFICAR SE A TAREFA JÁ FOI AVALIADA
+            AvaliacaoTarefa avaliacao = new AvaliacaoTarefa();
+            bool tarefaAvaliada = avaliacao.TarefaFoiAvaliada(idTarefaExibida);
+
+            if (tarefaAvaliada)
+            {
+                MessageBox.Show("Esta tarefa já foi avaliada pelo administrador e não é mais possível relatar problemas.", "Tarefa Avaliada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             Relato_Problema relatoForm = new Relato_Problema(idTarefaExibida, idEquipeAtual);
             relatoForm.Show();
             this.Hide();
         }
 
-
         private void txtDescrição_TextChanged(object sender, EventArgs e) { }
+
         private void btnConfigurações_Click(object sender, EventArgs e)
         {
-            // Alterado para suportar Funcionário ou Admin logado
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;
 
@@ -494,7 +606,9 @@ namespace Dev4Tech
                 MessageBox.Show("Nenhum usuário logado.");
             }
         }
-        private void lblPlanejamento_Click(object sender, EventArgs e) {
+
+        private void lblPlanejamento_Click(object sender, EventArgs e)
+        {
             var funcionario = Sessao.FuncionarioLogado;
             var admin = Sessao.AdminLogado;
 
@@ -564,6 +678,7 @@ namespace Dev4Tech
                 entrTarefa.RemoverEntrega(idTarefaExibida, idFuncionarioAtual);
                 MessageBox.Show("Entrega desfeita. Agora você pode entregar novamente.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                CarregarEntregaFuncionario(idTarefaExibida);
                 AtualizarEstadoEntrega();
                 CarregarDetalhesTarefa(idTarefaExibida);
             }
@@ -572,7 +687,6 @@ namespace Dev4Tech
                 MessageBox.Show("Erro ao desfazer entrega: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
         private void AtualizarEstadoEntrega()
         {
@@ -603,8 +717,6 @@ namespace Dev4Tech
 
         private void label13_Click(object sender, EventArgs e)
         {
-
         }
     }
 }
-

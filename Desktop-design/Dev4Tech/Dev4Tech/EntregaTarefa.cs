@@ -466,5 +466,34 @@ namespace Dev4Tech
             }
             return dt;
         }
+        public DataRow BuscarEntregaPorTarefaEFuncionario(int idTarefa, int idFuncionario)
+        {
+            DataTable dt = new DataTable();
+            string query = @"
+                SELECT descricao, nome_arquivo, arquivo_blob, data_entrega
+                FROM EntregasTarefa
+                WHERE id_tarefa = @idTarefa AND FuncionarioId = @idFuncionario";
+
+            if (abrirConexao())
+            {
+                try
+                {
+                    using (MySqlCommand cmd = new MySqlCommand(query, conectar))
+                    {
+                        cmd.Parameters.AddWithValue("@idTarefa", idTarefa);
+                        cmd.Parameters.AddWithValue("@idFuncionario", idFuncionario);
+                        using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
+                        {
+                            da.Fill(dt);
+                        }
+                    }
+                }
+                finally
+                {
+                    fecharConexao();
+                }
+            }
+            return dt.Rows.Count > 0 ? dt.Rows[0] : null;
+        }
     }
 }

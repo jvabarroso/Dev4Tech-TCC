@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Dev4Tech
@@ -14,6 +15,28 @@ namespace Dev4Tech
             InitializeComponent();
             this.idTarefa = idTarefa;
             this.idEquipe = idEquipe;
+
+            // VERIFICAR SE A TAREFA JÁ FOI AVALIADA
+            AvaliacaoTarefa avaliacao = new AvaliacaoTarefa();
+            bool tarefaAvaliada = avaliacao.TarefaFoiAvaliada(idTarefa);
+
+            if (tarefaAvaliada)
+            {
+                // DESABILITAR O FORMULÁRIO SE A TAREFA JÁ FOI AVALIADA
+                txtDescriçãoProblema.Enabled = false;
+                btnEnviar.Enabled = false;
+
+                // MUDAR A COR E TEXTO PARA INDICAR BLOQUEIO
+                txtDescriçãoProblema.Text = "Esta tarefa já foi avaliada pelo administrador e não é mais possível relatar problemas.";
+                txtDescriçãoProblema.BackColor = Color.LightGray;
+                txtDescriçãoProblema.ForeColor = Color.DarkRed;
+
+                // ALTERAR O TEXTO DO BOTÃO
+                btnEnviar.Text = "Bloqueado";
+                btnEnviar.BackColor = Color.Gray;
+
+                MessageBox.Show("Esta tarefa já foi avaliada e não é mais possível relatar problemas.", "Tarefa Avaliada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void txtDescriçãoProblema_TextChanged(object sender, EventArgs e)
@@ -23,6 +46,16 @@ namespace Dev4Tech
 
         private void btnEnviar_Click(object sender, EventArgs e)
         {
+            // VERIFICAR NOVAMENTE SE A TAREFA JÁ FOI AVALIADA (PARA EVITAR BURLAS)
+            AvaliacaoTarefa avaliacao = new AvaliacaoTarefa();
+            bool tarefaAvaliada = avaliacao.TarefaFoiAvaliada(idTarefa);
+
+            if (tarefaAvaliada)
+            {
+                MessageBox.Show("Esta tarefa já foi avaliada pelo administrador e não é mais possível relatar problemas.", "Tarefa Avaliada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             string descricao = txtDescriçãoProblema.Text.Trim();
 
             if (string.IsNullOrEmpty(descricao))

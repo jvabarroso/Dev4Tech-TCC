@@ -411,5 +411,28 @@ namespace Dev4Tech
                     "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        public bool TarefaFoiAvaliada(int idTarefa)
+        {
+            bool foiAvaliada = false;
+            string query = "SELECT COUNT(*) FROM AvaliacaoTarefa WHERE id_tarefa = @idTarefa";
+
+            if (abrirConexao())
+            {
+                try
+                {
+                    using (MySqlCommand cmd = new MySqlCommand(query, conectar))
+                    {
+                        cmd.Parameters.AddWithValue("@idTarefa", idTarefa);
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        foiAvaliada = (count > 0);
+                    }
+                }
+                finally
+                {
+                    fecharConexao();
+                }
+            }
+            return foiAvaliada;
+        }
     }
 }
