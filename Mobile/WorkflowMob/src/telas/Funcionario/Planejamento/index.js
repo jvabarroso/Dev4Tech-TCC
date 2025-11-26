@@ -73,7 +73,9 @@ export default function Planejamento({ navigation, route }) {
     try {
       setCarregandoPdf(true);
       
+      const caminhoArquivo = `${SERVER_URL}dev4tech/arquivos/${tarefa.nome_arquivo}.pdf`;
       console.log("Iniciando divisão do PDF:", tarefa.nome_arquivo);
+      console.log("Caminho do arquivo:", caminhoArquivo);
       
       // Primeiro: dividir o PDF fisicamente
       const resDivisao = await api.post('dev4tech/dividir_pdf.php', {
@@ -81,7 +83,8 @@ export default function Planejamento({ navigation, route }) {
         id_tarefa: tarefa.id_tarefa
       });
 
-      console.log("Resposta da divisão:", resDivisao.data);
+      console.log("Resposta completa da divisão:", resDivisao);
+      console.log("Dados da resposta:", resDivisao.data);
 
       if (!resDivisao.data.success) {
         console.log("ERRO NA DIVISÃO DO PDF:", resDivisao.data.message);
@@ -89,16 +92,28 @@ export default function Planejamento({ navigation, route }) {
           message: 'Erro',
           description: 'Falha ao dividir o PDF: ' + resDivisao.data.message,
           type: "danger",
-          duration: 3000,
+          duration: 5000,
         });
         return;
       }
 
       // Verificar o modo de divisão
       if (resDivisao.data.modo === 'simulacao') {
-        console.log("⚠️ PDF dividido em modo simulação - todas as páginas são cópias do original");
+        console.log("PDF dividido em MODO SIMULAÇÃO - todas as páginas são cópias do original");
+        showMessage({
+          message: 'Aviso',
+          description: `PDF processado em modo simulação (${resDivisao.data.total_paginas} páginas)`,
+          type: "warning",
+          duration: 4000,
+        });
       } else {
-        console.log("✅ PDF dividido com sucesso - páginas individuais criadas");
+        console.log("PDF dividido com SUCESSO - páginas individuais criadas");
+        showMessage({
+          message: 'Sucesso',
+          description: `PDF dividido em ${resDivisao.data.total_paginas} páginas individuais`,
+          type: "success",
+          duration: 4000,
+        });
       }
 
       // Segundo: salvar no banco de dados
@@ -107,7 +122,7 @@ export default function Planejamento({ navigation, route }) {
         id_tarefa: tarefa.id_tarefa,
         nome_arquivo: tarefa.nome_arquivo,
         total_paginas: resDivisao.data.total_paginas,
-        hash_arquivo: tarefa.nome_arquivo + '_' + Date.now(), // Hash único
+        hash_arquivo: tarefa.nome_arquivo + '_' + Date.now(),
       });
 
       console.log("Resposta do processamento:", resProcessamento.data);
@@ -122,24 +137,17 @@ export default function Planejamento({ navigation, route }) {
         return;
       }
 
-      showMessage({
-        message: 'Sucesso',
-        description: `PDF dividido em ${resDivisao.data.total_paginas} páginas`,
-        type: "success",
-        duration: 3000,
-      });
-
       // Recarregar os dados para atualizar a lista
       listarDados();
       
     } catch (error) {
-      console.log("ERRO NA DIVISÃO DO PDF:", error.message);
-      console.log("Stack:", error.stack);
+      console.log("ERRO COMPLETO NA DIVISÃO DO PDF:", error.message);
+      console.log("Stack trace:", error.stack);
       showMessage({
         message: 'Erro',
         description: 'Falha completa ao processar o PDF: ' + error.message,
         type: "danger",
-        duration: 5000,
+        duration: 6000,
       });
     } finally {
       setCarregandoPdf(false);
@@ -541,18 +549,13 @@ export default function Planejamento({ navigation, route }) {
                     <Text style={styles.pageStatus}>✓ Visualizada</Text>
                   )}
                 </View>
-                
                 <View style={styles.pageActions}>
                   <TouchableOpacity
-                    style={styles.actionButton}
-                    onPress={() => visualizarPagina(pagina)}
-                  >
-                    <Text style={styles.actionButtonText}>Visualizar</Text>
-                  </TouchableOpacity>
-                  
-                  <TouchableOpacity
                     style={[styles.actionButton, styles.downloadAction]}
-                    onPress={() => fazerDownloadPagina(pagina)}
+                    onPress={() => {
+                      fazerDownloadPagina(pagina);
+                      visualizarPagina(pagina);
+                    }}
                   >
                     <Text style={styles.actionButtonText}>Download</Text>
                   </TouchableOpacity>
