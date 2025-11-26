@@ -1,11 +1,12 @@
-﻿using System;
+﻿using MigraDoc.Rendering;
+using OfficeConverter;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using OfficeConverter;
 
 namespace Dev4Tech
 {
@@ -16,6 +17,7 @@ namespace Dev4Tech
         private Dictionary<int, HashSet<int>> paginasVisualizadasCache = new Dictionary<int, HashSet<int>>();
         private Dictionary<int, ProgressoLeitura> progressoCache = new Dictionary<int, ProgressoLeitura>();
         private int idFuncionarioLogado;
+        private HashSet<int> tarefasVisualizadas = new HashSet<int>();
 
         public Planejamento()
         {
@@ -23,6 +25,7 @@ namespace Dev4Tech
             this.Load += Planejamento_Load;
             CarregarFotoUsuario();
         }
+
 
         private void Planejamento_Load(object sender, EventArgs e)
         {
@@ -44,17 +47,17 @@ namespace Dev4Tech
                     return;
                 }
 
-                // Limpar controles
+                // Limpar controles e caches
                 flpP.Controls.Clear();
                 flpF.Controls.Clear();
                 flpC.Controls.Clear();
                 flpPDFs.Controls.Clear();
-
-                // Limpar caches
                 paginasVisualizadasCache.Clear();
                 progressoCache.Clear();
 
-                var tarefas = dbPlanejamento.ObterTarefasPendentesPorEquipesComArquivo(idsEquipes);
+                // ALTERAÇÃO PRINCIPAL: usar método que traz todas as tarefas, com e sem arquivo
+                var tarefas = dbPlanejamento.ObterTodasTarefasPendentesPorEquipes(idsEquipes);
+
 
                 if (tarefas == null)
                 {
@@ -62,6 +65,7 @@ namespace Dev4Tech
                     return;
                 }
 
+                // Exibir todas tarefas
                 foreach (var tarefa in tarefas)
                 {
                     DateTime dataEntrega = dbPlanejamento.ObterDataEntregaTarefa(tarefa.IdTarefa);
@@ -71,25 +75,28 @@ namespace Dev4Tech
                     Panel card = CriarCardTarefa(tarefa.NomeTarefa, dataEntrega, avatares, statusTarefa);
                     card.Tag = tarefa.IdTarefa;
 
+                    // Evento de clique conforme disponibilidade do arquivo
                     card.Click += (senderCard, eCard) =>
                     {
-                        var panel = senderCard as Panel;
-                        if (panel == null)
+                        if (!string.IsNullOrEmpty(tarefa.NomeArquivo))
                         {
-                            // Caso o sender não seja o painel, procuramos o painel no sender
-                            Control ctrl = senderCard as Control;
-                            while (ctrl != null && !(ctrl is Panel))
-                                ctrl = ctrl.Parent;
-                            if (ctrl is Panel)
-                                panel = (Panel)ctrl;
+                            CarregarPdfDaTarefa(tarefa.IdTarefa);
                         }
-                        if (panel != null && panel.Tag is int idTarefa)
+                        else
                         {
-                            CarregarPdfDaTarefa(idTarefa);
+                            // REGISTRA QUE A TAREFA FOI VISUALIZADA NESSA SESSÃO
+                            tarefasVisualizadas.Add(tarefa.IdTarefa);
+                            string instrucoes = dbPlanejamento.ObterInstrucoesTarefa(tarefa.IdTarefa);
+                            MessageBox.Show(
+                                string.IsNullOrWhiteSpace(instrucoes) ? "Nenhuma instrução cadastrada para esta tarefa." : instrucoes,
+                                "Instruções da Tarefa", MessageBoxButtons.OK, MessageBoxIcon.Information
+                            );
+                            // FORÇA ATUALIZAÇÃO PARA MOVER O CARD PARA "FAZENDO"
+                            AtualizarPainelTarefas();
                         }
                     };
 
-                    // Adicionar ao painel correto
+                    // Adiciona ao painel conforme status
                     switch (statusTarefa)
                     {
                         case "Pendente": flpP.Controls.Add(card); break;
@@ -105,38 +112,35 @@ namespace Dev4Tech
             }
         }
 
+
         private string ObterStatusTarefa(int idTarefa)
         {
-            try
+            // Se já foi entregue, retorna concluída
+            if (dbPlanejamento.FuncionarioEntregou(idTarefa, idFuncionarioLogado))
+                return "Concluida";
+
+            // Tarefas com arquivo: baseia-se no progresso do PDF
+            if (!progressoCache.ContainsKey(idTarefa))
             {
-                string statusEntrega = dbPlanejamento.ObterStatusTarefa(idTarefa);
-                if (statusEntrega == "Concluida")
-                    return "Concluida";
+                var progresso = dbPlanejamento.ObterProgressoLeitura(idTarefa, idFuncionarioLogado);
+                progressoCache[idTarefa] = progresso;
+            }
+            var progressoAtual = progressoCache[idTarefa];
 
-                if (!progressoCache.ContainsKey(idTarefa))
-                {
-                    var progresso = dbPlanejamento.ObterProgressoLeitura(idTarefa, idFuncionarioLogado);
-                    progressoCache[idTarefa] = progresso;
-                }
-
-                var progressoAtual = progressoCache[idTarefa];
-
-                if (progressoAtual == null)
-                    return "Pendente";
-
+            // Só tenta para tarefas COM arquivo
+            if (progressoAtual != null)
+            {
                 if (progressoAtual.Concluida)
                     return "Concluida";
-
                 if (progressoAtual.TotalPaginasVisualizadas > 0)
                     return "Fazendo";
+            }
 
-                return "Pendente";
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Erro ao obter status da tarefa {idTarefa}: {ex.Message}");
-                return "Pendente";
-            }
+            // Tarefas sem arquivo: baseia-se no HashSet
+            if (tarefasVisualizadas.Contains(idTarefa))
+                return "Fazendo";
+
+            return "Pendente";
         }
 
         private Panel CriarCardTarefa(string titulo, DateTime dataEntrega, List<Image> avatares, string status)
@@ -634,7 +638,9 @@ namespace Dev4Tech
 
             int idFuncionario = int.Parse(funcionario.getFuncionarioId());
             var idsEquipes = dbPlanejamento.ObterIdsEquipesFuncionario(idFuncionario);
-            var tarefas = dbPlanejamento.ObterTarefasPendentesPorEquipesComArquivo(idsEquipes);
+            var tarefas = dbPlanejamento.ObterTodasTarefasPendentesPorEquipes(idsEquipes);
+
+
 
             foreach (var tarefa in tarefas)
             {
@@ -647,8 +653,20 @@ namespace Dev4Tech
 
                 card.Click += (senderCard, eCard) =>
                 {
-                    int idTarefa = (int)((Panel)senderCard).Tag;
-                    CarregarPdfDaTarefa(idTarefa);
+                    if (!string.IsNullOrEmpty(tarefa.NomeArquivo))
+                    {
+                        CarregarPdfDaTarefa(tarefa.IdTarefa);
+                    }
+                    else
+                    {
+                        string instrucoes = dbPlanejamento.ObterInstrucoesTarefa(tarefa.IdTarefa);
+                        MessageBox.Show(
+                            string.IsNullOrWhiteSpace(instrucoes) ? "Nenhuma instrução cadastrada para esta tarefa." : instrucoes,
+                            "Instruções da Tarefa",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information
+                        );
+                    }
                 };
 
                 switch (statusTarefa)
@@ -656,6 +674,7 @@ namespace Dev4Tech
                     case "Pendente": flpP.Controls.Add(card); break;
                     case "Fazendo": flpF.Controls.Add(card); break;
                     case "Concluida": flpC.Controls.Add(card); break;
+                    default: flpP.Controls.Add(card); break;
                 }
             }
         }

@@ -373,7 +373,7 @@
             // 
             this.pictureBox4.Location = new System.Drawing.Point(359, 201);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(238, 364);
+            this.pictureBox4.Size = new System.Drawing.Size(238, 484);
             this.pictureBox4.TabIndex = 139;
             this.pictureBox4.TabStop = false;
             // 
@@ -381,7 +381,7 @@
             // 
             this.pictureBox12.Location = new System.Drawing.Point(599, 201);
             this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Size = new System.Drawing.Size(239, 364);
+            this.pictureBox12.Size = new System.Drawing.Size(239, 484);
             this.pictureBox12.TabIndex = 140;
             this.pictureBox12.TabStop = false;
             // 
@@ -389,7 +389,7 @@
             // 
             this.pictureBox13.Location = new System.Drawing.Point(838, 201);
             this.pictureBox13.Name = "pictureBox13";
-            this.pictureBox13.Size = new System.Drawing.Size(241, 364);
+            this.pictureBox13.Size = new System.Drawing.Size(241, 484);
             this.pictureBox13.TabIndex = 141;
             this.pictureBox13.TabStop = false;
             // 
@@ -489,7 +489,7 @@
             this.flpPDFs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.flpPDFs.Location = new System.Drawing.Point(1086, 123);
             this.flpPDFs.Name = "flpPDFs";
-            this.flpPDFs.Size = new System.Drawing.Size(328, 466);
+            this.flpPDFs.Size = new System.Drawing.Size(328, 562);
             this.flpPDFs.TabIndex = 151;
             this.flpPDFs.Paint += new System.Windows.Forms.PaintEventHandler(this.flpPDFs_Paint);
             // 
