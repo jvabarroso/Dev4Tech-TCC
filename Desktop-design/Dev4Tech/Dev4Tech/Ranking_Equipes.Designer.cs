@@ -308,7 +308,7 @@
             this.pictureBox12.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
             this.pictureBox12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox12.Location = new System.Drawing.Point(97, 18);
-            this.pictureBox12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox12.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox12.Name = "pictureBox12";
             this.pictureBox12.Size = new System.Drawing.Size(40, 40);
             this.pictureBox12.TabIndex = 62;
@@ -397,7 +397,7 @@
             this.pictureBox20.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
             this.pictureBox20.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox20.Location = new System.Drawing.Point(97, 18);
-            this.pictureBox20.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox20.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox20.Name = "pictureBox20";
             this.pictureBox20.Size = new System.Drawing.Size(40, 40);
             this.pictureBox20.TabIndex = 137;
@@ -536,7 +536,7 @@
             this.pictureBox23.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
             this.pictureBox23.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox23.Location = new System.Drawing.Point(97, 18);
-            this.pictureBox23.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox23.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox23.Name = "pictureBox23";
             this.pictureBox23.Size = new System.Drawing.Size(40, 40);
             this.pictureBox23.TabIndex = 137;
@@ -716,7 +716,7 @@
             this.pictureBox28.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
             this.pictureBox28.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox28.Location = new System.Drawing.Point(97, 16);
-            this.pictureBox28.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox28.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox28.Name = "pictureBox28";
             this.pictureBox28.Size = new System.Drawing.Size(40, 40);
             this.pictureBox28.TabIndex = 137;
@@ -865,7 +865,7 @@
             this.pictureBox33.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
             this.pictureBox33.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox33.Location = new System.Drawing.Point(97, 18);
-            this.pictureBox33.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox33.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox33.Name = "pictureBox33";
             this.pictureBox33.Size = new System.Drawing.Size(40, 40);
             this.pictureBox33.TabIndex = 137;
@@ -1063,7 +1063,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1184, 781);
+            this.ClientSize = new System.Drawing.Size(1424, 861);
             this.Controls.Add(this.panelRankingEquipes);
             this.Controls.Add(this.picPerfil);
             this.Controls.Add(this.btnEquipes);

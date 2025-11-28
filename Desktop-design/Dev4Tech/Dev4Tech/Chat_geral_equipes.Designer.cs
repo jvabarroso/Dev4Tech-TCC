@@ -161,7 +161,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.pictureBox2.Location = new System.Drawing.Point(52, -2);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(336, 682);
             this.pictureBox2.TabIndex = 37;
@@ -173,9 +173,9 @@
             this.groupBox2.Controls.Add(this.iconFotoEquipe);
             this.groupBox2.Controls.Add(this.lblNomeEquipe);
             this.groupBox2.Location = new System.Drawing.Point(82, 51);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(282, 82);
             this.groupBox2.TabIndex = 177;
             this.groupBox2.TabStop = false;
@@ -195,7 +195,7 @@
             this.iconFotoEquipe.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
             this.iconFotoEquipe.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.iconFotoEquipe.Location = new System.Drawing.Point(17, 17);
-            this.iconFotoEquipe.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.iconFotoEquipe.Margin = new System.Windows.Forms.Padding(2);
             this.iconFotoEquipe.Name = "iconFotoEquipe";
             this.iconFotoEquipe.Size = new System.Drawing.Size(38, 41);
             this.iconFotoEquipe.TabIndex = 39;
@@ -281,7 +281,7 @@
             this.btnEnviarMensagem.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnEnviarMensagem.BackgroundImage")));
             this.btnEnviarMensagem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnEnviarMensagem.Location = new System.Drawing.Point(1102, 611);
-            this.btnEnviarMensagem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEnviarMensagem.Margin = new System.Windows.Forms.Padding(2);
             this.btnEnviarMensagem.Name = "btnEnviarMensagem";
             this.btnEnviarMensagem.Size = new System.Drawing.Size(40, 35);
             this.btnEnviarMensagem.TabIndex = 44;
@@ -320,7 +320,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1186, 752);
+            this.ClientSize = new System.Drawing.Size(1424, 861);
             this.Controls.Add(this.panelMensagens);
             this.Controls.Add(this.btnEnviarMensagem);
             this.Controls.Add(this.txtDigitarMensagem);
@@ -339,7 +339,7 @@
             this.Controls.Add(this.btnConfig);
             this.Controls.Add(this.btnHome);
             this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Chat_geral_equipes";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Chat_geral_equipes_Load);

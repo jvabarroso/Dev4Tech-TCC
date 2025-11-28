@@ -84,7 +84,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.pictureBox2.Location = new System.Drawing.Point(42, 0);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(319, 783);
             this.pictureBox2.TabIndex = 113;
@@ -268,7 +268,7 @@
             // panelEquipe
             // 
             this.panelEquipe.Location = new System.Drawing.Point(434, 98);
-            this.panelEquipe.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelEquipe.Margin = new System.Windows.Forms.Padding(2);
             this.panelEquipe.Name = "panelEquipe";
             this.panelEquipe.Size = new System.Drawing.Size(654, 116);
             this.panelEquipe.TabIndex = 153;
@@ -277,7 +277,7 @@
             // 
             this.flpRankFunc.AutoScroll = true;
             this.flpRankFunc.Location = new System.Drawing.Point(890, 477);
-            this.flpRankFunc.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flpRankFunc.Margin = new System.Windows.Forms.Padding(2);
             this.flpRankFunc.Name = "flpRankFunc";
             this.flpRankFunc.Size = new System.Drawing.Size(286, 192);
             this.flpRankFunc.TabIndex = 154;
@@ -301,9 +301,9 @@
             this.groupBox2.Controls.Add(this.pictureBox4);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Location = new System.Drawing.Point(76, 74);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(253, 82);
             this.groupBox2.TabIndex = 172;
             this.groupBox2.TabStop = false;
@@ -323,7 +323,7 @@
             this.pictureBox4.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
             this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox4.Location = new System.Drawing.Point(17, 17);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(38, 41);
             this.pictureBox4.TabIndex = 39;
@@ -408,7 +408,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1208, 764);
+            this.ClientSize = new System.Drawing.Size(1424, 861);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.lblPlanejamento);

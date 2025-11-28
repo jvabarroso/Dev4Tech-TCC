@@ -139,6 +139,59 @@ namespace Dev4Tech
             }
             return tarefas;
         }
+
+        public bool TarefaTemArquivo(int idTarefa)
+        {
+            bool temArquivo = false;
+            string query = "SELECT nome_arquivo FROM Tarefas WHERE id_tarefa = @idTarefa";
+
+            if (abrirConexao())
+            {
+                try
+                {
+                    using (var cmd = new MySqlCommand(query, conectar))
+                    {
+                        cmd.Parameters.AddWithValue("@idTarefa", idTarefa);
+                        var resultado = cmd.ExecuteScalar();
+                        if (resultado != null && resultado != DBNull.Value && !string.IsNullOrEmpty(resultado.ToString()))
+                        {
+                            temArquivo = true;
+                        }
+                    }
+                }
+                finally
+                {
+                    fecharConexao();
+                }
+            }
+            return temArquivo;
+        }
+        public int ObterIdEquipeDaTarefa(int idTarefa)
+        {
+            int idEquipe = 0;
+            string query = "SELECT id_equipe FROM Tarefas WHERE id_tarefa = @idTarefa";
+
+            if (abrirConexao())
+            {
+                try
+                {
+                    using (var cmd = new MySqlCommand(query, conectar))
+                    {
+                        cmd.Parameters.AddWithValue("@idTarefa", idTarefa);
+                        var resultado = cmd.ExecuteScalar();
+                        if (resultado != null && resultado != DBNull.Value)
+                        {
+                            idEquipe = Convert.ToInt32(resultado);
+                        }
+                    }
+                }
+                finally
+                {
+                    fecharConexao();
+                }
+            }
+            return idEquipe;
+        }
         internal string ObterInstrucoesTarefa(int idTarefa)
         {
             string instrucoes = string.Empty;

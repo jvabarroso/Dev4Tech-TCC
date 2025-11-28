@@ -478,7 +478,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1265, 665);
+            this.ClientSize = new System.Drawing.Size(1424, 861);
             this.Controls.Add(this.txtSenhaEmpresa);
             this.Controls.Add(this.guna2TextBox1);
             this.Controls.Add(this.txtComplementoEmpresa);

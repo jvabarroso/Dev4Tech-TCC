@@ -58,7 +58,6 @@ namespace Dev4Tech
                 // ALTERAÇÃO PRINCIPAL: usar método que traz todas as tarefas, com e sem arquivo
                 var tarefas = dbPlanejamento.ObterTodasTarefasPendentesPorEquipes(idsEquipes);
 
-
                 if (tarefas == null)
                 {
                     MessageBox.Show("Erro ao carregar tarefas.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -72,27 +71,53 @@ namespace Dev4Tech
                     string statusTarefa = ObterStatusTarefa(tarefa.IdTarefa);
                     List<Image> avatares = dbPlanejamento.ObterAvataresPorTarefa(tarefa.IdTarefa);
 
-                    Panel card = CriarCardTarefa(tarefa.NomeTarefa, dataEntrega, avatares, statusTarefa);
+                    Panel card = CriarCardTarefa(tarefa.NomeTarefa, dataEntrega, avatares, statusTarefa, tarefa.IdTarefa);
                     card.Tag = tarefa.IdTarefa;
+
+                    // CORREÇÃO: Capturar a tarefa atual em uma variável local para evitar problema de closure
+                    int idTarefaAtual = tarefa.IdTarefa;
+                    string nomeArquivoAtual = tarefa.NomeArquivo;
+                    string nomeTarefaAtual = tarefa.NomeTarefa;
 
                     // Evento de clique conforme disponibilidade do arquivo
                     card.Click += (senderCard, eCard) =>
                     {
-                        if (!string.IsNullOrEmpty(tarefa.NomeArquivo))
+                        // Verificar se o clique foi no botão de enviar
+                        if (eCard is MouseEventArgs mouseArgs)
                         {
-                            CarregarPdfDaTarefa(tarefa.IdTarefa);
+                            var pos = mouseArgs.Location;
+                            var btnEnviar = card.Controls.OfType<Button>().FirstOrDefault();
+
+                            if (btnEnviar != null && btnEnviar.Bounds.Contains(pos))
+                            {
+                                return; // Não fazer nada - o clique será tratado pelo botão
+                            }
+                        }
+
+                        if (!string.IsNullOrEmpty(nomeArquivoAtual))
+                        {
+                            CarregarPdfDaTarefa(idTarefaAtual);
                         }
                         else
                         {
-                            // REGISTRA QUE A TAREFA FOI VISUALIZADA NESSA SESSÃO
-                            tarefasVisualizadas.Add(tarefa.IdTarefa);
-                            string instrucoes = dbPlanejamento.ObterInstrucoesTarefa(tarefa.IdTarefa);
+                            // Para tarefas sem arquivo, mostra instruções
+                            string instrucoes = dbPlanejamento.ObterInstrucoesTarefa(idTarefaAtual);
+
                             MessageBox.Show(
-                                string.IsNullOrWhiteSpace(instrucoes) ? "Nenhuma instrução cadastrada para esta tarefa." : instrucoes,
-                                "Instruções da Tarefa", MessageBoxButtons.OK, MessageBoxIcon.Information
+                                string.IsNullOrWhiteSpace(instrucoes) ?
+                                    "Nenhuma instrução cadastrada para esta tarefa." :
+                                    instrucoes,
+                                $"Instruções: {nomeTarefaAtual}",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information
                             );
-                            // FORÇA ATUALIZAÇÃO PARA MOVER O CARD PARA "FAZENDO"
-                            AtualizarPainelTarefas();
+
+                            // Marcar como visualizada
+                            if (!tarefasVisualizadas.Contains(idTarefaAtual))
+                            {
+                                tarefasVisualizadas.Add(idTarefaAtual);
+                                AtualizarPainelTarefas();
+                            }
                         }
                     };
 
@@ -115,11 +140,11 @@ namespace Dev4Tech
 
         private string ObterStatusTarefa(int idTarefa)
         {
-            // Se já foi entregue, retorna concluída
+            // VERIFICA PRIMEIRO SE A TAREFA JÁ FOI ENTREGUE - isso é o que define "Concluida"
             if (dbPlanejamento.FuncionarioEntregou(idTarefa, idFuncionarioLogado))
                 return "Concluida";
 
-            // Tarefas com arquivo: baseia-se no progresso do PDF
+            // Para tarefas COM arquivo: verifica se está em progresso
             if (!progressoCache.ContainsKey(idTarefa))
             {
                 var progresso = dbPlanejamento.ObterProgressoLeitura(idTarefa, idFuncionarioLogado);
@@ -127,23 +152,25 @@ namespace Dev4Tech
             }
             var progressoAtual = progressoCache[idTarefa];
 
-            // Só tenta para tarefas COM arquivo
-            if (progressoAtual != null)
+            // Tarefas COM arquivo: se já começou a ler, marca como "Fazendo"
+            if (progressoAtual != null && progressoAtual.TotalPaginasVisualizadas > 0)
             {
+                // SE TODAS AS PÁGINAS FORAM VISUALIZADAS, MARCA COMO "Concluida"
                 if (progressoAtual.Concluida)
                     return "Concluida";
-                if (progressoAtual.TotalPaginasVisualizadas > 0)
-                    return "Fazendo";
+
+                return "Fazendo";
             }
 
-            // Tarefas sem arquivo: baseia-se no HashSet
+            // Tarefas SEM arquivo: se já foi visualizada, marca como "Fazendo"
             if (tarefasVisualizadas.Contains(idTarefa))
                 return "Fazendo";
 
+            // Caso contrário, permanece como "Pendente"
             return "Pendente";
         }
 
-        private Panel CriarCardTarefa(string titulo, DateTime dataEntrega, List<Image> avatares, string status)
+        private Panel CriarCardTarefa(string titulo, DateTime dataEntrega, List<Image> avatares, string status, int idTarefa)
         {
             Panel card = new Panel
             {
@@ -153,10 +180,11 @@ namespace Dev4Tech
                 Margin = new Padding(5),
                 Padding = new Padding(8),
                 BackColor = GetCorStatus(status),
-                Cursor = Cursors.Hand
+                Cursor = Cursors.Hand,
+                Tag = idTarefa // Garantir que o ID está no Tag
             };
 
-            // Adicionar badge de status
+            // Badge de status
             Label lblStatus = new Label
             {
                 Text = status,
@@ -169,6 +197,41 @@ namespace Dev4Tech
                 TextAlign = ContentAlignment.MiddleCenter
             };
             card.Controls.Add(lblStatus);
+
+            // ADICIONAR: Botão "Enviar Tarefa" para tarefas em progresso
+            if (status == "Fazendo" || (status == "Concluida" && dbPlanejamento.TarefaTemArquivo(idTarefa)))
+            {
+                Button btnEnviar = new Button
+                {
+                    Text = status == "Concluida" ? "📤 Entregar" : "📤 Enviar",
+                    Size = new Size(80, 25),
+                    Location = new Point(card.Width - 85, 25),
+                    Font = new Font("Segoe UI", 7, FontStyle.Bold),
+                    BackColor = status == "Concluida" ? Color.FromArgb(46, 204, 113) : Color.FromArgb(52, 152, 219),
+                    ForeColor = Color.White,
+                    FlatStyle = FlatStyle.Flat,
+                    Cursor = Cursors.Hand,
+                    Tag = idTarefa // Armazenar o ID da tarefa no botão
+                };
+
+
+                // Estilizar o botão
+                btnEnviar.FlatAppearance.BorderSize = 0;
+                btnEnviar.FlatAppearance.MouseOverBackColor = Color.FromArgb(39, 174, 96);
+                btnEnviar.FlatAppearance.MouseDownBackColor = Color.FromArgb(33, 145, 80);
+
+                // Evento de clique do botão
+                btnEnviar.Click += (sender, e) =>
+                {
+                    int tarefaId = (int)((Button)sender).Tag;
+                    AbrirTelaEnvioTarefa(tarefaId);
+                };
+
+                // Prevenir que o clique no botão dispare o evento do card
+                btnEnviar.MouseDown += (sender, e) => e = e;
+
+                card.Controls.Add(btnEnviar);
+            }
 
             FlowLayoutPanel membrosPanel = new FlowLayoutPanel
             {
@@ -631,6 +694,12 @@ namespace Dev4Tech
                         progresso.TotalPaginasVisualizadas = paginasVisualizadasCache[idTarefa].Count;
                         progresso.PercentualConcluido = (decimal)progresso.TotalPaginasVisualizadas / progresso.TotalPaginas * 100;
                         progresso.Concluida = progresso.TotalPaginasVisualizadas >= progresso.TotalPaginas;
+
+                        // ATUALIZAR A INTERFACE SE TODAS AS PÁGINAS FORAM VISUALIZADAS
+                        if (progresso.Concluida)
+                        {
+                            AtualizarPainelTarefas();
+                        }
                     }
 
                     // Abrir o PDF
@@ -641,7 +710,7 @@ namespace Dev4Tech
                     });
 
                     ExibirPdfsNoFlowLayout(tarefasPaginasCache[idTarefa], idTarefa);
-                    AtualizarPainelTarefas();
+                    AtualizarPainelTarefas(); // Atualizar sempre para refletir mudanças de status
                 }
                 else
                 {
@@ -653,13 +722,15 @@ namespace Dev4Tech
                 MessageBox.Show("Erro ao abrir PDF: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void AtualizarPainelTarefas()
         {
+            // LIMPAR CACHE DE PROGRESSO PARA FORÇAR ATUALIZAÇÃO
+            progressoCache.Clear();
+
             flpP.Controls.Clear();
             flpF.Controls.Clear();
             flpC.Controls.Clear();
-            progressoCache.Clear();
+
 
             var funcionario = Sessao.FuncionarioLogado;
             if (funcionario == null) return;
@@ -668,26 +739,41 @@ namespace Dev4Tech
             var idsEquipes = dbPlanejamento.ObterIdsEquipesFuncionario(idFuncionario);
             var tarefas = dbPlanejamento.ObterTodasTarefasPendentesPorEquipes(idsEquipes);
 
-
-
             foreach (var tarefa in tarefas)
             {
                 DateTime dataEntrega = dbPlanejamento.ObterDataEntregaTarefa(tarefa.IdTarefa);
                 string statusTarefa = ObterStatusTarefa(tarefa.IdTarefa);
                 List<Image> avatares = dbPlanejamento.ObterAvataresPorTarefa(tarefa.IdTarefa);
 
-                Panel card = CriarCardTarefa(tarefa.NomeTarefa, dataEntrega, avatares, statusTarefa);
+                Panel card = CriarCardTarefa(tarefa.NomeTarefa, dataEntrega, avatares, statusTarefa, tarefa.IdTarefa);
                 card.Tag = tarefa.IdTarefa;
+
+                // CORREÇÃO: Capturar a tarefa atual em uma variável local para evitar problema de closure
+                int idTarefaAtual = tarefa.IdTarefa;
+                string nomeArquivoAtual = tarefa.NomeArquivo;
+                string nomeTarefaAtual = tarefa.NomeTarefa;
 
                 card.Click += (senderCard, eCard) =>
                 {
-                    if (!string.IsNullOrEmpty(tarefa.NomeArquivo))
+                    // Verificar se o clique foi no botão de enviar
+                    if (eCard is MouseEventArgs mouseArgs)
                     {
-                        CarregarPdfDaTarefa(tarefa.IdTarefa);
+                        var pos = mouseArgs.Location;
+                        var btnEnviar = card.Controls.OfType<Button>().FirstOrDefault();
+
+                        if (btnEnviar != null && btnEnviar.Bounds.Contains(pos))
+                        {
+                            return; // Não fazer nada - o clique será tratado pelo botão
+                        }
+                    }
+
+                    if (!string.IsNullOrEmpty(nomeArquivoAtual))
+                    {
+                        CarregarPdfDaTarefa(idTarefaAtual);
                     }
                     else
                     {
-                        string instrucoes = dbPlanejamento.ObterInstrucoesTarefa(tarefa.IdTarefa);
+                        string instrucoes = dbPlanejamento.ObterInstrucoesTarefa(idTarefaAtual);
                         MessageBox.Show(
                             string.IsNullOrWhiteSpace(instrucoes) ? "Nenhuma instrução cadastrada para esta tarefa." : instrucoes,
                             "Instruções da Tarefa",
@@ -757,6 +843,66 @@ namespace Dev4Tech
                     picPerfil.Image = Properties.Resources.icon_perfil;
                     picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
                 }
+            }
+        }
+
+        private void AbrirTelaEnvioTarefa(int idTarefa)
+        {
+            try
+            {
+                // Obter informações da tarefa para mostrar na confirmação
+                string nomeTarefa = ObterNomeTarefa(idTarefa);
+                DateTime dataEntrega = dbPlanejamento.ObterDataEntregaTarefa(idTarefa);
+
+                // Obter o ID da equipe da tarefa
+                int idEquipe = dbPlanejamento.ObterIdEquipeDaTarefa(idTarefa);
+
+                if (idEquipe == 0)
+                {
+                    MessageBox.Show("Não foi possível identificar a equipe desta tarefa.", "Erro",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                var confirmacao = MessageBox.Show(
+                    $"Deseja enviar a tarefa?\n\n" +
+                    $"Tarefa: {nomeTarefa}\n" +
+                    $"Data de entrega: {dataEntrega:dd/MM/yyyy}",
+                    "Confirmar Envio",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (confirmacao == DialogResult.Yes)
+                {
+                    // Abrir a tela de tarefa para envio
+                    Tela_Tarefa telaTarefa = new Tela_Tarefa(idEquipe);
+                    telaTarefa.CarregarDetalhesTarefa(idTarefa);
+                    telaTarefa.Show();
+                    this.Hide();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao abrir tela de envio: {ex.Message}", "Erro",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private string ObterNomeTarefa(int idTarefa)
+        {
+            try
+            {
+                // Você pode otimizar isso buscando de um cache se necessário
+                var idsEquipes = dbPlanejamento.ObterIdsEquipesFuncionario(idFuncionarioLogado);
+                var tarefas = dbPlanejamento.ObterTodasTarefasPendentesPorEquipes(idsEquipes);
+
+                var tarefa = tarefas.FirstOrDefault(t => t.IdTarefa == idTarefa);
+                return tarefa?.NomeTarefa ?? $"Tarefa #{idTarefa}";
+            }
+            catch
+            {
+                return $"Tarefa #{idTarefa}";
             }
         }
 
