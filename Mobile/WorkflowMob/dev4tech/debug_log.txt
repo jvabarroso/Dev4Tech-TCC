@@ -34,3 +34,18 @@
 2025-11-19 16:18:29 - Conexão com banco estabelecida
 2025-11-19 16:18:29 - Tarefa 11 encontrada
 2025-11-19 16:18:29 - Tabela TarefaPdfMetadata atualizada com sucesso
+2025-11-25 22:03:13 - Recebida requisição para processar PDF
+2025-11-25 22:03:13 - Dados recebidos - id_tarefa: 22, nome_arquivo: d5e7bf72-75f2-4b77-ba1f-96d340d82ae5, total_paginas: 3
+2025-11-25 22:03:13 - Conexão com banco estabelecida
+2025-11-25 22:03:13 - Tarefa 22 encontrada
+2025-11-25 22:03:13 - Tabela TarefaPdfMetadata atualizada com sucesso
+2025-11-25 22:07:39 - Recebida requisição para processar PDF
+2025-11-25 22:07:39 - Dados recebidos - id_tarefa: 22, nome_arquivo: d5e7bf72-75f2-4b77-ba1f-96d340d82ae5, total_paginas: 24
+2025-11-25 22:07:39 - Conexão com banco estabelecida
+2025-11-25 22:07:39 - Tarefa 22 encontrada
+2025-11-25 22:07:39 - Tabela TarefaPdfMetadata atualizada com sucesso
+2025-11-25 22:16:30 - Recebida requisição para processar PDF
+2025-11-25 22:16:30 - Dados recebidos - id_tarefa: 22, nome_arquivo: d5e7bf72-75f2-4b77-ba1f-96d340d82ae5, total_paginas: 24
+2025-11-25 22:16:30 - Conexão com banco estabelecida
+2025-11-25 22:16:30 - Tarefa 22 encontrada
+2025-11-25 22:16:30 - Tabela TarefaPdfMetadata atualizada com sucesso

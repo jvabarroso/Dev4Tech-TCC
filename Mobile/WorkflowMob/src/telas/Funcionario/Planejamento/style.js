@@ -68,16 +68,17 @@ export const getStyles = (theme) => StyleSheet.create({
   textosTarefa: {
     marginLeft: 10,
     flexShrink: 1,
+    flex: 1,
   },
   imag: {
-    width: 45,
-    height: 45,
+    width: 60,
+    height: 60,
   },
   textolistatitulo: {
     color: theme.text,
-    fontSize: 18,
+    fontSize: 15,
     fontFamily: fonts.text,
-    fontWeight: 'bold',
+    fontWeight: "500",
   },
   textolista: {
     color: theme.text,
@@ -105,11 +106,8 @@ export const getStyles = (theme) => StyleSheet.create({
     marginTop:4,
   },
   containerfiltro:{
-    position: 'absolute',
-    backgroundColor: "#4CAF50",
-    borderRadius: 10,
-    paddingHorizontal: 5,
-    left:260
+    paddingHorizontal: 8,
+    borderRadius: 8,
   },
   textofiltro:{
     color: "#fff",
@@ -362,15 +360,15 @@ export const getStyles = (theme) => StyleSheet.create({
     fontSize: 14,
   },
   pageItemWithActions: {
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  padding: 15,
-  borderBottomWidth: 1,
-  borderBottomColor: theme.inputBackground,
-  backgroundColor: theme.cardBackground,
-  borderRadius: 8,
-  marginBottom: 8,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: theme.inputBackground,
+    backgroundColor: theme.cardBackground,
+    borderRadius: 8,
+    marginBottom: 8,
   },
   pageInfo: {
     flex: 1,
@@ -403,4 +401,18 @@ export const getStyles = (theme) => StyleSheet.create({
     fontSize: 12,
     fontWeight: '500',
   },
+  nomeTarefa: {
+    color: theme.text,
+    fontSize: 16,
+    fontFamily: fonts.text,
+    fontWeight: "bold",
+    marginBottom: 3,
+  },
+  linhaTituloStatus: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "100%",
+  },
+
 });
