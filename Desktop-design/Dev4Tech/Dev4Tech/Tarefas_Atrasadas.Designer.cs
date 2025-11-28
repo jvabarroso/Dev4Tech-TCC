@@ -48,7 +48,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblNomeEquipe = new System.Windows.Forms.Label();
             this.lblPlanejamento = new System.Windows.Forms.Label();
             this.lblMembros = new System.Windows.Forms.Label();
             this.lblRanking = new System.Windows.Forms.Label();
@@ -71,7 +71,7 @@
             // 
             this.panelTarefas.AutoScroll = true;
             this.panelTarefas.Location = new System.Drawing.Point(445, 268);
-            this.panelTarefas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelTarefas.Margin = new System.Windows.Forms.Padding(2);
             this.panelTarefas.Name = "panelTarefas";
             this.panelTarefas.Size = new System.Drawing.Size(627, 307);
             this.panelTarefas.TabIndex = 131;
@@ -80,7 +80,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.pictureBox2.Location = new System.Drawing.Point(52, 0);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(306, 779);
             this.pictureBox2.TabIndex = 99;
@@ -291,11 +291,11 @@
             // 
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.pictureBox3);
-            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.lblNomeEquipe);
             this.groupBox1.Location = new System.Drawing.Point(79, 74);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(253, 82);
             this.groupBox1.TabIndex = 165;
             this.groupBox1.TabStop = false;
@@ -317,23 +317,23 @@
             this.pictureBox3.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox3.Location = new System.Drawing.Point(17, 17);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(38, 41);
             this.pictureBox3.TabIndex = 39;
             this.pictureBox3.TabStop = false;
             this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
             // 
-            // label3
+            // lblNomeEquipe
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(60, 17);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(75, 16);
-            this.label3.TabIndex = 60;
-            this.label3.Text = "EQUIPE 1";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
+            this.lblNomeEquipe.AutoSize = true;
+            this.lblNomeEquipe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNomeEquipe.Location = new System.Drawing.Point(60, 17);
+            this.lblNomeEquipe.Name = "lblNomeEquipe";
+            this.lblNomeEquipe.Size = new System.Drawing.Size(75, 16);
+            this.lblNomeEquipe.TabIndex = 60;
+            this.lblNomeEquipe.Text = "EQUIPE 1";
+            this.lblNomeEquipe.Click += new System.EventHandler(this.label3_Click);
             // 
             // lblPlanejamento
             // 
@@ -470,7 +470,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblNomeEquipe;
         private System.Windows.Forms.Label lblPlanejamento;
         private System.Windows.Forms.Label lblMembros;
         private System.Windows.Forms.Label lblRanking;

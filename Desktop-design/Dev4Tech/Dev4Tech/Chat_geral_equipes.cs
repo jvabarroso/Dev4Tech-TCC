@@ -452,8 +452,8 @@ namespace Dev4Tech
             if (Sessao.IdEquipeSelecionada != 0)
             {
                 int idEquipe = Sessao.IdEquipeSelecionada;
-                string nomeEquipe = "Nome da equipe"; // Ajuste para obter o nome real da equipe
-                string categoriaEquipe = "Categoria da equipe"; // Ajuste para obter a categoria real da equipe
+                string nomeEquipe = Sessao.NomeEquipeSelecionada; // Ajuste para obter o nome real da equipe
+                string categoriaEquipe = Sessao.CategoriaEquipeSelecionada; // Ajuste para obter a categoria real da equipe
 
                 if (funcionario != null)
                 {

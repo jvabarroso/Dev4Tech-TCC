@@ -427,19 +427,18 @@ namespace Dev4Tech
 
             if (Sessao.IdEquipeSelecionada != 0)
             {
-                int idEquipe = Sessao.IdEquipeSelecionada;
-                string nomeEquipe = "Nome da equipe"; // Ajuste para obter o nome real da equipe
-                string categoriaEquipe = "Categoria da equipe"; // Ajuste para obter a categoria real da equipe
+                string nomeEquipe = Sessao.NomeEquipeSelecionada;
+                string categoriaEquipe = Sessao.CategoriaEquipeSelecionada;
 
                 if (funcionario != null)
                 {
-                    Chat_geral_equipes t_equipe = new Chat_geral_equipes(idEquipe, nomeEquipe, categoriaEquipe);
+                    Chat_geral_equipes t_equipe = new Chat_geral_equipes(Sessao.IdEquipeSelecionada, nomeEquipe, categoriaEquipe);
                     t_equipe.Show();
                     this.Hide();
                 }
                 else if (admin != null)
                 {
-                    Chat_geral_equipes t_equipeAdmin = new Chat_geral_equipes(idEquipe, nomeEquipe, categoriaEquipe);
+                    Chat_geral_equipes t_equipeAdmin = new Chat_geral_equipes(Sessao.IdEquipeSelecionada, nomeEquipe, categoriaEquipe);
                     t_equipeAdmin.Show();
                     this.Hide();
                 }

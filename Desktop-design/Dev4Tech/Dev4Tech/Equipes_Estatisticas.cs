@@ -524,8 +524,8 @@ ORDER BY pontos DESC;
             if (Sessao.IdEquipeSelecionada != 0)
             {
                 int idEquipe = Sessao.IdEquipeSelecionada;
-                string nomeEquipe = "Nome da equipe"; // Ajuste para obter o nome real da equipe
-                string categoriaEquipe = "Categoria da equipe"; // Ajuste para obter a categoria real da equipe
+                string nomeEquipe = Sessao.NomeEquipeSelecionada;
+                string categoriaEquipe = Sessao.CategoriaEquipeSelecionada;
 
                 if (funcionario != null)
                 {
