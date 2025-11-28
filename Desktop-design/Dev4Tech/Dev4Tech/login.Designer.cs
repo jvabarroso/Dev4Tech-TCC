@@ -41,7 +41,6 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             btnVoltar = new Guna.UI2.WinForms.Guna2GradientButton();
             btnLogin = new Guna.UI2.WinForms.Guna2GradientButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -60,10 +59,9 @@
             btnVoltar.FillColor2 = System.Drawing.Color.White;
             btnVoltar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             btnVoltar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(88)))), ((int)(((byte)(242)))));
-            btnVoltar.Location = new System.Drawing.Point(1156, 805);
-            btnVoltar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            btnVoltar.Location = new System.Drawing.Point(708, 505);
             btnVoltar.Name = "btnVoltar";
-            btnVoltar.Size = new System.Drawing.Size(578, 69);
+            btnVoltar.Size = new System.Drawing.Size(390, 45);
             btnVoltar.TabIndex = 135;
             btnVoltar.Text = "Voltar";
             btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
@@ -80,10 +78,9 @@
             btnLogin.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(88)))), ((int)(((byte)(242)))));
             btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             btnLogin.ForeColor = System.Drawing.Color.White;
-            btnLogin.Location = new System.Drawing.Point(1156, 704);
-            btnLogin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            btnLogin.Location = new System.Drawing.Point(708, 440);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new System.Drawing.Size(578, 69);
+            btnLogin.Size = new System.Drawing.Size(390, 45);
             btnLogin.TabIndex = 134;
             btnLogin.Text = "Login";
             btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -92,10 +89,9 @@
             // 
             this.btnMostrarSenha.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnMostrarSenha.BackgroundImage")));
             this.btnMostrarSenha.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnMostrarSenha.Location = new System.Drawing.Point(1761, 431);
-            this.btnMostrarSenha.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnMostrarSenha.Location = new System.Drawing.Point(1115, 294);
             this.btnMostrarSenha.Name = "btnMostrarSenha";
-            this.btnMostrarSenha.Size = new System.Drawing.Size(78, 55);
+            this.btnMostrarSenha.Size = new System.Drawing.Size(52, 36);
             this.btnMostrarSenha.TabIndex = 23;
             this.btnMostrarSenha.UseVisualStyleBackColor = true;
             this.btnMostrarSenha.Click += new System.EventHandler(this.btnMostrarSenha_Click);
@@ -105,10 +101,9 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Poppins", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            this.label2.Location = new System.Drawing.Point(1145, 390);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(704, 267);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 36);
+            this.label2.Size = new System.Drawing.Size(56, 25);
             this.label2.TabIndex = 133;
             this.label2.Text = "Senha";
             // 
@@ -123,36 +118,36 @@
             this.txtSenha.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtSenha.Font = new System.Drawing.Font("Poppins", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSenha.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtSenha.Location = new System.Drawing.Point(1151, 431);
-            this.txtSenha.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.txtSenha.Location = new System.Drawing.Point(708, 294);
+            this.txtSenha.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.PlaceholderText = "Digite sua senha";
             this.txtSenha.SelectedText = "";
-            this.txtSenha.Size = new System.Drawing.Size(582, 55);
+            this.txtSenha.Size = new System.Drawing.Size(388, 36);
             this.txtSenha.TabIndex = 132;
             this.txtSenha.UseSystemPasswordChar = true;
             // 
             // lblCadastrar
             // 
             this.lblCadastrar.AutoSize = true;
-            this.lblCadastrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCadastrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCadastrar.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCadastrar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(88)))), ((int)(((byte)(242)))));
-            this.lblCadastrar.Location = new System.Drawing.Point(1637, 624);
-            this.lblCadastrar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCadastrar.Location = new System.Drawing.Point(917, 358);
             this.lblCadastrar.Name = "lblCadastrar";
-            this.lblCadastrar.Size = new System.Drawing.Size(169, 29);
+            this.lblCadastrar.Size = new System.Drawing.Size(159, 28);
             this.lblCadastrar.TabIndex = 131;
-            this.lblCadastrar.Text = "Cadastrar aqui";
+            this.lblCadastrar.Text = "Cadastre-se aqui!";
+            this.lblCadastrar.Click += new System.EventHandler(this.lblCadastrar_Click);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Poppins", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            this.label7.Location = new System.Drawing.Point(1145, 284);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(704, 199);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(70, 36);
+            this.label7.Size = new System.Drawing.Size(48, 25);
             this.label7.TabIndex = 130;
             this.label7.Text = "Email";
             // 
@@ -167,12 +162,12 @@
             this.txtEmail.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtEmail.Font = new System.Drawing.Font("Poppins", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmail.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtEmail.Location = new System.Drawing.Point(1151, 325);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.txtEmail.Location = new System.Drawing.Point(708, 225);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.PlaceholderText = "Digite seu nome";
             this.txtEmail.SelectedText = "";
-            this.txtEmail.Size = new System.Drawing.Size(586, 55);
+            this.txtEmail.Size = new System.Drawing.Size(391, 36);
             this.txtEmail.TabIndex = 129;
             this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged_1);
             // 
@@ -181,21 +176,19 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            this.label8.Location = new System.Drawing.Point(1051, 624);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(723, 358);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(592, 42);
+            this.label8.Size = new System.Drawing.Size(197, 28);
             this.label8.TabIndex = 128;
-            this.label8.Text = "Se você ainda não possui uma conta você pode";
+            this.label8.Text = "Se não tem uma conta,";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Poppins", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(1137, 205);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Font = new System.Drawing.Font("Poppins Medium", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(701, 137);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(108, 56);
+            this.label15.Size = new System.Drawing.Size(78, 37);
             this.label15.TabIndex = 127;
             this.label15.Text = "Login";
             // 
@@ -203,10 +196,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Poppins", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(973, 71);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(649, 46);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(206, 53);
+            this.label1.Size = new System.Drawing.Size(137, 36);
             this.label1.TabIndex = 126;
             this.label1.Text = "WORKFLOW";
             // 
@@ -214,30 +206,17 @@
             // 
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(46, 28);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox1.Location = new System.Drawing.Point(31, 18);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(837, 963);
+            this.pictureBox1.Size = new System.Drawing.Size(558, 626);
             this.pictureBox1.TabIndex = 125;
             this.pictureBox1.TabStop = false;
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Poppins", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(1156, 498);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(208, 40);
-            this.checkBox1.TabIndex = 124;
-            this.checkBox1.Text = "Lembrar de mim";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1898, 1024);
+            this.ClientSize = new System.Drawing.Size(1265, 666);
             this.Controls.Add(btnVoltar);
             this.Controls.Add(btnLogin);
             this.Controls.Add(this.label2);
@@ -249,9 +228,7 @@
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.btnMostrarSenha);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Login";
             this.Text = "login";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -273,6 +250,5 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

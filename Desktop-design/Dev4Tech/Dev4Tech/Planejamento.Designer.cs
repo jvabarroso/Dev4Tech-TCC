@@ -197,7 +197,7 @@
             this.pictureBox2.Location = new System.Drawing.Point(52, -3);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(306, 688);
+            this.pictureBox2.Size = new System.Drawing.Size(255, 688);
             this.pictureBox2.TabIndex = 127;
             this.pictureBox2.TabStop = false;
             // 
@@ -310,7 +310,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(412, 23);
+            this.label2.Location = new System.Drawing.Point(334, 37);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(262, 50);
             this.label2.TabIndex = 134;
@@ -320,7 +320,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(418, 86);
+            this.label5.Location = new System.Drawing.Point(340, 100);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(230, 17);
             this.label5.TabIndex = 135;
@@ -361,7 +361,7 @@
             this.btnPendentes.BackColor = System.Drawing.Color.Gold;
             this.btnPendentes.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPendentes.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnPendentes.Location = new System.Drawing.Point(6, 10);
+            this.btnPendentes.Location = new System.Drawing.Point(11, 10);
             this.btnPendentes.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.btnPendentes.Name = "btnPendentes";
             this.btnPendentes.Size = new System.Drawing.Size(109, 30);
@@ -371,7 +371,7 @@
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Location = new System.Drawing.Point(359, 201);
+            this.pictureBox4.Location = new System.Drawing.Point(343, 201);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(238, 364);
             this.pictureBox4.TabIndex = 139;
@@ -379,7 +379,7 @@
             // 
             // pictureBox12
             // 
-            this.pictureBox12.Location = new System.Drawing.Point(599, 201);
+            this.pictureBox12.Location = new System.Drawing.Point(583, 201);
             this.pictureBox12.Name = "pictureBox12";
             this.pictureBox12.Size = new System.Drawing.Size(239, 364);
             this.pictureBox12.TabIndex = 140;
@@ -387,7 +387,7 @@
             // 
             // pictureBox13
             // 
-            this.pictureBox13.Location = new System.Drawing.Point(838, 201);
+            this.pictureBox13.Location = new System.Drawing.Point(822, 201);
             this.pictureBox13.Name = "pictureBox13";
             this.pictureBox13.Size = new System.Drawing.Size(241, 364);
             this.pictureBox13.TabIndex = 141;
@@ -510,7 +510,7 @@
             this.panelKBS.Controls.Add(this.btnCompletadas);
             this.panelKBS.Controls.Add(this.btnEmAtraso);
             this.panelKBS.Controls.Add(this.btnPendentes);
-            this.panelKBS.Location = new System.Drawing.Point(359, 130);
+            this.panelKBS.Location = new System.Drawing.Point(343, 130);
             this.panelKBS.Name = "panelKBS";
             this.panelKBS.Size = new System.Drawing.Size(719, 362);
             this.panelKBS.TabIndex = 153;

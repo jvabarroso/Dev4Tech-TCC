@@ -138,5 +138,12 @@ namespace Dev4Tech
         }
 
         private void txtEmail_TextChanged_1(object sender, EventArgs e) { }
+
+        private void lblCadastrar_Click(object sender, EventArgs e)
+        {
+            Cadastro_empresa cad_empresa = new Cadastro_empresa();
+            cad_empresa.Show();
+            this.Hide();
+        }
     }
 }
