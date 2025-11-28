@@ -330,6 +330,7 @@ namespace Dev4Tech
         private void ExibirPdfsNoFlowLayout(List<string> caminhosArquivosPdf, int idTarefa)
         {
             flpPDFs.Controls.Clear();
+            flpPDFs.AutoScroll = true; // Garantir que scrolling funcione
 
             if (!caminhosArquivosPdf.Any())
             {
@@ -340,14 +341,14 @@ namespace Dev4Tech
             var progresso = progressoCache.ContainsKey(idTarefa) ? progressoCache[idTarefa] : null;
             var paginasVisualizadas = paginasVisualizadasCache.ContainsKey(idTarefa) ? paginasVisualizadasCache[idTarefa] : new HashSet<int>();
 
-            // Cabeçalho
+            // Cabeçalho - SEMPRE primeiro
             Panel panelCabecalho = new Panel
             {
-                Width = flpPDFs.Width - 20,
+                Width = flpPDFs.Width - 25,
                 Height = 60,
                 BackColor = Color.FromArgb(248, 249, 250),
                 BorderStyle = BorderStyle.FixedSingle,
-                Margin = new Padding(10),
+                Margin = new Padding(10, 10, 10, 5), // Margem inferior reduzida
                 Padding = new Padding(15)
             };
 
@@ -375,15 +376,16 @@ namespace Dev4Tech
 
             flpPDFs.Controls.Add(panelCabecalho);
 
-            // Container para os cards das páginas
+            // Container para os cards das páginas - SEM ALTURA FIXA
             FlowLayoutPanel containerPaginas = new FlowLayoutPanel
             {
-                Width = flpPDFs.Width - 20,
-                AutoScroll = true,
+                Width = flpPDFs.Width - 25,
+                AutoSize = true, // IMPORTANTE: Deixa o container expandir conforme o conteúdo
                 WrapContents = true,
-                Margin = new Padding(10),
-                Padding = new Padding(10),
-                BackColor = Color.White
+                Margin = new Padding(10, 5, 10, 5), // Margens verticais reduzidas
+                Padding = new Padding(15),
+                BackColor = Color.White,
+                AutoScroll = false // Container não deve ter scroll próprio
             };
 
             for (int i = 0; i < caminhosArquivosPdf.Count; i++)
@@ -400,61 +402,68 @@ namespace Dev4Tech
                     Total = caminhosArquivosPdf.Count
                 };
 
-                Panel cartao = CriarCartaoPaginaModerno(info, foiLida);
+                Panel cartao = CriarCartaoPagina(info, foiLida, 180);
                 containerPaginas.Controls.Add(cartao);
             }
 
-            // Ajustar altura do container baseado no conteúdo
-            int alturaNecessaria = Math.Min(containerPaginas.Controls.Count * 180 / 3, 400);
-            containerPaginas.Height = alturaNecessaria;
-
             flpPDFs.Controls.Add(containerPaginas);
 
-            // Barra de progresso
+            // Barra de progresso - SEMPRE depois do container de páginas
             if (progresso != null)
             {
                 AdicionarBarraProgressoDetalhada(idTarefa, progresso);
             }
         }
 
-        private Panel CriarCartaoPaginaModerno(PdfPaginaInfo info, bool foiLida)
+        private Panel CriarCartaoPagina(PdfPaginaInfo info, bool foiLida, int larguraCard)
         {
             Panel cartao = new Panel
             {
-                Width = 160,
+                Width = larguraCard,
                 Height = 180,
-                Margin = new Padding(8),
+                Margin = new Padding(10, 10, 10, 15),
                 BackColor = foiLida ? Color.FromArgb(235, 255, 235) : Color.White,
                 BorderStyle = BorderStyle.FixedSingle,
                 Cursor = Cursors.Hand,
                 Tag = info
             };
 
-            // Adicionar efeito de sombra
+            // Efeito visual melhorado
             cartao.Paint += (sender, e) =>
             {
-                ControlPaint.DrawBorder(e.Graphics, cartao.ClientRectangle,
-                    Color.FromArgb(200, 200, 200), 1, ButtonBorderStyle.Solid,
-                    Color.FromArgb(200, 200, 200), 1, ButtonBorderStyle.Solid,
-                    Color.FromArgb(200, 200, 200), 1, ButtonBorderStyle.Solid,
-                    Color.FromArgb(200, 200, 200), 1, ButtonBorderStyle.Solid);
+                using (var pen = new Pen(Color.FromArgb(220, 220, 220), 1))
+                {
+                    e.Graphics.DrawRectangle(pen, 0, 0, cartao.Width - 1, cartao.Height - 1);
+                }
+
+                // Gradiente sutil
+                using (var brush = new LinearGradientBrush(
+                    cartao.ClientRectangle,
+                    foiLida ? Color.FromArgb(245, 255, 245) : Color.FromArgb(250, 250, 250),
+                    foiLida ? Color.FromArgb(225, 255, 225) : Color.White,
+                    LinearGradientMode.Vertical))
+                {
+                    e.Graphics.FillRectangle(brush, cartao.ClientRectangle);
+                }
             };
 
-            // Ícone do documento
+            // Ícone do documento - tamanho adequado
             PictureBox icone = new PictureBox
             {
                 Image = foiLida ? Properties.Resources.icon_documento : Properties.Resources.icon_documento_blue,
-                SizeMode = PictureBoxSizeMode.CenterImage,
-                Height = 100,
-                Dock = DockStyle.Top,
+                SizeMode = PictureBoxSizeMode.Zoom,
+                Width = 80,
+                Height = 80,
+                Location = new Point((cartao.Width - 80) / 2, 15),
                 BackColor = Color.Transparent
             };
 
             // Container do conteúdo
             Panel conteudo = new Panel
             {
-                Dock = DockStyle.Fill,
-                Padding = new Padding(10)
+                Location = new Point(5, 100),
+                Size = new Size(cartao.Width - 10, 70),
+                BackColor = Color.Transparent
             };
 
             // Número da página
@@ -463,8 +472,8 @@ namespace Dev4Tech
                 Text = $"Página {info.Pagina}",
                 Font = new Font("Segoe UI", 10, FontStyle.Bold),
                 ForeColor = foiLida ? Color.Green : Color.FromArgb(0, 123, 255),
-                Dock = DockStyle.Top,
-                Height = 25,
+                Size = new Size(conteudo.Width, 25),
+                Location = new Point(0, 0),
                 TextAlign = ContentAlignment.MiddleCenter
             };
 
@@ -474,8 +483,19 @@ namespace Dev4Tech
                 Text = foiLida ? "✅ Visualizada" : "📖 Não visualizada",
                 Font = new Font("Segoe UI", 8, FontStyle.Regular),
                 ForeColor = foiLida ? Color.Green : Color.Gray,
-                Dock = DockStyle.Bottom,
-                Height = 20,
+                Size = new Size(conteudo.Width, 20),
+                Location = new Point(0, 30),
+                TextAlign = ContentAlignment.MiddleCenter
+            };
+
+            // Informação adicional
+            Label lblInfo = new Label
+            {
+                Text = $"{info.Pagina} de {info.Total}",
+                Font = new Font("Segoe UI", 7, FontStyle.Italic),
+                ForeColor = Color.DarkGray,
+                Size = new Size(conteudo.Width, 15),
+                Location = new Point(0, 50),
                 TextAlign = ContentAlignment.MiddleCenter
             };
 
@@ -484,30 +504,37 @@ namespace Dev4Tech
             {
                 Panel badge = new Panel
                 {
-                    Size = new Size(30, 30),
-                    Location = new Point(cartao.Width - 40, 10),
+                    Size = new Size(24, 24),
+                    Location = new Point(cartao.Width - 30, 10),
                     BackColor = Color.Green
                 };
                 badge.Paint += (s, e) =>
                 {
                     e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
                     e.Graphics.FillEllipse(Brushes.Green, 0, 0, badge.Width, badge.Height);
-                    e.Graphics.DrawString("✓", new Font("Segoe UI", 12, FontStyle.Bold),
-                        Brushes.White, new PointF(8, 6));
+                    e.Graphics.DrawString("✓", new Font("Segoe UI", 10, FontStyle.Bold),
+                        Brushes.White, new PointF(6, 4));
                 };
                 cartao.Controls.Add(badge);
             }
 
             // Montar hierarquia
-            conteudo.Controls.Add(lblStatus);
             conteudo.Controls.Add(lblPagina);
-            cartao.Controls.Add(conteudo);
+            conteudo.Controls.Add(lblStatus);
+            conteudo.Controls.Add(lblInfo);
             cartao.Controls.Add(icone);
+            cartao.Controls.Add(conteudo);
 
             // Eventos de clique
-            cartao.Click += (s, e) => AbrirPdfExternamente(info.Arquivo, info.IdTarefa, info.Pagina, info.Total);
-            icone.Click += (s, e) => AbrirPdfExternamente(info.Arquivo, info.IdTarefa, info.Pagina, info.Total);
-            conteudo.Click += (s, e) => AbrirPdfExternamente(info.Arquivo, info.IdTarefa, info.Pagina, info.Total);
+            EventHandler clickHandler = (s, e) => AbrirPdfExternamente(info.Arquivo, info.IdTarefa, info.Pagina, info.Total);
+            cartao.Click += clickHandler;
+            icone.Click += clickHandler;
+            conteudo.Click += clickHandler;
+            foreach (Control control in conteudo.Controls)
+            {
+                control.Click += clickHandler;
+                control.Cursor = Cursors.Hand;
+            }
 
             return cartao;
         }
@@ -520,7 +547,7 @@ namespace Dev4Tech
                 Height = 100,
                 BackColor = Color.FromArgb(248, 249, 250),
                 BorderStyle = BorderStyle.FixedSingle,
-                Margin = new Padding(20, 10, 20, 10),
+                Margin = new Padding(20, 10, 20, 20), // Margem inferior aumentada
                 Padding = new Padding(15)
             };
 
@@ -575,6 +602,7 @@ namespace Dev4Tech
                 panelProgresso.Controls.Add(fundoBarra);
             }
 
+            // ADICIONAR ao flpPDFs (não esquecer esta linha!)
             flpPDFs.Controls.Add(panelProgresso);
         }
 
@@ -824,7 +852,6 @@ namespace Dev4Tech
 
         private void picPerfilMembro_Click(object sender, EventArgs e)
         {
-            // Implementar se necessário
         }
 
         private void lblPlanejamento_Click(object sender, EventArgs e)
