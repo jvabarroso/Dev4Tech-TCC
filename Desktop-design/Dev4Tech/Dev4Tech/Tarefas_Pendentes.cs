@@ -42,24 +42,6 @@ namespace Dev4Tech
             AtualizarTarefas();
         }
 
-        private void txtPesquisarTarefa_Enter(object sender, EventArgs e)
-        {
-            if (txtPesquisarTarefa.Text == TextoPlaceholder)
-            {
-                txtPesquisarTarefa.Text = "";
-                txtPesquisarTarefa.ForeColor = Color.Black;
-            }
-        }
-
-        private void txtPesquisarTarefa_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txtPesquisarTarefa.Text))
-            {
-                txtPesquisarTarefa.Text = TextoPlaceholder;
-                txtPesquisarTarefa.ForeColor = Color.Gray;
-            }
-        }
-
         // Atualiza a lista de tarefas exibidas segundo filtros ativos (equipe/pesquisa)
         private void AtualizarTarefas()
         {

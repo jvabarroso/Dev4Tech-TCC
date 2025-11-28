@@ -108,7 +108,7 @@ namespace Dev4Tech
                 FROM Tarefas t
                 LEFT JOIN EntregasTarefa e ON t.id_tarefa = e.id_tarefa
                 WHERE t.id_equipe IN ({ids})
-                    AND (e.id_entrega IS NULL OR e.id_entrega = 0)
+                    
                     AND t.nome_arquivo IS NOT NULL AND t.nome_arquivo <> ''";
 
             if (abrirConexao())
@@ -139,7 +139,109 @@ namespace Dev4Tech
             }
             return tarefas;
         }
+        internal string ObterInstrucoesTarefa(int idTarefa)
+        {
+            string instrucoes = string.Empty;
+            string query = "SELECT instrucoes FROM Tarefas WHERE id_tarefa = @idTarefa";
 
+            if (abrirConexao())
+            {
+                try
+                {
+                    using (var cmd = new MySqlCommand(query, conectar))
+                    {
+                        cmd.Parameters.AddWithValue("@idTarefa", idTarefa);
+                        var resultado = cmd.ExecuteScalar();
+                        if (resultado != null && resultado != DBNull.Value)
+                        {
+                            instrucoes = resultado.ToString();
+                        }
+                    }
+                }
+                finally
+                {
+                    fecharConexao();
+                }
+            }
+            return instrucoes;
+        }
+
+
+
+        public class TarefaCompleta
+        {
+            public int IdTarefa { get; set; }
+            public string NomeTarefa { get; set; }
+            public string NomeArquivo { get; set; }
+            public string Instrucoes { get; set; }  // Novo campo para instruções ou descrição da tarefa
+        }
+
+        public List<TarefaCompleta> ObterTodasTarefasPendentesPorEquipes(List<int> idsEquipes)
+        {
+            var tarefas = new List<TarefaCompleta>();
+            if (idsEquipes == null || idsEquipes.Count == 0)
+                return tarefas;
+
+            string ids = string.Join(",", idsEquipes);
+            string query = $@"
+        SELECT t.id_tarefa, t.nomeTarefa, t.nome_arquivo, t.instrucoes
+        FROM Tarefas t
+        LEFT JOIN EntregasTarefa e ON t.id_tarefa = e.id_tarefa
+        WHERE t.id_equipe IN ({ids})
+            AND (e.id_entrega IS NULL OR e.id_entrega = 0)
+        ORDER BY t.data_entrega ASC";
+
+            if (abrirConexao())
+            {
+                try
+                {
+                    using (var cmd = new MySqlCommand(query, conectar))
+                    {
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var tarefa = new TarefaCompleta
+                                {
+                                    IdTarefa = reader.GetInt32("id_tarefa"),
+                                    NomeTarefa = reader.GetString("nomeTarefa"),
+                                    NomeArquivo = reader.IsDBNull(reader.GetOrdinal("nome_arquivo")) ? null : reader.GetString("nome_arquivo"),
+                                    Instrucoes = reader.IsDBNull(reader.GetOrdinal("instrucoes")) ? "" : reader.GetString("instrucoes")
+                                };
+                                tarefas.Add(tarefa);
+                            }
+                        }
+                    }
+                }
+                finally
+                {
+                    fecharConexao();
+                }
+            }
+            return tarefas;
+        }
+        public bool FuncionarioEntregou(int idTarefa, int idFuncionario)
+        {
+            string query = "SELECT COUNT(*) FROM EntregasTarefa WHERE id_tarefa = @idTarefa AND FuncionarioId = @idFuncionario";
+            if (abrirConexao())
+            {
+                try
+                {
+                    using (var cmd = new MySqlCommand(query, conectar))
+                    {
+                        cmd.Parameters.AddWithValue("@idTarefa", idTarefa);
+                        cmd.Parameters.AddWithValue("@idFuncionario", idFuncionario);
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        return count > 0;
+                    }
+                }
+                finally
+                {
+                    fecharConexao();
+                }
+            }
+            return false;
+        }
         public DateTime ObterDataEntregaTarefa(int idTarefa)
         {
             DateTime dataEntrega = DateTime.Today;
@@ -666,5 +768,6 @@ namespace Dev4Tech
                 }
             }
         }
+
     }
 }

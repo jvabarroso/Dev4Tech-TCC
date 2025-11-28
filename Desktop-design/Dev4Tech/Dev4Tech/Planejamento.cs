@@ -1,11 +1,12 @@
-﻿using System;
+﻿using MigraDoc.Rendering;
+using OfficeConverter;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using OfficeConverter;
 
 namespace Dev4Tech
 {
@@ -16,6 +17,7 @@ namespace Dev4Tech
         private Dictionary<int, HashSet<int>> paginasVisualizadasCache = new Dictionary<int, HashSet<int>>();
         private Dictionary<int, ProgressoLeitura> progressoCache = new Dictionary<int, ProgressoLeitura>();
         private int idFuncionarioLogado;
+        private HashSet<int> tarefasVisualizadas = new HashSet<int>();
 
         public Planejamento()
         {
@@ -23,6 +25,7 @@ namespace Dev4Tech
             this.Load += Planejamento_Load;
             CarregarFotoUsuario();
         }
+
 
         private void Planejamento_Load(object sender, EventArgs e)
         {
@@ -44,17 +47,17 @@ namespace Dev4Tech
                     return;
                 }
 
-                // Limpar controles
+                // Limpar controles e caches
                 flpP.Controls.Clear();
                 flpF.Controls.Clear();
                 flpC.Controls.Clear();
                 flpPDFs.Controls.Clear();
-
-                // Limpar caches
                 paginasVisualizadasCache.Clear();
                 progressoCache.Clear();
 
-                var tarefas = dbPlanejamento.ObterTarefasPendentesPorEquipesComArquivo(idsEquipes);
+                // ALTERAÇÃO PRINCIPAL: usar método que traz todas as tarefas, com e sem arquivo
+                var tarefas = dbPlanejamento.ObterTodasTarefasPendentesPorEquipes(idsEquipes);
+
 
                 if (tarefas == null)
                 {
@@ -62,6 +65,7 @@ namespace Dev4Tech
                     return;
                 }
 
+                // Exibir todas tarefas
                 foreach (var tarefa in tarefas)
                 {
                     DateTime dataEntrega = dbPlanejamento.ObterDataEntregaTarefa(tarefa.IdTarefa);
@@ -71,25 +75,28 @@ namespace Dev4Tech
                     Panel card = CriarCardTarefa(tarefa.NomeTarefa, dataEntrega, avatares, statusTarefa);
                     card.Tag = tarefa.IdTarefa;
 
+                    // Evento de clique conforme disponibilidade do arquivo
                     card.Click += (senderCard, eCard) =>
                     {
-                        var panel = senderCard as Panel;
-                        if (panel == null)
+                        if (!string.IsNullOrEmpty(tarefa.NomeArquivo))
                         {
-                            // Caso o sender não seja o painel, procuramos o painel no sender
-                            Control ctrl = senderCard as Control;
-                            while (ctrl != null && !(ctrl is Panel))
-                                ctrl = ctrl.Parent;
-                            if (ctrl is Panel)
-                                panel = (Panel)ctrl;
+                            CarregarPdfDaTarefa(tarefa.IdTarefa);
                         }
-                        if (panel != null && panel.Tag is int idTarefa)
+                        else
                         {
-                            CarregarPdfDaTarefa(idTarefa);
+                            // REGISTRA QUE A TAREFA FOI VISUALIZADA NESSA SESSÃO
+                            tarefasVisualizadas.Add(tarefa.IdTarefa);
+                            string instrucoes = dbPlanejamento.ObterInstrucoesTarefa(tarefa.IdTarefa);
+                            MessageBox.Show(
+                                string.IsNullOrWhiteSpace(instrucoes) ? "Nenhuma instrução cadastrada para esta tarefa." : instrucoes,
+                                "Instruções da Tarefa", MessageBoxButtons.OK, MessageBoxIcon.Information
+                            );
+                            // FORÇA ATUALIZAÇÃO PARA MOVER O CARD PARA "FAZENDO"
+                            AtualizarPainelTarefas();
                         }
                     };
 
-                    // Adicionar ao painel correto
+                    // Adiciona ao painel conforme status
                     switch (statusTarefa)
                     {
                         case "Pendente": flpP.Controls.Add(card); break;
@@ -105,38 +112,35 @@ namespace Dev4Tech
             }
         }
 
+
         private string ObterStatusTarefa(int idTarefa)
         {
-            try
+            // Se já foi entregue, retorna concluída
+            if (dbPlanejamento.FuncionarioEntregou(idTarefa, idFuncionarioLogado))
+                return "Concluida";
+
+            // Tarefas com arquivo: baseia-se no progresso do PDF
+            if (!progressoCache.ContainsKey(idTarefa))
             {
-                string statusEntrega = dbPlanejamento.ObterStatusTarefa(idTarefa);
-                if (statusEntrega == "Concluida")
-                    return "Concluida";
+                var progresso = dbPlanejamento.ObterProgressoLeitura(idTarefa, idFuncionarioLogado);
+                progressoCache[idTarefa] = progresso;
+            }
+            var progressoAtual = progressoCache[idTarefa];
 
-                if (!progressoCache.ContainsKey(idTarefa))
-                {
-                    var progresso = dbPlanejamento.ObterProgressoLeitura(idTarefa, idFuncionarioLogado);
-                    progressoCache[idTarefa] = progresso;
-                }
-
-                var progressoAtual = progressoCache[idTarefa];
-
-                if (progressoAtual == null)
-                    return "Pendente";
-
+            // Só tenta para tarefas COM arquivo
+            if (progressoAtual != null)
+            {
                 if (progressoAtual.Concluida)
                     return "Concluida";
-
                 if (progressoAtual.TotalPaginasVisualizadas > 0)
                     return "Fazendo";
+            }
 
-                return "Pendente";
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Erro ao obter status da tarefa {idTarefa}: {ex.Message}");
-                return "Pendente";
-            }
+            // Tarefas sem arquivo: baseia-se no HashSet
+            if (tarefasVisualizadas.Contains(idTarefa))
+                return "Fazendo";
+
+            return "Pendente";
         }
 
         private Panel CriarCardTarefa(string titulo, DateTime dataEntrega, List<Image> avatares, string status)
@@ -330,6 +334,7 @@ namespace Dev4Tech
         private void ExibirPdfsNoFlowLayout(List<string> caminhosArquivosPdf, int idTarefa)
         {
             flpPDFs.Controls.Clear();
+            flpPDFs.AutoScroll = true; // Garantir que scrolling funcione
 
             if (!caminhosArquivosPdf.Any())
             {
@@ -340,14 +345,14 @@ namespace Dev4Tech
             var progresso = progressoCache.ContainsKey(idTarefa) ? progressoCache[idTarefa] : null;
             var paginasVisualizadas = paginasVisualizadasCache.ContainsKey(idTarefa) ? paginasVisualizadasCache[idTarefa] : new HashSet<int>();
 
-            // Cabeçalho
+            // Cabeçalho - SEMPRE primeiro
             Panel panelCabecalho = new Panel
             {
-                Width = flpPDFs.Width - 20,
+                Width = flpPDFs.Width - 25,
                 Height = 60,
                 BackColor = Color.FromArgb(248, 249, 250),
                 BorderStyle = BorderStyle.FixedSingle,
-                Margin = new Padding(10),
+                Margin = new Padding(10, 10, 10, 5), // Margem inferior reduzida
                 Padding = new Padding(15)
             };
 
@@ -375,15 +380,16 @@ namespace Dev4Tech
 
             flpPDFs.Controls.Add(panelCabecalho);
 
-            // Container para os cards das páginas
+            // Container para os cards das páginas - SEM ALTURA FIXA
             FlowLayoutPanel containerPaginas = new FlowLayoutPanel
             {
-                Width = flpPDFs.Width - 20,
-                AutoScroll = true,
+                Width = flpPDFs.Width - 25,
+                AutoSize = true, // IMPORTANTE: Deixa o container expandir conforme o conteúdo
                 WrapContents = true,
-                Margin = new Padding(10),
-                Padding = new Padding(10),
-                BackColor = Color.White
+                Margin = new Padding(10, 5, 10, 5), // Margens verticais reduzidas
+                Padding = new Padding(15),
+                BackColor = Color.White,
+                AutoScroll = false // Container não deve ter scroll próprio
             };
 
             for (int i = 0; i < caminhosArquivosPdf.Count; i++)
@@ -400,61 +406,68 @@ namespace Dev4Tech
                     Total = caminhosArquivosPdf.Count
                 };
 
-                Panel cartao = CriarCartaoPaginaModerno(info, foiLida);
+                Panel cartao = CriarCartaoPagina(info, foiLida, 180);
                 containerPaginas.Controls.Add(cartao);
             }
 
-            // Ajustar altura do container baseado no conteúdo
-            int alturaNecessaria = Math.Min(containerPaginas.Controls.Count * 180 / 3, 400);
-            containerPaginas.Height = alturaNecessaria;
-
             flpPDFs.Controls.Add(containerPaginas);
 
-            // Barra de progresso
+            // Barra de progresso - SEMPRE depois do container de páginas
             if (progresso != null)
             {
                 AdicionarBarraProgressoDetalhada(idTarefa, progresso);
             }
         }
 
-        private Panel CriarCartaoPaginaModerno(PdfPaginaInfo info, bool foiLida)
+        private Panel CriarCartaoPagina(PdfPaginaInfo info, bool foiLida, int larguraCard)
         {
             Panel cartao = new Panel
             {
-                Width = 160,
+                Width = larguraCard,
                 Height = 180,
-                Margin = new Padding(8),
+                Margin = new Padding(10, 10, 10, 15),
                 BackColor = foiLida ? Color.FromArgb(235, 255, 235) : Color.White,
                 BorderStyle = BorderStyle.FixedSingle,
                 Cursor = Cursors.Hand,
                 Tag = info
             };
 
-            // Adicionar efeito de sombra
+            // Efeito visual melhorado
             cartao.Paint += (sender, e) =>
             {
-                ControlPaint.DrawBorder(e.Graphics, cartao.ClientRectangle,
-                    Color.FromArgb(200, 200, 200), 1, ButtonBorderStyle.Solid,
-                    Color.FromArgb(200, 200, 200), 1, ButtonBorderStyle.Solid,
-                    Color.FromArgb(200, 200, 200), 1, ButtonBorderStyle.Solid,
-                    Color.FromArgb(200, 200, 200), 1, ButtonBorderStyle.Solid);
+                using (var pen = new Pen(Color.FromArgb(220, 220, 220), 1))
+                {
+                    e.Graphics.DrawRectangle(pen, 0, 0, cartao.Width - 1, cartao.Height - 1);
+                }
+
+                // Gradiente sutil
+                using (var brush = new LinearGradientBrush(
+                    cartao.ClientRectangle,
+                    foiLida ? Color.FromArgb(245, 255, 245) : Color.FromArgb(250, 250, 250),
+                    foiLida ? Color.FromArgb(225, 255, 225) : Color.White,
+                    LinearGradientMode.Vertical))
+                {
+                    e.Graphics.FillRectangle(brush, cartao.ClientRectangle);
+                }
             };
 
-            // Ícone do documento
+            // Ícone do documento - tamanho adequado
             PictureBox icone = new PictureBox
             {
                 Image = foiLida ? Properties.Resources.icon_documento : Properties.Resources.icon_documento_blue,
-                SizeMode = PictureBoxSizeMode.CenterImage,
-                Height = 100,
-                Dock = DockStyle.Top,
+                SizeMode = PictureBoxSizeMode.Zoom,
+                Width = 80,
+                Height = 80,
+                Location = new Point((cartao.Width - 80) / 2, 15),
                 BackColor = Color.Transparent
             };
 
             // Container do conteúdo
             Panel conteudo = new Panel
             {
-                Dock = DockStyle.Fill,
-                Padding = new Padding(10)
+                Location = new Point(5, 100),
+                Size = new Size(cartao.Width - 10, 70),
+                BackColor = Color.Transparent
             };
 
             // Número da página
@@ -463,8 +476,8 @@ namespace Dev4Tech
                 Text = $"Página {info.Pagina}",
                 Font = new Font("Segoe UI", 10, FontStyle.Bold),
                 ForeColor = foiLida ? Color.Green : Color.FromArgb(0, 123, 255),
-                Dock = DockStyle.Top,
-                Height = 25,
+                Size = new Size(conteudo.Width, 25),
+                Location = new Point(0, 0),
                 TextAlign = ContentAlignment.MiddleCenter
             };
 
@@ -474,8 +487,19 @@ namespace Dev4Tech
                 Text = foiLida ? "✅ Visualizada" : "📖 Não visualizada",
                 Font = new Font("Segoe UI", 8, FontStyle.Regular),
                 ForeColor = foiLida ? Color.Green : Color.Gray,
-                Dock = DockStyle.Bottom,
-                Height = 20,
+                Size = new Size(conteudo.Width, 20),
+                Location = new Point(0, 30),
+                TextAlign = ContentAlignment.MiddleCenter
+            };
+
+            // Informação adicional
+            Label lblInfo = new Label
+            {
+                Text = $"{info.Pagina} de {info.Total}",
+                Font = new Font("Segoe UI", 7, FontStyle.Italic),
+                ForeColor = Color.DarkGray,
+                Size = new Size(conteudo.Width, 15),
+                Location = new Point(0, 50),
                 TextAlign = ContentAlignment.MiddleCenter
             };
 
@@ -484,30 +508,37 @@ namespace Dev4Tech
             {
                 Panel badge = new Panel
                 {
-                    Size = new Size(30, 30),
-                    Location = new Point(cartao.Width - 40, 10),
+                    Size = new Size(24, 24),
+                    Location = new Point(cartao.Width - 30, 10),
                     BackColor = Color.Green
                 };
                 badge.Paint += (s, e) =>
                 {
                     e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
                     e.Graphics.FillEllipse(Brushes.Green, 0, 0, badge.Width, badge.Height);
-                    e.Graphics.DrawString("✓", new Font("Segoe UI", 12, FontStyle.Bold),
-                        Brushes.White, new PointF(8, 6));
+                    e.Graphics.DrawString("✓", new Font("Segoe UI", 10, FontStyle.Bold),
+                        Brushes.White, new PointF(6, 4));
                 };
                 cartao.Controls.Add(badge);
             }
 
             // Montar hierarquia
-            conteudo.Controls.Add(lblStatus);
             conteudo.Controls.Add(lblPagina);
-            cartao.Controls.Add(conteudo);
+            conteudo.Controls.Add(lblStatus);
+            conteudo.Controls.Add(lblInfo);
             cartao.Controls.Add(icone);
+            cartao.Controls.Add(conteudo);
 
             // Eventos de clique
-            cartao.Click += (s, e) => AbrirPdfExternamente(info.Arquivo, info.IdTarefa, info.Pagina, info.Total);
-            icone.Click += (s, e) => AbrirPdfExternamente(info.Arquivo, info.IdTarefa, info.Pagina, info.Total);
-            conteudo.Click += (s, e) => AbrirPdfExternamente(info.Arquivo, info.IdTarefa, info.Pagina, info.Total);
+            EventHandler clickHandler = (s, e) => AbrirPdfExternamente(info.Arquivo, info.IdTarefa, info.Pagina, info.Total);
+            cartao.Click += clickHandler;
+            icone.Click += clickHandler;
+            conteudo.Click += clickHandler;
+            foreach (Control control in conteudo.Controls)
+            {
+                control.Click += clickHandler;
+                control.Cursor = Cursors.Hand;
+            }
 
             return cartao;
         }
@@ -520,7 +551,7 @@ namespace Dev4Tech
                 Height = 100,
                 BackColor = Color.FromArgb(248, 249, 250),
                 BorderStyle = BorderStyle.FixedSingle,
-                Margin = new Padding(20, 10, 20, 10),
+                Margin = new Padding(20, 10, 20, 20), // Margem inferior aumentada
                 Padding = new Padding(15)
             };
 
@@ -575,6 +606,7 @@ namespace Dev4Tech
                 panelProgresso.Controls.Add(fundoBarra);
             }
 
+            // ADICIONAR ao flpPDFs (não esquecer esta linha!)
             flpPDFs.Controls.Add(panelProgresso);
         }
 
@@ -634,7 +666,9 @@ namespace Dev4Tech
 
             int idFuncionario = int.Parse(funcionario.getFuncionarioId());
             var idsEquipes = dbPlanejamento.ObterIdsEquipesFuncionario(idFuncionario);
-            var tarefas = dbPlanejamento.ObterTarefasPendentesPorEquipesComArquivo(idsEquipes);
+            var tarefas = dbPlanejamento.ObterTodasTarefasPendentesPorEquipes(idsEquipes);
+
+
 
             foreach (var tarefa in tarefas)
             {
@@ -647,8 +681,20 @@ namespace Dev4Tech
 
                 card.Click += (senderCard, eCard) =>
                 {
-                    int idTarefa = (int)((Panel)senderCard).Tag;
-                    CarregarPdfDaTarefa(idTarefa);
+                    if (!string.IsNullOrEmpty(tarefa.NomeArquivo))
+                    {
+                        CarregarPdfDaTarefa(tarefa.IdTarefa);
+                    }
+                    else
+                    {
+                        string instrucoes = dbPlanejamento.ObterInstrucoesTarefa(tarefa.IdTarefa);
+                        MessageBox.Show(
+                            string.IsNullOrWhiteSpace(instrucoes) ? "Nenhuma instrução cadastrada para esta tarefa." : instrucoes,
+                            "Instruções da Tarefa",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information
+                        );
+                    }
                 };
 
                 switch (statusTarefa)
@@ -656,6 +702,7 @@ namespace Dev4Tech
                     case "Pendente": flpP.Controls.Add(card); break;
                     case "Fazendo": flpF.Controls.Add(card); break;
                     case "Concluida": flpC.Controls.Add(card); break;
+                    default: flpP.Controls.Add(card); break;
                 }
             }
         }
@@ -824,7 +871,6 @@ namespace Dev4Tech
 
         private void picPerfilMembro_Click(object sender, EventArgs e)
         {
-            // Implementar se necessário
         }
 
         private void lblPlanejamento_Click(object sender, EventArgs e)

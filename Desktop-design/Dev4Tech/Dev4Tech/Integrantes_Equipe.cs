@@ -12,18 +12,23 @@ namespace Dev4Tech
         private int equipeSelecionadaId = -1;
         private string baseFolder = @"C:\xampp\htdocs\dev4tech\";
         private string basePathImagemEquipe = @"C:\xampp\htdocs\dev4tech\img";
+        private const string txtPesquisarPlaceholder = "🔎 Pesquisar Membros";
 
         public Integrantes_Equipe()
         {
             InitializeComponent();
             CarregarEquipes();
             CarregarFotoUsuario();
+            txtPesquisarMembros.Text = txtPesquisarPlaceholder;
+            txtPesquisarMembros.ForeColor = Color.Gray;
 
-            // Evento para busca ao digitar
-            txtPesquisarMembros.TextChanged += (s, e) =>
+            txtPesquisarMembros.MouseDown += (s, e) =>
             {
-                string filtro = txtPesquisarMembros.Text.Trim();
-                CarregarMembrosDaEquipe(filtro);
+                if (txtPesquisarMembros.Text == txtPesquisarPlaceholder)
+                {
+                    txtPesquisarMembros.Text = "";
+                    txtPesquisarMembros.ForeColor = SystemColors.WindowText;
+                }
             };
         }
 
@@ -60,7 +65,6 @@ namespace Dev4Tech
                     Top = 15
                 };
 
-                // CARREGAR FOTO DA EQUIPE - MESMA LÓGICA DO PRIMEIRO CÓDIGO
                 object fotoEquipeData = row["foto_equipe"];
                 Image fotoEquipe = ObterFotoEquipeDosDados(fotoEquipeData);
                 picEquipe.Image = fotoEquipe ?? Properties.Resources.icon_EquipLogo;
@@ -106,7 +110,6 @@ namespace Dev4Tech
                         BorderStyle = BorderStyle.FixedSingle
                     };
 
-                    // CARREGAR FOTO DO MEMBRO - MESMA LÓGICA DO PRIMEIRO CÓDIGO
                     object fotoMembroData = m["foto_perfil"];
                     Image fotoMembro = ObterFotoMembroDosDados(fotoMembroData);
                     picMembro.Image = fotoMembro ?? Properties.Resources.icon_perfil;
@@ -133,11 +136,17 @@ namespace Dev4Tech
             if (equipeSelecionadaId == -1) return;
 
             PesquisaIntegrantes dao = new PesquisaIntegrantes();
-            DataTable membros = dao.BuscarMembrosDaEquipe(equipeSelecionadaId, filtroNome);
+
+            // Se for o texto placeholder ou vazio, não filtrar por nome - MESMA LÓGICA DAS TAREFAS
+            bool usarFiltroNome = !string.IsNullOrEmpty(filtroNome) && filtroNome != "Pesquisar Membros";
+
+            DataTable membros = dao.BuscarMembrosDaEquipe(equipeSelecionadaId, usarFiltroNome ? filtroNome : "");
+
             int top = 10;
 
             foreach (DataRow row in membros.Rows)
             {
+                // ... (restante do código permanece igual)
                 Panel membroPanel = new Panel
                 {
                     Width = 600,
@@ -158,7 +167,7 @@ namespace Dev4Tech
                     BorderStyle = BorderStyle.FixedSingle
                 };
 
-                // CARREGAR FOTO DO MEMBRO - MESMA LÓGICA DO PRIMEIRO CÓDIGO
+                // CARREGAR FOTO DO MEMBRO
                 object fotoMembroData = row["foto_perfil"];
                 Image fotoMembro = ObterFotoMembroDosDados(fotoMembroData);
                 pic.Image = fotoMembro ?? Properties.Resources.icon_perfil;
@@ -200,7 +209,6 @@ namespace Dev4Tech
             }
         }
 
-        // MÉTODO PARA OBTER FOTO DA EQUIPE (COPIADO DO PRIMEIRO CÓDIGO)
         private Image ObterFotoEquipeDosDados(object fotoData)
         {
             Image fotoEquipe = null;
@@ -260,7 +268,6 @@ namespace Dev4Tech
             return fotoEquipe;
         }
 
-        // MÉTODO PARA OBTER FOTO DO MEMBRO (LÓGICA SIMPLIFICADA)
         private Image ObterFotoMembroDosDados(object fotoData)
         {
             Image fotoMembro = null;
@@ -305,35 +312,6 @@ namespace Dev4Tech
                 }
             }
             return fotoMembro;
-        }
-
-        // RESTANTE DOS MÉTODOS DO FORMULÁRIO (event handlers)
-        private void btnPesquisar_Click(object sender, EventArgs e)
-        {
-            string filtro = txtPesquisarMembros.Text.Trim();
-            CarregarMembrosDaEquipe(filtro);
-        }
-
-        private void lblMembros_Click(object sender, EventArgs e)
-        {
-            var funcionario = Sessao.FuncionarioLogado;
-            var admin = Sessao.AdminLogado;
-            if (funcionario != null)
-            {
-                Integrantes_Equipe t_equipe = new Integrantes_Equipe();
-                t_equipe.Show();
-                this.Hide();
-            }
-            else if (admin != null)
-            {
-                AdicionarEquipes t_equipeAdmin = new AdicionarEquipes();
-                t_equipeAdmin.Show();
-                this.Hide();
-            }
-            else
-            {
-                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
         }
 
         private void lblPlanejamento_Click(object sender, EventArgs e)
@@ -571,7 +549,13 @@ namespace Dev4Tech
         }
 
         // Métodos vazios necessários para o designer
-        private void txtProcurarMebros_TextChanged(object sender, EventArgs e) { }
+        private void txtProcurarMebros_TextChanged(object sender, EventArgs e) 
+        {
+            if (txtPesquisarMembros.Text != txtPesquisarPlaceholder)
+            {
+                CarregarMembrosDaEquipe(txtPesquisarMembros.Text.Trim());
+            }
+        }
         private void btnMostrarMembros_Click(object sender, EventArgs e) { }
         private void Integrantes_Equipe_Load(object sender, EventArgs e) { }
         private void label1_Click(object sender, EventArgs e) { }
