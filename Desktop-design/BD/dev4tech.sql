@@ -8,7 +8,7 @@ CREATE TABLE Empresas (
     cnpj VARCHAR(14) UNIQUE NOT NULL,
     logradouro varchar(255),
     email VARCHAR(100) NOT NULL,
-    telefone VARCHAR(15),administradoresgraficosetoresgraficosetores
+    telefone VARCHAR(15),  
     numResidencia VARCHAR(200),
     bairro varchar(255),
     complemento varchar(255),
