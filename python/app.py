@@ -146,14 +146,37 @@ async def converter_powerpoint_para_pdf(entrada, saida):
     try:
         pythoncom.CoInitialize()
         powerpoint = comtypes.client.CreateObject("Powerpoint.Application")
-        powerpoint.Visible = False
-        presentation = powerpoint.Presentations.Open(os.path.abspath(entrada), WithWindow=False)
+        
+        # ✅ REMOVER COMPLETAMENTE a linha que tenta ocultar a janela
+        # powerpoint.Visible = False  # ← ESTA LINHA CAUSA O ERRO
+        
+        # ✅ Abrir a apresentação sem o parâmetro WithWindow
+        presentation = powerpoint.Presentations.Open(os.path.abspath(entrada))
+        
+        # ✅ Converter para PDF (32 = formato PDF)
         presentation.SaveAs(os.path.abspath(saida), 32)
+        
+        # ✅ Fechar tudo corretamente
         presentation.Close()
         powerpoint.Quit()
         pythoncom.CoUninitialize()
+        
+        print(f"PowerPoint convertido com sucesso: {entrada} -> {saida}")
+        
     except Exception as e:
-        raise Exception(f"Erro ao converter PowerPoint para PDF: {str(e)}")
+        # ✅ Limpeza em caso de erro
+        try:
+            if 'presentation' in locals():
+                presentation.Close()
+            if 'powerpoint' in locals():
+                powerpoint.Quit()
+            pythoncom.CoUninitialize()
+        except:
+            pass
+        
+        error_msg = f"Erro ao converter PowerPoint para PDF: {str(e)}"
+        print(error_msg)
+        raise Exception(error_msg)
 
 async def converter_texto_para_pdf(entrada, saida):
     try:
