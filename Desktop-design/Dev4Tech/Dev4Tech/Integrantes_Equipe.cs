@@ -19,7 +19,6 @@ namespace Dev4Tech
             InitializeComponent();
             CarregarEquipes();
             CarregarFotoUsuario();
-<<<<<<< HEAD
             txtPesquisarMembros.Text = txtPesquisarPlaceholder;
             txtPesquisarMembros.ForeColor = Color.Gray;
 
@@ -30,14 +29,6 @@ namespace Dev4Tech
                     txtPesquisarMembros.Text = "";
                     txtPesquisarMembros.ForeColor = SystemColors.WindowText;
                 }
-=======
-
-            // Evento para busca ao digitar
-            txtPesquisarMembros.TextChanged += (s, e) =>
-            {
-                string filtro = txtPesquisarMembros.Text.Trim();
-                CarregarMembrosDaEquipe(filtro);
->>>>>>> 4c7dac1242012fef0d34e3f6fde4d325e4606a58
             };
         }
 

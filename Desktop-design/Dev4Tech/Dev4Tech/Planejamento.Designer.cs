@@ -378,11 +378,8 @@
             this.pictureBox4.Location = new System.Drawing.Point(479, 247);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox4.Name = "pictureBox4";
-<<<<<<< HEAD
             this.pictureBox4.Size = new System.Drawing.Size(317, 448);
-=======
             this.pictureBox4.Size = new System.Drawing.Size(238, 484);
->>>>>>> 4c7dac1242012fef0d34e3f6fde4d325e4606a58
             this.pictureBox4.TabIndex = 139;
             this.pictureBox4.TabStop = false;
             // 
@@ -391,11 +388,8 @@
             this.pictureBox12.Location = new System.Drawing.Point(799, 247);
             this.pictureBox12.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox12.Name = "pictureBox12";
-<<<<<<< HEAD
             this.pictureBox12.Size = new System.Drawing.Size(319, 448);
-=======
             this.pictureBox12.Size = new System.Drawing.Size(239, 484);
->>>>>>> 4c7dac1242012fef0d34e3f6fde4d325e4606a58
             this.pictureBox12.TabIndex = 140;
             this.pictureBox12.TabStop = false;
             // 
@@ -404,11 +398,8 @@
             this.pictureBox13.Location = new System.Drawing.Point(1117, 247);
             this.pictureBox13.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox13.Name = "pictureBox13";
-<<<<<<< HEAD
             this.pictureBox13.Size = new System.Drawing.Size(321, 448);
-=======
             this.pictureBox13.Size = new System.Drawing.Size(241, 484);
->>>>>>> 4c7dac1242012fef0d34e3f6fde4d325e4606a58
             this.pictureBox13.TabIndex = 141;
             this.pictureBox13.TabStop = false;
             // 
@@ -519,11 +510,8 @@
             this.flpPDFs.Location = new System.Drawing.Point(1448, 151);
             this.flpPDFs.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.flpPDFs.Name = "flpPDFs";
-<<<<<<< HEAD
             this.flpPDFs.Size = new System.Drawing.Size(437, 574);
-=======
             this.flpPDFs.Size = new System.Drawing.Size(328, 562);
->>>>>>> 4c7dac1242012fef0d34e3f6fde4d325e4606a58
             this.flpPDFs.TabIndex = 151;
             this.flpPDFs.Paint += new System.Windows.Forms.PaintEventHandler(this.flpPDFs_Paint);
             // 
