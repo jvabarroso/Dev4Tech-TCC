@@ -72,14 +72,18 @@ export default function Planejamento({ navigation, route }) {
   async function dividirPDF(tarefa) {
     try {
       setCarregandoPdf(true);
-      
-      const caminhoArquivo = `${SERVER_URL}dev4tech/arquivos/${tarefa.nome_arquivo}.pdf`;
-      console.log("Iniciando divisão do PDF:", tarefa.nome_arquivo);
+
+      const nomePdf = tarefa.nome_arquivo.toLowerCase().endsWith('.pdf')
+        ? tarefa.nome_arquivo
+        : `${tarefa.nome_arquivo}.pdf`;
+
+      const caminhoArquivo = `${SERVER_URL}dev4tech/arquivos/${nomePdf}`;
+      console.log("Iniciando divisão do PDF:", nomePdf);
       console.log("Caminho do arquivo:", caminhoArquivo);
-      
+
       // Primeiro: dividir o PDF fisicamente
       const resDivisao = await api.post('dev4tech/dividir_pdf.php', {
-        caminho_arquivo: 'C:/xampp/htdocs/dev4tech/arquivos/' + tarefa.nome_arquivo + ".pdf",
+        caminho_arquivo: 'C:/xampp/htdocs/dev4tech/arquivos/' + nomePdf,
         id_tarefa: tarefa.id_tarefa
       });
 
@@ -242,28 +246,17 @@ export default function Planejamento({ navigation, route }) {
     }, 1000);
   }
 
-  // Navegar entre páginas no modal de PDF
-  function navegarPagina(direcao) {
-    const novaPagina = paginaAtual + direcao;
-    if (novaPagina >= 1 && novaPagina <= (tarefaSelecionada?.total_paginas || 0)) {
-      setPaginaAtual(novaPagina);
-      marcarPaginaVisualizada(novaPagina);
-    }
-  }
-
-  // Obter URL da página atual
-  function getUrlPaginaAtual() {
-    if (!tarefaSelecionada) return '';
-    // Agora os arquivos estão direto na pasta arquivos
-    return `${SERVER_URL}dev4tech/arquivos/tarefa_${tarefaSelecionada.id_tarefa}_pagina_${paginaAtual}.pdf`;
-  }
 
   // Função para fazer download do PDF - MELHORADA
   async function fazerDownloadPagina(numeroPagina) {
     if (!tarefaSelecionada) return;
 
     try {
-      const url = `${SERVER_URL}dev4tech/arquivos/tarefa_${tarefaSelecionada.id_tarefa}_pagina_${numeroPagina}.pdf`;
+      const nomePagina = `tarefa_${tarefaSelecionada.id_tarefa}_pagina_${numeroPagina}`;
+      const nomePaginaCorrigido = nomePagina.toLowerCase().endsWith(".pdf")
+        ? nomePagina
+        : nomePagina + ".pdf";
+      const url = `${SERVER_URL}dev4tech/arquivos/${nomePaginaCorrigido}`;
       
       console.log("URL para download:", url);
       
@@ -469,32 +462,39 @@ export default function Planejamento({ navigation, route }) {
             style={styles.imag} 
           />
           <View style={styles.textosTarefa}>
+            <View style={styles.linhaTituloStatus}>
+              <Text style={styles.nomeTarefa}>{item.nomeTarefa}</Text>
+
+              {item.status_tarefa === 'concluido' && (
+                <View style={[styles.containerfiltro, { backgroundColor: '#4CAF50' }]}>
+                  <Text style={styles.textofiltro}>Concluído</Text>
+                </View>
+              )}
+              {item.status_tarefa === 'fazendo' && (
+                <View style={[styles.containerfiltro, { backgroundColor: '#ff8400ff' }]}>
+                  <Text style={styles.textofiltro}>Fazendo</Text>
+                </View>
+              )}
+              {item.status_tarefa === 'pendente' && (
+                <View style={[styles.containerfiltro, { backgroundColor:'#FFC107' }]}>
+                  <Text style={styles.textofiltro}>Pendente</Text>
+                </View>
+              )}
+            </View>
+            
             <Text style={styles.textolistatitulo}>{item.nome_arquivo}</Text>
+
             {item.total_paginas && (
               <Text style={styles.textolistacargo}>
                 {item.total_paginas} páginas
               </Text>
             )}
+
             {carregandoPdf && (
               <Text style={styles.textolistacargo}>Processando PDF...</Text>
             )}
-          </View>
 
-          {item.status_tarefa === 'concluido'? 
-            <View style={[styles.containerfiltro, { backgroundColor: '#4CAF50' }]}>
-              <Text style={styles.textofiltro}>Concluído</Text>
-            </View>: null
-          }
-          {item.status_tarefa === 'fazendo'? 
-            <View style={[styles.containerfiltro, { backgroundColor: '#FFA500' }]}>
-              <Text style={styles.textofiltro}>Fazendo</Text>
-            </View>: null
-          }
-          {item.status_tarefa === 'pendente'? 
-            <View style={[styles.containerfiltro, { backgroundColor: '#adadadff' }]}>
-              <Text style={styles.textofiltro}>Pendente</Text>
-            </View>: null
-          }
+          </View>
         </View>
 
         <View style={styles.linhaInfo}>
@@ -609,14 +609,6 @@ export default function Planejamento({ navigation, route }) {
               </Text>
             </TouchableOpacity>
           </View>
-
-          <TextInput
-            style={styles.navinput}
-            placeholder="🔍 Pesquisa uma tarefa"
-            placeholderTextColor="#ffffff"
-            value={termoBusca}
-            onChangeText={setTermoBusca}
-          />
         </View>
         {renderTarefas()}
       </ScrollView>
