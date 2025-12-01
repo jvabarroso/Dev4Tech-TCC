@@ -24,8 +24,8 @@ namespace Dev4Tech
 
 
         public int idEquipe;
-
-
+        private string nomeEquipe;
+        private string categoriaEquipe;
 
         private void label9_Click(object sender, EventArgs e)
         {
@@ -77,8 +77,23 @@ namespace Dev4Tech
             DataTable dt = dao.BuscarEquipePorId(idEquipe);
             if (dt.Rows.Count == 0) return;
             DataRow row = dt.Rows[0];
-            string nomeEquipe = row["nome_equipe"].ToString();
+            nomeEquipe = row["nome_equipe"].ToString();
 
+            // Verificar se a coluna categoria existe e não é nula
+            if (dt.Columns.Contains("categoria") && row["categoria"] != DBNull.Value)
+            {
+                categoriaEquipe = row["categoria"].ToString();
+            }
+            else
+            {
+                categoriaEquipe = "Sem categoria";
+            }
+
+            // Atualizar labels principais
+            lblNomeEquipe.Text = nomeEquipe;
+            lblCategoriaEquipe.Text = categoriaEquipe;
+
+            // ... restante do código permanece o mesmo ...
             // Calcular pontos da equipe somando os pontos dos membros
             int pontosEquipe = 0;
             string connectionString = "SERVER=localhost;DATABASE=dev4tech;UID=root;PASSWORD=";
@@ -158,7 +173,7 @@ namespace Dev4Tech
             };
             equipePanel.Controls.Add(lblRank);
 
-            Label lblNomeEquipe = new Label
+            Label lblNomeEquipePanel = new Label
             {
                 Text = nomeEquipe,
                 Font = new Font("Segoe UI", 13, FontStyle.Bold),
@@ -166,7 +181,7 @@ namespace Dev4Tech
                 Top = 20,
                 AutoSize = true
             };
-            equipePanel.Controls.Add(lblNomeEquipe);
+            equipePanel.Controls.Add(lblNomeEquipePanel);
 
             Label lblPontos = new Label
             {
@@ -174,7 +189,7 @@ namespace Dev4Tech
                 Font = new Font("Segoe UI", 11, FontStyle.Regular),
                 ForeColor = Color.DodgerBlue,
                 Left = picIcone.Right + 60,
-                Top = lblNomeEquipe.Bottom + 7,
+                Top = lblNomeEquipePanel.Bottom + 7,
                 AutoSize = true
             };
             equipePanel.Controls.Add(lblPontos);
@@ -202,7 +217,6 @@ namespace Dev4Tech
             panelEquipe.Controls.Add(equipePanel);
             panelEquipe.Refresh();
         }
-
 
 
         public void CarregarGrafico()

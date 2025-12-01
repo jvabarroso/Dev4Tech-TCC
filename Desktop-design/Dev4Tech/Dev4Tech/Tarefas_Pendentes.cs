@@ -10,6 +10,7 @@ namespace Dev4Tech
 {
     public partial class Tarefas_Pendentes : Form
     {
+        private int equipeSelecionadaId = 0;
         private List<int> equipesFuncionario;
         private Dictionary<int, string> equipesNomeMap;
         private int idFuncionarioLogado; // ID do funcionário logado para filtro individual
@@ -103,6 +104,41 @@ namespace Dev4Tech
             MostrarTarefas(tarefas);
         }
 
+        private void AtualizarInfoEquipeSelecionada()
+        {
+            if (cmbEquipes.SelectedItem == null || cmbEquipes.SelectedItem.ToString() == "Todas")
+            {
+                lblNomeEquipe.Text = "Todas as Equipes";
+                lblCategoriaEquipe.Text = "Visualizando todas as equipes";
+                equipeSelecionadaId = 0;
+            }
+            else
+            {
+                var nomeEquipeSelecionada = cmbEquipes.SelectedItem.ToString();
+
+                // Encontrar o ID correspondente ao nome
+                foreach (var kvp in equipesNomeMap)
+                {
+                    if (kvp.Value == nomeEquipeSelecionada)
+                    {
+                        equipeSelecionadaId = kvp.Key;
+                        break;
+                    }
+                }
+
+                if (equipeSelecionadaId > 0)
+                {
+                    var infoEquipe = entregaTarefa.BuscarInfoEquipe(equipeSelecionadaId);
+
+                    if (infoEquipe != null)
+                    {
+                        lblNomeEquipe.Text = infoEquipe["nome_equipe"].ToString();
+                        lblCategoriaEquipe.Text = infoEquipe["nome_categoria"].ToString();
+                    }
+                }
+            }
+        }
+
         private void MostrarTarefas(DataTable tarefas)
         {
             AtualizarListaTarefas(tarefas);
@@ -128,31 +164,6 @@ namespace Dev4Tech
                 }
             }
             return equipes;
-        }
-
-        public DataTable BuscarTarefasPorEquipes(List<int> idsEquipes)
-        {
-            DataTable dt = new DataTable();
-            if (idsEquipes == null || idsEquipes.Count == 0)
-                return dt;
-            var parametros = idsEquipes.Select((id, index) => "@id" + index).ToList();
-            string query = $"SELECT * FROM Tarefas WHERE id_equipe IN ({string.Join(", ", parametros)}) ORDER BY data_entrega ASC";
-            using (var conn = new MySqlConnection("server=localhost;database=Dev4Tech;uid=root;pwd="))
-            {
-                conn.Open();
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    for (int i = 0; i < idsEquipes.Count; i++)
-                    {
-                        cmd.Parameters.AddWithValue(parametros[i], idsEquipes[i]);
-                    }
-                    using (var adapter = new MySqlDataAdapter(cmd))
-                    {
-                        adapter.Fill(dt);
-                    }
-                }
-            }
-            return dt;
         }
 
 
@@ -193,6 +204,7 @@ namespace Dev4Tech
         private void cmbEquipes_SelectedIndexChanged(object sender, EventArgs e)
         {
             AtualizarTarefas();
+            AtualizarInfoEquipeSelecionada();
         }
 
         // Pesquisa dinâmica na txtPesquisarTarefa e atualiza lista

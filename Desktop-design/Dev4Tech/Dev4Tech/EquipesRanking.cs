@@ -57,20 +57,25 @@ ORDER BY pontos DESC;
         {
             DataTable dt = new DataTable();
             string query = @"
-                            SELECT e.id_equipe, e.nome_equipe,
-                           (SELECT COALESCE(SUM(pf.pontos), 0)
-                            FROM equipes_membros em
-                            JOIN pontuacaofuncionario pf ON em.FuncionarioId = pf.id_funcionario
-                            WHERE em.id_equipe = e.id_equipe
-                              AND EXISTS (
-                                  SELECT 1 FROM entregastarefa et
-                                  WHERE et.FuncionarioId = em.FuncionarioId
-                                    AND et.id_equipe = em.id_equipe
-                                    AND et.entregue = 1
-                              )
-                           ) AS pontos
-                    FROM Equipes e
-                    WHERE e.id_equipe = @idEquipe;";
+        SELECT 
+            e.id_equipe, 
+            e.nome_equipe, 
+            c.nome_categoria AS categoria,  -- Mudar de e.categoria para c.nome_categoria
+            (SELECT COALESCE(SUM(pf.pontos), 0)
+                FROM equipes_membros em
+                JOIN pontuacaofuncionario pf ON em.FuncionarioId = pf.id_funcionario
+                WHERE em.id_equipe = e.id_equipe
+                  AND EXISTS (
+                      SELECT 1 FROM entregastarefa et
+                      WHERE et.FuncionarioId = em.FuncionarioId
+                        AND et.id_equipe = em.id_equipe
+                        AND et.entregue = 1
+                  )
+            ) AS pontos
+        FROM Equipes e
+        LEFT JOIN Categorias c ON e.id_categoria = c.id_categoria  -- Adicionar JOIN com Categorias
+        WHERE e.id_equipe = @idEquipe;";
+
             using (var conn = new MySqlConnection(conexaoString))
             {
                 conn.Open();

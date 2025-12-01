@@ -10,6 +10,8 @@ namespace Dev4Tech
     public partial class Integrantes_Equipe : Form
     {
         private int equipeSelecionadaId = -1;
+        private string nomeEquipeSelecionada;
+        private string categoriaEquipeSelecionada;
         private string baseFolder = @"C:\xampp\htdocs\dev4tech\";
         private string basePathImagemEquipe = @"C:\xampp\htdocs\dev4tech\img";
         private const string txtPesquisarPlaceholder = "🔎 Pesquisar Membros";
@@ -122,6 +124,13 @@ namespace Dev4Tech
                 equipePanel.Click += (s, e) =>
                 {
                     equipeSelecionadaId = idEquipe;
+                    nomeEquipeSelecionada = nomeEquipe;
+                    categoriaEquipeSelecionada = categoria;
+
+                    // Atualizar as labels com o nome e categoria da equipe
+                    lblNomeEquipe.Text = nomeEquipeSelecionada;
+                    lblCategoriaEquipe.Text = categoriaEquipeSelecionada;
+
                     CarregarMembrosDaEquipe();
                 };
 

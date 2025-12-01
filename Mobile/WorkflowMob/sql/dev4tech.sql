@@ -192,7 +192,6 @@ VALUES
 ('João Santos', 'Assistente Administrativo', '34567890123', '1985-07-10', '11912348765', 'joao.santos@empresa.com', 'senha012hash', NOW(), 'Av. Brasil', '456');
 
 
-SELECT Email, Senha FROM Funcionarios WHERE Email = 'ana.pereira@empresa.com';
 -- Índices
 CREATE INDEX idx_administradores_email ON Administradores(Email);
 CREATE INDEX idx_funcionarios_email ON Funcionarios(Email);
@@ -200,4 +199,3 @@ CREATE INDEX idx_tarefas_equipe ON Tarefas(id_equipe);
 CREATE INDEX idx_tarefas_status ON Tarefas(status);
 CREATE INDEX idx_ranking_periodo ON RankingEquipes(periodo);
 CREATE INDEX idx_mensagens_equipe ON MensagensChat(id_equipe);
->>>>>>> 84c1efa37aa2833043764843579cbc8d64b56f55

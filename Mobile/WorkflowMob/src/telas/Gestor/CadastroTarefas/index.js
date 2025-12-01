@@ -15,7 +15,7 @@ import fonts from "../../../styles/fonts";
 export default function CadastroTarefas({ route, navigation }){
     const { theme } = useTheme();
     const styles = getStyles(theme);
-    const fastApiUrl = "http://26.205.151.98:8000/converter/pdf";
+    const fastApiUrl = "http://192.168.1.110:8000/converter/pdf";
 
     const usuario = route.params?.usuario;
     const [sucess, setSucess] = useState(false); 

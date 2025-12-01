@@ -18,17 +18,30 @@ namespace Dev4Tech
         private Dictionary<int, ProgressoLeitura> progressoCache = new Dictionary<int, ProgressoLeitura>();
         private int idFuncionarioLogado;
         private HashSet<int> tarefasVisualizadas = new HashSet<int>();
+        private string nomeEquipeSelecionada = "";
+        private string CategoriaEquipeSelecionada = "";
+        private int idEquipeSelecionada = 0;
 
         public Planejamento()
         {
             InitializeComponent();
             this.Load += Planejamento_Load;
             CarregarFotoUsuario();
+
+        nomeEquipeSelecionada = Sessao.NomeEquipeSelecionada;
+        CategoriaEquipeSelecionada = Sessao.CategoriaEquipeSelecionada;
+            lblNomeEquipe.Text = nomeEquipeSelecionada;
+            lblCategoriaEquipe.Text = CategoriaEquipeSelecionada;
+
+
+
+
         }
 
 
         private void Planejamento_Load(object sender, EventArgs e)
         {
+            
             try
             {
                 var funcionario = Sessao.FuncionarioLogado;
@@ -906,7 +919,6 @@ namespace Dev4Tech
             }
         }
 
-        // ... (métodos de navegação mantidos do código original)
         private void btnPendentes_Click(object sender, EventArgs e)
         {
             Tarefas_Pendentes trf_Pendentes = new Tarefas_Pendentes();

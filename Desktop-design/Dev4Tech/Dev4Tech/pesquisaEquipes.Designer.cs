@@ -58,9 +58,10 @@
             this.picPerfil.BackColor = System.Drawing.Color.Blue;
             this.picPerfil.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
             this.picPerfil.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picPerfil.Location = new System.Drawing.Point(12, 732);
+            this.picPerfil.Location = new System.Drawing.Point(16, 901);
+            this.picPerfil.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.picPerfil.Name = "picPerfil";
-            this.picPerfil.Size = new System.Drawing.Size(24, 23);
+            this.picPerfil.Size = new System.Drawing.Size(32, 28);
             this.picPerfil.TabIndex = 28;
             this.picPerfil.TabStop = false;
             // 
@@ -68,9 +69,10 @@
             // 
             this.btnEquipe.BackColor = System.Drawing.Color.Blue;
             this.btnEquipe.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_equip;
-            this.btnEquipe.Location = new System.Drawing.Point(12, 53);
+            this.btnEquipe.Location = new System.Drawing.Point(16, 65);
+            this.btnEquipe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnEquipe.Name = "btnEquipe";
-            this.btnEquipe.Size = new System.Drawing.Size(24, 23);
+            this.btnEquipe.Size = new System.Drawing.Size(32, 28);
             this.btnEquipe.TabIndex = 27;
             this.btnEquipe.TabStop = false;
             this.btnEquipe.Click += new System.EventHandler(this.btnEquipe_Click);
@@ -80,9 +82,10 @@
             this.btnCalendar.BackColor = System.Drawing.Color.Blue;
             this.btnCalendar.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_calendar;
             this.btnCalendar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnCalendar.Location = new System.Drawing.Point(12, 92);
+            this.btnCalendar.Location = new System.Drawing.Point(16, 113);
+            this.btnCalendar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCalendar.Name = "btnCalendar";
-            this.btnCalendar.Size = new System.Drawing.Size(24, 23);
+            this.btnCalendar.Size = new System.Drawing.Size(32, 28);
             this.btnCalendar.TabIndex = 26;
             this.btnCalendar.TabStop = false;
             this.btnCalendar.Click += new System.EventHandler(this.btnCalendar_Click);
@@ -92,9 +95,10 @@
             this.btnRanking.BackColor = System.Drawing.Color.Blue;
             this.btnRanking.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_ranking;
             this.btnRanking.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnRanking.Location = new System.Drawing.Point(12, 133);
+            this.btnRanking.Location = new System.Drawing.Point(16, 164);
+            this.btnRanking.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRanking.Name = "btnRanking";
-            this.btnRanking.Size = new System.Drawing.Size(24, 23);
+            this.btnRanking.Size = new System.Drawing.Size(32, 28);
             this.btnRanking.TabIndex = 25;
             this.btnRanking.TabStop = false;
             this.btnRanking.Click += new System.EventHandler(this.btnRanking_Click);
@@ -104,9 +108,10 @@
             this.btnLogout.BackColor = System.Drawing.Color.Blue;
             this.btnLogout.BackgroundImage = global::Dev4Tech.Properties.Resources.Nav_Icon_Item;
             this.btnLogout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnLogout.Location = new System.Drawing.Point(12, 689);
+            this.btnLogout.Location = new System.Drawing.Point(16, 848);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(24, 23);
+            this.btnLogout.Size = new System.Drawing.Size(32, 28);
             this.btnLogout.TabIndex = 24;
             this.btnLogout.TabStop = false;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
@@ -116,9 +121,10 @@
             this.btnConfig.BackColor = System.Drawing.Color.Blue;
             this.btnConfig.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_config;
             this.btnConfig.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnConfig.Location = new System.Drawing.Point(12, 660);
+            this.btnConfig.Location = new System.Drawing.Point(16, 812);
+            this.btnConfig.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnConfig.Name = "btnConfig";
-            this.btnConfig.Size = new System.Drawing.Size(24, 23);
+            this.btnConfig.Size = new System.Drawing.Size(32, 28);
             this.btnConfig.TabIndex = 23;
             this.btnConfig.TabStop = false;
             this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
@@ -128,9 +134,10 @@
             this.btnHome.BackColor = System.Drawing.Color.Blue;
             this.btnHome.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_Home;
             this.btnHome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnHome.Location = new System.Drawing.Point(12, 14);
+            this.btnHome.Location = new System.Drawing.Point(16, 17);
+            this.btnHome.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(24, 23);
+            this.btnHome.Size = new System.Drawing.Size(32, 28);
             this.btnHome.TabIndex = 22;
             this.btnHome.TabStop = false;
             this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
@@ -138,17 +145,19 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Blue;
-            this.pictureBox1.Location = new System.Drawing.Point(-3, 1);
+            this.pictureBox1.Location = new System.Drawing.Point(-4, 1);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(54, 781);
+            this.pictureBox1.Size = new System.Drawing.Size(72, 1003);
             this.pictureBox1.TabIndex = 18;
             this.pictureBox1.TabStop = false;
             // 
             // panelEquipes
             // 
-            this.panelEquipes.Location = new System.Drawing.Point(358, 271);
+            this.panelEquipes.Location = new System.Drawing.Point(477, 334);
+            this.panelEquipes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelEquipes.Name = "panelEquipes";
-            this.panelEquipes.Size = new System.Drawing.Size(724, 380);
+            this.panelEquipes.Size = new System.Drawing.Size(965, 468);
             this.panelEquipes.TabIndex = 68;
             this.panelEquipes.Paint += new System.Windows.Forms.PaintEventHandler(this.panelEquipes_Paint);
             // 
@@ -164,22 +173,21 @@
             this.txtPesquisaEquipe.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtPesquisaEquipe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.txtPesquisaEquipe.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtPesquisaEquipe.Location = new System.Drawing.Point(358, 228);
-            this.txtPesquisaEquipe.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtPesquisaEquipe.Location = new System.Drawing.Point(477, 281);
+            this.txtPesquisaEquipe.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPesquisaEquipe.Name = "txtPesquisaEquipe";
             this.txtPesquisaEquipe.PlaceholderText = "🔎 Pesquisar Equipes";
             this.txtPesquisaEquipe.SelectedText = "";
-            this.txtPesquisaEquipe.Size = new System.Drawing.Size(438, 36);
+            this.txtPesquisaEquipe.Size = new System.Drawing.Size(584, 44);
             this.txtPesquisaEquipe.TabIndex = 164;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(350, 176);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(467, 217);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(119, 31);
+            this.label5.Size = new System.Drawing.Size(148, 39);
             this.label5.TabIndex = 165;
             this.label5.Text = "Equipes";
             // 
@@ -194,9 +202,10 @@
             this.filtroEquipes.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.filtroEquipes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.filtroEquipes.ItemHeight = 30;
-            this.filtroEquipes.Location = new System.Drawing.Point(802, 229);
+            this.filtroEquipes.Location = new System.Drawing.Point(1069, 282);
+            this.filtroEquipes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.filtroEquipes.Name = "filtroEquipes";
-            this.filtroEquipes.Size = new System.Drawing.Size(188, 36);
+            this.filtroEquipes.Size = new System.Drawing.Size(249, 36);
             this.filtroEquipes.TabIndex = 166;
             // 
             // btnFiltrar
@@ -209,9 +218,10 @@
             this.btnFiltrar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(88)))), ((int)(((byte)(242)))));
             this.btnFiltrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.btnFiltrar.ForeColor = System.Drawing.Color.White;
-            this.btnFiltrar.Location = new System.Drawing.Point(996, 229);
+            this.btnFiltrar.Location = new System.Drawing.Point(1328, 282);
+            this.btnFiltrar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnFiltrar.Name = "btnFiltrar";
-            this.btnFiltrar.Size = new System.Drawing.Size(86, 36);
+            this.btnFiltrar.Size = new System.Drawing.Size(115, 44);
             this.btnFiltrar.TabIndex = 167;
             this.btnFiltrar.Text = "Filtrar";
             this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
@@ -220,19 +230,18 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(103, 41);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(137, 50);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(184, 31);
+            this.label2.Size = new System.Drawing.Size(229, 39);
             this.label2.TabIndex = 168;
             this.label2.Text = "WORKFLOW";
             // 
             // PesquisaEquipes
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1424, 861);
+            this.ClientSize = new System.Drawing.Size(1899, 1055);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnFiltrar);
             this.Controls.Add(this.filtroEquipes);
@@ -247,6 +256,7 @@
             this.Controls.Add(this.btnConfig);
             this.Controls.Add(this.btnHome);
             this.Controls.Add(this.pictureBox1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "PesquisaEquipes";
             this.Text = "Equipes";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
