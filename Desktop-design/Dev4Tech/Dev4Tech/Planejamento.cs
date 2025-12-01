@@ -20,7 +20,6 @@ namespace Dev4Tech
         private HashSet<int> tarefasVisualizadas = new HashSet<int>();
         private string nomeEquipeSelecionada = "";
         private string CategoriaEquipeSelecionada = "";
-        private int idEquipeSelecionada = 0;
 
         public Planejamento()
         {

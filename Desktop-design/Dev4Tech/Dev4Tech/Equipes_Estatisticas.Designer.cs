@@ -38,7 +38,7 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.picPerfil = new System.Windows.Forms.PictureBox();
             this.btnEquipes = new System.Windows.Forms.PictureBox();
             this.btnTarefas = new System.Windows.Forms.PictureBox();
             this.btnRanking = new System.Windows.Forms.PictureBox();
@@ -65,7 +65,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPerfil)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEquipes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnTarefas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRanking)).BeginInit();
@@ -90,17 +90,17 @@
             this.pictureBox2.TabIndex = 113;
             this.pictureBox2.TabStop = false;
             // 
-            // pictureBox11
+            // picPerfil
             // 
-            this.pictureBox11.BackColor = System.Drawing.Color.Blue;
-            this.pictureBox11.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
-            this.pictureBox11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox11.Location = new System.Drawing.Point(16, 891);
-            this.pictureBox11.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(32, 28);
-            this.pictureBox11.TabIndex = 112;
-            this.pictureBox11.TabStop = false;
+            this.picPerfil.BackColor = System.Drawing.Color.Blue;
+            this.picPerfil.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
+            this.picPerfil.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picPerfil.Location = new System.Drawing.Point(16, 891);
+            this.picPerfil.Margin = new System.Windows.Forms.Padding(4);
+            this.picPerfil.Name = "picPerfil";
+            this.picPerfil.Size = new System.Drawing.Size(32, 28);
+            this.picPerfil.TabIndex = 112;
+            this.picPerfil.TabStop = false;
             // 
             // btnEquipes
             // 
@@ -437,7 +437,7 @@
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox11);
+            this.Controls.Add(this.picPerfil);
             this.Controls.Add(this.btnEquipes);
             this.Controls.Add(this.btnTarefas);
             this.Controls.Add(this.btnRanking);
@@ -451,7 +451,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Equipes_Estatisticas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPerfil)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEquipes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnTarefas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRanking)).EndInit();
@@ -472,7 +472,7 @@
 
         #endregion
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox11;
+        private System.Windows.Forms.PictureBox picPerfil;
         private System.Windows.Forms.PictureBox btnEquipes;
         private System.Windows.Forms.PictureBox btnTarefas;
         private System.Windows.Forms.PictureBox btnRanking;

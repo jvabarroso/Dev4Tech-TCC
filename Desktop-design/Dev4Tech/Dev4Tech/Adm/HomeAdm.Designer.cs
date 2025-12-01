@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeAdm));
-            this.picPerfilMembro = new System.Windows.Forms.PictureBox();
+            this.picPerfil = new System.Windows.Forms.PictureBox();
             this.btnEquipes = new System.Windows.Forms.PictureBox();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.btnRanking = new System.Windows.Forms.PictureBox();
@@ -63,7 +63,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.picPerfilMembro)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPerfil)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEquipes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRanking)).BeginInit();
@@ -81,17 +81,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
-            // picPerfilMembro
+            // picPerfil
             // 
-            this.picPerfilMembro.BackColor = System.Drawing.Color.Blue;
-            this.picPerfilMembro.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
-            this.picPerfilMembro.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picPerfilMembro.Location = new System.Drawing.Point(17, 762);
-            this.picPerfilMembro.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.picPerfilMembro.Name = "picPerfilMembro";
-            this.picPerfilMembro.Size = new System.Drawing.Size(32, 28);
-            this.picPerfilMembro.TabIndex = 129;
-            this.picPerfilMembro.TabStop = false;
+            this.picPerfil.BackColor = System.Drawing.Color.Blue;
+            this.picPerfil.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
+            this.picPerfil.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picPerfil.Location = new System.Drawing.Point(17, 762);
+            this.picPerfil.Margin = new System.Windows.Forms.Padding(4);
+            this.picPerfil.Name = "picPerfil";
+            this.picPerfil.Size = new System.Drawing.Size(32, 28);
+            this.picPerfil.TabIndex = 129;
+            this.picPerfil.TabStop = false;
             // 
             // btnEquipes
             // 
@@ -99,7 +99,7 @@
             this.btnEquipes.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_equip;
             this.btnEquipes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnEquipes.Location = new System.Drawing.Point(17, 63);
-            this.btnEquipes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEquipes.Margin = new System.Windows.Forms.Padding(4);
             this.btnEquipes.Name = "btnEquipes";
             this.btnEquipes.Size = new System.Drawing.Size(32, 28);
             this.btnEquipes.TabIndex = 128;
@@ -112,7 +112,7 @@
             this.pictureBox9.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_calendar;
             this.pictureBox9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox9.Location = new System.Drawing.Point(17, 111);
-            this.pictureBox9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox9.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(32, 28);
             this.pictureBox9.TabIndex = 127;
@@ -125,7 +125,7 @@
             this.btnRanking.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_ranking;
             this.btnRanking.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRanking.Location = new System.Drawing.Point(17, 161);
-            this.btnRanking.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRanking.Margin = new System.Windows.Forms.Padding(4);
             this.btnRanking.Name = "btnRanking";
             this.btnRanking.Size = new System.Drawing.Size(32, 28);
             this.btnRanking.TabIndex = 126;
@@ -138,7 +138,7 @@
             this.btnLogout.BackgroundImage = global::Dev4Tech.Properties.Resources.Nav_Icon_Item;
             this.btnLogout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnLogout.Location = new System.Drawing.Point(17, 719);
-            this.btnLogout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(32, 28);
             this.btnLogout.TabIndex = 125;
@@ -151,7 +151,7 @@
             this.btnConfigurações.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_config;
             this.btnConfigurações.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnConfigurações.Location = new System.Drawing.Point(17, 682);
-            this.btnConfigurações.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnConfigurações.Margin = new System.Windows.Forms.Padding(4);
             this.btnConfigurações.Name = "btnConfigurações";
             this.btnConfigurações.Size = new System.Drawing.Size(32, 28);
             this.btnConfigurações.TabIndex = 124;
@@ -164,7 +164,7 @@
             this.btnHome.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_Home;
             this.btnHome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnHome.Location = new System.Drawing.Point(17, 15);
-            this.btnHome.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnHome.Margin = new System.Windows.Forms.Padding(4);
             this.btnHome.Name = "btnHome";
             this.btnHome.Size = new System.Drawing.Size(32, 28);
             this.btnHome.TabIndex = 123;
@@ -175,7 +175,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Blue;
             this.pictureBox2.Location = new System.Drawing.Point(-1, -1);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(72, 1018);
             this.pictureBox2.TabIndex = 130;
@@ -212,9 +212,9 @@
             this.groupBox3.Controls.Add(this.label16);
             this.groupBox3.Controls.Add(this.pictureBox4);
             this.groupBox3.Location = new System.Drawing.Point(385, 508);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox3.Size = new System.Drawing.Size(481, 273);
             this.groupBox3.TabIndex = 139;
             this.groupBox3.TabStop = false;
@@ -234,7 +234,7 @@
             this.btnEntrarCadastroFuncionario.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnEntrarCadastroFuncionario.ForeColor = System.Drawing.Color.Black;
             this.btnEntrarCadastroFuncionario.Location = new System.Drawing.Point(339, 222);
-            this.btnEntrarCadastroFuncionario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEntrarCadastroFuncionario.Margin = new System.Windows.Forms.Padding(4);
             this.btnEntrarCadastroFuncionario.Name = "btnEntrarCadastroFuncionario";
             this.btnEntrarCadastroFuncionario.Size = new System.Drawing.Size(135, 37);
             this.btnEntrarCadastroFuncionario.TabIndex = 139;
@@ -279,7 +279,7 @@
             this.pictureBox4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.BackgroundImage")));
             this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox4.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(481, 128);
             this.pictureBox4.TabIndex = 0;
@@ -294,9 +294,9 @@
             this.groupBox4.Controls.Add(this.label13);
             this.groupBox4.Controls.Add(this.label18);
             this.groupBox4.Location = new System.Drawing.Point(1004, 508);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox4.Size = new System.Drawing.Size(481, 273);
             this.groupBox4.TabIndex = 140;
             this.groupBox4.TabStop = false;
@@ -316,7 +316,7 @@
             this.btnEntrarRanking.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnEntrarRanking.ForeColor = System.Drawing.Color.Black;
             this.btnEntrarRanking.Location = new System.Drawing.Point(339, 222);
-            this.btnEntrarRanking.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEntrarRanking.Margin = new System.Windows.Forms.Padding(4);
             this.btnEntrarRanking.Name = "btnEntrarRanking";
             this.btnEntrarRanking.Size = new System.Drawing.Size(135, 37);
             this.btnEntrarRanking.TabIndex = 141;
@@ -339,7 +339,7 @@
             this.pictureBox7.BackgroundImage = global::Dev4Tech.Properties.Resources._1_zScJU5qbomqig6_j2g3RzQ;
             this.pictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox7.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox7.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(481, 128);
             this.pictureBox7.TabIndex = 0;
@@ -376,9 +376,9 @@
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Location = new System.Drawing.Point(385, 161);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(481, 273);
             this.groupBox1.TabIndex = 137;
             this.groupBox1.TabStop = false;
@@ -398,7 +398,7 @@
             this.btnEntrarEquipes.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnEntrarEquipes.ForeColor = System.Drawing.Color.Black;
             this.btnEntrarEquipes.Location = new System.Drawing.Point(339, 222);
-            this.btnEntrarEquipes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEntrarEquipes.Margin = new System.Windows.Forms.Padding(4);
             this.btnEntrarEquipes.Name = "btnEntrarEquipes";
             this.btnEntrarEquipes.Size = new System.Drawing.Size(135, 37);
             this.btnEntrarEquipes.TabIndex = 137;
@@ -443,7 +443,7 @@
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(481, 128);
             this.pictureBox1.TabIndex = 0;
@@ -458,9 +458,9 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.pictureBox3);
             this.groupBox2.Location = new System.Drawing.Point(1004, 161);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(481, 273);
             this.groupBox2.TabIndex = 138;
             this.groupBox2.TabStop = false;
@@ -480,7 +480,7 @@
             this.btnEntrarTarefas.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnEntrarTarefas.ForeColor = System.Drawing.Color.Black;
             this.btnEntrarTarefas.Location = new System.Drawing.Point(339, 222);
-            this.btnEntrarTarefas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEntrarTarefas.Margin = new System.Windows.Forms.Padding(4);
             this.btnEntrarTarefas.Name = "btnEntrarTarefas";
             this.btnEntrarTarefas.Size = new System.Drawing.Size(135, 37);
             this.btnEntrarTarefas.TabIndex = 138;
@@ -525,7 +525,7 @@
             this.pictureBox3.BackgroundImage = global::Dev4Tech.Properties.Resources.image_2;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox3.Location = new System.Drawing.Point(0, 2);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(481, 128);
             this.pictureBox3.TabIndex = 9;
@@ -542,7 +542,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.picPerfilMembro);
+            this.Controls.Add(this.picPerfil);
             this.Controls.Add(this.btnEquipes);
             this.Controls.Add(this.pictureBox9);
             this.Controls.Add(this.btnRanking);
@@ -550,11 +550,11 @@
             this.Controls.Add(this.btnConfigurações);
             this.Controls.Add(this.btnHome);
             this.Controls.Add(this.pictureBox2);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "HomeAdm";
             this.Text = "HomeAdm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            ((System.ComponentModel.ISupportInitialize)(this.picPerfilMembro)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPerfil)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEquipes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRanking)).EndInit();
@@ -580,7 +580,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.PictureBox picPerfilMembro;
+        private System.Windows.Forms.PictureBox picPerfil;
         private System.Windows.Forms.PictureBox btnEquipes;
         private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.PictureBox btnRanking;
