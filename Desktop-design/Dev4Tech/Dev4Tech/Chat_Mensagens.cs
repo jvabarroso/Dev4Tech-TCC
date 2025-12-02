@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Text;
 
 namespace Dev4Tech
 {
@@ -12,8 +13,8 @@ namespace Dev4Tech
         private string texto;
         private DateTime dataEnvio;
         private int idEquipe;
-        private int? idFuncionario; // Nullable pois pode ser null
-        private int? idAdmin;       // Nullable pois pode ser null
+        private int? idFuncionario;
+        private int? idAdmin;
         private int idEmpresa;
 
         public void setIdMensagem(string idMensagem) { this.idMensagem = idMensagem; }
@@ -86,6 +87,138 @@ namespace Dev4Tech
                 }
             }
             return dt;
+        }
+
+        public Image CarregarFotoUsuario(DataRow row, bool isAdmin)
+        {
+            try
+            {
+                string campoFoto = isAdmin ? "foto_admin" : "foto_funcionario";
+
+                if (row[campoFoto] != DBNull.Value)
+                {
+                    object fotoData = row[campoFoto];
+
+                    // Se for byte[], converte para string
+                    if (fotoData is byte[] imageBytes && imageBytes.Length > 0)
+                    {
+                        string caminho = Encoding.UTF8.GetString(imageBytes).Trim('\0').Trim();
+                        if (!string.IsNullOrEmpty(caminho))
+                        {
+                            return CarregarImagemDoCaminho(caminho);
+                        }
+                    }
+                    // Se já for string
+                    else if (fotoData is string caminho && !string.IsNullOrEmpty(caminho))
+                    {
+                        return CarregarImagemDoCaminho(caminho);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao carregar foto: {ex.Message}");
+            }
+
+            return Properties.Resources.icon_perfil;
+        }
+
+        public Image ObterFotoUsuario(int idUsuario, bool isFuncionario)
+        {
+            try
+            {
+                string caminhoFoto = ObterCaminhoFotoUsuario(idUsuario, isFuncionario);
+                if (!string.IsNullOrEmpty(caminhoFoto))
+                {
+                    return CarregarImagemDoCaminho(caminhoFoto);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao obter foto do usuário: {ex.Message}");
+            }
+
+            return Properties.Resources.icon_perfil;
+        }
+
+        private string ObterCaminhoFotoUsuario(int idUsuario, bool isFuncionario)
+        {
+            string caminho = null;
+            string query = isFuncionario
+                ? "SELECT foto_perfil FROM Funcionarios WHERE FuncionarioId = @id"
+                : "SELECT foto_perfil FROM Administradores WHERE AdminId = @id";
+
+            if (abrirConexao())
+            {
+                try
+                {
+                    var cmd = new MySqlCommand(query, conectar);
+                    cmd.Parameters.AddWithValue("@id", idUsuario);
+                    var result = cmd.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                    {
+                        // Se for byte[], converte para string
+                        if (result is byte[] bytes && bytes.Length > 0)
+                        {
+                            caminho = Encoding.UTF8.GetString(bytes).Trim('\0');
+                        }
+                        // Se já for string
+                        else if (result is string str)
+                        {
+                            caminho = str;
+                        }
+                    }
+                }
+                finally
+                {
+                    fecharConexao();
+                }
+            }
+            return caminho;
+        }
+
+        private Image CarregarImagemDoCaminho(string caminhoRelativo)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(caminhoRelativo))
+                {
+                    // Base do projeto
+                    string basePath = @"C:\xampp\htdocs\dev4tech\img";
+
+                    // Remove "img/" do início se existir
+                    caminhoRelativo = caminhoRelativo.TrimStart('\\', '/');
+                    if (caminhoRelativo.StartsWith("img/", StringComparison.OrdinalIgnoreCase) ||
+                        caminhoRelativo.StartsWith("img\\", StringComparison.OrdinalIgnoreCase))
+                    {
+                        caminhoRelativo = caminhoRelativo.Substring(4);
+                    }
+
+                    // Combina com a pasta img
+                    string caminhoCompleto = Path.Combine(basePath, caminhoRelativo);
+
+                    if (File.Exists(caminhoCompleto))
+                    {
+                        return Image.FromFile(caminhoCompleto);
+                    }
+
+                    // Tenta apenas o nome do arquivo
+                    string nomeArquivo = Path.GetFileName(caminhoRelativo);
+                    caminhoCompleto = Path.Combine(basePath, nomeArquivo);
+
+                    if (File.Exists(caminhoCompleto))
+                    {
+                        return Image.FromFile(caminhoCompleto);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao carregar imagem do caminho: {ex.Message}");
+            }
+
+            return Properties.Resources.icon_perfil;
         }
 
         public void AtualizarUltimaAtividade(int idEquipe)
@@ -166,6 +299,7 @@ namespace Dev4Tech
             }
             return exists;
         }
+
         private void InserirVisualizacao(int idMensagem, int idUsuario, string tipoUsuario)
         {
             string query = @"INSERT INTO MensagensChat_Visualizacao (id_mensagem, id_usuario, tipo_usuario, data_visualizacao) 
@@ -177,7 +311,7 @@ namespace Dev4Tech
                     var cmd = new MySqlCommand(query, conectar);
                     cmd.Parameters.AddWithValue("@idMensagem", idMensagem);
                     cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
-                    cmd.Parameters.AddWithValue("@tipoUsuario", tipoUsuario); // 'funcionario' ou 'admin'
+                    cmd.Parameters.AddWithValue("@tipoUsuario", tipoUsuario);
                     cmd.ExecuteNonQuery();
                 }
                 finally { fecharConexao(); }
@@ -188,11 +322,11 @@ namespace Dev4Tech
         {
             int total = 0;
             string query = @"
-        SELECT COUNT(*) FROM (
-            SELECT FuncionarioId AS id FROM Equipes_Membros WHERE id_equipe = @idEquipe
-            UNION
-            SELECT AdminId AS id FROM Equipes WHERE id_equipe = @idEquipe AND AdminId IS NOT NULL
-        ) AS totalUsuarios";
+                SELECT COUNT(*) FROM (
+                    SELECT FuncionarioId AS id FROM Equipes_Membros WHERE id_equipe = @idEquipe
+                    UNION
+                    SELECT AdminId AS id FROM Equipes WHERE id_equipe = @idEquipe AND AdminId IS NOT NULL
+                ) AS totalUsuarios";
             if (abrirConexao())
             {
                 try
@@ -209,9 +343,6 @@ namespace Dev4Tech
             }
             return total;
         }
-
-
-
 
         private int ContarVisualizacoes(int idMensagem)
         {
@@ -231,6 +362,7 @@ namespace Dev4Tech
             }
             return total;
         }
+
         private void AtualizarStatusMensagem(int idMensagem, string status)
         {
             string query = "UPDATE MensagensChat SET status = @status WHERE id_mensagem = @idMensagem";
@@ -246,64 +378,49 @@ namespace Dev4Tech
                 finally { fecharConexao(); }
             }
         }
+
         public Image ObterFotoEquipe(int idEquipe)
         {
-            Image fotoEquipe = null;
+            try
+            {
+                string caminhoFoto = ObterCaminhoFotoEquipe(idEquipe);
+                if (!string.IsNullOrEmpty(caminhoFoto))
+                {
+                    return CarregarImagemDoCaminho(caminhoFoto);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao obter foto da equipe: {ex.Message}");
+            }
+
+            return Properties.Resources.icon_EquipLogo;
+        }
+
+        private string ObterCaminhoFotoEquipe(int idEquipe)
+        {
+            string caminho = null;
             string query = "SELECT foto_equipe FROM Equipes WHERE id_equipe = @idEquipe LIMIT 1";
 
             if (abrirConexao())
             {
                 try
                 {
-                    MySqlCommand cmd = new MySqlCommand(query, conectar);
+                    var cmd = new MySqlCommand(query, conectar);
                     cmd.Parameters.AddWithValue("@idEquipe", idEquipe);
                     var resultado = cmd.ExecuteScalar();
 
                     if (resultado != null && resultado != DBNull.Value)
                     {
-                        // Se for byte[] (LONGBLOB), tentar carregar como imagem
-                        if (resultado is byte[] imageData)
+                        // Se for byte[], converte para string
+                        if (resultado is byte[] bytes && bytes.Length > 0)
                         {
-                            try
-                            {
-                                using (var ms = new MemoryStream(imageData))
-                                {
-                                    fotoEquipe = Image.FromStream(ms);
-                                }
-                            }
-                            catch
-                            {
-                                // Se falhar como imagem, tentar como string/nome de arquivo
-                                try
-                                {
-                                    string nomeArquivo = System.Text.Encoding.UTF8.GetString(imageData);
-                                    string caminhoImagemEquipe = Path.Combine(@"C:\xampp\htdocs\dev4tech\img", nomeArquivo);
-                                    if (File.Exists(caminhoImagemEquipe))
-                                    {
-                                        fotoEquipe = Image.FromFile(caminhoImagemEquipe);
-                                    }
-                                }
-                                catch
-                                {
-                                    // Se tudo falhar, retorna null
-                                }
-                            }
+                            caminho = Encoding.UTF8.GetString(bytes).Trim('\0');
                         }
-                        else if (resultado is string caminhoRelativo)
+                        // Se já for string
+                        else if (resultado is string str)
                         {
-                            // É um caminho
-                            try
-                            {
-                                string caminhoCompleto = Path.Combine(@"C:\xampp\htdocs\dev4tech\", caminhoRelativo.Replace("/", @"\"));
-                                if (File.Exists(caminhoCompleto))
-                                {
-                                    fotoEquipe = Image.FromFile(caminhoCompleto);
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                Console.WriteLine($"Erro ao carregar imagem do caminho: {ex.Message}");
-                            }
+                            caminho = str;
                         }
                     }
                 }
@@ -312,7 +429,7 @@ namespace Dev4Tech
                     fecharConexao();
                 }
             }
-            return fotoEquipe;
+            return caminho;
         }
     }
 }

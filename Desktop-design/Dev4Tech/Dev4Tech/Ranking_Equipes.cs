@@ -1,5 +1,4 @@
-﻿// Ranking_Equipes.cs
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
@@ -15,7 +14,6 @@ namespace Dev4Tech
         {
             InitializeComponent();
             this.Load += new EventHandler(this.Ranking_Equipes_Load);
-
         }
 
         private void Ranking_Equipes_Load(object sender, EventArgs e)
@@ -23,7 +21,6 @@ namespace Dev4Tech
             CarregarRankingEquipes();
             CarregarFotoUsuario();
         }
-
 
         private void CarregarRankingEquipes()
         {
@@ -39,7 +36,7 @@ namespace Dev4Tech
                 int idEquipe = Convert.ToInt32(row["id_equipe"]);
                 string nomeEquipe = row["nome_equipe"].ToString();
                 int pontosEquipe = row["pontos"] != DBNull.Value ? Convert.ToInt32(row["pontos"]) : 0;
-                int currentRank = rank; // Capturar o rank atual
+                int currentRank = rank;
 
                 List<MembroEquipe> membros = dao.BuscarMembrosEquipe(idEquipe);
 
@@ -111,9 +108,17 @@ namespace Dev4Tech
 
                 for (int i = 0; i < numMembrosParaMostrar; i++)
                 {
+                    // USAR TRATAMENTO SEGURO PARA IMAGEM
+                    Image fotoMembro = membros[i].FotoPerfil;
+                    if (fotoMembro == null || fotoMembro == Properties.Resources.icon_perfil)
+                    {
+                        // Se a foto não foi carregada ou é a padrão, garantir que temos a imagem padrão
+                        fotoMembro = Properties.Resources.icon_perfil;
+                    }
+
                     PictureBox picMembro = new PictureBox
                     {
-                        Image = membros[i].FotoPerfil ?? Properties.Resources.icon_perfil,
+                        Image = fotoMembro,
                         SizeMode = PictureBoxSizeMode.StretchImage,
                         Width = 34,
                         Height = 34,
@@ -122,6 +127,7 @@ namespace Dev4Tech
                         BorderStyle = BorderStyle.FixedSingle,
                         Cursor = Cursors.Hand
                     };
+
                     toolTipMembros.SetToolTip(picMembro, membros[i].Nome);
                     equipePanel.Controls.Add(picMembro);
                 }
@@ -130,7 +136,7 @@ namespace Dev4Tech
                 equipePanel.Click += (s, e) =>
                 {
                     Equipes_Estatisticas estatisticas = new Equipes_Estatisticas();
-                    estatisticas.idEquipe = idEquipe; // Usar variável capturada
+                    estatisticas.idEquipe = idEquipe;
                     estatisticas.CarregarGrafico();
                     estatisticas.Show();
                     this.Hide();
@@ -139,6 +145,38 @@ namespace Dev4Tech
                 panelRankingEquipes.Controls.Add(equipePanel);
                 top += equipePanel.Height + 10;
                 rank++;
+            }
+        }
+
+        private void CarregarFotoUsuario()
+        {
+            try
+            {
+                var usuarioFoto = new UsuarioFoto();
+                Image foto = usuarioFoto.ObterFotoUsuario();
+
+                if (picPerfil != null)
+                {
+                    if (foto != null)
+                    {
+                        picPerfil.Image = foto;
+                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
+                    }
+                    else
+                    {
+                        picPerfil.Image = Properties.Resources.icon_perfil;
+                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao carregar foto do usuário: {ex.Message}");
+                if (picPerfil != null)
+                {
+                    picPerfil.Image = Properties.Resources.icon_perfil;
+                    picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
             }
         }
 
@@ -246,6 +284,7 @@ namespace Dev4Tech
 
         private void label40_Click(object sender, EventArgs e)
         {
+            // Este evento não faz nada, mas é mantido para compatibilidade
         }
 
         private void pictureBox9_Click(object sender, EventArgs e)
@@ -315,8 +354,10 @@ namespace Dev4Tech
                 MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
         private void btnEstatisticas_Click(object sender, EventArgs e)
         {
+            // Método vazio, mantido para compatibilidade
         }
 
         private void lblGeral_Click(object sender, EventArgs e)
@@ -355,8 +396,6 @@ namespace Dev4Tech
                 this.Hide();
             }
         }
-
-
 
         private void lblRanking_Click(object sender, EventArgs e)
         {
@@ -406,44 +445,91 @@ namespace Dev4Tech
 
         private void panelRankingEquipes_Paint(object sender, PaintEventArgs e)
         {
-
+            // Evento de pintura do painel, mantido para compatibilidade
         }
 
         private void Ranking_Equipes_Load_1(object sender, EventArgs e)
         {
-
+            // Duplicação do evento Load - mantido para compatibilidade
+            // Mas já temos o evento principal, então este pode ficar vazio
         }
-        private void CarregarFotoUsuario()
-        {
-            try
-            {
-                var usuarioFoto = new UsuarioFoto();
-                Image foto = usuarioFoto.ObterFotoUsuario();
 
-                if (picPerfil != null) // Verifica se o controle existe no form
-                {
-                    if (foto != null)
-                    {
-                        picPerfil.Image = foto;
-                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
-                    }
-                    else
-                    {
-                        // Usar imagem padrão se não encontrar foto
-                        picPerfil.Image = Properties.Resources.icon_perfil;
-                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
-                    }
-                }
-            }
-            catch (Exception ex)
+        private void lblConfiguracoes_Click(object sender, EventArgs e)
+        {
+            var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
+            if (funcionario != null)
             {
-                Console.WriteLine($"Erro ao carregar foto do usuário: {ex.Message}");
-                if (picPerfil != null)
-                {
-                    picPerfil.Image = Properties.Resources.icon_perfil;
-                    picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
+                Configuracoes config = new Configuracoes(funcionario);
+                config.Show();
+                this.Hide();
             }
+            else if (admin != null)
+            {
+                Configuracoes config = new Configuracoes(admin);
+                config.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum usuário logado.");
+            }
+        }
+
+        private void lblEquipes_Click(object sender, EventArgs e)
+        {
+            var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
+
+            if (funcionario != null)
+            {
+                PesquisaEquipes t_equipe = new PesquisaEquipes();
+                t_equipe.Show();
+                this.Hide();
+            }
+            else if (admin != null)
+            {
+                PesquisaEquipes t_equipeAdmin = new PesquisaEquipes();
+                t_equipeAdmin.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void lblHome_Click(object sender, EventArgs e)
+        {
+            var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
+
+            if (funcionario != null)
+            {
+                Home h = new Home();
+                h.Show();
+                this.Hide();
+            }
+            else if (admin != null)
+            {
+                HomeAdm t_equipeAdmin = new HomeAdm();
+                t_equipeAdmin.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void lblLogout_Click(object sender, EventArgs e)
+        {
+            Sessao.FuncionarioLogado = null;
+            Sessao.AdminLogado = null;
+
+            Form1 t_incial = new Form1();
+            t_incial.Show();
+            this.Hide();
         }
     }
 }

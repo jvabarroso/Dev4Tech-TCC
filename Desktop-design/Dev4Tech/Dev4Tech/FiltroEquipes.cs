@@ -8,7 +8,6 @@ namespace Dev4Tech
     {
         private readonly string connectionString = "Server=localhost;Database=Dev4Tech;Uid=root;Pwd=;SslMode=none;";
 
-        // ✅ MÉTODO PRINCIPAL — agora com filtro por nome e categoria
         public DataTable ObterEquipesDoUsuario(string filtroCategoria, string filtroNome)
         {
             DataTable dt = new DataTable();
@@ -57,14 +56,10 @@ namespace Dev4Tech
                 conn.Open();
                 using (var cmd = new MySqlCommand(query, conn))
                 {
-                    // Categoria
                     cmd.Parameters.AddWithValue("@filtroCategoria",
                         string.IsNullOrEmpty(filtroCategoria) || filtroCategoria == "Todos" ? null : filtroCategoria);
-
-                    // Nome
                     cmd.Parameters.AddWithValue("@filtroNome",
                         string.IsNullOrEmpty(filtroNome) ? null : filtroNome);
-
                     cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
                     cmd.Parameters.AddWithValue("@isAdmin", isAdmin);
 
@@ -77,11 +72,9 @@ namespace Dev4Tech
             return dt;
         }
 
-        // ✅ Novo método — carrega as categorias da tabela Categorias
         public DataTable ObterCategorias()
         {
             DataTable dt = new DataTable();
-
             string query = @"SELECT nome_categoria FROM Categorias ORDER BY nome_categoria;";
 
             using (var conn = new MySqlConnection(connectionString))
@@ -93,15 +86,12 @@ namespace Dev4Tech
                     adapter.Fill(dt);
                 }
             }
-
             return dt;
         }
 
-        // ✅ Método original mantido
         public DataTable ObterMembrosDaEquipe(int idEquipe)
         {
             DataTable dt = new DataTable();
-
             string query = @"
                 SELECT 
                     f.FuncionarioId,
@@ -119,6 +109,44 @@ namespace Dev4Tech
                 using (var cmd = new MySqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@idEquipe", idEquipe);
+                    using (var adapter = new MySqlDataAdapter(cmd))
+                    {
+                        adapter.Fill(dt);
+                    }
+                }
+            }
+            return dt;
+        }
+
+        // Novo método para obter informações da empresa do usuário logado
+        public DataTable ObterEmpresaUsuario()
+        {
+            DataTable dt = new DataTable();
+            int? idUsuario = null;
+            bool isFuncionario = false;
+
+            if (Sessao.FuncionarioLogado != null)
+            {
+                idUsuario = Convert.ToInt32(Sessao.FuncionarioLogado.getFuncionarioId());
+                isFuncionario = true;
+            }
+            else if (Sessao.AdminLogado != null)
+            {
+                idUsuario = Convert.ToInt32(Sessao.AdminLogado.getAdminId());
+            }
+
+            if (idUsuario == null) return dt;
+
+            string query = isFuncionario ?
+                @"SELECT id_empresa FROM Funcionarios WHERE FuncionarioId = @idUsuario" :
+                @"SELECT id_empresa FROM Administradores WHERE AdminId = @idUsuario";
+
+            using (var conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
                     using (var adapter = new MySqlDataAdapter(cmd))
                     {
                         adapter.Fill(dt);
