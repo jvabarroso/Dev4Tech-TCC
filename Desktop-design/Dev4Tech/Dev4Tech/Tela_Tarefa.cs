@@ -579,8 +579,7 @@ namespace Dev4Tech
             }
 
             Relato_Problema relatoForm = new Relato_Problema(idTarefaExibida, idEquipeAtual);
-            relatoForm.Show();
-            this.Hide();
+            relatoForm.ShowDialog();
         }
 
         private void txtDescrição_TextChanged(object sender, EventArgs e) { }

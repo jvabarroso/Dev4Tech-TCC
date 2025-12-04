@@ -414,5 +414,11 @@ export const getStyles = (theme) => StyleSheet.create({
     justifyContent: "space-between",
     width: "100%",
   },
+  dificuldadeContainer: {
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 4,
+    marginRight: 8,
+  },
 
 });

@@ -686,7 +686,5 @@ namespace Dev4Tech
         private void btnMostrarMembros_Click(object sender, EventArgs e) { }
 
         private void Integrantes_Equipe_Load(object sender, EventArgs e) { }
-
-        private void label1_Click(object sender, EventArgs e) { }
     }
 }

@@ -78,18 +78,12 @@ namespace Dev4Tech
                 MessageBox.Show("Erro ao enviar problema: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            Tela_Tarefa Tt = new Tela_Tarefa(idEquipe);
-            Tt.CarregarDetalhesTarefa(idTarefa);
-            Tt.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            Tela_Tarefa Tt = new Tela_Tarefa(idEquipe);
-            Tt.CarregarDetalhesTarefa(idTarefa);
-            Tt.Show();
-            this.Hide();
+            this.Close();
         }
 
         private int BuscarIdEmpresaPorTarefa(int idTarefa)
