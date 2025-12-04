@@ -34,6 +34,23 @@ export default function EquipeTarefas({ navigation, route }) {
   }
 }, [route.params?.usuario]);
 
+  function criarDataApenasData(dataString) {
+    if (dataString.match(/^\d{4}-\d{2}-\d{2}$/)) {
+      const partes = dataString.split('-');
+      return new Date(Date.UTC(
+        parseInt(partes[0]),
+        parseInt(partes[1]) - 1,
+        parseInt(partes[2])
+      ));
+    }
+    const partes = dataString.split(' ')[0].split('-');
+    return new Date(Date.UTC(
+      parseInt(partes[0]),
+      parseInt(partes[1]) - 1,
+      parseInt(partes[2])
+    ));
+  }
+
   //Lista Tarefas
   async function listarDados() {
     if (!equipe?.id_equipe) {
@@ -56,11 +73,14 @@ export default function EquipeTarefas({ navigation, route }) {
       if (res.data.success) {
         // Calcular o status com base na data de entrega
         const tarefasComStatus = res.data.result.map(tarefa => {
-          const entregue = Boolean(+tarefa.entregue);
-          const dataEntrega = new Date(tarefa.data_entrega);
-          const hoje = new Date();
-
+          const entregue = +tarefa.avaliada;
+          
+          // USA A FUNÇÃO AUXILIAR para criar datas sem hora
+          const dataEntrega = criarDataApenasData(tarefa.data_entrega);
+          const hoje = criarDataApenasData(new Date().toISOString().split('T')[0]);
+          
           let status = 'pendente';
+
           if (entregue) {
             status = 'concluido';
           } else if (dataEntrega < hoje) {
@@ -71,6 +91,7 @@ export default function EquipeTarefas({ navigation, route }) {
 
           return {
             ...tarefa,
+            entregue,
             status_tarefa: status,
             pendente: status === 'pendente',
             atrasada: status === 'atrasada',
@@ -210,7 +231,10 @@ export default function EquipeTarefas({ navigation, route }) {
   // Formata as datas do banco 
   function formatarData(data) {
     if (!data) return "";
-    const partes = data.split("-"); // ["0000","00","00"]
+    
+    const dataPart = data.split(' ')[0];
+    const partes = dataPart.split("-");
+    
     if (partes.length !== 3) return data;
     return `${partes[2]}/${partes[1]}/${partes[0]}`;
   }

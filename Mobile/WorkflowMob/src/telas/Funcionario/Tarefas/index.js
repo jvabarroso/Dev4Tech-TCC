@@ -31,6 +31,23 @@ export default function Tarefas({ navigation, route }) {
   }
 }, [route.params?.usuario]);
 
+  function criarDataApenasData(dataString) {
+    if (dataString.match(/^\d{4}-\d{2}-\d{2}$/)) {
+      const partes = dataString.split('-');
+      return new Date(Date.UTC(
+        parseInt(partes[0]),
+        parseInt(partes[1]) - 1,
+        parseInt(partes[2])
+      ));
+    }
+    const partes = dataString.split(' ')[0].split('-');
+    return new Date(Date.UTC(
+      parseInt(partes[0]),
+      parseInt(partes[1]) - 1,
+      parseInt(partes[2])
+    ));
+  }
+  
   async function listarDados() {
     if (!usuario?.FuncionarioId) {
       console.log("ID do usuário não disponível");
@@ -50,9 +67,11 @@ export default function Tarefas({ navigation, route }) {
         // Calcular o status com base na data de entrega
         const tarefasComStatus = res.data.result.map(tarefa => {
           const entregue = +tarefa.avaliada;
-          const dataEntrega = new Date(tarefa.data_entrega);
-          const hoje = new Date();
-
+          
+          // USA A FUNÇÃO AUXILIAR para criar datas sem hora
+          const dataEntrega = criarDataApenasData(tarefa.data_entrega);
+          const hoje = criarDataApenasData(new Date().toISOString().split('T')[0]);
+          
           let status = 'pendente';
 
           if (entregue) {
@@ -204,10 +223,13 @@ export default function Tarefas({ navigation, route }) {
     );
   }
 
-    // Formata as datas do banco 
+  // Formata as datas do banco 
   function formatarData(data) {
     if (!data) return "";
-    const partes = data.split("-"); // ["0000","00","00"]
+
+    const dataPart = data.split(' ')[0];
+    const partes = dataPart.split("-");
+    
     if (partes.length !== 3) return data;
     return `${partes[2]}/${partes[1]}/${partes[0]}`;
   }
