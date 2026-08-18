@@ -8,7 +8,7 @@ using Newtonsoft.Json.Linq;
 public class PythonExecutor
 {
     private readonly HttpClient client;
-    private readonly string apiUrl = "http://10.239.20.94:8000/converter/pdf";
+    private readonly string apiUrl = "http://127.0.0.1:8000/converter/pdf";
 
     public PythonExecutor()
     {
@@ -20,7 +20,7 @@ public class PythonExecutor
     {
         try
         {
-            var response = client.GetAsync("http://10.239.20.94:8000/").Result;
+            var response = client.GetAsync("http://127.0.0.1:8000/").Result;
             return response.IsSuccessStatusCode;
         }
         catch (Exception ex)

@@ -11,6 +11,9 @@ namespace Dev4Tech
 {
     class EntregaTarefa : conexao
     {
+
+        
+
         public DataTable BuscarTarefasAtrasadasPorEquipe(int idEquipe)
         {
             DataTable dt = new DataTable();
@@ -479,36 +482,6 @@ namespace Dev4Tech
                     {
                         cmd.Parameters.AddWithValue("@idTarefa", idTarefa);
                         cmd.Parameters.AddWithValue("@idFuncionario", idFuncionario);
-                        using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
-                        {
-                            da.Fill(dt);
-                        }
-                    }
-                }
-                finally
-                {
-                    fecharConexao();
-                }
-            }
-            return dt.Rows.Count > 0 ? dt.Rows[0] : null;
-        }
-        // ADICIONE este método à classe EntregaTarefa
-        public DataRow BuscarInfoEquipe(int idEquipe)
-        {
-            DataTable dt = new DataTable();
-            string query = @"
-        SELECT e.nome_equipe, c.nome_categoria 
-        FROM Equipes e
-        INNER JOIN Categorias c ON e.id_categoria = c.id_categoria
-        WHERE e.id_equipe = @id";
-
-            if (abrirConexao())
-            {
-                try
-                {
-                    using (MySqlCommand cmd = new MySqlCommand(query, conectar))
-                    {
-                        cmd.Parameters.AddWithValue("@id", idEquipe);
                         using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
                         {
                             da.Fill(dt);

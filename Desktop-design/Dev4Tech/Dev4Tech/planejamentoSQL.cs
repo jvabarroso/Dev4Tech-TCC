@@ -139,59 +139,6 @@ namespace Dev4Tech
             }
             return tarefas;
         }
-
-        public bool TarefaTemArquivo(int idTarefa)
-        {
-            bool temArquivo = false;
-            string query = "SELECT nome_arquivo FROM Tarefas WHERE id_tarefa = @idTarefa";
-
-            if (abrirConexao())
-            {
-                try
-                {
-                    using (var cmd = new MySqlCommand(query, conectar))
-                    {
-                        cmd.Parameters.AddWithValue("@idTarefa", idTarefa);
-                        var resultado = cmd.ExecuteScalar();
-                        if (resultado != null && resultado != DBNull.Value && !string.IsNullOrEmpty(resultado.ToString()))
-                        {
-                            temArquivo = true;
-                        }
-                    }
-                }
-                finally
-                {
-                    fecharConexao();
-                }
-            }
-            return temArquivo;
-        }
-        public int ObterIdEquipeDaTarefa(int idTarefa)
-        {
-            int idEquipe = 0;
-            string query = "SELECT id_equipe FROM Tarefas WHERE id_tarefa = @idTarefa";
-
-            if (abrirConexao())
-            {
-                try
-                {
-                    using (var cmd = new MySqlCommand(query, conectar))
-                    {
-                        cmd.Parameters.AddWithValue("@idTarefa", idTarefa);
-                        var resultado = cmd.ExecuteScalar();
-                        if (resultado != null && resultado != DBNull.Value)
-                        {
-                            idEquipe = Convert.ToInt32(resultado);
-                        }
-                    }
-                }
-                finally
-                {
-                    fecharConexao();
-                }
-            }
-            return idEquipe;
-        }
         internal string ObterInstrucoesTarefa(int idTarefa)
         {
             string instrucoes = string.Empty;
@@ -370,11 +317,27 @@ namespace Dev4Tech
                             {
                                 if (!reader.IsDBNull(0))
                                 {
-                                    byte[] fotoBytes = (byte[])reader["foto_perfil"];
-                                    using (var ms = new MemoryStream(fotoBytes))
+                                    try
                                     {
-                                        avatares.Add(Image.FromStream(ms));
+                                        byte[] fotoBytes = (byte[])reader["foto_perfil"];
+
+                                        using (var ms = new MemoryStream(fotoBytes))
+                                        using (var imagemOriginal = Image.FromStream(ms))
+                                        {
+                                            avatares.Add(new Bitmap(imagemOriginal));
+                                        }
                                     }
+                                    catch (Exception ex)
+                                    {
+                                        MessageBox.Show(
+                                            "Erro ao carregar foto do funcionário:\n\n" +
+                                            ex.GetType().Name + "\n" +
+                                            ex.Message
+                                        );
+
+                                        avatares.Add(Properties.Resources.icon_perfil);
+                                    }
+                               
                                 }
                                 else
                                 {

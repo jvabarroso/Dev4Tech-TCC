@@ -10,7 +10,6 @@ namespace Dev4Tech
 {
     public partial class Tarefas_Completadas : Form
     {
-        private int equipeSelecionadaId = 0;
         private List<int> equipesFuncionario;
         private Dictionary<int, string> equipesNomeMap;
         private int idFuncionarioLogado;
@@ -121,41 +120,6 @@ namespace Dev4Tech
             {
                 txtPesquisarTarefa.Text = TextoPlaceholder;
                 txtPesquisarTarefa.ForeColor = Color.Gray;
-            }
-        }
-
-        private void AtualizarInfoEquipeSelecionada()
-        {
-            if (cmbEquipes.SelectedItem == null || cmbEquipes.SelectedItem.ToString() == "Todas")
-            {
-                lblNomeEquipe.Text = "Todas as Equipes";
-                lblCategoriaEquipe.Text = "Visualizando todas as equipes";
-                equipeSelecionadaId = 0;
-            }
-            else
-            {
-                var nomeEquipeSelecionada = cmbEquipes.SelectedItem.ToString();
-
-                // Encontrar o ID correspondente ao nome
-                foreach (var kvp in equipesNomeMap)
-                {
-                    if (kvp.Value == nomeEquipeSelecionada)
-                    {
-                        equipeSelecionadaId = kvp.Key;
-                        break;
-                    }
-                }
-
-                if (equipeSelecionadaId > 0)
-                {
-                    var infoEquipe = entregaTarefa.BuscarInfoEquipe(equipeSelecionadaId);
-
-                    if (infoEquipe != null)
-                    {
-                        lblNomeEquipe.Text = infoEquipe["nome_equipe"].ToString();
-                        lblCategoriaEquipe.Text = infoEquipe["nome_categoria"].ToString();
-                    }
-                }
             }
         }
 
@@ -407,7 +371,6 @@ namespace Dev4Tech
         private void cmbEquipes_SelectedIndexChanged(object sender, EventArgs e)
         {
             AtualizarTarefas();
-            AtualizarInfoEquipeSelecionada();
         }
 
         // Pesquisa dinâmica na txtPesquisarTarefa e atualiza lista
@@ -518,18 +481,19 @@ namespace Dev4Tech
 
             if (Sessao.IdEquipeSelecionada != 0)
             {
-                string nomeEquipe = Sessao.NomeEquipeSelecionada;
-                string categoriaEquipe = Sessao.CategoriaEquipeSelecionada;
+                int idEquipe = Sessao.IdEquipeSelecionada;
+                string nomeEquipe = "Nome da equipe";
+                string categoriaEquipe = "Categoria da equipe";
 
                 if (funcionario != null)
                 {
-                    Chat_geral_equipes t_equipe = new Chat_geral_equipes(Sessao.IdEquipeSelecionada, nomeEquipe, categoriaEquipe);
+                    Chat_geral_equipes t_equipe = new Chat_geral_equipes(idEquipe, nomeEquipe, categoriaEquipe);
                     t_equipe.Show();
                     this.Hide();
                 }
                 else if (admin != null)
                 {
-                    Chat_geral_equipes t_equipeAdmin = new Chat_geral_equipes(Sessao.IdEquipeSelecionada, nomeEquipe, categoriaEquipe);
+                    Chat_geral_equipes t_equipeAdmin = new Chat_geral_equipes(idEquipe, nomeEquipe, categoriaEquipe);
                     t_equipeAdmin.Show();
                     this.Hide();
                 }

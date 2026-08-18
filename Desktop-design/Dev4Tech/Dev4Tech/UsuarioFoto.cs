@@ -46,14 +46,15 @@ namespace Dev4Tech
 
                     if (resultado != null && resultado != DBNull.Value)
                     {
-                        if (resultado is byte[] imageData)
+                        if (resultado is byte[] imageData && imageData.Length > 0)
                         {
                             // É um blob - tentar carregar como imagem
                             try
                             {
                                 using (var ms = new MemoryStream(imageData))
+                                using (var imagemTemporaria = Image.FromStream(ms))
                                 {
-                                    fotoUsuario = Image.FromStream(ms);
+                                    fotoUsuario = new Bitmap(imagemTemporaria);
                                 }
                             }
                             catch

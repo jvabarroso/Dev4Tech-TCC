@@ -2,9 +2,7 @@
 using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Text;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 
 namespace Dev4Tech
 {
@@ -52,8 +50,6 @@ namespace Dev4Tech
             lblNomeEquipe.Text = nomeEquipe;
             lblCategoriaEquipe.Text = categoriaEquipe;
             CarregarMensagens();
-            CarregarFotoEquipe();
-            CarregarFotoUsuario();
         }
 
         private void CarregarMensagens()
@@ -100,8 +96,30 @@ namespace Dev4Tech
                     ? row["nome_admin"]?.ToString() ?? "Administrador"
                     : row["nome_funcionario"]?.ToString() ?? "Funcionário";
 
-                // Carregar foto usando método da classe Chat_Mensagens
-                Image foto = messageChat.CarregarFotoUsuario(row, mensagemAdministrador);
+                byte[] fotoBytes = mensagemAdministrador
+                    ? (row["foto_admin"] != DBNull.Value ? (byte[])row["foto_admin"] : null)
+                    : (row["foto_funcionario"] != DBNull.Value ? (byte[])row["foto_funcionario"] : null);
+
+                Image foto;
+                if (fotoBytes != null && fotoBytes.Length > 0)
+                {
+                    try
+                    {
+                        using (var ms = new MemoryStream(fotoBytes))
+                        {
+                            ms.Position = 0;
+                            foto = Image.FromStream(ms);
+                        }
+                    }
+                    catch (ArgumentException)
+                    {
+                        foto = Properties.Resources.icon_perfil;
+                    }
+                }
+                else
+                {
+                    foto = Properties.Resources.icon_perfil;
+                }
 
                 int idMensagem = Convert.ToInt32(row["id_mensagem"]);
                 int idUsuarioLogadoInt = 0;
@@ -116,9 +134,12 @@ namespace Dev4Tech
             }
         }
 
+
+
+        // Versão completa com parâmetros para marcação da visualização
         private void AdicionarMensagem(string texto, DateTime dataEnvio, bool minhaMensagem, bool mensagemAdministrador,
-            Image fotoPerfil, string nomeUsuario, int idMensagem, int idUsuarioLogado, int idEquipe, string statusMensagem,
-            int? remetenteFuncionarioId, int? remetenteAdminId)
+    Image fotoPerfil, string nomeUsuario, int idMensagem, int idUsuarioLogado, int idEquipe, string statusMensagem,
+    int? remetenteFuncionarioId, int? remetenteAdminId)
         {
             int y = margemTopo + (alturaMensagem + espacamentoVertical) * mensagensCount;
             Color fundoMensagem;
@@ -138,7 +159,6 @@ namespace Dev4Tech
                 fundoMensagem = Color.White;
                 bordaMensagem = Color.LightGray;
             }
-
             Panel mensagemPanel = new Panel
             {
                 BackColor = fundoMensagem,
@@ -149,7 +169,6 @@ namespace Dev4Tech
                 Left = minhaMensagem ? panelMensagens.Width - larguraMaxMensagem + 25 : 45,
                 Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right
             };
-
             Color statusColor;
             if (statusMensagem == "enviada")
                 statusColor = Color.Gray;
@@ -159,7 +178,6 @@ namespace Dev4Tech
                 statusColor = Color.Blue;
             else
                 statusColor = Color.Gray;
-
             Panel statusIndicator = new Panel
             {
                 Width = 20,
@@ -168,14 +186,12 @@ namespace Dev4Tech
                 Left = minhaMensagem ? panelMensagens.Width - larguraMaxMensagem : 15,
                 BackColor = statusColor
             };
-
             statusIndicator.Paint += (s, e) =>
             {
                 System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
                 gp.AddEllipse(0, 0, statusIndicator.Width - 1, statusIndicator.Height - 1);
                 statusIndicator.Region = new Region(gp);
             };
-
             mensagemPanel.Paint += (s, e) =>
             {
                 var rect = new Rectangle(0, 0, mensagemPanel.Width - 1, mensagemPanel.Height - 1);
@@ -187,7 +203,6 @@ namespace Dev4Tech
                     e.Graphics.DrawRectangle(pen, rect);
                 }
             };
-
             PictureBox avatar = new PictureBox
             {
                 Image = fotoPerfil,
@@ -199,14 +214,12 @@ namespace Dev4Tech
                 BorderStyle = BorderStyle.None,
                 BackColor = Color.Transparent
             };
-
             avatar.Paint += (s, e) =>
             {
                 var gp = new System.Drawing.Drawing2D.GraphicsPath();
                 gp.AddEllipse(0, 0, avatar.Width - 1, avatar.Height - 1);
                 avatar.Region = new Region(gp);
             };
-
             Label lblNome = new Label
             {
                 Text = nomeUsuario,
@@ -218,11 +231,9 @@ namespace Dev4Tech
                 Left = avatar.Left - 2,
                 Top = avatar.Top + avatar.Height + 2
             };
-
             int larguraMensagem = mensagemPanel.Width - 70;
             int mensagemLeft = minhaMensagem ? 12 : 54;
             int mensagemWidth = minhaMensagem ? larguraMensagem - 40 : larguraMensagem;
-
             Label lblMensagem = new Label
             {
                 Text = texto,
@@ -237,7 +248,6 @@ namespace Dev4Tech
                 Padding = new Padding(6, 4, 6, 4),
                 BackColor = Color.Transparent
             };
-
             Label lblHora = new Label
             {
                 Text = dataEnvio.ToString("HH:mm"),
@@ -246,12 +256,10 @@ namespace Dev4Tech
                 ForeColor = Color.Gray,
                 BackColor = Color.Transparent
             };
-
             lblHora.Top = mensagemPanel.Height - lblHora.PreferredHeight - 6;
             lblHora.Left = minhaMensagem
                 ? mensagemPanel.Width - lblHora.PreferredWidth - 60
                 : 60;
-
             mensagemPanel.Controls.Add(lblMensagem);
             mensagemPanel.Controls.Add(avatar);
             mensagemPanel.Controls.Add(lblNome);
@@ -279,6 +287,8 @@ namespace Dev4Tech
             panelMensagens.VerticalScroll.Value = Math.Max(0, panelMensagens.VerticalScroll.Maximum);
             panelMensagens.PerformLayout();
         }
+
+
 
         private void LimparMensagens()
         {
@@ -331,6 +341,7 @@ namespace Dev4Tech
                 }
                 else
                 {
+                    // Usar imagem padrão se não encontrar foto
                     iconFotoEquipe.Image = Properties.Resources.icon_EquipLogo;
                     iconFotoEquipe.SizeMode = PictureBoxSizeMode.StretchImage;
                 }
@@ -340,49 +351,6 @@ namespace Dev4Tech
                 Console.WriteLine($"Erro ao carregar foto da equipe: {ex.Message}");
                 iconFotoEquipe.Image = Properties.Resources.icon_EquipLogo;
                 iconFotoEquipe.SizeMode = PictureBoxSizeMode.StretchImage;
-            }
-        }
-
-        private void CarregarFotoUsuario()
-        {
-            try
-            {
-                Chat_Mensagens chatMensagens = new Chat_Mensagens();
-                Image fotoUsuario = null;
-
-                if (Sessao.FuncionarioLogado != null)
-                {
-                    int idFuncionario = int.Parse(Sessao.FuncionarioLogado.getFuncionarioId());
-                    fotoUsuario = chatMensagens.ObterFotoUsuario(idFuncionario, true);
-                }
-                else if (Sessao.AdminLogado != null)
-                {
-                    int idAdmin = int.Parse(Sessao.AdminLogado.getAdminId());
-                    fotoUsuario = chatMensagens.ObterFotoUsuario(idAdmin, false);
-                }
-
-                if (picPerfil != null)
-                {
-                    if (fotoUsuario != null)
-                    {
-                        picPerfil.Image = fotoUsuario;
-                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
-                    }
-                    else
-                    {
-                        picPerfil.Image = Properties.Resources.icon_perfil;
-                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Erro ao carregar foto do usuário: {ex.Message}");
-                if (picPerfil != null)
-                {
-                    picPerfil.Image = Properties.Resources.icon_perfil;
-                    picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
             }
         }
 
@@ -484,8 +452,8 @@ namespace Dev4Tech
             if (Sessao.IdEquipeSelecionada != 0)
             {
                 int idEquipe = Sessao.IdEquipeSelecionada;
-                string nomeEquipe = Sessao.NomeEquipeSelecionada;
-                string categoriaEquipe = Sessao.CategoriaEquipeSelecionada;
+                string nomeEquipe = "Nome da equipe"; // Ajuste para obter o nome real da equipe
+                string categoriaEquipe = "Categoria da equipe"; // Ajuste para obter a categoria real da equipe
 
                 if (funcionario != null)
                 {
@@ -584,6 +552,8 @@ namespace Dev4Tech
             if (Sessao.IdEquipeSelecionada != 0)
             {
                 int idEquipe = Sessao.IdEquipeSelecionada;
+                string nomeEquipe = "Nome da equipe"; // Ajuste para obter o nome real da equipe
+                string categoriaEquipe = "Categoria da equipe"; // Ajuste para obter a categoria real da equipe
 
                 if (funcionario != null)
                 {
@@ -647,6 +617,38 @@ namespace Dev4Tech
             Planejamento p_plano = new Planejamento();
             p_plano.Show();
             this.Hide();
+        }
+        private void CarregarFotoUsuario()
+        {
+            try
+            {
+                var usuarioFoto = new UsuarioFoto();
+                Image foto = usuarioFoto.ObterFotoUsuario();
+
+                if (picPerfil != null) // Verifica se o controle existe no form
+                {
+                    if (foto != null)
+                    {
+                        picPerfil.Image = foto;
+                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
+                    }
+                    else
+                    {
+                        // Usar imagem padrão se não encontrar foto
+                        picPerfil.Image = Properties.Resources.icon_perfil;
+                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao carregar foto do usuário: {ex.Message}");
+                if (picPerfil != null)
+                {
+                    picPerfil.Image = Properties.Resources.icon_perfil;
+                    picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+            }
         }
     }
 }

@@ -4,8 +4,6 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Dev4Tech
@@ -13,7 +11,7 @@ namespace Dev4Tech
     public partial class PesquisaEquipes : Form
     {
         private string basePathImagemEquipe = @"C:\xampp\htdocs\dev4tech\img";
-        private string baseFolder = @"C:\xampp\htdocs\dev4tech";
+        private string baseFolder = @"C:\xampp\htdocs\dev4tech\";
         private int mensagensCount = 0;
         private int margemTopo = 30;
         private int margemEsquerda = 350;
@@ -41,6 +39,7 @@ namespace Dev4Tech
             txtPesquisaEquipe.Enter += (s, e) =>
             {
                 if (txtPesquisaEquipe.Text == TextoPlaceholder)
+                if (txtPesquisaEquipe.Text == TextoPlaceholder)
                 {
                     txtPesquisaEquipe.Text = "";
                     txtPesquisaEquipe.ForeColor = Color.Black;
@@ -62,7 +61,6 @@ namespace Dev4Tech
                 AtualizarEquipes();
             };
         }
-
         private void CarregarCategorias()
         {
             try
@@ -120,28 +118,10 @@ namespace Dev4Tech
                     object fotoObj = r["foto_perfil"];
                     string caminhoFoto = null;
                     byte[] blobFoto = null;
-
-                    if (fotoObj != null && fotoObj != DBNull.Value)
-                    {
-                        if (fotoObj is byte[] bytes)
-                        {
-                            // Tenta decodificar como string (caminho)
-                            string possivelCaminho = TryDecodeUtf8(bytes);
-                            if (!string.IsNullOrEmpty(possivelCaminho) && LooksLikePath(possivelCaminho))
-                            {
-                                caminhoFoto = possivelCaminho;
-                            }
-                            else
-                            {
-                                blobFoto = bytes;
-                            }
-                        }
-                        else if (fotoObj is string caminho)
-                        {
-                            caminhoFoto = caminho;
-                        }
-                    }
-
+                    if (fotoObj is byte[] bytes)
+                        blobFoto = bytes;
+                    else if (fotoObj is string s)
+                        caminhoFoto = s;
                     return new MembroEquipe
                     {
                         IdFuncionario = r.Field<int>("FuncionarioId"),
@@ -177,70 +157,6 @@ namespace Dev4Tech
             }
         }
 
-        // Métodos auxiliares para processar fotos
-        private string TryDecodeUtf8(byte[] bytes)
-        {
-            try
-            {
-                string s = Encoding.UTF8.GetString(bytes).Trim('\0').Trim();
-                return s;
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
-        private bool LooksLikePath(string s)
-        {
-            if (string.IsNullOrWhiteSpace(s)) return false;
-            s = s.ToLowerInvariant();
-            if (s.Contains("img/") || s.Contains("img\\") || s.Contains(".jpg") ||
-                s.Contains(".jpeg") || s.Contains(".png") || s.Contains(".bmp"))
-                return true;
-            return false;
-        }
-
-        private string ResolveStoredPathToFullPath(string stored)
-        {
-            if (string.IsNullOrWhiteSpace(stored)) return null;
-
-            try
-            {
-                stored = stored.Trim().Trim('"').Trim('\'');
-                string normalized = stored.Replace('/', Path.DirectorySeparatorChar)
-                                         .Replace('\\', Path.DirectorySeparatorChar);
-
-                if (Path.IsPathRooted(normalized))
-                {
-                    return normalized;
-                }
-
-                string prefix = "img" + Path.DirectorySeparatorChar;
-                if (normalized.StartsWith(prefix, StringComparison.InvariantCultureIgnoreCase))
-                {
-                    string withoutLeading = normalized.Substring(prefix.Length);
-                    return Path.Combine(baseFolder, "img", withoutLeading);
-                }
-
-                if (normalized.Equals("img", StringComparison.InvariantCultureIgnoreCase))
-                {
-                    return Path.Combine(baseFolder, "img");
-                }
-
-                if (!normalized.Contains(Path.DirectorySeparatorChar))
-                {
-                    return Path.Combine(basePathImagemEquipe, normalized);
-                }
-
-                return Path.Combine(baseFolder, normalized.TrimStart(Path.DirectorySeparatorChar));
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
         public class MembroEquipe
         {
             public int IdFuncionario { get; set; }
@@ -249,9 +165,7 @@ namespace Dev4Tech
             public byte[] FotoBlob { get; set; }
         }
 
-        private void AdicionarPainelEquipe(string nomeEquipe, string categoria,
-            System.Collections.Generic.List<MembroEquipe> membros, int idEquipe,
-            int diasDesdeUltimaAtividade, object fotoEquipeData)
+        private void AdicionarPainelEquipe(string nomeEquipe, string categoria, System.Collections.Generic.List<MembroEquipe> membros, int idEquipe, int diasDesdeUltimaAtividade, object fotoEquipeData)
         {
             int x = margemEsquerda;
             int y = margemTopo + (alturaMensagem + espacamentoVertical) * mensagensCount;
@@ -279,7 +193,7 @@ namespace Dev4Tech
                 this.Hide();
             };
 
-            // CARREGAR FOTO DA EQUIPE
+            // CARREGAR FOTO DA EQUIPE - USANDO OS DADOS DO DATATABLE
             PictureBox picEquipe = new PictureBox
             {
                 SizeMode = PictureBoxSizeMode.StretchImage,
@@ -355,17 +269,18 @@ namespace Dev4Tech
                     Tag = membro.IdFuncionario
                 };
 
-                // CARREGAR FOTO DO MEMBRO - CORRIGIDO
+                // CARREGAR FOTO DO MEMBRO
                 if (!string.IsNullOrEmpty(membro.CaminhoFotoPerfil))
                 {
-                    string fullPath = ResolveStoredPathToFullPath(membro.CaminhoFotoPerfil);
-                    if (!string.IsNullOrEmpty(fullPath) && File.Exists(fullPath))
+                    string caminhoFotoCorrigido = membro.CaminhoFotoPerfil.Replace("/", "\\");
+                    string caminhoCompleto = Path.Combine(baseFolder, caminhoFotoCorrigido);
+                    if (File.Exists(caminhoCompleto))
                     {
                         try
                         {
-                            using (var ms = new MemoryStream(File.ReadAllBytes(fullPath)))
+                            using (var imgTemp = Image.FromFile(caminhoCompleto))
                             {
-                                picMembro.Image = Image.FromStream(ms);
+                                picMembro.Image = new Bitmap(imgTemp);
                             }
                         }
                         catch
@@ -432,14 +347,13 @@ namespace Dev4Tech
                         // Tentar como string se falhar como imagem
                         try
                         {
-                            string possivelCaminho = TryDecodeUtf8(imageData);
-                            if (!string.IsNullOrEmpty(possivelCaminho) && LooksLikePath(possivelCaminho))
+                            string nomeArquivo = System.Text.Encoding.UTF8.GetString(imageData);
+                            // LIMPAR O NOME DO ARQUIVO DE CARACTERES INVÁLIDOS
+                            nomeArquivo = new string(nomeArquivo.Where(c => !Path.GetInvalidFileNameChars().Contains(c)).ToArray());
+                            string caminhoImagemEquipe = Path.Combine(basePathImagemEquipe, nomeArquivo);
+                            if (File.Exists(caminhoImagemEquipe))
                             {
-                                string fullPath = ResolveStoredPathToFullPath(possivelCaminho);
-                                if (!string.IsNullOrEmpty(fullPath) && File.Exists(fullPath))
-                                {
-                                    fotoEquipe = Image.FromFile(fullPath);
-                                }
+                                fotoEquipe = Image.FromFile(caminhoImagemEquipe);
                             }
                         }
                         catch
@@ -453,10 +367,12 @@ namespace Dev4Tech
                     // É um caminho
                     try
                     {
-                        string fullPath = ResolveStoredPathToFullPath(caminhoRelativo);
-                        if (!string.IsNullOrEmpty(fullPath) && File.Exists(fullPath))
+                        // LIMPAR O CAMINHO DE CARACTERES INVÁLIDOS
+                        caminhoRelativo = new string(caminhoRelativo.Where(c => !Path.GetInvalidPathChars().Contains(c)).ToArray());
+                        string caminhoCompleto = Path.Combine(baseFolder, caminhoRelativo.Replace("/", @"\"));
+                        if (File.Exists(caminhoCompleto))
                         {
-                            fotoEquipe = Image.FromFile(fullPath);
+                            fotoEquipe = Image.FromFile(caminhoCompleto);
                         }
                     }
                     catch (Exception ex)
@@ -475,7 +391,7 @@ namespace Dev4Tech
                 var usuarioFoto = new UsuarioFoto();
                 Image foto = usuarioFoto.ObterFotoUsuario();
 
-                if (picPerfil != null)
+                if (picPerfil != null) // Verifica se o controle existe no form
                 {
                     if (foto != null)
                     {
@@ -484,6 +400,7 @@ namespace Dev4Tech
                     }
                     else
                     {
+                        // Usar imagem padrão se não encontrar foto
                         picPerfil.Image = Properties.Resources.icon_perfil;
                         picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
                     }
@@ -500,9 +417,10 @@ namespace Dev4Tech
             }
         }
 
-        // Event handlers
+
         private void txtPesquisaEquipe_Click(object sender, EventArgs e)
         {
+            // Se clicar e houver o placeholder, limpa
             if (txtPesquisaEquipe.Text == TextoPlaceholder)
             {
                 txtPesquisaEquipe.Text = "";
@@ -512,6 +430,7 @@ namespace Dev4Tech
 
         private void txtPesquisarEquipe_Leave(object sender, EventArgs e)
         {
+            // Compatibilidade com nome de evento antigo no seu projeto
             if (string.IsNullOrWhiteSpace(txtPesquisaEquipe.Text))
             {
                 txtPesquisaEquipe.Text = TextoPlaceholder;
@@ -521,21 +440,25 @@ namespace Dev4Tech
 
         private void txtPesquisaEquipe_TextChanged(object sender, EventArgs e)
         {
+            // Evento ligado pelo designer — respeita placeholder
             if (txtPesquisaEquipe.ForeColor == Color.Gray) return;
             AtualizarEquipes();
         }
 
         private void filtroEquipes_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Evento ligado pelo designer — atualiza lista
             AtualizarEquipes();
         }
+
+        private void panelEquipes_Paint(object sender, PaintEventArgs e) { /* Mantido caso precise pintar */ }
 
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
+            // Se usuário preferir clicar no botão
             AtualizarEquipes();
         }
 
-        // Métodos de navegação (mantidos conforme original)
         private void btnLogout_Click(object sender, EventArgs e)
         {
             Sessao.FuncionarioLogado = null;
@@ -574,12 +497,14 @@ namespace Dev4Tech
 
             if (funcionario != null)
             {
+
                 Ranking_Equipes t_equipe = new Ranking_Equipes();
                 t_equipe.Show();
                 this.Hide();
             }
             else if (admin != null)
             {
+
                 Ranking_Equipes t_equipeAdmin = new Ranking_Equipes();
                 t_equipeAdmin.Show();
                 this.Hide();
@@ -657,8 +582,8 @@ namespace Dev4Tech
             }
         }
 
-        private void PesquisaEquipes_Load(object sender, EventArgs e) { }
-
-        private void panelEquipes_Paint(object sender, PaintEventArgs e) { }
+        private void PesquisaEquipes_Load(object sender, EventArgs e)
+        {
+        }
     }
 }

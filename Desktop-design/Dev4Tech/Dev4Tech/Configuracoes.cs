@@ -448,10 +448,15 @@ namespace Dev4Tech
             lblNomeFunc.Text = funcionario.getNome();
             lblCargo.Text = funcionario.getCargo();
             txtNome.Text = funcionario.getNome();
+            txtNome.ReadOnly = true;
             txtCPF.Text = funcionario.getCPF();
+            txtCPF.ReadOnly = true;
             txtDataNascFunc.Text = funcionario.getDataNascimento().ToString("dd/MM/yyyy");
+            txtDataNascFunc.ReadOnly = true;
             txtTelefone.Text = funcionario.getTelefone();
+            txtTelefone.ReadOnly = false;
             txtEmail.Text = funcionario.getEmail();
+            txtEmail.ReadOnly = true;
             textBox1.Text = $"{funcionario.getEndereco()}, {funcionario.getNumero()}";
 
             pontuacaoUsuarios ptFunc = new pontuacaoUsuarios();
@@ -927,9 +932,11 @@ namespace Dev4Tech
             }
         }
         private void picPerfilMembro_Click(object sender, EventArgs e) { }
+        private void txtEmail_TextChanged(object sender, EventArgs e) { }
         private void txtDataNascFunc_MaskInputRejected(object sender, MaskInputRejectedEventArgs e) { }
         private void txtTelefone_MaskInputRejected(object sender, MaskInputRejectedEventArgs e) { }
         private void txtCPF_MaskInputRejected(object sender, MaskInputRejectedEventArgs e) { }
+        private void textBox1_TextChanged(object sender, EventArgs e) { }
         private void panelEquipes_Paint(object sender, PaintEventArgs e) { }
         private void pictureBox9_Click(object sender, EventArgs e)
         {

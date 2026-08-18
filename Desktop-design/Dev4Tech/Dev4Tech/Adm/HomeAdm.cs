@@ -15,7 +15,6 @@ namespace Dev4Tech
         public HomeAdm()
         {
             InitializeComponent();
-            CarregarFotoUsuario();
         }
 
         private void btnEquipes_Click(object sender, EventArgs e)
@@ -189,38 +188,6 @@ namespace Dev4Tech
             else
             {
                 MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-        private void CarregarFotoUsuario()
-        {
-            try
-            {
-                var usuarioFoto = new UsuarioFoto();
-                Image foto = usuarioFoto.ObterFotoUsuario();
-
-                if (picPerfil != null) // Verifica se o controle existe no form
-                {
-                    if (foto != null)
-                    {
-                        picPerfil.Image = foto;
-                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
-                    }
-                    else
-                    {
-                        // Usar imagem padrão se não encontrar foto
-                        picPerfil.Image = Properties.Resources.icon_perfil;
-                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Erro ao carregar foto do usuário: {ex.Message}");
-                if (picPerfil != null)
-                {
-                    picPerfil.Image = Properties.Resources.icon_perfil;
-                    picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
             }
         }
     }

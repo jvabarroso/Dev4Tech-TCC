@@ -26,7 +26,6 @@ namespace Dev4Tech
 
             // Configurar eventos UMA ÚNICA VEZ
             ConfigurarEventos();
-            CarregarFotoUsuario();
 
             btnRelatarProblema.Click -= btnRelatarProblema_Click;
             btnRelatarProblema.Click += btnRelatarProblema_Click;
@@ -579,7 +578,8 @@ namespace Dev4Tech
             }
 
             Relato_Problema relatoForm = new Relato_Problema(idTarefaExibida, idEquipeAtual);
-            relatoForm.ShowDialog();
+            relatoForm.Show();
+            this.Hide();
         }
 
         private void txtDescrição_TextChanged(object sender, EventArgs e) { }
@@ -718,39 +718,5 @@ namespace Dev4Tech
         private void label13_Click(object sender, EventArgs e)
         {
         }
-
-        private void CarregarFotoUsuario()
-        {
-            try
-            {
-                var usuarioFoto = new UsuarioFoto();
-                Image foto = usuarioFoto.ObterFotoUsuario();
-
-                if (picPerfil != null) // Verifica se o controle existe no form
-                {
-                    if (foto != null)
-                    {
-                        picPerfil.Image = foto;
-                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
-                    }
-                    else
-                    {
-                        // Usar imagem padrão se não encontrar foto
-                        picPerfil.Image = Properties.Resources.icon_perfil;
-                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Erro ao carregar foto do usuário: {ex.Message}");
-                if (picPerfil != null)
-                {
-                    picPerfil.Image = Properties.Resources.icon_perfil;
-                    picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
-            }
-        }
-
     }
 }

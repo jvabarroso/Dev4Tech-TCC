@@ -11,7 +11,6 @@ namespace Dev4Tech
 {
     public partial class Tarefas_Atrasadas : Form
     {
-        private int equipeSelecionadaId = 0;
         private List<int> equipesFuncionario;
         private Dictionary<int, string> equipesNomeMap;
         private int idFuncionarioLogado;
@@ -46,40 +45,8 @@ namespace Dev4Tech
             // Carregar tarefas iniciais (todas equipes)
             AtualizarTarefas();
         }
-        private void AtualizarInfoEquipeSelecionada()
-        {
-            if (cmbEquipes.SelectedItem == null || cmbEquipes.SelectedItem.ToString() == "Todas")
-            {
-                lblNomeEquipe.Text = "Todas as Equipes";
-                lblCategoriaEquipe.Text = "Visualizando todas as equipes";
-                equipeSelecionadaId = 0;
-            }
-            else
-            {
-                var nomeEquipeSelecionada = cmbEquipes.SelectedItem.ToString();
 
-                // Encontrar o ID correspondente ao nome
-                foreach (var kvp in equipesNomeMap)
-                {
-                    if (kvp.Value == nomeEquipeSelecionada)
-                    {
-                        equipeSelecionadaId = kvp.Key;
-                        break;
-                    }
-                }
-
-                if (equipeSelecionadaId > 0)
-                {
-                    var infoEquipe = entregaTarefa.BuscarInfoEquipe(equipeSelecionadaId);
-
-                    if (infoEquipe != null)
-                    {
-                        lblNomeEquipe.Text = infoEquipe["nome_equipe"].ToString();
-                        lblCategoriaEquipe.Text = infoEquipe["nome_categoria"].ToString();
-                    }
-                }
-            }
-        }
+        // MÉTODO PARA OBTER FOTO DA EQUIPE (MESMA LÓGICA DO PesquisaEquipes)
         private Image ObterFotoEquipeDosDados(object fotoData)
         {
             Image fotoEquipe = null;
@@ -103,6 +70,7 @@ namespace Dev4Tech
                         try
                         {
                             string nomeArquivo = System.Text.Encoding.UTF8.GetString(imageData);
+                            // LIMPAR O NOME DO ARQUIVO DE CARACTERES INVÁLIDOS
                             nomeArquivo = new string(nomeArquivo.Where(c => !Path.GetInvalidFileNameChars().Contains(c)).ToArray());
                             string caminhoImagemEquipe = Path.Combine(baseImgFolder, nomeArquivo);
                             if (File.Exists(caminhoImagemEquipe))
@@ -121,6 +89,7 @@ namespace Dev4Tech
                     // É um caminho
                     try
                     {
+                        // LIMPAR O CAMINHO DE CARACTERES INVÁLIDOS
                         caminhoRelativo = new string(caminhoRelativo.Where(c => !Path.GetInvalidPathChars().Contains(c)).ToArray());
                         string caminhoCompleto = Path.Combine(baseRoot, caminhoRelativo.Replace("/", @"\"));
                         if (File.Exists(caminhoCompleto))
@@ -271,6 +240,7 @@ namespace Dev4Tech
                     Tag = idTarefa // Usar a variável capturada
                 };
 
+                // USAR VARIÁVEIS CAPTURADAS NO EVENTO
                 tarefaPanel.Click += (s, e) =>
                 {
                     Tela_Tarefa telaTarefa = new Tela_Tarefa(idEquipe);
@@ -288,6 +258,7 @@ namespace Dev4Tech
                     Top = 10
                 };
 
+                // CARREGAR FOTO DA EQUIPE (usando a mesma lógica do PesquisaEquipes)
                 object fotoEquipeData = row["foto_equipe"];
                 Image fotoEquipe = ObterFotoEquipeDosDados(fotoEquipeData);
                 pic.Image = fotoEquipe ?? Properties.Resources.icon_EquipLogo;
@@ -402,7 +373,6 @@ namespace Dev4Tech
         private void cmbEquipes_SelectedIndexChanged(object sender, EventArgs e)
         {
             AtualizarTarefas();
-            AtualizarInfoEquipeSelecionada();
         }
 
         // Pesquisa dinâmica na txtPesquisarTarefa e atualiza lista
@@ -538,18 +508,19 @@ namespace Dev4Tech
 
             if (Sessao.IdEquipeSelecionada != 0)
             {
-                string nomeEquipe = Sessao.NomeEquipeSelecionada;
-                string categoriaEquipe = Sessao.CategoriaEquipeSelecionada;
+                int idEquipe = Sessao.IdEquipeSelecionada;
+                string nomeEquipe = "Nome da equipe"; // Ajuste para obter o nome real da equipe
+                string categoriaEquipe = "Categoria da equipe"; // Ajuste para obter a categoria real da equipe
 
                 if (funcionario != null)
                 {
-                    Chat_geral_equipes t_equipe = new Chat_geral_equipes(Sessao.IdEquipeSelecionada, nomeEquipe, categoriaEquipe);
+                    Chat_geral_equipes t_equipe = new Chat_geral_equipes(idEquipe, nomeEquipe, categoriaEquipe);
                     t_equipe.Show();
                     this.Hide();
                 }
                 else if (admin != null)
                 {
-                    Chat_geral_equipes t_equipeAdmin = new Chat_geral_equipes(Sessao.IdEquipeSelecionada, nomeEquipe, categoriaEquipe);
+                    Chat_geral_equipes t_equipeAdmin = new Chat_geral_equipes(idEquipe, nomeEquipe, categoriaEquipe);
                     t_equipeAdmin.Show();
                     this.Hide();
                 }

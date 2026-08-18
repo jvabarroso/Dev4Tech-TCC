@@ -44,7 +44,7 @@
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.picPerfil = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.cmbAddEquipe = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnAddTarefas = new Guna.UI2.WinForms.Guna2Button();
@@ -60,7 +60,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picPerfil)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,7 +86,7 @@
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
             this.label4.Location = new System.Drawing.Point(111, 429);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(164, 20);
+            this.label4.Size = new System.Drawing.Size(131, 16);
             this.label4.TabIndex = 218;
             this.label4.Text = "Dificuldade da tarefa";
             // 
@@ -97,7 +97,7 @@
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
             this.label5.Location = new System.Drawing.Point(112, 249);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(87, 20);
+            this.label5.Size = new System.Drawing.Size(68, 16);
             this.label5.TabIndex = 216;
             this.label5.Text = "Instruções";
             // 
@@ -128,7 +128,7 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
             this.label1.Location = new System.Drawing.Point(393, 428);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(129, 20);
+            this.label1.Size = new System.Drawing.Size(104, 16);
             this.label1.TabIndex = 214;
             this.label1.Text = "Data de entrega";
             // 
@@ -155,7 +155,7 @@
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
             this.label3.Location = new System.Drawing.Point(112, 141);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(124, 20);
+            this.label3.Size = new System.Drawing.Size(100, 16);
             this.label3.TabIndex = 212;
             this.label3.Text = "Nome da tarefa";
             // 
@@ -267,17 +267,17 @@
             this.pictureBox9.TabStop = false;
             this.pictureBox9.Click += new System.EventHandler(this.pictureBox9_Click);
             // 
-            // picPerfil
+            // pictureBox1
             // 
-            this.picPerfil.BackColor = System.Drawing.Color.Blue;
-            this.picPerfil.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
-            this.picPerfil.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picPerfil.Location = new System.Drawing.Point(13, 783);
-            this.picPerfil.Margin = new System.Windows.Forms.Padding(4);
-            this.picPerfil.Name = "picPerfil";
-            this.picPerfil.Size = new System.Drawing.Size(36, 35);
-            this.picPerfil.TabIndex = 227;
-            this.picPerfil.TabStop = false;
+            this.pictureBox1.BackColor = System.Drawing.Color.Blue;
+            this.pictureBox1.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBox1.Location = new System.Drawing.Point(13, 783);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(36, 35);
+            this.pictureBox1.TabIndex = 227;
+            this.pictureBox1.TabStop = false;
             // 
             // cmbAddEquipe
             // 
@@ -301,7 +301,7 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
             this.label2.Location = new System.Drawing.Point(843, 430);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 20);
+            this.label2.Size = new System.Drawing.Size(57, 16);
             this.label2.TabIndex = 228;
             this.label2.Text = "Equipes";
             // 
@@ -377,7 +377,7 @@
             this.lblArquivosSelecionado.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(88)))), ((int)(((byte)(242)))));
             this.lblArquivosSelecionado.Location = new System.Drawing.Point(156, 536);
             this.lblArquivosSelecionado.Name = "lblArquivosSelecionado";
-            this.lblArquivosSelecionado.Size = new System.Drawing.Size(153, 18);
+            this.lblArquivosSelecionado.Size = new System.Drawing.Size(129, 15);
             this.lblArquivosSelecionado.TabIndex = 234;
             this.lblArquivosSelecionado.TabStop = true;
             this.lblArquivosSelecionado.Text = "lblArquivoSelecionado";
@@ -388,13 +388,13 @@
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.Location = new System.Drawing.Point(102, 18);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(322, 46);
+            this.label15.Size = new System.Drawing.Size(266, 37);
             this.label15.TabIndex = 217;
             this.label15.Text = "Criar uma tarefa";
             // 
             // AdicionarTarefa
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 861);
             this.Controls.Add(this.pictureBox2);
@@ -404,7 +404,7 @@
             this.Controls.Add(this.btnAddTarefas);
             this.Controls.Add(this.cmbAddEquipe);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.picPerfil);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox5);
@@ -432,7 +432,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picPerfil)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -455,7 +455,7 @@
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.PictureBox pictureBox9;
-        private System.Windows.Forms.PictureBox picPerfil;
+        private System.Windows.Forms.PictureBox pictureBox1;
         private Guna.UI2.WinForms.Guna2ComboBox cmbAddEquipe;
         private System.Windows.Forms.Label label2;
         private Guna.UI2.WinForms.Guna2Button btnAddTarefas;

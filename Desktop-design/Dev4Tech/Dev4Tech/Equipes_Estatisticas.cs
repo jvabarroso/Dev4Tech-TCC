@@ -24,8 +24,8 @@ namespace Dev4Tech
 
 
         public int idEquipe;
-        private string nomeEquipe;
-        private string categoriaEquipe;
+
+
 
         private void label9_Click(object sender, EventArgs e)
         {
@@ -44,7 +44,6 @@ namespace Dev4Tech
             CarregarGrafico();
             CarregarEquipeSelecionada();
             CarregarFuncionariosEquipe();
-            CarregarFotoUsuario();
         }
 
 
@@ -78,23 +77,8 @@ namespace Dev4Tech
             DataTable dt = dao.BuscarEquipePorId(idEquipe);
             if (dt.Rows.Count == 0) return;
             DataRow row = dt.Rows[0];
-            nomeEquipe = row["nome_equipe"].ToString();
+            string nomeEquipe = row["nome_equipe"].ToString();
 
-            // Verificar se a coluna categoria existe e não é nula
-            if (dt.Columns.Contains("categoria") && row["categoria"] != DBNull.Value)
-            {
-                categoriaEquipe = row["categoria"].ToString();
-            }
-            else
-            {
-                categoriaEquipe = "Sem categoria";
-            }
-
-            // Atualizar labels principais
-            lblNomeEquipe.Text = nomeEquipe;
-            lblCategoriaEquipe.Text = categoriaEquipe;
-
-            // ... restante do código permanece o mesmo ...
             // Calcular pontos da equipe somando os pontos dos membros
             int pontosEquipe = 0;
             string connectionString = "SERVER=localhost;DATABASE=dev4tech;UID=root;PASSWORD=";
@@ -174,7 +158,7 @@ namespace Dev4Tech
             };
             equipePanel.Controls.Add(lblRank);
 
-            Label lblNomeEquipePanel = new Label
+            Label lblNomeEquipe = new Label
             {
                 Text = nomeEquipe,
                 Font = new Font("Segoe UI", 13, FontStyle.Bold),
@@ -182,7 +166,7 @@ namespace Dev4Tech
                 Top = 20,
                 AutoSize = true
             };
-            equipePanel.Controls.Add(lblNomeEquipePanel);
+            equipePanel.Controls.Add(lblNomeEquipe);
 
             Label lblPontos = new Label
             {
@@ -190,7 +174,7 @@ namespace Dev4Tech
                 Font = new Font("Segoe UI", 11, FontStyle.Regular),
                 ForeColor = Color.DodgerBlue,
                 Left = picIcone.Right + 60,
-                Top = lblNomeEquipePanel.Bottom + 7,
+                Top = lblNomeEquipe.Bottom + 7,
                 AutoSize = true
             };
             equipePanel.Controls.Add(lblPontos);
@@ -218,6 +202,7 @@ namespace Dev4Tech
             panelEquipe.Controls.Add(equipePanel);
             panelEquipe.Refresh();
         }
+
 
 
         public void CarregarGrafico()
@@ -539,8 +524,8 @@ ORDER BY pontos DESC;
             if (Sessao.IdEquipeSelecionada != 0)
             {
                 int idEquipe = Sessao.IdEquipeSelecionada;
-                string nomeEquipe = Sessao.NomeEquipeSelecionada;
-                string categoriaEquipe = Sessao.CategoriaEquipeSelecionada;
+                string nomeEquipe = "Nome da equipe"; // Ajuste para obter o nome real da equipe
+                string categoriaEquipe = "Categoria da equipe"; // Ajuste para obter a categoria real da equipe
 
                 if (funcionario != null)
                 {
@@ -947,39 +932,6 @@ ORDER BY pontos DESC;
             }
 
             return card;
-        }
-
-        private void CarregarFotoUsuario()
-        {
-            try
-            {
-                var usuarioFoto = new UsuarioFoto();
-                Image foto = usuarioFoto.ObterFotoUsuario();
-
-                if (picPerfil != null) // Verifica se o controle existe no form
-                {
-                    if (foto != null)
-                    {
-                        picPerfil.Image = foto;
-                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
-                    }
-                    else
-                    {
-                        // Usar imagem padrão se não encontrar foto
-                        picPerfil.Image = Properties.Resources.icon_perfil;
-                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Erro ao carregar foto do usuário: {ex.Message}");
-                if (picPerfil != null)
-                {
-                    picPerfil.Image = Properties.Resources.icon_perfil;
-                    picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
-            }
         }
     }
 }

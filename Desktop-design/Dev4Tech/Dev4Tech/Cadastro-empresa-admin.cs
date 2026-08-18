@@ -38,7 +38,8 @@ namespace Dev4Tech
 
                 emAdmin.setNome(txtCadAdmNome.Text);
                 emAdmin.setCargo(cbBoxCargoAdm.Text);
-                emAdmin.setCPF(txtCadAdmCPF.Text);
+                string cpf = txtCadAdmCPF.Text.Replace(".", "").Replace("-", "");
+                emAdmin.setCPF(cpf);
 
                 DateTime dataNascimento;
                 if (!DateTime.TryParse(txtCadAdmDataNasc.Text, out dataNascimento))

@@ -69,10 +69,9 @@
             this.picPerfil.BackColor = System.Drawing.Color.Blue;
             this.picPerfil.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
             this.picPerfil.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picPerfil.Location = new System.Drawing.Point(16, 751);
-            this.picPerfil.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.picPerfil.Location = new System.Drawing.Point(12, 610);
             this.picPerfil.Name = "picPerfil";
-            this.picPerfil.Size = new System.Drawing.Size(32, 28);
+            this.picPerfil.Size = new System.Drawing.Size(24, 23);
             this.picPerfil.TabIndex = 36;
             this.picPerfil.TabStop = false;
             this.picPerfil.Click += new System.EventHandler(this.picPerfil_Click);
@@ -82,10 +81,9 @@
             this.btnEquipes.BackColor = System.Drawing.Color.Blue;
             this.btnEquipes.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_equip;
             this.btnEquipes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnEquipes.Location = new System.Drawing.Point(16, 50);
-            this.btnEquipes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEquipes.Location = new System.Drawing.Point(12, 41);
             this.btnEquipes.Name = "btnEquipes";
-            this.btnEquipes.Size = new System.Drawing.Size(32, 28);
+            this.btnEquipes.Size = new System.Drawing.Size(24, 23);
             this.btnEquipes.TabIndex = 35;
             this.btnEquipes.TabStop = false;
             this.btnEquipes.Click += new System.EventHandler(this.btnEquipes_Click);
@@ -95,10 +93,9 @@
             this.btnCalendar.BackColor = System.Drawing.Color.Blue;
             this.btnCalendar.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_calendar;
             this.btnCalendar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnCalendar.Location = new System.Drawing.Point(16, 86);
-            this.btnCalendar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCalendar.Location = new System.Drawing.Point(12, 70);
             this.btnCalendar.Name = "btnCalendar";
-            this.btnCalendar.Size = new System.Drawing.Size(32, 28);
+            this.btnCalendar.Size = new System.Drawing.Size(24, 23);
             this.btnCalendar.TabIndex = 34;
             this.btnCalendar.TabStop = false;
             this.btnCalendar.Click += new System.EventHandler(this.btnCalendar_Click);
@@ -108,10 +105,9 @@
             this.btnRanking.BackColor = System.Drawing.Color.Blue;
             this.btnRanking.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_ranking;
             this.btnRanking.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnRanking.Location = new System.Drawing.Point(16, 122);
-            this.btnRanking.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRanking.Location = new System.Drawing.Point(12, 99);
             this.btnRanking.Name = "btnRanking";
-            this.btnRanking.Size = new System.Drawing.Size(32, 28);
+            this.btnRanking.Size = new System.Drawing.Size(24, 23);
             this.btnRanking.TabIndex = 33;
             this.btnRanking.TabStop = false;
             this.btnRanking.Click += new System.EventHandler(this.btnRanking_Click);
@@ -121,10 +117,9 @@
             this.btnLogout.BackColor = System.Drawing.Color.Blue;
             this.btnLogout.BackgroundImage = global::Dev4Tech.Properties.Resources.Nav_Icon_Item;
             this.btnLogout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnLogout.Location = new System.Drawing.Point(16, 708);
-            this.btnLogout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLogout.Location = new System.Drawing.Point(12, 575);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(32, 28);
+            this.btnLogout.Size = new System.Drawing.Size(24, 23);
             this.btnLogout.TabIndex = 32;
             this.btnLogout.TabStop = false;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
@@ -134,10 +129,9 @@
             this.btnConfig.BackColor = System.Drawing.Color.Blue;
             this.btnConfig.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_config;
             this.btnConfig.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnConfig.Location = new System.Drawing.Point(16, 673);
-            this.btnConfig.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnConfig.Location = new System.Drawing.Point(12, 547);
             this.btnConfig.Name = "btnConfig";
-            this.btnConfig.Size = new System.Drawing.Size(32, 28);
+            this.btnConfig.Size = new System.Drawing.Size(24, 23);
             this.btnConfig.TabIndex = 31;
             this.btnConfig.TabStop = false;
             this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
@@ -147,10 +141,9 @@
             this.btnHome.BackColor = System.Drawing.Color.Blue;
             this.btnHome.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_Home;
             this.btnHome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnHome.Location = new System.Drawing.Point(16, 15);
-            this.btnHome.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnHome.Location = new System.Drawing.Point(12, 12);
             this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(32, 28);
+            this.btnHome.Size = new System.Drawing.Size(24, 23);
             this.btnHome.TabIndex = 30;
             this.btnHome.TabStop = false;
             this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
@@ -159,19 +152,18 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Blue;
             this.pictureBox1.Location = new System.Drawing.Point(0, -2);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(72, 896);
+            this.pictureBox1.Size = new System.Drawing.Size(54, 688);
             this.pictureBox1.TabIndex = 29;
             this.pictureBox1.TabStop = false;
             // 
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.pictureBox2.Location = new System.Drawing.Point(69, -2);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox2.Location = new System.Drawing.Point(52, -2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(448, 896);
+            this.pictureBox2.Size = new System.Drawing.Size(336, 682);
             this.pictureBox2.TabIndex = 37;
             this.pictureBox2.TabStop = false;
             // 
@@ -180,11 +172,11 @@
             this.groupBox2.Controls.Add(this.lblCategoriaEquipe);
             this.groupBox2.Controls.Add(this.iconFotoEquipe);
             this.groupBox2.Controls.Add(this.lblNomeEquipe);
-            this.groupBox2.Location = new System.Drawing.Point(109, 63);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox2.Location = new System.Drawing.Point(82, 51);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox2.Size = new System.Drawing.Size(376, 101);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Size = new System.Drawing.Size(282, 82);
             this.groupBox2.TabIndex = 177;
             this.groupBox2.TabStop = false;
             // 
@@ -192,10 +184,9 @@
             // 
             this.lblCategoriaEquipe.AutoSize = true;
             this.lblCategoriaEquipe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCategoriaEquipe.Location = new System.Drawing.Point(80, 43);
-            this.lblCategoriaEquipe.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCategoriaEquipe.Location = new System.Drawing.Point(60, 35);
             this.lblCategoriaEquipe.Name = "lblCategoriaEquipe";
-            this.lblCategoriaEquipe.Size = new System.Drawing.Size(212, 20);
+            this.lblCategoriaEquipe.Size = new System.Drawing.Size(172, 16);
             this.lblCategoriaEquipe.TabIndex = 61;
             this.lblCategoriaEquipe.Text = "Desenvolvedor de software";
             // 
@@ -203,10 +194,10 @@
             // 
             this.iconFotoEquipe.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
             this.iconFotoEquipe.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.iconFotoEquipe.Location = new System.Drawing.Point(23, 21);
-            this.iconFotoEquipe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.iconFotoEquipe.Location = new System.Drawing.Point(17, 17);
+            this.iconFotoEquipe.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.iconFotoEquipe.Name = "iconFotoEquipe";
-            this.iconFotoEquipe.Size = new System.Drawing.Size(51, 50);
+            this.iconFotoEquipe.Size = new System.Drawing.Size(38, 41);
             this.iconFotoEquipe.TabIndex = 39;
             this.iconFotoEquipe.TabStop = false;
             // 
@@ -214,10 +205,9 @@
             // 
             this.lblNomeEquipe.AutoSize = true;
             this.lblNomeEquipe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomeEquipe.Location = new System.Drawing.Point(80, 21);
-            this.lblNomeEquipe.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNomeEquipe.Location = new System.Drawing.Point(60, 17);
             this.lblNomeEquipe.Name = "lblNomeEquipe";
-            this.lblNomeEquipe.Size = new System.Drawing.Size(93, 20);
+            this.lblNomeEquipe.Size = new System.Drawing.Size(75, 16);
             this.lblNomeEquipe.TabIndex = 60;
             this.lblNomeEquipe.Text = "EQUIPE 1";
             // 
@@ -226,9 +216,10 @@
             this.lblPlanejamento.AutoSize = true;
             this.lblPlanejamento.BackColor = System.Drawing.SystemColors.ControlLight;
             this.lblPlanejamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lblPlanejamento.Location = new System.Drawing.Point(125, 320);
+            this.lblPlanejamento.Location = new System.Drawing.Point(94, 260);
+            this.lblPlanejamento.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPlanejamento.Name = "lblPlanejamento";
-            this.lblPlanejamento.Size = new System.Drawing.Size(131, 25);
+            this.lblPlanejamento.Size = new System.Drawing.Size(106, 20);
             this.lblPlanejamento.TabIndex = 182;
             this.lblPlanejamento.Text = "Planejamento";
             this.lblPlanejamento.Click += new System.EventHandler(this.txtDigitarMensagem_Click);
@@ -238,9 +229,10 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label2.Location = new System.Drawing.Point(125, 286);
+            this.label2.Location = new System.Drawing.Point(94, 232);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 25);
+            this.label2.Size = new System.Drawing.Size(75, 20);
             this.label2.TabIndex = 181;
             this.label2.Text = "Membros";
             this.label2.Click += new System.EventHandler(this.lblMembros_Click);
@@ -250,9 +242,10 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.SystemColors.ControlLight;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label3.Location = new System.Drawing.Point(125, 251);
+            this.label3.Location = new System.Drawing.Point(94, 204);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(83, 25);
+            this.label3.Size = new System.Drawing.Size(68, 20);
             this.label3.TabIndex = 180;
             this.label3.Text = "Ranking";
             this.label3.Click += new System.EventHandler(this.btnRanking_Click);
@@ -262,9 +255,10 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.SystemColors.ControlLight;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label4.Location = new System.Drawing.Point(125, 217);
+            this.label4.Location = new System.Drawing.Point(94, 176);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(79, 25);
+            this.label4.Size = new System.Drawing.Size(63, 20);
             this.label4.TabIndex = 179;
             this.label4.Text = "Tarefas";
             this.label4.Click += new System.EventHandler(this.lblTarefas_Click);
@@ -274,9 +268,10 @@
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.SystemColors.ControlLight;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.label7.Location = new System.Drawing.Point(125, 182);
+            this.label7.Location = new System.Drawing.Point(94, 148);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(64, 25);
+            this.label7.Size = new System.Drawing.Size(53, 20);
             this.label7.TabIndex = 178;
             this.label7.Text = "Geral";
             this.label7.Click += new System.EventHandler(this.lblGeral_Click);
@@ -285,10 +280,10 @@
             // 
             this.btnEnviarMensagem.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnEnviarMensagem.BackgroundImage")));
             this.btnEnviarMensagem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnEnviarMensagem.Location = new System.Drawing.Point(1469, 752);
-            this.btnEnviarMensagem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnEnviarMensagem.Location = new System.Drawing.Point(1102, 611);
+            this.btnEnviarMensagem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnEnviarMensagem.Name = "btnEnviarMensagem";
-            this.btnEnviarMensagem.Size = new System.Drawing.Size(53, 43);
+            this.btnEnviarMensagem.Size = new System.Drawing.Size(40, 35);
             this.btnEnviarMensagem.TabIndex = 44;
             this.btnEnviarMensagem.TabStop = false;
             this.btnEnviarMensagem.Click += new System.EventHandler(this.btnEnviarMensagem_Click);
@@ -305,28 +300,27 @@
             this.txtDigitarMensagem.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtDigitarMensagem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.txtDigitarMensagem.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtDigitarMensagem.Location = new System.Drawing.Point(727, 751);
-            this.txtDigitarMensagem.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtDigitarMensagem.Location = new System.Drawing.Point(545, 610);
+            this.txtDigitarMensagem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtDigitarMensagem.Name = "txtDigitarMensagem";
             this.txtDigitarMensagem.PlaceholderText = "✏️ Digite sua mensagem ";
             this.txtDigitarMensagem.SelectedText = "";
-            this.txtDigitarMensagem.Size = new System.Drawing.Size(736, 44);
+            this.txtDigitarMensagem.Size = new System.Drawing.Size(552, 36);
             this.txtDigitarMensagem.TabIndex = 183;
             // 
             // panelMensagens
             // 
             this.panelMensagens.AutoScroll = true;
-            this.panelMensagens.Location = new System.Drawing.Point(567, 42);
-            this.panelMensagens.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelMensagens.Location = new System.Drawing.Point(425, 34);
             this.panelMensagens.Name = "panelMensagens";
-            this.panelMensagens.Size = new System.Drawing.Size(1085, 684);
+            this.panelMensagens.Size = new System.Drawing.Size(814, 556);
             this.panelMensagens.TabIndex = 184;
             // 
             // Chat_geral_equipes
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1899, 1055);
+            this.ClientSize = new System.Drawing.Size(1186, 752);
             this.Controls.Add(this.panelMensagens);
             this.Controls.Add(this.btnEnviarMensagem);
             this.Controls.Add(this.txtDigitarMensagem);
@@ -345,7 +339,7 @@
             this.Controls.Add(this.btnConfig);
             this.Controls.Add(this.btnHome);
             this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Chat_geral_equipes";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Chat_geral_equipes_Load);

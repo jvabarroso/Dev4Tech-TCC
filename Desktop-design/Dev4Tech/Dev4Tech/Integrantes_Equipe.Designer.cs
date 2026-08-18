@@ -57,9 +57,9 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.lblCategoriaEquipe = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.lblNomeEquipe = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -96,11 +96,11 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.pictureBox12);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Location = new System.Drawing.Point(4, 10);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Location = new System.Drawing.Point(4, 12);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(913, 116);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox2.Size = new System.Drawing.Size(1028, 145);
             this.groupBox2.TabIndex = 129;
             this.groupBox2.TabStop = false;
             // 
@@ -108,10 +108,10 @@
             // 
             this.pictureBox18.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_ranking_1;
             this.pictureBox18.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox18.Location = new System.Drawing.Point(61, 23);
-            this.pictureBox18.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox18.Location = new System.Drawing.Point(69, 29);
+            this.pictureBox18.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox18.Name = "pictureBox18";
-            this.pictureBox18.Size = new System.Drawing.Size(33, 31);
+            this.pictureBox18.Size = new System.Drawing.Size(38, 38);
             this.pictureBox18.TabIndex = 108;
             this.pictureBox18.TabStop = false;
             // 
@@ -120,10 +120,10 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Blue;
-            this.label8.Location = new System.Drawing.Point(859, 84);
+            this.label8.Location = new System.Drawing.Point(966, 105);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(48, 28);
+            this.label8.Size = new System.Drawing.Size(56, 32);
             this.label8.TabIndex = 104;
             this.label8.Text = "100";
             // 
@@ -131,10 +131,10 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(772, 90);
+            this.label7.Location = new System.Drawing.Point(868, 112);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(76, 19);
+            this.label7.Size = new System.Drawing.Size(95, 23);
             this.label7.TabIndex = 103;
             this.label7.Text = "Pontuação:";
             // 
@@ -142,10 +142,10 @@
             // 
             this.pictureBox13.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
             this.pictureBox13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox13.Location = new System.Drawing.Point(249, 74);
-            this.pictureBox13.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox13.Location = new System.Drawing.Point(280, 92);
+            this.pictureBox13.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox13.Name = "pictureBox13";
-            this.pictureBox13.Size = new System.Drawing.Size(33, 31);
+            this.pictureBox13.Size = new System.Drawing.Size(38, 38);
             this.pictureBox13.TabIndex = 102;
             this.pictureBox13.TabStop = false;
             // 
@@ -153,10 +153,10 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(159, 53);
+            this.label5.Location = new System.Drawing.Point(178, 66);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(175, 19);
+            this.label5.Size = new System.Drawing.Size(215, 23);
             this.label5.TabIndex = 64;
             this.label5.Text = "Desenvolvedor de software";
             // 
@@ -164,10 +164,10 @@
             // 
             this.pictureBox14.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
             this.pictureBox14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox14.Location = new System.Drawing.Point(208, 74);
-            this.pictureBox14.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox14.Location = new System.Drawing.Point(234, 92);
+            this.pictureBox14.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox14.Name = "pictureBox14";
-            this.pictureBox14.Size = new System.Drawing.Size(33, 31);
+            this.pictureBox14.Size = new System.Drawing.Size(38, 38);
             this.pictureBox14.TabIndex = 101;
             this.pictureBox14.TabStop = false;
             // 
@@ -175,10 +175,10 @@
             // 
             this.pictureBox15.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
             this.pictureBox15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox15.Location = new System.Drawing.Point(167, 74);
-            this.pictureBox15.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox15.Location = new System.Drawing.Point(188, 92);
+            this.pictureBox15.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox15.Name = "pictureBox15";
-            this.pictureBox15.Size = new System.Drawing.Size(33, 31);
+            this.pictureBox15.Size = new System.Drawing.Size(38, 38);
             this.pictureBox15.TabIndex = 100;
             this.pictureBox15.TabStop = false;
             // 
@@ -186,10 +186,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(8, 20);
+            this.label2.Location = new System.Drawing.Point(9, 25);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 39);
+            this.label2.Size = new System.Drawing.Size(68, 47);
             this.label2.TabIndex = 0;
             this.label2.Text = "#1";
             // 
@@ -197,10 +197,9 @@
             // 
             this.pictureBox12.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
             this.pictureBox12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox12.Location = new System.Drawing.Point(101, 20);
-            this.pictureBox12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox12.Location = new System.Drawing.Point(114, 25);
             this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Size = new System.Drawing.Size(53, 49);
+            this.pictureBox12.Size = new System.Drawing.Size(60, 62);
             this.pictureBox12.TabIndex = 62;
             this.pictureBox12.TabStop = false;
             // 
@@ -208,31 +207,30 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(159, 20);
+            this.label6.Location = new System.Drawing.Point(178, 25);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(68, 19);
+            this.label6.Size = new System.Drawing.Size(82, 23);
             this.label6.TabIndex = 63;
             this.label6.Text = "EQUIPE 1";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(577, 63);
+            this.label9.Font = new System.Drawing.Font("Poppins", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(650, 78);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(422, 39);
+            this.label9.Size = new System.Drawing.Size(576, 73);
             this.label9.TabIndex = 130;
             this.label9.Text = "Membros da(s) Equipe(s)";
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.pictureBox1.Location = new System.Drawing.Point(69, -2);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox1.Location = new System.Drawing.Point(78, -3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(408, 1005);
+            this.pictureBox1.Size = new System.Drawing.Size(459, 1202);
             this.pictureBox1.TabIndex = 122;
             this.pictureBox1.TabStop = false;
             // 
@@ -241,10 +239,10 @@
             this.picPerfil.BackColor = System.Drawing.Color.Blue;
             this.picPerfil.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_perfil;
             this.picPerfil.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picPerfil.Location = new System.Drawing.Point(16, 903);
-            this.picPerfil.Margin = new System.Windows.Forms.Padding(4);
+            this.picPerfil.Location = new System.Drawing.Point(18, 1129);
+            this.picPerfil.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.picPerfil.Name = "picPerfil";
-            this.picPerfil.Size = new System.Drawing.Size(32, 28);
+            this.picPerfil.Size = new System.Drawing.Size(36, 35);
             this.picPerfil.TabIndex = 120;
             this.picPerfil.TabStop = false;
             // 
@@ -253,10 +251,10 @@
             this.btnEquipes.BackColor = System.Drawing.Color.Blue;
             this.btnEquipes.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_equip;
             this.btnEquipes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnEquipes.Location = new System.Drawing.Point(16, 50);
-            this.btnEquipes.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEquipes.Location = new System.Drawing.Point(18, 63);
+            this.btnEquipes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEquipes.Name = "btnEquipes";
-            this.btnEquipes.Size = new System.Drawing.Size(32, 28);
+            this.btnEquipes.Size = new System.Drawing.Size(36, 35);
             this.btnEquipes.TabIndex = 119;
             this.btnEquipes.TabStop = false;
             this.btnEquipes.Click += new System.EventHandler(this.btnEquipes_Click_1);
@@ -266,10 +264,10 @@
             this.btnCalendar.BackColor = System.Drawing.Color.Blue;
             this.btnCalendar.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_calendar;
             this.btnCalendar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnCalendar.Location = new System.Drawing.Point(16, 92);
-            this.btnCalendar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCalendar.Location = new System.Drawing.Point(18, 116);
+            this.btnCalendar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCalendar.Name = "btnCalendar";
-            this.btnCalendar.Size = new System.Drawing.Size(32, 28);
+            this.btnCalendar.Size = new System.Drawing.Size(36, 35);
             this.btnCalendar.TabIndex = 118;
             this.btnCalendar.TabStop = false;
             this.btnCalendar.Click += new System.EventHandler(this.btnCalendar_Click);
@@ -279,10 +277,10 @@
             this.btnRanking.BackColor = System.Drawing.Color.Blue;
             this.btnRanking.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_ranking;
             this.btnRanking.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnRanking.Location = new System.Drawing.Point(16, 132);
-            this.btnRanking.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRanking.Location = new System.Drawing.Point(18, 165);
+            this.btnRanking.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRanking.Name = "btnRanking";
-            this.btnRanking.Size = new System.Drawing.Size(32, 28);
+            this.btnRanking.Size = new System.Drawing.Size(36, 35);
             this.btnRanking.TabIndex = 117;
             this.btnRanking.TabStop = false;
             this.btnRanking.Click += new System.EventHandler(this.btnRanking_Click_1);
@@ -292,10 +290,10 @@
             this.btnLogout.BackColor = System.Drawing.Color.Blue;
             this.btnLogout.BackgroundImage = global::Dev4Tech.Properties.Resources.Nav_Icon_Item;
             this.btnLogout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnLogout.Location = new System.Drawing.Point(16, 850);
-            this.btnLogout.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLogout.Location = new System.Drawing.Point(18, 1063);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(32, 28);
+            this.btnLogout.Size = new System.Drawing.Size(36, 35);
             this.btnLogout.TabIndex = 116;
             this.btnLogout.TabStop = false;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click_1);
@@ -305,10 +303,10 @@
             this.btnConfigurações.BackColor = System.Drawing.Color.Blue;
             this.btnConfigurações.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_config;
             this.btnConfigurações.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnConfigurações.Location = new System.Drawing.Point(16, 815);
-            this.btnConfigurações.Margin = new System.Windows.Forms.Padding(4);
+            this.btnConfigurações.Location = new System.Drawing.Point(18, 1018);
+            this.btnConfigurações.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnConfigurações.Name = "btnConfigurações";
-            this.btnConfigurações.Size = new System.Drawing.Size(32, 28);
+            this.btnConfigurações.Size = new System.Drawing.Size(36, 35);
             this.btnConfigurações.TabIndex = 115;
             this.btnConfigurações.TabStop = false;
             this.btnConfigurações.Click += new System.EventHandler(this.btnConfigurações_Click);
@@ -318,10 +316,10 @@
             this.btnHome.BackColor = System.Drawing.Color.Blue;
             this.btnHome.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_Home;
             this.btnHome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnHome.Location = new System.Drawing.Point(16, 15);
-            this.btnHome.Margin = new System.Windows.Forms.Padding(4);
+            this.btnHome.Location = new System.Drawing.Point(18, 18);
+            this.btnHome.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(32, 28);
+            this.btnHome.Size = new System.Drawing.Size(36, 35);
             this.btnHome.TabIndex = 114;
             this.btnHome.TabStop = false;
             this.btnHome.Click += new System.EventHandler(this.btnHome_Click_1);
@@ -329,39 +327,37 @@
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Blue;
-            this.pictureBox2.Location = new System.Drawing.Point(-3, -1);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox2.Location = new System.Drawing.Point(-3, -2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(72, 1004);
+            this.pictureBox2.Size = new System.Drawing.Size(81, 1200);
             this.pictureBox2.TabIndex = 121;
             this.pictureBox2.TabStop = false;
             // 
             // panelMembros
             // 
-            this.panelMembros.Location = new System.Drawing.Point(588, 592);
-            this.panelMembros.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelMembros.Location = new System.Drawing.Point(662, 740);
             this.panelMembros.Name = "panelMembros";
-            this.panelMembros.Size = new System.Drawing.Size(935, 251);
+            this.panelMembros.Size = new System.Drawing.Size(1052, 314);
             this.panelMembros.TabIndex = 134;
             // 
             // panelEquipes
             // 
             this.panelEquipes.AutoScroll = true;
             this.panelEquipes.Controls.Add(this.groupBox2);
-            this.panelEquipes.Location = new System.Drawing.Point(588, 132);
-            this.panelEquipes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelEquipes.Location = new System.Drawing.Point(662, 165);
             this.panelEquipes.Name = "panelEquipes";
-            this.panelEquipes.Size = new System.Drawing.Size(935, 306);
+            this.panelEquipes.Size = new System.Drawing.Size(1052, 383);
             this.panelEquipes.TabIndex = 135;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label11.Location = new System.Drawing.Point(120, 346);
+            this.label11.Font = new System.Drawing.Font("Poppins", 12F);
+            this.label11.Location = new System.Drawing.Point(135, 432);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(131, 25);
+            this.label11.Size = new System.Drawing.Size(185, 42);
             this.label11.TabIndex = 177;
             this.label11.Text = "Planejamento";
             this.label11.Click += new System.EventHandler(this.lblPlanejamento_Click);
@@ -370,10 +366,10 @@
             // 
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.label12.Location = new System.Drawing.Point(120, 311);
+            this.label12.Font = new System.Drawing.Font("Poppins Medium", 12F, System.Drawing.FontStyle.Bold);
+            this.label12.Location = new System.Drawing.Point(135, 389);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(101, 25);
+            this.label12.Size = new System.Drawing.Size(139, 42);
             this.label12.TabIndex = 176;
             this.label12.Text = "Membros";
             this.label12.Click += new System.EventHandler(this.btnMostrarMembros_Click);
@@ -382,10 +378,10 @@
             // 
             this.label13.AutoSize = true;
             this.label13.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label13.Location = new System.Drawing.Point(120, 277);
+            this.label13.Font = new System.Drawing.Font("Poppins", 12F);
+            this.label13.Location = new System.Drawing.Point(135, 346);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(83, 25);
+            this.label13.Size = new System.Drawing.Size(113, 42);
             this.label13.TabIndex = 175;
             this.label13.Text = "Ranking";
             this.label13.Click += new System.EventHandler(this.lblRanking_Click);
@@ -394,10 +390,10 @@
             // 
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label14.Location = new System.Drawing.Point(120, 242);
+            this.label14.Font = new System.Drawing.Font("Poppins", 12F);
+            this.label14.Location = new System.Drawing.Point(135, 303);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(79, 25);
+            this.label14.Size = new System.Drawing.Size(108, 42);
             this.label14.TabIndex = 174;
             this.label14.Text = "Tarefas";
             this.label14.Click += new System.EventHandler(this.lblTarefas_Click);
@@ -406,82 +402,79 @@
             // 
             this.label15.AutoSize = true;
             this.label15.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(120, 208);
+            this.label15.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(135, 260);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(59, 25);
+            this.label15.Size = new System.Drawing.Size(83, 42);
             this.label15.TabIndex = 173;
             this.label15.Text = "Geral";
             this.label15.Click += new System.EventHandler(this.lblGeral_Click);
             // 
-            // lblCategoriaEquipe
+            // label16
             // 
-            this.lblCategoriaEquipe.AutoSize = true;
-            this.lblCategoriaEquipe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCategoriaEquipe.Location = new System.Drawing.Point(80, 43);
-            this.lblCategoriaEquipe.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCategoriaEquipe.Name = "lblCategoriaEquipe";
-            this.lblCategoriaEquipe.Size = new System.Drawing.Size(212, 20);
-            this.lblCategoriaEquipe.TabIndex = 61;
-            this.lblCategoriaEquipe.Text = "Desenvolvedor de software";
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(90, 54);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(284, 36);
+            this.label16.TabIndex = 61;
+            this.label16.Text = "Desenvolvedor de software";
             // 
             // pictureBox4
             // 
             this.pictureBox4.BackgroundImage = global::Dev4Tech.Properties.Resources.icon_EquipLogo;
             this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox4.Location = new System.Drawing.Point(23, 21);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox4.Location = new System.Drawing.Point(26, 26);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(51, 50);
+            this.pictureBox4.Size = new System.Drawing.Size(57, 63);
             this.pictureBox4.TabIndex = 39;
             this.pictureBox4.TabStop = false;
             // 
-            // lblNomeEquipe
+            // label17
             // 
-            this.lblNomeEquipe.AutoSize = true;
-            this.lblNomeEquipe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomeEquipe.Location = new System.Drawing.Point(80, 21);
-            this.lblNomeEquipe.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblNomeEquipe.Name = "lblNomeEquipe";
-            this.lblNomeEquipe.Size = new System.Drawing.Size(93, 20);
-            this.lblNomeEquipe.TabIndex = 60;
-            this.lblNomeEquipe.Text = "EQUIPE 1";
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Poppins Medium", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(90, 26);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(102, 36);
+            this.label17.TabIndex = 60;
+            this.label17.Text = "EQUIPE 1";
             // 
             // label18
             // 
             this.label18.AutoSize = true;
             this.label18.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label18.Font = new System.Drawing.Font("Poppins", 12F);
             this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(88)))), ((int)(((byte)(242)))));
-            this.label18.Location = new System.Drawing.Point(97, 32);
+            this.label18.Location = new System.Drawing.Point(110, 40);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(83, 25);
+            this.label18.Size = new System.Drawing.Size(120, 42);
             this.label18.TabIndex = 178;
             this.label18.Text = "⬅️ Voltar";
             this.label18.Click += new System.EventHandler(this.btnHome_Click_1);
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.lblCategoriaEquipe);
+            this.groupBox3.Controls.Add(this.label16);
             this.groupBox3.Controls.Add(this.pictureBox4);
-            this.groupBox3.Controls.Add(this.lblNomeEquipe);
-            this.groupBox3.Location = new System.Drawing.Point(104, 89);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox3.Controls.Add(this.label17);
+            this.groupBox3.Location = new System.Drawing.Point(117, 111);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox3.Size = new System.Drawing.Size(337, 101);
+            this.groupBox3.Size = new System.Drawing.Size(380, 126);
             this.groupBox3.TabIndex = 172;
             this.groupBox3.TabStop = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(580, 496);
+            this.label1.Font = new System.Drawing.Font("Poppins SemiBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(652, 620);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(229, 29);
+            this.label1.Size = new System.Drawing.Size(303, 51);
             this.label1.TabIndex = 179;
             this.label1.Text = "Procurar membros";
             // 
@@ -495,23 +488,23 @@
             this.txtPesquisarMembros.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtPesquisarMembros.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtPesquisarMembros.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtPesquisarMembros.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.txtPesquisarMembros.Font = new System.Drawing.Font("Poppins", 9.75F);
             this.txtPesquisarMembros.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtPesquisarMembros.Location = new System.Drawing.Point(588, 539);
-            this.txtPesquisarMembros.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtPesquisarMembros.Location = new System.Drawing.Point(662, 674);
+            this.txtPesquisarMembros.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.txtPesquisarMembros.Name = "txtPesquisarMembros";
             this.txtPesquisarMembros.PlaceholderText = "";
             this.txtPesquisarMembros.SelectedText = "";
-            this.txtPesquisarMembros.Size = new System.Drawing.Size(935, 44);
+            this.txtPesquisarMembros.Size = new System.Drawing.Size(1052, 55);
             this.txtPesquisarMembros.TabIndex = 180;
             this.txtPesquisarMembros.TextChanged += new System.EventHandler(this.txtProcurarMebros_TextChanged);
             // 
             // Integrantes_Equipe
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1899, 1055);
+            this.ClientSize = new System.Drawing.Size(1898, 1024);
             this.Controls.Add(this.txtPesquisarMembros);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label11);
@@ -533,7 +526,7 @@
             this.Controls.Add(this.btnConfigurações);
             this.Controls.Add(this.btnHome);
             this.Controls.Add(this.pictureBox2);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Integrantes_Equipe";
             this.Text = "Integrantes_Equipe";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -594,9 +587,9 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label lblCategoriaEquipe;
+        private System.Windows.Forms.Label label16;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Label lblNomeEquipe;
+        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label1;

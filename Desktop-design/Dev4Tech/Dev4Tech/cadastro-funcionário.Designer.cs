@@ -107,7 +107,7 @@
             this.btnMostrarSenha.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnMostrarSenha.BackgroundImage")));
             this.btnMostrarSenha.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnMostrarSenha.Location = new System.Drawing.Point(355, 523);
-            this.btnMostrarSenha.Margin = new System.Windows.Forms.Padding(2);
+            this.btnMostrarSenha.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnMostrarSenha.Name = "btnMostrarSenha";
             this.btnMostrarSenha.Size = new System.Drawing.Size(46, 36);
             this.btnMostrarSenha.TabIndex = 91;
@@ -298,7 +298,7 @@
             this.btnMostrarSenha2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnMostrarSenha2.BackgroundImage")));
             this.btnMostrarSenha2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnMostrarSenha2.Location = new System.Drawing.Point(355, 587);
-            this.btnMostrarSenha2.Margin = new System.Windows.Forms.Padding(2);
+            this.btnMostrarSenha2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnMostrarSenha2.Name = "btnMostrarSenha2";
             this.btnMostrarSenha2.Size = new System.Drawing.Size(46, 36);
             this.btnMostrarSenha2.TabIndex = 150;
@@ -310,7 +310,7 @@
             this.cbBoxCargoFunc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.cbBoxCargoFunc.FormattingEnabled = true;
             this.cbBoxCargoFunc.Location = new System.Drawing.Point(109, 188);
-            this.cbBoxCargoFunc.Margin = new System.Windows.Forms.Padding(2);
+            this.cbBoxCargoFunc.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbBoxCargoFunc.Name = "cbBoxCargoFunc";
             this.cbBoxCargoFunc.Size = new System.Drawing.Size(293, 23);
             this.cbBoxCargoFunc.TabIndex = 235;
@@ -482,7 +482,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1424, 861);
+            this.ClientSize = new System.Drawing.Size(963, 573);
             this.Controls.Add(this.txtEndereçoNum);
             this.Controls.Add(this.txtEndereço);
             this.Controls.Add(this.txtCadFuncConfirmSenha);

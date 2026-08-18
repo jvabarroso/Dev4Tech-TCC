@@ -3,7 +3,6 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Dev4Tech
@@ -11,105 +10,20 @@ namespace Dev4Tech
     public partial class Integrantes_Equipe : Form
     {
         private int equipeSelecionadaId = -1;
-        private string nomeEquipeSelecionada;
-        private string categoriaEquipeSelecionada;
-        private string baseFolder = @"C:\xampp\htdocs\dev4tech";
+        private string baseFolder = @"C:\xampp\htdocs\dev4tech\";
         private string basePathImagemEquipe = @"C:\xampp\htdocs\dev4tech\img";
-        private const string txtPesquisarPlaceholder = "🔎 Pesquisar Membros";
 
         public Integrantes_Equipe()
         {
             InitializeComponent();
             CarregarEquipes();
             CarregarFotoUsuario();
-            ConfigurarPlaceholder();
-        }
 
-        // Métodos auxiliares para processar fotos
-        private string TryDecodeUtf8(byte[] bytes)
-        {
-            try
+            // Evento para busca ao digitar
+            txtPesquisarMembros.TextChanged += (s, e) =>
             {
-                string s = Encoding.UTF8.GetString(bytes).Trim('\0').Trim();
-                return s;
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
-        private bool LooksLikePath(string s)
-        {
-            if (string.IsNullOrWhiteSpace(s)) return false;
-            s = s.ToLowerInvariant();
-            if (s.Contains("img/") || s.Contains("img\\") || s.Contains(".jpg") ||
-                s.Contains(".jpeg") || s.Contains(".png") || s.Contains(".bmp"))
-                return true;
-            return false;
-        }
-
-        private string ResolveStoredPathToFullPath(string stored)
-        {
-            if (string.IsNullOrWhiteSpace(stored)) return null;
-
-            try
-            {
-                stored = stored.Trim().Trim('"').Trim('\'');
-                string normalized = stored.Replace('/', Path.DirectorySeparatorChar)
-                                         .Replace('\\', Path.DirectorySeparatorChar);
-
-                if (Path.IsPathRooted(normalized))
-                {
-                    return normalized;
-                }
-
-                string prefix = "img" + Path.DirectorySeparatorChar;
-                if (normalized.StartsWith(prefix, StringComparison.InvariantCultureIgnoreCase))
-                {
-                    string withoutLeading = normalized.Substring(prefix.Length);
-                    return Path.Combine(baseFolder, "img", withoutLeading);
-                }
-
-                if (normalized.Equals("img", StringComparison.InvariantCultureIgnoreCase))
-                {
-                    return Path.Combine(baseFolder, "img");
-                }
-
-                if (!normalized.Contains(Path.DirectorySeparatorChar))
-                {
-                    return Path.Combine(basePathImagemEquipe, normalized);
-                }
-
-                return Path.Combine(baseFolder, normalized.TrimStart(Path.DirectorySeparatorChar));
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
-        private void ConfigurarPlaceholder()
-        {
-            txtPesquisarMembros.ForeColor = Color.Gray;
-            txtPesquisarMembros.Text = txtPesquisarPlaceholder;
-
-            txtPesquisarMembros.Enter += (s, e) =>
-            {
-                if (txtPesquisarMembros.Text == txtPesquisarPlaceholder)
-                {
-                    txtPesquisarMembros.Text = "";
-                    txtPesquisarMembros.ForeColor = SystemColors.WindowText;
-                }
-            };
-
-            txtPesquisarMembros.Leave += (s, e) =>
-            {
-                if (string.IsNullOrWhiteSpace(txtPesquisarMembros.Text))
-                {
-                    txtPesquisarMembros.Text = txtPesquisarPlaceholder;
-                    txtPesquisarMembros.ForeColor = Color.Gray;
-                }
+                string filtro = txtPesquisarMembros.Text.Trim();
+                CarregarMembrosDaEquipe(filtro);
             };
         }
 
@@ -146,6 +60,7 @@ namespace Dev4Tech
                     Top = 15
                 };
 
+                // CARREGAR FOTO DA EQUIPE - MESMA LÓGICA DO PRIMEIRO CÓDIGO
                 object fotoEquipeData = row["foto_equipe"];
                 Image fotoEquipe = ObterFotoEquipeDosDados(fotoEquipeData);
                 picEquipe.Image = fotoEquipe ?? Properties.Resources.icon_EquipLogo;
@@ -191,6 +106,7 @@ namespace Dev4Tech
                         BorderStyle = BorderStyle.FixedSingle
                     };
 
+                    // CARREGAR FOTO DO MEMBRO - MESMA LÓGICA DO PRIMEIRO CÓDIGO
                     object fotoMembroData = m["foto_perfil"];
                     Image fotoMembro = ObterFotoMembroDosDados(fotoMembroData);
                     picMembro.Image = fotoMembro ?? Properties.Resources.icon_perfil;
@@ -203,12 +119,6 @@ namespace Dev4Tech
                 equipePanel.Click += (s, e) =>
                 {
                     equipeSelecionadaId = idEquipe;
-                    nomeEquipeSelecionada = nomeEquipe;
-                    categoriaEquipeSelecionada = categoria;
-
-                    lblNomeEquipe.Text = nomeEquipeSelecionada;
-                    lblCategoriaEquipe.Text = categoriaEquipeSelecionada;
-
                     CarregarMembrosDaEquipe();
                 };
 
@@ -223,13 +133,7 @@ namespace Dev4Tech
             if (equipeSelecionadaId == -1) return;
 
             PesquisaIntegrantes dao = new PesquisaIntegrantes();
-            bool usarFiltroNome = !string.IsNullOrEmpty(filtroNome) &&
-                                filtroNome != txtPesquisarPlaceholder &&
-                                txtPesquisarMembros.ForeColor != Color.Gray;
-
-            DataTable membros = dao.BuscarMembrosDaEquipe(equipeSelecionadaId,
-                usarFiltroNome ? filtroNome : "");
-
+            DataTable membros = dao.BuscarMembrosDaEquipe(equipeSelecionadaId, filtroNome);
             int top = 10;
 
             foreach (DataRow row in membros.Rows)
@@ -254,6 +158,7 @@ namespace Dev4Tech
                     BorderStyle = BorderStyle.FixedSingle
                 };
 
+                // CARREGAR FOTO DO MEMBRO - MESMA LÓGICA DO PRIMEIRO CÓDIGO
                 object fotoMembroData = row["foto_perfil"];
                 Image fotoMembro = ObterFotoMembroDosDados(fotoMembroData);
                 pic.Image = fotoMembro ?? Properties.Resources.icon_perfil;
@@ -295,6 +200,7 @@ namespace Dev4Tech
             }
         }
 
+        // MÉTODO PARA OBTER FOTO DA EQUIPE (COPIADO DO PRIMEIRO CÓDIGO)
         private Image ObterFotoEquipeDosDados(object fotoData)
         {
             Image fotoEquipe = null;
@@ -317,14 +223,13 @@ namespace Dev4Tech
                         // Tentar como string se falhar como imagem
                         try
                         {
-                            string possivelCaminho = TryDecodeUtf8(imageData);
-                            if (!string.IsNullOrEmpty(possivelCaminho) && LooksLikePath(possivelCaminho))
+                            string nomeArquivo = System.Text.Encoding.UTF8.GetString(imageData);
+                            // LIMPAR O NOME DO ARQUIVO DE CARACTERES INVÁLIDOS
+                            nomeArquivo = new string(nomeArquivo.Where(c => !Path.GetInvalidFileNameChars().Contains(c)).ToArray());
+                            string caminhoImagemEquipe = Path.Combine(basePathImagemEquipe, nomeArquivo);
+                            if (File.Exists(caminhoImagemEquipe))
                             {
-                                string fullPath = ResolveStoredPathToFullPath(possivelCaminho);
-                                if (!string.IsNullOrEmpty(fullPath) && File.Exists(fullPath))
-                                {
-                                    fotoEquipe = Image.FromFile(fullPath);
-                                }
+                                fotoEquipe = Image.FromFile(caminhoImagemEquipe);
                             }
                         }
                         catch
@@ -336,23 +241,26 @@ namespace Dev4Tech
                 else if (fotoData is string caminhoRelativo)
                 {
                     // É um caminho
-                    string fullPath = ResolveStoredPathToFullPath(caminhoRelativo);
-                    if (!string.IsNullOrEmpty(fullPath) && File.Exists(fullPath))
+                    try
                     {
-                        try
+                        // LIMPAR O CAMINHO DE CARACTERES INVÁLIDOS
+                        caminhoRelativo = new string(caminhoRelativo.Where(c => !Path.GetInvalidPathChars().Contains(c)).ToArray());
+                        string caminhoCompleto = Path.Combine(baseFolder, caminhoRelativo.Replace("/", @"\"));
+                        if (File.Exists(caminhoCompleto))
                         {
-                            fotoEquipe = Image.FromFile(fullPath);
+                            fotoEquipe = Image.FromFile(caminhoCompleto);
                         }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine($"Erro ao carregar imagem do caminho: {ex.Message}");
-                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Erro ao carregar imagem do caminho: {ex.Message}");
                     }
                 }
             }
             return fotoEquipe;
         }
 
+        // MÉTODO PARA OBTER FOTO DO MEMBRO (LÓGICA SIMPLIFICADA)
         private Image ObterFotoMembroDosDados(object fotoData)
         {
             Image fotoMembro = null;
@@ -361,89 +269,73 @@ namespace Dev4Tech
             {
                 if (fotoData is byte[] imageData)
                 {
-                    // É um blob - tentar carregar como imagem diretamente
+                    // É um blob - carregar diretamente da memória
                     try
                     {
                         using (var ms = new MemoryStream(imageData))
                         {
+                            ms.Position = 0;
                             fotoMembro = Image.FromStream(ms);
                         }
                     }
-                    catch (Exception ex)
+                    catch
                     {
-                        Console.WriteLine($"Erro ao carregar imagem do blob: {ex.Message}");
-                        // Tentar como string se falhar como imagem
-                        try
-                        {
-                            string possivelCaminho = TryDecodeUtf8(imageData);
-                            if (!string.IsNullOrEmpty(possivelCaminho) && LooksLikePath(possivelCaminho))
-                            {
-                                string fullPath = ResolveStoredPathToFullPath(possivelCaminho);
-                                if (!string.IsNullOrEmpty(fullPath) && File.Exists(fullPath))
-                                {
-                                    fotoMembro = Image.FromFile(fullPath);
-                                }
-                            }
-                        }
-                        catch
-                        {
-                            // Se tudo falhar, retorna null e usará imagem padrão
-                        }
+                        fotoMembro = null;
                     }
                 }
                 else if (fotoData is string caminhoRelativo)
                 {
                     // É um caminho
-                    string fullPath = ResolveStoredPathToFullPath(caminhoRelativo);
-                    if (!string.IsNullOrEmpty(fullPath) && File.Exists(fullPath))
+                    try
                     {
-                        try
+                        string caminhoCorrigido = caminhoRelativo.Replace("/", "\\");
+                        string caminhoCompleto = Path.Combine(baseFolder, caminhoCorrigido);
+                        if (File.Exists(caminhoCompleto))
                         {
-                            fotoMembro = Image.FromFile(fullPath);
+                            using (var imgTemp = Image.FromFile(caminhoCompleto))
+                            {
+                                fotoMembro = new Bitmap(imgTemp);
+                            }
                         }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine($"Erro ao carregar imagem do caminho: {ex.Message}");
-                        }
+                    }
+                    catch
+                    {
+                        fotoMembro = null;
                     }
                 }
             }
             return fotoMembro;
         }
 
-        private void CarregarFotoUsuario()
+        // RESTANTE DOS MÉTODOS DO FORMULÁRIO (event handlers)
+        private void btnPesquisar_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var usuarioFoto = new UsuarioFoto();
-                Image foto = usuarioFoto.ObterFotoUsuario();
+            string filtro = txtPesquisarMembros.Text.Trim();
+            CarregarMembrosDaEquipe(filtro);
+        }
 
-                if (picPerfil != null)
-                {
-                    if (foto != null)
-                    {
-                        picPerfil.Image = foto;
-                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
-                    }
-                    else
-                    {
-                        picPerfil.Image = Properties.Resources.icon_perfil;
-                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
-                    }
-                }
-            }
-            catch (Exception ex)
+        private void lblMembros_Click(object sender, EventArgs e)
+        {
+            var funcionario = Sessao.FuncionarioLogado;
+            var admin = Sessao.AdminLogado;
+            if (funcionario != null)
             {
-                Console.WriteLine($"Erro ao carregar foto do usuário: {ex.Message}");
-                if (picPerfil != null)
-                {
-                    picPerfil.Image = Properties.Resources.icon_perfil;
-                    picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
+                Integrantes_Equipe t_equipe = new Integrantes_Equipe();
+                t_equipe.Show();
+                this.Hide();
+            }
+            else if (admin != null)
+            {
+                AdicionarEquipes t_equipeAdmin = new AdicionarEquipes();
+                t_equipeAdmin.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum usuário logado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
-        // Métodos de navegação (mantidos conforme original)
         private void lblPlanejamento_Click(object sender, EventArgs e)
         {
             var funcionario = Sessao.FuncionarioLogado;
@@ -461,6 +353,7 @@ namespace Dev4Tech
                 }
                 else if (admin != null)
                 {
+
                     MessageBox.Show("Tela voltada para tarefas dos funcionários.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     PesquisaEquipes t_equipeAdmin = new PesquisaEquipes();
                     t_equipeAdmin.Show();
@@ -531,18 +424,19 @@ namespace Dev4Tech
 
             if (Sessao.IdEquipeSelecionada != 0)
             {
-                string nomeEquipe = Sessao.NomeEquipeSelecionada;
-                string categoriaEquipe = Sessao.CategoriaEquipeSelecionada;
+                int idEquipe = Sessao.IdEquipeSelecionada;
+                string nomeEquipe = "Nome da equipe";
+                string categoriaEquipe = "Categoria da equipe";
 
                 if (funcionario != null)
                 {
-                    Chat_geral_equipes t_equipe = new Chat_geral_equipes(Sessao.IdEquipeSelecionada, nomeEquipe, categoriaEquipe);
+                    Chat_geral_equipes t_equipe = new Chat_geral_equipes(idEquipe, nomeEquipe, categoriaEquipe);
                     t_equipe.Show();
                     this.Hide();
                 }
                 else if (admin != null)
                 {
-                    Chat_geral_equipes t_equipeAdmin = new Chat_geral_equipes(Sessao.IdEquipeSelecionada, nomeEquipe, categoriaEquipe);
+                    Chat_geral_equipes t_equipeAdmin = new Chat_geral_equipes(idEquipe, nomeEquipe, categoriaEquipe);
                     t_equipeAdmin.Show();
                     this.Hide();
                 }
@@ -611,12 +505,14 @@ namespace Dev4Tech
 
             if (funcionario != null)
             {
+
                 Ranking_Equipes t_equipe = new Ranking_Equipes();
                 t_equipe.Show();
                 this.Hide();
             }
             else if (admin != null)
             {
+
                 Ranking_Equipes t_equipeAdmin = new Ranking_Equipes();
                 t_equipeAdmin.Show();
                 this.Hide();
@@ -674,17 +570,44 @@ namespace Dev4Tech
             }
         }
 
-        private void txtProcurarMebros_TextChanged(object sender, EventArgs e)
+        // Métodos vazios necessários para o designer
+        private void txtProcurarMebros_TextChanged(object sender, EventArgs e) { }
+        private void btnMostrarMembros_Click(object sender, EventArgs e) { }
+        private void Integrantes_Equipe_Load(object sender, EventArgs e) { }
+        private void label1_Click(object sender, EventArgs e) { }
+
+
+        private void CarregarFotoUsuario()
         {
-            if (txtPesquisarMembros.Text != txtPesquisarPlaceholder &&
-                txtPesquisarMembros.ForeColor != Color.Gray)
+            try
             {
-                CarregarMembrosDaEquipe(txtPesquisarMembros.Text.Trim());
+                var usuarioFoto = new UsuarioFoto();
+                Image foto = usuarioFoto.ObterFotoUsuario();
+
+                if (picPerfil != null) // Verifica se o controle existe no form
+                {
+                    if (foto != null)
+                    {
+                        picPerfil.Image = foto;
+                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
+                    }
+                    else
+                    {
+                        // Usar imagem padrão se não encontrar foto
+                        picPerfil.Image = Properties.Resources.icon_perfil;
+                        picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao carregar foto do usuário: {ex.Message}");
+                if (picPerfil != null)
+                {
+                    picPerfil.Image = Properties.Resources.icon_perfil;
+                    picPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
             }
         }
-
-        private void btnMostrarMembros_Click(object sender, EventArgs e) { }
-
-        private void Integrantes_Equipe_Load(object sender, EventArgs e) { }
     }
 }
