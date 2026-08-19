@@ -55,8 +55,13 @@ async def converter_para_pdf(file: UploadFile = File(...)):
 
         # Processar conforme a extensão
         if extensao == ".pdf":
-            shutil.copy2(arquivo_entrada, arquivo_saida)
+            arquivo_saida = arquivo_entrada # arquivo_saida = arquivo_entrada
+            arquivo_entrada = None   # arquivo_entrada = None
+            print ("PDF já está no formato correto. Nenhuma conversão necessária.")     # print("PDF já está no formato correto. Nenhuma conversão necessária."
             print("PDF copiado diretamente")
+            if not os.path.exists(arquivo_saida):
+                raise HTTPException(status_code=500, detail="Falha ao copiar o PDF")
+            print("PDF copiado com sucesso")
         elif extensao in ['.doc', '.docx']:
             await converter_word_para_pdf(arquivo_entrada, arquivo_saida)
             print("Word convertido para PDF")
