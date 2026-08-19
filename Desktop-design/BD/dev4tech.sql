@@ -1,21 +1,24 @@
+
+
 CREATE DATABASE Dev4Tech;
+
 
 USE Dev4Tech;
 -- Tabela de Empresas
 CREATE TABLE Empresas (
     id_empresa INT PRIMARY KEY auto_increment,
-    nome_empresa VARCHAR(100) NOT NULL,
+    nome_empresa varchar(100) NOT NULL,
     cnpj VARCHAR(14) UNIQUE NOT NULL,
     logradouro varchar(255),
     email VARCHAR(100) NOT NULL,
-    telefone VARCHAR(15),administradoresgraficosetoresgraficosetores
+    telefone VARCHAR(15),
     numResidencia VARCHAR(200),
     bairro varchar(255),
     complemento varchar(255),
     data_cadEm DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    setorEmpresarial VARCHAR(255)
+    setorEmpresarial VARCHAR(255),
+    senha VARCHAR(255)
 );
-ALTER TABLE empresas ADD COLUMN senha VARCHAR(255);
 -- Tabela de Administradores
 CREATE TABLE Administradores (
     AdminId INT PRIMARY KEY auto_increment,
@@ -30,15 +33,16 @@ CREATE TABLE Administradores (
     endereco VARCHAR(255) NOT NULL,
     num VARCHAR(255) NOT NULL,
     id_empresa INT,
-    FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa) ON DELETE CASCADE
+    FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa) ON DELETE CASCADE,
+    foto_perfil LONGBLOB
 );
 
 -- Tabela de Funcionários
 CREATE TABLE Funcionarios (
     FuncionarioId INT PRIMARY KEY auto_increment,
-    Nome VARCHAR(100),
+    Nome VARCHAR (100),
     Cargo VARCHAR(255),
-    CPF CHAR(11) UNIQUE,
+    CPF CHAR(14) UNIQUE,
     DataNascimento DATE,
     Telefone VARCHAR(20),
     Email VARCHAR(255) UNIQUE,
@@ -49,39 +53,36 @@ CREATE TABLE Funcionarios (
     id_empresa INT,
     FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa) ON DELETE CASCADE,
     AdminId INT,
-    FOREIGN KEY (AdminId) REFERENCES Administradores(AdminId) ON DELETE CASCADE
+    FOREIGN KEY (AdminId) REFERENCES Administradores(AdminId) ON DELETE CASCADE,
+    foto_perfil LONGBLOB
 );
 
-ALTER TABLE Funcionarios ADD COLUMN foto_perfil LONGBLOB;
-ALTER TABLE Administradores ADD COLUMN foto_perfil LONGBLOB;
 
 
 -- Tabela Categorias
 CREATE TABLE Categorias (
     id_categoria INT AUTO_INCREMENT PRIMARY KEY,
-    nome_categoria VARCHAR(255) NOT NULL UNIQUE
+    nome_categoria VARCHAR(255) NOT NULL UNIQUE,
+    id_empresa INT,
+    FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa)
 );
 
-ALTER TABLE Categorias ADD COLUMN id_empresa int;
-ALTER TABLE Categorias ADD FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa);
 
 -- Tabela Equipes
 CREATE TABLE Equipes (
     id_equipe INT AUTO_INCREMENT PRIMARY KEY,
     nome_equipe VARCHAR(255) NOT NULL,
     id_categoria INT NOT NULL,
-    FOREIGN KEY (id_categoria) REFERENCES Categorias(id_categoria) ON DELETE RESTRICT ON UPDATE CASCADE
+    FOREIGN KEY (id_categoria) REFERENCES Categorias(id_categoria) ON DELETE RESTRICT ON UPDATE CASCADE,
+    foto_equipe LONGBLOB,
+    data_criacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    AdminId INT,
+    foreign key (AdminId) references administradores(AdminId),
+    id_empresa INT,
+    FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa)
+
 );
 
-ALTER TABLE Equipes ADD COLUMN foto_equipe LONGBLOB;
-
-ALTER TABLE Equipes ADD COLUMN data_criacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
-
-alter table equipes add column AdminId int;
-alter table equipes add foreign key (AdminId) references administradores(AdminId);
-
-ALTER TABLE Equipes ADD COLUMN id_empresa int;
-ALTER TABLE Equipes ADD FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa);
 
 CREATE TABLE Equipes_Membros (
     id_equipe INT NOT NULL,
@@ -124,7 +125,7 @@ CREATE TABLE UltimaAtividadeEquipe (
     FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE
 );
 
-CREATE TABLE Tarefas (
+CREATE TABLE  Tarefas(       
     id_tarefa INT AUTO_INCREMENT PRIMARY KEY,
     nomeTarefa VARCHAR(255) NOT NULL,
     instrucoes VARCHAR(255) NOT NULL,
@@ -133,13 +134,11 @@ CREATE TABLE Tarefas (
     nome_arquivo VARCHAR(255),
     arquivo_blob LONGBLOB,
     FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE ON UPDATE CASCADE,
-    dificuldade VARCHAR(20) NOT NULL
+    dificuldade VARCHAR(20) NOT NULL,
+    data_criacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    id_empresa INT,
+    FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa)
 );
-
-ALTER TABLE Tarefas ADD COLUMN data_criacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
-
-ALTER TABLE Tarefas ADD COLUMN id_empresa int;
-ALTER TABLE Tarefas ADD FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa);
 
 
 CREATE TABLE EntregasTarefa (
@@ -151,13 +150,13 @@ CREATE TABLE EntregasTarefa (
     arquivo_blob LONGBLOB,
     data_entrega DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_tarefa) REFERENCES Tarefas(id_tarefa) ON DELETE CASCADE,
-    FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE
+    FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE,
+    FuncionarioId INT NOT NULL,
+    FOREIGN KEY (FuncionarioId) REFERENCES Funcionarios(FuncionarioId) ON DELETE CASCADE,
+    entregue BOOL
 );
-ALTER TABLE EntregasTarefa
-ADD COLUMN FuncionarioId INT NOT NULL,
-ADD FOREIGN KEY (FuncionarioId) REFERENCES Funcionarios(FuncionarioId) ON DELETE CASCADE;
 
-ALTER TABLE EntregasTarefa ADD COLUMN entregue BOOL;
+
 
 CREATE TABLE PontuacaoFuncionario (
     id_pontuacao INT AUTO_INCREMENT PRIMARY KEY,
@@ -181,11 +180,10 @@ CREATE TABLE RelatoProblema (
 	id_equipe INT NOT NULL,
    FOREIGN KEY (id_tarefa) REFERENCES Tarefas(id_tarefa) ON DELETE CASCADE,
    FOREIGN KEY (id_equipe) REFERENCES Equipes(id_equipe) ON DELETE CASCADE,
-	descricao TEXT NOT NULL
+	descricao TEXT NOT NULL,
+	id_empresa INT,
+	FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa)
 );
-
-ALTER TABLE RelatoProblema ADD COLUMN id_empresa int;
-ALTER TABLE RelatoProblema ADD FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa);
 
 -- Tabela para rastrear páginas visualizadas individualmente
 CREATE TABLE TarefaPaginasVisualizadas (

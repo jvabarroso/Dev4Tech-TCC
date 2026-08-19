@@ -1499,3 +1499,9 @@ C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop-design\Dev4Tech\D
 C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop-design\Dev4Tech\Dev4Tech\bin\Debug\pt-BR\MsgReader.resources.dll
 C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop-design\Dev4Tech\Dev4Tech\bin\Debug\zh-CN\MsgReader.resources.dll
 C:\Users\jvaba\OneDrive\Área de Trabalho\Dev4Tech-TCC\Desktop-design\Dev4Tech\Dev4Tech\bin\Debug\zh-TW\MsgReader.resources.dll
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop-design\Dev4Tech\Dev4Tech\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop-design\Dev4Tech\Dev4Tech\bin\Debug\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop-design\Dev4Tech\Dev4Tech\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop-design\Dev4Tech\Dev4Tech\bin\Debug\Microsoft.Extensions.Options.dll
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop-design\Dev4Tech\Dev4Tech\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\grr20\OneDrive - Academico - Secretaria do Estado da Educação de São Paulo\Área de Trabalho\Dev4Tech-TCC\Desktop-design\Dev4Tech\Dev4Tech\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
